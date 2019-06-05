@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="栈 Stack Data Structure">
+
+
+
+
+  <meta name="keywords" content="swift, algorithm, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2018/11/22/stack-data-structure/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> 栈 Stack Data Structure - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          栈 Stack Data Structure
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-11-22
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/11/22/stack-data-structure/" data-title="栈 Stack Data Structure">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#stack"><span class="toc-text">stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#push"><span class="toc-text">push</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pop"><span class="toc-text">pop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#peek"><span class="toc-text">peek</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#other"><span class="toc-text">other</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p><img src="https://cdn-qn.yifans.com/imzyf/johnson-wang-20675-unsplash.jpg" alt="queue-data-structure"></p>
+<p>加入 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="noopener">Swift Algorithm Club</a> /‘ælgə’rɪðəm/，回炉重新学习数据结构与算法。</p>
+<p>自己创建的项目：<a href="https://github.com/imzyf/data-structure-and-algorithm" target="_blank" rel="noopener">GitHub - imzyf/data-structure-and-algorithm</a>。</p>
+<p>实现一个 <code>栈</code> /stæk/，包含 <code>push</code> <code>peek</code> <code>pop</code> 与 <code>Generics</code> 泛型。</p>
+<a id="more"></a>
+<h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><p><code>栈</code> 非常像一个数组，它包括少量的方法。</p>
+<ul>
+<li>push 添加一个新元素到栈顶</li>
+<li>pop 从栈顶移除一个元素</li>
+<li>peek 查看栈顶的一个元素但是不 pop</li>
+</ul>
+<p>A stack gives you a LIFO or last-in first-out order. 栈是后进先出，队列是先进先出。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public struct Stack&lt;Element&gt; &#123;</span><br><span class="line">    fileprivate var array: [Element] = []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="push"><a href="#push" class="headerlink" title="push"></a>push</h2><p><code>push</code> 是在数组的尾部添加元素是以 <code>O(1)</code>，如果是在数组最前添加是 <code>O(n)</code> 这是昂贵的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public mutating func push(_ element: Element) &#123;</span><br><span class="line">  array.append(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为使用的 <code>struct</code>，修改属性值的方法要加 <code>mutating</code>。</p>
+<h2 id="pop"><a href="#pop" class="headerlink" title="pop"></a>pop</h2><p>想从一个空栈中弹出最后一个元素将返回 <code>nil</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public mutating func pop(_ element: Element) &#123;</span><br><span class="line">    return array.popLast()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="peek"><a href="#peek" class="headerlink" title="peek"></a>peek</h2><p>与 <code>pop</code> 有点像，但是并没有移除栈顶的元素。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/// peek 改为更加语义化的 top 只读变量</span><br><span class="line">public var top: T? &#123;</span><br><span class="line">    return array.last</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><p>两个其他的常用属性，栈是否为空，栈中元素的个数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public var isEmpty: Bool &#123;</span><br><span class="line">  return array.isEmpty</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public var count: Int &#123;</span><br><span class="line">  return array.count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="https://www.raywenderlich.com/800-swift-algorithm-club-swift-stack-data-structure" target="_blank" rel="noopener">Swift Algorithm Club: Swift Stack Data Structure</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2018/11/22/stack-data-structure/">https://zyf.im/2018/11/22/stack-data-structure/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/swift/">swift</a>
+            
+              <a href="/tags/algorithm/">algorithm</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/11/22/queue-data-structure/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">队列 Queue Data Structure</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/10/30/correct-too-many-symbol-files-issues/">
+        <span class="next-text nav-default">解决 Too many symbol files</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2018/11/22/stack-data-structure/';
+        this.page.identifier = '2018/11/22/stack-data-structure/';
+        this.page.title = '栈 Stack Data Structure';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

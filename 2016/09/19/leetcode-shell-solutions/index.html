@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="LeetCode Shell 解题集合">
+
+
+
+
+  <meta name="keywords" content="leetcode, shell, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2016/09/19/leetcode-shell-solutions/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> LeetCode Shell 解题集合 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          LeetCode Shell 解题集合
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-09-19
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/09/19/leetcode-shell-solutions/" data-title="LeetCode Shell 解题集合">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#195-Tenth-Line"><span class="toc-text">195. Tenth Line</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大体意思"><span class="toc-text">大体意思</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己的解法"><span class="toc-text">自己的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#别人的解法"><span class="toc-text">别人的解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#193-Valid-Phone-Numbers"><span class="toc-text">193. Valid Phone Numbers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大体意思-1"><span class="toc-text">大体意思</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自己的解法-1"><span class="toc-text">自己的解法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#别人的解法-1"><span class="toc-text">别人的解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#192-Word-Frequency"><span class="toc-text">192. Word Frequency</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大体意思-2"><span class="toc-text">大体意思</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#别人的解法-2"><span class="toc-text">别人的解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#194-Transpose-File"><span class="toc-text">194. Transpose File</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#大体意思-3"><span class="toc-text">大体意思</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#别人的解法-3"><span class="toc-text">别人的解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>&emsp;&emsp;LeetCode Shell 的试题多为文本操作，<a href="https://leetcode.com/problems/tenth-line/" target="_blank" rel="noopener">195. Tenth Line</a>、<a href="https://leetcode.com/problems/valid-phone-numbers/" target="_blank" rel="noopener">193. Valid Phone Numbers</a>、<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="noopener">192. Word Frequency</a>、<a href="https://leetcode.com/problems/transpose-file/" target="_blank" rel="noopener">194. Transpose File</a> 暂时只有4道题，就整合在这一起了<br>&emsp;&emsp;Shell 中文本处理的事情基本 <code>awk</code> <code>sed</code> <code>grep</code> <code>sort</code> <code>uniq</code> <code>tail</code> <code>head</code> 几个命令组合组合就搞定了<br><a id="more"></a></p>
+<h2 id="195-Tenth-Line"><a href="#195-Tenth-Line" class="headerlink" title="195. Tenth Line"></a><a href="https://leetcode.com/problems/tenth-line/" target="_blank" rel="noopener">195. Tenth Line</a></h2><h3 id="大体意思"><a href="#大体意思" class="headerlink" title="大体意思"></a>大体意思</h3><p>How would you print just the 10th line of a file?<br>For example, assume that file.txt has the following content:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Line 1</span><br><span class="line">Line 2</span><br><span class="line">Line 3</span><br><span class="line">Line 4</span><br><span class="line">Line 5</span><br><span class="line">Line 6</span><br><span class="line">Line 7</span><br><span class="line">Line 8</span><br><span class="line">Line 9</span><br><span class="line">Line 10</span><br></pre></td></tr></table></figure></p>
+<p>Your script should output the tenth line, which is:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Line 10</span><br></pre></td></tr></table></figure></p>
+<p>打印出文本文件中第 10 行的内容。</p>
+<h3 id="自己的解法"><a href="#自己的解法" class="headerlink" title="自己的解法"></a>自己的解法</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat  file.txt | tail -n +10 | head -n 1</span><br></pre></td></tr></table></figure>
+<p>这是学习了：<a href="http://www.cnblogs.com/xianghang123/archive/2011/08/03/2125977.html" target="_blank" rel="noopener">linux 如何显示一个文件的某几行(中间几行) - 香格里拉(^o^)/</a></p>
+<h3 id="别人的解法"><a href="#别人的解法" class="headerlink" title="别人的解法"></a>别人的解法</h3><p>方法一：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">'NR==10'</span> file.txt</span><br><span class="line"><span class="comment"># awk的默认动作就是打印$0，所以NR==10后面可以不用加&#123;print $0&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -n <span class="string">'10p'</span> file.txt</span><br><span class="line"><span class="comment"># 如果不够10行，则什么也不打印</span></span><br></pre></td></tr></table></figure></p>
+<p>方法三：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">line=$(cat file.txt | wc -l)     <span class="comment"># 千万注意，等号前后一定不要有空格</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$line</span>"</span> -ge 10 ] ; <span class="keyword">then</span>     <span class="comment"># $line的双引号也可以不用加</span></span><br><span class="line">  cat file.txt | head -n 10 | tail -n 1 </span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<p>Reference: <a href="http://blog.csdn.net/sole_cc/article/details/44977821" target="_blank" rel="noopener">leetcode-195 Tenth Line - 2&gt; /dev/null</a></p>
+<h2 id="193-Valid-Phone-Numbers"><a href="#193-Valid-Phone-Numbers" class="headerlink" title="193. Valid Phone Numbers"></a><a href="https://leetcode.com/problems/valid-phone-numbers/" target="_blank" rel="noopener">193. Valid Phone Numbers</a></h2><h3 id="大体意思-1"><a href="#大体意思-1" class="headerlink" title="大体意思"></a>大体意思</h3><p>Given a text file <code>file.txt</code> that contains list of phone numbers (one per line), write a one liner bash script to print all valid phone numbers.<br>You may assume that a valid phone number must appear in one of the following two formats: (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit)<br>You may also assume each line in the text file must not contain leading or trailing white spaces.</p>
+<p>For example, assume that <code>file.txt</code> has the following content:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">987-123-4567</span><br><span class="line">123 456 7890</span><br><span class="line">(123) 456-7890</span><br></pre></td></tr></table></figure></p>
+<p>Your script should output the following valid phone numbers:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">987-123-4567</span><br><span class="line">(123) 456-7890</span><br></pre></td></tr></table></figure></p>
+<p>匹配有效的电话号码</p>
+<h3 id="自己的解法-1"><a href="#自己的解法-1" class="headerlink" title="自己的解法"></a>自己的解法</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat file.txt | grep <span class="string">'^[0-9]\&#123;3\&#125;-[0-9]\&#123;3\&#125;-[0-9]\&#123;4\&#125;$\|^([0-9]\&#123;3\&#125;) [0-9]\&#123;3\&#125;-[0-9]\&#123;4\&#125;$'</span></span><br></pre></td></tr></table></figure>
+<h3 id="别人的解法-1"><a href="#别人的解法-1" class="headerlink" title="别人的解法"></a>别人的解法</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -P <span class="string">'^(\(\d&#123;3&#125;\)|\d&#123;3&#125;-)\d&#123;3&#125;-\d&#123;4&#125;$'</span> file.txt</span><br></pre></td></tr></table></figure>
+<p>Reference: <a href="https://ruixublog.wordpress.com/2015/05/13/leetcode-193-valid-phone-numbers/" target="_blank" rel="noopener">LeetCode 193: Valid Phone Numbers &#8211; Revo</a></p>
+<h2 id="192-Word-Frequency"><a href="#192-Word-Frequency" class="headerlink" title="192. Word Frequency"></a><a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="noopener">192. Word Frequency</a></h2><h3 id="大体意思-2"><a href="#大体意思-2" class="headerlink" title="大体意思"></a>大体意思</h3><p>Write a bash script to calculate the frequency of each word in a text file <code>words.txt</code>.</p>
+<p>For simplicity sake, you may assume:</p>
+<p><code>words.txt</code> contains only lowercase characters and space <code>&#39; &#39;</code> characters.<br>Each word must consist of lowercase characters only.<br>Words are separated by one or more whitespace characters.<br>For example, assume that <code>words.txt</code> has the following content:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">the day is sunny the the</span><br><span class="line">the sunny is is</span><br></pre></td></tr></table></figure></p>
+<p>Your script should output the following, sorted by descending frequency:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">the 4</span><br><span class="line">is 3</span><br><span class="line">sunny 2</span><br><span class="line">day 1</span><br></pre></td></tr></table></figure></p>
+<p>Note:<br>Don’t worry about handling ties, it is guaranteed that each word’s frequency count is unique.</p>
+<p>统计单词出现的频次，然后倒序排列</p>
+<h3 id="别人的解法-2"><a href="#别人的解法-2" class="headerlink" title="别人的解法"></a>别人的解法</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">'&#123;i=1;while(i&lt;=NF)&#123;print $i;i++&#125;&#125;'</span> words.txt  | sort | uniq -c  | sort -k1nr  | awk <span class="string">'&#123;print $2 " " $1&#125;'</span></span><br></pre></td></tr></table></figure>
+<p>1、利用 awk 默认一行一条记录，默认以空格划分每条记录，NF 为划分的总块数先打印出所有单词<br>2、排序 + 统计 + 消除重复<br>3、输出</p>
+<p>Reference: <a href="http://blog.csdn.net/wangxiaobupt/article/details/45201817" target="_blank" rel="noopener">LeetCode 192 Word Frequency - wangxiaobupt的专栏</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">'</span></span><br><span class="line"><span class="string">&#123; for (i=1; i&lt;=NF; i++) &#123; ++S[$i]; &#125; &#125;</span></span><br><span class="line"><span class="string">END &#123; for (i in S) &#123; print i, S[i] &#125; &#125;</span></span><br><span class="line"><span class="string">'</span> words.txt | sort -nr -k 2</span><br></pre></td></tr></table></figure>
+<p>Reference: <a href="https://github.com/illuz/leetcode/tree/master/solutions/192.Word_Frequency" target="_blank" rel="noopener">leetcode/solutions/192.Word_Frequency at master · illuz/leetcode</a></p>
+<h2 id="194-Transpose-File"><a href="#194-Transpose-File" class="headerlink" title="194. Transpose File"></a><a href="https://leetcode.com/problems/transpose-file/" target="_blank" rel="noopener">194. Transpose File</a></h2><h3 id="大体意思-3"><a href="#大体意思-3" class="headerlink" title="大体意思"></a>大体意思</h3><p>Given a text file <code>file.txt</code>, transpose its content.</p>
+<p>You may assume that each row has the same number of columns and each field is separated by the <code>&#39; &#39;</code> character.</p>
+<p>For example, if <code>file.txt</code> has the following content:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name age</span><br><span class="line">alice 21</span><br><span class="line">ryan 30</span><br></pre></td></tr></table></figure></p>
+<p>Output the following:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name alice ryan</span><br><span class="line">age 21 30</span><br></pre></td></tr></table></figure></p>
+<h3 id="别人的解法-3"><a href="#别人的解法-3" class="headerlink" title="别人的解法"></a>别人的解法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">awk &apos;</span><br><span class="line">&#123;</span><br><span class="line">    for (i = 1; i &lt;= NF; i++) &#123;</span><br><span class="line">        if(NR == 1) &#123;</span><br><span class="line">            s[i] = $i;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            s[i] = s[i] &quot; &quot; $i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">END &#123;</span><br><span class="line">    for (i = 1; s[i] != &quot;&quot;; i++) &#123;</span><br><span class="line">        print s[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;&apos; file.txt</span><br></pre></td></tr></table></figure>
+<p>Reference: <a href="https://github.com/illuz/leetcode/tree/master/solutions/194.Transpose_File" target="_blank" rel="noopener">leetcode/solutions/194.Transpose_File at master · illuz/leetcode</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>&emsp;&emsp;Shell 中文本处理的事情基本 <code>awk</code> <code>sed</code> <code>grep</code> <code>sort</code> <code>uniq</code> <code>tail</code> <code>head</code> 几个命令组合组合就搞定了，各命令的常用方法之后总结</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2016/09/19/leetcode-shell-solutions/">https://zyf.im/2016/09/19/leetcode-shell-solutions/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+              <a href="/tags/shell/">shell</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/09/23/core-java-reading-notes-part2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">【Core Java】读书笔记 Part 2</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/">
+        <span class="next-text nav-default">Ubuntu 下使用 sysv-rc-conf 管理开机启动服务</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2016/09/19/leetcode-shell-solutions/';
+        this.page.identifier = '2016/09/19/leetcode-shell-solutions/';
+        this.page.title = 'LeetCode Shell 解题集合';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

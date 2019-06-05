@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Ubuntu JDK Nginx WildFly MySQL 环境配置">
+
+
+
+
+  <meta name="keywords" content="ubuntu, wildfly, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> Ubuntu JDK Nginx WildFly MySQL 环境配置 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Ubuntu JDK Nginx WildFly MySQL 环境配置
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-07-07
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/" data-title="Ubuntu JDK Nginx WildFly MySQL 环境配置">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JDK8"><span class="toc-text">JDK8</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-JDK8"><span class="toc-text">安装 JDK8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-Java-安装路径"><span class="toc-text">查看 Java 安装路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看-Java-安装后的版本"><span class="toc-text">查看 Java 安装后的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（扩展）增加多版本-JDK-和切换方法"><span class="toc-text">（扩展）增加多版本 JDK 和切换方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx"><span class="toc-text">Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-安装"><span class="toc-text">Nginx 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-禁止外网访问"><span class="toc-text">Nginx 禁止外网访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-域名调整"><span class="toc-text">Nginx 域名调整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-GZip"><span class="toc-text">Nginx GZip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-静态文件缓存"><span class="toc-text">Nginx 静态文件缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-Commands"><span class="toc-text">Nginx Commands</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-Show-Log"><span class="toc-text">Nginx Show Log</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WildFly-10-0-0-Final"><span class="toc-text">WildFly 10.0.0.Final</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WildFly-安装"><span class="toc-text">WildFly 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-WildFly-允许所有-ip-访问"><span class="toc-text">配置 WildFly 允许所有 ip 访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除默认欢迎内容（可选）"><span class="toc-text">删除默认欢迎内容（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它设置"><span class="toc-text">其它设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意事项"><span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-反向代理-WildFly"><span class="toc-text">Nginx 反向代理 WildFly</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL5-6-安装"><span class="toc-text">MySQL5.6 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-创建数据库"><span class="toc-text">MySQL 创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-数据库导出-导入"><span class="toc-text">MySQL 数据库导出/导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL-查看表结构"><span class="toc-text">MySQL 查看表结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Project"><span class="toc-text">Project</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#robots-txt-config-禁止所有爬虫爬取"><span class="toc-text">robots.txt config 禁止所有爬虫爬取</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>新项目部署上线，主要参考 <a href="http://blog.csdn.net/hanshileiai" target="_blank" rel="noopener">世雷博客</a> 的内容，自己也总结了下。从 JDK 安装、Web 容器、数据库，都有涉及比较全面。</p>
+<h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2><h3 id="安装-JDK8"><a href="#安装-JDK8" class="headerlink" title="安装 JDK8"></a>安装 JDK8</h3><p>1、添加软件源<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br></pre></td></tr></table></figure></p>
+<p>2、更新软件源<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>3、安装 jdk1.8<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看-Java-安装路径"><a href="#查看-Java-安装路径" class="headerlink" title="查看 Java 安装路径"></a>查看 Java 安装路径</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config java</span><br><span class="line">sudo update-alternatives --config javac</span><br></pre></td></tr></table></figure>
+<h3 id="查看-Java-安装后的版本"><a href="#查看-Java-安装后的版本" class="headerlink" title="查看 Java 安装后的版本"></a>查看 Java 安装后的版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h3 id="（扩展）增加多版本-JDK-和切换方法"><a href="#（扩展）增加多版本-JDK-和切换方法" class="headerlink" title="（扩展）增加多版本 JDK 和切换方法"></a>（扩展）增加多版本 JDK 和切换方法</h3><p>1、安装 JDK 6 和 JDK 7<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install oracle-java6-installer</span><br><span class="line">sudo apt-get install oracle-java7-installer</span><br></pre></td></tr></table></figure></p>
+<p>2、查看所有 JDK 安装版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -l</span><br><span class="line">java-6-oracle 3 /usr/lib/jvm/java-6-oracle</span><br><span class="line">java-7-oracle 4 /usr/lib/jvm/java-7-oracle</span><br><span class="line">java-8-oracle 2 /usr/lib/jvm/java-8-oracle</span><br></pre></td></tr></table></figure></p>
+<p>3、通过 <code>-s</code> 参数可以方便的切换到其它的 JDK 版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-6-oracle</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-7-oracle</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-8-oracle</span><br></pre></td></tr></table></figure>
+<p>4、再次查看 JDK 版本<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java version &quot;1.6.0_45&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.6.0_45-b06)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><h3 id="Nginx-安装"><a href="#Nginx-安装" class="headerlink" title="Nginx 安装"></a>Nginx 安装</h3><p>1、更新软件源<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>2、安装 Nginx<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure></p>
+<p>3、查看 Nginx 位置<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">whereis nginx</span><br></pre></td></tr></table></figure></p>
+<h3 id="Nginx-禁止外网访问"><a href="#Nginx-禁止外网访问" class="headerlink" title="Nginx 禁止外网访问"></a>Nginx 禁止外网访问</h3><p>防止 Google 收录<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/nginx/sites-enabled/default</span><br></pre></td></tr></table></figure></p>
+<p>在 <code>server</code> 中添加<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># server add</span><br><span class="line"># 公司代理IP</span><br><span class="line">allow *.*.*.*;</span><br><span class="line">deny all;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Nginx-域名调整"><a href="#Nginx-域名调整" class="headerlink" title="Nginx 域名调整"></a>Nginx 域名调整</h3><p>域名 <code>www</code> 跳转 <code>non www</code>，<code>server</code> 中添加配置<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_name www.aaa.org aaa.org;</span><br><span class="line">if ($host != &apos;aaa.org&apos;)&#123;</span><br><span class="line">	rewrite ^/(.*)$ http://aaa.org/$1 permanent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Nginx-GZip"><a href="#Nginx-GZip" class="headerlink" title="Nginx GZip"></a>Nginx GZip</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">##</span><br><span class="line"># Gzip Settings</span><br><span class="line">##</span><br><span class="line"></span><br><span class="line">gzip on;</span><br><span class="line">gzip_disable &quot;msie6&quot;;</span><br><span class="line"></span><br><span class="line">gzip_vary on;</span><br><span class="line">gzip_min_length 1k;</span><br><span class="line">gzip_proxied any;</span><br><span class="line">gzip_comp_level 6;</span><br><span class="line">gzip_buffers 16 8k;</span><br><span class="line">gzip_http_version 1.1;</span><br><span class="line">gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/x-httpd-php image/jpeg image/gif image/png image/x-icon</span><br></pre></td></tr></table></figure>
+<h3 id="Nginx-静态文件缓存"><a href="#Nginx-静态文件缓存" class="headerlink" title="Nginx 静态文件缓存"></a>Nginx 静态文件缓存</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ~*\.(gif|jpg|jpeg|png|bmp|swf|woff|icon)$ &#123;</span><br><span class="line">	proxy_cache my_zone;</span><br><span class="line">	proxy_cache_bypass $http_cache_control;</span><br><span class="line">	proxy_cache_valid 200 1d;</span><br><span class="line">	add_header X-Proxy-Cache $upstream_cache_status;</span><br><span class="line">	expires 15d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location ~ .*\.(js|css|ttf)$ &#123;</span><br><span class="line">	proxy_cache my_zone;</span><br><span class="line">	proxy_cache_bypass $http_cache_control;</span><br><span class="line">	proxy_cache_valid 200 1d;</span><br><span class="line">	add_header X-Proxy-Cache $upstream_cache_status;</span><br><span class="line">	expires 15d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>静态文件放在配置的 <code>root</code> 下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">root /opt/***;</span><br></pre></td></tr></table></figure></p>
+<p>还有个技巧，项目中大量资源文件，例如 PDF，在设计访问 url 时可以 <code>**/pdf/**</code>，这样在 Nginx 进行配置就可以将文件分离出项目；这些文件也放在 <code>root</code> 路径下。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location ^~ /html/ &#123;</span><br><span class="line">&#125;</span><br><span class="line">location ^~ /pdf/ &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Nginx-Commands"><a href="#Nginx-Commands" class="headerlink" title="Nginx Commands"></a>Nginx Commands</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service nginx stop</span><br><span class="line">sudo service nginx start</span><br><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+<h3 id="Nginx-Show-Log"><a href="#Nginx-Show-Log" class="headerlink" title="Nginx Show Log"></a>Nginx Show Log</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo tail -f /var/log/nginx/error.log</span><br></pre></td></tr></table></figure>
+<h2 id="WildFly-10-0-0-Final"><a href="#WildFly-10-0-0-Final" class="headerlink" title="WildFly 10.0.0.Final"></a>WildFly 10.0.0.Final</h2><h3 id="WildFly-安装"><a href="#WildFly-安装" class="headerlink" title="WildFly 安装"></a>WildFly 安装</h3><p>1、下载 WildFly，并提取到 /opt 目录 WildFly 10.0.0.Final <a href="http://wildfly.org/downloads/" target="_blank" rel="noopener">下载地址</a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd /opt</span><br><span class="line">sudo wget -c http://download.jboss.org/wildfly/10.0.0.Final/wildfly-10.0.0.Final.tar.gz</span><br><span class="line">sudo tar -xzvf wildfly-10.0.0.Final.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>2、创建 WildFly 用户和组<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo addgroup wildfly</span><br><span class="line">sudo useradd -g wildfly wildfly</span><br></pre></td></tr></table></figure></p>
+<p>改变 wildfly 文件夹的所有权：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo chown -R wildfly:wildfly /opt/wildfly-10.0.0.Final</span><br></pre></td></tr></table></figure></p>
+<p>创建一个链接映射（好处：如果你改变WildFly版本,不需要更新其他配置）<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo ln -s wildfly-10.0.0.Final /opt/wildfly</span><br></pre></td></tr></table></figure></p>
+<p>3、安装 init.d 脚本<br>设置并使用 init.d 脚本来启动和停止WildFly。复制<code>/opt/wildfly/bin/init.d/wildfly-init-debian.sh</code>脚本到 <code>/etc/init.d/wildfly</code>，更改权限,并使其可执行<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo cp /opt/wildfly/docs/contrib/scripts/init.d/wildfly-init-debian.sh /etc/init.d/wildfly</span><br><span class="line">sudo chown root:root /etc/init.d/wildfly</span><br><span class="line">sudo chmod ug+x /etc/init.d/wildfly</span><br></pre></td></tr></table></figure></p>
+<p>启动/停止WildFly 命令<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo /etc/init.d/wildfly start</span><br><span class="line">sudo /etc/init.d/wildfly stop</span><br></pre></td></tr></table></figure></p>
+<p>4、WildFly 做为系统服务，开机启动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo update-rc.d wildfly defaults</span><br></pre></td></tr></table></figure>
+<h3 id="配置-WildFly-允许所有-ip-访问"><a href="#配置-WildFly-允许所有-ip-访问" class="headerlink" title="配置 WildFly 允许所有 ip 访问"></a>配置 WildFly 允许所有 ip 访问</h3><p>1、打开配置文件 <code>standalone.xml</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo vi /opt/wildfly/standalone/configuration/standalone.xml</span><br></pre></td></tr></table></figure></p>
+<p>2、替换此处<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;interface name=&quot;management&quot;&gt;</span><br><span class="line">    &lt;inet-address value=&quot;$&#123;jboss.bind.address.management:127.0.0.1&#125;&quot;/&gt;</span><br><span class="line">&lt;/interface&gt;</span><br><span class="line">&lt;interface name=&quot;public&quot;&gt;</span><br><span class="line">    &lt;inet-address value=&quot;$&#123;jboss.bind.address:0.0.0.0&#125;&quot;/&gt;</span><br><span class="line">&lt;/interface&gt;</span><br></pre></td></tr></table></figure></p>
+<p>改为<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;interface name=&quot;management&quot;&gt;</span><br><span class="line">    &lt;any-address/&gt;</span><br><span class="line">&lt;/interface&gt;</span><br><span class="line">&lt;interface name=&quot;public&quot;&gt;</span><br><span class="line">    &lt;any-address/&gt;</span><br><span class="line">&lt;/interface&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3、保存后，重新启动 WildFily<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service wildfly restart</span><br></pre></td></tr></table></figure></p>
+<h3 id="删除默认欢迎内容（可选）"><a href="#删除默认欢迎内容（可选）" class="headerlink" title="删除默认欢迎内容（可选）"></a>删除默认欢迎内容（可选）</h3><p>如果你部署了应用程序在上下文根目录里，欢迎你 将需要从WildFly配置删除默认内容。在 standalone.xml 文件里删除粗体突出显示的行<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;server name=&quot;default-server&quot;&gt;</span><br><span class="line">    &lt;http-listener name=&quot;default&quot; socket-binding=&quot;http&quot;/&gt;</span><br><span class="line">    &lt;host name=&quot;default-host&quot; alias=&quot;localhost&quot;&gt;</span><br><span class="line">        **&lt;!-- &lt;location name=&quot;/&quot; handler=&quot;welcome-content&quot;/&gt; --&gt;**</span><br><span class="line">        &lt;filter-ref name=&quot;server-header&quot;/&gt;</span><br><span class="line">        &lt;filter-ref name=&quot;x-powered-by-header&quot;/&gt;</span><br><span class="line">    &lt;/host&gt;</span><br><span class="line">&lt;/server&gt;</span><br><span class="line">&lt;handlers&gt;</span><br><span class="line">    **&lt;!-- &lt;file name=&quot;welcome-content&quot; path=&quot;$&#123;jboss.home.dir&#125;/welcome-content&quot;/&gt; --&gt;**</span><br><span class="line">&lt;/handlers&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="其它设置"><a href="#其它设置" class="headerlink" title="其它设置"></a>其它设置</h3><p>改为可以修改JSP页面不用重启<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;servlet-container name=&quot;default&quot;&gt;</span><br><span class="line">      &lt;jsp-config development=&quot;true&quot;/&gt;</span><br><span class="line">&lt;/servlet-container&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1、项目以站点根目录访问<br>你现在可以将应用程序部署到 WildFly 视图在 your_ip:8080<br>在你的项目目录 WEB-INF 下添加 jboss-web.xml，确保你的配置 context-root 设置为 /<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;jboss-web&gt;</span><br><span class="line">    &lt;context-root&gt;/&lt;/context-root&gt;</span><br><span class="line">&lt;/jboss-web&gt;</span><br></pre></td></tr></table></figure></p>
+<p>2、Linux 里设置端口 80 到 8080<br><strong>注意：在之后的配置会使用 Nginx 反向代理，所用 WildFly 端口不用映射为 80，这里只是个方法的笔记</strong></p>
+<p>注意，在linux里，由于内核的限制，普通用户不能使用 1024 一下的端口。所以在配置文件（standalone.xml）里改成80，用普通用户是启动不了的。</p>
+<p>此时，我们需要在 linux 下使用 root 用户运行一个命令，使访问80端口的应用转到8080上：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080</span><br></pre></td></tr></table></figure></p>
+<p>以上端口转发为临时操作，重启 linux 服务器后失效。如果要重启服务器不丢失FORWARD转发”操作，可写入配置。</p>
+<blockquote>
+<p>在Linux的下面部署了tomcat，为了安全我们使用非root用户进行启动，但是在域名绑定时无法直接访问80端口号。众所周知，在unix下，非root用户不能监听1024以上的端口号，这个tomcat服务器就没办法绑定在80端口下。所以这里需要使用linux的端口转发机制，把到80端口的服务请求都转到8080端口上。</p>
+</blockquote>
+<p>2.1、安装 iptables-persistent<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install iptables-persistent</span><br></pre></td></tr></table></figure></p>
+<p>2.2、添加 80 端口跳转到 8080 规则<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080</span><br></pre></td></tr></table></figure></p>
+<p>2.3、保存跳转规则<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo service iptables-persistent save</span><br></pre></td></tr></table></figure></p>
+<p>3、wildfly 不支持 struts2 的配置文件（.xml）里用通配符<br><strong>这是原博文的内容，我没有使用 struts2；在 spring 中有用通配符，但是好像没什么影响</strong><br>jboss wildfly 不支持 struts2 配置文件里用通配符 <code>*.xml</code>，如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- &lt;include file=&quot;struts/*.xml&quot;&gt;&lt;/include&gt; --&gt;</span><br><span class="line">&lt;include file=&quot;struts/struts_post.xml&quot;&gt;&lt;/include&gt;</span><br><span class="line">&lt;include file=&quot;struts/struts_user.xml&quot;&gt;&lt;/include&gt;</span><br></pre></td></tr></table></figure></p>
+<p>4、增加部署扫描仪的超时设置<br>位置：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;subsystem xmlns=&quot;urn:jboss:domain:deployment-scanner:2.0&quot;&gt;</span><br><span class="line">    &lt;deployment-scanner path=&quot;deployments&quot; relative-to=&quot;jboss.server.base.dir&quot; scan-interval=&quot;5000&quot; /&gt;</span><br><span class="line">&lt;/subsystem&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>&lt;deployment-scanner&gt;</code> 内增加属性 <code>deployment-timeout=&quot;1200&quot;</code> 如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;subsystem xmlns=&quot;urn:jboss:domain:deployment-scanner:2.0&quot;&gt;</span><br><span class="line">    &lt;deployment-scanner path=&quot;deployments&quot; relative-to=&quot;jboss.server.base.dir&quot; scan-interval=&quot;5000&quot; deployment-timeout=&quot;1200&quot; /&gt;</span><br><span class="line">&lt;/subsystem&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Nginx-反向代理-WildFly"><a href="#Nginx-反向代理-WildFly" class="headerlink" title="Nginx 反向代理 WildFly"></a>Nginx 反向代理 WildFly</h3><p>1、在 <code>http</code> 中添加<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">upstream jboss &#123;</span><br><span class="line">	server 127.0.0.1:8080;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、在 <code>server</code> 中修改<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">location /&#123;</span><br><span class="line">	proxy_pass http://jboss;</span><br><span class="line">	proxy_redirect off;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">	proxy_set_header Host $http_host;</span><br><span class="line">	index index.html index.htm index.jsp;</span><br><span class="line">	# 动态网站要小心这个 缓存 选项</span><br><span class="line">	add_header Cache-Control max-age=1728000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="MySQL5-6-安装"><a href="#MySQL5-6-安装" class="headerlink" title="MySQL5.6 安装"></a>MySQL5.6 安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install mysql-server-5.6</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL-创建数据库"><a href="#MySQL-创建数据库" class="headerlink" title="MySQL 创建数据库"></a>MySQL 创建数据库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE IF NOT EXISTS scrapy DEFAULT CHARSET utf8 COLLATE utf8_general_ci;</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL-数据库导出-导入"><a href="#MySQL-数据库导出-导入" class="headerlink" title="MySQL 数据库导出/导入"></a>MySQL 数据库导出/导入</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqldump -u root -p123456 db_name | gzip &gt; /home/backup/db_name.sql.gz</span><br><span class="line">mysqldump -u root -p123456 --all-databases | gzip &gt; /home/backup/all.sql.gz</span><br><span class="line"></span><br><span class="line">mysqldump -h192.168.1.100 -uroot -p db_name &gt; db_name.sql</span><br><span class="line">mysqldump -uroot -p db_name_1 db_name_2 &gt; db_name_1_and_2.sql</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gunzip &lt; db_name.sql.gz | mysql -u root -p123456 db_name</span><br><span class="line">gunzip &lt; all.sql.gz | mysql -u root -p123456</span><br><span class="line"></span><br><span class="line">mysql -uroot -p</span><br><span class="line">show databases;</span><br><span class="line">use db_name;</span><br><span class="line"><span class="built_in">source</span> ~/db_name.sql</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL-查看表结构"><a href="#MySQL-查看表结构" class="headerlink" title="MySQL 查看表结构"></a>MySQL 查看表结构</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">desc user</span><br></pre></td></tr></table></figure>
+<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><h3 id="robots-txt-config-禁止所有爬虫爬取"><a href="#robots-txt-config-禁止所有爬虫爬取" class="headerlink" title="robots.txt config 禁止所有爬虫爬取"></a>robots.txt config 禁止所有爬虫爬取</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Renference:</p>
+<ul>
+<li><a href="http://blog.csdn.net/hanshileiai/article/details/46968275" target="_blank" rel="noopener">韩世雷-ubuntu 配置 java jdk1.8 环境，增加多版本 jdk 和切换方法</a></li>
+<li><a href="http://blog.csdn.net/hanshileiai/article/details/46987859" target="_blank" rel="noopener">韩世雷-ubuntu14.04 Terminal 配置 wildfly-10.0.0.Final 服务器</a></li>
+<li><a href="http://blog.csdn.net/hanshileiai/article/details/47757217" target="_blank" rel="noopener">韩世雷-Ubuntu14.04 配置 iptables 把80端口转到8080</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/">https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/ubuntu/">ubuntu</a>
+            
+              <a href="/tags/wildfly/">wildfly</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/07/11/write-some-humanities-diary/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">写一些人文的日志</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/07/01/github-webhook-example/">
+        <span class="next-text nav-default">GitHub Webhook 自动部署 Hexo</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/';
+        this.page.identifier = '2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/';
+        this.page.title = 'Ubuntu JDK Nginx WildFly MySQL 环境配置';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Eclipse Maven Spring SpringMVC Mybatis 整合">
+
+
+
+
+  <meta name="keywords" content="maven, springmvc, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> Eclipse Maven Spring SpringMVC Mybatis 整合 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Eclipse Maven Spring SpringMVC Mybatis 整合
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-06-27
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/" data-title="Eclipse Maven Spring SpringMVC Mybatis 整合">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-Install"><span class="toc-text">Maven Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eclipse-Maven-Plugin-m2e"><span class="toc-text">Eclipse Maven Plugin - m2e</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-a-Maven-Project"><span class="toc-text">Create a Maven Project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pom-xml-Config"><span class="toc-text">pom.xml Config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logback-xml-Config"><span class="toc-text">logback.xml Config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mybatis-Config"><span class="toc-text">Mybatis Config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Config"><span class="toc-text">Spring Config</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-DAO-Config"><span class="toc-text">Spring-DAO Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Service-Config"><span class="toc-text">Spring-Service Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Web-Config"><span class="toc-text">Spring-Web Config</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAO-Mapper-Example"><span class="toc-text">DAO Mapper Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-xml-Config"><span class="toc-text">web.xml Config</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JUnit-Example"><span class="toc-text">JUnit Example</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>新项目自己撘框架，想着用点新的。看慕课网 <a href="http://www.imooc.com/index/search?words=%E7%A7%92%E6%9D%80" target="_blank" rel="noopener">Java高并发秒杀API</a> 的系列课程时很受益。所以想着仿着来使用：Mavan-Spring-SpringMVC-Mybatis 的架构。框架整合的代码我已上传到我的 Github：<a href="https://github.com/imzyf/maven-mybatis-spring-springmvc" target="_blank" rel="noopener">maven-mybatis-spring-springmvc</a>。</p>
+<p>本示例是在：Ubuntu15 上实现的；Windows 上安装 Maven 将不太相同。</p>
+<h2 id="Maven-Install"><a href="#Maven-Install" class="headerlink" title="Maven Install"></a>Maven Install</h2><blockquote>
+<p>2016年09月10日 更新：较新版 Eclipse 都有集成 Maven，所以并不需要安装</p>
+</blockquote>
+<ol>
+<li>Run command <code>sudo apt-get install maven</code>, to install the latest Apache Maven.</li>
+<li>Run command <code>mvn -version to verify</code> your installation.</li>
+<li>Where is Maven installed?<br>The command <code>apt-get</code> install the Maven in <code>/usr/share/maven</code><br>The Maven configuration files are stored in <code>/etc/maven</code></li>
+</ol>
+<h2 id="Eclipse-Maven-Plugin-m2e"><a href="#Eclipse-Maven-Plugin-m2e" class="headerlink" title="Eclipse Maven Plugin - m2e"></a>Eclipse Maven Plugin - m2e</h2><blockquote>
+<p>2016年09月10日 更新：较新版 Eclipse 都有集成 Maven，所以并不需要安装</p>
+</blockquote>
+<ol>
+<li>open Eclipse -&gt; Help -&gt; click “Install New Software” -&gt; click “add”<ul>
+<li>Name:m2e</li>
+<li>Location:<a href="http://download.eclipse.org/technology/m2e/releases" target="_blank" rel="noopener">http://download.eclipse.org/technology/m2e/releases</a></li>
+</ul>
+</li>
+<li>click “ok” -&gt; click “Maven Integration for Eclipse” -&gt; click “Next”</li>
+<li>restrat Eclipse</li>
+<li>config m2e -&gt; Window -&gt; Preferences -&gt; Maven -&gt; Installations -&gt; click “Add…” -&gt; select Maven</li>
+</ol>
+<a id="more"></a>
+<h2 id="Create-a-Maven-Project"><a href="#Create-a-Maven-Project" class="headerlink" title="Create a Maven Project"></a>Create a Maven Project</h2><ol>
+<li>File -&gt; New -&gt; New Maven project</li>
+<li>select “Use default Workspace location”</li>
+<li>select “maven-archetype-j2ee-simple”</li>
+<li>input info -&gt; Finish</li>
+<li>选中项目右键菜单中选择Properties -&gt; Project Facets -&gt; select “Dynamic Web Module” Version “3.1”</li>
+</ol>
+<p>Tips:</p>
+<ul>
+<li>如果在 <code>Project Facets</code> 选择版本时“can not change”，可以在项目目录下手动修改 <code>.settings/org.eclipse.wst.common.project.facet.core.xml</code> 文件配置</li>
+<li>项目自动生成的 <code>web.xml</code> 版本较低，手动修改</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://xmlns.jcp.org/xml/ns/javaee</span></span></span><br><span class="line"><span class="tag"><span class="string">                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">version</span>=<span class="string">"3.1"</span> <span class="attr">metadata-complete</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>项目结构</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── src</span><br><span class="line">    ├── main</span><br><span class="line">    |   ├── java //java源代码</span><br><span class="line">    |   ├── resources //配置资源文件</span><br><span class="line">    |   └── webapp //web文件</span><br><span class="line">    |</span><br><span class="line">    └── test</span><br><span class="line">	    └── java //junit测试</span><br></pre></td></tr></table></figure>
+<h2 id="pom-xml-Config"><a href="#pom-xml-Config" class="headerlink" title="pom.xml Config"></a>pom.xml Config</h2><p><a href="https://github.com/imzyf/maven-mybatis-spring-springmvc/blob/master/pom.xml" target="_blank" rel="noopener">Github-maven-mybatis-spring-springmvc pom.xml</a><br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- junit4 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 日志 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 实现slf4j接口整合 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- JDBC MySQL Driver --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- DAO框架 mybatis --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Servlet API --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 1 Spring 核心依赖 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 2 Spring DAO依赖 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 3 Spring web相关依赖 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 4 Spring Test相关依赖 --&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="logback-xml-Config"><a href="#logback-xml-Config" class="headerlink" title="logback.xml Config"></a>logback.xml Config</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"STDOUT"</span> <span class="attr">class</span>=<span class="string">"ch.qos.logback.core.ConsoleAppender"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder</span></span><br><span class="line"><span class="comment">			by default --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">encoder</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">pattern</span>&gt;</span>%d&#123;HH:mm:ss.SSS&#125; [%thread] %-5level %logger&#123;36&#125; - %msg%n</span><br><span class="line">			<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">encoder</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">root</span> <span class="attr">level</span>=<span class="string">"info"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">appender-ref</span> <span class="attr">ref</span>=<span class="string">"STDOUT"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Mybatis-Config"><a href="#Mybatis-Config" class="headerlink" title="Mybatis Config"></a>Mybatis Config</h2><p><a href="https://github.com/imzyf/maven-mybatis-spring-springmvc/blob/master/src/main/resources/mybatis-config.xml" target="_blank" rel="noopener">Github-maven-mybatis-spring-springmvc mybatis-config.xml</a><br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 使用jdbc的getGeneratedKays 获取数据库自增主键 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"useGeneratedKeys"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 使用列别名替换列名 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"useColumnLabel"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"mapUnderscoreToCamelCase"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Spring-Config"><a href="#Spring-Config" class="headerlink" title="Spring Config"></a>Spring Config</h2><p><a href="https://github.com/imzyf/maven-mybatis-spring-springmvc/tree/master/src/main/resources/spring" target="_blank" rel="noopener">Github-maven-mybatis-spring-springmvc spring</a></p>
+<h3 id="Spring-DAO-Config"><a href="#Spring-DAO-Config" class="headerlink" title="Spring-DAO Config"></a>Spring-DAO Config</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1 数据库配置文件位置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">"classpath:jdbc.properties"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 2 数据库连接池 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Employee DB data source. --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.mchange.v2.c3p0.ComboPooledDataSource"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driverClassName&#125;"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.dburl&#125;"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- c3p0连接池 私有属性 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.maxPoolSize&#125;"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minPoolSize"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.minPoolSize&#125;"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 关闭连接后不自动commit --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"autoCommitOnClose"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 获取连接超时时间 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span> <span class="attr">value</span>=<span class="string">"1000"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 获取连接失败重试次数 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"acquireRetryAttempts"</span> <span class="attr">value</span>=<span class="string">"2"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 设计原则：约定大于配置 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 3 配置 SqlSessionFactory 对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 注入数据库连接池 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置mybitis 全局配置文件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:mybatis-config.xml"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 扫描entity包 使用别名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"typeAliasesPackage"</span> <span class="attr">value</span>=<span class="string">"com.moma.dmv.entity"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 扫描sql配置文件 mapper 需要的xml --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperLocations"</span> <span class="attr">value</span>=<span class="string">"classpath:mapper/*.xml"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 4 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 注入sqlsessionFactory --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactoryBeanName"</span> <span class="attr">value</span>=<span class="string">"sqlSessionFactory"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 给出需要扫描Dao接口包 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"com.moma.dmv.dao"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Spring-Service-Config"><a href="#Spring-Service-Config" class="headerlink" title="Spring-Service Config"></a>Spring-Service Config</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 扫描service包下 所有使用注解的类型 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.moma.dmv.service"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 配置事务管理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 配置基于注解的声明式事务 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 使用注解控制事务方法的优点</span></span><br><span class="line"><span class="comment">1：开发团队达成一致约定，明确标注事务方法的编程风格</span></span><br><span class="line"><span class="comment">2：保证事务方法的执行时间尽可能短，不要穿插其他网络操作RPC/HTTP请求或者剥离到事务方法外部</span></span><br><span class="line"><span class="comment">3：不是所有的方法都需要事务，比如只有一条修改操作，只读操作不需要事务控制</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Spring-Web-Config"><a href="#Spring-Web-Config" class="headerlink" title="Spring-Web Config"></a>Spring-Web Config</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1:开启springMVC 注解模式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 2 静态资源默认servlet配置 1 加入对静态资源的处理 js gif png 2 允许使用“/”做整体映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 3:配置jsp 显示ViewResolver --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span></span></span><br><span class="line"><span class="tag">	<span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 决定视图类型，如果添加了jstl支持（即有jstl.jar），那么默认就是解析为jstl视图 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span></span></span><br><span class="line"><span class="tag">		<span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.JstlView"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 视图前缀 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 视图后缀 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">location</span>=<span class="string">"/resources/"</span> <span class="attr">mapping</span>=<span class="string">"/resources/**"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 4:扫描web相关的bean --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.moma.dmv.web"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="DAO-Mapper-Example"><a href="#DAO-Mapper-Example" class="headerlink" title="DAO Mapper Example"></a>DAO Mapper Example</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.moma.dmv.dao.InfoDao"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryById"</span> <span class="attr">resultType</span>=<span class="string">"Info"</span> <span class="attr">parameterType</span>=<span class="string">"long"</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		select id,`key`,`value` from info where id = #&#123;id&#125;</span><br><span class="line">		]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryAll"</span> <span class="attr">resultType</span>=<span class="string">"Info"</span>&gt;</span></span><br><span class="line">		&lt;![CDATA[</span><br><span class="line">		select id,key,value</span><br><span class="line">		from info</span><br><span class="line">		limit #&#123;offset&#125;,#&#123;limit&#125;</span><br><span class="line">		]]&gt;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="web-xml-Config"><a href="#web-xml-Config" class="headerlink" title="web.xml Config"></a>web.xml Config</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dmv-dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置springMVC需要加载的配置文件 spring-dao.xml spring-service.xml spring-web.xml</span></span><br><span class="line"><span class="comment">		mybatis -&gt; spring -&gt; springMVC --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring/spring-*.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dmv-dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 默认匹配所有的请求 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="JUnit-Example"><a href="#JUnit-Example" class="headerlink" title="JUnit Example"></a>JUnit Example</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.moma.dmv.dao.InfoDao;</span><br><span class="line"><span class="keyword">import</span> com.moma.dmv.entity.Info;</span><br><span class="line"></span><br><span class="line">RunWith(SpringJUnit4ClassRunner.class)</span><br><span class="line">ContextConfiguration(locations = &#123; <span class="string">"classpath:spring/spring-dao.xml"</span> &#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InfoDaoTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource</span></span><br><span class="line">	<span class="keyword">private</span> InfoDao infoDao;</span><br><span class="line">	<span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(<span class="keyword">this</span>.getClass());</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testQueryById</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="keyword">long</span> id = <span class="number">1</span>;</span><br><span class="line">		Info info = infoDao.queryById(id);</span><br><span class="line">		logger.info(info.toString());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="http://www.mkyong.com/maven/how-to-install-maven-in-ubuntu/" target="_blank" rel="noopener">MKyong-How to install Maven on Ubuntu</a></li>
+<li><a href="http://blog.csdn.net/qjyong/article/details/9098213" target="_blank" rel="noopener">Java之道-使用Eclipse构建Maven项目 (step-by-step)</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/">https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/maven/">maven</a>
+            
+              <a href="/tags/springmvc/">springmvc</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/06/30/github-pages-forbidden-baiduspide-solution/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">GitHub Pages 不被百度收录解决方案</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/06/24/hexo-github-blog/">
+        <span class="next-text nav-default">使用 GitHub 和 Hexo 搭建个人独立博客</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/';
+        this.page.identifier = '2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/';
+        this.page.title = 'Eclipse Maven Spring SpringMVC Mybatis 整合';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

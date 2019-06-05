@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="【Git 权威指南】读书笔记 - 和声">
+
+
+
+
+  <meta name="keywords" content="git, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2018/01/17/got-git-reading-notes-harmony/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> 【Git 权威指南】读书笔记 - 和声 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          【Git 权威指南】读书笔记 - 和声
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-17
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/17/got-git-reading-notes-harmony/" data-title="【Git 权威指南】读书笔记 - 和声">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-协议与工作协同"><span class="toc-text">Git 协议与工作协同</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-支持的协议"><span class="toc-text">Git 支持的协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#强制非快进式推送"><span class="toc-text">强制非快进式推送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#禁止非快进式推送"><span class="toc-text">禁止非快进式推送</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冲突解决"><span class="toc-text">冲突解决</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拉回操作中的合并"><span class="toc-text">拉回操作中的合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并策略"><span class="toc-text">合并策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-里程碑"><span class="toc-text">Git 里程碑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#显示里程碑"><span class="toc-text">显示里程碑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建里程碑"><span class="toc-text">创建里程碑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除里程碑"><span class="toc-text">删除里程碑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#共享里程碑"><span class="toc-text">共享里程碑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除远程版本库的里程碑"><span class="toc-text">删除远程版本库的里程碑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#里程碑命名规范"><span class="toc-text">里程碑命名规范</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-分支"><span class="toc-text">Git 分支</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分支命令概述"><span class="toc-text">分支命令概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支变基"><span class="toc-text">分支变基</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#远程版本库"><span class="toc-text">远程版本库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#远程分支"><span class="toc-text">远程分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支追踪"><span class="toc-text">分支追踪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#远程版本库-1"><span class="toc-text">远程版本库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PUSH-和-PULL-操作与远程版本库"><span class="toc-text">PUSH 和 PULL 操作与远程版本库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支和里程碑的安全性"><span class="toc-text">分支和里程碑的安全性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补丁文件交互"><span class="toc-text">补丁文件交互</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】</p>
+<h2 id="Git-协议与工作协同"><a href="#Git-协议与工作协同" class="headerlink" title="Git 协议与工作协同"></a>Git 协议与工作协同</h2><h3 id="Git-支持的协议"><a href="#Git-支持的协议" class="headerlink" title="Git 支持的协议"></a>Git 支持的协议</h3><p>SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。</p>
+<p>SSH 协议：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh://[user@]example.com[:port]/path/to/repo.git/</span><br><span class="line"></span><br><span class="line">[user@]example.com:path/to/repo.git/</span><br></pre></td></tr></table></figure>
+<p>GIT 协议，最常用的只读协议：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git://example.com[:port]/path/to/repo.git/</span><br></pre></td></tr></table></figure>
+<p>HTTP[S] 协议：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http[s]://example.com[:port]/path/to/repo.git/</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="强制非快进式推送"><a href="#强制非快进式推送" class="headerlink" title="强制非快进式推送"></a>强制非快进式推送</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push -f</span><br></pre></td></tr></table></figure>
+<p>强制推送，会强制刷新服务器中的版本。</p>
+<h3 id="禁止非快进式推送"><a href="#禁止非快进式推送" class="headerlink" title="禁止非快进式推送"></a>禁止非快进式推送</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true</span><br></pre></td></tr></table></figure>
+<h2 id="冲突解决"><a href="#冲突解决" class="headerlink" title="冲突解决"></a>冲突解决</h2><h3 id="拉回操作中的合并"><a href="#拉回操作中的合并" class="headerlink" title="拉回操作中的合并"></a>拉回操作中的合并</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull = git fetch + git merge</span><br></pre></td></tr></table></figure>
+<h3 id="合并策略"><a href="#合并策略" class="headerlink" title="合并策略"></a>合并策略</h3><blockquote>
+<p><a href="https://git-scm.com/docs/git-merge#_merge_strategies" target="_blank" rel="noopener">Merge Strategis</a></p>
+</blockquote>
+<p>Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git merge [-s &lt;strategy&gt;] [-X &lt;strategy-option&gt;] [&lt;commit&gt;...]</span><br></pre></td></tr></table></figure>
+<p>This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git merge -s recursive -X ours [&lt;commit&gt;...]</span><br></pre></td></tr></table></figure>
+<p>Merge branch obsolete into the current branch, using ours merge strategy:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git merge -s ours obsolete</span><br></pre></td></tr></table></figure>
+<h2 id="Git-里程碑"><a href="#Git-里程碑" class="headerlink" title="Git 里程碑"></a>Git 里程碑</h2><h3 id="显示里程碑"><a href="#显示里程碑" class="headerlink" title="显示里程碑"></a>显示里程碑</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
+<p>显示说明。<code>-n&lt;num&gt;</code> 显示最多 <code>&lt;num&gt;</code> 行里程碑的说明：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag -n1</span><br></pre></td></tr></table></figure>
+<p>使用统配：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag -l v1.*</span><br></pre></td></tr></table></figure>
+<p>查看提交对应的里程碑及其他引用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git log --oneline --decorate</span><br></pre></td></tr></table></figure>
+<h3 id="创建里程碑"><a href="#创建里程碑" class="headerlink" title="创建里程碑"></a>创建里程碑</h3><p>当创建了里程碑 mytag 后，会在版本库的 .git/refs/tags 目录下创建一个新文件。实际上指向的是一个提交：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag mytag</span><br><span class="line"></span><br><span class="line">$ git cat-file -t mytag</span><br><span class="line">commit</span><br></pre></td></tr></table></figure>
+<p>带说明的 tag 指向的不再是一个提交，而是一个 tag 对象：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag -m &quot;My first annotated tag.&quot; mytag2</span><br><span class="line"></span><br><span class="line">$ git cat-file -t mytag2</span><br><span class="line">tag</span><br></pre></td></tr></table></figure>
+<p>为里程碑对象添加 GnuPG 签名：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag -s -m &quot;My first GPG-signed tag.&quot; mytag3</span><br></pre></td></tr></table></figure>
+<h3 id="删除里程碑"><a href="#删除里程碑" class="headerlink" title="删除里程碑"></a>删除里程碑</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git tag -d mytag</span><br><span class="line">Deleted tag &apos;mytag&apos; (was 60a2f4f)</span><br></pre></td></tr></table></figure>
+<h3 id="共享里程碑"><a href="#共享里程碑" class="headerlink" title="共享里程碑"></a>共享里程碑</h3><p>创建的里程碑，默认只在本地版本库中可见，不会因为对分支执行推送而将里程碑也推送到远程版本库。</p>
+<p>将 mytag 里程碑共享到上游版本库：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push origin mytag</span><br></pre></td></tr></table></figure>
+<p>所有里程碑全部推送到远程版本库：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push origin refs/tags/*</span><br></pre></td></tr></table></figure>
+<ul>
+<li>里程碑共享，必须显式的推送。</li>
+<li>执行获取或拉回操作，自动从远程版本库获取新里程碑，并在本地版本库中创建。</li>
+<li>如果本地已有同名的里程碑，默认不会从上游同步里程碑，即使两者里程碑的指向是不同的。</li>
+</ul>
+<h3 id="删除远程版本库的里程碑"><a href="#删除远程版本库的里程碑" class="headerlink" title="删除远程版本库的里程碑"></a>删除远程版本库的里程碑</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git push origin :mytag2</span><br></pre></td></tr></table></figure>
+<h3 id="里程碑命名规范"><a href="#里程碑命名规范" class="headerlink" title="里程碑命名规范"></a>里程碑命名规范</h3><p><a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener">语义化版本 2.0.0</a></p>
+<p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
+<ul>
+<li>主版本号：当你做了不兼容的 API 修改，</li>
+<li>次版本号：当你做了向下兼容的功能性新增，</li>
+<li>修订号：当你做了向下兼容的问题修正。</li>
+</ul>
+<p>先行版本号及版本编译信息可以加到 <code>主版本号.次版本号.修订号</code> 的后面，作为延伸。</p>
+<h2 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h2><p>分支是代码管理的利器。如果没有有效的分支管理，代码管理就适应不了复杂的开发过程和项目的需要。</p>
+<h3 id="分支命令概述"><a href="#分支命令概述" class="headerlink" title="分支命令概述"></a>分支命令概述</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 显示</span><br><span class="line">1. git branch</span><br><span class="line"></span><br><span class="line"># 创建</span><br><span class="line">2. git branch &lt;branchname&gt;</span><br><span class="line">3. git branch &lt;branchname&gt; &lt;start-point&gt;</span><br><span class="line"></span><br><span class="line"># 删除，-d 在删除分支 &lt;branchname&gt; 时会检查所要删除的分支是否已经合并到其他分支中，否则拒绝删除。</span><br><span class="line">4. git branch -d &lt;branchname&gt;</span><br><span class="line">5. git branch -D &lt;branchname&gt;</span><br><span class="line"></span><br><span class="line"># 重命名，-m 如果版本库中已经存在名为 &lt;newbranch&gt; 的分支，拒绝执行重命名，而 7 会强制执行。</span><br><span class="line">6. git branch -m &lt;oldbranch&gt; &lt;newbranch&gt;</span><br><span class="line">7. git branch -M &lt;oldbranch&gt; &lt;newbranch&gt;</span><br></pre></td></tr></table></figure>
+<p>创建并切换到新分支：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout -b &lt;new_branch&gt; [&lt;start_point&gt;]</span><br></pre></td></tr></table></figure>
+<h3 id="分支变基"><a href="#分支变基" class="headerlink" title="分支变基"></a>分支变基</h3><ul>
+<li>master</li>
+<li>dev（开发完成，领先 master）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 先切换到 dev</span><br><span class="line">$ git checkout dev</span><br><span class="line"></span><br><span class="line"># 变基操作</span><br><span class="line">$ git rebase master</span><br><span class="line"></span><br><span class="line"># 遇到冲突，解决冲突</span><br><span class="line"></span><br><span class="line"># 添加到暂存区</span><br><span class="line">$ git add -u</span><br><span class="line"></span><br><span class="line"># 继续变基</span><br><span class="line">$ git rebase --continue</span><br><span class="line"></span><br><span class="line"># 直接将 dev 推送到远程 master</span><br><span class="line">$ git push origin dev:master</span><br><span class="line"></span><br><span class="line"># 切换到 master</span><br><span class="line">$ git checkout master</span><br><span class="line"></span><br><span class="line"># 拉取最新代码</span><br><span class="line">$ git pull</span><br><span class="line"></span><br><span class="line"># 删除 dev 分支</span><br><span class="line">$ git branch -d dev</span><br></pre></td></tr></table></figure>
+<h2 id="远程版本库"><a href="#远程版本库" class="headerlink" title="远程版本库"></a>远程版本库</h2><h3 id="远程分支"><a href="#远程分支" class="headerlink" title="远程分支"></a>远程分支</h3><p>查看远程分支：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git branch -r</span><br></pre></td></tr></table></figure>
+<p>在向远程版本库执行获取操作时，不是把远程版本库的分支原封不动地复制到本地版本库的分支中，而是复制到另外的命名空间。</p>
+<p>远程分支不是真正意义上的分支，是类似于里程碑一样的引用。如果针对远程分支执行检出命令，会看到大段的错误警告。</p>
+<p>远程分支类似于里程碑，如果检出就会使得头指针 HEAD 处于分离头指针状态。实际上除了以 refs/heads 为前缀的引用之外，如果检出任何其他引用，都将使工作区处于分离头指针状态。如果对远程分支进行修改就需要创建新的本地分支。</p>
+<h3 id="分支追踪"><a href="#分支追踪" class="headerlink" title="分支追踪"></a>分支追踪</h3><p>为了能够在远程分支 <code>origin/hello-1.x</code> 上进行工作，需要基于该远程分支创建本地分支：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout hello-1.x</span><br></pre></td></tr></table></figure>
+<p>从远程分支创建本地分支，自动建立了分支间的跟踪，而从一个本地分支创建另外一个本地分支则没有。</p>
+<p>从 <code>hello-1.x</code> 分支中创建新的本地分支 <code>hello-jx</code>，并与远程建立联系。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout -b hello-jx hello-1.x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cat .git/config</span><br></pre></td></tr></table></figure>
+<h3 id="远程版本库-1"><a href="#远程版本库-1" class="headerlink" title="远程版本库"></a>远程版本库</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 设置</span><br><span class="line">$ git remote add new-remote file:///path/to/repos/hello-user1.git</span><br><span class="line"></span><br><span class="line"># 修改 url</span><br><span class="line">$ git remote set-url new-remote file:///path/to/repos/hello-user2.git</span><br><span class="line"></span><br><span class="line"># 单独修改 push 地址</span><br><span class="line">$ git remote set-url --push new-remote /path/to/repos/hello-user2.git</span><br><span class="line"></span><br><span class="line"># 修改 版本库名称</span><br><span class="line">$ git remote rename new-remote user2</span><br><span class="line"></span><br><span class="line"># 当注册了多个远程版本库并希望获取所有远程版本库的更新</span><br><span class="line">$ git remote update</span><br><span class="line"></span><br><span class="line"># 如果某个远程版本库不想在执行 git remote update 时获得更新</span><br><span class="line">$ git config remote.user2.skipDefaultUpdate true</span><br><span class="line"></span><br><span class="line"># 删除</span><br><span class="line">$ git remote rm</span><br></pre></td></tr></table></figure>
+<h3 id="PUSH-和-PULL-操作与远程版本库"><a href="#PUSH-和-PULL-操作与远程版本库" class="headerlink" title="PUSH 和 PULL 操作与远程版本库"></a>PUSH 和 PULL 操作与远程版本库</h3><p>在执行 <code>git pull</code> 操作的时候可以通过参数 <code>--rebase</code> 设置使用变基而非合并操作，将本地分支的改动变基到跟踪分支上。为了避免因为忘记使用 <code>--rebase</code> 参数导致分支的合并，可进行设置：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config branch.&lt;branchname&gt;.rebase true</span><br></pre></td></tr></table></figure>
+<p>这样在遇到冲突（本地和远程分支出现偏离）的情况下，会采用变基操作，而不是默认的合并操作。</p>
+<p>如果为本地版本库设置参数 <code>branch.autosetuprebase</code> ，值为 <code>true</code>，则在基于远程分支建立本地追踪分支时，会自动配置 <code>branch.&lt;branchname&gt;.rebase</code> 参数。</p>
+<h3 id="分支和里程碑的安全性"><a href="#分支和里程碑的安全性" class="headerlink" title="分支和里程碑的安全性"></a>分支和里程碑的安全性</h3><ul>
+<li><p>用 <code>reflog</code> 记录对分支的操作历史。默认创建的带工作区的版本库都会包含 <code>core.logallrefupdates</code> 为 <code>true</code> 的配置，这样在版本库中建立的每个分支都会创建对应的 <code>reflog</code>。但是创建的裸版本库默认不包含这个设置，也就不会为每个分支设置 <code>reflog</code>。可能因为分支误操作导致数据丢失，可以考虑为裸版本库添加此配置。</p>
+</li>
+<li><p>关闭非快进式提交。配置 <code>receive.denyNonFastForwards</code> 设置为 <code>true</code>，则禁止一切非快进式推送。更好的方法是通过架设基于 SSH 协议的 Git 服务器，配置强制提交的用户权限。</p>
+</li>
+<li><p>关闭分支删除功能。配置 <code>receive.denyDeletes</code> 设置为 <code>true</code>，则禁止删除分支。更好的方法是：配置分支删除的用户权限。</p>
+</li>
+</ul>
+<h2 id="补丁文件交互"><a href="#补丁文件交互" class="headerlink" title="补丁文件交互"></a>补丁文件交互</h2><p>将最近三个提交转换为补丁文件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git format-patch -s HEAD~3..HEAD</span><br></pre></td></tr></table></figure>
+<p><code>-s</code> 会在导出的补丁文件中添加当前用户的签名。</p>
+<p>应用补丁：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git am user1-mail-archive</span><br></pre></td></tr></table></figure>
+<p><code>git apply</code> 可以应用一般格式的补丁文件，但是不能执行提交，也不能保持补丁中的作者信息。</p>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/03-git-harmony" target="_blank" rel="noopener">3. Git和声 &mdash; GotGit</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2018/01/17/got-git-reading-notes-harmony/">https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/01/19/got-git-reading-notes-model/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">【Git 权威指南】读书笔记 - 协同模型</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/">
+        <span class="next-text nav-default">R.swift 强类型引用资源文件</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2018/01/17/got-git-reading-notes-harmony/';
+        this.page.identifier = '2018/01/17/got-git-reading-notes-harmony/';
+        this.page.title = '【Git 权威指南】读书笔记 - 和声';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="【Git 权威指南】读书笔记 - 独奏 - Part 1">
+
+
+
+
+  <meta name="keywords" content="git, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> 【Git 权威指南】读书笔记 - 独奏 - Part 1 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          【Git 权威指南】读书笔记 - 独奏 - Part 1
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-19
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/19/got-git-reading-notes-solo-part1/" data-title="【Git 权威指南】读书笔记 - 独奏 - Part 1">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-初始化"><span class="toc-text">Git 初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置一些-Git-别名，以便可以使用更为简洁的子命令"><span class="toc-text">设置一些 Git 别名，以便可以使用更为简洁的子命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版本库的初始化"><span class="toc-text">版本库的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考：为什么工作区下有一个-git-目录？"><span class="toc-text">思考：为什么工作区下有一个 .git 目录？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当工作区中包含了子目录，在子目录中执行-Git-命令时，如何定位版本库呢？"><span class="toc-text">当工作区中包含了子目录，在子目录中执行 Git 命令时，如何定位版本库呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#那么有什么办法知道-Git-版本库的位置，以及工作区的根目录在哪里呢？"><span class="toc-text">那么有什么办法知道 Git 版本库的位置，以及工作区的根目录在哪里呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把版本库-git-目录放在工作区，是不是太不安全了？"><span class="toc-text">把版本库 .git 目录放在工作区，是不是太不安全了？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考：git-config-命令参数的区别？"><span class="toc-text">思考：git config 命令参数的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考：是谁完成的提交？"><span class="toc-text">思考：是谁完成的提交？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考：随意设置提交者姓名，是否太不安全？"><span class="toc-text">思考：随意设置提交者姓名，是否太不安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#思考：命令别名是干什么的？"><span class="toc-text">思考：命令别名是干什么的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份本章的工作成果"><span class="toc-text">备份本章的工作成果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-暂存区"><span class="toc-text">Git 暂存区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改不能直接提交？"><span class="toc-text">修改不能直接提交？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#理解-Git-暂存区-stage"><span class="toc-text">理解 Git 暂存区 stage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-diff-魔法"><span class="toc-text">Git diff 魔法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不要使用-git-commit-a"><span class="toc-text">不要使用 git commit -a</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-对象"><span class="toc-text">Git 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Git-对象库探秘"><span class="toc-text">Git 对象库探秘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HEAD-和-master-的奥秘"><span class="toc-text">HEAD 和 master 的奥秘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题：SHA1哈希值到底是什么，如何生成的？"><span class="toc-text">问题：SHA1哈希值到底是什么，如何生成的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题：为什么不用顺序的数字来表示提交？"><span class="toc-text">问题：为什么不用顺序的数字来表示提交？</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】</p>
+<h2 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h2><p>设置一下 Git 的环境变量，这个设置是一次性的工作。即这些设置会在全局文件（用户主目录下的 <code>~/.gitconfig</code>）或系统文件（<code>/etc/gitconfig</code>）中做永久的记录。</p>
+<p>配置的用户名和邮件地址将在版本库提交时作为提交者的用户名和邮件地址。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name &quot;Jiang Xin&quot;</span><br><span class="line">$ git config --global user.email jiangxin@ossxp.com</span><br></pre></td></tr></table></figure></p>
+<h3 id="设置一些-Git-别名，以便可以使用更为简洁的子命令"><a href="#设置一些-Git-别名，以便可以使用更为简洁的子命令" class="headerlink" title="设置一些 Git 别名，以便可以使用更为简洁的子命令"></a>设置一些 Git 别名，以便可以使用更为简洁的子命令</h3><p>只在本用户的全局配置中添加 Git 命令别名：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global alias.br branch</span><br><span class="line">$ git config --global alias.ci <span class="string">"commit -s"</span></span><br><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.st <span class="string">"-p status"</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="版本库的初始化"><a href="#版本库的初始化" class="headerlink" title="版本库的初始化"></a>版本库的初始化</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ mkdir demo</span><br><span class="line">$ <span class="built_in">cd</span> demo</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<p>初始化空的 Git 版本库于 <code>/path/to/my/workspace/demo/.git/</code></p>
+<p>git init 命令的后面直接输入目录名称<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /path/to/my/workspace</span><br><span class="line">$ git init demo</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ls -aF</span><br><span class="line">./  ../  .git/</span><br></pre></td></tr></table></figure>
+<p>这个隐藏的 <code>.git</code> 目录就是 Git 版本库（又叫仓库，repository）。</p>
+<p><code>.git</code> 版本库目录所在的目录，即 <code>/path/to/my/workspace/demo</code> 目录称为 <strong>工作区</strong>。</p>
+<p>将新建立的文件添加到版本库<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add welcome.txt</span><br></pre></td></tr></table></figure></p>
+<p>再执行一次提交操作，使用 <code>-m</code> 参数直接给出了提交说明。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ci -m <span class="string">"initialized"</span></span><br><span class="line">[master (root-commit) 7f0b2be] init</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 welcome.txt</span><br></pre></td></tr></table></figure></p>
+<p><code>git ci</code> 是上面配置的别名，我个人觉得 <code>-s</code> 这个参数比较冗余。</p>
+<h3 id="思考：为什么工作区下有一个-git-目录？"><a href="#思考：为什么工作区下有一个-git-目录？" class="headerlink" title="思考：为什么工作区下有一个 .git 目录？"></a>思考：为什么工作区下有一个 <code>.git</code> 目录？</h3><p>Git 的这种设计，将版本库放在工作区根目录下，所有的版本控制操作（除了和其他远程版本库之间的互操作）都在本地即可完成，不像 Subversion 只有寥寥无几的几个命令才能脱离网络执行。而且 Git 也没有 CVS 和 Subversion 的安全泄漏问题（只要保护好 .git 目录），也没有 Subversion 在本地文件搜索时出现搜索结果混乱的问题，甚至 Git 还提供了一条 <code>git grep</code> 命令来更好地搜索工作区的文件内容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git grep &quot;工作区文件内容搜索&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="当工作区中包含了子目录，在子目录中执行-Git-命令时，如何定位版本库呢？"><a href="#当工作区中包含了子目录，在子目录中执行-Git-命令时，如何定位版本库呢？" class="headerlink" title="当工作区中包含了子目录，在子目录中执行 Git 命令时，如何定位版本库呢？"></a>当工作区中包含了子目录，在子目录中执行 Git 命令时，如何定位版本库呢？</h3><p>当在 Git 工作区目录下执行操作的时候，会对目录依次向上递归查找 <code>.git</code> 目录，找到的 <code>.git</code> 目录就是工作区对应的版本库，<code>.git</code> 所在的目录就是工作区的根目录，文件 <code>.git/index</code> 记录了工作区文件的状态（实际上是 <strong>暂存区</strong> 的状态）。</p>
+<p>如果跟踪一下执行 <code>git status</code> 命令时的磁盘访问，会看到沿目录依次向上递归的过程。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ strace -e &apos;trace=file&apos; git status</span><br></pre></td></tr></table></figure></p>
+<h3 id="那么有什么办法知道-Git-版本库的位置，以及工作区的根目录在哪里呢？"><a href="#那么有什么办法知道-Git-版本库的位置，以及工作区的根目录在哪里呢？" class="headerlink" title="那么有什么办法知道 Git 版本库的位置，以及工作区的根目录在哪里呢？"></a>那么有什么办法知道 Git 版本库的位置，以及工作区的根目录在哪里呢？</h3><p>显示版本库 <code>.git</code> 目录所在的位置。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rev-parse --git-dir</span><br><span class="line">/path/to/my/workspace/demo/.git</span><br></pre></td></tr></table></figure></p>
+<p>显示工作区根目录。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rev-parse --show-toplevel</span><br><span class="line">/path/to/my/workspace/demo</span><br></pre></td></tr></table></figure></p>
+<h3 id="把版本库-git-目录放在工作区，是不是太不安全了？"><a href="#把版本库-git-目录放在工作区，是不是太不安全了？" class="headerlink" title="把版本库 .git 目录放在工作区，是不是太不安全了？"></a>把版本库 <code>.git</code> 目录放在工作区，是不是太不安全了？</h3><p>Git 克隆可以降低因为版本库和工作区混杂在一起导致的版本库被破坏的风险。在本机另外的磁盘/目录中建立 Git 克隆，并在工作区有改动提交时，手动或自动地执行向克隆版本库的推送 <code>git push</code> 操作。如果使用网络协议，还可以实现在其他机器上建立克隆，这样就更安全了（双机备份）。</p>
+<h3 id="思考：git-config-命令参数的区别？"><a href="#思考：git-config-命令参数的区别？" class="headerlink" title="思考：git config 命令参数的区别？"></a>思考：<code>git config</code> 命令参数的区别？</h3><p>将打开 /path/to/my/workspace/demo/.git/config 文件进行编辑：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /path/to/my/workspace/demo/</span><br><span class="line">$ git config -e</span><br></pre></td></tr></table></figure></p>
+<p>将打开 /home/jiangxin/.gitconfig（用户主目录下的 .gitconfig 文件）全局配置文件进行编辑：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config -e --global</span><br></pre></td></tr></table></figure></p>
+<p>将打开 /etc/gitconfig 系统级配置文件进行编辑：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config -e --system</span><br></pre></td></tr></table></figure></p>
+<p>Git 的三个配置文件分别是 <code>版本库级别的配置文件</code>、<code>全局配置文件</code>（用户主目录下）和 <code>系统级配置文件</code>（/etc目录下）。</p>
+<p>其中 <code>版本库级别配置文件</code> 的优先级最高，<code>全局配置文件</code> 其次，<code>系统级配置文件</code> 优先级最低。</p>
+<p>Git 配置文件采用的是 INI 文件格式。<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">$ cat /path/to/my/workspace/demo/.git/config</span><br><span class="line"><span class="section">[core]</span></span><br><span class="line">        repositoryformatversion = 0</span><br><span class="line">        filemode = true</span><br><span class="line">        bare = false</span><br><span class="line">        logallrefupdates = true</span><br></pre></td></tr></table></figure></p>
+<p>例如读取 <code>[core]</code> 小节的 <code>bare</code> 的属性值<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config &lt;section&gt;.&lt;key&gt;</span><br><span class="line"></span><br><span class="line">$ git config core.bare</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>更改或设置 INI 文件中某个属性<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config &lt;section&gt;.&lt;key&gt; &lt;value&gt;</span><br><span class="line"></span><br><span class="line">$ git config a.b something</span><br><span class="line">$ git config x.y.z others</span><br></pre></td></tr></table></figure></p>
+<p>打开 <code>.git/config</code> 文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[a]</span><br><span class="line">        b = something</span><br><span class="line">[x <span class="string">"y"</span>]</span><br><span class="line">        z = others</span><br></pre></td></tr></table></figure></p>
+<p>可以用 <code>git config</code> 命令操作任何其他的 INI 文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ GIT_CONFIG=test.ini git config a.b.c.d <span class="string">"hello, world"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ GIT_CONFIG=test.ini git config a.b.c.d</span><br><span class="line">hello, world</span><br></pre></td></tr></table></figure>
+<h3 id="思考：是谁完成的提交？"><a href="#思考：是谁完成的提交？" class="headerlink" title="思考：是谁完成的提交？"></a>思考：是谁完成的提交？</h3><p>当最新的提交删除了 <code>user.name</code> 和 <code>user.email</code>，提交时 Git 对提交者的用户名和邮件地址做了大胆的猜测，这个猜测可能是错的。</p>
+<p>重新设置 <code>user.name</code> 和 <code>user.email</code>，然后执行下面的命令，重新修改最新的提交，改正作者和提交者的错误信息。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit --amend --allow-empty --reset-author</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>参数 <code>--amend</code> 是对刚刚的提交进行修补，这样就可以改正前面错误的提交（用户信息错误），而不会产生另外的新提交。</li>
+<li>参数 <code>--allow-empty</code> 是因为要进行修补的提交实际上是一个空白提交，Git 默认不允许空白提交。</li>
+<li>参数 <code>--reset-author</code> 的含义是将 Author（提交者）的 ID 重置，否则只会影响最新的 Commit（提交者）的 ID。这条命令也会重置 AuthorDate 信息。</li>
+</ul>
+<h3 id="思考：随意设置提交者姓名，是否太不安全？"><a href="#思考：随意设置提交者姓名，是否太不安全？" class="headerlink" title="思考：随意设置提交者姓名，是否太不安全？"></a>思考：随意设置提交者姓名，是否太不安全？</h3><p>Git 可以随意设置提交的用户名和邮件地址信息，这是分布式版本控制系统的特性使然，每个人都是自己版本库的主人，很难也没有必要进行身份认证从而使用经过认证的用户名作为提交的用户名。</p>
+<p>但是可以使用 GitLab 等服务管理权限。</p>
+<h3 id="思考：命令别名是干什么的？"><a href="#思考：命令别名是干什么的？" class="headerlink" title="思考：命令别名是干什么的？"></a>思考：命令别名是干什么的？</h3><p>命令别名可以帮助用户解决从其他版本控制系统迁移到 Git 后的使用习惯问题。</p>
+<h3 id="备份本章的工作成果"><a href="#备份本章的工作成果" class="headerlink" title="备份本章的工作成果"></a>备份本章的工作成果</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /path/to/my/workspace</span><br><span class="line">$ git <span class="built_in">clone</span> demo demo-step-1</span><br><span class="line">Cloning into demo-step-1...</span><br><span class="line"><span class="keyword">done</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="Git-暂存区"><a href="#Git-暂存区" class="headerlink" title="Git 暂存区"></a>Git 暂存区</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --<span class="built_in">stat</span></span><br></pre></td></tr></table></figure>
+<p>可以用 <code>git log</code> 查看提交日志，附加的 <code>--stat</code> 参数看到每次提交的文件变更统计。</p>
+<h3 id="修改不能直接提交？"><a href="#修改不能直接提交？" class="headerlink" title="修改不能直接提交？"></a>修改不能直接提交？</h3><p>现在就将修改的文件“添加”到提交暂存区：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add welcome.txt</span><br></pre></td></tr></table></figure></p>
+<p>这时如果和 HEAD（当前版本库的头指针）或者 master 分支（当前工作分支）进行比较，会发现有差异。这个差异才是正常的，因为尚未真正提交么。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff HEAD</span><br></pre></td></tr></table></figure></p>
+<p>用简洁方式显示状态<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status -s</span><br><span class="line">M  welcome.txt</span><br></pre></td></tr></table></figure></p>
+<p>通过参数 <code>--cached</code> 或者 <code>--staged</code> 参数调用 git diff 命令，看到的是提交暂存区 <code>stage</code> 和版本库中文件的差异。不然看到的是工作区的变动。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git diff --cached</span><br></pre></td></tr></table></figure></p>
+<p>现在执行 git commit 命令进行提交。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">"which version checked in?"</span></span><br></pre></td></tr></table></figure></p>
+<p>如何证明提交成功了呢？通过查看提交日志，看到了新的提交。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br></pre></td></tr></table></figure></p>
+<h3 id="理解-Git-暂存区-stage"><a href="#理解-Git-暂存区-stage" class="headerlink" title="理解 Git 暂存区 stage"></a>理解 Git 暂存区 stage</h3><p>当执行 <code>git status</code> 命令（或者 <code>git diff</code> 命令）扫描工作区改动的时候，先依据 <code>.git/index</code> 文件中记录的（工作区跟踪文件的）时间戳、长度等信息判断工作区文件是否改变。</p>
+<p>文件 <code>.git/index</code> 实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区。在这个虚拟工作区的目录树中，记录了文件名、文件的状态信息（时间戳、文件长度等）。文件的内容并不存储其中，而是保存在 Git 对象库 <code>.git/objects</code> 目录中，文件索引建立了文件和对象库中对象实体之间的对应。</p>
+<p><img src="https://cdn-qn.yifans.com/got-git-reading-notes-solo-git-stage.png" alt="理解 Git 暂存区 stage"></p>
+<ul>
+<li>图中可以看出此时 HEAD 实际是指向 master 分支的一个“游标”。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。</li>
+<li>图中的 objects 标识的区域为 Git 的对象库，实际位于 <code>.git/objects</code> 目录下，会在后面的章节重点介绍。</li>
+<li>当执行 <code>git reset HEAD</code> 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。</li>
+<li>当执行 <code>git rm --cached &lt;file&gt;</code> 命令时，会直接从暂存区删除文件，工作区则不做出改变。</li>
+<li>当执行 <code>git checkout .</code> 或者 <code>git checkout -- &lt;file&gt;</code> 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</li>
+<li>当执行 <code>git checkout HEAD .</code> 或者 <code>git checkout HEAD &lt;file&gt;</code> 命令时，会用HEAD指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</li>
+</ul>
+<h3 id="Git-diff-魔法"><a href="#Git-diff-魔法" class="headerlink" title="Git diff 魔法"></a>Git diff 魔法</h3><p>有什么办法能够像查看工作区一样的，直观的查看暂存区以及 HEAD 当中的目录树么？<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-tree -l HEAD</span><br><span class="line">100644 blob fd3c069c1de4f4bc9b15940f490aeb48852f3c42      25    welcome.txt</span><br></pre></td></tr></table></figure></p>
+<p>要显示暂存区的目录树，可以使用 <code>git ls-files</code> 命令。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git ls-files -s</span><br><span class="line">100644 18832d35117ef2f013c4009f5b2128dfaeff354f 0       a/b/c/hello.txt</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://cdn-qn.yifans.com/got-git-reading-notes-solo-git-diff.png" alt="理解 Git 暂存区 stage"></p>
+<h3 id="不要使用-git-commit-a"><a href="#不要使用-git-commit-a" class="headerlink" title="不要使用 git commit -a"></a>不要使用 git commit -a</h3><p>提交命令 <code>git commit</code> 可以带上 <code>-a</code> 参数，对本地所有变更的文件执行提交操作，包括本地修改的文件，删除的文件，但不包括未被版本库跟踪的文件。</p>
+<p>这个“偷懒”的提交命令，就会丢掉 Git 暂存区带给用户最大的好处：对提交内容进行控制的能力。</p>
+<h2 id="Git-对象"><a href="#Git-对象" class="headerlink" title="Git 对象"></a>Git 对象</h2><p>什么是 <code>HEAD</code>？什么是 <code>master</code>？为什么它们二者可以相互替换使用？为什么 Git 中的很多对象像提交、树、文件内容等都用 40 位的 <code>SHA1</code> 哈希值来表示？</p>
+<h3 id="Git-对象库探秘"><a href="#Git-对象库探秘" class="headerlink" title="Git 对象库探秘"></a>Git 对象库探秘</h3><p>40 位十六进制数字组成的 <code>SHA1</code> 哈希值<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> -1 --pretty=raw</span><br><span class="line"><span class="comment"># 这是本次提交的唯一标识。</span></span><br><span class="line">commit e695606fc5e31b2ff9038a48a3d363f4c21a3d86</span><br><span class="line"><span class="comment"># 这是本次提交所对应的目录树。</span></span><br><span class="line">tree f58da9a820e3fd9d84ab2ca2f1b467ac265038f9</span><br><span class="line"><span class="comment"># 这是本地提交的父提交（上一次提交）。</span></span><br><span class="line">parent a0c641e92b10d8bcca1ed1bf84ca80340fdefee6</span><br><span class="line"></span><br><span class="line">    <span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br></pre></td></tr></table></figure></p>
+<p>研究 Git 对象 ID 的命令是 <code>git cat-file</code>，用下面的命令可以查看一下这三个 ID 的类型。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git cat-file -t e695606</span><br><span class="line">commit</span><br><span class="line">$ git cat-file -t f58d</span><br><span class="line">tree</span><br><span class="line">$ git cat-file -t fd3c06</span><br><span class="line">blob</span><br></pre></td></tr></table></figure></p>
+<!-- more -->
+<p>再用 <code>git cat-file</code> 命令查看一下这几个对象的内容。对于 <code>blob</code> 对象，这个对象保存着文件 welcome.txt 的内容。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git cat-file -p fd3c06</span><br><span class="line">Hello.</span><br><span class="line">Nice to meet you.</span><br></pre></td></tr></table></figure></p>
+<p>这个写对象都存在 Git 库中的 <code>objects</code> 目录下，ID 的前两位作为目录名，后 38 位作为文件名。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="keyword">for</span> id <span class="keyword">in</span> e695606 f58da9a a0c641e fd3c069; <span class="keyword">do</span> \</span><br><span class="line">  ls .git/objects/<span class="variable">$&#123;id:0:2&#125;</span>/<span class="variable">$&#123;id:2&#125;</span>*; <span class="keyword">done</span></span><br><span class="line">.git/objects/e6/95606fc5e31b2ff9038a48a3d363f4c21a3d86</span><br><span class="line">.git/objects/f5/8da9a820e3fd9d84ab2ca2f1b467ac265038f9</span><br><span class="line">.git/objects/a0/c641e92b10d8bcca1ed1bf84ca80340fdefee6</span><br><span class="line">.git/objects/fd/3c069c1de4f4bc9b15940f490aeb48852f3c42</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://cdn-qn.yifans.com/got-git-reading-notes-solo-git-objects.png" alt="Git 对象库探秘"></p>
+<h3 id="HEAD-和-master-的奥秘"><a href="#HEAD-和-master-的奥秘" class="headerlink" title="HEAD 和 master 的奥秘"></a>HEAD 和 master 的奥秘</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> -1 HEAD</span><br><span class="line">$ git <span class="built_in">log</span> -1 master</span><br><span class="line">$ git <span class="built_in">log</span> -1 refs/heads/master</span><br></pre></td></tr></table></figure>
+<p>在当前版本库中，<code>HEAD</code>、<code>master</code> 和 <code>refs/heads/master</code> 具有相同的指向。现在到版本库 <code>.git</code> 中一探它们的究竟：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ find .git -name HEAD -o -name master</span><br><span class="line">.git/HEAD</span><br><span class="line">.git/logs/HEAD</span><br><span class="line">.git/logs/refs/heads/master</span><br><span class="line">.git/refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>显示一下 <code>.git/HEAD</code><br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat .git/HEAD</span><br><span class="line">ref: refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>指向一个引用：<code>refs/heads/master</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat .git/refs/heads/master</span><br><span class="line">e695606fc5e31b2ff9038a48a3d363f4c21a3d86</span><br></pre></td></tr></table></figure>
+<p>显示该提交的内容<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git cat-file -p e695606fc5e31b2ff9038a48a3d363f4c21a3d86</span><br><span class="line">tree f58da9a820e3fd9d84ab2ca2f1b467ac265038f9</span><br><span class="line">parent a0c641e92b10d8bcca1ed1bf84ca80340fdefee6</span><br><span class="line"></span><br><span class="line"><span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br></pre></td></tr></table></figure></p>
+<p>原来分支 <code>master</code> 指向的是一个提交ID（最新提交）。</p>
+<p>这样的分支实现是多么的巧妙啊：既然可以从任何提交开始建立一条历史跟踪链，那么用一个文件指向这个链条的最新提交，那么这个文件就可以用于追踪整个提交历史了。</p>
+<p>这个文件就是 <code>.git/refs/heads/master</code> 文件。</p>
+<p><img src="https://cdn-qn.yifans.com/got-git-reading-notes-solo-git-repos-detail.png" alt="HEAD 和 master 的奥秘"></p>
+<p>目录 <code>.git/refs</code> 是保存引用的命名空间，其中 <code>.git/refs/heads</code> 目录下的引用又称为分支。对于分支既可以使用正规的长格式的表示法，如 <code>refs/heads/master</code>，也可以去掉前面的两级目录用 <code>master</code> 来表示。Git 有一个底层命令 <code>git rev-parse</code> 可以用于显示引用对应的提交 ID。</p>
+<h3 id="问题：SHA1哈希值到底是什么，如何生成的？"><a href="#问题：SHA1哈希值到底是什么，如何生成的？" class="headerlink" title="问题：SHA1哈希值到底是什么，如何生成的？"></a>问题：SHA1哈希值到底是什么，如何生成的？</h3><p>哈希(hash)是一种数据摘要算法（或称散列算法），是信息安全领域当中重要的理论基石。该算法将任意长度的输入经过散列运算转换为固定长度的输出。固定长度的输出可以称为对应的输入的数字摘要或哈希值。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> -n Git |sha1sum</span><br><span class="line">5819778898df55e3a762f0c5728b457970d72cae  -</span><br></pre></td></tr></table></figure>
+<p>提交的 SHA1 哈希值生成方法：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git cat-file commit HEAD | wc -c</span><br><span class="line">234</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在提交信息的前面加上内容 `commit 234&lt;null&gt;`（`&lt;null&gt;`为空字符），然后执行 SHA1 哈希算法。</span></span><br><span class="line">$ ( <span class="built_in">printf</span> <span class="string">"commit 234\000"</span>; git cat-file commit HEAD ) | sha1sum</span><br><span class="line">e695606fc5e31b2ff9038a48a3d363f4c21a3d86  -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面命令得到的哈希值和用 `git rev-parse` 看到的是一样的。</span></span><br><span class="line">$ git rev-parse HEAD</span><br><span class="line">e695606fc5e31b2ff9038a48a3d363f4c21a3d86</span><br></pre></td></tr></table></figure></p>
+<p>文件内容的 SHA1 哈希值生成方法：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件总共包含 25 字节的内容。</span></span><br><span class="line">$ git cat-file blob HEAD:welcome.txt | wc -c</span><br><span class="line">25</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在文件内容的前面加上blob 25&lt;null&gt;的内容，然后执行SHA1哈希算法。</span></span><br><span class="line">$ ( <span class="built_in">printf</span> <span class="string">"blob 25\000"</span>; git cat-file blob HEAD:welcome.txt ) | sha1sum</span><br><span class="line">fd3c069c1de4f4bc9b15940f490aeb48852f3c42  -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面命令得到的哈希值和用git rev-parse看到的是一样的。</span></span><br><span class="line">$ git rev-parse HEAD:welcome.txt</span><br><span class="line">fd3c069c1de4f4bc9b15940f490aeb48852f3c42</span><br></pre></td></tr></table></figure></p>
+<p>树的SHA1哈希值的形成方法：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># HEAD对应的树的内容共包含39个字节。</span></span><br><span class="line">$ git cat-file tree HEAD^&#123;tree&#125; | wc -c</span><br><span class="line">39</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在树的内容的前面加上tree 39&lt;null&gt;的内容，然后执行SHA1哈希算法。</span></span><br><span class="line">$ ( <span class="built_in">printf</span> <span class="string">"tree 39\000"</span>; git cat-file tree HEAD^&#123;tree&#125; ) | sha1sum</span><br><span class="line">f58da9a820e3fd9d84ab2ca2f1b467ac265038f9  -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 上面命令得到的哈希值和用git rev-parse看到的是一样的。</span></span><br><span class="line">$ git rev-parse HEAD^&#123;tree&#125;</span><br><span class="line">f58da9a820e3fd9d84ab2ca2f1b467ac265038f9</span><br></pre></td></tr></table></figure></p>
+<h3 id="问题：为什么不用顺序的数字来表示提交？"><a href="#问题：为什么不用顺序的数字来表示提交？" class="headerlink" title="问题：为什么不用顺序的数字来表示提交？"></a>问题：为什么不用顺序的数字来表示提交？</h3><p>集中式版本控制系统因为只有一个集中式的版本库，可以很容易的实现依次递增的全局唯一的提交号。Git 作为分布式版本控制系统，开发可以是非线性的。这就要求提交的编号不能仅仅是本地局部有效，而是要“全球唯一”。</p>
+<p>采用部分的 SHA1 哈希值。不必写全 40 位的哈希值，只采用开头的部分，不和现有其他的冲突即可。</p>
+<p>使用 <code>master</code> 代表分支 <code>master</code> 中最新的提交，使用全称 <code>refs/heads/master</code> 亦可。</p>
+<p>使用 <code>HEAD</code> 代表版本库中最近的一次提交。</p>
+<p>符号 <code>^</code> 可以用于指代父提交。例如：</p>
+<ul>
+<li><code>HEAD^</code> 代表版本库中上一次提交，即最近一次提交的父提交。</li>
+<li><code>HEAD^^</code> 则代表 <code>HEAD^</code> 的父提交。</li>
+</ul>
+<p>对于一个提交有多个父提交，可以在符号 <code>^</code> 后面用数字表示是第几个父提交。例如：</p>
+<ul>
+<li><code>a573106^2</code> 含义是提交 <code>a573106</code> 的多个父提交中的第二个父提交。</li>
+<li><code>HEAD^1</code> 相当于 <code>HEAD^</code> 含义是 HEAD 多个父提交中的第一个。</li>
+<li><code>HEAD^^2</code> 含义是 <code>HEAD^</code>（HEAD父提交）的多个父提交中的第二个。</li>
+</ul>
+<p>符号 <code>~&lt;n&gt;</code> 也可以用于指代祖先提交。效果等同：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">a573106~5</span><br><span class="line">a573106^^^^^</span><br></pre></td></tr></table></figure></p>
+<p>提交所对应的树对象：<code>a573106^{tree}</code></p>
+<p>某一此提交对应的文件对象：<code>a573106:path/to/file</code></p>
+<p>暂存区中的文件对象：<code>:path/to/file</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rev-parse HEAD</span><br><span class="line">$ git cat-file -p e695</span><br><span class="line">$ git cat-file -p e695^</span><br><span class="line">$ git rev-parse e695^&#123;tree&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html" target="_blank" rel="noopener">2. Git独奏 &mdash; GotGit</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/">https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/07/20/got-git-reading-notes-solo-part2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">【Git 权威指南】读书笔记 - 独奏 - Part 2</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/07/12/got-git-reading-notes-meet-git/">
+        <span class="next-text nav-default">【Git 权威指南】读书笔记 - 初识 Git</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/';
+        this.page.identifier = '2017/07/19/got-git-reading-notes-solo-part1/';
+        this.page.title = '【Git 权威指南】读书笔记 - 独奏 - Part 1';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

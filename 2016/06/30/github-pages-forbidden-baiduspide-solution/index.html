@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="GitHub Pages 不被百度收录解决方案">
+
+
+
+
+  <meta name="keywords" content="github, git, hexo, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> GitHub Pages 不被百度收录解决方案 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          GitHub Pages 不被百度收录解决方案
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-06-30
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/06/30/github-pages-forbidden-baiduspide-solution/" data-title="GitHub Pages 不被百度收录解决方案">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#思路一：利用-CDN-解决百度爬虫被-Github-Pages-拒绝的问题"><span class="toc-text">思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决思路"><span class="toc-text">解决思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路二：通过-Dnspod-的智能-DNS-服务"><span class="toc-text">思路二：通过 Dnspod 的智能 DNS 服务</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>在 <a href="/2016/06/24/hexo-github-blog/">使用 Hexo 和 Github 搭建个人独立博客</a> 几天后，发现百度并不对博客进行收录。</p>
+<p>在天朝使用百度搜索毕竟多数，使用百度站长工具-抓取诊断，在百度 Spider 抓取结果返回 HTTP 头：HTTP/1.1 403 Forbidden，原来是 GitHub 禁止了百度爬虫的爬去。</p>
+<p>Google 后早已有许多热心网友给出了解决方案，自己在这里总结下。</p>
+<h2 id="思路一：利用-CDN-解决百度爬虫被-Github-Pages-拒绝的问题"><a href="#思路一：利用-CDN-解决百度爬虫被-Github-Pages-拒绝的问题" class="headerlink" title="思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题"></a>思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题</h2><h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>既然 Github 彻底和百度决裂了，那我们也只能自己动手来解决了。Github 可能是封了百度的 IP，也有可能是封了百度爬虫的 User-Agent。</p>
+<p>所以要解决这个问题，最好就不要让百度爬虫直接访问 Github 了，需要在中间套一层 <a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86" target="_blank" rel="noopener">反向代理</a>。</p>
+<p>那么问题又来了，既然我可以搭一个反向代理服务器了，那我为什么不直接把博客放在这台服务器上？放 Github Pages 上不就是为了少一台服务器，少一点费用吗？</p>
+<p>那有没有免费的第三方反向代理服务呢？当然有，其实现在各种 <strong>CDN 服务</strong> 不就是吗？而且还额外提供了各种网络环境下的加速功能。<br>但是使用 CDN 也会有一个非常大的缺点：只能对 <strong>静态资源</strong> 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。<br>所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！</p>
+<p>国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等<br>最后选择了 <a href="https://www.upyun.com/index.html" target="_blank" rel="noopener"><strong>又拍云</strong></a></p>
+<p>CDN 回源配置<br>有设置缓存时间的功能，上面明确写了：CDN 缓存时间是指 UPYUN 回源取得文件后，文件在 UPYUN CDN 网络中的缓存的时间，超过缓存时间则重新回源获取文件。<br>是的，这才是真正满足我需求的功能！</p>
+<p>这个解决方案我尝试了，但是在 CDN 域名配置时，有天朝特色要求域名必须备案，我的域名 <code>zyf.im</code> 是在 <a href="http://www.name.com" target="_blank" rel="noopener">name.com</a> 上注册的，<code>.im</code> 的尾缀也无法在国内备案。所以这个方案不适合我。</p>
+<a id="more"></a>
+<h2 id="思路二：通过-Dnspod-的智能-DNS-服务"><a href="#思路二：通过-Dnspod-的智能-DNS-服务" class="headerlink" title="思路二：通过 Dnspod 的智能 DNS 服务"></a>思路二：通过 Dnspod 的智能 DNS 服务</h2><p>在这里博主首先分析了：使用 CDN 可能 <strong>无法</strong> 真正解决百度被拒绝的问题。理由是：<strong>CDN 节点众多，百度爬取的节点可能并没有页面的缓存</strong>。</p>
+<p>通过 Dnspod 的智能 DNS 服务可以变相解决这个问题，大概的设置如下图所示，只要为你所有的主机记录重复添加 A 记录，把线路类型设置为百度，并将记录值指向你自己的云主机即可。</p>
+<p>你说什么？等下！自己的云主机？没错，其实这种方式就是 <strong>专门为百度的爬虫增开了一个小窗口</strong>，使得它可以在你自己的服务器上爬取内容，而不是直接去爬取 Github Pages 的内容。你需要自己搭个服务器，并将你的静态网站架在上面。</p>
+<p>我博客解决方案就是采用这种方法。看起来有些“笨”因为我又搭建了一个 Server 用于博客，相当于没有完全利用 GitHub Pages，实际上普通用户访问我的博客就是有利用 GitHub 的 CDN 服务的，更快一些。而且我这么做还利用了 GitHub Webhook，当我把新的页面提交到 GitHub 时，我的博客服务器会自动 <code>pull</code> 最新的项目，这么看也就不那么“傻”了。</p>
+<p>请参看：<a href="/2016/06/30/github-webhook-example/">GitHub Webhook 自动部署 Hexo</a></p>
+<p>经过这么一配置，我的博客现在已经被百度收录了。百度搜索：<code>site:zyf.im</code></p>
+<p><strong>2017 年 04 月 22 日 Updated</strong>：<br>现在我的 Blog 使用的是 <a href="https://www.ufovps.com/" target="_blank" rel="noopener">UFOVPS</a> 直接部署的</p>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="http://www.dozer.cc/2015/06/github-pages-and-cdn.html" target="_blank" rel="noopener">DOZER-利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题</a></li>
+<li><a href="http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/" target="_blank" rel="noopener">jerryzou-解决 Github Pages 禁止百度爬虫的方法与可行性分析</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/">https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/github/">github</a>
+            
+              <a href="/tags/git/">git</a>
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/07/01/github-webhook-example/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">GitHub Webhook 自动部署 Hexo</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/">
+        <span class="next-text nav-default">Eclipse Maven Spring SpringMVC Mybatis 整合</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/';
+        this.page.identifier = '2016/06/30/github-pages-forbidden-baiduspide-solution/';
+        this.page.title = 'GitHub Pages 不被百度收录解决方案';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="SpringMVC 入门使用">
+
+
+
+
+  <meta name="keywords" content="springmvc, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> SpringMVC 入门使用 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          SpringMVC 入门使用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-09-07
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/09/07/springmvc-getting-started-tutorial/" data-title="SpringMVC 入门使用">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC-简介"><span class="toc-text">MVC 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前端控制器模式"><span class="toc-text">前端控制器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC-基本概念"><span class="toc-text">SpringMVC 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC-配置"><span class="toc-text">SpringMVC 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC-中的注解"><span class="toc-text">SpringMVC 中的注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Controller"><span class="toc-text">@Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequestMapping"><span class="toc-text">@RequestMapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PathVariable"><span class="toc-text">@PathVariable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RequestParam"><span class="toc-text">@RequestParam</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ResponseBody"><span class="toc-text">@ResponseBody</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC-数据绑定"><span class="toc-text">SpringMVC 数据绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringMVC-使用-Servlet-API"><span class="toc-text">SpringMVC 使用 Servlet API</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>本文主要参考了 <a href="http://www.imooc.com/video/7237" target="_blank" rel="noopener">imooc-SpringMVC 起步</a> 视频教程和 <a href="http://www.imooc.com/article/3804" target="_blank" rel="noopener">SpringMVC从入门到精通 系列 - HansonQ</a> ，还有自己的一些总结。</p>
+<p>主要内容：MVC 简介、前端控制器模式、SpringMVC 基本概念、SpringMVC 配置、SpringMVC 中的注解、SpringMVC 数据绑定。</p>
+<h2 id="MVC-简介"><a href="#MVC-简介" class="headerlink" title="MVC 简介"></a>MVC 简介</h2><p>1、MVC 是一种架构模式<br>程序分层，分工合作，既相互独立，又协同工作，分为三层：模型层、视图层和控制层</p>
+<p>2、MVC 是一种思考方式<br>View：视图层，为用户提供UI，重点关注数据的呈现，为用户提供界面<br>Model：模型层，业务数据的信息表示，关注支撑业务的信息构成，通常是多个业务实体的组合<br>Controller：控制层，调用业务逻辑产生合适的数据（Model），传递数据给视图用于呈现</p>
+<p>MVC 设计模式在 B/S 下的应用：<br><img src="https://cdn-qn.yifans.com/160907-springmvc-getting-started-tutorial-mvc.gif" alt="MVC设计模式在B/S下的应用"></p>
+<p>①：浏览器发送请求到控制器(这里要知道控制器的作用)<br>②：控制器不能处理请求必须交给模型层来处理接着去访问数据库<br>③：模型层将处理好的结果返回给控制层<br>④：控制层将逻辑视图响应给浏览器(浏览器显示的是渲染过的视图)</p>
+<p><strong>MVC 本质：MVC 的核心思想是业务数据抽取同业务数据呈现相分离；分离有利于程序简化，方便编程</strong></p>
+<a id="more"></a>
+<h2 id="前端控制器模式"><a href="#前端控制器模式" class="headerlink" title="前端控制器模式"></a>前端控制器模式</h2><p>前端控制器模式（Front Controller Pattern）是用来提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理。该处理程序可以做认证/授权/记录日志，或者跟踪请求，然后把请求传给相应的处理程序。</p>
+<ul>
+<li>前端控制器（Front Controller）- 处理应用程序所有类型请求的单个处理程序，应用程序可以是基于 web 的应用程序，也可以是基于桌面的应用程序。</li>
+<li>调度器（Dispatcher） - 前端控制器可能使用一个调度器对象来调度请求到相应的具体处理程序。</li>
+<li>视图（View） - 视图是为请求而创建的对象。</li>
+</ul>
+<p>前端控制器的主要作用：</p>
+<ul>
+<li>指前端控制器将我们的请求分发给我们的控制器去生成业务数据</li>
+<li>将生成的业务数据分发给恰当的视图模版来生成最终的视图界面</li>
+</ul>
+<p><img src="https://cdn-qn.yifans.com/160907-springmvc-getting-started-tutorial-front-controller.jpg" alt="Front Controller(MVC)"></p>
+<h2 id="SpringMVC-基本概念"><a href="#SpringMVC-基本概念" class="headerlink" title="SpringMVC 基本概念"></a>SpringMVC 基本概念</h2><p><img src="https://cdn-qn.yifans.com/160907-springmvc-getting-started-tutorial-springmvc01.jpg" alt="SpringMVC 基本概念"></p>
+<p>对组件说明：</p>
+<ol>
+<li>DispatherServlet：前端控制器 用户请求到达前端控制器，相当于 MVC 中的 C，而 DispatherServlet 是整个流程的核心，它来调用其他组件来处理用户的请求，前端控制器的存在降低了其他组件之间的耦合度。</li>
+<li>HandlerMapping：处理器映射器 它的作用就好比去看电影要拿着电影票根据电影票上面的座位号找到座位其中座位就是 Handler，电影票以及上面的座位号就是 URL HandlerMapping 负责根据用户请求找到 Handler 即处理器，SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。</li>
+<li>Handler：处理器 Handler 是后端控制器，在前端控制器的控制下后端控制器对具体的用户请求进行处理，Handler 涉及到具体的用户业务请求，所以一般情况下需要程序员根据业务需求开发。</li>
+<li>HandlerAdapter：处理器适配器 通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过适配器可以对更多类型的处理器进行执行。播放的电影是 3D 的你看不清楚，因此电影院跟你说你要想看清电影就必须戴 3D 眼镜。也就是说 Handler 满足一定的要求才可以被执行。</li>
+<li>ViewResolver：视图解析器 ViewResolver 负责将处理结果生成 View 视图，ViewResolver 首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成View视图对象，最后对View进行渲染将处理结果通过页面展示给用户。</li>
+</ol>
+<p><img src="https://cdn-qn.yifans.com/160907-springmvc-getting-started-tutorial-springmvc02.jpg" alt="SpringMVC 基本概念"></p>
+<p>工作原理解释说明：<br>1、用户发送请求到 SpringMVC 框架提供的 DispatcherServlet 这个前端控制器（了解 struts2 的朋友也都知道其实 struts2也有一个前端控制器 web.xml 中的 filter 标签就是）。<br>2、前端控制器会去找处理器映射器（HandlerMapping），处理器映射器根据请求 url 找到具体的处理器，生成处理器对象及处理器拦截器（如果有则生成）一并返回给 DispatcherServlet 。<br>3、根据处理器映射器返回的处理器，DispatcherServlet 会找“合适”的处理器适配器（HandlerAdapter）<br>4、处理器适配器 HandlerAdpater 会去执行处理器（Handler 开发的时候会被叫成 Controller 也叫后端控制器在 struts2 中action 也是一个后端控制器）执行之前会有转换器、数据绑定、校验器等等完成上面这些才会去正在执行 Handler<br>5、后端控制器 Handler 执行完成之后返回一个 ModelAndView 对象 。<br>6、处理器适配器 HandlerAdpater 会将这个 ModelAndView 返回前端控制器 DispatcherServlet。前端控制器会将ModelAndView 对象交给视图解析器 ViewResolver。<br>7、视图解析器 ViewResolver 解析 ModelAndView 对象之后返回逻辑视图。<br>8、前端控制器 DispatcherServlet 对逻辑视图进行渲染（数据填充）之后返回真正的物理 View 并响应给浏览器。</p>
+<p><img src="https://cdn-qn.yifans.com/160907-springmvc-getting-started-tutorial-springmvc03.jpg" alt="SpringMVC 基本概念"></p>
+<h2 id="SpringMVC-配置"><a href="#SpringMVC-配置" class="headerlink" title="SpringMVC 配置"></a>SpringMVC 配置</h2><p>1、前端控制器需要在 web.xml 中配置<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置前端控制器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>web-dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--加载前端控制器配置文件 上下文配置位置--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 备注：</span></span><br><span class="line"><span class="comment">            contextConfigLocation：指定 SpringMVC 配置的加载位置，如果不指定则默认加载</span></span><br><span class="line"><span class="comment">            WEB-INF/[DispatcherServlet 的 Servlet 名字]-servlet.xml</span></span><br><span class="line"><span class="comment">         --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:spring/spring-*.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 表示随WEB服务器启动 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>web-dispatcher<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 备注：可以拦截三种请求</span></span><br><span class="line"><span class="comment">        第一种：拦截固定后缀的url，比如设置为 *.do、*.action， 例如：/user/add.action 此方法最简单,不会导致静态资源（jpg,js,css）被拦截</span></span><br><span class="line"><span class="comment">        第二种：拦截所有,设置为/，例如：/user/add  /user/add.action此方法可以实现REST风格的url,</span></span><br><span class="line"><span class="comment">        很多互联网类型的应用使用这种方式.但是此方法会导致静态文件(jpg,js,css)被拦截后不能正常显示.需要特殊处理</span></span><br><span class="line"><span class="comment">        第三种：拦截所有,设置为/*，此设置方法错误,因为请求到Action,当action转到jsp时再次被拦截,提示不能根据jsp路径mapping成功</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 默认匹配所有的请求 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>2、在 <code>spring/spring-web.xml</code> 配置视图解析器<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置视图解析器 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- InternalResourceViewResolver：支持JSP视图解析 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- viewClass：JstlView 表示JSP模板页面需要使用JSTL标签库，所以classpath中必须包含jstl的相关jar包； --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- prefix 和 suffix：查找视图页面的前缀和后缀，最终视图的址为： --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 前缀+逻辑视图名+后缀，逻辑视图名需要在controller中返回ModelAndView指定，比如逻辑视图名为hello，--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 则最终返回的jsp视图地址 "WEB-INF/jsp/hello.jsp" --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 决定视图类型，如果添加了jstl支持（即有jstl.jar），那么默认就是解析为jstl视图 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span> <span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.JstlView"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 视图前缀 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 视图后缀 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>3、在 <code>spring/spring-web.xml</code> 配置 注解模式<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 自动加载RequestMappingHandlerMapping和RequestMappingHandlerAdapter， --&gt;</span><br><span class="line">&lt;!-- 可用在xml配置文件中使用&lt;mvc:annotation-driven&gt;替代注解处理器和适配器的配置。 --&gt;</span><br><span class="line">&lt;mvc:annotation-driven/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>4、在 <code>spring/spring-web.xml</code> 配置 扫描web 相关的 bean<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- 组件扫描器：可以扫描 @Controller、@Service、@Repository 等等 --&gt;</span><br><span class="line">&lt;context:component-scan base-package=&quot;com.controller&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="SpringMVC-中的注解"><a href="#SpringMVC-中的注解" class="headerlink" title="SpringMVC 中的注解"></a>SpringMVC 中的注解</h2><h3 id="Controller"><a href="#Controller" class="headerlink" title="@Controller"></a><code>@Controller</code></h3><p>@Controller 注解，用于标识这个类是一个后端控制器（类似struts中的action），主要作用就是接受页面的参数，转发页面。<br>@Controller 源码：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE&#125;) <span class="comment">// 表明只能定义在类上面</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME) <span class="comment">//保留策略是RUNTIME，在JVM加载类时，会把注解加载到JVM内存中（它是唯一可以用反射来读取注解的策略）</span></span><br><span class="line"><span class="meta">@Documented</span> <span class="comment">//@Documented用于描述其它类型的annotation应该被作为被标注的程序成员的公共API，因此可以被例如javadoc此类的工具文档化。Documented是一个标记注解，没有成员。</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//spring框架规定当一个类不好归类（service、dao、controller）的时候可以使用这个注解，由此可见即便好归类内部还是使用的@Component注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Controller &#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * The value may indicate a suggestion for a logical component name,</span></span><br><span class="line"><span class="comment">	 * to be turned into a Spring bean in case of an autodetected component.</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> the suggested component name, if any</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a><code>@RequestMapping</code></h3><p>这个注解的作用目标就跟 @Controller 不一样了，这个注解可以定义在类上面也可以定义在方法上面。<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 1.<span class="doctag">@RequestMapping</span>：除了修饰方法,还可以修饰类</span></span><br><span class="line"><span class="comment">* 2.类定义处：提供初步的请求信息映射.相对于WEB应用的根目录(窄化请求)</span></span><br><span class="line"><span class="comment">* 3.方法处：提供进一步的细分映射信息。相对于类定义处的URL。</span></span><br><span class="line"><span class="comment">*      若类定义处为标注<span class="doctag">@RequestMapping</span>,则方法出的URL相对于WEB应用的根目录</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Mapping</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestMapping &#123;</span><br><span class="line">	String[] value() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">	RequestMethod[] method() <span class="keyword">default</span> &#123;&#125;; <span class="comment">//限制请求方式</span></span><br><span class="line">	String[] params() <span class="keyword">default</span> &#123;&#125;; <span class="comment">//要求请求的URL包含指定的参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码实例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Controller</span><br><span class="line">@RequestMapping(&quot;/demo&quot;)</span><br><span class="line">public class IndexController &#123;</span><br><span class="line">	@RequestMapping(value = &quot;/test&quot;, method = RequestMethod.GET)</span><br><span class="line">	public String index(Model model, HttpServletRequest request) &#123;</span><br><span class="line">		// 在游览器访问 http://localhost:8080/demo/test 将进入这里</span><br><span class="line">		model.addAttribute(&quot;originURL&quot;, &quot;&quot;);</span><br><span class="line">		model.addAttribute(&quot;controllerName&quot;, &quot;index&quot;);</span><br><span class="line">		return &quot;index&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@RequestMapping 还支持 Ant 方格的请求</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">?：匹配文件中的一个字符</span><br><span class="line">*：匹配文件中任意字符</span><br><span class="line">**：**匹配多层路径</span><br><span class="line"></span><br><span class="line">/user/*/createUser : 匹配 -/user/aa/createUser 或者 -/user/aa/createUser</span><br><span class="line">/user/**/createUser : 匹配 -/user/aa/createUser 或者 -/user/createUser 或者 -/user/aa/cc/createUser</span><br><span class="line">/user/createUser?? : 匹配 -/user/aa/createUseraa</span><br></pre></td></tr></table></figure>
+<h3 id="PathVariable"><a href="#PathVariable" class="headerlink" title="@PathVariable"></a><code>@PathVariable</code></h3><p>@PathVariable 这个注解支持现在当下较为流行的 Restful 风格的 URL。 先说说这个注解的作用，支持将 url 中的占位符参数绑定到目标方法的参数上， 该功能也是 SpringMVC 实现 Restful 风格 url 的重要措施。</p>
+<p>代码实例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// http://localhost:8080/demo/sss</span><br><span class="line">@RequestMapping(value = &quot;/&#123;slug:.+&#125;&quot;, method = RequestMethod.GET)</span><br><span class="line">	public String index2(@PathVariable(&quot;slug&quot;) String slug, Model model) &#123;</span><br><span class="line">	LOG.info(&quot;DemoController index2 slug  &quot; + slug);</span><br><span class="line">	// common</span><br><span class="line">	model.addAttribute(&quot;originURL&quot;, &quot;demo/&quot;);</span><br><span class="line">	model.addAttribute(&quot;controllerName&quot;, &quot;demo&quot;);</span><br><span class="line">	model.addAttribute(&quot;controllerMethod&quot;, &quot;index2&quot;);</span><br><span class="line">	model.addAttribute(&quot;slug&quot;, slug);</span><br><span class="line">	return &quot;demo&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//slug = sss</span><br></pre></td></tr></table></figure>
+<p>我们熟悉的请求应该是 POST 和 GET 请求，这两个请求也是最常用的而实际上 HTTP1.1 请求还有 PUT、DELETE 等8种来表名请求的动作。</p>
+<p>在 SpringMVC 中要实现 PUT 和 DELETE 请求需要在 web.xml 额外配置一个过滤器，这个过滤器的作用就是把 POST 请求变为 PUT 和 DELETE 请求。<br><em>关于 Restful 的内容计划单独写。</em></p>
+<h3 id="RequestParam"><a href="#RequestParam" class="headerlink" title="@RequestParam"></a><code>@RequestParam</code></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.PARAMETER)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RequestParam &#123;</span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;<span class="comment">//值即为请求参数的参数名</span></span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;<span class="comment">//该参数是否是必须。默认值为true</span></span><br><span class="line">	<span class="function">String <span class="title">defaultValue</span><span class="params">()</span> <span class="keyword">default</span> ValueConstants.DEFAULT_NONE</span>;<span class="comment">//请求参数的默认值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// http://localhost:8080/demo/para?slug=google</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/para"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index3</span><span class="params">(@RequestParam(value = <span class="string">"slug"</span>, defaultValue = <span class="string">""</span>)</span> String slug, Model model) </span>&#123;</span><br><span class="line">	model.addAttribute(<span class="string">"originURL"</span>, <span class="string">"demo/"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerName"</span>, <span class="string">"demo"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerMethod"</span>, <span class="string">"index3"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"slug"</span>, slug);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"demo"</span>;</span><br><span class="line">&#125;</span><br><span class="line">slug = google</span><br></pre></td></tr></table></figure>
+<p>另外还有一点要提示一下，参数没有加这个注解也能映射成功，这是应为 SpringMVC 框架支持请求参数和目标方法参数一致的时候可以省略这个注解。</p>
+<h3 id="ResponseBody"><a href="#ResponseBody" class="headerlink" title="@ResponseBody"></a><code>@ResponseBody</code></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Annotation that indicates a method return value should be bound to the web</span></span><br><span class="line"><span class="comment"> * response body. Supported for annotated handler methods in Servlet environments.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 这个注解指明一个方法的返回值应该绑定在 web response body 中，在 Servlet 环境中支持注解处理方法</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;As of version 4.0 this annotation can also be added on the type level in</span></span><br><span class="line"><span class="comment"> * which case it is inherited and does not need to be added on the method level.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ResponseBody &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// http://localhost:8080/demo/json</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/json"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">Domain <span class="title">index7</span><span class="params">(HttpServletRequest request, Model model)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	LOG.info(<span class="string">"DemoController demo index7"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"originURL"</span>, <span class="string">"demo/"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerName"</span>, <span class="string">"demo"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerMethod"</span>, <span class="string">"index7"</span>);</span><br><span class="line"></span><br><span class="line">	Domain domain = <span class="keyword">new</span> Domain();</span><br><span class="line">	domain.setDomain(<span class="string">"gggoogle.com"</span>);</span><br><span class="line">	domain.setId(<span class="number">100</span>);</span><br><span class="line">	<span class="keyword">return</span> domain;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* response body</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	"id": 100,</span></span><br><span class="line"><span class="comment">	"domain": "gggoogle.com"</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC-数据绑定"><a href="#SpringMVC-数据绑定" class="headerlink" title="SpringMVC 数据绑定"></a>SpringMVC 数据绑定</h2><p>简单说一下场景：<br>对于一个注册页面有很多信息譬如：用户名、密码、确认密码、邮箱、手机、兴趣等等。这时候就会想能不能将这些个参数包装在一个对象中（POJO），用这个POJO来做目标方法的形参上面。</p>
+<p>可以说的是 SpringMVC 是支持将 POJO 作为目标参数的。当然也是要遵循一些规则的，就是表单的 name 属性值要和 POJO 的属性值要一致。当然了，这样又会有一个新的疑问支不支持级联属性答案是支持的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String city;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Persion</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> Address address;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/demo/pojo"</span>&gt;</span></span><br><span class="line">	NAME:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span> /&gt;</span></span><br><span class="line">	CITY:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"address.city"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/pojo"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index4</span><span class="params">(Persion persion, Model model)</span> </span>&#123;</span><br><span class="line">	model.addAttribute(<span class="string">"originURL"</span>, <span class="string">"demo/"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerName"</span>, <span class="string">"demo"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerMethod"</span>, <span class="string">"index4"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"persion"</span>, persion);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"demo"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SpringMVC-使用-Servlet-API"><a href="#SpringMVC-使用-Servlet-API" class="headerlink" title="SpringMVC 使用 Servlet API"></a>SpringMVC 使用 Servlet API</h3><p>可以使用 Servlet 原生的API作为目标方法的参数。具体支持以下类型：HttpServletRequest、HttpServletResponse、HttpSession、java.security.Principal、Locale、InputStream、OutputStream、Reader、Writer</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// http://localhost:8080/demo/req?slug=facebook</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/req"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">index5</span><span class="params">(HttpServletRequest request, Model model)</span> </span>&#123;</span><br><span class="line">	String slug = request.getParameter(<span class="string">"slug"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"originURL"</span>, <span class="string">"demo/"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerName"</span>, <span class="string">"demo"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"controllerMethod"</span>, <span class="string">"index5"</span>);</span><br><span class="line">	model.addAttribute(<span class="string">"slug"</span>, slug);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"demo"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="http://www.imooc.com/video/7237" target="_blank" rel="noopener">IMOOC-SpringMVC 起步</a></li>
+<li><a href="http://www.imooc.com/article/3804" target="_blank" rel="noopener">SpringMVC从入门到精通 系列 - HansonQ</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/">https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/springmvc/">springmvc</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2016/09/10/mybatis-generator-tutorial/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Mybatis Generator 使用配置</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2016/08/31/20160601-20160831-report/">
+        <span class="next-text nav-default">刚刚毕业的两个月小结</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/';
+        this.page.identifier = '2016/09/07/springmvc-getting-started-tutorial/';
+        this.page.title = 'SpringMVC 入门使用';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

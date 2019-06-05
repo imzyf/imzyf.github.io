@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="IMOOC HTML+CSS 基础课程 Part 4">
+
+
+
+
+  <meta name="keywords" content="html, css, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> IMOOC HTML+CSS 基础课程 Part 4 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          IMOOC HTML+CSS 基础课程 Part 4
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-03-01
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/03/01/imooc-html-css-basic-course-part4/" data-title="IMOOC HTML+CSS 基础课程 Part 4">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第13章-CSS-代码缩写，占用更少的带宽"><span class="toc-text">第13章 CSS 代码缩写，占用更少的带宽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型代码简写"><span class="toc-text">盒模型代码简写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#颜色值缩写"><span class="toc-text">颜色值缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体缩写"><span class="toc-text">字体缩写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第14章-单位和值"><span class="toc-text">第14章 单位和值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#颜色值"><span class="toc-text">颜色值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度值"><span class="toc-text">长度值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第15章-CSS-样式设置小技巧"><span class="toc-text">第15章 CSS 样式设置小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-行内元素"><span class="toc-text">水平居中 - 行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-定宽块状元素"><span class="toc-text">水平居中 - 定宽块状元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（一）"><span class="toc-text">水平居中 - 不定宽块状元素方法（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（二）"><span class="toc-text">水平居中 - 不定宽块状元素方法（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（三）"><span class="toc-text">水平居中 - 不定宽块状元素方法（三）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的单行文本"><span class="toc-text">垂直居中 - 父元素高度确定的单行文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的多行文本（方法一）"><span class="toc-text">垂直居中 - 父元素高度确定的多行文本（方法一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的多行文本（方法二）"><span class="toc-text">垂直居中 - 父元素高度确定的多行文本（方法二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐性改变-display-类型"><span class="toc-text">隐性改变 display 类型</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>慕课网上【HTML+CSS 基础课程】学习笔记。本文主要内容：CSS 代码缩写、单位和值、样式设置小技巧。</p>
+<a id="more"></a>
+<h2 id="第13章-CSS-代码缩写，占用更少的带宽"><a href="#第13章-CSS-代码缩写，占用更少的带宽" class="headerlink" title="第13章 CSS 代码缩写，占用更少的带宽"></a>第13章 CSS 代码缩写，占用更少的带宽</h2><h3 id="盒模型代码简写"><a href="#盒模型代码简写" class="headerlink" title="盒模型代码简写"></a>盒模型代码简写</h3><p>还记得在讲盒模型时外边距（margin）、内边距（padding）和边框（border)设置上下左右四个方向的边距是按照顺时针方向设置的：上右下左<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">margin:10px 15px 12px 14px;/*上设置为10px、右设置为15px、下设置为12px、左设置为14px*/</span><br><span class="line"></span><br><span class="line">margin:10px 10px 10px 10px;</span><br><span class="line">// 可缩写为：</span><br><span class="line">margin:10px;</span><br><span class="line"></span><br><span class="line">margin:10px 20px 10px 20px;</span><br><span class="line">// 可缩写为：</span><br><span class="line">margin:10px 20px;</span><br><span class="line"></span><br><span class="line">// 如果left和right的值相同，如下面代码：</span><br><span class="line">margin:10px 20px 30px 20px;</span><br><span class="line">// 可缩写为：</span><br><span class="line">margin:10px 20px 30px;</span><br><span class="line"></span><br><span class="line">// padding、border的缩写方法和margin是一致的。</span><br></pre></td></tr></table></figure></p>
+<h3 id="颜色值缩写"><a href="#颜色值缩写" class="headerlink" title="颜色值缩写"></a>颜色值缩写</h3><p>当设置的颜色是16进制的色彩值时，如果每两位的值相同，可以缩写一半</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;color:#000000;&#125;</span><br><span class="line">// 可以缩写为：</span><br><span class="line">p&#123;color: #000;&#125;</span><br><span class="line"></span><br><span class="line">p&#123;color: #336699;&#125;</span><br><span class="line">// 可以缩写为：</span><br><span class="line">p&#123;color: #369;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="字体缩写"><a href="#字体缩写" class="headerlink" title="字体缩写"></a>字体缩写</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    font-style:italic;</span><br><span class="line">    font-variant:small-caps;</span><br><span class="line">    font-weight:bold;</span><br><span class="line">    font-size:12px;</span><br><span class="line">    line-height:1.5em;</span><br><span class="line">    font-family:&quot;宋体&quot;,sans-serif;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 这么多行的代码其实可以缩写为一句：</span><br><span class="line"></span><br><span class="line">body&#123;</span><br><span class="line">    font:italic small-caps bold 12px/1.5em &quot;宋体&quot;,sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>使用这一简写方式你至少要指定 <code>font-size</code> 和 <code>font-family</code> 属性，其他的属性（如 font-weight、font-style、font-variant、line-height）如未指定将自动使用默认值。</li>
+<li>在缩写时 <code>font-size</code> 与 <code>line-height</code> 中间要加入 <code>/</code> 斜扛。</li>
+<li>一般情况下因为对于中文网站，英文还是比较少的，所以下面缩写代码比较常用：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">body&#123;</span><br><span class="line">    font:12px/1.5em  &quot;宋体&quot;,sans-serif;</span><br><span class="line">&#125;</span><br><span class="line">// 只是有字号、行间距、中文字体、英文字体设置</span><br></pre></td></tr></table></figure>
+<h2 id="第14章-单位和值"><a href="#第14章-单位和值" class="headerlink" title="第14章 单位和值"></a>第14章 单位和值</h2><h3 id="颜色值"><a href="#颜色值" class="headerlink" title="颜色值"></a>颜色值</h3><p>字体颜色（color）、背景颜色（background-color）、边框颜色（border）等：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// 英文命令颜色</span><br><span class="line">p&#123;color:red;&#125;</span><br><span class="line"></span><br><span class="line">// RGB颜色</span><br><span class="line">p&#123;color:rgb(133,45,200);&#125;</span><br><span class="line"></span><br><span class="line">// 每一项的值可以是 0~255 之间的整数，也可以是 0%~100% 的百分数。如：</span><br><span class="line">p&#123;color:rgb(20%,33%,25%);&#125;</span><br><span class="line"></span><br><span class="line">// 十六进制颜色。原理其实也是 RGB 设置，值由 0-255 变成了十六进制 00-ff</span><br><span class="line">p&#123;color:#00ffff;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="长度值"><a href="#长度值" class="headerlink" title="长度值"></a>长度值</h3><p>长度单位总结一下，目前比较常用到px（像素）、em、% 百分比，要注意其实这三种单位都是相对单位。</p>
+<ul>
+<li>像素：像素为什么是相对单位呢？因为像素指的是显示器上的小点（CSS规范中假设“90像素=1英寸”）。实际情况是浏览器会使用显示器的实际像素值有关，在目前大多数的设计者都倾向于使用像素（px）作为单位</li>
+<li>em：就是本元素给定字体的 font-size 值，如果元素的 font-size 为 14px ，那么 1em = 14px；如果 font-size 为 18px，那么 1em = 18px。如下代码：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;font-size:12px;text-indent:2em;&#125;</span><br><span class="line">// 上面代码就是可以实现段落首行缩进 24px（也就是两个字体大小的距离）</span><br></pre></td></tr></table></figure>
+<p>下面注意一个特殊情况：<br>但当给 font-size 设置单位为 em 时，此时计算的标准以 p 的父元素的 font-size 为基础。如下代码：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;以这个&lt;span&gt;例子&lt;/span&gt;为例。&lt;/p&gt;</span><br><span class="line">// css:</span><br><span class="line">p&#123;font-size:14px&#125;</span><br><span class="line">span&#123;font-size:0.8em;&#125;</span><br><span class="line">// 结果 span 中的字体“例子”字体大小就为 11.2px（14 * 0.8 = 11.2px）。</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>百分比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p&#123;font-size:12px;line-height:130%&#125;</span><br></pre></td></tr></table></figure>
+<p>设置行高（行间距）为字体的 <code>130%</code>（12 * 1.3 = 15.6px）</p>
+<h2 id="第15章-CSS-样式设置小技巧"><a href="#第15章-CSS-样式设置小技巧" class="headerlink" title="第15章 CSS 样式设置小技巧"></a>第15章 CSS 样式设置小技巧</h2><h3 id="水平居中-行内元素"><a href="#水平居中-行内元素" class="headerlink" title="水平居中 - 行内元素"></a>水平居中 - 行内元素</h3><p>如果被设置元素为文本、图片等行内元素时，水平居中是通过给父元素设置 <code>text-align:center</code> 来实现的</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"txtCenter"</span>&gt;</span>我想要在父容器中水平居中显示。<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css"><span class="selector-class">.txtCenter</span>&#123;</span></span><br><span class="line"><span class="css">	<span class="selector-tag">text-align</span><span class="selector-pseudo">:center</span>;</span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="水平居中-定宽块状元素"><a href="#水平居中-定宽块状元素" class="headerlink" title="水平居中 - 定宽块状元素"></a>水平居中 - 定宽块状元素</h3><p>当被设置元素为 <code>块状元素</code> 时用 <code>text-aligncenter</code> 就不起作用了，这时也分两种情况：<code>定宽块状元素</code> 和 <code>不定宽块状元素</code>。</p>
+<p>满足 <code>定宽</code> 和 <code>块状</code> 两个条件的元素是可以通过设置 <code>左右margin</code> 值为 <code>auto</code> 来实现居中的。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;div&gt;我是定宽块状元素，哈哈，我要水平居中显示。&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">div&#123;</span><br><span class="line">	border:1px solid red;/*为了显示居中效果明显为 div 设置了边框*/</span><br><span class="line">	width:200px;/*定宽*/</span><br><span class="line">	margin:20px auto;/* margin-left 与 margin-right 设置为 auto */</span><br><span class="line">	// 注意：元素的“上下 margin” 是可以随意设置的</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="水平居中-不定宽块状元素方法（一）"><a href="#水平居中-不定宽块状元素方法（一）" class="headerlink" title="水平居中 - 不定宽块状元素方法（一）"></a>水平居中 - 不定宽块状元素方法（一）</h3><p>不定宽度的块状元素有三种方法居中：</p>
+<ol>
+<li>加入 <code>table</code> 标签</li>
+<li>设置 <code>display: inline</code> 方法：与第一种类似，显示类型设为 行内元素，进行不定宽元素的属性设置</li>
+<li>设置 <code>position:relative</code> 和 <code>left:50%</code>：利用 相对定位 的方式，将元素向左偏移 50% ，即达到居中的目的</li>
+</ol>
+<p>加入 <code>table</code> 标签是利用 <code>table</code> 标签的长度自适应性，即不定义其长度也不默认父元素 body 的长度（table 其长度根据其内文本长度决定），因此可以看做一个定宽度块元素，然后再利用定宽度块状居中的 margin 的方法，使其水平居中</p>
+<p>第一步：为需要设置的居中的元素外面加入一个 table 标签 ( 包括 <code>&lt;tbody&gt;</code>、<code>&lt;tr&gt;</code>、<code>&lt;td&gt;</code> )</p>
+<p>第二步：为这个 table 设置 <code>左右 margin 居中</code>（这个和定宽块状元素的方法一样）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;table&gt;</span><br><span class="line">	&lt;tbody&gt;</span><br><span class="line">		&lt;tr&gt;</span><br><span class="line">			&lt;td&gt;</span><br><span class="line">				&lt;ul&gt;</span><br><span class="line">					&lt;li&gt;我是第一行文本&lt;/li&gt;</span><br><span class="line">					&lt;li&gt;我是第二行文本&lt;/li&gt;</span><br><span class="line">					&lt;li&gt;我是第三行文本&lt;/li&gt;</span><br><span class="line">				&lt;/ul&gt;</span><br><span class="line">			&lt;/td&gt;</span><br><span class="line">		&lt;/tr&gt;</span><br><span class="line">	&lt;/tbody&gt;</span><br><span class="line">	&lt;/table&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">table&#123;</span><br><span class="line">	border:1px solid;</span><br><span class="line">	margin:0 auto;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="水平居中-不定宽块状元素方法（二）"><a href="#水平居中-不定宽块状元素方法（二）" class="headerlink" title="水平居中 - 不定宽块状元素方法（二）"></a>水平居中 - 不定宽块状元素方法（二）</h3><p>改变块级元素的 <code>display</code> 为 <code>inline</code> 类型（设置为 行内元素 显示），然后使用 <code>text-align:center</code> 来实现居中效果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=&quot;#&quot;&gt;3&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.container&#123;</span><br><span class="line">    text-align:center;</span><br><span class="line">&#125;</span><br><span class="line">/* margin:0;padding:0（消除文本与div边框之间的间隙）*/</span><br><span class="line">.container ul&#123;</span><br><span class="line">    list-style:none;</span><br><span class="line">    margin:0;</span><br><span class="line">    padding:0;</span><br><span class="line">    display:inline;</span><br><span class="line">&#125;</span><br><span class="line">/* margin-right:8px（设置li文本之间的间隔）*/</span><br><span class="line">.container li&#123;</span><br><span class="line">    margin-right:8px;</span><br><span class="line">    display:inline;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>这种方法相比第一种方法的优势是不用增加无语义标签，但也存在着一些问题：它将块状元素的 display 类型改为 inline，变成了<strong>行内元素</strong>，所以少了一些功能，比如设定长度值</p>
+<h3 id="水平居中-不定宽块状元素方法（三）"><a href="#水平居中-不定宽块状元素方法（三）" class="headerlink" title="水平居中 - 不定宽块状元素方法（三）"></a>水平居中 - 不定宽块状元素方法（三）</h3><ul>
+<li>通过给父元素设置 <code>float</code>，然后给父元素设置 <code>position:relative</code> 和 <code>left:50%</code>，子元素设置 <code>position:relative</code> 和 <code>left: -50%</code> 来实现水平居中</li>
+<li><code>div</code> 中间有条平分界线，然后将 <code>ul</code> 的最左端与 <code>div</code> 的平分线对其；</li>
+<li><code>li</code> 中有条平分线，然后将 <code>li</code> 的平分线与 <code>ul</code> 的最左端对其；</li>
+</ul>
+<p>简单的说就是：<code>div</code> 和 <code>li</code> 都有条平分线，然后 <code>ul</code> 的最左端作为平分线标准，<code>div</code> 和 <code>li</code> 都与其对其，然后 <code>div</code> 确定外框，则 <code>li</code> 就是在 <code>div</code> 的中间</p>
+<p>注：可以使用 <code>clear:both;</code> 清除浮动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">	&lt;ul&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">		&lt;li&gt;&lt;a href=&quot;#&quot;&gt;3&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">	&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.container&#123;</span><br><span class="line">	float:left;</span><br><span class="line">	position:relative;</span><br><span class="line">	left:50%</span><br><span class="line">&#125;</span><br><span class="line">.container ul&#123;</span><br><span class="line">	list-style:none;</span><br><span class="line">	margin:0;</span><br><span class="line">	padding:0;</span><br><span class="line"></span><br><span class="line">	position:relative;</span><br><span class="line">	left:-50%;</span><br><span class="line">&#125;</span><br><span class="line">.container li&#123;float:left;display:inline;margin-right:8px;&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="垂直居中-父元素高度确定的单行文本"><a href="#垂直居中-父元素高度确定的单行文本" class="headerlink" title="垂直居中 - 父元素高度确定的单行文本"></a>垂直居中 - 父元素高度确定的单行文本</h3><p>分两种情况：父元素高度确定的单行文本，以及父元素高度确定的多行文本</p>
+<p>父元素高度确定的单行文本的竖直居中的方法是通过设置父元素的 height 和 line-height 高度一致来实现的 （height: 该元素的高度，line-height: 顾名思义，行高（行间距），指在文本中，行与行之间的<strong>基线间的距离</strong> ）</p>
+<p><code>line-height</code> 与 <code>font-size</code> 的计算值之差，在 CSS 中成为“行间距”。分为两半，分别加到一个文本行内容的顶部和底部</p>
+<p>这种文字行高与块高一致带来了一个弊端：当文字内容的长度大于块的宽时，就有内容脱离了块（溢出）<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    hi,imooc!</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.container&#123;</span><br><span class="line">    height:100px;</span><br><span class="line">    line-height:100px;</span><br><span class="line">    background:#999;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="垂直居中-父元素高度确定的多行文本（方法一）"><a href="#垂直居中-父元素高度确定的多行文本（方法一）" class="headerlink" title="垂直居中 - 父元素高度确定的多行文本（方法一）"></a>垂直居中 - 父元素高度确定的多行文本（方法一）</h3><p>使用插入 table  (包括tbody、tr、td)标签，同时设置 <code>vertical-align：middle</code></p>
+<p>CSS 中有一个用于竖直居中的属性 <code>vertical-align</code>，在父元素设置此样式时，会对 inline-block 类型的子元素都有用。下面看一下例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;table&gt;</span><br><span class="line">&lt;tbody&gt;</span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">		&lt;td class=&quot;wrap&quot;&gt;</span><br><span class="line">			&lt;div&gt;</span><br><span class="line">			    &lt;p&gt;看我是否可以居中。&lt;/p&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/td&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line">&lt;/tbody&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">	table td&#123;height:500px;background:#ccc&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>因为 td 标签默认情况下就默认设置了 <code>vertical-align: middle</code>，所以我们不需要显式地设置了</p>
+<h3 id="垂直居中-父元素高度确定的多行文本（方法二）"><a href="#垂直居中-父元素高度确定的多行文本（方法二）" class="headerlink" title="垂直居中 - 父元素高度确定的多行文本（方法二）"></a>垂直居中 - 父元素高度确定的多行文本（方法二）</h3><p>在 chrome、firefox 及 IE8 以上的浏览器下可以设置块级元素的 display 为 table-cell（设置为表格单元显示），激活 vertical-align 属性，但注意 IE6、7 并不支持这个样式，兼容性比较差</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p&gt;看我是否可以居中。&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;看我是否可以居中。&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;看我是否可以居中。&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.container&#123;</span><br><span class="line">    height:300px;</span><br><span class="line">    background:#ccc;</span><br><span class="line">    display:table-cell;/*IE8以上及Chrome、Firefox*/</span><br><span class="line">    vertical-align:middle;/*IE8以上及Chrome、Firefox*/</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>这种方法的好处是不用添加多余的无意义的标签，但缺点也很明显，它的兼容性不是很好，不兼容 IE6、7而且这样修改display的block变成了table-cell，破坏了原有的块状元素的性质（笔者：IE6、7 基本可以放弃了）</p>
+<h3 id="隐性改变-display-类型"><a href="#隐性改变-display-类型" class="headerlink" title="隐性改变 display 类型"></a>隐性改变 display 类型</h3><p>有一个有趣的现象就是当为元素（不论之前是什么类型元素，display:none 除外）设置以下 2 个句之一：</p>
+<ol>
+<li><code>position : absolute</code></li>
+<li><code>float : left</code> 或 <code>float:right</code><br>只要 HTML 代码中出现以上两句之一，元素的 display 显示类型就会自动变为以 <code>display:inline-block</code>（块状元素）的方式显示，当然就可以设置元素的 width 和 height 了，且默认宽度不占满父元素</li>
+</ol>
+<p>如下面的代码，<code>a</code> 标签是 行内元素 ，所以设置它的 width 是 没有效果的，但是设置为 <code>position:absolute</code> 以后，就可以了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;a href=&quot;#&quot; title=&quot;&quot;&gt;进入课程请单击这里&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.container a&#123;</span><br><span class="line">    position:absolute;</span><br><span class="line">    width:200px;</span><br><span class="line">    background:#ccc;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/html/">html</a>
+            
+              <a href="/tags/css/">css</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">解决 Ubuntu warning Setting locale failed</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/02/26/imooc-html-css-basic-course-part3/">
+        <span class="next-text nav-default">IMOOC HTML+CSS 基础课程 Part 3</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/';
+        this.page.identifier = '2017/03/01/imooc-html-css-basic-course-part4/';
+        this.page.title = 'IMOOC HTML+CSS 基础课程 Part 4';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

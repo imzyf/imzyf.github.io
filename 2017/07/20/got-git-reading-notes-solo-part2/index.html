@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="【Git 权威指南】读书笔记 - 独奏 - Part 2">
+
+
+
+
+  <meta name="keywords" content="git, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> 【Git 权威指南】读书笔记 - 独奏 - Part 2 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          【Git 权威指南】读书笔记 - 独奏 - Part 2
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-20
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/20/got-git-reading-notes-solo-part2/" data-title="【Git 权威指南】读书笔记 - 独奏 - Part 2">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-重置"><span class="toc-text">Git 重置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分支游标-master-的探秘"><span class="toc-text">分支游标 master 的探秘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-reflog-挽救错误的重置"><span class="toc-text">用 reflog 挽救错误的重置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入了解-git-reset-命令"><span class="toc-text">深入了解 git reset 命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-检出"><span class="toc-text">Git 检出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HEAD-的重置即检出"><span class="toc-text">HEAD 的重置即检出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#挽救分离头指针"><span class="toc-text">挽救分离头指针</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#恢复进度"><span class="toc-text">恢复进度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#继续暂存区未完成的实践"><span class="toc-text">继续暂存区未完成的实践</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#探秘-git-stash"><span class="toc-text">探秘 git stash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何在引用refs-stash中同时保存暂存区的进度和工作区中的进度"><span class="toc-text">如何在引用refs/stash中同时保存暂存区的进度和工作区中的进度</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>主要内容：【Git 重置】、【Git 检出】、【恢复进度】</p>
+<h2 id="Git-重置"><a href="#Git-重置" class="headerlink" title="Git 重置"></a>Git 重置</h2><h3 id="分支游标-master-的探秘"><a href="#分支游标-master-的探秘" class="headerlink" title="分支游标 master 的探秘"></a>分支游标 master 的探秘</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph --oneline</span><br><span class="line">* e695606 <span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br><span class="line">* a0c641e who does commit?</span><br><span class="line">* 9e8a761 initialized.</span><br></pre></td></tr></table></figure>
+<p>引用 <code>refs/heads/master</code> 就好像是一个游标，在有新的提交发生的时候指向了新的提交。</p>
+<p>Git 提供了 <code>git reset</code> 命令，可以将“游标”指向任意一个存在的提交 ID。注意下面的命令中使用了 <code>--hard</code> 参数，会破坏工作区未提交的改动，慎用。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at e695606 <span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="用-reflog-挽救错误的重置"><a href="#用-reflog-挽救错误的重置" class="headerlink" title="用 reflog 挽救错误的重置"></a>用 reflog 挽救错误的重置</h3><p>通过 <code>.git/logs</code> 目录下日志文件记录了分支的变更。默认非裸版本库（带有工作区）都提供分支日志功能，这是因为带有工作区的版本库都有如下设置：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config core.logallrefupdates</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure></p>
+<p>查看一下 <code>master</code> 分支的日志文件 <code>.git/logs/refs/heads/master</code> 中的内容。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tail -5 .git/logs/refs/heads/master</span><br></pre></td></tr></table></figure></p>
+<p>Git 提供了一个 <code>git reflog</code> 命令，对这个文件进行操作。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reflog show master | head -5</span><br><span class="line">9e8a761 master@&#123;0&#125;: 9e8a761: updating HEAD</span><br><span class="line">e695606 master@&#123;1&#125;: HEAD^: updating HEAD</span><br><span class="line">4902dc3 master@&#123;2&#125;: commit: does master follow this new commit?</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>重置 master 为两次改变之前的值。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard master@&#123;2&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="深入了解-git-reset-命令"><a href="#深入了解-git-reset-命令" class="headerlink" title="深入了解 git reset 命令"></a>深入了解 git reset 命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset [-q] [&lt;commit&gt;] [--] &lt;paths&gt;...</span><br><span class="line">git reset [--soft | --mixed | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</span><br></pre></td></tr></table></figure>
+<p>为了避免路径和引用（或者提交 ID）同名而冲突，可以在 <code>&lt;paths&gt;</code> 前用两个连续的短线（减号）作为分隔。</p>
+<p><img src="https://cdn-qn.yifans.com/20-got-git-reading-notes-solo-git-reset.png" alt="深入了解 git reset 命令"></p>
+<ul>
+<li><code>--hard</code> 会执行上图中的 1、2、3 全部的三个动作。<ol>
+<li>替换引用的指向。引用指向新的提交 ID。</li>
+<li>替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。</li>
+<li>替换工作区。替换后，工作区的内容变得和暂存区一致，也和 HEAD 所指向的目录树内容相同。</li>
+</ol>
+</li>
+<li><code>--soft</code> 会执行上图中的操作 1。</li>
+<li><code>--mixed</code>（缺省）会执行上图中的操作 1 和操作 2。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset</span><br><span class="line">$ git reset HEAD</span><br><span class="line"><span class="comment"># 仅用 HEAD 指向的目录树重置暂存区，工作区不会受到影响，相当于将之前用 git add 命令更新到暂存区的内容撤出暂存区。引用也未改变，因为引用重置到 HEAD 相当于没有重置。</span></span><br><span class="line"></span><br><span class="line">git reset -- filename</span><br><span class="line">git reset HEAD filename</span><br><span class="line"><span class="comment"># 仅将文件 filename 撤出暂存区，暂存区中其他文件不改变。相当于对命令 git add filename 的反向操作。</span></span><br><span class="line"></span><br><span class="line">git reset --soft HEAD^</span><br><span class="line"><span class="comment"># 工作区和暂存区不改变，但是引用向前回退一次。当对最新提交的提交说明或者提交的更改不满意时，撤销最新的提交以便重新提交。git commit 的反向操作。</span></span><br><span class="line"><span class="comment"># 在之前曾经介绍过一个修补提交命令 git commit --amend，用于对最新的提交进行重新提交以修补错误的提交说明或者错误的提交文件。修补提交命令实际上相当于执行了下面两条命令。（注：文件 .git/COMMIT_EDITMSG 保存了上次的提交日志）</span></span><br><span class="line">$ git reset --soft HEAD^</span><br><span class="line">$ git commit -e -F .git/COMMIT_EDITMSG</span><br><span class="line"></span><br><span class="line">$ git reset HEAD^</span><br><span class="line"><span class="comment"># 工作区不改变，但是暂存区会回退到上一次提交之前，引用也会回退一次。</span></span><br><span class="line"></span><br><span class="line">$ git reset --hard HEAD^</span><br><span class="line"><span class="comment"># 彻底撤销最近的提交。引用回退到前一次，而且工作区和暂存区都会回退到上一次提交的状态。自上一次以来的提交全部丢失。</span></span><br></pre></td></tr></table></figure>
+<h2 id="Git-检出"><a href="#Git-检出" class="headerlink" title="Git 检出"></a>Git 检出</h2><p>重置命令 <code>git reset</code> 的一个用途就是修改引用（如master）的游标。如果 HEAD 要改变该如何改变呢？检出命令 <code>git checkout</code> 该命令的实质就是修改 HEAD 本身的指向，该命令不会影响分支“游标”（如 master）。</p>
+<h3 id="HEAD-的重置即检出"><a href="#HEAD-的重置即检出" class="headerlink" title="HEAD 的重置即检出"></a>HEAD 的重置即检出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git co HEAD^</span><br><span class="line">Note: checking out <span class="string">'HEAD^'</span>.</span><br><span class="line"></span><br><span class="line">You are <span class="keyword">in</span> <span class="string">'detached HEAD'</span> state. You can look around, make experimental</span><br><span class="line">changes and commit them, and you can discard any commits you make <span class="keyword">in</span> this</span><br><span class="line">state without impacting any branches by performing another checkout.</span><br><span class="line"><span class="comment"># 您现在处于 '分离头指针' 状态。您可以检查、测试和提交，而不影响任何分支。</span></span><br><span class="line"><span class="comment"># 通过执行另外的一个 checkout 检出指令会丢弃在此状态下的修改和提交。</span></span><br><span class="line"></span><br><span class="line">If you want to create a new branch to retain commits you create, you may</span><br><span class="line"><span class="keyword">do</span> so (now or later) by using -b with the checkout <span class="built_in">command</span> again. Example:</span><br><span class="line"><span class="comment"># 如果想保留在此状态下的修改和提交，使用 -b 参数调用 checkout 检出指令以</span></span><br><span class="line"><span class="comment"># 创建新的跟踪分支。如：</span></span><br><span class="line"></span><br><span class="line">  git checkout -b &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line">HEAD is now at 3175afd...</span><br></pre></td></tr></table></figure>
+<p>什么叫做 <code>detached HEAD</code> “分离头指针”状态？查看一下此时 HEAD 的内容就明白了。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cat .git/HEAD</span><br><span class="line">3175afde9450a1dc40b09d05a012b45e967cb80f</span><br></pre></td></tr></table></figure></p>
+<p>原来“分离头指针”状态指的就是 HEAD 头指针指向了一个具体的提交 ID，而不是一个引用（分支）。注意上面的 <code>reflog</code> 是 <code>HEAD</code> 头指针的变迁记录，而非 <code>master</code> 分支。</p>
+<p>查看一下 HEAD 和 master 对应的提交 ID，会发现现在它们指向的不一样。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rev-parse HEAD master</span><br><span class="line">3175afde9450a1dc40b09d05a012b45e967cb80f</span><br><span class="line">bd08cb462d38b54b930cf1934b0c33f2e4592390</span><br></pre></td></tr></table></figure></p>
+<p>在“分离头指针”模式仍然可以进行提交：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git status</span><br><span class="line">HEAD detached at 3175afd</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>但是在 checkout 到其他分支时，刚才的提交会丢失，但是这个提交仍然在版本库中，由于这个提交没有被任何分支跟踪到，因此并不能保证这个提交会永久存在。</p>
+<p>实际上当 reflog 中含有该提交的日志过期后，这个提交随时都会从版本库中彻底清除。</p>
+<h3 id="挽救分离头指针"><a href="#挽救分离头指针" class="headerlink" title="挽救分离头指针"></a>挽救分离头指针</h3><p>在“分离头指针”模式下进行的测试提交除了使用提交 ID <code>acc2f69</code> 访问之外，不能通过 master 分支或其他引用访问到。使用合并操作 <code>git merge</code> 将提交 acc2f69 合并到 master 分支中来。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git merge acc2f69</span><br><span class="line">Merge made by recursive.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="恢复进度"><a href="#恢复进度" class="headerlink" title="恢复进度"></a>恢复进度</h2><h3 id="继续暂存区未完成的实践"><a href="#继续暂存区未完成的实践" class="headerlink" title="继续暂存区未完成的实践"></a>继续暂存区未完成的实践</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存当前工作进度</span></span><br><span class="line">$ git stash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看保存的进度用命令</span></span><br><span class="line">$ git stash list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最近保存的进度进行恢复</span></span><br><span class="line">$ git stash pop</span><br><span class="line">$ git stash pop [--index] [&lt;stash&gt;]</span><br><span class="line"><span class="comment"># --index 除了恢复工作区的文件外，还尝试恢复暂存区</span></span><br><span class="line"><span class="comment"># 从该 &lt;stash&gt; 中恢复</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git stash [save [-p|--patch] [-k|--[no-]keep-index] [-q|--quiet]</span><br><span class="line">                [-u|--include-untracked] [-a|--all] [&lt;message&gt;]]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>--patch</code> 会显示工作区和 HEAD 的差异，通过对差异文件的编辑决定在进度中最终要保存的工作区的内容，通过编辑差异文件可以在进度中排除无关内容。</li>
+<li>使用 <code>-k</code> 或者 <code>--keep-index</code> 参数，在保存进度后不会将暂存区重置。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不删除恢复的进度之外，其余和 git stash pop 命令一样</span></span><br><span class="line">$ git stash apply [--index] [&lt;stash&gt;]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除一个存储的进度</span></span><br><span class="line">$ git stash drop [&lt;stash&gt;]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有存储的进度</span></span><br><span class="line">$ git stash clear</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于进度创建分支</span></span><br><span class="line">$ git stash branch &lt;branchname&gt; &lt;stash&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="探秘-git-stash"><a href="#探秘-git-stash" class="headerlink" title="探秘 git stash"></a>探秘 git stash</h3><p>在执行 <code>git stash</code> 命令时，Git 实际调用了一个脚本文件实现相关的功能。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git --<span class="built_in">exec</span>-path</span><br><span class="line">/usr/lib/git-core</span><br><span class="line"></span><br><span class="line">$ file /usr/lib/git-core/git-stash</span><br><span class="line">/usr/lib/git-core/git-stash: POSIX shell script text executable</span><br></pre></td></tr></table></figure>
+<p>本地没有被版本控制系统跟踪的文件并不能保存进度。因此本地新文件需要执行添加 <code>add</code> 再执行 git stash 命令。</p>
+<p>在用 <code>git stash</code> 命令保存进度时，提供说明更容易找到对应的进度文件。</p>
+<p>每个进度的标识都是 <code>stash@{&lt;n&gt;}</code> 格式，像极了前面介绍的 <code>reflog</code> 的格式。<code>git stash</code> 的就是用到了前面介绍的引用和引用变更日志 <code>reflog</code> 来实现的。</p>
+<p>用git stash保存进度，实际上会将进度保存在引用refs/stash所指向的提交中。多次的进度保存，实际上相当于引用refs/stash一次又一次的变化，而refs/stash引用的变化由reflog（即.git/logs/refs/stash）所记录下来。</p>
+<h3 id="如何在引用refs-stash中同时保存暂存区的进度和工作区中的进度"><a href="#如何在引用refs-stash中同时保存暂存区的进度和工作区中的进度" class="headerlink" title="如何在引用refs/stash中同时保存暂存区的进度和工作区中的进度"></a>如何在引用refs/stash中同时保存暂存区的进度和工作区中的进度</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git log --graph --pretty=raw  refs/stash -2</span><br><span class="line">*   commit e5c0cdc2dedc3e50e6b72a683d928e19a1d9de48</span><br><span class="line">|\  tree 780c22449b7ff67e2820e09a6332c360ddc80578</span><br><span class="line">| | parent 2b31c199d5b81099d2ecd91619027ab63e8974ef</span><br><span class="line">| | parent c5edbdcc90addb06577ff60f644acd1542369194</span><br><span class="line">| | author Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800</span><br><span class="line">| | committer Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800</span><br><span class="line">| |</span><br><span class="line">| |     WIP on master: 2b31c19 Merge commit &apos;acc2f69&apos;</span><br><span class="line">| |</span><br><span class="line">| * commit c5edbdcc90addb06577ff60f644acd1542369194</span><br><span class="line">|/  tree 780c22449b7ff67e2820e09a6332c360ddc80578</span><br><span class="line">|   parent 2b31c199d5b81099d2ecd91619027ab63e8974ef</span><br><span class="line">|   author Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800</span><br><span class="line">|   committer Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800</span><br><span class="line">|</span><br><span class="line">|       index on master: 2b31c19 Merge commit &apos;acc2f69&apos;</span><br></pre></td></tr></table></figure>
+<p>最新的提交说明中有 <code>WIP</code>（Work In Progess）字样，说明代表了工作区进度。而最新提交的第二个父提交（上图中显示为第二个提交）有 index on master 字样，说明这个提交代表着暂存区的进度。</p>
+<blockquote>
+<p>Reference:</p>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html" target="_blank" rel="noopener">2. Git独奏 &mdash; GotGit</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/">https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/git/">git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/07/20/imooc-react-getting-started-tutorial/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">React 入门</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/07/19/got-git-reading-notes-solo-part1/">
+        <span class="next-text nav-default">【Git 权威指南】读书笔记 - 独奏 - Part 1</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/';
+        this.page.identifier = '2017/07/20/got-git-reading-notes-solo-part2/';
+        this.page.title = '【Git 权威指南】读书笔记 - 独奏 - Part 2';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

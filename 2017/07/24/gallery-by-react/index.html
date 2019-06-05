@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="React 图片画廊应用">
+
+
+
+
+  <meta name="keywords" content="react, Yifans_Z Blog">
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2017/07/24/gallery-by-react/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> React 图片画廊应用 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          React 图片画廊应用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-24
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/24/gallery-by-react/" data-title="React 图片画廊应用">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能"><span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#技术栈"><span class="toc-text">技术栈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目搭建"><span class="toc-text">项目搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成项目"><span class="toc-text">生成项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Webpack"><span class="toc-text">Webpack</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#舞台构建"><span class="toc-text">舞台构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片组件构建"><span class="toc-text">图片组件构建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置图片位置"><span class="toc-text">设置图片位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置图片旋转"><span class="toc-text">设置图片旋转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置图片正反翻转、居中"><span class="toc-text">设置图片正反翻转、居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置过渡动画"><span class="toc-text">设置过渡动画</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制组件"><span class="toc-text">控制组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-Iconfont-添加箭头"><span class="toc-text">使用 Iconfont 添加箭头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件响应"><span class="toc-text">事件响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-Page-发布"><span class="toc-text">GitHub Page 发布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO"><span class="toc-text">TODO</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>源于学习 MOOC React 实战 —— 打造画廊应用。项目源码：<a href="https://github.com/imzyf/gallery-by-react" target="_blank" rel="noopener">GitHub - imzyf/gallery-by-react</a></p>
+<p>Thanks:</p>
+<ul>
+<li><a href="http://www.imooc.com/video/11739" target="_blank" rel="noopener">React 实战 —— 打造画廊应用</a></li>
+<li><a href="https://github.com/ckinmind/gallery-by-react" target="_blank" rel="noopener">ckinmind/gallery-by-react</a></li>
+<li><a href="https://github.com/Wobugaosuni/galleryByReact" target="_blank" rel="noopener">Wobugaosuni/galleryByReact</a></li>
+</ul>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>图片分布：</li>
+<li>中心区域：1 张图。</li>
+<li>上部区域：至多 1 张图</li>
+<li>两侧区域：剩下的图</li>
+<li>除中心区域，图片在 ±30° 随机旋转。</li>
+<li>点击中心区域图片，图片翻转，显示描述。</li>
+<li>点击除中心区域图片，与中心图片互换位置。</li>
+<li>圆点导航栏：<ul>
+<li>位于中心区域图片所在的导航点，高亮显示。点击该圆点，图片翻转，显示描述。</li>
+<li>除中心区域图片所在的导航点，被点击时，与中心图片互换位置。</li>
+</ul>
+</li>
+</ul>
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ul>
+<li>使用 <code>React</code> 框架完成画廊页面制作。</li>
+<li>使用 <code>ES6</code> 语法。</li>
+<li>使用 <code>YEOMAN</code> 搭建项目，生成项目文件、代码结构。</li>
+<li>使用 <code>Webpack</code> 实现前端自动化。</li>
+<li>使用 <code>HTML5</code> 新增标签，如 <code>&lt;section&gt;、&lt;figure&gt;、&lt;figcaption&gt;、&lt;nav&gt;</code> 等。</li>
+<li>使用 <code>SCSS</code> 编译器将 SCSS 文件编译成 CSS 文件。</li>
+<li>使用 <code>CSS3</code> 的 transition 属性，实现旋转、平移、背景色的逐渐过渡。</li>
+<li>使用 <code>Iconfont</code> 字体文件代替图片文件，支持 CSS3 对字体的修饰效果。</li>
+<li>使用 <code>json</code> 格式存放图片信息。</li>
+</ul>
+<a id="more"></a>
+<h2 id="项目搭建"><a href="#项目搭建" class="headerlink" title="项目搭建"></a>项目搭建</h2><h3 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h3><p>安装 yeoman <a href="http://yeoman.io/" target="_blank" rel="noopener">The web’s scaffolding tool for modern webapps | Yeoman</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g yo</span><br></pre></td></tr></table></figure>
+<p>查看 yeoman 版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yo --version</span><br></pre></td></tr></table></figure>
+<p>安装脚手架 generator-react-webpack <a href="https://github.com/react-webpack-generators/generator-react-webpack" target="_blank" rel="noopener">Yeoman generator for ReactJS and Webpack</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g generator-react-webpack</span><br></pre></td></tr></table></figure>
+<p>查看 generator 版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm ls -g --depth=1 2&gt;/dev/null | grep generator-</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>npm ls -g</code>：列出全局安装的所有 npm 包</li>
+<li><code>--depth=1</code>：树状结构最多向下展示一层</li>
+<li><code>2&gt;/dev/null</code>：如果执行 <code>npm ls -g</code> 的过程中，有错误消息，把错误消息重定向到我们的空设备文件上</li>
+<li><code>&gt;</code>：重定向</li>
+<li><code>1</code> 表示 standard out 标准输出</li>
+<li><code>2</code> 表示 standard error 标准错误</li>
+<li><code>/dev/null</code> 表示空设备文件</li>
+<li><code>|</code>：通道，用来将上一个命令的输出内容作为下一个命令的输入内容</li>
+<li><code>grep generator-</code>：在前面的输出结果中，检索 generator 开头的关键字内容</li>
+</ul>
+<p>生成项目</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yo react-webpack gallery-by-react</span><br></pre></td></tr></table></figure>
+<p>启动服务，根据 <code>package.json</code> 中的 <code>scripts</code> 可以看出。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
+<!-- more -->
+<p>我这里发生了一个报错：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ERROR <span class="keyword">in</span> ./src/components/Main.js</span><br><span class="line">Module not found: Error: Cannot resolve module <span class="string">'sass-loader'</span> <span class="keyword">in</span> ...</span><br></pre></td></tr></table></figure>
+<p>解决方法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install node-sass --save-dev</span><br><span class="line">npm install sass-loader --save-dev</span><br></pre></td></tr></table></figure>
+<p>还遇到一个问题：<br>如果页面空白，可以尝试 <code>ctrl + f5</code>。</p>
+<p>Generating new stateless functional components</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yo react-webpack:component my/namespaced/components/name --stateless</span><br></pre></td></tr></table></figure>
+<h3 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h3><p><a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a> is a module bundler.</p>
+<p>关于 <code>generator-react-webpack</code> 目录结构大变样，已经是只需要 <code>webpack</code> 就能启动项目，其目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">|---cfg  这里存放 webpack 配置</span><br><span class="line">| |---base.js  webpack 基础配置</span><br><span class="line">| |---defaults.js  webpack 一些其他的默认配置</span><br><span class="line">| |---dev.js       测试环境的 webpack 配置，启动 npm run start 的时候会使用这份 webpack 设置。</span><br><span class="line">| |---dist.js      线上环境的 webpack 配置，启动 npm run dist 的时候会使用。</span><br><span class="line">| |---test.js      做单元测试的时候使用 npm run <span class="built_in">test</span>。</span><br><span class="line">|---dist           webpack 存放最终打包输出的用于生产环境的项目文件</span><br><span class="line">|---src                       <span class="comment"># 存放开发环境项目源码</span></span><br><span class="line">| |---/actions/               <span class="comment"># flux actions目录（没用到）</span></span><br><span class="line">| |---/components/            <span class="comment"># 组件目录</span></span><br><span class="line">| |---/config/                <span class="comment"># 配置目录（没用到）</span></span><br><span class="line">| |---/sources/               <span class="comment"># flux datasources目录（没用到）</span></span><br><span class="line">| |---/stores/                <span class="comment"># flux stores(没用到)</span></span><br><span class="line">| |---/styles/                <span class="comment"># 样式文件目录，内有一个App.css基础css文件</span></span><br><span class="line">| |---index.html              <span class="comment"># 项目入口文件</span></span><br><span class="line">| |---index.js                <span class="comment"># js入口文件</span></span><br><span class="line">|---/<span class="built_in">test</span>/                    <span class="comment"># 单元测试和集成测试目录</span></span><br><span class="line">|---.babelrc                  <span class="comment"># Babel 配置文件</span></span><br><span class="line">|---.editorconfig             <span class="comment"># EditorConfig 插件配置文件，用于统一编码风格。</span></span><br><span class="line">|---.eslintrc                 <span class="comment"># ESLint代码风格检测配置文件</span></span><br><span class="line">|---.gitignore                <span class="comment"># 需要 git 同步时忽略文件夹的配置文件</span></span><br><span class="line">|---.yo-rc.json               <span class="comment"># yeoman的配置文件</span></span><br><span class="line">|---karma.conf.js             <span class="comment"># karma测试框架的配置</span></span><br><span class="line">|---package.json              <span class="comment"># npm 的依赖配置项</span></span><br><span class="line">|---server.js                 <span class="comment"># 项目运行的js文件，命令可查看package.json中的script</span></span><br><span class="line">|---webpack.config.js         <span class="comment"># webpack配置文件，不同环境的配置项在cfg目录下</span></span><br></pre></td></tr></table></figure>
+<h2 id="舞台构建"><a href="#舞台构建" class="headerlink" title="舞台构建"></a>舞台构建</h2><p>VCD 原则：View Controller Data。</p>
+<p>创建 <code>src/sources/imageDatas.json</code></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">"fileName"</span>: <span class="string">"1.jpg"</span>,</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">"Heaven of time"</span>,</span><br><span class="line">    <span class="attr">"desc"</span>: <span class="string">"Here he comes Here comes Speed Racer."</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">"fileName"</span>: <span class="string">"2.jpg"</span>,</span><br><span class="line">    <span class="attr">"title"</span>: <span class="string">"Heaven of time"</span>,</span><br><span class="line">    <span class="attr">"desc"</span>: <span class="string">"Here he comes Here comes Speed Racer."</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>安装 <a href="https://github.com/webpack-contrib/json-loader" target="_blank" rel="noopener">webpack-contrib/json-loader: json loader module for webpack</a>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save-dev json-loader</span><br></pre></td></tr></table></figure>
+<p>json 中获取图片路径 ES6：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> imageJsonDatas <span class="keyword">from</span> <span class="string">"json!../data/imageDatas.json"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> imageDatas = imageJsonDatas.map(<span class="function"><span class="params">image</span> =&gt;</span> &#123;</span><br><span class="line">  image.imageUrl = <span class="built_in">require</span>(<span class="string">"../images/"</span> + image.fileName);</span><br><span class="line">  <span class="keyword">return</span> image;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="图片组件构建"><a href="#图片组件构建" class="headerlink" title="图片组件构建"></a>图片组件构建</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImgFigure</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;figure className=<span class="string">"img-figure"</span>&gt;</span><br><span class="line">        &lt;img src=&#123;<span class="keyword">this</span>.props.data.imageUrl&#125; alt=&#123;<span class="keyword">this</span>.props.data.title&#125; /&gt;</span><br><span class="line">        &lt;figcaption&gt;</span><br><span class="line">          &lt;h2 className=<span class="string">"img-title"</span>&gt;&#123;<span class="keyword">this</span>.props.data.title&#125;&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>figcaption&gt;</span><br><span class="line">      &lt;<span class="regexp">/figure&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="设置图片位置"><a href="#设置图片位置" class="headerlink" title="设置图片位置"></a>设置图片位置</h3><ul>
+<li>scrollWidth：对象的实际内容的宽度，不包边线宽度，会随对象中内容超过可视区后而变大。</li>
+<li>clientWidth：对象内容的可视区的宽度，不包滚动条等边线，会随对象显示大小的变化而改变。</li>
+<li>offsetWidth：对象整体的实际宽度，包滚动条等边线，会随对象显示大小的变化而改变。</li>
+</ul>
+<p>通过 <code>this.Constant</code> 初始化图片区域范围，在 <code>componentDidMount</code> 计算设置数值。</p>
+<p>通过 <code>rearrange(centerIndex){}</code> 给每一个图片设置位置值。</p>
+<h3 id="设置图片旋转"><a href="#设置图片旋转" class="headerlink" title="设置图片旋转"></a>设置图片旋转</h3><p>设置图片旋转角度，思路和设置图片位置一样：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">topImgs[index] = &#123;</span><br><span class="line">  pos: &#123;</span><br><span class="line">    top: getRangeRandom(topSection.y[<span class="number">0</span>], topSection.y[<span class="number">1</span>]),</span><br><span class="line">    left: getRangeRandom(topSection.x[<span class="number">0</span>], topSection.x[<span class="number">1</span>])</span><br><span class="line">  &#125;,</span><br><span class="line">  rotate: get30DegRandom()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>设置角度样式，兼容游览器：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (rotate) &#123;</span><br><span class="line">  [<span class="string">"MozTransform"</span>, <span class="string">"msTransform"</span>, <span class="string">"Webkittransform"</span>, <span class="string">"transform"</span>].forEach(</span><br><span class="line">    value =&gt; &#123;</span><br><span class="line">      styleObj[value] = <span class="string">"rotate("</span> + rotate + <span class="string">"deg)"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置图片正反翻转、居中"><a href="#设置图片正反翻转、居中" class="headerlink" title="设置图片正反翻转、居中"></a>设置图片正反翻转、居中</h3><p>设置修改 state.isInverse 的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">inverse(index) &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123;imgsArrangeArr&#125; = <span class="keyword">this</span>.state;</span><br><span class="line">    imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        imgsArrangeArr</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> imgFigureClassName = <span class="string">"img-figure"</span>;</span><br><span class="line">imgFigureClassName += isInverse ? <span class="string">" is-inverse"</span> : <span class="string">""</span>;</span><br></pre></td></tr></table></figure>
+<p>视图中 <code>onClick</code> 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;figure</span><br><span class="line">  className=&#123;imgFigureClassName&#125;</span><br><span class="line">  style=&#123;styleObj&#125;</span><br><span class="line">  onClick=&#123;<span class="keyword">this</span>.handleClick&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<p>处理点击方法：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">handleClick(e) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> &#123;isCenter&#125; = <span class="keyword">this</span>.props.arrange;</span><br><span class="line">    <span class="keyword">if</span> (isCenter) &#123;</span><br><span class="line">        <span class="keyword">this</span>.props.inverse()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.props.center()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    e.stopPropagation();</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="设置过渡动画"><a href="#设置过渡动画" class="headerlink" title="设置过渡动画"></a>设置过渡动画</h3><p>补间动画：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">transition</span>: <span class="selector-tag">transform</span> 0<span class="selector-class">.6s</span> <span class="selector-tag">ease-in-out</span>, <span class="selector-tag">left</span> 0<span class="selector-class">.6s</span> <span class="selector-tag">ease-in-out</span>,</span><br><span class="line">  <span class="selector-tag">top</span> 0<span class="selector-class">.6s</span> <span class="selector-tag">ease-in-out</span>;</span><br></pre></td></tr></table></figure>
+<p>更自然的图片翻转，翻转时转轴同时移动：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">transform-origin</span>: 0 50% 0; <span class="comment">/* 50% 50% 0 */</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">translate</span>(0) <span class="selector-tag">rotateY</span>(180<span class="selector-tag">deg</span>);</span><br></pre></td></tr></table></figure>
+<p>增强透视，父节点添加：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">perspective</span>: 1800<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="控制组件"><a href="#控制组件" class="headerlink" title="控制组件"></a>控制组件</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">render() &#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">        &lt;span className=<span class="string">"controller-unit"</span> onClick=&#123;(e)=&gt;<span class="keyword">this</span>.handleClick(e)&#125;&gt;<span class="xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-Iconfont-添加箭头"><a href="#使用-Iconfont-添加箭头" class="headerlink" title="使用 Iconfont 添加箭头"></a>使用 Iconfont 添加箭头</h3><p><a href="http://www.iconfont.cn/" target="_blank" rel="noopener">Iconfont-阿里巴巴矢量图标库</a></p>
+<ul>
+<li>Iconfont 的体积更小。</li>
+<li>Iconfont 是矢量图，拉伸不变形，颜色可自行更换，支持 CSS3 对字体的修饰效果。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">"icons-turn-arrow"</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"../fonts/icons/turn-arrow.eot"</span>) <span class="built_in">format</span>(<span class="string">"enbedded"</span>), <span class="built_in">url</span>(<span class="string">"../fonts/icons/turn-arrow.woff"</span>)</span><br><span class="line">      <span class="built_in">format</span>(<span class="string">"woff"</span>), <span class="built_in">url</span>(<span class="string">"../fonts/icons/turn-arrow.ttf"</span>) <span class="built_in">format</span>(<span class="string">"truetype"</span>), <span class="built_in">url</span>(<span class="string">"../fonts/icons/turn-arrow.svg"</span>)</span><br><span class="line">      <span class="built_in">format</span>(<span class="string">"svg"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>cfg/defaults.js</code>:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">test: <span class="regexp">/\.(png|jpg|gif|woff|woff2)$/</span>,</span><br><span class="line"></span><br><span class="line">改为：</span><br><span class="line">test: <span class="regexp">/\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/</span>,</span><br></pre></td></tr></table></figure>
+<p>屏幕渲染机制有两种：</p>
+<ul>
+<li>灰阶渲染：控制边缘亮度，所耗内存相对较低，应用于手机。</li>
+<li>亚像素渲染：效果更好，所耗内存相对更高，应用于 Mac 等。</li>
+</ul>
+<p>Mac 上有些浅色字体图片（在上面设置了白色，可以设置为深色进行测试）在浏览器上显得较粗，解决方案：</p>
+<p>在父元素上设置属性，修改浏览器的属性：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">-webkit-font-smoothing</span>: <span class="selector-tag">antialiased</span>; <span class="comment">/* 开启 chrome 在 Mac 下字体渲染的灰阶平滑 */</span></span><br><span class="line"><span class="selector-tag">-moz-osx-font-smoothing</span>: <span class="selector-tag">grayscale</span>; <span class="comment">/* 开启 firefox 在 Mac 下字体渲染的灰阶平滑 */</span></span><br></pre></td></tr></table></figure>
+<h3 id="事件响应"><a href="#事件响应" class="headerlink" title="事件响应"></a>事件响应</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">let &#123;isInverse, isCenter&#125; = this.props.arrange;</span><br><span class="line"></span><br><span class="line">let controllerUnitClassName = "controller-unit";</span><br><span class="line"><span class="selector-tag">if</span> (<span class="selector-tag">isCenter</span>) &#123;</span><br><span class="line">    controllerUnitClassName += " is-center";</span><br><span class="line"></span><br><span class="line">    <span class="selector-tag">if</span> (<span class="selector-tag">isInverse</span>) &#123;</span><br><span class="line">        controllerUnitClassName += " is-inverse";</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="GitHub-Page-发布"><a href="#GitHub-Page-发布" class="headerlink" title="GitHub Page 发布"></a>GitHub Page 发布</h2><p>GitHub Page 需要使用相对路径，修改：</p>
+<p><code>cfg/default.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">publicPath: <span class="string">'/assets/'</span>,</span><br><span class="line"></span><br><span class="line">改为：</span><br><span class="line">publicPath: <span class="string">'assets/'</span>,</span><br></pre></td></tr></table></figure>
+<p><code>src/index.html</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/assets/app.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">改成：</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"assets/app.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后打包项目：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm run dist</span><br></pre></td></tr></table></figure>
+<p>将 <code>dist</code> 提交到 Git 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add dist</span><br><span class="line">git commit -m <span class="string">"release project"</span></span><br></pre></td></tr></table></figure>
+<p>推送到 GitHub Page：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree push --prefix=dist origin gh-pages</span><br></pre></td></tr></table></figure>
+<p>改回代码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git reset --hard</span><br></pre></td></tr></table></figure>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li style="list-style: none"><input type="checkbox"> CSS Modules, radium</li>
+<li style="list-style: none"><input type="checkbox"> React Flux</li>
+<li style="list-style: none"><input type="checkbox"> React Animation API</li>
+<li style="list-style: none"><input type="checkbox"> React Canvas</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2017/07/24/gallery-by-react/">https://zyf.im/2017/07/24/gallery-by-react/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/react/">react</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/08/03/got-git-reading-notes-solo-part3/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">【Git 权威指南】读书笔记 - 独奏 - Part 3</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/07/20/imooc-react-getting-started-tutorial/">
+        <span class="next-text nav-default">React 入门</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2017/07/24/gallery-by-react/';
+        this.page.identifier = '2017/07/24/gallery-by-react/';
+        this.page.title = 'React 图片画廊应用';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>

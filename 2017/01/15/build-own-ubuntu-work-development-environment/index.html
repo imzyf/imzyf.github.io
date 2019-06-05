@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="从零搭建自己 Ubuntu 工作开发环境">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
+
+
+
+<link rel="canonical" href="https://zyf.im/2017/01/15/build-own-ubuntu-work-development-environment/">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
+
+
+
+  
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-84666938-1');
+</script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
+      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
+    });
+  </script>
+
+
+
+
+
+<script>
+  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2330747317815601",
+    enable_page_level_ads: true
+  });
+</script>
+
+    <title> 从零搭建自己 Ubuntu 工作开发环境 - Yifans_Z Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Yifans_Z Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Yifans_Z Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          从零搭建自己 Ubuntu 工作开发环境
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-01-15
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/01/15/build-own-ubuntu-work-development-environment/" data-title="从零搭建自己 Ubuntu 工作开发环境">
+          阅读次数 0
+        </span>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu-系统安装"><span class="toc-text">Ubuntu 系统安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础设置"><span class="toc-text">基础设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-workspaces-amp-Add-show-desktop-icon"><span class="toc-text">Enable workspaces &amp; Add show desktop icon</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Setting-Termianl-Style"><span class="toc-text">Setting Termianl Style</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础软件"><span class="toc-text">基础软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Chrome"><span class="toc-text">Chrome</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shadowsocks-Qt5"><span class="toc-text">Shadowsocks-Qt5</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sogou-输入法"><span class="toc-text">Sogou 输入法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aptitude"><span class="toc-text">aptitude</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git"><span class="toc-text">git</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim"><span class="toc-text">vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oh-my-zsh"><span class="toc-text">oh-my-zsh</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js"><span class="toc-text">Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PHP"><span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL"><span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Navicat"><span class="toc-text">Navicat</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p><strong>2019-05-25 更新：</strong> MacBook + Docker 已经是我工作的基础设施：</p>
+<ul>
+<li><a href="/2019/05/20/my-macbook/">My MacBook</a></li>
+<li><a href="https://github.com/imzyf/my-dock" target="_blank" rel="noopener">My Dock</a></li>
+</ul>
+<a id="more"></a>
+<p><strong>2017-07-06 更新：</strong> 最近开始使用 Vagrent 发现可以很方便的搭建 PHP 开发环境，参看：<a href="https://laravel.com/docs/5.4/homestead" target="_blank" rel="noopener">Laravel Homestead</a></p>
+<hr>
+<p>为自己的 Y400 加装了一块 mSATA SSD，专门用来装 Ubuntu 系统。本原的硬盘位早就换成了 OCZ 的 240G SSD，机械硬盘移到了光驱位，330 大洋入的 OCZ，2017 年初 JD.com 竟然要 560+。</p>
+<p>本文就是记录自己的 Lenovo Y400 装新 mSATA SSD 的过程。</p>
+<h2 id="Ubuntu-系统安装"><a href="#Ubuntu-系统安装" class="headerlink" title="Ubuntu 系统安装"></a>Ubuntu 系统安装</h2><ol>
+<li>使用 UltraISO 软碟通，将 Ubuntu 16.04 写入 U 盘</li>
+<li>在开机时按 F11 切换启动顺序到 U 盘</li>
+<li>图形化安装界面，注意选择：自定义分配磁盘空间安装模式</li>
+<li>我的磁盘空间分配是：<code>/</code> 50G，<code>/home</code> 50G，供参考</li>
+<li>建议选择 _英语_ 语言</li>
+</ol>
+<h2 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h2><h3 id="Enable-workspaces-amp-Add-show-desktop-icon"><a href="#Enable-workspaces-amp-Add-show-desktop-icon" class="headerlink" title="Enable workspaces &amp; Add show desktop icon"></a>Enable workspaces &amp; Add show desktop icon</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">System Settings -&gt; Appearance -&gt; Behavior -&gt; Enable workspaces &amp; Add show desktop icon</span><br></pre></td></tr></table></figure>
+<p>可以使用 ctrl + alt + 方向键，切换 Workspaces</p>
+<h3 id="Setting-Termianl-Style"><a href="#Setting-Termianl-Style" class="headerlink" title="Setting Termianl Style"></a>Setting Termianl Style</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Termianl Profiles -&gt;Profile Preferences</span><br><span class="line">General -&gt; Custom font: Monospace Regular 16</span><br><span class="line">color -&gt; Custom Text color: #F57900; Bold color: #73D216; Built-in schemes: XTerm</span><br></pre></td></tr></table></figure>
+<h2 id="基础软件"><a href="#基础软件" class="headerlink" title="基础软件"></a>基础软件</h2><h3 id="Chrome"><a href="#Chrome" class="headerlink" title="Chrome"></a>Chrome</h3><p><a href="http://www.google.cn/chrome/browser/desktop/index.html" target="_blank" rel="noopener">Chrome 下载地址</a>，系统自带有 Firefox，但是现在越来越喜欢 Chrome 了。</p>
+<h3 id="Shadowsocks-Qt5"><a href="#Shadowsocks-Qt5" class="headerlink" title="Shadowsocks-Qt5"></a>Shadowsocks-Qt5</h3><p><a href="https://github.com/shadowsocks/shadowsocks-qt5/wiki/Installation" target="_blank" rel="noopener">Shadowsocks-Qt5 GitHub</a>，妙不可言。</p>
+<h3 id="Sogou-输入法"><a href="#Sogou-输入法" class="headerlink" title="Sogou 输入法"></a>Sogou 输入法</h3><p><a href="http://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="noopener">Sogou 输入法 下载地址</a>，自己在安装输入法时兜了很大的圈子，后来也搞不清到底是那个方法起的作用了，印象中情况：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 直接安装</span></span><br><span class="line">sudo dpkg --install sogoupinyin_2.1.0.0082_amd64.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可能遇到缺少组件报错，则执行</span></span><br><span class="line">sudo apt-get -f install</span><br><span class="line"></span><br><span class="line"><span class="comment"># No such key 'Gtk/IMModule' in schema 'org.gnome.settings-daemon.plugins.xsettings' as specified in override file '/usr/share/glib-2.0/schemas/50_sogoupinyin.gschema.override'; ignoring override for this key.</span></span><br><span class="line"><span class="comment"># 以上的这个问题好像可以忽略，我在这里花费了很多时间</span></span><br></pre></td></tr></table></figure>
+<p>1、点击桌面右上角的按钮，System Settings -&gt; Language Support -&gt; 键盘输入法系统从 iBus 改成 fcitx；<br>2、需要注销次系统；<br>3、打开 Fcitx Configuration，点击 +，取消勾选 only show current language，search sogou，ok</p>
+<blockquote>
+<p>Reference: <a href="http://www.voidcn.com/blog/caib1109/article/p-5793576.html" target="_blank" rel="noopener">Ubuntu 16.04 安装搜狗输入法</a></p>
+</blockquote>
+<h3 id="aptitude"><a href="#aptitude" class="headerlink" title="aptitude"></a>aptitude</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install aptitude</span><br></pre></td></tr></table></figure>
+<p>aptitude 与 apt-get 一样，是 Debian 及其衍生系统中功能极其强大的包管理工具。与 apt-get 不同的是，aptitude 在处理依赖问题上更佳一些。举例来说，aptitude 在删除一个包时，会同时删除本身所依赖的包。这样，系统中不会残留无用的包，整个系统更为干净。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">aptitude update 更新可用的包列表</span><br><span class="line">aptitude upgrade 升级可用的包</span><br><span class="line">aptitude dist-upgrade 将系统升级到新的发行版</span><br><span class="line">aptitude install pkgname 安装包</span><br><span class="line">aptitude remove pkgname 删除包</span><br><span class="line">aptitude purge pkgname 删除包及其配置文件</span><br><span class="line">aptitude search string 搜索包</span><br><span class="line">aptitude show pkgname 显示包的详细信息</span><br><span class="line">aptitude clean 删除下载的包文件</span><br><span class="line">aptitude autoclean 仅删除过期的包文件</span><br></pre></td></tr></table></figure>
+<h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo aptitude install git</span><br></pre></td></tr></table></figure>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo aptitude install vim</span><br></pre></td></tr></table></figure>
+<h3 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h3><blockquote>
+<p><a href="https://github.com/robbyrussell/oh-my-zsh/" target="_blank" rel="noopener">GitHub: oh-my-zsh </a></p>
+</blockquote>
+<p>首先安装 zsh</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo aptitude install zsh</span><br></pre></td></tr></table></figure>
+<p>脚本安装 oh-my-zsh</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>切换到 zsh 模式，logout 一次后生效</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /usr/<span class="built_in">local</span>/bin/zsh</span><br></pre></td></tr></table></figure>
+<p>ps: oh-my-zsh 有很使用的技巧，日后将专门写文章总结</p>
+<h2 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h2><blockquote>
+<p><a href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Ubuntu 下安装 Node.js 与常见问题 · Yifans_Z</a></p>
+</blockquote>
+<p>其中还包含：</p>
+<ul>
+<li>cnpm - npm client for China mirror of npm.</li>
+</ul>
+<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><blockquote>
+<p><a href="/2017/07/04/install-php-in-ubuntu-and-faq/">Ubuntu 下安装 PHP 与常见问题 · Yifans_Z</a></p>
+</blockquote>
+<h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo aptitude install mysql-server</span><br></pre></td></tr></table></figure>
+<h3 id="Navicat"><a href="#Navicat" class="headerlink" title="Navicat"></a>Navicat</h3><blockquote>
+<p><a href="https://www.navicat.com/" target="_blank" rel="noopener">Navicat GUI | DB Admin Tool for MySQL, MariaDB, SQL Server, SQLite, Oracle &amp; PostgreSQL client</a></p>
+</blockquote>
+<p>– EOF –</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://zyf.im">Yifans_Z</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://zyf.im/2017/01/15/build-own-ubuntu-work-development-environment/">https://zyf.im/2017/01/15/build-own-ubuntu-work-development-environment/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden>
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
+        </label>
+      
+      
+    </div>
+  </div>
+
+
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/02/21/atom-show-or-hidden-gitignore-files/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Atom 显示/隐藏 .gitignore 忽略的文件/文件夹</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/01/04/2017-happy-new-year/">
+        <span class="next-text nav-default">2017 Happy New Year</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 -
+    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    
+    &copy;
+    
+      2016 -
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Yifans_Z</span>
+  </span>
+</div>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11262529;
+var sc_invisible=1;
+var sc_security="476b93ef";
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://zyf.im/2017/01/15/build-own-ubuntu-work-development-environment/';
+        this.page.identifier = '2017/01/15/build-own-ubuntu-work-development-environment/';
+        this.page.title = '从零搭建自己 Ubuntu 工作开发环境';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//yifans.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
+
+  </body>
+</html>
