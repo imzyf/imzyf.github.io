@@ -225,7 +225,9 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+   
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -243,6 +245,12 @@
         <span class="post-visits" data-url="/2017/07/12/got-git-reading-notes-meet-git/" data-title="【Git 权威指南】读书笔记 - 初识 Git">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-04
+          </span>
         
       </div>
     </header>
@@ -264,7 +272,8 @@
 <p>Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人的知识积累、保护好自己的数据，而且还能与他人分享自己的成果。</p>
 <h2 id="版本控制的前世和今生"><a href="#版本控制的前世和今生" class="headerlink" title="版本控制的前世和今生"></a>版本控制的前世和今生</h2><p>即便是在 CVS 出现之前的“史前时代”，也已经有了非常好用的源码比较和打补丁的工具：<code>diff</code> 和 <code>patch</code>，他们今天生命力依然顽强。</p>
 <a id="more"></a>
-<p>对这 <code>hello</code> <code>world</code> 两个文件执行diff命令，查看两个文件的差异。如下所示：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -u hello world | less -N</span><br></pre></td></tr></table></figure></p>
+<p>对这 <code>hello</code> <code>world</code> 两个文件执行 diff 命令，查看两个文件的差异。如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ diff -u hello world | less -N</span><br></pre></td></tr></table></figure>
 <p>上面执行 <code>diff</code> 命令的 <code>-u</code> 参数很重要，使得差异输出中带有上下文。管道后面带有 <code>-N</code> 参数的 <code>less</code> 命令（按字母 <code>q</code> 退出）会在输出的每一行前面添加行号，便于对输出结果进行说明。</p>
 <p>命令 <code>patch</code> 相当于 <code>diff</code> 的反向操作</p>
 <p>分布式版本控制系统最大的反传统之处在于，可以不需要集中式的版本库，每个人都工作在通过克隆操作建立的本地版本库中，也就是说每个人都拥有一个完整的版本库。分布式版本控制系统的几乎所有操作包括查看提交日志、提交、创建里程碑和分支、合并分支、回退等都直接在本地完成而不需要网络连接。每个人都是本地版本库的主人，不再有谁能提交谁不能提交的限制，加之多样的协同工作模型（版本库间推送、拉回，及补丁文件传送等）让开源项目的参与度有爆发式增长。</p>
@@ -272,7 +281,7 @@
 <li>每日的工作备份。鸡蛋不全放在一个篮子里。</li>
 <li>异地协同工作。通过一个远程版本库，同步数据。</li>
 <li>现场版本控制。在部署的现场，进行源代码的修改，能够将修改结果甚至修改过程一并带走，并能够将修改结果合并至项目对应的代码库中。</li>
-<li>避免引入辅助目录。只在工作区的顶级目录下创建名为 <code>.git</code> 的目录（版本库目录），如果认为唯一的一个 <code>.git</code> 目录也过于碍眼，可以将其放到工作区之外的任意目录。一旦这么做了，你在执行 Git 命令时，要通过命令行  <code>--git-dir</code> 或环境变量 <code>GIT_DIR</code> 为工作区指定版本库目录，甚至还要指定工作区目录。</li>
+<li>避免引入辅助目录。只在工作区的顶级目录下创建名为 <code>.git</code> 的目录（版本库目录），如果认为唯一的一个 <code>.git</code> 目录也过于碍眼，可以将其放到工作区之外的任意目录。一旦这么做了，你在执行 Git 命令时，要通过命令行 <code>--git-dir</code> 或环境变量 <code>GIT_DIR</code> 为工作区指定版本库目录，甚至还要指定工作区目录。</li>
 <li>重写提交说明。这个命令如果不带 <code>-m</code> 参数，会进入提交说明编辑界面。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
@@ -289,16 +298,16 @@
 <ul>
 <li>代理 SVN 提交实现移动式办公。</li>
 <li>无处不在的分页器。<code>-p</code></li>
-<li>快。Git作为分布式版本控制系统几乎所有的操作都在本地进行。</li>
+<li>快。Git 作为分布式版本控制系统几乎所有的操作都在本地进行。</li>
 </ul>
 <h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo aptitude install git</span><br><span class="line">$ sudo aptitude install git-doc git-svn git-email gitk</span><br></pre></td></tr></table></figure>
 <p>软件包 git-svn、git-email、gitk 本来也是 Git 软件包的一部分，但是因为有着不一样的软件包依赖（如更多 perl 模组，tk 等），所以单独作为软件包发布。</p>
-<p>软件包 git-doc 则包含了 Git 的 HTML 格式文档，可以选择安装。如果安装了Git 的 HTML 格式的文档，则可以通过执行 <code>git help -w &lt;sub-command&gt;</code> 命令，自动用 Web 浏览器打开相关子命令 <code>&lt;sub-command&gt;</code> 的 HTML 帮助。</p>
+<p>软件包 git-doc 则包含了 Git 的 HTML 格式文档，可以选择安装。如果安装了 Git 的 HTML 格式的文档，则可以通过执行 <code>git help -w &lt;sub-command&gt;</code> 命令，自动用 Web 浏览器打开相关子命令 <code>&lt;sub-command&gt;</code> 的 HTML 帮助。</p>
 <h2 id="中文支持"><a href="#中文支持" class="headerlink" title="中文支持"></a>中文支持</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Reference:</p>
 <ul>
-<li><a href="http://www.worldhello.net/gotgit/01-meet-git/index.html" target="_blank" rel="noopener">1. 初识Git &mdash; GotGit</a></li>
+<li><a href="http://www.worldhello.net/gotgit/01-meet-git/index.html" target="_blank" rel="noopener">1. 初识 Git &mdash; GotGit</a></li>
 </ul>
 </blockquote>
 
@@ -368,8 +377,8 @@
       </a>
     
     
-      <a class="next" href="/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/">
-        <span class="next-text nav-default">nodeppt 让你爱上做分享</span>
+      <a class="next" href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">
+        <span class="next-text nav-default">Ubuntu 下安装 Node.js 与常见问题</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

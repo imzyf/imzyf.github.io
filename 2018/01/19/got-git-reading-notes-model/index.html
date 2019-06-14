@@ -225,7 +225,9 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+   
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -244,6 +246,12 @@
           阅读次数 0
         </span>
         
+
+        
+          <span class="post-visits">
+            最后更新: 2018-01-23
+          </span>
+        
       </div>
     </header>
 
@@ -261,7 +269,7 @@
     <div class="post-content">
       
         <p>主要内容：【Git 协同模型】</p>
-<h2 id="经典-Git-协同模型"><a href="#经典-Git-协同模型" class="headerlink" title="经典 Git 协同模型"></a>经典 Git 协同模型</h2><h3 id="集中式协同模型"><a href="#集中式协同模型" class="headerlink" title="集中式协同模型"></a>集中式协同模型</h3><p>可以像集中式版本控制系统那样使用 Git，在一个大家都可以访问到的服务器上架设 Git 服务器，每个人从该服务器克隆代码，本地提交推送到服务器上。   </p>
+<h2 id="经典-Git-协同模型"><a href="#经典-Git-协同模型" class="headerlink" title="经典 Git 协同模型"></a>经典 Git 协同模型</h2><h3 id="集中式协同模型"><a href="#集中式协同模型" class="headerlink" title="集中式协同模型"></a>集中式协同模型</h3><p>可以像集中式版本控制系统那样使用 Git，在一个大家都可以访问到的服务器上架设 Git 服务器，每个人从该服务器克隆代码，本地提交推送到服务器上。</p>
 <h2 id="金字塔式协同模型"><a href="#金字塔式协同模型" class="headerlink" title="金字塔式协同模型"></a>金字塔式协同模型</h2><p>虽然理论上每个开发者的版本库都是平等的，但是会有一个公认的权威的版本库，这个版本库由一个或者多个核心开发者负责维护（具有推送的权限）。</p>
 <p>开源社区逐渐发展出金字塔模型，而这也是必然之选。</p>
 <a id="more"></a>
@@ -284,7 +292,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">将暂存区的目录树保存下来</span><br><span class="line"></span><br><span class="line">$ git write-tree</span><br></pre></td></tr></table></figure>
 <p>要手工创建一个合并提交，即新的提交要有两个父提交。这两个父提交分别是 master 分支和 util-branch 分支的最新提交。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ echo &quot;subtree merge&quot; | \</span><br><span class="line">  git commit-tree 2153518409d218609af40babededec6e8ef51616 \</span><br><span class="line">  -p 911b1af2e0c95a2fc1306b8dea707064d5386c2e \</span><br><span class="line">  -p 12408a149bfa78a4c2d4011f884aa2adb04f0934</span><br><span class="line">62ae6cc3f9280418bdb0fcf6c1e678905b1fe690</span><br></pre></td></tr></table></figure>
-<p>需要把当前的 master 分支重置到此提交ID：</p>
+<p>需要把当前的 master 分支重置到此提交 ID：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git reset 62ae6cc3f9280418bdb0fcf6c1e678905b1fe690</span><br></pre></td></tr></table></figure>
 <p>操作繁琐，可使用下面 <code>subtree</code> 命令进行代替。</p>
 <h3 id="利用子树合并跟踪上游改动"><a href="#利用子树合并跟踪上游改动" class="headerlink" title="利用子树合并跟踪上游改动"></a>利用子树合并跟踪上游改动</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout util-branch</span><br><span class="line"></span><br><span class="line">$ git pull</span><br><span class="line"></span><br><span class="line">$ git checkout master</span><br><span class="line"></span><br><span class="line">$ git merge -Xsubtree=lib util-branch</span><br></pre></td></tr></table></figure>
@@ -312,9 +320,9 @@
 <li>提交日志分离</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree split -P &lt;S项目的相对路径&gt; -b &lt;临时branch&gt;</span><br></pre></td></tr></table></figure>
-<p>Git 会遍历所有的 commit，分离出与S项目的相对路径相关的 commit，并存入临时 branch 中。</p>
+<p>Git 会遍历所有的 commit，分离出与 S 项目的相对路径相关的 commit，并存入临时 branch 中。</p>
 <ul>
-<li>创建子repo</li>
+<li>创建子 repo</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &lt;S项目新路径&gt;</span><br><span class="line">cd S项目新路径</span><br><span class="line">git init</span><br><span class="line">git pull &lt;P项目的路径&gt; &lt;临时branch&gt;</span><br><span class="line">git remote add origin &lt;S项目的git仓库&gt;</span><br><span class="line">git push origin -u master</span><br></pre></td></tr></table></figure>
 <ul>
@@ -322,7 +330,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd P项目的路径</span><br><span class="line">git rm -rf &lt;S项目的相对路径&gt;</span><br><span class="line">git commit -m &apos;移除相应模块&apos; # 提交删除申请</span><br><span class="line">git branch -D &lt;临时branch&gt; # 删除临时分支</span><br></pre></td></tr></table></figure>
 <ul>
-<li>添加subtree</li>
+<li>添加 subtree</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree add --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <p>执行完第 2 步时，对应的目录已经剥离出来形成独立的项目了。第 3，4 步主要是把当前项目的对应的文件给删除，重新在 P 项目建立 Subtree。</p>
@@ -332,7 +340,7 @@
 <p>Reference:</p>
 <ul>
 <li><a href="http://www.worldhello.net/gotgit/04-git-model/" target="_blank" rel="noopener">4. 协同模型 &mdash; GotGit</a></li>
-<li><a href="https://www.jianshu.com/p/3096069e9b72" target="_blank" rel="noopener">Git Subtree的使用</a></li>
+<li><a href="https://www.jianshu.com/p/3096069e9b72" target="_blank" rel="noopener">Git Subtree 的使用</a></li>
 </ul>
 </blockquote>
 

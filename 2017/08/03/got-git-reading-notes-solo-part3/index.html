@@ -225,7 +225,9 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+   
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -244,6 +246,12 @@
           阅读次数 0
         </span>
         
+
+        
+          <span class="post-visits">
+            最后更新: 2017-12-25
+          </span>
+        
       </div>
     </header>
 
@@ -261,7 +269,8 @@
     <div class="post-content">
       
         <p>主要内容：【Git 基本操作】</p>
-<h2 id="Git-基本操作"><a href="#Git-基本操作" class="headerlink" title="Git 基本操作"></a>Git 基本操作</h2><h3 id="先来合个影"><a href="#先来合个影" class="headerlink" title="先来合个影"></a>先来合个影</h3><p>在 Git 里，“留影”用的命令叫做 <code>tag</code>，更加专业的术语叫做“里程碑”（打 tag，或打标签）。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git tag -m <span class="string">"Say bye-bye to all previous practice."</span> old_practice</span><br></pre></td></tr></table></figure></p>
+<h2 id="Git-基本操作"><a href="#Git-基本操作" class="headerlink" title="Git 基本操作"></a>Git 基本操作</h2><h3 id="先来合个影"><a href="#先来合个影" class="headerlink" title="先来合个影"></a>先来合个影</h3><p>在 Git 里，“留影”用的命令叫做 <code>tag</code>，更加专业的术语叫做“里程碑”（打 tag，或打标签）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git tag -m <span class="string">"Say bye-bye to all previous practice."</span> old_practice</span><br></pre></td></tr></table></figure>
 <p>里程碑无非也是一个引用，通过记录提交 ID（或者创建 Tag 对象）来为当前版本库状态进行“留影”。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rev-parse refs/tags/old_practice</span><br><span class="line">41bd4e2cce0f8baa9bb4cdda62927b408c846cd6</span><br></pre></td></tr></table></figure>
 <p><code>git describe</code> 显示当前版本库的最新提交的版本号。格式：<code>最近的 tag - 距离此 tag 的个数 - 该提交的 SHA1</code></p>
@@ -288,11 +297,11 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git add -f hello.h</span><br><span class="line">$ git commit -m &quot;add hello.h&quot;</span><br><span class="line">[master 48456ab] add hello.h</span><br><span class="line"> 1 files changed, 1 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 src/hello.h</span><br></pre></td></tr></table></figure>
 <p><em>忽略只对未跟踪文件有效，对于已加入版本库的文件无效。</em> 将 <code>hello.h</code> 添加到版本库后，对 <code>hello.h</code> 的修改都会立刻被跟踪到。<code>.gitignore</code> 只是对未入库的文件起作用。</p>
 <p><strong>本地独享式忽略文件</strong></p>
-<p>.gitignore设置的文件忽略是共享式的，是因为.gitignore被添加到版本库后成为了版本库的一部分，文件忽略在他人的工作区中同样生效。</p>
+<p>.gitignore 设置的文件忽略是共享式的，是因为.gitignore 被添加到版本库后成为了版本库的一部分，文件忽略在他人的工作区中同样生效。</p>
 <p>享式忽略有两种方式：</p>
 <ul>
-<li>在版本库.git目录下的一个文件.git/info/exclude来设置文件忽略。</li>
-<li>通过Git的配置变量core.excludesfile指定的一个忽略文件，其设置的忽略对所有文件均有效。</li>
+<li>在版本库.git 目录下的一个文件.git/info/exclude 来设置文件忽略。</li>
+<li>通过 Git 的配置变量 core.excludesfile 指定的一个忽略文件，其设置的忽略对所有文件均有效。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global core.excludesfile /home/jiangxin/_gitignore</span><br><span class="line">$ git config core.excludesfile</span><br><span class="line">/home/jiangxin/_gitignore</span><br><span class="line"></span><br><span class="line">$ cat /home/jiangxin/_gitignore</span><br><span class="line">*~        # vim 临时文件</span><br><span class="line">*.pyc     # python 的编译文件</span><br><span class="line">.*.mmx    # 不是正则表达式哦，因为 FreeMind-MMX 的辅助文件以点开头</span><br></pre></td></tr></table></figure>
 <p><strong>Git 忽略语法</strong></p>
@@ -303,12 +312,12 @@
 <li><code>最前面 !</code> 表示不忽略。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 这是注释行 —— 被忽略</span><br><span class="line">*.a       # 忽略所有以 .a 为扩展名的文件。</span><br><span class="line">!lib.a    # 但是 lib.a 文件或者目录不要忽略，即使前面设置了对 *.a 的忽略。</span><br><span class="line">/TODO     # 只忽略根目录下的 TODO 文件，子目录的 TODO 文件不忽略。</span><br><span class="line">build/    # 忽略所有 build/ 目录下的文件。</span><br><span class="line">doc/*.txt # 忽略文件如 doc/notes.txt，但是文件如 doc/server/arch.txt 不被忽略。</span><br></pre></td></tr></table></figure>
-<h3 id="文件归档"><a href="#文件归档" class="headerlink" title="文件归档"></a>文件归档</h3><p>如果想压缩工作区文件归档，可能一不小心会把版本库（.git目录）包含其中，甚至将工作区中的忽略文件、临时文件也包含其中。所以 Git 提供了一个归档命令 <code>git archive</code>。</p>
+<h3 id="文件归档"><a href="#文件归档" class="headerlink" title="文件归档"></a>文件归档</h3><p>如果想压缩工作区文件归档，可能一不小心会把版本库（.git 目录）包含其中，甚至将工作区中的忽略文件、临时文件也包含其中。所以 Git 提供了一个归档命令 <code>git archive</code>。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 基于最新提交建立归档文件latest.zip</span><br><span class="line">$ git archive -o latest.zip HEAD</span><br><span class="line"></span><br><span class="line"># 只将目录 src 和 doc 建立到归档 partial.tar 中</span><br><span class="line">$ git archive -o partial.tar  HEAD src doc</span><br><span class="line"></span><br><span class="line"># 基于里程碑v1.0建立归档，并且为归档中文件添加目录前缀1.0</span><br><span class="line">$ git archive --format=tar --prefix=1.0/ v1.0 | gzip &gt; foo-1.0.tar.gz</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Reference:</p>
 <ul>
-<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html" target="_blank" rel="noopener">2. Git独奏 &mdash; GotGit</a></li>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html" target="_blank" rel="noopener">2. Git 独奏 &mdash; GotGit</a></li>
 </ul>
 </blockquote>
 

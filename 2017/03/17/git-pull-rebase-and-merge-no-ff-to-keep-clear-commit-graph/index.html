@@ -225,7 +225,9 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+   
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -244,6 +246,12 @@
           阅读次数 0
         </span>
         
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-04
+          </span>
+        
       </div>
     </header>
 
@@ -252,7 +260,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pull-rebase"><span class="toc-text">pull rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#状况"><span class="toc-text">状况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-no-ff"><span class="toc-text">merge no-ff</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#例子1"><span class="toc-text">例子1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子2"><span class="toc-text">例子2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#pull-rebase"><span class="toc-text">pull rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#状况"><span class="toc-text">状况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-no-ff"><span class="toc-text">merge no-ff</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#例子-1"><span class="toc-text">例子 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子-2"><span class="toc-text">例子 2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
     </div>
   </div>
 
@@ -267,24 +275,29 @@
 <h3 id="状况"><a href="#状况" class="headerlink" title="状况"></a>状况</h3><p>Git 作为分布式版本控制系统，所有修改操作都是基于本地的，在团队协作过程中，假设你和你的同伴在本地中分别有各自的新提交，而你的同伴先于你 push 了代码到远程分支上，所以你必须先执行 <code>git pull</code> 来获取同伴的提交，然后才能 push 自己的提交到远程分支。</p>
 <p><img src="https://cdn-qn.yifans.com/170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-01.jpg" alt="pull rebase"></p>
 <p>按照 Git 的默认策略，如果远程分支和本地分支之间的提交线图有分叉的话（即不是 fast-forwarded），Git 会执行一次 merge 操作，因此产生<strong>一次没意义的提交记录</strong>，从而造成了像上图那样的混乱。</p>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>其实在 pull 操作的时候，使用 <code>git pull --rebase</code> 选项即可很好地解决上述问题。 加上 <code>--rebase</code> 参数的作用是，提交线图有分叉的话，Git 会 <code>rebase</code> 策略来代替默认的 <code>merge</code> 策略。<br>假设提交线图在执行 pull 前是这样的：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      A---B---C  remotes/origin/master</span><br><span class="line">     /</span><br><span class="line">D---E---F---G  master</span><br></pre></td></tr></table></figure></p>
-<p>如果是执行 <code>git pull</code> 后，结果多出了 H 这个没必要的提交记录。提交线图会变成这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      A---B---C remotes/origin/master</span><br><span class="line">     /         \</span><br><span class="line">D---E---F---G---H master</span><br></pre></td></tr></table></figure></p>
-<p>如果是执行 <code>git pull --rebase</code> 的话，提交线图就会变成这样：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">            remotes/origin/master</span><br><span class="line">                |</span><br><span class="line">D---E---A---B---C---F&apos;---G&apos;  master</span><br></pre></td></tr></table></figure></p>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>其实在 pull 操作的时候，使用 <code>git pull --rebase</code> 选项即可很好地解决上述问题。 加上 <code>--rebase</code> 参数的作用是，提交线图有分叉的话，Git 会 <code>rebase</code> 策略来代替默认的 <code>merge</code> 策略。<br>假设提交线图在执行 pull 前是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      A---B---C  remotes/origin/master</span><br><span class="line">     /</span><br><span class="line">D---E---F---G  master</span><br></pre></td></tr></table></figure>
+<p>如果是执行 <code>git pull</code> 后，结果多出了 H 这个没必要的提交记录。提交线图会变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">      A---B---C remotes/origin/master</span><br><span class="line">     /         \</span><br><span class="line">D---E---F---G---H master</span><br></pre></td></tr></table></figure>
+<p>如果是执行 <code>git pull --rebase</code> 的话，提交线图就会变成这样：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">            remotes/origin/master</span><br><span class="line">                |</span><br><span class="line">D---E---A---B---C---F&apos;---G&apos;  master</span><br></pre></td></tr></table></figure>
 <p>F G 两个提交通过 <code>rebase</code> 方式重新拼接在 C 之后，多余的分叉去掉了，目的达到。</p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用 <code>git log --graph</code> 可查看提交线图<br>使用 <code>git pull --rebase</code> 是为了使提交线图更好看，从而方便 code review 和代码回退<br>使用 <code>git pull --rebase</code> 比直接 pull 容易导致冲突的产生，如果预期冲突比较多的话，建议还是直接 pull</p>
 <a id="more"></a>
 <h2 id="merge-no-ff"><a href="#merge-no-ff" class="headerlink" title="merge no-ff"></a>merge no-ff</h2><blockquote>
 <p>generate a merge commit even if the merge resolve</p>
 </blockquote>
-<h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><p><code>git pull --rebase</code> 策略目的是修整提交线图，使其形成一条直线，而即将要用到的 <code>git merge --no-ff &lt;branch-name&gt;</code> 策略偏偏是反行其道，刻意地弄出提交线图分叉出来。</p>
+<h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子 1"></a>例子 1</h3><p><code>git pull --rebase</code> 策略目的是修整提交线图，使其形成一条直线，而即将要用到的 <code>git merge --no-ff &lt;branch-name&gt;</code> 策略偏偏是反行其道，刻意地弄出提交线图分叉出来。</p>
 <p>假设你在本地准备合并两个分支，而刚好这两个分支是 fast-forwarded 的，那么直接合并后你得到一个直线的提交线图，当然这样没什么坏处，但如果你想更清晰地告诉你同伴：这一系列的提交都是为了实现同一个目的，那么你可以刻意地将这次提交内容弄成一次提交线图分叉。</p>
 <p>执行 <code>git merge --no-ff &lt;branch-name&gt;</code> 的结果大概会是这样的：</p>
 <p><img src="https://cdn-qn.yifans.com/170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-02.jpg" alt="pull no-ff"></p>
 <p>中间的分叉线路图很清晰的显示这些提交都是为了实现：<strong>complete adjusting user domains and tags</strong></p>
-<h3 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h3><p>往往在合并分支之前（假设要在本地将 feature 分支合并到 dev 分支），会先检查 feature 分支是否部分落后于远程 dev 分支：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git pull <span class="comment"># 更新 dev 分支</span></span><br><span class="line">git <span class="built_in">log</span> feature..dev <span class="comment"># 对比</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="例子-2"><a href="#例子-2" class="headerlink" title="例子 2"></a>例子 2</h3><p>往往在合并分支之前（假设要在本地将 feature 分支合并到 dev 分支），会先检查 feature 分支是否部分落后于远程 dev 分支：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git pull <span class="comment"># 更新 dev 分支</span></span><br><span class="line">git <span class="built_in">log</span> feature..dev <span class="comment"># 对比</span></span><br></pre></td></tr></table></figure>
 <p>如果没有输出任何提交信息的话，即表示 feature 对于 dev 分支是 up-to-date 的。如果有输出的话而马上执行了 <code>git merge --no-ff</code> 的话，提交线图会变成这样：</p>
 <p><img src="https://cdn-qn.yifans.com/170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-03.jpg" alt="pull no-ff 2"></p>
-<p>所以这时在合并前，通常先执行：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase dev</span><br></pre></td></tr></table></figure></p>
+<p>所以这时在合并前，通常先执行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase dev</span><br></pre></td></tr></table></figure>
 <p>这样就可以将 feature 重新拼接到更新了的 dev 之后，然后就可以合并了。这时分叉点将上移，最终得到一个干净舒服的提交线图</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>使用 <code>git pull --rebase</code> 和 <code>git merge --no-ff</code> 其实和直接使用 <code>git pull</code> <code>git merge</code> 得到的代码应该是一样。</li>

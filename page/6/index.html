@@ -227,7 +227,237 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2017/08/03/got-git-reading-notes-solo-part3/">【Git 权威指南】读书笔记 - 独奏 - Part 3</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-03
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/08/03/got-git-reading-notes-solo-part3/" data-title="【Git 权威指南】读书笔记 - 独奏 - Part 3">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2017-12-25
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>主要内容：【Git 基本操作】</p>
+<h2 id="Git-基本操作"><a href="#Git-基本操作" class="headerlink" title="Git 基本操作"></a>Git 基本操作</h2><h3 id="先来合个影"><a href="#先来合个影" class="headerlink" title="先来合个影"></a>先来合个影</h3><p>在 Git 里，“留影”用的命令叫做 <code>tag</code>，更加专业的术语叫做“里程碑”（打 tag，或打标签）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git tag -m <span class="string">"Say bye-bye to all previous practice."</span> old_practice</span><br></pre></td></tr></table></figure>
+<p>里程碑无非也是一个引用，通过记录提交 ID（或者创建 Tag 对象）来为当前版本库状态进行“留影”。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git rev-parse refs/tags/old_practice</span><br><span class="line">41bd4e2cce0f8baa9bb4cdda62927b408c846cd6</span><br></pre></td></tr></table></figure>
+<p><code>git describe</code> 显示当前版本库的最新提交的版本号。格式：<code>最近的 tag - 距离此 tag 的个数 - 该提交的 SHA1</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git describe</span><br><span class="line">old_practice</span><br><span class="line"></span><br><span class="line"><span class="comment"># .. commit something</span></span><br><span class="line"></span><br><span class="line">$ git describe</span><br><span class="line">old_practice-2-g8861c65</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2017/08/03/got-git-reading-notes-solo-part3/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/24/gallery-by-react/">React 图片画廊应用</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-24
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/24/gallery-by-react/" data-title="React 图片画廊应用">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>源于学习 MOOC React 实战 —— 打造画廊应用。项目源码：<a href="https://github.com/imzyf/gallery-by-react" target="_blank" rel="noopener">GitHub - imzyf/gallery-by-react</a></p>
+<p>Thanks:</p>
+<ul>
+<li><a href="http://www.imooc.com/video/11739" target="_blank" rel="noopener">React 实战 —— 打造画廊应用</a></li>
+<li><a href="https://github.com/ckinmind/gallery-by-react" target="_blank" rel="noopener">ckinmind/gallery-by-react</a></li>
+<li><a href="https://github.com/Wobugaosuni/galleryByReact" target="_blank" rel="noopener">Wobugaosuni/galleryByReact</a></li>
+</ul>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>图片分布：</li>
+<li>中心区域：1 张图。</li>
+<li>上部区域：至多 1 张图</li>
+<li>两侧区域：剩下的图</li>
+<li>除中心区域，图片在 ±30° 随机旋转。</li>
+<li>点击中心区域图片，图片翻转，显示描述。</li>
+<li>点击除中心区域图片，与中心图片互换位置。</li>
+<li>圆点导航栏：<ul>
+<li>位于中心区域图片所在的导航点，高亮显示。点击该圆点，图片翻转，显示描述。</li>
+<li>除中心区域图片所在的导航点，被点击时，与中心图片互换位置。</li>
+</ul>
+</li>
+</ul>
+<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ul>
+<li>使用 <code>React</code> 框架完成画廊页面制作。</li>
+<li>使用 <code>ES6</code> 语法。</li>
+<li>使用 <code>YEOMAN</code> 搭建项目，生成项目文件、代码结构。</li>
+<li>使用 <code>Webpack</code> 实现前端自动化。</li>
+<li>使用 <code>HTML5</code> 新增标签，如 <code>&lt;section&gt;、&lt;figure&gt;、&lt;figcaption&gt;、&lt;nav&gt;</code> 等。</li>
+<li>使用 <code>SCSS</code> 编译器将 SCSS 文件编译成 CSS 文件。</li>
+<li>使用 <code>CSS3</code> 的 transition 属性，实现旋转、平移、背景色的逐渐过渡。</li>
+<li>使用 <code>Iconfont</code> 字体文件代替图片文件，支持 CSS3 对字体的修饰效果。</li>
+<li>使用 <code>json</code> 格式存放图片信息。</li>
+</ul>
+          <div class="read-more">
+            <a href="/2017/07/24/gallery-by-react/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/20/imooc-react-getting-started-tutorial/">React 入门</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-20
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/20/imooc-react-getting-started-tutorial/" data-title="React 入门">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="React-介绍"><a href="#React-介绍" class="headerlink" title="React 介绍"></a>React 介绍</h2><h3 id="初识-React"><a href="#初识-React" class="headerlink" title="初识 React"></a>初识 React</h3><ol>
+<li>React 不是一个完整的 MVC、MVVM 框架，其只负责 View 层，MVC 已经不适用于某些场景的开发</li>
+<li>React 跟 Web Components 不冲突</li>
+<li>React 的特点就是“轻”，数据单向绑定，独立、小巧、快速、创新</li>
+<li>组件化的开发思路，小组件构成大组件，高度可重用</li>
+</ol>
+<h3 id="React-应用场景"><a href="#React-应用场景" class="headerlink" title="React 应用场景"></a>React 应用场景</h3><ol>
+<li>复杂场景下的高性能</li>
+<li>重用组件库，组件组合</li>
+<li>“懒”，少做无用功</li>
+</ol>
+<blockquote>
+<p>你总是这样轻言放弃的话，无论过多久都只会原地踏步。 —— 多啦 a 梦</p>
+</blockquote>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><ol>
+<li>JS CSS</li>
+<li>Sass Compass</li>
+<li>Yeoman Grunt Webpack</li>
+<li>CommonJS NodeJS</li>
+<li>Git GitHub</li>
+</ol>
+          <div class="read-more">
+            <a href="/2017/07/20/imooc-react-getting-started-tutorial/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -245,6 +475,12 @@
         <span class="post-visits" data-url="/2017/07/20/got-git-reading-notes-solo-part2/" data-title="【Git 权威指南】读书笔记 - 独奏 - Part 2">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-04
+          </span>
         
       </div>
     </header>
@@ -264,7 +500,8 @@
           <p>主要内容：【Git 重置】、【Git 检出】、【恢复进度】</p>
 <h2 id="Git-重置"><a href="#Git-重置" class="headerlink" title="Git 重置"></a>Git 重置</h2><h3 id="分支游标-master-的探秘"><a href="#分支游标-master-的探秘" class="headerlink" title="分支游标 master 的探秘"></a>分支游标 master 的探秘</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --graph --oneline</span><br><span class="line">* e695606 <span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br><span class="line">* a0c641e who does commit?</span><br><span class="line">* 9e8a761 initialized.</span><br></pre></td></tr></table></figure>
 <p>引用 <code>refs/heads/master</code> 就好像是一个游标，在有新的提交发生的时候指向了新的提交。</p>
-<p>Git 提供了 <code>git reset</code> 命令，可以将“游标”指向任意一个存在的提交 ID。注意下面的命令中使用了 <code>--hard</code> 参数，会破坏工作区未提交的改动，慎用。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at e695606 <span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br></pre></td></tr></table></figure></p>
+<p>Git 提供了 <code>git reset</code> 命令，可以将“游标”指向任意一个存在的提交 ID。注意下面的命令中使用了 <code>--hard</code> 参数，会破坏工作区未提交的改动，慎用。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at e695606 <span class="built_in">which</span> version checked <span class="keyword">in</span>?</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2017/07/20/got-git-reading-notes-solo-part2/" class="read-more-link">阅读更多</a>
           </div>
@@ -279,7 +516,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -298,6 +537,12 @@
           阅读次数 0
         </span>
         
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-04
+          </span>
+        
       </div>
     </header>
 
@@ -315,8 +560,10 @@
         
           <p>主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】</p>
 <h2 id="Git-初始化"><a href="#Git-初始化" class="headerlink" title="Git 初始化"></a>Git 初始化</h2><p>设置一下 Git 的环境变量，这个设置是一次性的工作。即这些设置会在全局文件（用户主目录下的 <code>~/.gitconfig</code>）或系统文件（<code>/etc/gitconfig</code>）中做永久的记录。</p>
-<p>配置的用户名和邮件地址将在版本库提交时作为提交者的用户名和邮件地址。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name &quot;Jiang Xin&quot;</span><br><span class="line">$ git config --global user.email jiangxin@ossxp.com</span><br></pre></td></tr></table></figure></p>
-<h3 id="设置一些-Git-别名，以便可以使用更为简洁的子命令"><a href="#设置一些-Git-别名，以便可以使用更为简洁的子命令" class="headerlink" title="设置一些 Git 别名，以便可以使用更为简洁的子命令"></a>设置一些 Git 别名，以便可以使用更为简洁的子命令</h3><p>只在本用户的全局配置中添加 Git 命令别名：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global alias.br branch</span><br><span class="line">$ git config --global alias.ci <span class="string">"commit -s"</span></span><br><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.st <span class="string">"-p status"</span></span><br></pre></td></tr></table></figure></p>
+<p>配置的用户名和邮件地址将在版本库提交时作为提交者的用户名和邮件地址。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git config --global user.name &quot;Jiang Xin&quot;</span><br><span class="line">$ git config --global user.email jiangxin@ossxp.com</span><br></pre></td></tr></table></figure>
+<h3 id="设置一些-Git-别名，以便可以使用更为简洁的子命令"><a href="#设置一些-Git-别名，以便可以使用更为简洁的子命令" class="headerlink" title="设置一些 Git 别名，以便可以使用更为简洁的子命令"></a>设置一些 Git 别名，以便可以使用更为简洁的子命令</h3><p>只在本用户的全局配置中添加 Git 命令别名：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --global alias.br branch</span><br><span class="line">$ git config --global alias.ci <span class="string">"commit -s"</span></span><br><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.st <span class="string">"-p status"</span></span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2017/07/19/got-git-reading-notes-solo-part1/" class="read-more-link">阅读更多</a>
           </div>
@@ -331,7 +578,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -349,6 +598,12 @@
         <span class="post-visits" data-url="/2017/07/12/got-git-reading-notes-meet-git/" data-title="【Git 权威指南】读书笔记 - 初识 Git">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-04
+          </span>
         
       </div>
     </header>
@@ -382,7 +637,72 @@
   </article>
 
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Ubuntu 下安装 Node.js 与常见问题</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-06
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/06/install-node-js-in-ubuntu-and-faq/" data-title="Ubuntu 下安装 Node.js 与常见问题">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-11
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>ß<br>推荐使用 nvm 安装管理 node.js</p>
+<blockquote>
+<p>the nvm method is definitely much more flexible.</p>
+</blockquote>
+<h2 id="Node-js-Installation"><a href="#Node-js-Installation" class="headerlink" title="Node.js Installation"></a>Node.js Installation</h2><p><a href="https://github.com/creationix/nvm#installation" target="_blank" rel="noopener">creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.js versions</a></p>
+<p>To install or update nvm.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2017/07/06/install-node-js-in-ubuntu-and-faq/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -400,6 +720,12 @@
         <span class="post-visits" data-url="/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/" data-title="nodeppt 让你爱上做分享">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-11
+          </span>
         
       </div>
     </header>
@@ -433,62 +759,9 @@
   </article>
 
       
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Ubuntu 下安装 Node.js 与常见问题</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-07-06
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/07/06/install-node-js-in-ubuntu-and-faq/" data-title="Ubuntu 下安装 Node.js 与常见问题">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
+         
 
 
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>推荐使用 nvm 安装管理 node.js</p>
-<blockquote>
-<p>the nvm method is definitely much more flexible.</p>
-</blockquote>
-<h2 id="Node-js-Installation"><a href="#Node-js-Installation" class="headerlink" title="Node.js Installation"></a>Node.js Installation</h2><p><a href="https://github.com/creationix/nvm#installation" target="_blank" rel="noopener">creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.js versions</a></p>
-<p>To install or update nvm.</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2017/07/06/install-node-js-in-ubuntu-and-faq/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -506,6 +779,12 @@
         <span class="post-visits" data-url="/2017/07/06/work-with-mailchimp-api-3-pagination/" data-title="使用 MailChimp API 3.0 的分页查询">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
         
       </div>
     </header>
@@ -537,7 +816,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -555,6 +836,12 @@
         <span class="post-visits" data-url="/2017/07/06/trash-cli-move-files-to-trash/" data-title="Ubutun trash-cli 删除文件到回收站">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
         
       </div>
     </header>
@@ -576,164 +863,6 @@
 <h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">trash-put           trash files and directories.</span><br><span class="line">trash-empty         empty the trashcan(s).</span><br><span class="line">trash-list          list trashed files.</span><br><span class="line">trash-restore       restore a trashed file.</span><br><span class="line">trash-rm            remove individual files from the trashcan.</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2017/07/06/trash-cli-move-files-to-trash/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/07/06/chinese-and-english-translation-tools-in-the-command-line/">Ubutun 命令行下中英文翻译工具 dict</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-07-06
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/07/06/chinese-and-english-translation-tools-in-the-command-line/" data-title="Ubutun 命令行下中英文翻译工具 dict">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><a href="https://github.com/wufeifei/dict" target="_blank" rel="noopener">wufeifei/dict: 命令行下中英文翻译工具（Chinese and English translation tools in the command line）</a></p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo pip install dict-cli</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2017/07/06/chinese-and-english-translation-tools-in-the-command-line/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/07/04/install-php-in-ubuntu-and-faq/">Ubuntu 下安装 PHP 与常见问题</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-07-04
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/07/04/install-php-in-ubuntu-and-faq/" data-title="Ubuntu 下安装 PHP 与常见问题">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>使用了很久的 PHP，但是如何在 Ubuntu 下正确的安装 PHP 总是不清不白。本篇文章就是汇总、积累安装 PHP 和安装时遇到的常见问题。</p>
-<h2 id="Ubuntu-16-04-安装-php5-6"><a href="#Ubuntu-16-04-安装-php5-6" class="headerlink" title="Ubuntu 16.04 安装 php5.6"></a>Ubuntu 16.04 安装 php5.6</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y php5.6</span><br></pre></td></tr></table></figure>
-<h2 id="切换命令行中-PHP-版本"><a href="#切换命令行中-PHP-版本" class="headerlink" title="切换命令行中 PHP 版本"></a>切换命令行中 PHP 版本</h2><p>使用 <code>update-alternatives</code> 命令切换命令行中 PHP 版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config php</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">There are 2 choices <span class="keyword">for</span> the alternative php (providing /usr/bin/php).</span><br><span class="line"></span><br><span class="line">  Selection    Path             Priority   Status</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">  0            /usr/bin/php7.1   71        auto mode</span><br><span class="line">* 1            /usr/bin/php5.6   56        manual mode</span><br><span class="line">  2            /usr/bin/php7.1   71        manual mode</span><br><span class="line"></span><br><span class="line">Press &lt;enter&gt; to keep the current choice[*], or <span class="built_in">type</span> selection number: 1</span><br></pre></td></tr></table></figure>
-<h2 id="配置文件没有生成"><a href="#配置文件没有生成" class="headerlink" title="配置文件没有生成"></a>配置文件没有生成</h2><p>Not replacing deleted config file /etc/php/5.6/fpm/php.ini</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get purge php5.6-fpm</span><br><span class="line">sudo apt-get install php5.6-fpm</span><br></pre></td></tr></table></figure>
-<p>其他扩展没有 <code>.ini</code> 文件或者配置文件被误删除时，可以使用相同的方法，<code>purge</code> 后 <code>install</code></p>
-<h2 id="php5-6-常用扩展安装"><a href="#php5-6-常用扩展安装" class="headerlink" title="php5.6 常用扩展安装"></a>php5.6 常用扩展安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php5.6 php5.6-cgi php5.6-cli php5.6-common php5.6-curl php5.6-dev php5.6-fpm php5.6-gd php5.6-json php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-readline php5.6-soap php5.6-xml php5.6-xmlrpc php5.6-xsl php5.6-zip</span><br></pre></td></tr></table></figure>
-<p>清理所有</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get purge php5.6 php5.6-cgi php5.6-cli php5.6-common php5.6-curl php5.6-dev php5.6-fpm php5.6-gd php5.6-json php5.6-mbstring php5.6-mcrypt php5.6-mysql php5.6-readline php5.6-soap php5.6-xml php5.6-xmlrpc php5.6-xsl php5.6-zip</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2017/07/04/install-php-in-ubuntu-and-faq/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/06/13/atom-plugin-php-cs-fixer/">Atom 插件 PHP-CS-Fixer 规范代码格式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-06-13
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/06/13/atom-plugin-php-cs-fixer/" data-title="Atom 插件 PHP-CS-Fixer 规范代码格式">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><strong>2019-05-25 更新：</strong> 已经抛弃 Atom，使用 VSCode 代替。</p>
-          <div class="read-more">
-            <a href="/2017/06/13/atom-plugin-php-cs-fixer/" class="read-more-link">阅读更多</a>
           </div>
         
       

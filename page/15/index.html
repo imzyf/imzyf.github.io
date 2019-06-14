@@ -227,7 +227,199 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2016/07/25/imooc-mysql-development-skills-notes/">【IMOOC-MySQL开发技巧】笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-07-25
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/07/25/imooc-mysql-development-skills-notes/" data-title="【IMOOC-MySQL开发技巧】笔记">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-22
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>主要涉及：JOIN 、JOIN 更新、GROUP BY HAVING 数据查重/去重</p>
+          <div class="read-more">
+            <a href="/2016/07/25/imooc-mysql-development-skills-notes/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/07/11/write-some-humanities-diary/">写一些人文的日志</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-07-11
+        </span>
+        
+          <span class="post-category">
+            
+              <a href="/categories/report/">report</a>
+            
+          </span>
+        
+        
+        <span class="post-visits" data-url="/2016/07/11/write-some-humanities-diary/" data-title="写一些人文的日志">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>还是越来越觉的思想重要。每周给自己博客的计划是写三篇，稍稍改动下：其中一篇要是关于思想上的。</p>
+<p>周末的时候和北京的朋友们：龙、梦、思，小聚了下。问起毕业一个月感觉有啥变化，都说没啥。是，刚刚才一个月。可我心里却有些小慌张，总想搞个大新闻，让自己不那么平凡。是眼高手低吗？</p>
+          <div class="read-more">
+            <a href="/2016/07/11/write-some-humanities-diary/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/">Ubuntu JDK Nginx WildFly MySQL 环境配置</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-07-07
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/" data-title="Ubuntu JDK Nginx WildFly MySQL 环境配置">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2017-08-22
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>新项目部署上线，主要参考 <a href="http://blog.csdn.net/hanshileiai" target="_blank" rel="noopener">世雷博客</a> 的内容，自己也总结了下。从 JDK 安装、Web 容器、数据库，都有涉及比较全面。</p>
+<h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2><h3 id="安装-JDK8"><a href="#安装-JDK8" class="headerlink" title="安装 JDK8"></a>安装 JDK8</h3><p>1、添加软件源<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br></pre></td></tr></table></figure></p>
+<p>2、更新软件源<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>3、安装 jdk1.8<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install oracle-java8-installer</span><br></pre></td></tr></table></figure></p>
+<h3 id="查看-Java-安装路径"><a href="#查看-Java-安装路径" class="headerlink" title="查看 Java 安装路径"></a>查看 Java 安装路径</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-alternatives --config java</span><br><span class="line">sudo update-alternatives --config javac</span><br></pre></td></tr></table></figure>
+<h3 id="查看-Java-安装后的版本"><a href="#查看-Java-安装后的版本" class="headerlink" title="查看 Java 安装后的版本"></a>查看 Java 安装后的版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<h3 id="（扩展）增加多版本-JDK-和切换方法"><a href="#（扩展）增加多版本-JDK-和切换方法" class="headerlink" title="（扩展）增加多版本 JDK 和切换方法"></a>（扩展）增加多版本 JDK 和切换方法</h3><p>1、安装 JDK 6 和 JDK 7<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install oracle-java6-installer</span><br><span class="line">sudo apt-get install oracle-java7-installer</span><br></pre></td></tr></table></figure></p>
+<p>2、查看所有 JDK 安装版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -l</span><br><span class="line">java-6-oracle 3 /usr/lib/jvm/java-6-oracle</span><br><span class="line">java-7-oracle 4 /usr/lib/jvm/java-7-oracle</span><br><span class="line">java-8-oracle 2 /usr/lib/jvm/java-8-oracle</span><br></pre></td></tr></table></figure></p>
+<p>3、通过 <code>-s</code> 参数可以方便的切换到其它的 JDK 版本<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-6-oracle</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-7-oracle</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo update-java-alternatives -s java-8-oracle</span><br></pre></td></tr></table></figure>
+<p>4、再次查看 JDK 版本<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">java version &quot;1.6.0_45&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.6.0_45-b06)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 20.45-b01, mixed mode)</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -245,6 +437,12 @@
         <span class="post-visits" data-url="/2016/07/01/github-webhook-example/" data-title="GitHub Webhook 自动部署 Hexo">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
         
       </div>
     </header>
@@ -277,7 +475,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -295,6 +495,12 @@
         <span class="post-visits" data-url="/2016/06/30/github-pages-forbidden-baiduspide-solution/" data-title="GitHub Pages 不被百度收录解决方案">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
         
       </div>
     </header>
@@ -335,7 +541,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -353,6 +561,12 @@
         <span class="post-visits" data-url="/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/" data-title="Eclipse Maven Spring SpringMVC Mybatis 整合">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2017-08-22
+          </span>
         
       </div>
     </header>
@@ -406,7 +620,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -424,6 +640,12 @@
         <span class="post-visits" data-url="/2016/06/24/hexo-github-blog/" data-title="使用 GitHub 和 Hexo 搭建个人独立博客">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
         
       </div>
     </header>
@@ -464,7 +686,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -482,6 +706,12 @@
         <span class="post-visits" data-url="/2016/06/23/css-font-summary/" data-title="CSS Font 整理总结">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
         
       </div>
     </header>
@@ -513,7 +743,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -531,6 +763,12 @@
         <span class="post-visits" data-url="/2016/06/14/ubuntu-bluetooth-keyboard/" data-title="Ubuntu 下连接蓝牙键盘">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
         
       </div>
     </header>
@@ -567,7 +805,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -585,6 +825,12 @@
         <span class="post-visits" data-url="/2016/06/13/java-modifier-final/" data-title="Java final 修饰符">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2017-08-22
+          </span>
         
       </div>
     </header>
@@ -604,160 +850,6 @@
           <p>final 修饰符表示不可变。类似 C 中的 constant。用于修饰变量表示不可变的变量。用于修饰方法表示不可被重写。用于修饰类表示不可被继承。</p>
           <div class="read-more">
             <a href="/2016/06/13/java-modifier-final/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/05/06/core-java-reading-notes/">【Core Java】读书笔记</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016-05-06
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2016/05/06/core-java-reading-notes/" data-title="【Core Java】读书笔记">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>自己是第一次把一本厚厚的的技术类书读一遍。不过 7、8、9、10 章讲的是关于图形的就是翻了翻，没怎么看。第 4 章 对象与类，里面有很多非常基础，可以补充一些知识细节。第 14 章 多线程，是自己最陌生的，慕课网上有节课 <a href="http://www.imooc.com/view/202" target="_blank" rel="noopener">深入浅出Java多线程</a> 讲到的例子就是书上例子的变形，可以对照理解。第二遍阅读做做笔记。</p>
-<p>本文总结的是书中的：第 3 章 Java 的基本程序设计结构、第 4 章 对象与类。</p>
-          <div class="read-more">
-            <a href="/2016/05/06/core-java-reading-notes/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/04/19/core-java-method-parameter/">【Core Java】对象与类-方法参数传递</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016-04-19
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2016/04/19/core-java-method-parameter/" data-title="【Core Java】对象与类-方法参数传递">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>提问：Java 对象采用的是值传递还是引用传递？</p>
-<p>有些程序员认为 Java 对象采用的是引用调用，实际上，这种理解是不对的。下面给出一个反例来详细的阐述一下这一问题。</p>
-<p>首先，编写一个交换两个雇员对象的方法：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Employee x, Employee y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Employee temp = x;</span><br><span class="line">   x = y;</span><br><span class="line">   y = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-          <div class="read-more">
-            <a href="/2016/04/19/core-java-method-parameter/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/03/26/why-some-files-compress-very-much/">为什么有的文件可以被压缩很多而有的却不能</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016-03-26
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2016/03/26/why-some-files-compress-very-much/" data-title="为什么有的文件可以被压缩很多而有的却不能">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>在导出数据库 SQL 文件见后发现有 700M+，上传服务器很不方便，使用打包压缩命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 压缩</span></span><br><span class="line">tar zcvf FileName.tar.gz DirName</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar zxvf FileName.tar.gz</span><br></pre></td></tr></table></figure>
-<p>压缩打包 SQL 文件后压缩到了 300M+，小了近一半，那么为什么文件可以压缩这么多呢？</p>
-<p>压缩简单的理解为：通过算法，消除冗余的内容，或合并相同的内容。</p>
-<p>SQL 文件中存在着大量的空格，空行等，而且是纯文本文件，这些都可以可以被大幅度的压缩。而对于一些音频\视频文件，将不便于直接的打包压缩，压缩量会很小。这些文件应该是有专门算法进行处理，而日常看到的这些应该是已经经过压缩的了。</p>
-          <div class="read-more">
-            <a href="/2016/03/26/why-some-files-compress-very-much/" class="read-more-link">阅读更多</a>
           </div>
         
       

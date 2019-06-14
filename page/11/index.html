@@ -227,7 +227,197 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/">Git clean 从工作区中删除未跟踪的文件</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-02-22
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/" data-title="Git clean 从工作区中删除未跟踪的文件">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>从当前目录开始，通过递归删除不在版本控制之下的文件来清除工作树。</p>
+<h2 id="Manual"><a href="#Manual" class="headerlink" title="Manual"></a>Manual</h2><p>使用 <code>man</code> 命令，是一个很好的查看命令使用的方法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">man git clean</span><br></pre></td></tr></table></figure>
+<h2 id="SYNOPSIS-概要"><a href="#SYNOPSIS-概要" class="headerlink" title="SYNOPSIS 概要"></a>SYNOPSIS 概要</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git clean [-d] [-f] [-i] [-n] [-q] [-e &lt;pattern&gt;] [-x | -X] [--] &lt;path&gt;...</span><br></pre></td></tr></table></figure>
+<h2 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h2><ul>
+<li><code>-d</code> 删除未跟踪的目录和未跟踪的文件。如果一个未跟踪的目录是另一个不同的 Git 库，默认将不会把它删除。如果你想删除这个目录，可以使用 <code>-f</code></li>
+<li><code>-f</code> , <code>--force</code> 如果 Git 配置中 <code>clean.requireForce</code> 没有设置为 <code>false</code>，git clean 将拒绝执行。除非是使用 <code>-f</code> <code>-n</code> <code>-i</code></li>
+<li><code>-i</code> , <code>--interactive</code> 使用交互式显示将被删除的文件</li>
+<li><code>-n</code> , <code>--dry-run</code> 仅仅显示将被删除的文件，不会真正的删除</li>
+<li><code>-q</code> , <code>--quiet</code> 静默，仅仅显示错误，不包括成功移除的文件</li>
+<li><code>-e &lt;pattern&gt;</code> , <code>--exclude=&lt;pattern&gt;</code> 除了在 <code>.gitignore</code>（每个目录）和 <code>$GIT_DIR/info/exclude</code>，也要考虑这些模式设置的忽略规则</li>
+<li><code>-x</code> 不使用 <code>.gitignore</code>（每个目录）和 <code>$GIT_DIR/info/exclude</code> 的标准忽略规则，但仍然使用使用 <code>-e</code> 选项给出的忽略规则。这允许删除所有未跟踪的文件，包括构建产品。 这可以使用（可能与 git reset）以创建一个原始的工作目录来测试一个干净的构建</li>
+<li><code>-X</code> 只删除 Git 忽略的文件。这可能有助于从头重建一切，但保留手动创建的文件</li>
+</ul>
+          <div class="read-more">
+            <a href="/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/02/21/atom-show-or-hidden-gitignore-files/">Atom 显示/隐藏 .gitignore 忽略的文件/文件夹</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-02-21
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/02/21/atom-show-or-hidden-gitignore-files/" data-title="Atom 显示/隐藏 .gitignore 忽略的文件/文件夹">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><strong>2019-05-25 更新：</strong> 已经抛弃 Atom，使用 VSCode 代替。</p>
+          <div class="read-more">
+            <a href="/2017/02/21/atom-show-or-hidden-gitignore-files/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/01/15/build-own-ubuntu-work-development-environment/">从零搭建自己 Ubuntu 工作开发环境</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-01-15
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/01/15/build-own-ubuntu-work-development-environment/" data-title="从零搭建自己 Ubuntu 工作开发环境">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><strong>2019-05-25 更新：</strong> MacBook + Docker 已经是我工作的基础设施：</p>
+<ul>
+<li><a href="/2019/05/20/my-macbook/">My MacBook</a></li>
+<li><a href="https://github.com/imzyf/my-dock" target="_blank" rel="noopener">My Dock</a></li>
+</ul>
+          <div class="read-more">
+            <a href="/2017/01/15/build-own-ubuntu-work-development-environment/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -251,6 +441,12 @@
         <span class="post-visits" data-url="/2017/01/04/2017-happy-new-year/" data-title="2017 Happy New Year">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
         
       </div>
     </header>
@@ -282,7 +478,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -300,6 +498,12 @@
         <span class="post-visits" data-url="/2016/12/22/163-music-in-markdown/" data-title="Markdown 中使用网易云音乐插件">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-11
+          </span>
         
       </div>
     </header>
@@ -332,7 +536,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -350,6 +556,12 @@
         <span class="post-visits" data-url="/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/" data-title="解决 EasyUI Dialog 弹出窗移出界面后无法再移回">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
         
       </div>
     </header>
@@ -381,7 +593,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -399,6 +613,12 @@
         <span class="post-visits" data-url="/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/" data-title="Sublime Text killer - Atom 的使用技巧和快捷键">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
         
       </div>
     </header>
@@ -430,7 +650,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -448,6 +670,12 @@
         <span class="post-visits" data-url="/2016/11/29/object-persistence-and-serialization/" data-title="对象持久化与序列化">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-03-27
+          </span>
         
       </div>
     </header>
@@ -489,7 +717,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -507,6 +737,12 @@
         <span class="post-visits" data-url="/2016/11/25/git-client-gui-in-ubuntu-git-cola/" data-title="Ubuntu Git 图形化客户端 Git Cola">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-04-28
+          </span>
         
       </div>
     </header>
@@ -543,7 +779,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -561,6 +799,12 @@
         <span class="post-visits" data-url="/2016/10/10/manage-iptables-using-ufw-in-ubuntu/" data-title="Ubuntu 下使用 UFW 管理防火墙服务">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-03-07
+          </span>
         
       </div>
     </header>
@@ -583,157 +827,6 @@
 <h2 id="安装-UFW"><a href="#安装-UFW" class="headerlink" title="安装 UFW"></a>安装 UFW</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ufw</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2016/10/10/manage-iptables-using-ufw-in-ubuntu/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/09/23/core-java-reading-notes-part2/">【Core Java】读书笔记 Part 2</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016-09-23
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2016/09/23/core-java-reading-notes-part2/" data-title="【Core Java】读书笔记 Part 2">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>本文总结的是书中的：第5章 继承</p>
-<p>前几章的总结在：<a href="/2016/05/06/core-java-reading-notes/">ZYF.IM-【Core Java】读书笔记 Part1</a></p>
-          <div class="read-more">
-            <a href="/2016/09/23/core-java-reading-notes-part2/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/09/19/leetcode-shell-solutions/">LeetCode Shell 解题集合</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016-09-19
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2016/09/19/leetcode-shell-solutions/" data-title="LeetCode Shell 解题集合">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>&emsp;&emsp;LeetCode Shell 的试题多为文本操作，<a href="https://leetcode.com/problems/tenth-line/" target="_blank" rel="noopener">195. Tenth Line</a>、<a href="https://leetcode.com/problems/valid-phone-numbers/" target="_blank" rel="noopener">193. Valid Phone Numbers</a>、<a href="https://leetcode.com/problems/word-frequency/" target="_blank" rel="noopener">192. Word Frequency</a>、<a href="https://leetcode.com/problems/transpose-file/" target="_blank" rel="noopener">194. Transpose File</a> 暂时只有4道题，就整合在这一起了<br>&emsp;&emsp;Shell 中文本处理的事情基本 <code>awk</code> <code>sed</code> <code>grep</code> <code>sort</code> <code>uniq</code> <code>tail</code> <code>head</code> 几个命令组合组合就搞定了<br>
-          <div class="read-more">
-            <a href="/2016/09/19/leetcode-shell-solutions/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </p></div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/">Ubuntu 下使用 sysv-rc-conf 管理开机启动服务</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016-09-19
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/" data-title="Ubuntu 下使用 sysv-rc-conf 管理开机启动服务">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><code>sysv-rc-conf</code> gives an easy to use interface for managing “/etc/rc{runlevel}.d/“ symlinks. The interface comes in two different flavors, one that simply allows turning services on or off and another that allows for more fine tuned management of the symlinks.</p>
-<h2 id="安装-sysv-rc-conf"><a href="#安装-sysv-rc-conf" class="headerlink" title="安装 sysv-rc-conf"></a>安装 sysv-rc-conf</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install sysv-rc-conf</span><br></pre></td></tr></table></figure>
-<h2 id="使用-sysv-rc-conf"><a href="#使用-sysv-rc-conf" class="headerlink" title="使用 sysv-rc-conf"></a>使用 sysv-rc-conf</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo sysv-rc-conf</span><br></pre></td></tr></table></figure>
-<p>操作界面十分简洁，你可以用鼠标点击，也可以用键盘方向键定位，用空格键选择，用 <code>Ctrl+n</code> 翻下一页，用 <code>Ctrl+p</code> 翻上一页，用 <code>q</code> 退出。</p>
-          <div class="read-more">
-            <a href="/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/" class="read-more-link">阅读更多</a>
           </div>
         
       

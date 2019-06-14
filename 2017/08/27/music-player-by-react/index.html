@@ -225,7 +225,9 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+   
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -243,6 +245,12 @@
         <span class="post-visits" data-url="/2017/08/27/music-player-by-react/" data-title="React jPlayer 音乐播放器">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
         
       </div>
     </header>
@@ -293,7 +301,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;img src=&#123;require(&apos;../../images/logo.png&apos;)&#125;  width=&#123;40&#125; className=&quot;-col-auto&quot;/&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="jPlayer"><a href="#jPlayer" class="headerlink" title="jPlayer"></a>jPlayer</h3><p><a href="http://jplayer.org/" target="_blank" rel="noopener">jPlayer : HTML5 Audio &amp; Video for jQuery</a></p>
 <p>js cdn 导入：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">  <span class="attr">type</span>=<span class="string">"text/javascript"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"</span></span></span><br><span class="line"><span class="tag">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><code>componentDidMount()</code> 中 bind 的方法在 <code>componentWillUnmout()</code> 要卸载：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">componentWillUnmout() &#123;</span><br><span class="line">    $(<span class="string">"#player"</span>).unbind($.jPlayer.event.timeupdate);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>获取当前音乐进度百分比，数值：</p>

@@ -225,7 +225,9 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  
+   
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -243,6 +245,12 @@
         <span class="post-visits" data-url="/2017/12/25/got-git-reading-notes-solo-part4/" data-title="【Git 权威指南】读书笔记 - 独奏 - Part 4">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2017-12-28
+          </span>
         
       </div>
     </header>
@@ -285,27 +293,31 @@
 <p>查看、分析某一个提交：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git show D --stat</span><br><span class="line">tag D</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$ git cat-file -p D^0</span><br></pre></td></tr></table></figure>
 <h3 id="差异比较：git-diff"><a href="#差异比较：git-diff" class="headerlink" title="差异比较：git diff"></a>差异比较：git diff</h3><ul>
-<li>比较里程碑B和里程碑A，用命令：git diff B A</li>
-<li>比较工作区和里程碑A，用命令：git diff A</li>
-<li>比较暂存区和里程碑A，用命令：git diff -cached A</li>
+<li>比较里程碑 B 和里程碑 A，用命令：git diff B A</li>
+<li>比较工作区和里程碑 A，用命令：git diff A</li>
+<li>比较暂存区和里程碑 A，用命令：git diff -cached A</li>
 <li>比较工作区和暂存区，用命令：git diff</li>
-<li>比较暂存区和HEAD，用命令：git diff -cached</li>
-<li>比较工作区和HEAD，用命令：git diff HEAD</li>
+<li>比较暂存区和 HEAD，用命令：git diff -cached</li>
+<li>比较工作区和 HEAD，用命令：git diff HEAD</li>
 </ul>
-<p>显示不同版本下的文件差异：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git diff &lt;commit1&gt; &lt;commit2&gt; -- &lt;paths&gt;</span><br></pre></td></tr></table></figure></p>
-<p>非 Git 目录/文件的差异比较，可在版本库之外使用：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git diff &lt;path1&gt; &lt;path2&gt;</span><br></pre></td></tr></table></figure></p>
+<p>显示不同版本下的文件差异：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git diff &lt;commit1&gt; &lt;commit2&gt; -- &lt;paths&gt;</span><br></pre></td></tr></table></figure>
+<p>非 Git 目录/文件的差异比较，可在版本库之外使用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git diff &lt;path1&gt; &lt;path2&gt;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><code>--word-diff</code> 差异逐 <em>词</em> 比较，而非缺省的逐 <em>行</em> 比较</li>
+<li><code>--word-diff</code> 差异逐 _词_ 比较，而非缺省的逐 _行_ 比较</li>
 </ul>
 <h3 id="文件追溯：git-blame"><a href="#文件追溯：git-blame" class="headerlink" title="文件追溯：git blame"></a>文件追溯：git blame</h3><p>逐行显示文件，在每一行的行首显示此行最早是在什么版本引入的，由谁引入。</p>
-<p>只想查看某几行，使用 -L n,m 参数：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git blame -L 6,+5 README</span><br></pre></td></tr></table></figure></p>
+<p>只想查看某几行，使用 -L n,m 参数：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git blame -L 6,+5 README</span><br></pre></td></tr></table></figure>
 <h3 id="二分查找：git-bisect"><a href="#二分查找：git-bisect" class="headerlink" title="二分查找：git bisect"></a>二分查找：git bisect</h3><p>定位问题代码。</p>
 <h2 id="改变历史"><a href="#改变历史" class="headerlink" title="改变历史"></a>改变历史</h2><p>作为分布式版本控制系统，一旦版本库被多人共享，改变历史就可能是无法完成的任务。</p>
 <h3 id="悔棋"><a href="#悔棋" class="headerlink" title="悔棋"></a>悔棋</h3><p><code>git commit –amend</code> 单步悔棋，修补式提交。</p>
-<p>检出文件到前一版：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout HEAD^ -- src/hello.h</span><br></pre></td></tr></table></figure></p>
+<p>检出文件到前一版：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout HEAD^ -- src/hello.h</span><br></pre></td></tr></table></figure>
 <h3 id="多步悔棋"><a href="#多步悔棋" class="headerlink" title="多步悔棋"></a>多步悔棋</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git reset --soft HEAD^^</span><br></pre></td></tr></table></figure>
 <h3 id="回到未来"><a href="#回到未来" class="headerlink" title="回到未来"></a>回到未来</h3><p>拣选指令 <code>git cherry-pick</code> 从众多的提交中挑选出一个提交应用在当前的工作分支中。</p>
-<p>该命令需要提供一个提交ID作为参数，操作过程相当于将该提交导出为补丁文件，然后在当前HEAD上重放形成无论内容还是提交说明都一致的提交。</p>
+<p>该命令需要提供一个提交 ID 作为参数，操作过程相当于将该提交导出为补丁文件，然后在当前 HEAD 上重放形成无论内容还是提交说明都一致的提交。</p>
 <p>操作例子：<code>A B C D E F</code> 6 次提交。</p>
 <p>例子 1.1：出掉 <code>D</code>：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 将 HEAD 指针切换到 C</span><br><span class="line">$ git checkout C</span><br><span class="line"></span><br><span class="line"># 拣选将 E 提交在当前 HEAD 上</span><br><span class="line">$ git cherry-pick E</span><br><span class="line"></span><br><span class="line"># 拣选操作将 F 提交在当前 HEAD 上</span><br><span class="line">$ git cherry-pick master</span><br><span class="line"></span><br><span class="line"># 将 master 分支指向新的提交 ID（f677821）上</span><br><span class="line">$ git checkout master</span><br><span class="line">$ git reset --hard HEAD@&#123;1&#125;</span><br></pre></td></tr></table></figure>
@@ -320,7 +332,7 @@
 <li>当前分支强制重置（git reset –hard）到<newbase>。</newbase></li>
 <li>从保存在临时文件中的提交列表中，一个一个将提交按照顺序重新提交到重置之后的分支上。</li>
 <li>如果遇到提交已经在分支中包含，跳过该提交。</li>
-<li>如果在提交过程遇到冲突，变基过程暂停。用户解决冲突后，执行git rebase –continue继续变基操作。或者执行git rebase –skip跳过此提交。或者执行git rebase –abort就此终止变基操作切换到变基前的分支上。</li>
+<li>如果在提交过程遇到冲突，变基过程暂停。用户解决冲突后，执行 git rebase –continue 继续变基操作。或者执行 git rebase –skip 跳过此提交。或者执行 git rebase –abort 就此终止变基操作切换到变基前的分支上。</li>
 </ol>
 <p>例子 2.1：出掉 <code>D</code>：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rebase --onto C D F</span><br><span class="line"># or</span><br><span class="line">$ git rebase --onto C E^ F</span><br></pre></td></tr></table></figure>
@@ -332,13 +344,13 @@
 <p>例子 3.2：D 融入 C：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rebase -i C^</span><br><span class="line"></span><br><span class="line"># 提交 D 标示修改为 s</span><br></pre></td></tr></table></figure>
 <h3 id="丢弃历史"><a href="#丢弃历史" class="headerlink" title="丢弃历史"></a>丢弃历史</h3><p><strong>重点内容第一次 Get</strong></p>
-<p>历史有的时候会成为负担。只保留最近的100次提交，抛弃之前的历史提交。那么应该如何操作呢？</p>
+<p>历史有的时候会成为负担。只保留最近的 100 次提交，抛弃之前的历史提交。那么应该如何操作呢？</p>
 <p>例：清除 tag A 之前的提交历史：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看里程碑A指向的目录树</span><br><span class="line">$ git cat-file -p A^&#123;tree&#125;</span><br><span class="line"></span><br><span class="line"># 使用git commit-tree命令直接从该目录树创建提交</span><br><span class="line">$ echo &quot;Commit from tree of tag A.&quot; | git commit-tree A^&#123;tree&#125;</span><br><span class="line">8f7f94ba6a9d94ecc1c223aa4b311670599e1f86</span><br><span class="line"></span><br><span class="line"># 命令git commit-tree的输出是一个提交的SHA1哈希值。</span><br><span class="line"># 会发现这个提交没有历史提交，可以称之为孤儿提交。</span><br><span class="line">$ git log 8f7f94ba6a9d94ecc1c223aa4b311670599e1f86</span><br><span class="line"></span><br><span class="line"># 将master分支从里程碑到最新的提交全部迁移到刚刚生成的孤儿提交上。</span><br><span class="line">$ git rebase --onto 8f7f94ba6a9d94ecc1c223aa4b311670599e1f86 A master</span><br></pre></td></tr></table></figure>
 <h3 id="反转提交"><a href="#反转提交" class="headerlink" title="反转提交"></a>反转提交</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git revert HEAD</span><br></pre></td></tr></table></figure>
 <h2 id="Git-克隆"><a href="#Git-克隆" class="headerlink" title="Git 克隆"></a>Git 克隆</h2><h3 id="鸡蛋不装在一个篮子里"><a href="#鸡蛋不装在一个篮子里" class="headerlink" title="鸡蛋不装在一个篮子里"></a>鸡蛋不装在一个篮子里</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. git clone &lt;repository&gt; &lt;directory&gt;</span><br><span class="line">2. git clone --bare   &lt;repository&gt; &lt;directory.git&gt;</span><br><span class="line">3. git clone --mirror &lt;repository&gt; &lt;directory.git&gt;</span><br></pre></td></tr></table></figure>
 <p>一般约定俗成裸版本库的目录名以 <code>.git</code> 为后缀。</p>
-<p>用法3 区别于用法2 之处在于用法3 克隆出来的裸版本对上游版本库进行了注册，这样可以在裸版本库中使用 git fetch 命令和上游版本库进行持续同步。</p>
+<p>用法 3 区别于用法 2 之处在于用法 3 克隆出来的裸版本对上游版本库进行了注册，这样可以在裸版本库中使用 git fetch 命令和上游版本库进行持续同步。</p>
 <h3 id="克隆生成裸版本库"><a href="#克隆生成裸版本库" class="headerlink" title="克隆生成裸版本库"></a>克隆生成裸版本库</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone --bare /path/to/my/workspace/demo /path/to/repos/demo.git</span><br></pre></td></tr></table></figure>
 <p>demo.git 目录就是版本库目录，不含工作区。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git --git-dir=/path/to/repos/demo.git config core.bare</span><br><span class="line">true</span><br><span class="line"></span><br><span class="line"># 向其 push</span><br><span class="line">$ git push /path/to/repos/demo.git</span><br></pre></td></tr></table></figure>
@@ -346,7 +358,7 @@
 <blockquote>
 <p>Reference:</p>
 <ul>
-<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html" target="_blank" rel="noopener">2. Git独奏 &mdash; GotGit</a></li>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html" target="_blank" rel="noopener">2. Git 独奏 &mdash; GotGit</a></li>
 </ul>
 </blockquote>
 

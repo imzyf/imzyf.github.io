@@ -227,7 +227,187 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2016/05/06/core-java-reading-notes/">【Core Java】读书笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-05-06
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/05/06/core-java-reading-notes/" data-title="【Core Java】读书笔记">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2017-08-22
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>自己是第一次把一本厚厚的的技术类书读一遍。不过 7、8、9、10 章讲的是关于图形的就是翻了翻，没怎么看。第 4 章 对象与类，里面有很多非常基础，可以补充一些知识细节。第 14 章 多线程，是自己最陌生的，慕课网上有节课 <a href="http://www.imooc.com/view/202" target="_blank" rel="noopener">深入浅出Java多线程</a> 讲到的例子就是书上例子的变形，可以对照理解。第二遍阅读做做笔记。</p>
+<p>本文总结的是书中的：第 3 章 Java 的基本程序设计结构、第 4 章 对象与类。</p>
+          <div class="read-more">
+            <a href="/2016/05/06/core-java-reading-notes/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/04/19/core-java-method-parameter/">【Core Java】对象与类-方法参数传递</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-04-19
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/04/19/core-java-method-parameter/" data-title="【Core Java】对象与类-方法参数传递">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-02-25
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>提问：Java 对象采用的是值传递还是引用传递？</p>
+<p>有些程序员认为 Java 对象采用的是引用调用，实际上，这种理解是不对的。下面给出一个反例来详细的阐述一下这一问题。</p>
+<p>首先，编写一个交换两个雇员对象的方法：<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(Employee x, Employee y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   Employee temp = x;</span><br><span class="line">   x = y;</span><br><span class="line">   y = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <div class="read-more">
+            <a href="/2016/04/19/core-java-method-parameter/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2016/03/26/why-some-files-compress-very-much/">为什么有的文件可以被压缩很多而有的却不能</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-03-26
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/03/26/why-some-files-compress-very-much/" data-title="为什么有的文件可以被压缩很多而有的却不能">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-04-08
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在导出数据库 SQL 文件见后发现有 700M+，上传服务器很不方便，使用打包压缩命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 压缩</span></span><br><span class="line">tar zcvf FileName.tar.gz DirName</span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar zxvf FileName.tar.gz</span><br></pre></td></tr></table></figure>
+<p>压缩打包 SQL 文件后压缩到了 300M+，小了近一半，那么为什么文件可以压缩这么多呢？</p>
+<p>压缩简单的理解为：通过算法，消除冗余的内容，或合并相同的内容。</p>
+<p>SQL 文件中存在着大量的空格，空行等，而且是纯文本文件，这些都可以可以被大幅度的压缩。而对于一些音频\视频文件，将不便于直接的打包压缩，压缩量会很小。这些文件应该是有专门算法进行处理，而日常看到的这些应该是已经经过压缩的了。</p>
+          <div class="read-more">
+            <a href="/2016/03/26/why-some-files-compress-very-much/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -245,6 +425,12 @@
         <span class="post-visits" data-url="/2016/03/23/core-java-array-dome/" data-title="【Core Java】彩票选取中奖数字-数组例子">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-02-27
+          </span>
         
       </div>
     </header>
@@ -276,7 +462,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -300,6 +488,12 @@
         <span class="post-visits" data-url="/2016/03/18/try-to-write-something/" data-title="试着写东西">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
         
       </div>
     </header>

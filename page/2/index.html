@@ -227,7 +227,195 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2019/03/02/convert-m-number-to-n-number/">m 进制转 n 进制</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-03-02
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2019/03/02/convert-m-number-to-n-number/" data-title="m 进制转 n 进制">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><img src="https://cdn-qn.yifans.com/imzyf/mika-baumeister-703680-unsplash.jpg" alt="convert-m-number-to-n-number"></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>m 进制 -&gt; 十进制 -&gt; n 进制</li>
+<li>利用柯里化生成函数（炫技 🐶）</li>
+</ul>
+          <div class="read-more">
+            <a href="/2019/03/02/convert-m-number-to-n-number/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2019/03/01/extra-long-factorials/">超长阶乘的计算</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-03-01
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2019/03/01/extra-long-factorials/" data-title="超长阶乘的计算">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><img src="https://cdn-qn.yifans.com/imzyf/daniel-corneschi-529450-unsplash.jpg" alt="extra-long-factorials"></p>
+<p>打印 <code>n!</code> 的结果（1 &lt;= n &lt;= 100）。注意：当 <code>n &gt; 20</code> 时 64 位的 <code>Int</code> 将无法直接存储结果。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>将大数字用 <strong>数组</strong> 形式表示。比如 987 使用 [9,8,7] 代替。</li>
+<li>每一位乘以 n，再进行进位操作，得到新数组。</li>
+</ul>
+          <div class="read-more">
+            <a href="/2019/03/01/extra-long-factorials/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2019/02/28/fastlane-getting-started/">fastlane 入门使用</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-02-28
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2019/02/28/fastlane-getting-started/" data-title="fastlane 入门使用">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><img src="https://cdn-qn.yifans.com/imzyf/caleb-george-352-unsplash.jpg" alt="fastlane-getting-started"></p>
+<p>这次以 <a href="https://fastlane.tools/" target="_blank" rel="noopener">fastlane</a> 为例，尝试项目中有什么事情可以被自动完成。</p>
+<p>fastlane 是 Ruby scripts 的集合，安装方法不多说了见 <a href="https://docs.fastlane.tools/" target="_blank" rel="noopener">官网文档</a>。</p>
+<p>fastlane 中有但不限于以下工具集：</p>
+<ul>
+<li><a href="https://docs.fastlane.tools/actions/produce/" target="_blank" rel="noopener">produce</a> 同时在 Apple Developer Portal 和 App Store Connect 中创建新的 iOS apps。</li>
+<li><a href="https://docs.fastlane.tools/actions/cert/" target="_blank" rel="noopener">cert</a> 自动创建和维护 iOS 签名证书。</li>
+<li><a href="https://docs.fastlane.tools/actions/sigh/" target="_blank" rel="noopener">sigh</a> 创建，更新，下载和修复配置文件。</li>
+<li><a href="https://docs.fastlane.tools/actions/snapshot/" target="_blank" rel="noopener">snapshot</a> 自动在每台设备上获取 iOS 应用的本地化屏幕截图。</li>
+<li><a href="https://docs.fastlane.tools/actions/frameit/" target="_blank" rel="noopener">frameit</a> 将您的屏幕截图放入正确的设备框架中。</li>
+<li><a href="https://docs.fastlane.tools/actions/gym/" target="_blank" rel="noopener">gym</a> 构建和打包您的 iOS apps。</li>
+<li><a href="https://docs.fastlane.tools/actions/deliver/" target="_blank" rel="noopener">deliver</a> 将截图，元数据和您的应用上传到 App Store。</li>
+<li><a href="https://docs.fastlane.tools/actions/pem/" target="_blank" rel="noopener">pem</a> 自动生成并更新推送通知配置文件。</li>
+<li><a href="https://github.com/fastlane/fastlane/tree/master/spaceship" target="_blank" rel="noopener">spaceship</a> 一个 Ruby 库能够访问苹果开发者中心和应用商店连接 api。</li>
+<li><a href="https://docs.fastlane.tools/actions/pilot/" target="_blank" rel="noopener">pilot</a> 自动化 TestFlight 部署并管理测试用户。</li>
+<li><a href="https://github.com/fastlane/boarding" target="_blank" rel="noopener">boarding</a> 邀请 beta 测试人员。</li>
+<li><a href="https://docs.fastlane.tools/actions/match/" target="_blank" rel="noopener">match</a> 使用 Git 同步整个团队的证书和配置文件。</li>
+<li><a href="https://docs.fastlane.tools/actions/scan/" target="_blank" rel="noopener">scan</a> 运行 app 测试。</li>
+</ul>
+          <div class="read-more">
+            <a href="/2019/02/28/fastlane-getting-started/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -245,6 +433,8 @@
         <span class="post-visits" data-url="/2019/01/19/promisekit-getting-started/" data-title="PromiseKit 入门使用">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -282,7 +472,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -300,6 +492,8 @@
         <span class="post-visits" data-url="/2018/12/10/binary-search/" data-title="二分查找 Binary Search">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -334,7 +528,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -352,6 +548,8 @@
         <span class="post-visits" data-url="/2018/11/24/insertion-sort/" data-title="插入排序 Insertion Sort">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -393,7 +591,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -411,6 +611,8 @@
         <span class="post-visits" data-url="/2018/11/22/queue-data-structure/" data-title="队列 Queue Data Structure">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -445,7 +647,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -463,6 +667,8 @@
         <span class="post-visits" data-url="/2018/11/22/stack-data-structure/" data-title="栈 Stack Data Structure">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -497,7 +703,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -515,6 +723,8 @@
         <span class="post-visits" data-url="/2018/10/30/correct-too-many-symbol-files-issues/" data-title="解决 Too many symbol files">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -548,7 +758,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -566,6 +778,12 @@
         <span class="post-visits" data-url="/2018/08/30/2018-08-monthly-report-of-development/" data-title="2018.08 工程月度总结">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-10-09
+          </span>
         
       </div>
     </header>
@@ -585,164 +803,6 @@
           <h2 id="数据库表索引被删除造成慢查询"><a href="#数据库表索引被删除造成慢查询" class="headerlink" title="数据库表索引被删除造成慢查询"></a>数据库表索引被删除造成慢查询</h2><p>为方便整理数据删除了索引，没有添加回来，上线后 SQL 查询堆积，拖慢项目。</p>
           <div class="read-more">
             <a href="/2018/08/30/2018-08-monthly-report-of-development/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/07/30/2018-07-monthly-report-of-development/">2018.07 工程月度总结</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-07-30
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/07/30/2018-07-monthly-report-of-development/" data-title="2018.07 工程月度总结">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="使用-…-运算符定义变长参数函数"><a href="#使用-…-运算符定义变长参数函数" class="headerlink" title="使用 … 运算符定义变长参数函数"></a>使用 … 运算符定义变长参数函数</h2><p>在写一方式时使用了 <code>...</code> 运算符，但是这个运算符是 PHP 5.6 增加的，线上是 PHP 5.5 导致 500 报错，环境问题暴露。</p>
-<p>如果可能出错，就一定会出错。</p>
-<blockquote>
-<p><a href="http://php.net/manual/zh/migration56.new-features.php" target="_blank" rel="noopener">从 PHP 5.5.x 移植到 PHP 5.6.x</a></p>
-</blockquote>
-          <div class="read-more">
-            <a href="/2018/07/30/2018-07-monthly-report-of-development/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/06/30/2018-06-monthly-report-of-development/">2018.06 工程月度总结</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-06-30
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/06/30/2018-06-monthly-report-of-development/" data-title="2018.06 工程月度总结">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="未明确指定字段所属表的隐患"><a href="#未明确指定字段所属表的隐患" class="headerlink" title="未明确指定字段所属表的隐患"></a>未明确指定字段所属表的隐患</h2><p>在修改表结构时，在 <code>a</code> 表新添加 <code>name</code> 字段，<code>b</code> 表本事就有 <code>name</code> 字段；原来的项目中有 <code>a</code> <code>b</code> 表的关联查询，并用到了 <code>name</code> 字段</p>
-<p>这时，因为 <code>a</code> 表中也添加了 <code>name</code> 字段，原来 <code>name</code> 指的是 <code>a</code> 还是 <code>b</code> 表中的变的不确定了，造成报错。</p>
-<p>主要原因就是在连表时：未明确指定字段所属表，造成了伏笔。</p>
-          <div class="read-more">
-            <a href="/2018/06/30/2018-06-monthly-report-of-development/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/06/22/aws-cli-getting-started/">AWS CLI 入门使用</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-06-22
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/06/22/aws-cli-getting-started/" data-title="AWS CLI 入门使用">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/awscli-install-linux.html" target="_blank" rel="noopener">AWS CLI - User Guide</a></li>
-</ul>
-<p><code>apt</code> <code>yum</code> 中也有 <code>awscli</code> 包，但是不保证是最新版本，所以推荐使用 <code>pip</code> 安装。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ pip install awscli --upgrade --user</span><br><span class="line"></span><br><span class="line">$ aws --version</span><br></pre></td></tr></table></figure>
-<p>这个发现使用 <code>pip</code> 总是安装失败，原因暂不明，后来是使用 <code>pip3</code> 安装成功的。</p>
-          <div class="read-more">
-            <a href="/2018/06/22/aws-cli-getting-started/" class="read-more-link">阅读更多</a>
           </div>
         
       

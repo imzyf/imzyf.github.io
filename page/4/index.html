@@ -227,7 +227,197 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2018/04/16/use-php-cs-fixer-in-phpstorm/">在 PhpStorm 中使用 PHP-CS-Fixer</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-16
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/04/16/use-php-cs-fixer-in-phpstorm/" data-title="在 PhpStorm 中使用 PHP-CS-Fixer">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer" target="_blank" rel="noopener">The PHP Coding Standards Fixer</a> (PHP CS Fixer) tool fixes your code to follow standards.</p>
+</blockquote>
+<p>工作环境：MacBook。</p>
+<p>打开 PhpStorm <code>Preferences &gt; Tools &gt; External Tools</code> 添加：</p>
+<p><img src="https://cdn-qn.yifans.com/180416-use-php-cs-fixer-in-phpstorm-001.png" alt="Preferences &gt; Tools &gt; External Tools"></p>
+          <div class="read-more">
+            <a href="/2018/04/16/use-php-cs-fixer-in-phpstorm/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/04/08/chinese-copywriting-style-guide/">中文文案排版规范</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-08
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/04/08/chinese-copywriting-style-guide/" data-title="中文文案排版规范">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-05-09
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>2018 年 05 月 09 日 更新：</p>
+<p>更多参考文章：</p>
+<ul>
+<li><a href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank" rel="noopener">sparanoid/chinese-copywriting-guidelines</a></li>
+<li><a href="https://ant.design/docs/spec/copywriting" target="_blank" rel="noopener">Ant Design Copywriting</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>原文见于：<a href="https://open.coding.net/" target="_blank" rel="noopener">Coding 开放平台</a>，因为原始链接失效了，所以进行转载发布。</p>
+</blockquote>
+<p>本文旨在帮助提升大家的文案排版素养，形成良好的排版习惯。</p>
+<ol>
+<li>名词<br>1.1 专有名词使用正确的大小写<br>1.2 错误及不正式的缩写</li>
+</ol>
+          <div class="read-more">
+            <a href="/2018/04/08/chinese-copywriting-style-guide/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/03/31/swift-init/">Swift 初始化</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-03-31
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/03/31/swift-init/" data-title="Swift 初始化">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-04-19
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只这样套着 Java 去理解，也发现了不相同的地方。</p>
+<h2 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Blog: NSObject &#123;</span><br><span class="line">    let param: String</span><br><span class="line"></span><br><span class="line">    override init() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里有条错误 <code>error: property &#39;self.param&#39; not initialized at implicitly generated super.init call</code> 说明：<code>param</code> 参数没有在隐式生成 <code>super.init</code> 调用之前完成初始化。</p>
+<p>Swift 中并不是不调用 <code>super.init</code> 而是为了方便开发者由编译器完成了这一步，但是要求调用 <code>super.init</code> 之前要完成成员变量的初始化。</p>
+          <div class="read-more">
+            <a href="/2018/03/31/swift-init/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -245,6 +435,8 @@
         <span class="post-visits" data-url="/2018/03/29/ios-safe-area/" data-title="iOS Safe Area 我所知道的全部">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -281,7 +473,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -299,6 +493,8 @@
         <span class="post-visits" data-url="/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/" data-title="UITableViewCell 自适应 UITextView 高度">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -332,7 +528,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -350,6 +548,8 @@
         <span class="post-visits" data-url="/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/" data-title="【译】iOS 单元测试和 UI 测试入门教程">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -384,7 +584,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -403,6 +605,12 @@
           阅读次数 0
         </span>
         
+
+        
+          <span class="post-visits">
+            最后更新: 2018-01-23
+          </span>
+        
       </div>
     </header>
 
@@ -419,7 +627,7 @@
 
         
           <p>主要内容：【Git 协同模型】</p>
-<h2 id="经典-Git-协同模型"><a href="#经典-Git-协同模型" class="headerlink" title="经典 Git 协同模型"></a>经典 Git 协同模型</h2><h3 id="集中式协同模型"><a href="#集中式协同模型" class="headerlink" title="集中式协同模型"></a>集中式协同模型</h3><p>可以像集中式版本控制系统那样使用 Git，在一个大家都可以访问到的服务器上架设 Git 服务器，每个人从该服务器克隆代码，本地提交推送到服务器上。   </p>
+<h2 id="经典-Git-协同模型"><a href="#经典-Git-协同模型" class="headerlink" title="经典 Git 协同模型"></a>经典 Git 协同模型</h2><h3 id="集中式协同模型"><a href="#集中式协同模型" class="headerlink" title="集中式协同模型"></a>集中式协同模型</h3><p>可以像集中式版本控制系统那样使用 Git，在一个大家都可以访问到的服务器上架设 Git 服务器，每个人从该服务器克隆代码，本地提交推送到服务器上。</p>
 <h2 id="金字塔式协同模型"><a href="#金字塔式协同模型" class="headerlink" title="金字塔式协同模型"></a>金字塔式协同模型</h2><p>虽然理论上每个开发者的版本库都是平等的，但是会有一个公认的权威的版本库，这个版本库由一个或者多个核心开发者负责维护（具有推送的权限）。</p>
 <p>开源社区逐渐发展出金字塔模型，而这也是必然之选。</p>
           <div class="read-more">
@@ -436,7 +644,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -454,6 +664,12 @@
         <span class="post-visits" data-url="/2018/01/17/got-git-reading-notes-harmony/" data-title="【Git 权威指南】读书笔记 - 和声">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-05-23
+          </span>
         
       </div>
     </header>
@@ -492,7 +708,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -510,6 +728,8 @@
         <span class="post-visits" data-url="/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/" data-title="R.swift 强类型引用资源文件">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -545,7 +765,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -563,6 +785,12 @@
         <span class="post-visits" data-url="/2018/01/12/xcode-unknown-tips/" data-title="Xcode 不知名的实用技巧">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-03-16
+          </span>
         
       </div>
     </header>
@@ -583,173 +811,6 @@
 <p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fnfz7x45n7j31ji0qi7n7.jpg" alt="xcode-unknown-tips-Search" width="960px"></p>
           <div class="read-more">
             <a href="/2018/01/12/xcode-unknown-tips/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/01/05/dont-be-lonely-in-2017/">2017 不要再孤单</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-01-05
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/01/05/dont-be-lonely-in-2017/" data-title="2017 不要再孤单">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>2017 关键词：Birds、离职、狼人杀、白洋淀、iOS、自如。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&id=423314746&auto=0&height=32"></iframe>
-
-<h2 id="Birds"><a href="#Birds" class="headerlink" title="Birds"></a>Birds</h2><p>Birds 是自己编写时间最长的一个 Web 项目。项目接手、改版、重构、迭代、盈利，上半年每天工作都是面对它。</p>
-          <div class="read-more">
-            <a href="/2018/01/05/dont-be-lonely-in-2017/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/12/25/got-git-reading-notes-solo-part4/">【Git 权威指南】读书笔记 - 独奏 - Part 4</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-12-25
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/12/25/got-git-reading-notes-solo-part4/" data-title="【Git 权威指南】读书笔记 - 独奏 - Part 4">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>主要内容：【历史穿梭】、【改变历史】、【Git 克隆】</p>
-<h2 id="历史穿梭"><a href="#历史穿梭" class="headerlink" title="历史穿梭"></a>历史穿梭</h2><p>查看条件个数：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rev-list HEAD | wc -l</span><br></pre></td></tr></table></figure>
-<h3 id="版本表示法：git-rev-parse"><a href="#版本表示法：git-rev-parse" class="headerlink" title="版本表示法：git rev-parse"></a>版本表示法：git rev-parse</h3><p><code>git rev-parse</code> pick out and massage parameters for other git commands.</p>
-<ul>
-<li><code>--git-dir</code> 可以显示 Git 版本库的位置</li>
-<li><code>--show-cdup</code> 当前工作区目录的深度</li>
-<li><code>--parseopt</code> 可以用于被 Git 无关应用用于解析命令行参数</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 显示分支，tag</span><br><span class="line">$ git rev-parse --symbolic --branches</span><br><span class="line"></span><br><span class="line">$ git rev-parse --symbolic --branches</span><br><span class="line"></span><br><span class="line"># 显示定义的所有引用</span><br><span class="line">$ git rev-parse --symbolic --glob=refs/*</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2017/12/25/got-git-reading-notes-solo-part4/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/11/25/ios-recruitment-summary/">iOS 招聘总结</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-11-25
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/11/25/ios-recruitment-summary/" data-title="iOS 招聘总结">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>自己也做了一次面试官。简历看到了很多，内容总结如下：</p>
-<h2 id="一些感受"><a href="#一些感受" class="headerlink" title="一些感受"></a>一些感受</h2><ul>
-<li>一些基本的技能感觉不用写，不会吸引什么注意力。所以要精懂一些特别的技能，技术点。</li>
-<li>一些 “与产品沟通” “安排工作”，我觉的也不用写，也没什么吸引力。</li>
-<li>简历要体出自己擅长的地方，特别的地方，其他的一笔带过就可以。</li>
-<li>简历上的字词的细节我比较在意，iOS &amp; IOS，Xcode &amp; XCode。</li>
-<li>有 GitHub Blog 绝对的好评，但要有内容。</li>
-<li>基础知识、业务能力、性格、气场。</li>
-</ul>
-          <div class="read-more">
-            <a href="/2017/11/25/ios-recruitment-summary/" class="read-more-link">阅读更多</a>
           </div>
         
       

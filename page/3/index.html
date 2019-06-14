@@ -227,7 +227,187 @@
   <section id="posts" class="posts">
     
       
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
         
+          <a class="post-link" href="/2018/07/30/2018-07-monthly-report-of-development/">2018.07 工程月度总结</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-07-30
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/07/30/2018-07-monthly-report-of-development/" data-title="2018.07 工程月度总结">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-08-22
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="使用-…-运算符定义变长参数函数"><a href="#使用-…-运算符定义变长参数函数" class="headerlink" title="使用 … 运算符定义变长参数函数"></a>使用 … 运算符定义变长参数函数</h2><p>在写一方式时使用了 <code>...</code> 运算符，但是这个运算符是 PHP 5.6 增加的，线上是 PHP 5.5 导致 500 报错，环境问题暴露。</p>
+<p>如果可能出错，就一定会出错。</p>
+<blockquote>
+<p><a href="http://php.net/manual/zh/migration56.new-features.php" target="_blank" rel="noopener">从 PHP 5.5.x 移植到 PHP 5.6.x</a></p>
+</blockquote>
+          <div class="read-more">
+            <a href="/2018/07/30/2018-07-monthly-report-of-development/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/06/30/2018-06-monthly-report-of-development/">2018.06 工程月度总结</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-30
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/06/30/2018-06-monthly-report-of-development/" data-title="2018.06 工程月度总结">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="未明确指定字段所属表的隐患"><a href="#未明确指定字段所属表的隐患" class="headerlink" title="未明确指定字段所属表的隐患"></a>未明确指定字段所属表的隐患</h2><p>在修改表结构时，在 <code>a</code> 表新添加 <code>name</code> 字段，<code>b</code> 表本事就有 <code>name</code> 字段；原来的项目中有 <code>a</code> <code>b</code> 表的关联查询，并用到了 <code>name</code> 字段</p>
+<p>这时，因为 <code>a</code> 表中也添加了 <code>name</code> 字段，原来 <code>name</code> 指的是 <code>a</code> 还是 <code>b</code> 表中的变的不确定了，造成报错。</p>
+<p>主要原因就是在连表时：未明确指定字段所属表，造成了伏笔。</p>
+          <div class="read-more">
+            <a href="/2018/06/30/2018-06-monthly-report-of-development/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/06/22/aws-cli-getting-started/">AWS CLI 入门使用</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-22
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/06/22/aws-cli-getting-started/" data-title="AWS CLI 入门使用">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-08-18
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><a href="https://docs.aws.amazon.com/cli/latest/userguide/awscli-install-linux.html" target="_blank" rel="noopener">AWS CLI - User Guide</a></li>
+</ul>
+<p><code>apt</code> <code>yum</code> 中也有 <code>awscli</code> 包，但是不保证是最新版本，所以推荐使用 <code>pip</code> 安装。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ pip install awscli --upgrade --user</span><br><span class="line"></span><br><span class="line">$ aws --version</span><br></pre></td></tr></table></figure>
+<p>这个发现使用 <code>pip</code> 总是安装失败，原因暂不明，后来是使用 <code>pip3</code> 安装成功的。</p>
+          <div class="read-more">
+            <a href="/2018/06/22/aws-cli-getting-started/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -245,6 +425,12 @@
         <span class="post-visits" data-url="/2018/05/25/select-the-appropriate-date-type-in-mysql/" data-title="在 MySQL 中选择合适的日期类型">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-05-28
+          </span>
         
       </div>
     </header>
@@ -278,7 +464,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -297,6 +485,8 @@
           阅读次数 0
         </span>
         
+
+        
       </div>
     </header>
 
@@ -311,7 +501,7 @@
 
         
           <p>禁止 IP 访问，其他域名跳转到 <code>www.xxx.com</code>：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name 55.66.77.88;</span><br><span class="line">    deny all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name www.xxx.com xxx.com;</span><br><span class="line"></span><br><span class="line">    return 301 https://www.xxx.com$request_uri;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 443 ssl http2;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    if ($host = 55.66.77.88) &#123;</span><br><span class="line">        return 403;</span><br><span class="line">    &#125;</span><br><span class="line">    if ($host != &apos;www.xxx.com&apos;)&#123;</span><br><span class="line">        rewrite ^/(.*)$ https://www.xxx.com/$1 permanent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> <span class="number">55.66.77.88</span>;</span><br><span class="line">    <span class="attribute">deny</span> all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> www.xxx.com xxx.com;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">return</span> <span class="number">301</span> https://www.xxx.com<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="attribute">if</span> (<span class="variable">$host</span> = <span class="number">55.66.77.88</span>) &#123;</span><br><span class="line">        <span class="attribute">return</span> <span class="number">403</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">if</span> (<span class="variable">$host</span> != <span class="string">'www.xxx.com'</span>)&#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/(.*)$</span> https://www.xxx.com/<span class="variable">$1</span> <span class="literal">permanent</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         
       
@@ -324,7 +514,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -342,6 +534,12 @@
         <span class="post-visits" data-url="/2018/05/09/laravel-essential-training-reading-notes/" data-title="【Laravel 教程 - Web 开发实战入门】读书笔记">
           阅读次数 0
         </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-05-16
+          </span>
         
       </div>
     </header>
@@ -382,7 +580,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -400,6 +600,8 @@
         <span class="post-visits" data-url="/2018/05/08/modern-php-reading-notes/" data-title="【Modern PHP】读书笔记">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -438,7 +640,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -457,6 +661,12 @@
           阅读次数 0
         </span>
         
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
+        
       </div>
     </header>
 
@@ -472,7 +682,7 @@
         
 
         
-          <h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><p>Plugin -&gt; Browse repositories -&gt; Material Theme UI</p>
+          <h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><p><code>Plugin</code> -&gt; <code>Browse repositories</code> -&gt; <code>Material Theme UI</code></p>
 <h2 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h2><p>设置选择了一个词后，再按单引号或双引号，将选中的单词用引号括起来：</p>
 <p><code>Preferences</code> 中搜索 <code>Surround Selection on typing quote or brace</code> 将其勾选。</p>
           <div class="read-more">
@@ -489,7 +699,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -507,6 +719,8 @@
         <span class="post-visits" data-url="/2018/04/26/lets-encrypt-wildcard-certificates/" data-title="使用 Let's Encrypt 通配符证书">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -539,7 +753,9 @@
   </article>
 
       
-        
+         
+
+
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
@@ -557,6 +773,8 @@
         <span class="post-visits" data-url="/2018/04/24/docker-ufw-not-work/" data-title="Docker UFW 失效">
           阅读次数 0
         </span>
+        
+
         
       </div>
     </header>
@@ -579,174 +797,6 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo vi /etc/default/docker</span><br><span class="line"></span><br><span class="line"># add the following line:</span><br><span class="line"></span><br><span class="line">DOCKER_OPTS=&quot;--iptables=false&quot;</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2018/04/24/docker-ufw-not-work/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/04/16/use-php-cs-fixer-in-phpstorm/">在 PhpStorm 中使用 PHP-CS-Fixer</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-04-16
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/04/16/use-php-cs-fixer-in-phpstorm/" data-title="在 PhpStorm 中使用 PHP-CS-Fixer">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <blockquote>
-<p><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer" target="_blank" rel="noopener">The PHP Coding Standards Fixer</a> (PHP CS Fixer) tool fixes your code to follow standards.</p>
-</blockquote>
-<p>工作环境：MacBook。</p>
-<p>打开 PhpStorm <code>Preferences &gt; Tools &gt; External Tools</code> 添加：</p>
-<p><img src="https://cdn-qn.yifans.com/180416-use-php-cs-fixer-in-phpstorm-001.png" alt="Preferences &gt; Tools &gt; External Tools"></p>
-          <div class="read-more">
-            <a href="/2018/04/16/use-php-cs-fixer-in-phpstorm/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/04/08/chinese-copywriting-style-guide/">中文文案排版规范</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-04-08
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/04/08/chinese-copywriting-style-guide/" data-title="中文文案排版规范">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>2018 年 05 月 09 日 更新：</p>
-<p>更多参考文章：</p>
-<ul>
-<li><a href="https://github.com/sparanoid/chinese-copywriting-guidelines" target="_blank" rel="noopener">sparanoid/chinese-copywriting-guidelines</a></li>
-<li><a href="https://ant.design/docs/spec/copywriting" target="_blank" rel="noopener">Ant Design Copywriting</a></li>
-</ul>
-<hr>
-<blockquote>
-<p>原文见于：<a href="https://open.coding.net/" target="_blank" rel="noopener">Coding 开放平台</a>，因为原始链接失效了，所以进行转载发布。</p>
-</blockquote>
-<p>本文旨在帮助提升大家的文案排版素养，形成良好的排版习惯。</p>
-<ol>
-<li>名词<br>1.1 专有名词使用正确的大小写<br>1.2 错误及不正式的缩写</li>
-</ol>
-          <div class="read-more">
-            <a href="/2018/04/08/chinese-copywriting-style-guide/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-        
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/03/31/swift-init/">Swift 初始化</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-03-31
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/03/31/swift-init/" data-title="Swift 初始化">
-          阅读次数 0
-        </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只这样套着 Java 去理解，也发现了不相同的地方。</p>
-<h2 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Blog: NSObject &#123;</span><br><span class="line">    let param: String</span><br><span class="line"></span><br><span class="line">    override init() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里有条错误 <code>error: property &#39;self.param&#39; not initialized at implicitly generated super.init call</code> 说明：<code>param</code> 参数没有在隐式生成 <code>super.init</code> 调用之前完成初始化。</p>
-<p>Swift 中并不是不调用 <code>super.init</code> 而是为了方便开发者由编译器完成了这一步，但是要求调用 <code>super.init</code> 之前要完成成员变量的初始化。</p>
-          <div class="read-more">
-            <a href="/2018/03/31/swift-init/" class="read-more-link">阅读更多</a>
           </div>
         
       
