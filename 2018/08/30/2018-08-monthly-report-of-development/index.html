@@ -260,7 +260,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库表索引被删除造成慢查询"><span class="toc-text">数据库表索引被删除造成慢查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Sites-amp-AWS-S3"><span class="toc-text">Google Sites &amp; AWS S3</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库表索引被删除造成慢查询"><span class="toc-text">数据库表索引被删除造成慢查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Google-Sites-amp-AWS-S3"><span class="toc-text">Google Sites &amp; AWS S3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宿主机只装-MySQL-client"><span class="toc-text">宿主机只装 MySQL client</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grep-遍历文件夹查找文本内容"><span class="toc-text">grep 遍历文件夹查找文本内容</span></a></li></ol>
     </div>
   </div>
 
@@ -273,9 +273,13 @@
 <h2 id="Google-Sites-amp-AWS-S3"><a href="#Google-Sites-amp-AWS-S3" class="headerlink" title="Google Sites &amp; AWS S3"></a>Google Sites &amp; AWS S3</h2><p>对 Search 排名有一定的 trick。</p>
 <p><a href="https://sites.google.com" target="_blank" rel="noopener">Google Sites</a> 经典 classic 版本可以使用 <a href="https://github.com/googleapis/google-api-php-client" target="_blank" rel="noopener">API</a> 进行页面生成。SDK 没有封装好接口，需要结合文档自己写。</p>
 <p>可使用的 HTML 标签是受限，推荐找一个已经有的网站仿照的写。</p>
-<blockquote>
-<p>待续</p>
-</blockquote>
+<h2 id="宿主机只装-MySQL-client"><a href="#宿主机只装-MySQL-client" class="headerlink" title="宿主机只装 MySQL client"></a>宿主机只装 MySQL client</h2><p>MySQL 使用 Docker 宿主机只用装 client 就可以在宿主机管理了，无需 server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt install mysql-client</span><br></pre></td></tr></table></figure>
+<p>连接命令</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysq -h127.0.0.1 -uroot -proot -P3306</span><br></pre></td></tr></table></figure>
+<p><code>-h127.0.0.1</code> 是要加的 否则是走 sock，无法连接。</p>
+<h2 id="grep-遍历文件夹查找文本内容"><a href="#grep-遍历文件夹查找文本内容" class="headerlink" title="grep 遍历文件夹查找文本内容"></a>grep 遍历文件夹查找文本内容</h2><p>有时候我们需要在某一个包含很多子目录的目录中搜索查找包含某个文本内容的文本，我们可以在 grep 中加上 -r 选项让 grep 命令迭代进入子目录查找。同时在命令最后加上代表文件通配符的*号，不然 grep 会一直等待输入。命令方式如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">grep -r &quot;查找文本内容&quot; *</span><br></pre></td></tr></table></figure>
 
       
     </div>

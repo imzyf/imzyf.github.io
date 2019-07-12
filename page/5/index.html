@@ -234,6 +234,63 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/">R.swift 强类型引用资源文件</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-17
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/" data-title="R.swift 强类型引用资源文件">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><a href="https://github.com/mac-cain13/R.swift" target="_blank" rel="noopener">R.swift</a> 获取强类型、自动编译的图片、字体、segues 等资源。</p>
+<p>以避免无法编译时检查 <code>字符串</code> 的形式引用资源所导致的错误。</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> icon = <span class="type">UIImage</span>(named: <span class="string">"settings-icon"</span>)</span><br><span class="line"><span class="keyword">let</span> font = <span class="type">UIFont</span>(name: <span class="string">"San Francisco"</span>, size: <span class="number">42</span>)</span><br><span class="line"><span class="keyword">let</span> color = <span class="type">UIColor</span>(named: <span class="string">"indictator highlight"</span>)</span><br><span class="line"><span class="keyword">let</span> viewController = <span class="type">CustomViewController</span>(nibName: <span class="string">"CustomView"</span>, bundle: <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">let</span> string = <span class="type">String</span>(format: <span class="type">NSLocalizedString</span>(<span class="string">"welcome.withName"</span>, comment: <span class="string">""</span>), locale: <span class="type">NSLocale</span>.current, <span class="string">"Arthur Dent"</span>)</span><br></pre></td></tr></table></figure>
+<p>With R.swift</p>
+<figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> icon = <span class="type">R</span>.image.settingsIcon()</span><br><span class="line"><span class="keyword">let</span> font = <span class="type">R</span>.font.sanFrancisco(size: <span class="number">42</span>)</span><br><span class="line"><span class="keyword">let</span> color = <span class="type">R</span>.color.indicatorHighlight()</span><br><span class="line"><span class="keyword">let</span> viewController = <span class="type">CustomViewController</span>(nib: <span class="type">R</span>.nib.customView.name)</span><br><span class="line"><span class="keyword">let</span> string = <span class="type">R</span>.string.localizable.welcomeWithName(<span class="string">"Arthur Dent"</span>)</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2018/01/12/xcode-unknown-tips/">Xcode 不知名的实用技巧</a>
         
       </h1>
@@ -309,7 +366,7 @@
 
         
           <span class="post-visits">
-            最后更新: 2018-11-15
+            最后更新: 2019-07-18
           </span>
         
       </div>
@@ -764,81 +821,6 @@
 <p>使用 <code>checkout --theirs</code>。</p>
           <div class="read-more">
             <a href="/2017/08/30/git-checkout-theirs-resolve-conflict/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-         
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/08/27/music-player-by-react/">React jPlayer 音乐播放器</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-08-27
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/08/27/music-player-by-react/" data-title="React jPlayer 音乐播放器">
-          阅读次数 0
-        </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2019-05-29
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这是 React 学习练习：<a href="http://www.imooc.com/learn/868" target="_blank" rel="noopener">IMOOC 使用 React 构建一款音乐播放器</a>，项目构建、功能编写的笔记。</p>
-<ul>
-<li>项目地址：<a href="https://github.com/imzyf/music-player-by-react" target="_blank" rel="noopener">imzyf/music-player-by-react</a></li>
-<li>演示地址：<a href="https://imzyf.github.io/music-player-by-react/" target="_blank" rel="noopener">Music player build with React</a></li>
-<li>其他相关项目：<a href="https://github.com/imzyf/gallery-by-react" target="_blank" rel="noopener">imzyf/gallery-by-react 图片画廊</a></li>
-</ul>
-<p>Thanks:</p>
-<ul>
-<li><a href="https://github.com/xiaolin3303/react-music-player" target="_blank" rel="noopener">xiaolin3303/react-music-player</a> Music player build with React, learn how to use React</li>
-</ul>
-<h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><ul>
-<li>使用 YEOMAN 构建项目脚手架</li>
-<li>ES6</li>
-<li>react 15.0</li>
-<li>react-router-dom 4.2 路由</li>
-<li>pubsub-js 1.7 事件订阅</li>
-<li>webpack 1.2</li>
-<li>jPlayer 2.9 音乐播放器插件</li>
-</ul>
-          <div class="read-more">
-            <a href="/2017/08/27/music-player-by-react/" class="read-more-link">阅读更多</a>
           </div>
         
       

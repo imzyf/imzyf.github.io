@@ -234,6 +234,71 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/04/11/mysql-manage-user-and-grant/">MySQL 管理用户与访问授权</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-04-11
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/04/11/mysql-manage-user-and-grant/" data-title="MySQL 管理用户与访问授权">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-22
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>MySQL 创建用户、修改密码、删除用户；查看、授予、撤销用户权限；对 MySQL 远程访问的新理解。</p>
+<h2 id="管理用户"><a href="#管理用户" class="headerlink" title="管理用户"></a>管理用户</h2><h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE USER &apos;username&apos;@&apos;host&apos; IDENTIFIED BY &apos;password&apos;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>username</code>：创建的用户名</li>
+<li><code>host</code>：该用户在哪个主机上可以登陆。如果是本地用户可用 <code>localhost</code>；如果想让该用户可以从任意远程主机登陆，可以使用通配符 <code>%</code></li>
+<li><code>password</code>：该用户的登陆密码。密码可以为空，如果为空则该用户可以不需要密码登陆服务器</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CREATE USER &apos;dog&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;123456&apos;;</span><br><span class="line">CREATE USER &apos;pig&apos;@&apos;192.168.1.%&apos; IDENDIFIED BY &apos;123456&apos;;</span><br><span class="line">CREATE USER &apos;pig&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos;;</span><br><span class="line">CREATE USER &apos;pig&apos;@&apos;%&apos; IDENTIFIED BY &apos;&apos;;</span><br><span class="line">CREATE USER &apos;pig&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2017/04/11/mysql-manage-user-and-grant/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/04/11/php-modify-memory-limit/">PHP 修改 memory_limit 内存限制</a>
         
       </h1>
@@ -779,97 +844,6 @@
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>使用 <code>git log --graph</code> 可查看提交线图<br>使用 <code>git pull --rebase</code> 是为了使提交线图更好看，从而方便 code review 和代码回退<br>使用 <code>git pull --rebase</code> 比直接 pull 容易导致冲突的产生，如果预期冲突比较多的话，建议还是直接 pull</p>
           <div class="read-more">
             <a href="/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-         
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/03/15/add-website-icons-to-the-home-screen/">给网站添加保存到移动设备主屏的 icon</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-03-15
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/03/15/add-website-icons-to-the-home-screen/" data-title="给网站添加保存到移动设备主屏的 icon">
-          阅读次数 0
-        </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2019-05-29
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>By adding an iOS icon, anyone who decides to save your webpage to the home screen of their iPhone, iPad, or Android will see a nice app-like icon rather than an image of your page.</p>
-<p>Here is a table of the current <a href="https://developer.apple.com/ios/human-interface-guidelines/graphics/app-icon/" target="_blank" rel="noopener">iOS icon sizes from Apple</a>:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">iPhone 6/7, iPhone SE</th>
-<th style="text-align:center">iPad / iPad Mini</th>
-<th style="text-align:center">iPad Pro</th>
-<th style="text-align:center">iPhone 6/7 Plus</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">120×120</td>
-<td style="text-align:center">152×152</td>
-<td style="text-align:center">167×167</td>
-<td style="text-align:center">180×180</td>
-</tr>
-</tbody>
-</table>
-<p>For Android icons you’ll want to follow these specifications:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Android Regula</th>
-<th style="text-align:center">Android Hi-Res</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1128×128</td>
-<td style="text-align:center">192×192</td>
-</tr>
-</tbody>
-</table>
-          <div class="read-more">
-            <a href="/2017/03/15/add-website-icons-to-the-home-screen/" class="read-more-link">阅读更多</a>
           </div>
         
       

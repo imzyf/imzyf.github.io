@@ -234,6 +234,68 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2016/06/14/ubuntu-bluetooth-keyboard/">Ubuntu 下连接蓝牙键盘</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2016-06-14
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2016/06/14/ubuntu-bluetooth-keyboard/" data-title="Ubuntu 下连接蓝牙键盘">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-25
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>新买了 <code>Filco Majestouch Convertible 2</code> 键盘。在自己的笔记本上连接没什么问题，搬到公司 Ubuntu 的 IBM 笔记本这么都连接不上，查找解决。</p>
+<p>安装蓝牙的 <code>hcidump</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install bluez-hcidump</span><br></pre></td></tr></table></figure>
+<p>然后，监测蓝牙事件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo hcidump -at</span><br></pre></td></tr></table></figure>
+<p>再次连接蓝牙键盘，可以看到输出事件中有一条 <code>Pin ...</code> 键盘输入对应的 Pin，Enter，连接成功。</p>
+          <div class="read-more">
+            <a href="/2016/06/14/ubuntu-bluetooth-keyboard/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2016/06/13/java-modifier-final/">Java final 修饰符</a>
         
       </h1>
