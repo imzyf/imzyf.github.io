@@ -234,6 +234,68 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/04/11/php-modify-memory-limit/">PHP 修改 memory_limit 内存限制</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-04-11
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/04/11/php-modify-memory-limit/" data-title="PHP 修改 memory_limit 内存限制">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-05-29
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在进行大量统计运算时，PHP 可能产生内存不足的情况</p>
+<h2 id="查看-memory-limit"><a href="#查看-memory-limit" class="headerlink" title="查看 memory_limit"></a>查看 memory_limit</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> phpinfo(); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改-memory-limit"><a href="#修改-memory-limit" class="headerlink" title="修改 memory_limit"></a>修改 memory_limit</h2><p>可以在 <code>phpinfo()</code> 中找到 <code>Loaded Configuration File</code> <code>php.ini</code> 的位置</p>
+<p>修改 <code>php.ini</code> 中的 memory_limit</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">memory_limit</span> = <span class="number">1024</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如果没有，你可以在文件的尾部自己增加这个参数</p>
+          <div class="read-more">
+            <a href="/2017/04/11/php-modify-memory-limit/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/">Ubuntu 命令行下免密码执行 sudo 命令</a>
         
       </h1>
@@ -809,61 +871,6 @@
           <div class="read-more">
             <a href="/2017/03/15/add-website-icons-to-the-home-screen/" class="read-more-link">阅读更多</a>
           </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-         
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/03/14/google-no-country-redirection/">禁止 Google 根据区域重定向跳转</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-03-14
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/03/14/google-no-country-redirection/" data-title="禁止 Google 根据区域重定向跳转">
-          阅读次数 0
-        </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2019-06-11
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>使用代理上 Google 时，Google 常会根据网络代理的区域进行重定向跳转。例如：使用韩国代理时，<code>google.com</code> 会跳转到 <code>https://www.google.co.kr/</code>，搜索结果也多为韩语，很是不方便</p>
-<p>解决的办法其实也很简单：访问 <code>https://www.google.com/ncr</code> 就可以了。</p>
-<p><code>ncr</code> 表示：No Country Redirection，禁止区域重定向。</p>
-
         
       
     </div>

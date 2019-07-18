@@ -234,6 +234,63 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2018/08/30/2018-08-monthly-report-of-development/">2018.08 工程月度总结</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-30
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/08/30/2018-08-monthly-report-of-development/" data-title="2018.08 工程月度总结">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2018-10-09
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="数据库表索引被删除造成慢查询"><a href="#数据库表索引被删除造成慢查询" class="headerlink" title="数据库表索引被删除造成慢查询"></a>数据库表索引被删除造成慢查询</h2><p>为方便整理数据删除了索引，没有添加回来，上线后 SQL 查询堆积，拖慢项目。</p>
+          <div class="read-more">
+            <a href="/2018/08/30/2018-08-monthly-report-of-development/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2018/07/30/2018-07-monthly-report-of-development/">2018.07 工程月度总结</a>
         
       </h1>
@@ -741,62 +798,6 @@
 <h2 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 下载证书申请客户端</span><br><span class="line">cd /opt</span><br><span class="line">git clone https://github.com/certbot/certbot</span><br><span class="line">cd /opt/certbot</span><br><span class="line"></span><br><span class="line"># 注意通配符并不包含主域名，所以要配置两个</span><br><span class="line">./certbot-auto certonly -d *.zyf.im -d zyf.im --manual --preferred-challenges dns --server &quot;https://acme-v02.api.letsencrypt.org/directory&quot;</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2018/04/26/lets-encrypt-wildcard-certificates/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-         
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/04/24/docker-ufw-not-work/">Docker UFW 失效</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-04-24
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/04/24/docker-ufw-not-work/" data-title="Docker UFW 失效">
-          阅读次数 0
-        </span>
-        
-
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>今日遇到 Docker 中的项目绕过了宿主机 UFW 的配置，可以被任意 IP 访问，甚是奇怪。查找资料发现：</p>
-<p>如果你在 Linux 使用 Docker，很可能你的系统防火墙降级为 Uncomplicated Firewall (UFW)。如果是这样的话，你有一点可能不知道，Docker 和 UFW 的组合带来了一些安全问题。为什么呢？因为 Docker 实际上绕过了 UFW 并直接修改了 iptables，所以一个容器可以绑定一个端口。这就意味着，所有你设置的 UFW 规则都将在 Docker 容器中失效。</p>
-<p>如何修复：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo vi /etc/default/docker</span><br><span class="line"></span><br><span class="line"># add the following line:</span><br><span class="line"></span><br><span class="line">DOCKER_OPTS=&quot;--iptables=false&quot;</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2018/04/24/docker-ufw-not-work/" class="read-more-link">阅读更多</a>
           </div>
         
       

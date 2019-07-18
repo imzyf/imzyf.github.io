@@ -3,7 +3,6 @@ Disallow: /search.xml
 Disallow: /tags/
 Disallow: /page/
 Disallow: /categories/
-Disallow: /links/
 
 Sitemap: https://zyf.im/sitemap.xml
 Sitemap: https://zyf.im/baidusitemap.xml

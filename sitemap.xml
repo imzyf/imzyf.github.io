@@ -2,35 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zyf.im/about/index.html</loc>
+    <loc>https://zyf.im/about/quotes/index.html</loc>
     
-    <lastmod>2019-07-03T10:40:53.178Z</lastmod>
+    <lastmod>2019-07-18T06:23:49.820Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zyf.im/about/quotes/index.html</loc>
+    <loc>https://zyf.im/about/index.html</loc>
     
-    <lastmod>2019-07-03T09:46:26.980Z</lastmod>
+    <lastmod>2019-07-18T06:23:11.078Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
+    
+    <lastmod>2019-07-17T12:33:24.475Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/07/17/npx-getting-started/</loc>
+    
+    <lastmod>2019-07-17T12:24:41.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zyf.im/2017/07/06/trash-cli-move-files-to-trash/</loc>
     
-    <lastmod>2019-06-17T06:18:03.562Z</lastmod>
+    <lastmod>2019-06-17T06:18:03.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
+    <loc>https://zyf.im/2017/07/06/chinese-and-english-translation-tools-cli/</loc>
     
     <lastmod>2019-06-17T06:15:22.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/07/06/chinese-and-english-translation-tools-cli/</loc>
+    <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
     
     <lastmod>2019-06-17T06:15:22.000Z</lastmod>
     
@@ -46,42 +60,35 @@
   <url>
     <loc>https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/</loc>
     
-    <lastmod>2019-06-11T08:58:03.405Z</lastmod>
+    <lastmod>2019-06-11T08:58:03.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
     
-    <lastmod>2019-06-11T08:57:58.247Z</lastmod>
+    <lastmod>2019-06-11T08:57:58.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
     
-    <lastmod>2019-06-11T08:57:31.752Z</lastmod>
+    <lastmod>2019-06-11T08:57:31.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
     
-    <lastmod>2019-06-11T08:57:18.521Z</lastmod>
+    <lastmod>2019-06-11T08:57:18.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
     
-    <lastmod>2019-06-11T08:57:02.420Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
-    
-    <lastmod>2019-06-11T08:39:11.849Z</lastmod>
+    <lastmod>2019-06-11T08:57:02.000Z</lastmod>
     
   </url>
   
@@ -569,14 +576,14 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</loc>
+    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
     
     <lastmod>2019-04-10T09:09:32.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
+    <loc>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</loc>
     
     <lastmod>2019-04-10T09:09:32.000Z</lastmod>
     
@@ -632,14 +639,14 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/03/23/core-java-array-dome/</loc>
+    <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
     
     <lastmod>2019-02-27T09:04:35.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
+    <loc>https://zyf.im/2016/03/23/core-java-array-dome/</loc>
     
     <lastmod>2019-02-27T09:04:35.000Z</lastmod>
     
@@ -926,35 +933,56 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/05/06/core-java-reading-notes/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/22/leetcode-same-tree-100/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/08/24/leetcode-majority-element-169/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part1/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/13/java-modifier-final/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</loc>
     
     <lastmod>2017-08-22T05:55:42.000Z</lastmod>
     
@@ -975,105 +1003,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/06/13/java-modifier-final/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/tags/index.html</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/08/25/leetcode-roman-to-integer-13/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</loc>
-    
-    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</loc>
     
     <lastmod>2017-08-22T05:55:42.000Z</lastmod>
     
@@ -1087,6 +1017,34 @@
   </url>
   
   <url>
+    <loc>https://zyf.im/tags/index.html</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/22/leetcode-same-tree-100/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2016/08/22/leetcode-intersection-of-two-arrays-349/</loc>
     
     <lastmod>2017-08-22T05:55:42.000Z</lastmod>
@@ -1094,7 +1052,21 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part1/</loc>
+    <loc>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</loc>
     
     <lastmod>2017-08-22T05:55:42.000Z</lastmod>
     
@@ -1102,6 +1074,41 @@
   
   <url>
     <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part2/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/05/06/core-java-reading-notes/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
+    
+    <lastmod>2017-08-22T05:55:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</loc>
     
     <lastmod>2017-08-22T05:55:42.000Z</lastmod>
     

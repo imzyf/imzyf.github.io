@@ -234,6 +234,65 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/07/06/trash-cli-move-files-to-trash/">Ubutun trash-cli 删除文件到回收站</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-06
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2017/07/06/trash-cli-move-files-to-trash/" data-title="Ubutun trash-cli 删除文件到回收站">
+          阅读次数 0
+        </span>
+        
+
+        
+          <span class="post-visits">
+            最后更新: 2019-06-17
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><a href="https://github.com/andreafrancia/trash-cli" target="_blank" rel="noopener">andreafrancia/trash-cli: Command line interface to the freedesktop.org trashcan.</a></p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">easy_install trash-cli</span><br></pre></td></tr></table></figure>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">trash-put           trash files and directories.</span><br><span class="line">trash-empty         empty the trashcan(s).</span><br><span class="line">trash-list          list trashed files.</span><br><span class="line">trash-restore       restore a trashed file.</span><br><span class="line">trash-rm            remove individual files from the trashcan.</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2017/07/06/trash-cli-move-files-to-trash/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/07/06/chinese-and-english-translation-tools-cli/">Ubutun dict 中英文翻译 cli</a>
         
       </h1>
@@ -773,71 +832,6 @@
 <p>Sphinx 配置包含 3 个必须运行的主要块。它们是 <code>index</code> <code>searchd</code> <code>source</code></p>
           <div class="read-more">
             <a href="/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-         
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/05/17/git-modify-remote-url/">Git 修改远程仓库地址</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-05-17
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/05/17/git-modify-remote-url/" data-title="Git 修改远程仓库地址">
-          阅读次数 0
-        </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2019-06-04
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="查看当前的远程库"><a href="#查看当前的远程库" class="headerlink" title="查看当前的远程库"></a>查看当前的远程库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-<p><code>-v</code> 是 <code>--verbose</code> 的简写</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">origin ssh://ubuntu@168.8.1.1/usr/share/nginx/html (fetch)</span><br><span class="line">origin ssh://ubuntu@168.8.1.1/usr/share/nginx/html (push)</span><br></pre></td></tr></table></figure>
-<h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote add [shortname] [url]</span><br></pre></td></tr></table></figure>
-<p>eg:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote add pb git://github.com/paulboone/ticgit.git</span><br></pre></td></tr></table></figure>
-<h2 id="修改远程仓库"><a href="#修改远程仓库" class="headerlink" title="修改远程仓库"></a>修改远程仓库</h2><h3 id="修改-url"><a href="#修改-url" class="headerlink" title="修改 url"></a>修改 url</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote <span class="built_in">set</span>-url [shortname] [new url]</span><br></pre></td></tr></table></figure>
-<h3 id="修改-shortname"><a href="#修改-shortname" class="headerlink" title="修改 shortname"></a>修改 shortname</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote rename [new shortname] [url]</span><br></pre></td></tr></table></figure>
-<h2 id="删除远程仓库"><a href="#删除远程仓库" class="headerlink" title="删除远程仓库"></a>删除远程仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote [shortname]</span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2017/05/17/git-modify-remote-url/" class="read-more-link">阅读更多</a>
           </div>
         
       

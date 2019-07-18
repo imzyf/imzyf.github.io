@@ -17,12 +17,10 @@
 
 
 
-  <meta name="description" content="nodeppt 让你爱上做分享">
+  <meta name="description" content="It's now or never.">
 
 
 
-
-  <meta name="keywords" content="ubuntu, node-js, awesome, Yifans_Z Blog">
 
 
 
@@ -42,7 +40,7 @@
 
 
 
-<link rel="canonical" href="https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/">
+<link rel="canonical" href="https://zyf.im/tags/npm/">
 
 
 
@@ -114,7 +112,11 @@
   });
 </script>
 
-    <title> nodeppt 让你爱上做分享 - Yifans_Z Blog </title>
+    <title>
+  
+    npm · Yifans_Z Blog
+  
+</title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -225,156 +227,48 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-   
+  
+  
+  
 
+  <section id="archive" class="archive">
+    
+      
+        <div class="archive-title tag">
+          <h2 class="archive-name">npm</h2>
+        </div>
+      
+    
 
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          nodeppt 让你爱上做分享
-        
-      </h1>
+    
+      
 
-      <div class="post-meta">
-        <span class="post-time">
-          2017-07-06
+      <div class="archive-post">
+        <span class="archive-post-time">
+          
+            2019-07-17
+          
         </span>
-        
-        
-        <span class="post-visits" data-url="/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/" data-title="nodeppt 让你爱上做分享">
-          阅读次数 0
+        <span class="archive-post-title">
+          <a href="/2019/07/17/npx-getting-started/" class="archive-post-link">
+            npx 入门使用
+          </a>
         </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2019-06-11
-          </span>
-        
       </div>
-    </header>
-
     
+  </section>
+
+  
+  <nav class="pagination">
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建"><span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动"><span class="toc-text">启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#演示"><span class="toc-text">演示</span></a></li></ol>
-    </div>
-  </div>
-
-
-
-    <div class="post-content">
-      
-        <p><a href="https://github.com/ksky521/nodeppt" target="_blank" rel="noopener">ksky521/nodeppt: This is probably the best web presentation tool so far!</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g nodeppt</span><br></pre></td></tr></table></figure>
-<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nodeppt create ppt-name</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取帮助</span></span><br><span class="line">nodeppt start -h</span><br><span class="line"><span class="comment"># 绑定端口</span></span><br><span class="line">nodeppt start -p &lt;port&gt;</span><br><span class="line">nodeppt start -p 8090 -d path/<span class="keyword">for</span>/ppts</span><br><span class="line"><span class="comment"># 绑定host，默认绑定0.0.0.0</span></span><br><span class="line">nodeppt start -p 8080 -d path/<span class="keyword">for</span>/ppts -H 127.0.0.1</span><br><span class="line"><span class="comment"># 使用socket通信（按Q键显示/关闭二维码，手机扫描，即可控制）</span></span><br><span class="line"><span class="comment"># socket须知：1、注意手机和pc要可以相互访问，2、防火墙，3、ip</span></span><br></pre></td></tr></table></figure>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>有一个小坑的地方，如果你指定特别的端口，使用的则是默认的 <code>8080</code>，这时：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">netstat -antpl | grep 8080</span><br></pre></td></tr></table></figure>
-<p>可以看到：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tcp        0      0 192.168.8.149:8080      0.0.0.0:*               LISTEN      4801/node</span><br></pre></td></tr></table></figure>
-<p>访问 <code>192.168.8.149:8080</code> 才可以，<code>localhost:8080</code> 不可以</p>
-
-      
-    </div>
-
-    
-      
-      
-
-  <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://zyf.im">Yifans_Z</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/">https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span>
-      
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-
-
-
-      
-      
-  <div class="post-reward">
-    <input type="checkbox" name="reward" id="reward" hidden>
-    <label class="reward-button" for="reward">赞赏支持</label>
-    <div class="qr-code">
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
-        </label>
-      
-      
-    </div>
-  </div>
-
-
-    
-
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/ubuntu/">ubuntu</a>
-            
-              <a href="/tags/node-js/">node-js</a>
-            
-              <a href="/tags/awesome/">awesome</a>
-            
-          </div>
-        
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Ubuntu 下安装 Node.js 与常见问题</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2017/07/06/work-with-mailchimp-api-3-pagination/">
-        <span class="next-text nav-default">使用 MailChimp API 3.0 的分页查询</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
     
   </nav>
 
 
-      </footer>
-    
-
-  </article>
 
 
           </div>
           
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
 
         </div>
       </main>
@@ -478,9 +372,9 @@ analytics"></a></div></noscript>
   
   <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/';
-        this.page.identifier = '2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/';
-        this.page.title = 'nodeppt 让你爱上做分享';
+        this.page.url = '';
+        this.page.identifier = 'tags/npm/index.html';
+        this.page.title = '';
     };
     (function() {
     var d = document, s = d.createElement('script');

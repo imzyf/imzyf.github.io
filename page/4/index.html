@@ -234,6 +234,62 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2018/04/24/docker-ufw-not-work/">Docker UFW 失效</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-04-24
+        </span>
+        
+        
+        <span class="post-visits" data-url="/2018/04/24/docker-ufw-not-work/" data-title="Docker UFW 失效">
+          阅读次数 0
+        </span>
+        
+
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>今日遇到 Docker 中的项目绕过了宿主机 UFW 的配置，可以被任意 IP 访问，甚是奇怪。查找资料发现：</p>
+<p>如果你在 Linux 使用 Docker，很可能你的系统防火墙降级为 Uncomplicated Firewall (UFW)。如果是这样的话，你有一点可能不知道，Docker 和 UFW 的组合带来了一些安全问题。为什么呢？因为 Docker 实际上绕过了 UFW 并直接修改了 iptables，所以一个容器可以绑定一个端口。这就意味着，所有你设置的 UFW 规则都将在 Docker 容器中失效。</p>
+<p>如何修复：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo vi /etc/default/docker</span><br><span class="line"></span><br><span class="line"># add the following line:</span><br><span class="line"></span><br><span class="line">DOCKER_OPTS=&quot;--iptables=false&quot;</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2018/04/24/docker-ufw-not-work/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+      
+         
+
+
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2018/04/16/use-php-cs-fixer-in-phpstorm/">在 PhpStorm 中使用 PHP-CS-Fixer</a>
         
       </h1>
@@ -753,64 +809,6 @@
 <figure class="highlight swift"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> icon = <span class="type">R</span>.image.settingsIcon()</span><br><span class="line"><span class="keyword">let</span> font = <span class="type">R</span>.font.sanFrancisco(size: <span class="number">42</span>)</span><br><span class="line"><span class="keyword">let</span> color = <span class="type">R</span>.color.indicatorHighlight()</span><br><span class="line"><span class="keyword">let</span> viewController = <span class="type">CustomViewController</span>(nib: <span class="type">R</span>.nib.customView.name)</span><br><span class="line"><span class="keyword">let</span> string = <span class="type">R</span>.string.localizable.welcomeWithName(<span class="string">"Arthur Dent"</span>)</span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-      
-         
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/01/12/xcode-unknown-tips/">Xcode 不知名的实用技巧</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-01-12
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2018/01/12/xcode-unknown-tips/" data-title="Xcode 不知名的实用技巧">
-          阅读次数 0
-        </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2018-03-16
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="状态栏"><a href="#状态栏" class="headerlink" title="状态栏"></a>状态栏</h2><h3 id="Help"><a href="#Help" class="headerlink" title="Help"></a>Help</h3><p><code>Search</code> 框可以很方便的检索到相关的设置项。</p>
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1fnfz7x45n7j31ji0qi7n7.jpg" alt="xcode-unknown-tips-Search" width="960px"></p>
-          <div class="read-more">
-            <a href="/2018/01/12/xcode-unknown-tips/" class="read-more-link">阅读更多</a>
           </div>
         
       
