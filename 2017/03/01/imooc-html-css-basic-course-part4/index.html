@@ -1,273 +1,418 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head><meta name="generator" content="Hexo 3.8.0">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="Yifans_Z">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="Yifans_Z">
     
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-<meta name="theme-color" content="#f8f5ec">
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-
-
-  <meta name="description" content="IMOOC HTML+CSS 基础课程 Part 4">
-
-
-
-
-  <meta name="keywords" content="html, css, Yifans_Z Blog">
-
-
-
-
-
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Yifans_Z Blog">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.10.3">
-
-
-
-<link rel="canonical" href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">
-
-
-
-  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css">
-
-
-
-
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.10.3">
-
-
-
-  
-
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84666938-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-84666938-1');
-</script>
-
-
-  <script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="It's now or never.">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>IMOOC HTML+CSS 基础课程 Part 4 · Yifans_Z Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
     }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+
+    body {
+        margin: 0;
     }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
 
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
 
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
 
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
 
-  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
-  <script id="leancloud">
-    AV.init({
-      appId: "er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz",
-      appKey: "a6lIOEoJs3ijGvj3eP2rkFGG"
-    });
-  </script>
+</style>
 
-
-
-
-
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
 <script>
-  window.config = {"leancloud":{"app_id":"er5hlK0M8mWKUTrVtqnHl97N-gzGzoHsz","app_key":"a6lIOEoJs3ijGvj3eP2rkFGG"},"toc":true,"fancybox":true,"pjax":false};
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
 </script>
 
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+
+    <!-- google ad -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- YifanBlog -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2330747317815601" data-ad-slot="7589254134" data-ad-format="auto" data-full-width-responsive="true"></ins>
 <script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-2330747317815601",
-    enable_page_level_ads: true
-  });
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</head>
 
-    <title> IMOOC HTML+CSS 基础课程 Part 4 - Yifans_Z Blog </title>
-  </head>
-
-  <body><div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/." class="logo">Yifans_Z Blog</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
     
-      <a href="/">
-        <li class="mobile-menu-item">
-          
-          
-            首页
-          
-        </li>
-      </a>
+        <body class="post-body">
     
-      <a href="/archives/">
-        <li class="mobile-menu-item">
-          
-          
-            归档
-          
-        </li>
-      </a>
     
-      <a href="/tags">
-        <li class="mobile-menu-item">
-          
-          
-            标签
-          
-        </li>
-      </a>
+  <header class="header">
     
-      <a href="/about">
-        <li class="mobile-menu-item">
-          
-          
-            关于
-          
-        </li>
-      </a>
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
     
-  </ul>
-</nav>
-
-    <div class="container" id="mobile-panel">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">Yifans_Z Blog</a>
-</div>
-
-<nav class="site-navbar">
-  
-    <ul id="menu" class="menu">
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            
-            
-              首页
-            
-          </a>
-        </li>
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            
-            
-              归档
-            
-          </a>
-        </li>
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/tags">
-            
-            
-              标签
-            
-          </a>
-        </li>
-      
-        <li class="menu-item">
-          <a class="menu-item-link" href="/about">
-            
-            
-              关于
-            
-          </a>
-        </li>
-      
-    </ul>
-  
-</nav>
-
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-   
-
-
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          IMOOC HTML+CSS 基础课程 Part 4
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-03-01
-        </span>
-        
-        
-        <span class="post-visits" data-url="/2017/03/01/imooc-html-css-basic-course-part4/" data-title="IMOOC HTML+CSS 基础课程 Part 4">
-          阅读次数 0
-        </span>
-        
-
-        
-          <span class="post-visits">
-            最后更新: 2017-03-12
-          </span>
-        
+    <div class="banner">
+      <div class="blog-title">
+        <a href="/">Yifans_Z&#39;s Blog.</a>
       </div>
-    </header>
-
-    
-    
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第13章-CSS-代码缩写，占用更少的带宽"><span class="toc-text">第13章 CSS 代码缩写，占用更少的带宽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型代码简写"><span class="toc-text">盒模型代码简写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#颜色值缩写"><span class="toc-text">颜色值缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体缩写"><span class="toc-text">字体缩写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第14章-单位和值"><span class="toc-text">第14章 单位和值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#颜色值"><span class="toc-text">颜色值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度值"><span class="toc-text">长度值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第15章-CSS-样式设置小技巧"><span class="toc-text">第15章 CSS 样式设置小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-行内元素"><span class="toc-text">水平居中 - 行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-定宽块状元素"><span class="toc-text">水平居中 - 定宽块状元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（一）"><span class="toc-text">水平居中 - 不定宽块状元素方法（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（二）"><span class="toc-text">水平居中 - 不定宽块状元素方法（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（三）"><span class="toc-text">水平居中 - 不定宽块状元素方法（三）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的单行文本"><span class="toc-text">垂直居中 - 父元素高度确定的单行文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的多行文本（方法一）"><span class="toc-text">垂直居中 - 父元素高度确定的多行文本（方法一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的多行文本（方法二）"><span class="toc-text">垂直居中 - 父元素高度确定的多行文本（方法二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐性改变-display-类型"><span class="toc-text">隐性改变 display 类型</span></a></li></ol></li></ol>
+      <div class="post-title">
+        <a href="#" class="post-name">IMOOC HTML+CSS 基础课程 Part 4</a>
+      </div>
     </div>
-  </div>
+    
+    <a class="home-link" href="/">Yifans_Z's Blog.</a>
+  </header>
+</header>
+
+    <div class="wrapper">
+        <div class="site-intro" style="
 
 
 
-    <div class="post-content">
-      
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            IMOOC HTML+CSS 基础课程 Part 4
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "html">html</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "css">css</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.9k</span>阅读时长: <span class="post-count reading-time">25 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2017/03/01</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
         <p>慕课网上【HTML+CSS 基础课程】学习笔记。本文主要内容：CSS 代码缩写、单位和值、样式设置小技巧。</p>
 <a id="more"></a>
 <h2 id="第13章-CSS-代码缩写，占用更少的带宽"><a href="#第13章-CSS-代码缩写，占用更少的带宽" class="headerlink" title="第13章 CSS 代码缩写，占用更少的带宽"></a>第13章 CSS 代码缩写，占用更少的带宽</h2><h3 id="盒模型代码简写"><a href="#盒模型代码简写" class="headerlink" title="盒模型代码简写"></a>盒模型代码简写</h3><p>还记得在讲盒模型时外边距（margin）、内边距（padding）和边框（border)设置上下左右四个方向的边距是按照顺时针方向设置的：上右下左<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">margin:10px 15px 12px 14px;/*上设置为10px、右设置为15px、下设置为12px、左设置为14px*/</span><br><span class="line"></span><br><span class="line">margin:10px 10px 10px 10px;</span><br><span class="line">// 可缩写为：</span><br><span class="line">margin:10px;</span><br><span class="line"></span><br><span class="line">margin:10px 20px 10px 20px;</span><br><span class="line">// 可缩写为：</span><br><span class="line">margin:10px 20px;</span><br><span class="line"></span><br><span class="line">// 如果left和right的值相同，如下面代码：</span><br><span class="line">margin:10px 20px 30px 20px;</span><br><span class="line">// 可缩写为：</span><br><span class="line">margin:10px 20px 30px;</span><br><span class="line"></span><br><span class="line">// padding、border的缩写方法和margin是一致的。</span><br></pre></td></tr></table></figure></p>
@@ -339,250 +484,4172 @@
 <p>如下面的代码，<code>a</code> 标签是 行内元素 ，所以设置它的 width 是 没有效果的，但是设置为 <code>position:absolute</code> 以后，就可以了</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;a href=&quot;#&quot; title=&quot;&quot;&gt;进入课程请单击这里&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.container a&#123;</span><br><span class="line">    position:absolute;</span><br><span class="line">    width:200px;</span><br><span class="line">    background:#ccc;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-
+    </article>
+    <!-- license  -->
     
-      
-      
-
-  <div class="post-copyright">
-    <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://zyf.im">Yifans_Z</a>
-    </p>
-    <p class="copyright-item">
-      <span>原文链接: </span>
-      <a href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/</a>
-    </p>
-    <p class="copyright-item">
-      <span>许可协议: </span>
-      
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
-    </p>
-  </div>
-
-
-
-      
-      
-  <div class="post-reward">
-    <input type="checkbox" name="reward" id="reward" hidden>
-    <label class="reward-button" for="reward">赞赏支持</label>
-    <div class="qr-code">
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="https://cdn-qn.yifans.com/imzyf/reward_wechat.jpg" title="wechat">
-        </label>
-      
-      
-    </div>
-  </div>
-
-
-    
-
-    
-      <footer class="post-footer">
-        
-          <div class="post-tags">
-            
-              <a href="/tags/html/">html</a>
-            
-              <a href="/tags/css/">css</a>
-            
-          </div>
-        
-        
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">解决 Ubuntu warning Setting locale failed</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2017/02/26/imooc-html-css-basic-course-part3/">
-        <span class="next-text nav-default">IMOOC HTML+CSS 基础课程 Part 3</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-
-      </footer>
-    
-
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://zyf.im">Yifans_Z</a>
+            <p>原文链接：<a href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/</a>
+            <p>发表日期：<a href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">March 1st 2017, 12:00:00 am</a>
+            <p>更新日期：<a href="https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/">March 12th 2017, 10:00:00 am</a>
+            <p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-      </main>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/" title= "解决 Ubuntu warning Setting locale failed">
+                    <div class="nextTitle">解决 Ubuntu warning Setting locale failed</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2017/02/26/imooc-html-css-basic-course-part3/" title= "IMOOC HTML+CSS 基础课程 Part 3">
+                    <div class="prevTitle">IMOOC HTML+CSS 基础课程 Part 3</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
 
-      <footer id="footer" class="footer">
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
 
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:168@yifans.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-        
-          <a href="https://github.com/imzyf" class="iconfont icon-github" title="github"></a>
-        
-      
-    
-      
-        
-          <a href="https://stackoverflow.com/users/5958443/yifan" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
 
     
-      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
     
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:168@yifans.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/imzyf" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第13章-CSS-代码缩写，占用更少的带宽"><span class="toc-number">1.</span> <span class="toc-text">第13章 CSS 代码缩写，占用更少的带宽</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#盒模型代码简写"><span class="toc-number">1.1.</span> <span class="toc-text">盒模型代码简写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#颜色值缩写"><span class="toc-number">1.2.</span> <span class="toc-text">颜色值缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字体缩写"><span class="toc-number">1.3.</span> <span class="toc-text">字体缩写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第14章-单位和值"><span class="toc-number">2.</span> <span class="toc-text">第14章 单位和值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#颜色值"><span class="toc-number">2.1.</span> <span class="toc-text">颜色值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长度值"><span class="toc-number">2.2.</span> <span class="toc-text">长度值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第15章-CSS-样式设置小技巧"><span class="toc-number">3.</span> <span class="toc-text">第15章 CSS 样式设置小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-行内元素"><span class="toc-number">3.1.</span> <span class="toc-text">水平居中 - 行内元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-定宽块状元素"><span class="toc-number">3.2.</span> <span class="toc-text">水平居中 - 定宽块状元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（一）"><span class="toc-number">3.3.</span> <span class="toc-text">水平居中 - 不定宽块状元素方法（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（二）"><span class="toc-number">3.4.</span> <span class="toc-text">水平居中 - 不定宽块状元素方法（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#水平居中-不定宽块状元素方法（三）"><span class="toc-number">3.5.</span> <span class="toc-text">水平居中 - 不定宽块状元素方法（三）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的单行文本"><span class="toc-number">3.6.</span> <span class="toc-text">垂直居中 - 父元素高度确定的单行文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的多行文本（方法一）"><span class="toc-number">3.7.</span> <span class="toc-text">垂直居中 - 父元素高度确定的多行文本（方法一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中-父元素高度确定的多行文本（方法二）"><span class="toc-number">3.8.</span> <span class="toc-text">垂直居中 - 父元素高度确定的多行文本（方法二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐性改变-display-类型"><span class="toc-number">3.9.</span> <span class="toc-text">隐性改变 display 类型</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 158
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/08</span><a class="archive-post-title" href= "/2019/08/08/vue-notes/" >Vue 使用笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/17</span><a class="archive-post-title" href= "/2019/07/17/npx-getting-started/" >npx 入门使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/11</span><a class="archive-post-title" href= "/2019/06/11/vscode-using-experience/" >VSCode 使用经验</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/10</span><a class="archive-post-title" href= "/2019/06/10/git-modify-commit-date/" >Git 修改提交时间</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href= "/2019/06/04/git-commit-message-style-guide/" >Git 提交 message 规范</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href= "/2019/05/25/the-left-prefix-index-rule/" >最左前缀原理与相关优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href= "/2019/05/23/merge-sort/" >归并排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href= "/2019/05/20/my-macbook/" >My MacBook</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href= "/2019/04/28/php-composer-basic/" >PHP composer 基本原理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2019/04/10/php-strpos-warning/" >PHP 请小心判断 strpos</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2019/04/10/es6-jquery-this-arrow-function/" >ES6 中使用 jQuery $(this) 的问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/06</span><a class="archive-post-title" href= "/2019/03/06/find-pivot-index/" >寻找数组中轴索引</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href= "/2019/03/02/convert-m-number-to-n-number/" >m 进制转 n 进制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2019/03/01/extra-long-factorials/" >超长阶乘的计算</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/28</span><a class="archive-post-title" href= "/2019/02/28/fastlane-getting-started/" >fastlane 入门使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2019/01/19/promisekit-getting-started/" >PromiseKit 入门使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/03</span><a class="archive-post-title" href= "/2019/01/03/review-2018/" >回顾 2018</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/10</span><a class="archive-post-title" href= "/2018/12/10/binary-search/" >二分查找 Binary Search</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/24</span><a class="archive-post-title" href= "/2018/11/24/insertion-sort/" >插入排序 Insertion Sort</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/22</span><a class="archive-post-title" href= "/2018/11/22/queue-data-structure/" >队列 Queue Data Structure</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/22</span><a class="archive-post-title" href= "/2018/11/22/stack-data-structure/" >栈 Stack Data Structure</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/30</span><a class="archive-post-title" href= "/2018/10/30/correct-too-many-symbol-files-issues/" >解决 Too many symbol files</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2018/08/30/2018-08-monthly-report-of-development/" >2018.08 工程月度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/2018/07/30/2018-07-monthly-report-of-development/" >2018.07 工程月度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/30</span><a class="archive-post-title" href= "/2018/06/30/2018-06-monthly-report-of-development/" >2018.06 工程月度总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/22</span><a class="archive-post-title" href= "/2018/06/22/aws-cli-getting-started/" >AWS CLI 入门使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href= "/2018/05/25/select-the-appropriate-date-type-in-mysql/" >在 MySQL 中选择合适的日期类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href= "/2018/05/20/nginx-ip-forbidden/" >Nginx 禁止 IP 访问</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2018/05/09/laravel-essential-training-reading-notes/" >【Laravel 教程 - Web 开发实战入门】读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/08</span><a class="archive-post-title" href= "/2018/05/08/modern-php-reading-notes/" >【Modern PHP】读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href= "/2018/05/05/phpstorm-using-experience/" >PhpStorm 使用经验</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2018/04/26/lets-encrypt-wildcard-certificates/" >使用 Let's Encrypt 通配符证书</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2018/04/24/docker-ufw-not-work/" >Docker UFW 失效</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/16</span><a class="archive-post-title" href= "/2018/04/16/use-php-cs-fixer-in-phpstorm/" >在 PhpStorm 中使用 PHP-CS-Fixer</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href= "/2018/04/08/chinese-copywriting-style-guide/" >中文文案排版规范</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "/2018/03/31/swift-init/" >Swift 初始化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href= "/2018/03/29/ios-safe-area/" >iOS Safe Area 我所知道的全部</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/" >UITableViewCell 自适应 UITextView 高度</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/" >【译】iOS 单元测试和 UI 测试入门教程</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/19</span><a class="archive-post-title" href= "/2018/01/19/got-git-reading-notes-model/" >【Git 权威指南】读书笔记 - 协同模型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href= "/2018/01/17/got-git-reading-notes-harmony/" >【Git 权威指南】读书笔记 - 和声</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/17</span><a class="archive-post-title" href= "/2018/01/17/r-swift-get-strong-typed-autocompleted-resources/" >R.swift 强类型引用资源文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/12</span><a class="archive-post-title" href= "/2018/01/12/xcode-unknown-tips/" >Xcode 不知名的实用技巧</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/05</span><a class="archive-post-title" href= "/2018/01/05/dont-be-lonely-in-2017/" >2017 不要再孤单</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/25</span><a class="archive-post-title" href= "/2017/12/25/got-git-reading-notes-solo-part4/" >【Git 权威指南】读书笔记 - 独奏 - Part 4</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/25</span><a class="archive-post-title" href= "/2017/11/25/ios-recruitment-summary/" >iOS 招聘总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/23</span><a class="archive-post-title" href= "/2017/11/23/photoshop-edit-gif/" >Photoshop 编辑 GIF</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/22</span><a class="archive-post-title" href= "/2017/11/22/github-readme-content-length-exceeded/" >关于 GitHub README.md 中图片加载失败</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/ubuntu-or-mac-ssh-by-shadowsocks/" >Ubuntu Mac 使用 Shadowsocks 代理连接 SSH</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/28</span><a class="archive-post-title" href= "/2017/10/28/simple-macbook-report/" >MacBook 使用小感</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/30</span><a class="archive-post-title" href= "/2017/08/30/git-checkout-theirs-resolve-conflict/" >Git checkout --theirs 解决冲突文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/27</span><a class="archive-post-title" href= "/2017/08/27/music-player-by-react/" >React jPlayer 音乐播放器</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/21</span><a class="archive-post-title" href= "/2017/08/21/react-native-getting-started/" >React Native 入门</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/03</span><a class="archive-post-title" href= "/2017/08/03/got-git-reading-notes-solo-part3/" >【Git 权威指南】读书笔记 - 独奏 - Part 3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/24</span><a class="archive-post-title" href= "/2017/07/24/gallery-by-react/" >React 图片画廊应用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href= "/2017/07/20/imooc-react-getting-started-tutorial/" >React 入门</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/20</span><a class="archive-post-title" href= "/2017/07/20/got-git-reading-notes-solo-part2/" >【Git 权威指南】读书笔记 - 独奏 - Part 2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/19</span><a class="archive-post-title" href= "/2017/07/19/got-git-reading-notes-solo-part1/" >【Git 权威指南】读书笔记 - 独奏 - Part 1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/12</span><a class="archive-post-title" href= "/2017/07/12/got-git-reading-notes-meet-git/" >【Git 权威指南】读书笔记 - 初识 Git</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href= "/2017/07/06/install-node-js-in-ubuntu-and-faq/" >Ubuntu 下安装 Node.js 与常见问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href= "/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/" >nodeppt 让你爱上做分享</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href= "/2017/07/06/work-with-mailchimp-api-3-pagination/" >使用 MailChimp API 3.0 的分页查询</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href= "/2017/07/06/trash-cli-move-files-to-trash/" >Ubutun trash-cli 删除文件到回收站</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href= "/2017/07/06/chinese-and-english-translation-tools-cli/" >Ubutun dict 中英文翻译 cli</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/04</span><a class="archive-post-title" href= "/2017/07/04/install-php-in-ubuntu-and-faq/" >Ubuntu 下安装 PHP 与常见问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "/2017/06/13/atom-plugin-php-cs-fixer/" >Atom 插件 PHP-CS-Fixer 规范代码格式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/06</span><a class="archive-post-title" href= "/2017/06/06/nginx-enable-http2/" >Nginx 启用 HTTP/2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href= "/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/" >解决多个 inline-block width 总和 100% 但是不并列显示</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href= "/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/" >PHP 中获取 Nginx 使用反向代理或 CDN 后的客户端真实 IP</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href= "/2017/06/01/imooc-install-php-extension-guide-notes/" >【IMOOC-PHP安装扩展指南】笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href= "/2017/05/25/how-to-use-this-self-parent-in-php/" >PHP 中 this self parent 用法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/" >Ubuntu 下安装配置 Sphinx 及在 PHP 中使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href= "/2017/05/17/git-modify-remote-url/" >Git 修改远程仓库地址</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href= "/2017/05/17/git-config-filemode-false/" >Git 忽略文件权限修改</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href= "/2017/05/14/i-am-proud-of-you/" >你是我的骄傲</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/" >Ubuntu 安装配置 ngx_pagespeed</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/24</span><a class="archive-post-title" href= "/2017/04/24/vagrant-getting-started-tutorial/" >Vagrant Getting Started Tutorial</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/" >区分 Nginx 中 fastcgi_params fastcgi.conf snippets/fastcgi-php.conf</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/21</span><a class="archive-post-title" href= "/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/" >区分 CGI FastCGI PHP-CGI PHP-FPM</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2017/04/20/mysql-the-group-by-and-order-by-difference-between-the-56-57/" >MySQL 5.6 5.7 中组内排序的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/12</span><a class="archive-post-title" href= "/2017/04/12/solving-git-chinese-in-file-name/" >解决 Git 中文文件名乱码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href= "/2017/04/11/php-modify-memory-limit/" >PHP 修改 memory_limit 内存限制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href= "/2017/04/11/mysql-manage-user-and-grant/" >MySQL 管理用户与访问授权</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/" >Ubuntu 命令行下免密码执行 sudo 命令</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2017/04/10/setting-time-zone-in-ubuntu-terminal/" >Ubuntu 命令行下设置时区</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2017/04/06/using-sendmail-mail-in-ubuntu/" >Ubuntu 下使用 sendmail mail 发送邮件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2017/03/30/git-synchronizing-between-working-directories-by-push/" >Git 在工作目录之间使用 push 进行同步</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2017/03/30/resolving-ssh-permission-denied-publickey/" >解决 SSH 连接提示 Permission denied publickey</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2017/03/21/open-pdf-file-in-ubuntu-terminal/" >Ubuntu 下使用 Terminal 打开 PDF</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href= "/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/" >解决 Ubuntu Sogou 无法选词输入中文</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/17</span><a class="archive-post-title" href= "/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/" >Git pull rebase 和 merge no-ff 保持提交线图整洁</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/2017/03/15/add-website-icons-to-the-home-screen/" >给网站添加保存到移动设备主屏的 icon</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href= "/2017/03/14/google-no-country-redirection/" >禁止 Google 根据区域重定向跳转</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2017/03/13/git-modify-commits-history/" >Git 修改提交历史</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/12</span><a class="archive-post-title" href= "/2017/03/12/imooc-how-to-use-css-for-web-layout/" >IMOOC 如何用 CSS 进行网页布局</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2017/03/09/php-empty-method-judge-0/" >PHP empty 方法判断 0.0</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2017/03/09/php-interactive-mode/" >PHP 交互式运行模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href= "/2017/03/07/ubuntu-crontab-content-backup/" >Ubuntu crontab 内容定时备份</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/" >解决 Ubuntu warning Setting locale failed</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/01</span><a class="archive-post-title" href= "/2017/03/01/imooc-html-css-basic-course-part4/" >IMOOC HTML+CSS 基础课程 Part 4</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href= "/2017/02/26/imooc-html-css-basic-course-part3/" >IMOOC HTML+CSS 基础课程 Part 3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2017/02/23/imooc-html-css-basic-course-part2/" >IMOOC HTML+CSS 基础课程 Part 2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/23</span><a class="archive-post-title" href= "/2017/02/23/imooc-html-css-basic-course-part1/" >IMOOC HTML+CSS 基础课程 Part 1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/22</span><a class="archive-post-title" href= "/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/" >Git clean 从工作区中删除未跟踪的文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/21</span><a class="archive-post-title" href= "/2017/02/21/atom-show-or-hidden-gitignore-files/" >Atom 显示/隐藏 .gitignore 忽略的文件/文件夹</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/15</span><a class="archive-post-title" href= "/2017/01/15/build-own-ubuntu-work-development-environment/" >从零搭建自己 Ubuntu 工作开发环境</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/04</span><a class="archive-post-title" href= "/2017/01/04/2017-happy-new-year/" >2017 Happy New Year</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2016 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/22</span><a class="archive-post-title" href= "/2016/12/22/163-music-in-markdown/" >Markdown 中使用网易云音乐插件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/17</span><a class="archive-post-title" href= "/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/" >解决 EasyUI Dialog 弹出窗移出界面后无法再移回</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/08</span><a class="archive-post-title" href= "/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/" >Sublime Text killer - Atom 的使用技巧和快捷键</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/29</span><a class="archive-post-title" href= "/2016/11/29/object-persistence-and-serialization/" >对象持久化与序列化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/25</span><a class="archive-post-title" href= "/2016/11/25/git-client-gui-in-ubuntu-git-cola/" >Ubuntu Git 图形化客户端 Git Cola</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/10</span><a class="archive-post-title" href= "/2016/10/10/manage-iptables-using-ufw-in-ubuntu/" >Ubuntu 下使用 UFW 管理防火墙服务</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/23</span><a class="archive-post-title" href= "/2016/09/23/core-java-reading-notes-part2/" >【Core Java】读书笔记 Part 2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/2016/09/19/leetcode-shell-solutions/" >LeetCode Shell 解题集合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/19</span><a class="archive-post-title" href= "/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/" >Ubuntu 下使用 sysv-rc-conf 管理开机启动服务</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2016/09/18/eclipse-java-comments-templates/" >Eclipse Java 注释模板</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/18</span><a class="archive-post-title" href= "/2016/09/18/mysql-limit-query-optimization/" >MySQL LIMIT 查询优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2016/09/14/eclipse-maven-settings-mirror-in-china/" >Eclipse Maven 配置使用国内镜像库</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/14</span><a class="archive-post-title" href= "/2016/09/14/leetcode-database-trips-and-users-262/" >LeetCode Database Trips and Users 262</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/12</span><a class="archive-post-title" href= "/2016/09/12/leetcode-database-department-highest-salary-184/" >LeetCode Database Department Highest Salary 184</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2016/09/11/leetcode-database-consecutive-numbers-180/" >LeetCode Database Consecutive Numbers 180</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2016/09/11/leetcode-database-rising-temperature-197/" >LeetCode Database Rising Temperature 197</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href= "/2016/09/11/leetcode-database-second-highest-salary-176/" >LeetCode Database Second Highest Salary 176</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/2016/09/10/mybatis-generator-tutorial/" >Mybatis Generator 使用配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/07</span><a class="archive-post-title" href= "/2016/09/07/springmvc-getting-started-tutorial/" >SpringMVC 入门使用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href= "/2016/08/31/20160601-20160831-report/" >刚刚毕业的两个月小结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/31</span><a class="archive-post-title" href= "/2016/08/31/leetcode-number-of-1-bits-191/" >LeetCode Number of 1 Bits 191</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/29</span><a class="archive-post-title" href= "/2016/08/29/leetcode-happy-number-202/" >LeetCode  Happy Number 202</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/25</span><a class="archive-post-title" href= "/2016/08/25/leetcode-roman-to-integer-13/" >LeetCode Roman to Integer 13</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/24</span><a class="archive-post-title" href= "/2016/08/24/leetcode-majority-element-169/" >LeetCode Majority Element 169</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2016/08/23/leetcode-first-unique-character-in-a-string-387/" >LeetCode First Unique Character in a String 387</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/23</span><a class="archive-post-title" href= "/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/" >LeetCode Maximum Depth of Binary Tree 104</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2016/08/22/being-alive-is-a-gift-reading-notes/" >读【此生为完成】随笔</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2016/08/22/leetcode-intersection-of-two-arrays-349/" >LeetCode Intersection of Two Arrays 349</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2016/08/22/leetcode-same-tree-100/" >LeetCode Same Tree 100</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2016/08/22/leetcode-excel-sheet-column-number-171/" >LeetCode Excel Sheet Column Number 171</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href= "/2016/08/22/leetcode-excel-sheet-column-title-168/" >LeetCode Excel Sheet Column Title 168</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/17</span><a class="archive-post-title" href= "/2016/08/17/something-like-an-autobiography-reading-notes/" >读【蛤蟆的油】随笔</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/16</span><a class="archive-post-title" href= "/2016/08/16/leetcode-move-zeroes-283/" >LeetCode Move Zeroes 283</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/11</span><a class="archive-post-title" href= "/2016/08/11/leetcode-ransom-note-383/" >LeetCode Ransom Note 383</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/31</span><a class="archive-post-title" href= "/2016/07/31/imooc-meet-mysql-notes/" >【IMOOC-与MySQL的零距离接触】笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/29</span><a class="archive-post-title" href= "/2016/07/29/ubuntu-ssh-key-login-without-password/" >Ubuntu SSH 密钥登陆免密码</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/25</span><a class="archive-post-title" href= "/2016/07/25/imooc-mysql-development-skills-notes/" >【IMOOC-MySQL开发技巧】笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/11</span><a class="archive-post-title" href= "/2016/07/11/write-some-humanities-diary/" >写一些人文的日志</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/07</span><a class="archive-post-title" href= "/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/" >Ubuntu JDK Nginx WildFly MySQL 环境配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/01</span><a class="archive-post-title" href= "/2016/07/01/github-webhook-example/" >GitHub Webhook 自动部署 Hexo</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/30</span><a class="archive-post-title" href= "/2016/06/30/github-pages-forbidden-baiduspide-solution/" >GitHub Pages 不被百度收录解决方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/27</span><a class="archive-post-title" href= "/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/" >Eclipse Maven Spring SpringMVC Mybatis 整合</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/24</span><a class="archive-post-title" href= "/2016/06/24/hexo-github-blog/" >使用 GitHub 和 Hexo 搭建个人独立博客</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/23</span><a class="archive-post-title" href= "/2016/06/23/css-font-summary/" >CSS Font 整理总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/14</span><a class="archive-post-title" href= "/2016/06/14/ubuntu-bluetooth-keyboard/" >Ubuntu 下连接蓝牙键盘</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/13</span><a class="archive-post-title" href= "/2016/06/13/java-modifier-final/" >Java final 修饰符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href= "/2016/05/06/core-java-reading-notes/" >【Core Java】读书笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/19</span><a class="archive-post-title" href= "/2016/04/19/core-java-method-parameter/" >【Core Java】对象与类-方法参数传递</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/26</span><a class="archive-post-title" href= "/2016/03/26/why-some-files-compress-very-much/" >为什么有的文件可以被压缩很多而有的却不能</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2016/03/23/core-java-array-dome/" >【Core Java】彩票选取中奖数字-数组例子</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href= "/2016/03/18/try-to-write-something/" >试着写东西</a>
+        </li>
+    
+    </div>
   </div>
-
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" rel="nofollow" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    主题 -
-    <a class="theme-link" rel="nofollow" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  
-
-  <span class="copyright-year">
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
     
-    &copy;
+        <span class="sidebar-tag-name" data-tags="report"><span class="iconfont-archer">&#xe606;</span>report</span>
     
-      2016 -
+        <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
     
-    2019
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">Yifans_Z</span>
-  </span>
+        <span class="sidebar-tag-name" data-tags="laravel"><span class="iconfont-archer">&#xe606;</span>laravel</span>
+    
+        <span class="sidebar-tag-name" data-tags="reading-notes"><span class="iconfont-archer">&#xe606;</span>reading-notes</span>
+    
+        <span class="sidebar-tag-name" data-tags="ios"><span class="iconfont-archer">&#xe606;</span>ios</span>
+    
+        <span class="sidebar-tag-name" data-tags="swift"><span class="iconfont-archer">&#xe606;</span>swift</span>
+    
+        <span class="sidebar-tag-name" data-tags="html"><span class="iconfont-archer">&#xe606;</span>html</span>
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="yii"><span class="iconfont-archer">&#xe606;</span>yii</span>
+    
+        <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="yaf"><span class="iconfont-archer">&#xe606;</span>yaf</span>
+    
+        <span class="sidebar-tag-name" data-tags="ubuntu"><span class="iconfont-archer">&#xe606;</span>ubuntu</span>
+    
+        <span class="sidebar-tag-name" data-tags="vagrant"><span class="iconfont-archer">&#xe606;</span>vagrant</span>
+    
+        <span class="sidebar-tag-name" data-tags="algorithm"><span class="iconfont-archer">&#xe606;</span>algorithm</span>
+    
+        <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
+    
+        <span class="sidebar-tag-name" data-tags="css"><span class="iconfont-archer">&#xe606;</span>css</span>
+    
+        <span class="sidebar-tag-name" data-tags="easyui"><span class="iconfont-archer">&#xe606;</span>easyui</span>
+    
+        <span class="sidebar-tag-name" data-tags="gif"><span class="iconfont-archer">&#xe606;</span>gif</span>
+    
+        <span class="sidebar-tag-name" data-tags="photoshop"><span class="iconfont-archer">&#xe606;</span>photoshop</span>
+    
+        <span class="sidebar-tag-name" data-tags="icon"><span class="iconfont-archer">&#xe606;</span>icon</span>
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+    
+        <span class="sidebar-tag-name" data-tags="react-native"><span class="iconfont-archer">&#xe606;</span>react-native</span>
+    
+        <span class="sidebar-tag-name" data-tags="jplayer"><span class="iconfont-archer">&#xe606;</span>jplayer</span>
+    
+        <span class="sidebar-tag-name" data-tags="js"><span class="iconfont-archer">&#xe606;</span>js</span>
+    
+        <span class="sidebar-tag-name" data-tags="es6"><span class="iconfont-archer">&#xe606;</span>es6</span>
+    
+        <span class="sidebar-tag-name" data-tags="jquery"><span class="iconfont-archer">&#xe606;</span>jquery</span>
+    
+        <span class="sidebar-tag-name" data-tags="node-js"><span class="iconfont-archer">&#xe606;</span>node-js</span>
+    
+        <span class="sidebar-tag-name" data-tags="node"><span class="iconfont-archer">&#xe606;</span>node</span>
+    
+        <span class="sidebar-tag-name" data-tags="npm"><span class="iconfont-archer">&#xe606;</span>npm</span>
+    
+        <span class="sidebar-tag-name" data-tags="npx"><span class="iconfont-archer">&#xe606;</span>npx</span>
+    
+        <span class="sidebar-tag-name" data-tags="github"><span class="iconfont-archer">&#xe606;</span>github</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
+    
+        <span class="sidebar-tag-name" data-tags="awesome-linux"><span class="iconfont-archer">&#xe606;</span>awesome-linux</span>
+    
+        <span class="sidebar-tag-name" data-tags="xcode"><span class="iconfont-archer">&#xe606;</span>xcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="fastlane"><span class="iconfont-archer">&#xe606;</span>fastlane</span>
+    
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+        <span class="sidebar-tag-name" data-tags="springmvc"><span class="iconfont-archer">&#xe606;</span>springmvc</span>
+    
+        <span class="sidebar-tag-name" data-tags="maven"><span class="iconfont-archer">&#xe606;</span>maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="wildfly"><span class="iconfont-archer">&#xe606;</span>wildfly</span>
+    
+        <span class="sidebar-tag-name" data-tags="mybatis"><span class="iconfont-archer">&#xe606;</span>mybatis</span>
+    
+        <span class="sidebar-tag-name" data-tags="eclipse"><span class="iconfont-archer">&#xe606;</span>eclipse</span>
+    
+        <span class="sidebar-tag-name" data-tags="leetcode"><span class="iconfont-archer">&#xe606;</span>leetcode</span>
+    
+        <span class="sidebar-tag-name" data-tags="guide"><span class="iconfont-archer">&#xe606;</span>guide</span>
+    
+        <span class="sidebar-tag-name" data-tags="shell"><span class="iconfont-archer">&#xe606;</span>shell</span>
+    
+        <span class="sidebar-tag-name" data-tags="nginx"><span class="iconfont-archer">&#xe606;</span>nginx</span>
+    
+        <span class="sidebar-tag-name" data-tags="php-fpm"><span class="iconfont-archer">&#xe606;</span>php-fpm</span>
+    
+        <span class="sidebar-tag-name" data-tags="fastcgi"><span class="iconfont-archer">&#xe606;</span>fastcgi</span>
+    
+        <span class="sidebar-tag-name" data-tags="sphinx"><span class="iconfont-archer">&#xe606;</span>sphinx</span>
+    
+        <span class="sidebar-tag-name" data-tags="cdn"><span class="iconfont-archer">&#xe606;</span>cdn</span>
+    
+        <span class="sidebar-tag-name" data-tags="phpstorm"><span class="iconfont-archer">&#xe606;</span>phpstorm</span>
+    
+        <span class="sidebar-tag-name" data-tags="composer"><span class="iconfont-archer">&#xe606;</span>composer</span>
+    
+        <span class="sidebar-tag-name" data-tags="moive"><span class="iconfont-archer">&#xe606;</span>moive</span>
+    
+        <span class="sidebar-tag-name" data-tags="mac"><span class="iconfont-archer">&#xe606;</span>mac</span>
+    
+        <span class="sidebar-tag-name" data-tags="ssh"><span class="iconfont-archer">&#xe606;</span>ssh</span>
+    
+        <span class="sidebar-tag-name" data-tags="ufw"><span class="iconfont-archer">&#xe606;</span>ufw</span>
+    
+        <span class="sidebar-tag-name" data-tags="crontab"><span class="iconfont-archer">&#xe606;</span>crontab</span>
+    
+        <span class="sidebar-tag-name" data-tags="sogou"><span class="iconfont-archer">&#xe606;</span>sogou</span>
+    
+        <span class="sidebar-tag-name" data-tags="pdf"><span class="iconfont-archer">&#xe606;</span>pdf</span>
+    
+        <span class="sidebar-tag-name" data-tags="markdown"><span class="iconfont-archer">&#xe606;</span>markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="google"><span class="iconfont-archer">&#xe606;</span>google</span>
+    
+        <span class="sidebar-tag-name" data-tags="ngx-pagespeed"><span class="iconfont-archer">&#xe606;</span>ngx-pagespeed</span>
+    
+        <span class="sidebar-tag-name" data-tags="awesome"><span class="iconfont-archer">&#xe606;</span>awesome</span>
+    
+        <span class="sidebar-tag-name" data-tags="mailchimp"><span class="iconfont-archer">&#xe606;</span>mailchimp</span>
+    
+        <span class="sidebar-tag-name" data-tags="https"><span class="iconfont-archer">&#xe606;</span>https</span>
+    
+        <span class="sidebar-tag-name" data-tags="aws"><span class="iconfont-archer">&#xe606;</span>aws</span>
+    
+        <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
+    
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
 </div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="report"><span class="iconfont-archer">&#xe60a;</span>report</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "Yifans_Z"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
 
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=11262529;
-var sc_invisible=1;
-var sc_security="476b93ef";
-var scJsHost = (("https:" == document.location.protocol) ?
-"https://secure." : "http://www.");
-document.write("<sc"+"ript type='text/javascript' src='" +
-scJsHost+
-"statcounter.com/counter/counter.js'></"+"script>");
-</script>
-<noscript><div class="statcounter"><a title="web analytics" href="http://statcounter.com/" target="_blank"><img class="statcounter" src="//c.statcounter.com/11262529/0/476b93ef/1/" alt="web
-analytics"></a></div></noscript>
-<!-- End of StatCounter Code for Default Guide -->
-
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-  
-  <script type="text/javascript">
-    var disqus_config = function () {
-        this.page.url = 'https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/';
-        this.page.identifier = '2017/03/01/imooc-html-css-basic-course-part4/';
-        this.page.title = 'IMOOC HTML+CSS 基础课程 Part 4';
-    };
-    (function() {
-    var d = document, s = d.createElement('script');
-
-    s.src = '//yifans.disqus.com/embed.js';
-
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();  
+    var sc_project = 11262529;
+    var sc_invisible = 1;
+    var sc_security = "476b93ef";
+    var scJsHost =
+      "https:" == document.location.protocol ? "https://secure." : "http://www.";
+    document.write(
+      "<sc" +
+        "ript type='text/javascript' src='" +
+        scJsHost +
+        "statcounter.com/counter/counter.js'></" +
+        "script>"
+    );
   </script>
-
-  
-
-  
-
-
-
-    
-  
-
-
-
-
-
-
-
-  
-    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
-  
-
-  
-    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
-  
-
-  
-    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
-  
-
-  
-
-  
-
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.10.3"></script>
-
-  </body>
+  <noscript
+    ><div class="statcounter">
+      <a title="web analytics" href="http://statcounter.com/" target="_blank"
+        ><img
+          class="statcounter"
+          src="//c.statcounter.com/11262529/0/476b93ef/1/"
+          alt="web
+  analytics"
+      /></a></div
+  ></noscript>
+  <!-- End of StatCounter Code for Default Guide -->
+    </body>
 </html>
+
+

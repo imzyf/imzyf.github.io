@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2019-07-17T12:24:41.000Z</updated>
+  <updated>2019-08-19T03:45:52.000Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue 使用笔记</title>
+    <link href="https://zyf.im/2019/08/08/vue-notes/"/>
+    <id>https://zyf.im/2019/08/08/vue-notes/</id>
+    <published>2019-08-08T09:33:38.000Z</published>
+    <updated>2019-08-19T03:45:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录开发过程中使用 Vue 时遇到的一些问题和解决办法。</p><a id="more"></a><h2 id="watch-对象的属性"><a href="#watch-对象的属性" class="headerlink" title="watch 对象的属性"></a>watch 对象的属性</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">   a: <span class="number">100</span>,</span><br><span class="line">   msg: &#123;</span><br><span class="line">      channel: <span class="string">"音乐"</span>,</span><br><span class="line">      style: <span class="string">"活泼"</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch: &#123;</span><br><span class="line">   a(newval, oldVal) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"new: %s, old: %s"</span>, newval, oldVal);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">   msg: &#123;</span><br><span class="line">      handler(newValue, oldValue) &#123;</span><br><span class="line">         <span class="built_in">console</span>.log(newValue)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 深度监听</span></span><br><span class="line">      deep: <span class="literal">true</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>监听对象内的某一具体属性，可以通过 <code>computed</code> 做中间层来实现：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">   channel() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.msg.channel</span><br><span class="line">   &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;</span><br><span class="line">   channel(newValue, oldValue) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'new: %s, old: %s'</span>, newval, oldVal)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="判断-data-中的对象是否为空"><a href="#判断-data-中的对象是否为空" class="headerlink" title="判断 data 中的对象是否为空"></a>判断 data 中的对象是否为空</h2><p>1、利用 <code>jQuery</code> 的 <code>isEmptyObject</code>：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$.isEmptyObject(data.list);</span><br></pre></td></tr></table></figure><p>实现源码：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">isEmptyObject: <span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> name;</span><br><span class="line">   <span class="keyword">for</span> (name <span class="keyword">in</span> obj) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2、获取到对象中的属性名，存到一个数组中，通过判断数组的 <code>length</code> 来判断此对象是否为空：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="built_in">Object</span>.getOwnPropertyNames(data);</span><br><span class="line">alert(arr.length == <span class="number">0</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure><p>ES6：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="built_in">Object</span>.keys(data.list);</span><br><span class="line">alert(arr.length == <span class="number">0</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure><p>3、转化为 <code>json</code> 字符串，再判断该字符串是否为 <code>{}</code>：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> b = <span class="built_in">JSON</span>.stringify(data) == <span class="string">"&#123;&#125;"</span>;</span><br><span class="line">alert(b); <span class="comment">// true</span></span><br></pre></td></tr></table></figure><blockquote><p>References：</p><ul><li><a href="https://blog.csdn.net/wangqing84411433/article/details/79582888" target="_blank" rel="noopener">jQuery.isEmptyObject() 函数详解</a></li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录开发过程中使用 Vue 时遇到的一些问题和解决办法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="https://zyf.im/tags/vue/"/>
+    
+  </entry>
   
   <entry>
     <title>npx 入门使用</title>
@@ -483,31 +503,6 @@
 &lt;p&gt;实现一个 &lt;code&gt;队列&lt;/code&gt;，包括 &lt;code&gt;enqueue&lt;/code&gt;、&lt;code&gt;dequeue&lt;/code&gt;、&lt;code&gt;peek&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&quot;Queue&quot;&gt;&lt;a href=&quot;#Queue&quot; class=&quot;headerlink&quot; title=&quot;Queue&quot;&gt;&lt;/a&gt;Queue&lt;/h2&gt;&lt;p&gt;&lt;code&gt;队列&lt;/code&gt; 核心也是 array，A queue gives you a FIFO or first-in, first-out order. 队列是：先进先出的。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public struct Queue&amp;lt;T&amp;gt; &amp;#123;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fileprivate var array = [T]()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="swift" scheme="https://zyf.im/tags/swift/"/>
-    
-      <category term="algorithm" scheme="https://zyf.im/tags/algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>栈 Stack Data Structure</title>
-    <link href="https://zyf.im/2018/11/22/stack-data-structure/"/>
-    <id>https://zyf.im/2018/11/22/stack-data-structure/</id>
-    <published>2018-11-22T06:00:00.000Z</published>
-    <updated>2018-11-22T06:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://cdn-qn.yifans.com/imzyf/johnson-wang-20675-unsplash.jpg" alt="queue-data-structure"></p><p>加入 <a href="https://github.com/raywenderlich/swift-algorithm-club" target="_blank" rel="noopener">Swift Algorithm Club</a> /‘ælgə’rɪðəm/，回炉重新学习数据结构与算法。</p><p>自己创建的项目：<a href="https://github.com/imzyf/data-structure-and-algorithm" target="_blank" rel="noopener">GitHub - imzyf/data-structure-and-algorithm</a>。</p><p>实现一个 <code>栈</code> /stæk/，包含 <code>push</code> <code>peek</code> <code>pop</code> 与 <code>Generics</code> 泛型。</p><a id="more"></a><h2 id="stack"><a href="#stack" class="headerlink" title="stack"></a>stack</h2><p><code>栈</code> 非常像一个数组，它包括少量的方法。</p><ul><li>push 添加一个新元素到栈顶</li><li>pop 从栈顶移除一个元素</li><li>peek 查看栈顶的一个元素但是不 pop</li></ul><p>A stack gives you a LIFO or last-in first-out order. 栈是后进先出，队列是先进先出。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public struct Stack&lt;Element&gt; &#123;</span><br><span class="line">    fileprivate var array: [Element] = []</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="push"><a href="#push" class="headerlink" title="push"></a>push</h2><p><code>push</code> 是在数组的尾部添加元素是以 <code>O(1)</code>，如果是在数组最前添加是 <code>O(n)</code> 这是昂贵的。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public mutating func push(_ element: Element) &#123;</span><br><span class="line">  array.append(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>因为使用的 <code>struct</code>，修改属性值的方法要加 <code>mutating</code>。</p><h2 id="pop"><a href="#pop" class="headerlink" title="pop"></a>pop</h2><p>想从一个空栈中弹出最后一个元素将返回 <code>nil</code>。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public mutating func pop(_ element: Element) &#123;</span><br><span class="line">    return array.popLast()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="peek"><a href="#peek" class="headerlink" title="peek"></a>peek</h2><p>与 <code>pop</code> 有点像，但是并没有移除栈顶的元素。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/// peek 改为更加语义化的 top 只读变量</span><br><span class="line">public var top: T? &#123;</span><br><span class="line">    return array.last</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><p>两个其他的常用属性，栈是否为空，栈中元素的个数。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public var isEmpty: Bool &#123;</span><br><span class="line">  return array.isEmpty</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public var count: Int &#123;</span><br><span class="line">  return array.count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>Reference:</p><ul><li><a href="https://www.raywenderlich.com/800-swift-algorithm-club-swift-stack-data-structure" target="_blank" rel="noopener">Swift Algorithm Club: Swift Stack Data Structure</a></li></ul></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://cdn-qn.yifans.com/imzyf/johnson-wang-20675-unsplash.jpg&quot; alt=&quot;queue-data-structure&quot;&gt;&lt;/p&gt;
-&lt;p&gt;加入 &lt;a href=&quot;https://github.com/raywenderlich/swift-algorithm-club&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Swift Algorithm Club&lt;/a&gt; /‘ælgə’rɪðəm/，回炉重新学习数据结构与算法。&lt;/p&gt;
-&lt;p&gt;自己创建的项目：&lt;a href=&quot;https://github.com/imzyf/data-structure-and-algorithm&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub - imzyf/data-structure-and-algorithm&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;实现一个 &lt;code&gt;栈&lt;/code&gt; /stæk/，包含 &lt;code&gt;push&lt;/code&gt; &lt;code&gt;peek&lt;/code&gt; &lt;code&gt;pop&lt;/code&gt; 与 &lt;code&gt;Generics&lt;/code&gt; 泛型。&lt;/p&gt;
     
     </summary>
     
