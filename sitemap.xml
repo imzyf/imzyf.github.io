@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/about/index.html</loc>
+    
+    <lastmod>2019-08-26T09:23:40.386Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/categories/index.html</loc>
     
     <lastmod>2019-08-21T06:22:34.607Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>https://zyf.im/2019/08/08/vue-notes/</loc>
     
     <lastmod>2019-08-19T03:45:52.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/about/index.html</loc>
-    
-    <lastmod>2019-08-08T09:35:00.240Z</lastmod>
     
   </url>
   
