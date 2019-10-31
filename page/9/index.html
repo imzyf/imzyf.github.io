@@ -404,6 +404,43 @@ height:40vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2017/04/20/mysql-the-group-by-and-order-by-difference-between-the-56-57/">
+            
+                <span>MySQL 5.6 5.7 中组内排序的区别</span>
+        </a>
+        <div class="abstract-content">
+            <p>MySQL 5.7 对比 5.6 有很多的变化。一个常见的需求：按条件分组后，取出每组中某字段最大值的那条记录。其实就是组内排序的问题，我的做法是：子查询先进行倒序排序，外层查询分组。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+----+----+-------+</span><br><span class="line">| id | no | name  |</span><br><span class="line">+----+----+-------+</span><br><span class="line">|  5 |  5 | Mike  |</span><br><span class="line">|  4 |  4 | Herry |</span><br><span class="line">|  3 |  3 | wyett |</span><br><span class="line">|  2 |  2 | John  |</span><br><span class="line">|  7 |  2 | John  |</span><br><span class="line">|  1 |  1 | Mike  |</span><br><span class="line">|  6 |  1 | John  |</span><br><span class="line">|  8 |  1 | Mike  |</span><br><span class="line">|  9 |  1 | Mike  |</span><br><span class="line">+----+----+-------+</span><br></pre></td></tr></table></figure>
+<p>要求：取出每人（按 name），最大 no 的记录</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> (</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">id</span>,<span class="keyword">no</span>,<span class="keyword">name</span> <span class="keyword">from</span> testorder <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">no</span> <span class="keyword">desc</span></span><br><span class="line">)a <span class="keyword">group</span> <span class="keyword">by</span> a.name;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+----+----+-------+</span><br><span class="line">| id | no | name  |</span><br><span class="line">+----+----+-------+</span><br><span class="line">|  4 |  4 | Herry |</span><br><span class="line">|  2 |  2 | John  |</span><br><span class="line">|  5 |  5 | Mike  |</span><br><span class="line">|  3 |  3 | wyett |</span><br><span class="line">+----+----+-------+</span><br></pre></td></tr></table></figure>
+<p>但是在 5.7 中，首先需要关闭 <code>ql_mode = ONLY_FULL_GROUP_BY</code>；相同的 <code>name</code> 值，返回则是取了 <strong>最早写入的数据行</strong> ，<strong>忽略了 <code>order by no desc</code>，按照数据的逻辑存储顺序来返回</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">+----+----+-------+</span><br><span class="line">| id | no | name  |</span><br><span class="line">+----+----+-------+</span><br><span class="line">|  4 |  4 | Herry |</span><br><span class="line">|  2 |  2 | John  |</span><br><span class="line">|  1 |  1 | Mike  |</span><br><span class="line">|  3 |  3 | wyett |</span><br><span class="line">+----+----+-------+</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select id,no,name from testorder group by name</span><br></pre></td></tr></table></figure>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/04/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="mysql">mysql</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2017/04/12/solving-git-chinese-in-file-name/">
             
                 <span>解决 Git 中文文件名乱码</span>
@@ -423,6 +460,40 @@ height:40vh;
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="git">git</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2017/04/11/php-modify-memory-limit/">
+            
+                <span>PHP 修改 memory_limit 内存限制</span>
+        </a>
+        <div class="abstract-content">
+            <p>在进行大量统计运算时，PHP 可能产生内存不足的情况</p>
+<h2 id="查看-memory-limit"><a href="#查看-memory-limit" class="headerlink" title="查看 memory_limit"></a>查看 memory_limit</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> phpinfo(); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改-memory-limit"><a href="#修改-memory-limit" class="headerlink" title="修改 memory_limit"></a>修改 memory_limit</h2><p>可以在 <code>phpinfo()</code> 中找到 <code>Loaded Configuration File</code> <code>php.ini</code> 的位置</p>
+<p>修改 <code>php.ini</code> 中的 memory_limit</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">memory_limit</span> = <span class="number">1024</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如果没有，你可以在文件的尾部自己增加这个参数</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/04/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
     
 </div>
             
@@ -460,40 +531,6 @@ height:40vh;
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="mysql">mysql</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2017/04/11/php-modify-memory-limit/">
-            
-                <span>PHP 修改 memory_limit 内存限制</span>
-        </a>
-        <div class="abstract-content">
-            <p>在进行大量统计运算时，PHP 可能产生内存不足的情况</p>
-<h2 id="查看-memory-limit"><a href="#查看-memory-limit" class="headerlink" title="查看 memory_limit"></a>查看 memory_limit</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> phpinfo(); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="修改-memory-limit"><a href="#修改-memory-limit" class="headerlink" title="修改 memory_limit"></a>修改 memory_limit</h2><p>可以在 <code>phpinfo()</code> 中找到 <code>Loaded Configuration File</code> <code>php.ini</code> 的位置</p>
-<p>修改 <code>php.ini</code> 中的 memory_limit</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="attr">memory_limit</span> = <span class="number">1024</span>M<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>如果没有，你可以在文件的尾部自己增加这个参数</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/04/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
     
 </div>
             
@@ -695,46 +732,6 @@ height:40vh;
         <a class="post-tag" href="javascript:void(0);" data-tags="ubuntu">ubuntu</a>
     
         <a class="post-tag" href="javascript:void(0);" data-tags="pdf">pdf</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/">
-            
-                <span>解决 Ubuntu Sogou 无法选词输入中文</span>
-        </a>
-        <div class="abstract-content">
-            <p>sogou 输入法突然无法选词输入中文，候选词位置出现白框，多次重重装 fcitx 和 sogou 也没有解决。尝试使用 google pinyin 代替，但是感觉很不顺手</p>
-<h2 id="issue-in-GitHub"><a href="#issue-in-GitHub" class="headerlink" title="issue in GitHub"></a>issue in GitHub</h2><p>sogou 输入法 GitHub 上的一些 issue：</p>
-<ul>
-<li><a href="https://github.com/FZUG/repo/issues/43" target="_blank" rel="noopener">#43</a></li>
-<li><a href="https://github.com/FZUG/repo/issues/177" target="_blank" rel="noopener">#177</a></li>
-<li><a href="https://github.com/FZUG/repo/issues/179" target="_blank" rel="noopener">#179</a></li>
-</ul>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>try to lastest version</p>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p>clean <code>fcitx</code>, <code>SogouPY*</code>, <code>sogou-qimpanel</code> in <code>~/.config</code>, then relogin and try again</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.config</span><br><span class="line">sudo rm -rf  fcitx SogouPY sogou-qimpanel</span><br></pre></td></tr></table></figure>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/03/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="ubuntu">ubuntu</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="sogou">sogou</a>
     
 </div>
             
@@ -3869,9 +3866,44 @@ height:40vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 158
+        Total : 159
         </div>
         <!-- search  -->
         
@@ -3884,6 +3916,11 @@ height:40vh;
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/12</span><a class="archive-post-title" href="/2019/09/12/my-macbook/">2015 款 iMac 升级之路</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -4200,12 +4237,12 @@ height:40vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Ubuntu 下安装 Node.js 与常见问题</a>
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/">nodeppt 让你爱上做分享</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/">nodeppt 让你爱上做分享</a>
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Ubuntu 下安装 Node.js 与常见问题</a>
         </li>
     
     
@@ -4310,12 +4347,12 @@ height:40vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2017/04/11/php-modify-memory-limit/">PHP 修改 memory_limit 内存限制</a>
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2017/04/11/mysql-manage-user-and-grant/">MySQL 管理用户与访问授权</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2017/04/11/mysql-manage-user-and-grant/">MySQL 管理用户与访问授权</a>
+            <span class="archive-post-date">04/11</span><a class="archive-post-title" href="/2017/04/11/php-modify-memory-limit/">PHP 修改 memory_limit 内存限制</a>
         </li>
     
     
@@ -4524,12 +4561,12 @@ height:40vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/11</span><a class="archive-post-title" href="/2016/09/11/leetcode-database-rising-temperature-197/">LeetCode Database Rising Temperature 197</a>
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href="/2016/09/11/leetcode-database-second-highest-salary-176/">LeetCode Database Second Highest Salary 176</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/11</span><a class="archive-post-title" href="/2016/09/11/leetcode-database-second-highest-salary-176/">LeetCode Database Second Highest Salary 176</a>
+            <span class="archive-post-date">09/11</span><a class="archive-post-title" href="/2016/09/11/leetcode-database-rising-temperature-197/">LeetCode Database Rising Temperature 197</a>
         </li>
     
     
@@ -4594,12 +4631,12 @@ height:40vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/22</span><a class="archive-post-title" href="/2016/08/22/leetcode-excel-sheet-column-number-171/">LeetCode Excel Sheet Column Number 171</a>
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href="/2016/08/22/leetcode-excel-sheet-column-title-168/">LeetCode Excel Sheet Column Title 168</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">08/22</span><a class="archive-post-title" href="/2016/08/22/leetcode-excel-sheet-column-title-168/">LeetCode Excel Sheet Column Title 168</a>
+            <span class="archive-post-date">08/22</span><a class="archive-post-title" href="/2016/08/22/leetcode-excel-sheet-column-number-171/">LeetCode Excel Sheet Column Number 171</a>
         </li>
     
     
@@ -4707,8 +4744,6 @@ height:40vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="report"><span class="iconfont-archer">&#xe606;</span>report</span>
-    
         <span class="sidebar-tag-name" data-tags="docker"><span class="iconfont-archer">&#xe606;</span>docker</span>
     
         <span class="sidebar-tag-name" data-tags="laravel"><span class="iconfont-archer">&#xe606;</span>laravel</span>
@@ -4723,29 +4758,29 @@ height:40vh;
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
+        <span class="sidebar-tag-name" data-tags="yaf"><span class="iconfont-archer">&#xe606;</span>yaf</span>
+    
         <span class="sidebar-tag-name" data-tags="yii"><span class="iconfont-archer">&#xe606;</span>yii</span>
     
         <span class="sidebar-tag-name" data-tags="linux"><span class="iconfont-archer">&#xe606;</span>linux</span>
     
-        <span class="sidebar-tag-name" data-tags="yaf"><span class="iconfont-archer">&#xe606;</span>yaf</span>
-    
-        <span class="sidebar-tag-name" data-tags="ubuntu"><span class="iconfont-archer">&#xe606;</span>ubuntu</span>
-    
         <span class="sidebar-tag-name" data-tags="vagrant"><span class="iconfont-archer">&#xe606;</span>vagrant</span>
-    
-        <span class="sidebar-tag-name" data-tags="algorithm"><span class="iconfont-archer">&#xe606;</span>algorithm</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="css"><span class="iconfont-archer">&#xe606;</span>css</span>
-    
-        <span class="sidebar-tag-name" data-tags="easyui"><span class="iconfont-archer">&#xe606;</span>easyui</span>
+        <span class="sidebar-tag-name" data-tags="algorithm"><span class="iconfont-archer">&#xe606;</span>algorithm</span>
     
         <span class="sidebar-tag-name" data-tags="gif"><span class="iconfont-archer">&#xe606;</span>gif</span>
     
         <span class="sidebar-tag-name" data-tags="photoshop"><span class="iconfont-archer">&#xe606;</span>photoshop</span>
     
+        <span class="sidebar-tag-name" data-tags="css"><span class="iconfont-archer">&#xe606;</span>css</span>
+    
         <span class="sidebar-tag-name" data-tags="icon"><span class="iconfont-archer">&#xe606;</span>icon</span>
+    
+        <span class="sidebar-tag-name" data-tags="node-js"><span class="iconfont-archer">&#xe606;</span>node-js</span>
+    
+        <span class="sidebar-tag-name" data-tags="ubuntu"><span class="iconfont-archer">&#xe606;</span>ubuntu</span>
     
         <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
@@ -4759,19 +4794,19 @@ height:40vh;
     
         <span class="sidebar-tag-name" data-tags="jquery"><span class="iconfont-archer">&#xe606;</span>jquery</span>
     
-        <span class="sidebar-tag-name" data-tags="node-js"><span class="iconfont-archer">&#xe606;</span>node-js</span>
-    
         <span class="sidebar-tag-name" data-tags="node"><span class="iconfont-archer">&#xe606;</span>node</span>
     
         <span class="sidebar-tag-name" data-tags="npm"><span class="iconfont-archer">&#xe606;</span>npm</span>
     
         <span class="sidebar-tag-name" data-tags="npx"><span class="iconfont-archer">&#xe606;</span>npx</span>
     
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
+    
         <span class="sidebar-tag-name" data-tags="github"><span class="iconfont-archer">&#xe606;</span>github</span>
     
-        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
-    
         <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
     
         <span class="sidebar-tag-name" data-tags="awesome-linux"><span class="iconfont-archer">&#xe606;</span>awesome-linux</span>
     
@@ -4793,15 +4828,15 @@ height:40vh;
     
         <span class="sidebar-tag-name" data-tags="leetcode"><span class="iconfont-archer">&#xe606;</span>leetcode</span>
     
-        <span class="sidebar-tag-name" data-tags="guide"><span class="iconfont-archer">&#xe606;</span>guide</span>
-    
         <span class="sidebar-tag-name" data-tags="shell"><span class="iconfont-archer">&#xe606;</span>shell</span>
     
-        <span class="sidebar-tag-name" data-tags="nginx"><span class="iconfont-archer">&#xe606;</span>nginx</span>
+        <span class="sidebar-tag-name" data-tags="guide"><span class="iconfont-archer">&#xe606;</span>guide</span>
     
         <span class="sidebar-tag-name" data-tags="php-fpm"><span class="iconfont-archer">&#xe606;</span>php-fpm</span>
     
         <span class="sidebar-tag-name" data-tags="fastcgi"><span class="iconfont-archer">&#xe606;</span>fastcgi</span>
+    
+        <span class="sidebar-tag-name" data-tags="nginx"><span class="iconfont-archer">&#xe606;</span>nginx</span>
     
         <span class="sidebar-tag-name" data-tags="sphinx"><span class="iconfont-archer">&#xe606;</span>sphinx</span>
     
@@ -4810,6 +4845,8 @@ height:40vh;
         <span class="sidebar-tag-name" data-tags="phpstorm"><span class="iconfont-archer">&#xe606;</span>phpstorm</span>
     
         <span class="sidebar-tag-name" data-tags="composer"><span class="iconfont-archer">&#xe606;</span>composer</span>
+    
+        <span class="sidebar-tag-name" data-tags="report"><span class="iconfont-archer">&#xe606;</span>report</span>
     
         <span class="sidebar-tag-name" data-tags="moive"><span class="iconfont-archer">&#xe606;</span>moive</span>
     
@@ -4831,17 +4868,15 @@ height:40vh;
     
         <span class="sidebar-tag-name" data-tags="ngx-pagespeed"><span class="iconfont-archer">&#xe606;</span>ngx-pagespeed</span>
     
+        <span class="sidebar-tag-name" data-tags="https"><span class="iconfont-archer">&#xe606;</span>https</span>
+    
         <span class="sidebar-tag-name" data-tags="awesome"><span class="iconfont-archer">&#xe606;</span>awesome</span>
     
         <span class="sidebar-tag-name" data-tags="mailchimp"><span class="iconfont-archer">&#xe606;</span>mailchimp</span>
     
-        <span class="sidebar-tag-name" data-tags="https"><span class="iconfont-archer">&#xe606;</span>https</span>
-    
         <span class="sidebar-tag-name" data-tags="aws"><span class="iconfont-archer">&#xe606;</span>aws</span>
     
         <span class="sidebar-tag-name" data-tags="vscode"><span class="iconfont-archer">&#xe606;</span>vscode</span>
-    
-        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
