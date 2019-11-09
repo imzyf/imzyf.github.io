@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/06/13/java-modifier-final/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/06/work-with-mailchimp-api-3-pagination/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/08/27/music-player-by-react/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/10/28/simple-macbook-report/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2018/01/05/dont-be-lonely-in-2017/</loc>
+    <lastmod>2019-11-13</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/</loc>
     <lastmod>2019-11-13</lastmod>
   </url>  <url>
@@ -44,9 +80,6 @@
     <lastmod>2019-08-08</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/01/04/2017-happy-new-year/</loc>
-    <lastmod>2019-07-18</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2018/01/05/dont-be-lonely-in-2017/</loc>
     <lastmod>2019-07-18</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/01/03/review-2018/</loc>
@@ -112,9 +145,6 @@
     <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/10/28/simple-macbook-report/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
@@ -125,9 +155,6 @@
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/08/27/music-player-by-react/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/08/21/react-native-getting-started/</loc>
@@ -145,9 +172,6 @@
     <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/04/11/php-modify-memory-limit/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
@@ -158,9 +182,6 @@
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/02/21/atom-show-or-hidden-gitignore-files/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/07/06/work-with-mailchimp-api-3-pagination/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/</loc>
@@ -262,9 +283,6 @@
     <loc>https://zyf.im/2019/03/01/extra-long-factorials/</loc>
     <lastmod>2019-03-01</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</loc>
-    <lastmod>2019-02-28</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2019/02/28/fastlane-getting-started/</loc>
     <lastmod>2019-02-28</lastmod>
   </url>  <url>
@@ -274,13 +292,7 @@
     <loc>https://zyf.im/2016/03/23/core-java-array-dome/</loc>
     <lastmod>2019-02-27</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
-    <lastmod>2019-02-27</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/04/19/core-java-method-parameter/</loc>
-    <lastmod>2019-02-25</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</loc>
     <lastmod>2019-02-25</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/01/19/promisekit-getting-started/</loc>
@@ -386,18 +398,6 @@
     <lastmod>2017-08-22</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/05/06/core-java-reading-notes/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/06/13/java-modifier-final/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</loc>
     <lastmod>2017-08-22</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</loc>

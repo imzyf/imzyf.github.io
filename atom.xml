@@ -67,7 +67,7 @@
     <published>2019-06-11T09:01:39.000Z</published>
     <updated>2019-06-11T09:01:39.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="编辑-settings-json"><a href="#编辑-settings-json" class="headerlink" title="编辑 settings.json"></a>编辑 settings.json</h2><p><code>command + ,</code> 右上角点击 <code>{}</code>。</p><h2 id="放大左侧文件栏字体"><a href="#放大左侧文件栏字体" class="headerlink" title="放大左侧文件栏字体"></a>放大左侧文件栏字体</h2><p>通过整体放大窗口比例。在 <code>settings.json</code> 中添加：</p><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"window.zoomLevel": 1.1</span><br></pre></td></tr></table></figure><a id="more"></a><h2 id="扩展推荐"><a href="#扩展推荐" class="headerlink" title="扩展推荐"></a>扩展推荐</h2><ul><li>Beautify - 格式化代码 </li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="编辑-settings-json"><a href="#编辑-settings-json" class="headerlink" title="编辑 settings.json"></a>编辑 settings.json</h2><p><code>command + ,</code> 右上角点击 <code>{}</code>。</p><h2 id="放大左侧文件栏字体"><a href="#放大左侧文件栏字体" class="headerlink" title="放大左侧文件栏字体"></a>放大左侧文件栏字体</h2><p>通过整体放大窗口比例。在 <code>settings.json</code> 中添加：</p><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"window.zoomLevel": 1.1</span><br></pre></td></tr></table></figure><a id="more"></a><h2 id="扩展推荐"><a href="#扩展推荐" class="headerlink" title="扩展推荐"></a>扩展推荐</h2><ul><li>Beautify - 格式化代码</li></ul>]]></content>
     
     <summary type="html">
     
@@ -423,6 +423,8 @@
       
     
     </summary>
+    
+      <category term="report" scheme="https://zyf.im/categories/report/"/>
     
     
       <category term="report" scheme="https://zyf.im/tags/report/"/>
