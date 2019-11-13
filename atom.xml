@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2019-09-12T07:27:30.000Z</updated>
+  <updated>2019-08-19T03:45:52.000Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -15,30 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>2015 款 iMac 升级之路</title>
-    <link href="https://zyf.im/2019/09/12/my-macbook/"/>
-    <id>https://zyf.im/2019/09/12/my-macbook/</id>
-    <published>2019-09-12T07:27:30.000Z</published>
-    <updated>2019-09-12T07:27:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="https://zyf.im/tags/mac/"/>
-    
-  </entry>
   
   <entry>
     <title>Vue 使用笔记</title>
@@ -502,6 +478,31 @@
 &lt;li&gt;再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。&lt;/li&gt;
 &lt;li&gt;一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。&lt;/li&gt;
 &lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="swift" scheme="https://zyf.im/tags/swift/"/>
+    
+      <category term="algorithm" scheme="https://zyf.im/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>队列 Queue Data Structure</title>
+    <link href="https://zyf.im/2018/11/22/queue-data-structure/"/>
+    <id>https://zyf.im/2018/11/22/queue-data-structure/</id>
+    <published>2018-11-22T08:00:00.000Z</published>
+    <updated>2018-11-22T08:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://cdn-qn.yifans.com/imzyf/mael-balland-1389916-unsplash.jpg" alt="queue-data-structure"></p><p>实现一个 <code>队列</code>，包括 <code>enqueue</code>、<code>dequeue</code>、<code>peek</code>。</p><h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p><code>队列</code> 核心也是 array，A queue gives you a FIFO or first-in, first-out order. 队列是：先进先出的。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public struct Queue&lt;T&gt; &#123;    </span><br><span class="line">    fileprivate var array = [T]()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><a id="more"></a><h2 id="enqueue"><a href="#enqueue" class="headerlink" title="enqueue"></a>enqueue</h2><p>进队，在数组尾部追加元素。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public mutating func enqueue(_ element: T) &#123;</span><br><span class="line">    array.append(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="dequeue"><a href="#dequeue" class="headerlink" title="dequeue"></a>dequeue</h2><p>出队，将首位的元素移除。因为首位元素移除后，其他元素依次向前移动，所以是 O(n)。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public var isEmpty: Bool &#123;</span><br><span class="line">    // 使用数组自身的方法，而不是 array.count &gt; 0</span><br><span class="line">    return array.isEmpty</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public mutating func dequeue() -&gt; T? &#123;</span><br><span class="line">    // 使用定义的变量</span><br><span class="line">    if isEmpty &#123;</span><br><span class="line">        return nil</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return array.removeLast()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="peek"><a href="#peek" class="headerlink" title="peek"></a>peek</h2><p>查看队首元素。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/// peek() 改为更有语义话的只读变量</span><br><span class="line">public var front: T? &#123;</span><br><span class="line">    return array.first</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="优化出队"><a href="#优化出队" class="headerlink" title="优化出队"></a>优化出队</h2><p>在出队后不移动元素而是移动 <code>起始索引</code>，就像动的收银台而不是排队的人。</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/// 优化 队列 的出队</span><br><span class="line">public struct OptimizedQueue&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">    /// 这里改为了可选型，为了可以清理无效的元素</span><br><span class="line">    fileprivate var array = [T?]()</span><br><span class="line">    /// 起始索引</span><br><span class="line">    fileprivate var head = 0</span><br><span class="line"></span><br><span class="line">    public var count: Int &#123;</span><br><span class="line">        // 减去 起始索引 前面的数量</span><br><span class="line">        return array.count - head</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public var isEmpty: Bool &#123;</span><br><span class="line">        // 根据实际数量判断</span><br><span class="line">        return count == 0</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 保持不变</span><br><span class="line">    public mutating func enqueue(_ element: T) &#123;</span><br><span class="line">        array.append(element)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public mutating func dequeue() -&gt; T? &#123;</span><br><span class="line">        guard head &lt; array.count,</span><br><span class="line">            let element = array[head] else &#123;</span><br><span class="line">            return nil</span><br><span class="line">        &#125;</span><br><span class="line">        // 置空当前位置元素</span><br><span class="line">        array[head] = nil</span><br><span class="line">        // 前移起始索引</span><br><span class="line">        head += 1</span><br><span class="line"></span><br><span class="line">        // 空索引的占用比例</span><br><span class="line">        let percentage = Double(head)/Double(array.count)</span><br><span class="line">        // 50 0.25 都是魔法数字，主要是为了控制数组修剪的频率，可以自行调整</span><br><span class="line">        if array.count &gt; 50 &amp;&amp; percentage &gt; 0.25 &#123;</span><br><span class="line">            // 将起始空元素删除</span><br><span class="line">            array.removeFirst(head)</span><br><span class="line">            // 重置 起始索引</span><br><span class="line">            head = 0</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return element</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public var front: T? &#123;</span><br><span class="line">        if isEmpty &#123;</span><br><span class="line">            return nil</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            // 根据 起始索引进行 返回</span><br><span class="line">            return array[head]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>文章代码：<a href="https://github.com/imzyf/data-structure-and-algorithm/tree/master/002-Queue" target="_blank" rel="noopener">GitHub - imzyf/data-structure-and-algorithm/002-Queue/</a>。</p><blockquote><p>Reference:</p><ul><li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Queue" target="_blank" rel="noopener">raywenderlich/swift-algorithm-club/Queue</a></li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://cdn-qn.yifans.com/imzyf/mael-balland-1389916-unsplash.jpg&quot; alt=&quot;queue-data-structure&quot;&gt;&lt;/p&gt;
+&lt;p&gt;实现一个 &lt;code&gt;队列&lt;/code&gt;，包括 &lt;code&gt;enqueue&lt;/code&gt;、&lt;code&gt;dequeue&lt;/code&gt;、&lt;code&gt;peek&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;Queue&quot;&gt;&lt;a href=&quot;#Queue&quot; class=&quot;headerlink&quot; title=&quot;Queue&quot;&gt;&lt;/a&gt;Queue&lt;/h2&gt;&lt;p&gt;&lt;code&gt;队列&lt;/code&gt; 核心也是 array，A queue gives you a FIFO or first-in, first-out order. 队列是：先进先出的。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;public struct Queue&amp;lt;T&amp;gt; &amp;#123;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    fileprivate var array = [T]()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
