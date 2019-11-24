@@ -146,6 +146,113 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
+					<a class="post-card-content-link" title="CentOS yum 升级 git 版本" href="/2019/11/25/centos-upgrade-git-by-yum/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2019-11-25T07:36:16.000Z">
+									2019-11-25
+								</time>
+							</span>
+							<h2 class="post-card-title">CentOS yum 升级 git 版本</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								
+								
+								先去官网看看 Download for Linux and Unix:
+RHEL and derivatives typically ship older ve
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							1
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="CRLF will be replaced by LF" href="/2019/11/22/crlf-will-be-replaced-by-lf/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2019-11-22T09:30:37.000Z">
+									2019-11-22
+								</time>
+							</span>
+							<h2 class="post-card-title">CRLF will be replaced by LF</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								$ git add .warning: CRLF will be replaced by LF in X.
+
+CRLF：windows 环境下的换行符
+LF：linux 环境下的换行符
+
+这个错误的意思，就是文件中存在两种环境的换行符，git 会自动替换 CRLF 为 LF ，所以提示警告。
+
+但是我项目中是配置了 .gitattributes 的：
+* text=auto eol=lf
+.gitattributes公式：要匹配的文件模式 属性1 属性2 ...。
+示例 1*
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							2
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
 					<a class="post-card-content-link" title="Git 修改提交时间" href="/2019/06/10/git-modify-commit-date/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
@@ -166,11 +273,13 @@
 								
 								
 								
-								
-								
 								指定本次提交时间：
-git commit -m &quot;fix...&quot; --date=`date -R`git commit -m &quot;f
-								...
+git commit -m "fix..." --date=`date -R`git commit -m "fix..." --date="$(date -R)"git commit -m "fix..." --date="Tue, 11 Jun 2019 17:50:50 +0800"
+
+修改上次提交时间：
+git commit --amend --date=`date -R`
+
+								
 							</p>
 						</div>
 					</a>
@@ -186,7 +295,7 @@ git commit -m &quot;fix...&quot; --date=`date -R`git commit -m &quot;f
 							</div>
 						</div>
 						<span class="reading-time">
-							1
+							0
 							min read
 						</span>
 					</footer>
@@ -399,6 +508,55 @@ $ git rev-list HEAD | wc -l
 						</div>
 						<span class="reading-time">
 							9
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="关于 GitHub README.md 中图片加载失败" href="/2017/11/22/github-readme-content-length-exceeded/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2017-11-22T08:00:00.000Z">
+									2017-11-22
+								</time>
+							</span>
+							<h2 class="post-card-title">关于 GitHub README.md 中图片加载失败</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								遇到的问题在编写 GitHub 的 README.md 后，其中引用的网络图片无法正常显示，点击 alt 的文字提示：Content length exceeded。
+
+分析根据 About anonymized image URLs 这篇文章：上传的图片 URL 将被修改，所以个人信息将不会被跟踪。GitHub 将使用 开源项目 Camo。Camo 将为每一个图片生成一个以 https://camo.githubusercontent.com/ 匿名代理 URL 同时隐藏来
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							1
 							min read
 						</span>
 					</footer>
@@ -683,9 +841,10 @@ Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人�
 								查看当前的远程库git remote -v
 -v 是 --verbose 的简写
 origin ssh://ubuntu@168.8.1.1/usr/share/nginx/html (fetch)origin ssh://ubuntu@168.8.1.1/usr/share/nginx/html (push)
+
 添加远程仓库git remote add [shortname] [url]
 eg:
-git remote add pb git://github.com/paulb
+git remote add pb git://github.com/paul
 								...
 							</p>
 						</div>
@@ -1262,20 +1421,24 @@ Google 后早已有许多热心网友给出了解决方案，自己在这里总�
       
       
       <li>
+        <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/07/17/npx-getting-started/">npx 入门使用</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/06/11/vscode-using-experience/">VSCode 使用经验</a>
-      </li>
       
       
       
@@ -1618,7 +1781,7 @@ Google 后早已有许多热心网友给出了解决方案，自己在这里总�
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.67px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/google/" style="font-size: 14px;">google</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.33px;">hexo</a> <a href="/tags/html/" style="font-size: 16px;">html</a> <a href="/tags/https/" style="font-size: 14.67px;">https</a> <a href="/tags/ios/" style="font-size: 20px;">ios</a> <a href="/tags/java/" style="font-size: 20.67px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 22.67px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.33px;">mysql</a> <a href="/tags/nginx/" style="font-size: 16.67px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.33px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.67px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 18px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.33px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.67px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.33px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.33px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.67px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.62px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 17.08px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.54px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.54px;">hexo</a> <a href="/tags/html/" style="font-size: 16.31px;">html</a> <a href="/tags/https/" style="font-size: 14.77px;">https</a> <a href="/tags/ios/" style="font-size: 20.15px;">ios</a> <a href="/tags/java/" style="font-size: 20.92px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.23px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.31px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.69px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.08px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.54px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22.46px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.77px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.31px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.85px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.85px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.77px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.38px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.23px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.77px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

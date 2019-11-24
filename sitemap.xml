@@ -2,6 +2,167 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</loc>
+    
+    <lastmod>2019-11-25T08:29:27.606Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
+    
+    <lastmod>2019-11-25T07:39:12.530Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
+    
+    <lastmod>2019-11-25T07:38:08.392Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</loc>
+    
+    <lastmod>2019-11-25T07:34:26.176Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
+    
+    <lastmod>2019-11-22T09:35:15.331Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</loc>
+    
+    <lastmod>2019-11-22T09:34:59.815Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/01/github-webhook-example/</loc>
+    
+    <lastmod>2019-11-22T09:34:36.933Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/11/25/git-client-gui-in-ubuntu-git-cola/</loc>
+    
+    <lastmod>2019-11-22T09:33:58.818Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/</loc>
+    
+    <lastmod>2019-11-22T09:33:37.836Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
+    
+    <lastmod>2019-11-22T09:33:35.457Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</loc>
+    
+    <lastmod>2019-11-22T09:33:29.292Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/12/solving-git-chinese-in-file-name/</loc>
+    
+    <lastmod>2019-11-22T09:33:09.112Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/17/git-config-filemode-false/</loc>
+    
+    <lastmod>2019-11-22T09:33:06.411Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/17/git-modify-remote-url/</loc>
+    
+    <lastmod>2019-11-22T09:32:59.454Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</loc>
+    
+    <lastmod>2019-11-22T09:32:21.959Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</loc>
+    
+    <lastmod>2019-11-22T09:32:18.112Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</loc>
+    
+    <lastmod>2019-11-22T09:32:09.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</loc>
+    
+    <lastmod>2019-11-22T09:31:37.847Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</loc>
+    
+    <lastmod>2019-11-22T09:31:33.783Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
+    
+    <lastmod>2019-11-21T03:05:33.725Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
+    
+    <lastmod>2019-11-21T02:44:39.275Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
+    
+    <lastmod>2019-11-21T02:44:10.335Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/08/08/vue-notes/</loc>
+    
+    <lastmod>2019-11-18T03:57:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
     
     <lastmod>2019-11-13T11:57:44.527Z</lastmod>
@@ -100,13 +261,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/11/25/git-client-gui-in-ubuntu-git-cola/</loc>
-    
-    <lastmod>2019-11-13T11:13:19.148Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
     
     <lastmod>2019-11-13T10:29:00.136Z</lastmod>
@@ -117,13 +271,6 @@
     <loc>https://zyf.im/2017/03/15/add-website-icons-to-the-home-screen/</loc>
     
     <lastmod>2019-11-13T10:28:31.605Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
-    
-    <lastmod>2019-11-13T10:21:54.941Z</lastmod>
     
   </url>
   
@@ -205,13 +352,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/08/08/vue-notes/</loc>
-    
-    <lastmod>2019-08-19T03:45:52.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/</loc>
     
     <lastmod>2019-08-08T09:26:00.000Z</lastmod>
@@ -275,20 +415,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
-    
-    <lastmod>2019-06-11T08:57:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
-    
-    <lastmod>2019-06-11T08:57:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2019/06/10/git-modify-commit-date/</loc>
     
     <lastmod>2019-06-10T06:07:46.000Z</lastmod>
@@ -299,76 +425,6 @@
     <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
     
     <lastmod>2019-06-04T06:07:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
-    
-    <lastmod>2019-06-04T06:05:07.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</loc>
-    
-    <lastmod>2019-06-04T06:04:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/12/solving-git-chinese-in-file-name/</loc>
-    
-    <lastmod>2019-06-04T06:04:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/17/git-modify-remote-url/</loc>
-    
-    <lastmod>2019-06-04T06:04:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/17/git-config-filemode-false/</loc>
-    
-    <lastmod>2019-06-04T06:04:25.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</loc>
-    
-    <lastmod>2019-06-04T06:04:18.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</loc>
-    
-    <lastmod>2019-06-04T06:04:11.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</loc>
-    
-    <lastmod>2019-06-04T06:04:02.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</loc>
-    
-    <lastmod>2019-06-04T06:03:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</loc>
-    
-    <lastmod>2019-06-04T06:03:29.000Z</lastmod>
     
   </url>
   
@@ -429,13 +485,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
-    
-    <lastmod>2019-05-29T09:09:52.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
     
     <lastmod>2019-05-29T09:09:24.000Z</lastmod>
@@ -467,34 +516,6 @@
     <loc>https://zyf.im/2017/02/21/atom-show-or-hidden-gitignore-files/</loc>
     
     <lastmod>2019-05-29T09:05:45.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/</loc>
-    
-    <lastmod>2019-05-25T08:57:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
-    
-    <lastmod>2019-05-25T08:56:54.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</loc>
-    
-    <lastmod>2019-05-25T08:56:48.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/07/01/github-webhook-example/</loc>
-    
-    <lastmod>2019-05-25T08:56:38.000Z</lastmod>
     
   </url>
   
@@ -537,13 +558,6 @@
     <loc>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</loc>
     
     <lastmod>2019-05-25T08:44:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
-    
-    <lastmod>2019-05-25T08:43:39.000Z</lastmod>
     
   </url>
   

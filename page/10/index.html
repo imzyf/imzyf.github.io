@@ -148,6 +148,110 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
+					<a class="post-card-content-link" title="Ubuntu 下使用 Terminal 打开 PDF" href="/2017/03/21/open-pdf-file-in-ubuntu-terminal/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2017-03-21T06:00:00.000Z">
+									2017-03-21
+								</time>
+							</span>
+							<h2 class="post-card-title">Ubuntu 下使用 Terminal 打开 PDF</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								
+								
+								一个文件夹中存放了大量的文件后，在 window 打开中被打开时是非常耗时的。当我们已经明确知道文件名时，可以直接在 Terminal 中使用命令，调用应用打开
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							0
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="解决 Ubuntu Sogou 无法选词输入中文" href="/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2017-03-17T09:00:00.000Z">
+									2017-03-17
+								</time>
+							</span>
+							<h2 class="post-card-title">解决 Ubuntu Sogou 无法选词输入中文</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								sogou 输入法突然无法选词输入中文，候选词位置出现白框，多次重重装 fcitx 和 sogou 也没有解决。尝试使用 google pinyin 代替，但是感觉很不顺手
+issue in GitHubsogou 输入法 GitHub 上的一些 issue：
+
+#43
+#177
+#179
+
+解决方案一try to lastest version
+方案二clean fcitx, SogouPY*, sogou-qimpanel in ~/.config, then relog
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							1
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
 					<a class="post-card-content-link" title="Git pull rebase 和 merge no-ff 保持提交线图整洁" href="/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
@@ -168,9 +272,11 @@
 								
 								
 								
-								
-								
-								git log 中的一个清晰的提交线图是很方便进行 code review 和代码回退git pull --rebase 主要是为是将提交约线图平坦化，而 gi
+								git log 中的一个清晰的提交线图是很方便进行 code review 和代码回退git pull --rebase 主要是为是将提交约线图平坦化，而 git merge --no-ff 则是刻意制造分叉
+pull rebase
+perform a rebase after fetching
+
+状况Git 作为分布式版本控制系统，所有修改操作都是基于本地的，在团队协作过程中，假设你和你的同伴在本地中分别有各自的新提交，而你的同伴先于你 push 了代码到远程分支上，所以你
 								...
 							</p>
 						</div>
@@ -267,8 +373,9 @@ Here is a table of the current iOS icon sizes from Apple:
 								
 								
 								
-								使用代理上 Google 时，Google 常会根据网络代理的区域进行重定向跳转。例如：使用韩国代理时，google.com 会跳转到 https://www.google.co.kr/，搜索结果也多为韩语，很是不方便
+								使用代理上 Google 时，Google 常会根据网络代理的区域进行重定向跳转。例如：使用韩国代理时，google.com 会跳转到 https://www.google.co.kr/，搜索结果也多为韩语，很是不方便。
 解决的办法其实也很简单：访问 https://www.google.com/ncr 就可以了。
+
 ncr 表示：No Country Redirection，禁止区域重定向。
 
 								
@@ -557,103 +664,6 @@ config in crontab
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="解决 Ubuntu warning Setting locale failed" href="/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								| 
-								
-								<time datetime="2017-03-03T09:00:00.000Z">
-									2017-03-03
-								</time>
-							</span>
-							<h2 class="post-card-title">解决 Ubuntu warning Setting locale failed</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								在配置新服务器时遇到 Setting locale failed 的警告，要求 Please check that your locale settings
-perl: warning: Setting locale failed.perl: warning: Please check that your locale settings:    LANGUAGE = (unset),    LC_ALL = (unset),    LC_MESSAGES = &quot;zh
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">Yifans_Z</div>
-								
-								<a href="/about" class="static-avatar author-profile-image">
-									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							2
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="IMOOC HTML+CSS 基础课程 Part 4" href="/2017/03/01/imooc-html-css-basic-course-part4/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								| 
-								
-								<time datetime="2017-02-28T16:00:00.000Z">
-									2017-03-01
-								</time>
-							</span>
-							<h2 class="post-card-title">IMOOC HTML+CSS 基础课程 Part 4</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								慕课网上【HTML+CSS 基础课程】学习笔记。本文主要内容：CSS 代码缩写、单位和值、样式设置小技巧。
-
-第13章 CSS 代码缩写，占用更少的带宽盒模型代码简写还记得在讲盒模型时外边距（margin）、内边距（padding）和边框（border)设置上下左右四个方向的边距是按照顺时针方向设置的：上右下左margin:10px 15px 12px 14px;/*上设置为10px、右设置为15px、下设置为12px、左设置为14px*/margin:10px 10px 1
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">Yifans_Z</div>
-								
-								<a href="/about" class="static-avatar author-profile-image">
-									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							15
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
 		</div>
 	</div>
 </div>
@@ -698,20 +708,24 @@ perl: warning: Setting locale failed.perl: warning: Please check that your local
       
       
       <li>
+        <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/07/17/npx-getting-started/">npx 入门使用</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/06/11/vscode-using-experience/">VSCode 使用经验</a>
-      </li>
       
       
       
@@ -1054,7 +1068,7 @@ perl: warning: Setting locale failed.perl: warning: Please check that your local
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.67px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/google/" style="font-size: 14px;">google</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.33px;">hexo</a> <a href="/tags/html/" style="font-size: 16px;">html</a> <a href="/tags/https/" style="font-size: 14.67px;">https</a> <a href="/tags/ios/" style="font-size: 20px;">ios</a> <a href="/tags/java/" style="font-size: 20.67px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 22.67px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.33px;">mysql</a> <a href="/tags/nginx/" style="font-size: 16.67px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.33px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.67px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 18px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.33px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.67px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.33px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.33px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.67px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.62px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 17.08px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.54px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.54px;">hexo</a> <a href="/tags/html/" style="font-size: 16.31px;">html</a> <a href="/tags/https/" style="font-size: 14.77px;">https</a> <a href="/tags/ios/" style="font-size: 20.15px;">ios</a> <a href="/tags/java/" style="font-size: 20.92px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.23px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.31px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.69px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.08px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.54px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22.46px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.77px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.31px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.85px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.85px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.77px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.38px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.23px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.77px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

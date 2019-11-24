@@ -145,7 +145,116 @@
 	<div class="inner">
 		<div class="post-feed">
 			
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="PHP composer 基本原理" href="/2019/04/28/php-composer-basic/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/dayne-topkin-60559-unsplash.jpg"></div>
+				</a>
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="PHP composer 基本原理" href="/2019/04/28/php-composer-basic/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2019-04-28T11:21:12.000Z">
+									2019-04-28
+								</time>
+							</span>
+							<h2 class="post-card-title">PHP composer 基本原理</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								
+启动public/index.php：
+// Register The Auto Loaderrequire __DIR__.'/../vendor/auto
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							33
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
 			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="PHP 请小心判断 strpos" href="/2019/04/10/php-strpos-warning/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2019-04-10T12:27:21.000Z">
+									2019-04-10
+								</time>
+							</span>
+							<h2 class="post-card-title">PHP 请小心判断 strpos</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								有开始写世界上最后的语言 PHP 了（狗头保命）。一个很简单的字符串是否包含判断就掉坑了。
+方法签名：
+strpos ( string $haystack , mixed $needle [, int $offset = 0 ] ) : int
+
+$mystring = 'abc';$findme   = 'a';if (strpos($mystring, $findme)) &#123;   dump('yes');&#125;
+注意这时是不会输出 yes，因为 strpo
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							1
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="ES6 中使用 jQuery $(this) 的问题" href="/2019/04/10/es6-jquery-this-arrow-function/">
+					<div class="post-card-image b-lazy" data-src="https://images.unsplash.com/photo-1573510746018-be027b8f6f8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=480&q=70"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="ES6 中使用 jQuery $(this) 的问题" href="/2019/04/10/es6-jquery-this-arrow-function/">
@@ -166,13 +275,10 @@
 								
 								
 								
-								
-								
-								
-								
 								在老项目中开始改用 laravel-mix ES6 逐渐过渡。摸索中遇到在与 jQuery 一同使用时 箭头函数 中 $(this) 的含义发生了变化。
 
-遇到
+遇到这个问题主要是没有搞清楚 箭头函数：
+$
 								...
 							</p>
 						</div>
@@ -189,7 +295,7 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							2
+							1
 							min read
 						</span>
 					</footer>
@@ -573,116 +679,6 @@ Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key:
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="插入排序 Insertion Sort" href="/2018/11/24/insertion-sort/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								| 
-								
-								<time datetime="2018-11-24T08:00:00.000Z">
-									2018-11-24
-								</time>
-							</span>
-							<h2 class="post-card-title">插入排序 Insertion Sort</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								
-将一个数组从高到低或者从低到高排序。
-插入排序算法的工作原理：
-
-将若干数字放在一个数组里，数组是乱序的。
-从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。
-将这个数字插入到一个新的数组里。
-从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。
-再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。
-一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。
-
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">Yifans_Z</div>
-								
-								<a href="/about" class="static-avatar author-profile-image">
-									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							8
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="队列 Queue Data Structure" href="/2018/11/22/queue-data-structure/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								| 
-								
-								<time datetime="2018-11-22T08:00:00.000Z">
-									2018-11-22
-								</time>
-							</span>
-							<h2 class="post-card-title">队列 Queue Data Structure</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								
-实现一个 队列，包括 enqueue、dequeue、peek。
-Queue队列 核心也是 array，A queue gives you a FIFO or first-in, first-out order. 队列是：先进先出的。
-public struct Queue&lt;T&gt; &#123;        fileprivate var array = [T]()&#125;
-
-enqueue进队，在数组尾部追加元素。
-public mutating func
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">Yifans_Z</div>
-								
-								<a href="/about" class="static-avatar author-profile-image">
-									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							4
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
 		</div>
 	</div>
 </div>
@@ -727,20 +723,24 @@ public mutating func
       
       
       <li>
+        <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/07/17/npx-getting-started/">npx 入门使用</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/06/11/vscode-using-experience/">VSCode 使用经验</a>
-      </li>
       
       
       
@@ -1083,7 +1083,7 @@ public mutating func
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.67px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.67px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 16px;">github</a> <a href="/tags/google/" style="font-size: 14px;">google</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.33px;">hexo</a> <a href="/tags/html/" style="font-size: 16px;">html</a> <a href="/tags/https/" style="font-size: 14.67px;">https</a> <a href="/tags/ios/" style="font-size: 20px;">ios</a> <a href="/tags/java/" style="font-size: 20.67px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 22.67px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.33px;">mysql</a> <a href="/tags/nginx/" style="font-size: 16.67px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.33px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.67px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 18px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.33px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.67px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.33px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.33px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.67px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.62px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 17.08px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.54px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.54px;">hexo</a> <a href="/tags/html/" style="font-size: 16.31px;">html</a> <a href="/tags/https/" style="font-size: 14.77px;">https</a> <a href="/tags/ios/" style="font-size: 20.15px;">ios</a> <a href="/tags/java/" style="font-size: 20.92px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.23px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.31px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.69px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.08px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.54px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22.46px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.77px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.31px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.85px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.85px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.77px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.38px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.23px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.77px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 
