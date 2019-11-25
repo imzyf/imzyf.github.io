@@ -143,7 +143,11 @@
 	<div class="inner">
 		<div class="post-feed">
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="寻找数组中轴索引" href="/2019/03/06/find-pivot-index/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/lance-asper-160766-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="寻找数组中轴索引" href="/2019/03/06/find-pivot-index/">
@@ -160,8 +164,6 @@
 						</header>
 						<div class="post-card-excerpt">
 							<p>
-								
-								
 								
 								
 								
@@ -194,7 +196,11 @@ Input:nums = [1, 7, 3, 6, 5, 6]Output: 3Expla
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="m 进制转 n 进制" href="/2019/03/02/convert-m-number-to-n-number/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/mika-baumeister-703680-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="m 进制转 n 进制" href="/2019/03/02/convert-m-number-to-n-number/">
@@ -216,14 +222,12 @@ Input:nums = [1, 7, 3, 6, 5, 6]Output: 3Expla
 								
 								
 								
-								
-								
 思路
 m 进制 -&gt; 十进制 -&gt; n 进制
 利用柯里化生成函数（炫技 🐶）
 
 
-m 进制 -&gt; 十进制// carry 范围值: 2-36// origin 范围值: 0-9 [ascii 48-58], A-Z [65-90], a-z [97-122]func carryToDecimalism(_ carry: Int) -&gt; (_ origin: String) -&gt; Int &#123;    return &#123; orig
+m 进制 -&gt; 十进制// carry 范围值: 2-36// origin 范围值: 0-9 
 								...
 							</p>
 						</div>
@@ -247,7 +251,11 @@ m 进制 -&gt; 十进制// carry 范围值: 2-36// origin 范围值: 0-9 [ascii 
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="超长阶乘的计算" href="/2019/03/01/extra-long-factorials/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/daniel-corneschi-529450-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="超长阶乘的计算" href="/2019/03/01/extra-long-factorials/">
@@ -269,15 +277,9 @@ m 进制 -&gt; 十进制// carry 范围值: 2-36// origin 范围值: 0-9 [ascii 
 								
 								
 								
-								
-								
 打印 n! 的结果（1 &lt;= n &lt;= 100）。注意：当 n &gt; 20 时 64 位的 Int 将无法直接存储结果。
 思路
-将大数字用 数组 形式表示。比如 987 使用 [9,8,7] 代替。
-每一位乘以 n，再进行进位操作，得到新数组。
-
-
-let nums = [9, 8, 7]let tmpNums = nums.map &#123; $0 * 2 &#125; // [18, 16, 14]// 遍历 tmpNums 每一个数字，进行进制操作[
+将大数字用 数组 形式表示。比如 987 使用 [9,
 								...
 							</p>
 						</div>
@@ -301,7 +303,11 @@ let nums = [9, 8, 7]let tmpNums = nums.map &#123; $0 * 2 &#125; // [18, 16, 14]/
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="二分查找 Binary Search" href="/2018/12/10/binary-search/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/anelale-najera-764022-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="二分查找 Binary Search" href="/2018/12/10/binary-search/">
@@ -323,11 +329,8 @@ let nums = [9, 8, 7]let tmpNums = nums.map &#123; $0 * 2 &#125; // [18, 16, 14]/
 								
 								
 								
-								
-								
 快速从一个数组中查找一个元素。
-Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key: T) -&gt; Int? &#123;    for i in 0 ..&lt; a.count &#123;        if a[i] == key &#123;            return i        &#125;    &#125;    return nil&#125;
-
+Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key: T) -&gt; I
 								...
 							</p>
 						</div>
@@ -351,7 +354,11 @@ Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key:
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="插入排序 Insertion Sort" href="/2018/11/24/insertion-sort/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/jordane-mathieu-539965-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="插入排序 Insertion Sort" href="/2018/11/24/insertion-sort/">
@@ -373,18 +380,12 @@ Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key:
 								
 								
 								
-								
-								
 将一个数组从高到低或者从低到高排序。
 插入排序算法的工作原理：
 
 将若干数字放在一个数组里，数组是乱序的。
 从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。
-将这个数字插入到一个新的数组里。
-从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。
-再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。
-一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。
-
+将这个数字插
 								...
 							</p>
 						</div>
@@ -408,7 +409,11 @@ Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key:
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="队列 Queue Data Structure" href="/2018/11/22/queue-data-structure/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/mael-balland-1389916-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="队列 Queue Data Structure" href="/2018/11/22/queue-data-structure/">
@@ -430,14 +435,8 @@ Linear Search 线性查找func linearSearch&lt;T: Equatable&gt;(_ a: [T], _ key:
 								
 								
 								
-								
-								
 实现一个 队列，包括 enqueue、dequeue、peek。
-Queue队列 核心也是 array，A queue gives you a FIFO or first-in, first-out order. 队列是：先进先出的。
-public struct Queue&lt;T&gt; &#123;        fileprivate var array = [T]()&#125;
-
-enqueue进队，在数组尾部追加元素。
-public mutating func
+Queue队列 核心也是 array，A queue gives you a FIFO or first-in, first-out
 								...
 							</p>
 						</div>
@@ -461,7 +460,11 @@ public mutating func
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
+			<article class="post-card post ">
+				
+				<a class="post-card-image-link" title="栈 Stack Data Structure" href="/2018/11/22/stack-data-structure/">
+					<div class="post-card-image b-lazy" data-src="https://cdn-qn.yifans.com/imzyf/johnson-wang-20675-unsplash.jpg"></div>
+				</a>
 				
 				<div class="post-card-content">
 					<a class="post-card-content-link" title="栈 Stack Data Structure" href="/2018/11/22/stack-data-structure/">
@@ -483,19 +486,8 @@ public mutating func
 								
 								
 								
-								
-								
 加入 Swift Algorithm Club /‘ælgə’rɪðəm/，回炉重新学习数据结构与算法。
-自己创建的项目：GitHub - imzyf/data-structure-and-algorithm。
-实现一个 栈 /stæk/，包含 push peek pop 与 Generics 泛型。
-
-stack栈 非常像一个数组，它包括少量的方法。
-
-push 添加一个新元素到栈顶
-pop 从栈顶移除一个元素
-peek 查看栈顶的一个元素但是不 pop
-
-A stack
+自己创建的项目：GitHub - imzyf/data-structure-and-algo
 								...
 							</p>
 						</div>
@@ -1017,7 +1009,7 @@ let icon = UIImage(named: "settings-icon")let font = UIFont(name: "San Francisco
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.62px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/cdn/" style="font-size: 14px;">cdn</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 17.08px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/es6/" style="font-size: 14px;">es6</a> <a href="/tags/fastlane/" style="font-size: 14px;">fastlane</a> <a href="/tags/gif/" style="font-size: 14px;">gif</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.54px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.54px;">hexo</a> <a href="/tags/html/" style="font-size: 16.31px;">html</a> <a href="/tags/https/" style="font-size: 14.77px;">https</a> <a href="/tags/ios/" style="font-size: 20.15px;">ios</a> <a href="/tags/java/" style="font-size: 20.92px;">java</a> <a href="/tags/jquery/" style="font-size: 14px;">jquery</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.23px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.31px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.69px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.08px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.54px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 22.46px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.77px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.31px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.85px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.85px;">report</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/sphinx/" style="font-size: 14px;">sphinx</a> <a href="/tags/ssh/" style="font-size: 14.77px;">ssh</a> <a href="/tags/swift/" style="font-size: 19.38px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 23.23px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.77px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.71px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

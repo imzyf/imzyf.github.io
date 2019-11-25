@@ -1,16 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</loc>
-    <lastmod>2019-11-25</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
-    <lastmod>2019-11-25</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
+    <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/06/work-with-mailchimp-api-3-pagination/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2018/05/20/nginx-ip-forbidden/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/15/add-website-icons-to-the-home-screen/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part2/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part1/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/24/gallery-by-react/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/08/21/react-native-getting-started/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/08/27/music-player-by-react/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
+    <lastmod>2019-11-25</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
@@ -58,15 +115,6 @@
     <loc>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</loc>
     <lastmod>2019-11-22</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
-    <lastmod>2019-11-21</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
-    <lastmod>2019-11-21</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
-    <lastmod>2019-11-21</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2019/08/08/vue-notes/</loc>
     <lastmod>2019-11-18</lastmod>
   </url>  <url>
@@ -91,12 +139,6 @@
     <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
     <lastmod>2019-11-13</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/07/06/work-with-mailchimp-api-3-pagination/</loc>
-    <lastmod>2019-11-13</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/08/27/music-player-by-react/</loc>
-    <lastmod>2019-11-13</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
     <lastmod>2019-11-13</lastmod>
   </url>  <url>
@@ -106,26 +148,14 @@
     <loc>https://zyf.im/2018/01/05/dont-be-lonely-in-2017/</loc>
     <lastmod>2019-11-13</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/07/06/nodeppt-make-you-fall-in-love-with-to-share/</loc>
-    <lastmod>2019-11-13</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/07/06/trash-cli-move-files-to-trash/</loc>
     <lastmod>2019-11-13</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
     <lastmod>2019-11-13</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/03/15/add-website-icons-to-the-home-screen/</loc>
-    <lastmod>2019-11-13</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/10/28/ubuntu-or-mac-ssh-by-shadowsocks/</loc>
     <lastmod>2019-11-05</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
-    <lastmod>2019-10-31</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
-    <lastmod>2019-10-31</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
     <lastmod>2019-10-31</lastmod>
@@ -157,17 +187,11 @@
     <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     <lastmod>2019-06-11</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
-    <lastmod>2019-06-11</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2019/06/10/git-modify-commit-date/</loc>
     <lastmod>2019-06-10</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
     <lastmod>2019-06-04</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
     <lastmod>2019-05-29</lastmod>
@@ -176,15 +200,6 @@
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/08/21/react-native-getting-started/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/07/24/gallery-by-react/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/06/13/atom-plugin-php-cs-fixer/</loc>
@@ -337,9 +352,6 @@
     <loc>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</loc>
     <lastmod>2018-05-23</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2018/05/20/nginx-ip-forbidden/</loc>
-    <lastmod>2018-05-20</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</loc>
     <lastmod>2018-05-16</lastmod>
   </url>  <url>
@@ -397,12 +409,6 @@
     <loc>https://zyf.im/2017/11/25/ios-recruitment-summary/</loc>
     <lastmod>2017-11-24</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part1/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part2/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/05/06/core-java-reading-notes/</loc>
     <lastmod>2017-08-22</lastmod>
   </url>  <url>
@@ -457,14 +463,8 @@
     <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
     <lastmod>2017-08-22</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
-    <lastmod>2017-08-22</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
     <lastmod>2017-06-01</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/</loc>
-    <lastmod>2017-03-12</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/02/26/imooc-html-css-basic-course-part3/</loc>
     <lastmod>2017-02-28</lastmod>
