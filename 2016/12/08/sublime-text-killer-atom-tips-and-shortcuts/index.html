@@ -149,53 +149,7 @@
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <p><strong>2019-05-25 更新：</strong> 已经抛弃 Atom，使用 VSCode 代替。</p>
-<a id="more"></a>
-<hr>
-<p>Atom 是由 GitHub 团队发布和维护的代码编辑器。发布于 2014 年，“Sublime Text killer” 拥有每月超过 110 万的用户，这并不奇怪：Atom 易于扩展，可定制和 hackable，Atom 已成为许多开发人员的最爱。</p>
-<p>尽管它的广泛使用，我经常看到有能力的开发者采用绕远的方式做事，却不知道它的真正潜力。这篇文章探讨了一些改进你的 Atom 工作流的技巧。我希望当你阅读完时，你会学到至少一个你原来没有使用的新技巧。</p>
-<p>注：虽然这篇文章是为 Atom 用户，但很多技巧和快捷方式也可以用在 Sublime Text 中。</p>
-<h2 id="Tips-技巧"><a href="#Tips-技巧" class="headerlink" title="Tips 技巧"></a>Tips 技巧</h2><p>首先的一个 Atom 技巧是：你可以启用 IDE 中的那些你不了解的选项设置、功能。查看一遍所有的菜单设置是十分有价值的，你可能会发现到你原来不知道的事情。</p>
-<h3 id="Multiple-Cursors-多行光标"><a href="#Multiple-Cursors-多行光标" class="headerlink" title="Multiple Cursors 多行光标"></a>Multiple Cursors 多行光标</h3><p>多行光标将可以一次性的编辑文本中任何地方的多行内容。按住 <strong>cmd</strong> (Mac) 或 <strong>ctrl</strong> (Windows/Linux) 然后鼠标点击你想输入的地方。</p>
-<p><img alt="Multiple Cursors" class="post-img b-lazy" data-img="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1464357838multcursor.gif" data-index="0" data-src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1464357838multcursor.gif"></p>
-<h3 id="Auto-Indent-自动缩进"><a href="#Auto-Indent-自动缩进" class="headerlink" title="Auto Indent 自动缩进"></a>Auto Indent 自动缩进</h3><p>选中代码然后选择 Edit &gt; Lines &gt; Auto Indent</p>
-<p><img alt="Auto Indent" class="post-img b-lazy" data-img="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1464357903autoindent.gif" data-index="1" data-src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1464357903autoindent.gif"></p>
-<p>为了提高效率可以将此设置快捷键，Edit &gt; Keymap，<code>ctrl-}</code> 可以设置为任何你想的快捷键</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;atom-text-editor&apos;:</span><br><span class="line">    &apos;ctrl-&#125;&apos;: &apos;editor:auto-indent&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="Show-invisibles-显示不可见"><a href="#Show-invisibles-显示不可见" class="headerlink" title="Show invisibles 显示不可见"></a>Show invisibles 显示不可见</h3><p>为了确保文档和所有的行使用的正确的缩进，应该在编辑器中开启显示不可见。它将使用 <code>.</code> 表示空格缩进，<code>»</code> 表示 tab，<code>¬</code> 表示换行。这有助于你准确的查看出你哪里混合 tabs 或 无用的空格。</p>
-<p>虽然在开始时这会让你的屏幕有些“乱”，但是你会很快的适应，而且将发现它很有价值</p>
-<p>Atom (Mac) or Edit (Windows/Linux) &gt; Preferences &gt; (Scroll Down) Show Invisibles.</p>
-<h3 id="Soft-wrap-软换行"><a href="#Soft-wrap-软换行" class="headerlink" title="Soft wrap 软换行"></a>Soft wrap 软换行</h3><p>左右拖动屏幕非常不方便，Soft wrap 可以使没有文字在屏幕的边缘。如果一行文字需要换行，它将缩进到与上一行相同的级别，并用一个 <code>·</code> 将替换行号。</p>
-<p>Atom (Mac) or Edit (Windows/Linux) &gt; Preferences &gt; (Scroll Down) Soft Wrap.</p>
-<h3 id="Character-case-convert-大小写转换"><a href="#Character-case-convert-大小写转换" class="headerlink" title="Character case convert 大小写转换"></a>Character case convert 大小写转换</h3><p>Edit &gt; Text 菜单中有很多实用的文本操纵工具</p>
-<h2 id="Packages-插件"><a href="#Packages-插件" class="headerlink" title="Packages 插件"></a>Packages 插件</h2><p>Packages are a compelling reason for choosing Atom. The ability to install and change anything and everything is what makes this code editor so great. I’m not about to reel off the best plugins that you must have installed — there are plenty of posts that do that already.</p>
-<p>Instead, I’m going to tell you to install every one that you come across, then uninstall the ones you don’t like (or add too many precious seconds to your start-up time). If you go to Settings &gt; Packages and click on an installed extension, it tells you how many milliseconds it adds to boot-up time.</p>
-<p>These are a few packages that I rely on daily and that I haven’t seen listed in many other blog posts:</p>
-<p>Project Manager<br>Git Plus<br>Minimap<br>Pigments.<br>atom-beautify（格式化代码）<br>file-icons（文件图标）</p>
-<h2 id="Keyboard-Shortcuts-快捷键"><a href="#Keyboard-Shortcuts-快捷键" class="headerlink" title="Keyboard Shortcuts 快捷键"></a>Keyboard Shortcuts 快捷键</h2><h3 id="Duplicate-line-重复行"><a href="#Duplicate-line-重复行" class="headerlink" title="Duplicate line 重复行"></a>Duplicate line 重复行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cmd + Shift + D (Mac)</span><br><span class="line">Ctrl + Shift + D (Windows/Linux)</span><br></pre></td></tr></table></figure>
-<p>它允许您将光标放在行上的任何位置并复制它。</p>
-<p>它非常有助于复制 CSS 选择器，渐变或表格单元格。当然，您也可以通过突出显示它们或使用多个游标同时复制多行：</p>
-<h3 id="Move-the-current-line-Up-or-Down-向上或向下移动当前行"><a href="#Move-the-current-line-Up-or-Down-向上或向下移动当前行" class="headerlink" title="Move the current line Up or Down 向上或向下移动当前行"></a>Move the current line Up or Down 向上或向下移动当前行</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cmd + Up (or Down) Arrow (Mac)</span><br><span class="line">Ctrl + Up (or Down) Arrow (Windows/Linux)</span><br></pre></td></tr></table></figure>
-<p>无论你的光标在哪里，此快捷方式都会将当前行移动到其周围的行上方或下方。</p>
-<p>如果选择了多行，它将移动整个块（和自动缩进）</p>
-<h3 id="Select-the-next-matching-characters-选中下一匹配的字符"><a href="#Select-the-next-matching-characters-选中下一匹配的字符" class="headerlink" title="Select the next matching characters 选中下一匹配的字符"></a>Select the next matching characters 选中下一匹配的字符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cmd + D (Mac)</span><br><span class="line">Ctrl + D (Windows/Linux)</span><br></pre></td></tr></table></figure>
-<p>此命令可以允许你选中下一匹配的字符，并以高亮显示。然后你可以（使用自动生成的多个光标）删除、编辑或更新这些值字符。</p>
-<p><img alt="Select the next matching characters" class="post-img b-lazy" data-img="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1464358146matching.gif" data-index="2" data-src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2016/05/1464358146matching.gif"></p>
-<p>如果你只想更新几个值或属性，而不使用 find 和 replace，这是特别有用的。</p>
-<h3 id="Unselect-the-next-matching-characters-取消选中下一匹配的字符"><a href="#Unselect-the-next-matching-characters-取消选中下一匹配的字符" class="headerlink" title="Unselect the next matching characters 取消选中下一匹配的字符"></a>Unselect the next matching characters 取消选中下一匹配的字符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cmd + U (Mac)</span><br><span class="line">Ctrl + U (Windows/Linux)</span><br></pre></td></tr></table></figure>
-<p>如果你选择下一个匹配的字符，有时跨度将很大。此快捷方式将以相反的顺序取消选择最近选择的字符。</p>
-<h3 id="Select-all-matching-characters-选择所有匹配的字符"><a href="#Select-all-matching-characters-选择所有匹配的字符" class="headerlink" title="Select all matching characters 选择所有匹配的字符"></a>Select all matching characters 选择所有匹配的字符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cmd + Ctrl + G (Mac)</span><br><span class="line">Alt + F3 (Windows/Linux)</span><br></pre></td></tr></table></figure>
-<p>有时你想批量编辑文档中的所有匹配字符，而不是每次按 Cmd / Ctrl + D。 此快捷方式选择与您选择的内容相匹配的所有内容。（警告：大量的选择将严重减慢 Atom！）</p>
-<h3 id="Toggle-comments-on-and-off-切换注释（开启和关闭）"><a href="#Toggle-comments-on-and-off-切换注释（开启和关闭）" class="headerlink" title="Toggle comments (on and off) 切换注释（开启和关闭）"></a>Toggle comments (on and off) 切换注释（开启和关闭）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cmd + / (Mac)</span><br><span class="line">Ctrl + / (Windows/Linux)</span><br></pre></td></tr></table></figure>
-<p>有些情况下，你想要注释掉一行或多行。 此快捷方式使用正确的注释语法为当前行（或行的选择）适当地注释。你不再需要再次记住 <code>&lt;!----&gt;</code> 或 <code>/**/</code>。</p>
-<h3 id="函数括号前后之间的切换"><a href="#函数括号前后之间的切换" class="headerlink" title="函数括号前后之间的切换"></a>函数括号前后之间的切换</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ctrl + m</span><br></pre></td></tr></table></figure>
-<h3 id="Markdown-预览"><a href="#Markdown-预览" class="headerlink" title="Markdown 预览"></a>Markdown 预览</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ctrl + shift + m</span><br></pre></td></tr></table></figure>
-<h3 id="查看当前可以使用的代码块"><a href="#查看当前可以使用的代码块" class="headerlink" title="查看当前可以使用的代码块"></a>查看当前可以使用的代码块</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">alt + shift + s</span><br></pre></td></tr></table></figure>
-<h3 id="放大和缩小代码"><a href="#放大和缩小代码" class="headerlink" title="放大和缩小代码"></a>放大和缩小代码</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ctrl + 鼠标滚动</span><br></pre></td></tr></table></figure>
-<h3 id="进入变量、函数跳转面板"><a href="#进入变量、函数跳转面板" class="headerlink" title="进入变量、函数跳转面板"></a>进入变量、函数跳转面板</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ctrl + r</span><br></pre></td></tr></table></figure>
-<h3 id="行号跳转"><a href="#行号跳转" class="headerlink" title="行号跳转"></a>行号跳转</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ctrl + g</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>References:</p>
+                    <blockquote>
 <ul>
 <li><a href="https://www.sitepoint.com/12-favorite-atom-tips-and-shortcuts-to-improve-your-workflow/" target="_blank" rel="noopener">12 Favorite Atom Tips and Shortcuts to Improve Your Workflow</a></li>
 <li><a href="https://github.com/Wscats/Good-text-Share/issues/30" target="_blank" rel="noopener">Atom 技巧总结 · Issue #30 · Wscats/Good-text-Share</a></li>
@@ -219,8 +173,8 @@
         
         <span class="prev-next-post">·</span>
         
-        <a class="next-post" title="对象持久化与序列化" href="/2016/11/29/object-persistence-and-serialization/">
-            对象持久化与序列化 →
+        <a class="next-post" title="Ubuntu Git 图形化客户端 Git Cola" href="/2016/11/25/git-client-gui-in-ubuntu-git-cola/">
+            Ubuntu Git 图形化客户端 Git Cola →
         </a>
         
     </nav>
@@ -242,7 +196,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tips-技巧"><span class="toc-text">Tips 技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiple-Cursors-多行光标"><span class="toc-text">Multiple Cursors 多行光标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Auto-Indent-自动缩进"><span class="toc-text">Auto Indent 自动缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Show-invisibles-显示不可见"><span class="toc-text">Show invisibles 显示不可见</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Soft-wrap-软换行"><span class="toc-text">Soft wrap 软换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Character-case-convert-大小写转换"><span class="toc-text">Character case convert 大小写转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Packages-插件"><span class="toc-text">Packages 插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyboard-Shortcuts-快捷键"><span class="toc-text">Keyboard Shortcuts 快捷键</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Duplicate-line-重复行"><span class="toc-text">Duplicate line 重复行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Move-the-current-line-Up-or-Down-向上或向下移动当前行"><span class="toc-text">Move the current line Up or Down 向上或向下移动当前行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select-the-next-matching-characters-选中下一匹配的字符"><span class="toc-text">Select the next matching characters 选中下一匹配的字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unselect-the-next-matching-characters-取消选中下一匹配的字符"><span class="toc-text">Unselect the next matching characters 取消选中下一匹配的字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select-all-matching-characters-选择所有匹配的字符"><span class="toc-text">Select all matching characters 选择所有匹配的字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Toggle-comments-on-and-off-切换注释（开启和关闭）"><span class="toc-text">Toggle comments (on and off) 切换注释（开启和关闭）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数括号前后之间的切换"><span class="toc-text">函数括号前后之间的切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Markdown-预览"><span class="toc-text">Markdown 预览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看当前可以使用的代码块"><span class="toc-text">查看当前可以使用的代码块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#放大和缩小代码"><span class="toc-text">放大和缩小代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入变量、函数跳转面板"><span class="toc-text">进入变量、函数跳转面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行号跳转"><span class="toc-text">行号跳转</span></a></li></ol></li></ol>
+        
     </div>
 </div>
 
@@ -668,16 +622,6 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
     </ul>
   </div>
   <footer class="read-next-card-footer">
@@ -708,7 +652,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

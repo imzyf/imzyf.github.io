@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
+    <lastmod>2019-12-04</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
+    <lastmod>2019-12-04</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/</loc>
+    <lastmod>2019-12-04</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/06/23/css-font-summary/</loc>
+    <lastmod>2019-12-04</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2018/04/08/chinese-copywriting-style-guide/</loc>
+    <lastmod>2019-12-04</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2019/12/03/analyze-git-log/</loc>
     <lastmod>2019-12-04</lastmod>
   </url>  <url>
@@ -214,9 +229,6 @@
     <loc>https://zyf.im/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/</loc>
     <lastmod>2019-08-08</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/06/23/css-font-summary/</loc>
-    <lastmod>2019-08-08</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2019/01/03/review-2018/</loc>
     <lastmod>2019-07-18</lastmod>
   </url>  <url>
@@ -250,9 +262,6 @@
     <loc>https://zyf.im/2017/01/15/build-own-ubuntu-work-development-environment/</loc>
     <lastmod>2019-05-25</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/</loc>
-    <lastmod>2019-05-25</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</loc>
     <lastmod>2019-05-25</lastmod>
   </url>  <url>
@@ -280,9 +289,6 @@
     <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
     <lastmod>2019-05-22</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
-    <lastmod>2019-04-28</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
     <lastmod>2019-04-28</lastmod>
   </url>  <url>
@@ -293,9 +299,6 @@
     <lastmod>2019-04-10</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</loc>
-    <lastmod>2019-04-10</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
     <lastmod>2019-04-10</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</loc>
@@ -340,17 +343,8 @@
     <loc>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</loc>
     <lastmod>2018-10-30</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2018/08/30/2018-08-monthly-report-of-development/</loc>
-    <lastmod>2018-10-09</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2018/07/30/2018-07-monthly-report-of-development/</loc>
-    <lastmod>2018-08-22</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2018/06/22/aws-cli-getting-started/</loc>
     <lastmod>2018-08-18</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2018/06/30/2018-06-monthly-report-of-development/</loc>
-    <lastmod>2018-06-30</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</loc>
     <lastmod>2018-05-28</lastmod>
@@ -363,9 +357,6 @@
   </url>  <url>
     <loc>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</loc>
     <lastmod>2018-05-15</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2018/04/08/chinese-copywriting-style-guide/</loc>
-    <lastmod>2018-05-09</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2018/05/08/modern-php-reading-notes/</loc>
     <lastmod>2018-05-08</lastmod>
@@ -475,16 +466,10 @@
     <loc>https://zyf.im/2017/02/26/imooc-html-css-basic-course-part3/</loc>
     <lastmod>2017-02-28</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/11/29/object-persistence-and-serialization/</loc>
-    <lastmod>2016-11-29</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/08/22/being-alive-is-a-gift-reading-notes/</loc>
     <lastmod>2016-08-22</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/08/17/something-like-an-autobiography-reading-notes/</loc>
     <lastmod>2016-08-17</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/03/26/why-some-files-compress-very-much/</loc>
-    <lastmod>2016-03-26</lastmod>
   </url>
 </urlset>
