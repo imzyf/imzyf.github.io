@@ -149,24 +149,31 @@
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <p>在 <a href="/2016/06/24/hexo-github-blog/">使用 Hexo 和 Github 搭建个人独立博客</a> 几天后，发现百度并不对博客进行收录。</p>
+                    <p>2019 年 12 月 02 日 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。</p>
+<p>2017 年 04 月 22 日 更新：现在我的 Blog 使用的是 <a href="https://www.ufovps.com/" target="_blank" rel="noopener">UFOVPS</a> 直接部署的。</p>
+<hr>
+<p>在 <a href="/2016/06/24/hexo-github-blog/">使用 Hexo 和 Github 搭建个人独立博客</a> 几天后，发现百度并不对博客进行收录。</p>
 <p>在天朝使用百度搜索毕竟多数，使用百度站长工具-抓取诊断，在百度 Spider 抓取结果返回 HTTP 头：HTTP/1.1 403 Forbidden，原来是 GitHub 禁止了百度爬虫的爬去。</p>
+<a id="more"></a>
 <p>Google 后早已有许多热心网友给出了解决方案，自己在这里总结下。</p>
 <h2 id="思路一：利用-CDN-解决百度爬虫被-Github-Pages-拒绝的问题"><a href="#思路一：利用-CDN-解决百度爬虫被-Github-Pages-拒绝的问题" class="headerlink" title="思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题"></a>思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题</h2><h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>既然 Github 彻底和百度决裂了，那我们也只能自己动手来解决了。Github 可能是封了百度的 IP，也有可能是封了百度爬虫的 User-Agent。</p>
 <p>所以要解决这个问题，最好就不要让百度爬虫直接访问 Github 了，需要在中间套一层 <a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86" target="_blank" rel="noopener">反向代理</a>。</p>
 <p>那么问题又来了，既然我可以搭一个反向代理服务器了，那我为什么不直接把博客放在这台服务器上？放 Github Pages 上不就是为了少一台服务器，少一点费用吗？</p>
-<p>那有没有免费的第三方反向代理服务呢？当然有，其实现在各种 <strong>CDN 服务</strong> 不就是吗？而且还额外提供了各种网络环境下的加速功能。<br>但是使用 CDN 也会有一个非常大的缺点：只能对 <strong>静态资源</strong> 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。<br>所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！</p>
-<p>国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等<br>最后选择了 <a href="https://www.upyun.com/index.html" target="_blank" rel="noopener"><strong>又拍云</strong></a></p>
-<p>CDN 回源配置<br>有设置缓存时间的功能，上面明确写了：CDN 缓存时间是指 UPYUN 回源取得文件后，文件在 UPYUN CDN 网络中的缓存的时间，超过缓存时间则重新回源获取文件。<br>是的，这才是真正满足我需求的功能！</p>
+<p>那有没有免费的第三方反向代理服务呢？当然有，其实现在各种 <strong>CDN 服务</strong> 不就是吗？而且还额外提供了各种网络环境下的加速功能。</p>
+<p>但是使用 CDN 也会有一个非常大的缺点：只能对 <strong>静态资源</strong> 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。</p>
+<p>所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！</p>
+<p>国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等。</p>
+<p>最后选择了 <a href="https://www.upyun.com/index.html" target="_blank" rel="noopener"><strong>又拍云</strong></a></p>
+<p>CDN 回源配置</p>
+<p>有设置缓存时间的功能，上面明确写了：CDN 缓存时间是指 UPYUN 回源取得文件后，文件在 UPYUN CDN 网络中的缓存的时间，超过缓存时间则重新回源获取文件。</p>
+<p>是的，这才是真正满足我需求的功能！</p>
 <p>这个解决方案我尝试了，但是在 CDN 域名配置时，有天朝特色要求域名必须备案，我的域名 <code>zyf.im</code> 是在 <a href="http://www.name.com" target="_blank" rel="noopener">name.com</a> 上注册的，<code>.im</code> 的尾缀也无法在国内备案。所以这个方案不适合我。</p>
-<a id="more"></a>
 <h2 id="思路二：通过-Dnspod-的智能-DNS-服务"><a href="#思路二：通过-Dnspod-的智能-DNS-服务" class="headerlink" title="思路二：通过 Dnspod 的智能 DNS 服务"></a>思路二：通过 Dnspod 的智能 DNS 服务</h2><p>在这里博主首先分析了：使用 CDN 可能 <strong>无法</strong> 真正解决百度被拒绝的问题。理由是：<strong>CDN 节点众多，百度爬取的节点可能并没有页面的缓存</strong>。</p>
 <p>通过 Dnspod 的智能 DNS 服务可以变相解决这个问题，大概的设置如下图所示，只要为你所有的主机记录重复添加 A 记录，把线路类型设置为百度，并将记录值指向你自己的云主机即可。</p>
 <p>你说什么？等下！自己的云主机？没错，其实这种方式就是 <strong>专门为百度的爬虫增开了一个小窗口</strong>，使得它可以在你自己的服务器上爬取内容，而不是直接去爬取 Github Pages 的内容。你需要自己搭个服务器，并将你的静态网站架在上面。</p>
 <p>我博客解决方案就是采用这种方法。看起来有些“笨”因为我又搭建了一个 Server 用于博客，相当于没有完全利用 GitHub Pages，实际上普通用户访问我的博客就是有利用 GitHub 的 CDN 服务的，更快一些。而且我这么做还利用了 GitHub Webhook，当我把新的页面提交到 GitHub 时，我的博客服务器会自动 <code>pull</code> 最新的项目，这么看也就不那么“傻”了。</p>
 <p>请参看：<a href="/2016/06/30/github-webhook-example/">GitHub Webhook 自动部署 Hexo</a></p>
 <p>经过这么一配置，我的博客现在已经被百度收录了。百度搜索：<code>site:zyf.im</code></p>
-<p><strong>2017 年 04 月 22 日 Updated</strong>：<br>现在我的 Blog 使用的是 <a href="https://www.ufovps.com/" target="_blank" rel="noopener">UFOVPS</a> 直接部署的</p>
 <blockquote>
 <p>Reference:</p>
 <ul>
@@ -329,20 +336,24 @@
       
       
       <li>
+        <a href="/2019/12/03/analyze-git-log/">Git log 统计分析</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/12/02/git-modify-history-commont-user-email/">Git 批量修改历史 commit 中 user.email</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
-      </li>
       
       
       
@@ -689,7 +700,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.71px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

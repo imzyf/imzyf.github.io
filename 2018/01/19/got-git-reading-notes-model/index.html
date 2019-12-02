@@ -158,30 +158,30 @@
 <p>笔者注：Topgit 是否已经过时？</p>
 </blockquote>
 <p><code>卖主分支 Vendor Branch</code> 是在版本库中专门创建一个和上游同步的分支，一旦有上游代码发布就捡入到卖主分支中。</p>
-<h2 id="子模组协同模型"><a href="#子模组协同模型" class="headerlink" title="子模组协同模型"></a>子模组协同模型</h2><h3 id="创建子模组"><a href="#创建子模组" class="headerlink" title="创建子模组"></a>创建子模组</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git submodule add /path/to/repos/libA.git lib/lib_a</span><br></pre></td></tr></table></figure>
+<h2 id="子模组协同模型"><a href="#子模组协同模型" class="headerlink" title="子模组协同模型"></a>子模组协同模型</h2><h3 id="创建子模组"><a href="#创建子模组" class="headerlink" title="创建子模组"></a>创建子模组</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git submodule add /path/to/repos/libA.git lib/lib_a</span><br></pre></td></tr></table></figure>
 <p><code>.gitmodules</code> 的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ cat .gitmodules</span><br><span class="line">[submodule &quot;lib/lib_a&quot;]</span><br><span class="line">        path = lib/lib_a</span><br><span class="line">        url = /path/to/repos/libA.git</span><br></pre></td></tr></table></figure>
-<h3 id="克隆带子模组的版本库"><a href="#克隆带子模组的版本库" class="headerlink" title="克隆带子模组的版本库"></a>克隆带子模组的版本库</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git clone /path/to/repos/super.git /path/to/my/workspace/super-clone</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat .gitmodules</span><br><span class="line">[submodule <span class="string">"lib/lib_a"</span>]</span><br><span class="line">        path = lib/lib_a</span><br><span class="line">        url = /path/to/repos/libA.git</span><br></pre></td></tr></table></figure>
+<h3 id="克隆带子模组的版本库"><a href="#克隆带子模组的版本库" class="headerlink" title="克隆带子模组的版本库"></a>克隆带子模组的版本库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> /path/to/repos/super.git /path/to/my/workspace/super-clone</span><br></pre></td></tr></table></figure>
 <p>子模组的版本库并不会默认克隆，如果需要克隆出子模组型式引用的外部库，需要执行：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git submodule init</span><br><span class="line">$ git submodule update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git submodule init</span><br><span class="line">$ git submodule update</span><br></pre></td></tr></table></figure>
 <h3 id="在子模组中修改和子模组的更新"><a href="#在子模组中修改和子模组的更新" class="headerlink" title="在子模组中修改和子模组的更新"></a>在子模组中修改和子模组的更新</h3><p>修改更新的方式和普通仓库一样。如果修改了子模块，要先推送子模块的修改，再推送主仓库，以防止其他人克隆 super 版本库、更新模组时因为找不到该子模组版本库相应的提交而导致出错。</p>
 <p>查看子模组状态：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git submodule status</span><br></pre></td></tr></table></figure>
-<h2 id="子树合并"><a href="#子树合并" class="headerlink" title="子树合并"></a>子树合并</h2><h3 id="引入外部版本库"><a href="#引入外部版本库" class="headerlink" title="引入外部版本库"></a>引入外部版本库</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 注册外部版本库</span><br><span class="line">$ git remote add util /path/to/repos/util.git</span><br><span class="line"></span><br><span class="line">$ git fetch util</span><br><span class="line"></span><br><span class="line"># 查看所有分支</span><br><span class="line">$ git branch -a</span><br><span class="line"></span><br><span class="line"># 从 util/master 远程分支创建一个本地分支 util-branch</span><br><span class="line">$ git checkout -b util-branch util/master</span><br></pre></td></tr></table></figure>
-<h3 id="子目录方式合并外部版本库"><a href="#子目录方式合并外部版本库" class="headerlink" title="子目录方式合并外部版本库"></a>子目录方式合并外部版本库</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 在主分支，将分支 util-branch 读取到当前分支的一个子目录下</span><br><span class="line">$ git read-tree --prefix=lib util-branch</span><br><span class="line"></span><br><span class="line"># 将 lib 目录下的文件更新出来</span><br><span class="line">$ git checkout -- lib</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git submodule status</span><br></pre></td></tr></table></figure>
+<h2 id="子树合并"><a href="#子树合并" class="headerlink" title="子树合并"></a>子树合并</h2><h3 id="引入外部版本库"><a href="#引入外部版本库" class="headerlink" title="引入外部版本库"></a>引入外部版本库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注册外部版本库</span></span><br><span class="line">$ git remote add util /path/to/repos/util.git</span><br><span class="line"></span><br><span class="line">$ git fetch util</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有分支</span></span><br><span class="line">$ git branch -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 util/master 远程分支创建一个本地分支 util-branch</span></span><br><span class="line">$ git checkout -b util-branch util/master</span><br></pre></td></tr></table></figure>
+<h3 id="子目录方式合并外部版本库"><a href="#子目录方式合并外部版本库" class="headerlink" title="子目录方式合并外部版本库"></a>子目录方式合并外部版本库</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在主分支，将分支 util-branch 读取到当前分支的一个子目录下</span></span><br><span class="line">$ git <span class="built_in">read</span>-tree --prefix=lib util-branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 lib 目录下的文件更新出来</span></span><br><span class="line">$ git checkout -- lib</span><br></pre></td></tr></table></figure>
 <p>现在还不能忙着提交，因为如果现在进行提交就体现不出来两个分支的合并关系。需要使用 Git 底层的命令进行数据提交。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">将暂存区的目录树保存下来</span><br><span class="line"></span><br><span class="line">$ git write-tree</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将暂存区的目录树保存下来</span></span><br><span class="line"></span><br><span class="line">$ git write-tree</span><br></pre></td></tr></table></figure>
 <p>要手工创建一个合并提交，即新的提交要有两个父提交。这两个父提交分别是 master 分支和 util-branch 分支的最新提交。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ echo &quot;subtree merge&quot; | \</span><br><span class="line">  git commit-tree 2153518409d218609af40babededec6e8ef51616 \</span><br><span class="line">  -p 911b1af2e0c95a2fc1306b8dea707064d5386c2e \</span><br><span class="line">  -p 12408a149bfa78a4c2d4011f884aa2adb04f0934</span><br><span class="line">62ae6cc3f9280418bdb0fcf6c1e678905b1fe690</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"subtree merge"</span> | \</span><br><span class="line">  git commit-tree 2153518409d218609af40babededec6e8ef51616 \</span><br><span class="line">  -p 911b1af2e0c95a2fc1306b8dea707064d5386c2e \</span><br><span class="line">  -p 12408a149bfa78a4c2d4011f884aa2adb04f0934</span><br><span class="line">62ae6cc3f9280418bdb0fcf6c1e678905b1fe690</span><br></pre></td></tr></table></figure>
 <p>需要把当前的 master 分支重置到此提交 ID：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git reset 62ae6cc3f9280418bdb0fcf6c1e678905b1fe690</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git reset 62ae6cc3f9280418bdb0fcf6c1e678905b1fe690</span><br></pre></td></tr></table></figure>
 <p>操作繁琐，可使用下面 <code>subtree</code> 命令进行代替。</p>
-<h3 id="利用子树合并跟踪上游改动"><a href="#利用子树合并跟踪上游改动" class="headerlink" title="利用子树合并跟踪上游改动"></a>利用子树合并跟踪上游改动</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout util-branch</span><br><span class="line"></span><br><span class="line">$ git pull</span><br><span class="line"></span><br><span class="line">$ git checkout master</span><br><span class="line"></span><br><span class="line">$ git merge -Xsubtree=lib util-branch</span><br></pre></td></tr></table></figure>
+<h3 id="利用子树合并跟踪上游改动"><a href="#利用子树合并跟踪上游改动" class="headerlink" title="利用子树合并跟踪上游改动"></a>利用子树合并跟踪上游改动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git checkout util-branch</span><br><span class="line"></span><br><span class="line">$ git pull</span><br><span class="line"></span><br><span class="line">$ git checkout master</span><br><span class="line"></span><br><span class="line">$ git merge -Xsubtree=lib util-branch</span><br></pre></td></tr></table></figure>
 <h2 id="Git-Subtree"><a href="#Git-Subtree" class="headerlink" title="Git Subtree"></a>Git Subtree</h2><h3 id="管理子项目"><a href="#管理子项目" class="headerlink" title="管理子项目"></a>管理子项目</h3><p>假设 <code>P1 项目</code>、<code>P2 项目</code> 共用 <code>S 项目</code></p>
 <ul>
 <li>关联 S 项目</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree add --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree add --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash</span><br></pre></td></tr></table></figure>
 <p><code>--squash</code> 意思是把 <code>subtree</code> 的改动合并成一次 <code>commit</code>，这样就不用拉取子项目完整的历史记录。<code>--prefix</code> 之后的 <code>=</code> 等号也可以用空格。</p>
 <ul>
 <li>更新代码</li>
@@ -190,35 +190,35 @@
 <ul>
 <li>提交更改到子项目</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree push --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree push --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt;</span><br></pre></td></tr></table></figure>
 <p>Git 会遍历 <code>步骤 2</code> 中所有的 <code>commit</code>，从中找出针对 <code>S 目录</code> 的更改，然后把这些更改记录提交到 <code>S 项目</code> 的 Git 服务器上，并保留 <code>步骤 2</code> 中的相关 <code>S 的提交</code> 记录到 <code>S仓库</code> 中。</p>
 <ul>
 <li>更新子目录</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree pull --prefix=&lt;S项目的相对路径&gt; &lt;S 项目 git 地址&gt; &lt;分支&gt; --squash</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree pull --prefix=&lt;S项目的相对路径&gt; &lt;S 项目 git 地址&gt; &lt;分支&gt; --squash</span><br></pre></td></tr></table></figure>
 <h3 id="拆分已有项目"><a href="#拆分已有项目" class="headerlink" title="拆分已有项目"></a>拆分已有项目</h3><p>需要从现有项目中抽取公共模块单独进行 Git 管理，假设已有 <code>项目 P</code> 抽取 <code>项目 S</code>。</p>
 <ul>
 <li>提交日志分离</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree split -P &lt;S项目的相对路径&gt; -b &lt;临时branch&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree split -P &lt;S项目的相对路径&gt; -b &lt;临时branch&gt;</span><br></pre></td></tr></table></figure>
 <p>Git 会遍历所有的 commit，分离出与 S 项目的相对路径相关的 commit，并存入临时 branch 中。</p>
 <ul>
 <li>创建子 repo</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir &lt;S项目新路径&gt;</span><br><span class="line">cd S项目新路径</span><br><span class="line">git init</span><br><span class="line">git pull &lt;P项目的路径&gt; &lt;临时branch&gt;</span><br><span class="line">git remote add origin &lt;S项目的git仓库&gt;</span><br><span class="line">git push origin -u master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir &lt;S项目新路径&gt;</span><br><span class="line"><span class="built_in">cd</span> S项目新路径</span><br><span class="line">git init</span><br><span class="line">git pull &lt;P项目的路径&gt; &lt;临时branch&gt;</span><br><span class="line">git remote add origin &lt;S项目的git仓库&gt;</span><br><span class="line">git push origin -u master</span><br></pre></td></tr></table></figure>
 <ul>
 <li>清理数据</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd P项目的路径</span><br><span class="line">git rm -rf &lt;S项目的相对路径&gt;</span><br><span class="line">git commit -m &apos;移除相应模块&apos; # 提交删除申请</span><br><span class="line">git branch -D &lt;临时branch&gt; # 删除临时分支</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> P项目的路径</span><br><span class="line">git rm -rf &lt;S项目的相对路径&gt;</span><br><span class="line">git commit -m <span class="string">'移除相应模块'</span> <span class="comment"># 提交删除申请</span></span><br><span class="line">git branch -D &lt;临时branch&gt; <span class="comment"># 删除临时分支</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>添加 subtree</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree add --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree add --prefix=&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 <p>执行完第 2 步时，对应的目录已经剥离出来形成独立的项目了。第 3，4 步主要是把当前项目的对应的文件给删除，重新在 P 项目建立 Subtree。</p>
 <p><em>tip:</em><br>推送到 GitHub Page：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git subtree push --prefix=dist origin gh-pages</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git subtree push --prefix=dist origin gh-pages</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Reference:</p>
+<p>References:</p>
 <ul>
 <li><a href="http://www.worldhello.net/gotgit/04-git-model/" target="_blank" rel="noopener">4. 协同模型 &mdash; GotGit</a></li>
 <li><a href="https://www.jianshu.com/p/3096069e9b72" target="_blank" rel="noopener">Git Subtree 的使用</a></li>
@@ -371,20 +371,24 @@
       
       
       <li>
+        <a href="/2019/12/03/analyze-git-log/">Git log 统计分析</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/12/02/git-modify-history-commont-user-email/">Git 批量修改历史 commit 中 user.email</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
-      </li>
       
       
       
@@ -731,7 +735,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.71px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

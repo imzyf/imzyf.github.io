@@ -174,11 +174,11 @@
 <h2 id="cli-工具"><a href="#cli-工具" class="headerlink" title="cli 工具"></a>cli 工具</h2><h3 id="commitizen-cli"><a href="#commitizen-cli" class="headerlink" title="commitizen cli"></a>commitizen cli</h3><p><a href="https://github.com/commitizen/cz-cli" target="_blank" rel="noopener">commitizen/cz-cli</a> 使用它提供的 <code>git cz</code> 命令替代我们的 <code>git commit</code> 命令，帮助我们生成符合规范的 commit message。</p>
 <p>除此之外，我们还需要为 <code>commitizen</code> 指定一个 <code>Adapter</code> 比如：<a href="https://github.com/commitizen/cz-conventional-changelog" target="_blank" rel="noopener">commitizen/cz-conventional-changelog</a>（一个符合 Angular 团队规范的 preset）使得 <code>commitizen</code> 按照我们指定的规范帮助我们生成 commit message。</p>
 <p>全局安装（首选）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install -g commitizen cz-conventional-changelog</span><br><span class="line">$ echo &apos;&#123; &quot;path&quot;: &quot;cz-conventional-changelog&quot; &#125;&apos; &gt; ~/.czrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install -g commitizen cz-conventional-changelog</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'&#123; "path": "cz-conventional-changelog" &#125;'</span> &gt; ~/.czrc</span><br></pre></td></tr></table></figure>
 <p>项目级安装（首选）：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
 <p><code>package.json</code> 中配置：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;script&quot;: &#123;</span><br><span class="line">   ...,</span><br><span class="line">   &quot;commit&quot;: &quot;git-cz&quot;,</span><br><span class="line">&#125;,</span><br><span class="line">&quot;config&quot;: &#123;</span><br><span class="line">   &quot;commitizen&quot;: &#123;</span><br><span class="line">      &quot;path&quot;: &quot;node_modules/cz-conventional-changelog&quot;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">"script"</span>: &#123;</span><br><span class="line">   ...,</span><br><span class="line">   <span class="string">"commit"</span>: <span class="string">"git-cz"</span>,</span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"config"</span>: &#123;</span><br><span class="line">   <span class="string">"commitizen"</span>: &#123;</span><br><span class="line">      <span class="string">"path"</span>: <span class="string">"node_modules/cz-conventional-changelog"</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果全局安装过 <code>commitizen</code>，那么在对应的项目中执行 <code>git cz</code> or <code>npm run commit</code> 都可以。</p>
 <h3 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h3><p>也许 Angular 的那套规范我们不习惯，那么可以通过指定 Adapter <a href="https://github.com/leonardoanalista/cz-customizable" target="_blank" rel="noopener">leonardoanalista/cz-customizable</a> 指定一套符合自己团队的规范。</p>
 <h3 id="校验-message"><a href="#校验-message" class="headerlink" title="校验 message"></a>校验 message</h3><p>可以通过 <a href="https://github.com/conventional-changelog/commitlint" target="_blank" rel="noopener">conventional-changelog/commitlint</a> 校验 commit message。同时可以配合使用 <a href="https://github.com/typicode/husky" target="_blank" rel="noopener">typicode/husky</a> 🐶 Git hooks made easy。</p>
@@ -340,20 +340,24 @@
       
       
       <li>
+        <a href="/2019/12/03/analyze-git-log/">Git log 统计分析</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/12/02/git-modify-history-commont-user-email/">Git 批量修改历史 commit 中 user.email</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
-      </li>
       
       
       
@@ -700,7 +704,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.71px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

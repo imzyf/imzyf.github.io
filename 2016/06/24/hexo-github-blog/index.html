@@ -157,54 +157,43 @@
 <h2 id="了解-Hexo"><a href="#了解-Hexo" class="headerlink" title="了解 Hexo"></a>了解 Hexo</h2><blockquote>
 <p>A fast, simple &amp; powerful blog framework</p>
 </blockquote>
-<p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-<p><a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">Hexo 官方文档</a></p>
+<p><a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，<a href="https://hexo.io/zh-cn/docs/setup.html" target="_blank" rel="noopener">Hexo setup 官方文档</a>。</p>
 <a id="more"></a>
-<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><p>Linux (Ubuntu, Debian):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br></pre></td></tr></table></figure>
-<p>Linux (Fedora, Red Hat, CentOS):</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo yum install git-core</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>安装 Node.js 的最佳方式是使用 nvm。<br>cURL:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">curl https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br></pre></td></tr></table></figure>
-<p>Wget:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh</span><br></pre></td></tr></table></figure>
-<p>安装完成后，重启终端并执行下列命令即可安装 Node.js。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm install 4</span><br></pre></td></tr></table></figure>
-<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ cd &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h2 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><blockquote>
+<p><a href="https://git-scm.com/download/linux" target="_blank" rel="noopener">Download for Linux and Unix | git-scm</a></p>
+</blockquote>
+<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><blockquote>
+<p><a href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Linux | Mac 安装 Node.js 与常见问题 | zyf.im</a></p>
+</blockquote>
+<h2 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h2><p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
 <p>新建完成后，指定文件夹的目录如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<h3 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">| ├── _drafts</span><br><span class="line">| └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<h3 id="新建一篇文章"><a href="#新建一篇文章" class="headerlink" title="新建一篇文章"></a>新建一篇文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 <p>如果没有设置 layout 的话，默认使用 <code>_config.yml</code> 中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p>网站会在 <a href>http://localhost:4000</a> 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。</p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以简写为</span></span><br><span class="line"></span><br><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以简写为</span></span><br><span class="line"></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>网站会在 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。</p>
 <h2 id="部署静态网页到-GitHub"><a href="#部署静态网页到-GitHub" class="headerlink" title="部署静态网页到 GitHub"></a>部署静态网页到 GitHub</h2><h3 id="注册设置-GitHub"><a href="#注册设置-GitHub" class="headerlink" title="注册设置 GitHub"></a>注册设置 GitHub</h3><ol>
 <li>登录 GitHub，注册自定义用户名如：<code>imzyf</code></li>
 <li>在主页右下角创建 New repository，name 必须和用户名一致如：<code>imzyf.github.io</code></li>
-<li>首次创建耐心等待 10 分钟左右审核，之后即可访问静态主页如：<code>http://imzyf.github.io</code></li>
+<li>等待 3 分钟左右，之后即可访问静态主页如：<code>https://imzyf.github.io</code></li>
 </ol>
 <h3 id="同步内容至-GitHub"><a href="#同步内容至-GitHub" class="headerlink" title="同步内容至 GitHub"></a>同步内容至 GitHub</h3><ol>
-<li>在 Hexo 目录下 <code>git cl one git@github.com:imzyf/imzyf.github.io.git</code></li>
-<li>将<code>public</code>文件下的所有文件拷贝到<code>imzyf.github.io</code>下</li>
-<li><code>git add .</code>增加当前子目录下所有更改过的文件至 index</li>
-<li><code>git commit -m &#39;xxx&#39;</code>提交到本地</li>
-<li><code>git push origin master</code>将当前分支 push 到远程 master 分支</li>
-<li>最后访问主页<code>http://imzyf.github.io</code>观察效果</li>
+<li>在 Hexo 目录下 <code>git clone git@github.com:imzyf/imzyf.github.io.git</code></li>
+<li>将 <code>public</code> 文件下的所有文件拷贝到 <code>imzyf.github.io</code> 下</li>
+<li><code>git add .</code> 增加当前子目录下所有更改过的文件至 index</li>
+<li><code>git commit -m &#39;xxx&#39;</code> 提交到本地</li>
+<li><code>git push origin master</code> 将当前分支 push 到远程 master 分支</li>
+<li>最后访问主页<code>http://imzyf.github.io</code> 观察效果</li>
 </ol>
-<h2 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h2><h3 id="设置-CNAME"><a href="#设置-CNAME" class="headerlink" title="设置 CNAME"></a>设置 CNAME</h3><ol>
-<li>在 Github 的网站目录下创建 CNAME 文件</li>
-<li>填写自己的域名如<code>zyf.im</code>，保存结束</li>
-<li>登录域名服务商，然后添加记录，记录类型选择<code>CNAME</code>，记录值<code>imzyf.github.io.</code>(有个点)</li>
-</ol>
-<blockquote>
-<p>Reference</p>
-<ul>
+<h2 id="绑定个人域名"><a href="#绑定个人域名" class="headerlink" title="绑定个人域名"></a>绑定个人域名</h2><p>在 GitHub 项目页面，Settings -&gt; GitHub Pages，Source 选择 master branch，Custom domain 填写自己的域名，同时勾选 Enforce HTTPS 让你的网址支持 HTTPS。</p>
+<p>在你的域名服务商那里，将填写的域名解析到：<code>&lt;username&gt;.github.io</code> 利于 <code>imzyf.github.io</code>。</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://wsgzao.github.io/post/hexo-guide/" target="_blank" rel="noopener">HellDog-使用 GitHub 和 Hexo 搭建免费静态 Blog</a></li>
 </ul>
-</blockquote>
 
                 </article>
                 <ul class="tags-postTags">
@@ -258,7 +247,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解-Hexo"><span class="toc-text">了解 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Git"><span class="toc-text">安装 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Node-js"><span class="toc-text">安装 Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Hexo"><span class="toc-text">安装 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建站"><span class="toc-text">建站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一篇文章"><span class="toc-text">新建一篇文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态文件"><span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务器"><span class="toc-text">启动服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署静态网页到-GitHub"><span class="toc-text">部署静态网页到 GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册设置-GitHub"><span class="toc-text">注册设置 GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步内容至-GitHub"><span class="toc-text">同步内容至 GitHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绑定个人域名"><span class="toc-text">绑定个人域名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置-CNAME"><span class="toc-text">设置 CNAME</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#了解-Hexo"><span class="toc-text">了解 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Git"><span class="toc-text">安装 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Node-js"><span class="toc-text">安装 Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Hexo"><span class="toc-text">安装 Hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建站"><span class="toc-text">建站</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一篇文章"><span class="toc-text">新建一篇文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成静态文件"><span class="toc-text">生成静态文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动服务器"><span class="toc-text">启动服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署静态网页到-GitHub"><span class="toc-text">部署静态网页到 GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注册设置-GitHub"><span class="toc-text">注册设置 GitHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同步内容至-GitHub"><span class="toc-text">同步内容至 GitHub</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绑定个人域名"><span class="toc-text">绑定个人域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
     </div>
 </div>
 
@@ -360,20 +349,24 @@
       
       
       <li>
+        <a href="/2019/12/03/analyze-git-log/">Git log 统计分析</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2019/12/02/git-modify-history-commont-user-email/">Git 批量修改历史 commit 中 user.email</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
       </li>
       
       
       
-      <li>
-        <a href="/2019/11/22/crlf-will-be-replaced-by-lf/">CRLF will be replaced by LF</a>
-      </li>
       
-      
-      
-      <li>
-        <a href="/2019/08/08/vue-notes/">Vue 使用笔记</a>
-      </li>
       
       
       
@@ -720,7 +713,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/crontab/" style="font-size: 14px;">crontab</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/pdf/" style="font-size: 14px;">pdf</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14.71px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/guide/" style="font-size: 14px;">guide</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

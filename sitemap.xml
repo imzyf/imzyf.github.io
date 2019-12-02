@@ -2,6 +2,209 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2019/12/03/analyze-git-log/</loc>
+    
+    <lastmod>2019-12-02T11:51:26.167Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</loc>
+    
+    <lastmod>2019-12-02T11:48:41.769Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/17/git-modify-remote-url/</loc>
+    
+    <lastmod>2019-12-02T11:37:18.819Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/17/git-config-filemode-false/</loc>
+    
+    <lastmod>2019-12-02T11:36:59.962Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/12/solving-git-chinese-in-file-name/</loc>
+    
+    <lastmod>2019-12-02T11:36:21.695Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/</loc>
+    
+    <lastmod>2019-12-02T11:33:22.960Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/11/25/git-client-gui-in-ubuntu-git-cola/</loc>
+    
+    <lastmod>2019-12-02T11:33:09.483Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/01/github-webhook-example/</loc>
+    
+    <lastmod>2019-12-02T11:32:51.023Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</loc>
+    
+    <lastmod>2019-12-02T11:32:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
+    
+    <lastmod>2019-12-02T10:32:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
+    
+    <lastmod>2019-12-02T03:52:16.798Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2018/01/05/dont-be-lonely-in-2017/</loc>
+    
+    <lastmod>2019-12-02T03:51:24.498Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/01/04/2017-happy-new-year/</loc>
+    
+    <lastmod>2019-12-02T03:51:17.431Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/31/20160601-20160831-report/</loc>
+    
+    <lastmod>2019-12-02T03:51:13.149Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
+    
+    <lastmod>2019-12-02T03:51:09.175Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
+    
+    <lastmod>2019-12-02T03:50:57.978Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/10/28/simple-macbook-report/</loc>
+    
+    <lastmod>2019-12-02T03:49:13.046Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
+    
+    <lastmod>2019-12-02T03:39:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</loc>
+    
+    <lastmod>2019-12-02T03:37:18.164Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
+    
+    <lastmod>2019-12-02T03:37:14.860Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</loc>
+    
+    <lastmod>2019-12-02T03:36:36.559Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</loc>
+    
+    <lastmod>2019-12-02T03:36:21.681Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/07/ubuntu-crontab-content-backup/</loc>
+    
+    <lastmod>2019-12-02T03:36:17.703Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
+    
+    <lastmod>2019-12-02T03:36:13.701Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/21/open-pdf-file-in-ubuntu-terminal/</loc>
+    
+    <lastmod>2019-12-02T03:36:01.599Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</loc>
+    
+    <lastmod>2019-12-02T03:35:18.123Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/10/setting-time-zone-in-ubuntu-terminal/</loc>
+    
+    <lastmod>2019-12-02T03:35:12.555Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/06/trash-cli-move-files-to-trash/</loc>
+    
+    <lastmod>2019-12-02T03:34:45.601Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    
+    <lastmod>2019-11-26T03:33:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
     
     <lastmod>2019-11-25T11:45:01.169Z</lastmod>
@@ -68,13 +271,6 @@
     <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
     
     <lastmod>2019-11-25T10:23:38.378Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    
-    <lastmod>2019-11-25T10:19:30.000Z</lastmod>
     
   </url>
   
@@ -156,48 +352,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
-    
-    <lastmod>2019-11-25T07:39:12.530Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
-    
-    <lastmod>2019-11-22T09:35:15.331Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</loc>
-    
-    <lastmod>2019-11-22T09:34:59.815Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/07/01/github-webhook-example/</loc>
-    
-    <lastmod>2019-11-22T09:34:36.933Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/11/25/git-client-gui-in-ubuntu-git-cola/</loc>
-    
-    <lastmod>2019-11-22T09:33:58.818Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/02/22/git-clean-remove-untracked-files-from-the-working-tree/</loc>
-    
-    <lastmod>2019-11-22T09:33:37.836Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
     
     <lastmod>2019-11-22T09:33:35.457Z</lastmod>
@@ -208,27 +362,6 @@
     <loc>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</loc>
     
     <lastmod>2019-11-22T09:33:29.292Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/12/solving-git-chinese-in-file-name/</loc>
-    
-    <lastmod>2019-11-22T09:33:09.112Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/17/git-config-filemode-false/</loc>
-    
-    <lastmod>2019-11-22T09:33:06.411Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/17/git-modify-remote-url/</loc>
-    
-    <lastmod>2019-11-22T09:32:59.454Z</lastmod>
     
   </url>
   
@@ -331,34 +464,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/10/28/simple-macbook-report/</loc>
-    
-    <lastmod>2019-11-13T11:18:39.564Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2018/01/05/dont-be-lonely-in-2017/</loc>
-    
-    <lastmod>2019-11-13T11:18:21.685Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/06/trash-cli-move-files-to-trash/</loc>
-    
-    <lastmod>2019-11-13T11:13:36.520Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
-    
-    <lastmod>2019-11-13T10:29:00.136Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/10/28/ubuntu-or-mac-ssh-by-shadowsocks/</loc>
     
     <lastmod>2019-11-05T02:29:30.000Z</lastmod>
@@ -369,13 +474,6 @@
     <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
     
     <lastmod>2019-10-31T10:29:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
-    
-    <lastmod>2019-09-12T07:30:59.000Z</lastmod>
     
   </url>
   
@@ -436,13 +534,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/01/04/2017-happy-new-year/</loc>
-    
-    <lastmod>2019-07-18T08:48:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2019/01/03/review-2018/</loc>
     
     <lastmod>2019-07-18T06:55:50.000Z</lastmod>
@@ -458,13 +549,6 @@
   
   <url>
     <loc>https://zyf.im/2017/07/06/chinese-and-english-translation-tools-cli/</loc>
-    
-    <lastmod>2019-06-17T06:15:22.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
     
     <lastmod>2019-06-17T06:15:22.000Z</lastmod>
     
@@ -488,27 +572,6 @@
     <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
     
     <lastmod>2019-06-04T06:07:46.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
-    
-    <lastmod>2019-05-29T09:22:07.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/31/20160601-20160831-report/</loc>
-    
-    <lastmod>2019-05-29T09:21:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
-    
-    <lastmod>2019-05-29T09:21:14.000Z</lastmod>
     
   </url>
   
@@ -565,55 +628,6 @@
     <loc>https://zyf.im/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/</loc>
     
     <lastmod>2019-05-25T08:51:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</loc>
-    
-    <lastmod>2019-05-25T08:49:30.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/10/setting-time-zone-in-ubuntu-terminal/</loc>
-    
-    <lastmod>2019-05-25T08:48:37.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</loc>
-    
-    <lastmod>2019-05-25T08:48:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</loc>
-    
-    <lastmod>2019-05-25T08:44:58.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/21/open-pdf-file-in-ubuntu-terminal/</loc>
-    
-    <lastmod>2019-05-25T08:43:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/07/ubuntu-crontab-content-backup/</loc>
-    
-    <lastmod>2019-05-25T08:42:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</loc>
-    
-    <lastmod>2019-05-25T08:42:35.000Z</lastmod>
     
   </url>
   
