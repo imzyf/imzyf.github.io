@@ -153,17 +153,27 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>RHEL 和衍生通常提供较老版本的 git。您可以下载 tarball 并从源代码构建，或者使用第三方存储库，如 <a href="https://ius.io/" target="_blank" rel="noopener">IUS Community Project</a> 来获得最新版本的 git。</p>
-<h2 id="安装-IUS"><a href="#安装-IUS" class="headerlink" title="安装 IUS"></a>安装 IUS</h2><p>RHEL/CentOS 7</p>
+<h2 id="使用-IUS"><a href="#使用-IUS" class="headerlink" title="使用 IUS"></a>使用 IUS</h2><p>RHEL/CentOS 7</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install \</span><br><span class="line">https://repo.ius.io/ius-release-el7.rpm \</span><br><span class="line">https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br></pre></td></tr></table></figure>
-<h2 id="安装新版-git"><a href="#安装新版-git" class="headerlink" title="安装新版 git"></a>安装新版 git</h2><p>ius 通常会在高版本的软件名后面 + ‘u’</p>
+<p>安装新版 git：</p>
+<p>ius 通常会在高版本的软件名后面 + ‘u’</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list git git\*u</span><br></pre></td></tr></table></figure>
-<p>如果你已经装有低版本的 git，你需要先 remove (否则安装的时候会报错)</p>
+<p>如果你已经装有低版本的 git，你需要先 remove（否则安装的时候会报错）</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum remove git</span><br></pre></td></tr></table></figure>
 <p>安装 2.0 以上版本的 git</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install git2u</span><br></pre></td></tr></table></figure>
+<h2 id="WANdisco"><a href="#WANdisco" class="headerlink" title="WANdisco"></a>WANdisco</h2><p>另一个源：<a href="http://docs.wandisco.com/git/binaries/" target="_blank" rel="noopener">WANdisco Replication Binaries</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/yum.repos.d/wandisco-git.repo</span><br></pre></td></tr></table></figure>
+<p>wandisco-git.repo</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[wandisco-git]</span><br><span class="line">name=Wandisco GIT Repository</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/7/git/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco</span><br></pre></td></tr></table></figure>
+<p>Import the repository GPG keys with:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rpm --import http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum remove git</span><br><span class="line"></span><br><span class="line">sudo yum install git</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
-<li><a href="http://jiebaby.com/index.php/archives/42/" target="_blank" rel="noopener">ius 第三方源推荐—— 在 centos 上用 yum 安装最新的包 | jiebaby</a></li>
+<li><a href="https://linuxize.com/post/how-to-install-git-on-centos-7/" target="_blank" rel="noopener">How To Install Git on CentOS 7 | linuxize</a></li>
+<li><a href="https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x" target="_blank" rel="noopener">How to install latest version of git on CentOS 7.x/6.x | stackoverflow</a></li>
 </ul>
+<p>– EOF –</p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -213,7 +223,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-IUS"><span class="toc-text">安装 IUS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装新版-git"><span class="toc-text">安装新版 git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-IUS"><span class="toc-text">使用 IUS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WANdisco"><span class="toc-text">WANdisco</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
     </div>
 </div>
 

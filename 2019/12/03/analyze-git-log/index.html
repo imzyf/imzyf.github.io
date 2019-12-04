@@ -149,13 +149,20 @@
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <a id="more"></a>
-<blockquote>
-<p>References:</p>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000008032330" target="_blank" rel="noopener">Git 批量修改历史 commit 中的 user.name 和 user.email | segmentfault</a></li>
+                    <h2 id="统计个人增删行数"><a href="#统计个人增删行数" class="headerlink" title="统计个人增删行数"></a>统计个人增删行数</h2><p>USERNAME 替换为想查询的 user.name</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config user.name</span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> --author=<span class="string">"USERNAME"</span> --pretty=tformat: --numstat | awk <span class="string">'&#123; add += $1; subs += $2; loc += $1 - $2 &#125; END &#123; printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc &#125;'</span> -</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">added lines: 82813, removed lines: 53707, total lines: 29106</span><br></pre></td></tr></table></figure>
+<h2 id="统计每个人增删行数"><a href="#统计每个人增删行数" class="headerlink" title="统计每个人增删行数"></a>统计每个人增删行数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> --shortstat | grep -E <span class="string">"(Author: )(\s*(\w+))&#123;2&#125;|fil(e|es) changed"</span> | awk <span class="string">'</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string"> if($1 ~ /Author/) &#123;</span></span><br><span class="line"><span class="string">  author = $2" "$3</span></span><br><span class="line"><span class="string"> &#125; else &#123;</span></span><br><span class="line"><span class="string">  files[author]+=$1</span></span><br><span class="line"><span class="string">  inserted[author]+=$4</span></span><br><span class="line"><span class="string">  deleted[author]+=$6</span></span><br><span class="line"><span class="string"> &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">END &#123; for (key in files) &#123; print "Author: " key "\n\tfiles changed: ", files[key], "\n\tlines inserted: ", inserted[key], "\n\tlines deleted: ", deleted[key] &#125; &#125;</span></span><br><span class="line"><span class="string">'</span></span><br></pre></td></tr></table></figure>
+<h2 id="统计每个人提交次数"><a href="#统计每个人提交次数" class="headerlink" title="统计每个人提交次数"></a>统计每个人提交次数</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git shortlog -sn --no-merges</span><br></pre></td></tr></table></figure>
+<h2 id="cloc"><a href="#cloc" class="headerlink" title="cloc"></a>cloc</h2><p><a href="https://github.com/AlDanial/cloc" target="_blank" rel="noopener">AlDanial/cloc | github</a> 代码统计。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cloc <span class="built_in">source</span>/</span><br><span class="line"></span><br><span class="line">     186 text files.</span><br><span class="line">     186 unique files.</span><br><span class="line">       3 files ignored.</span><br><span class="line"></span><br><span class="line">github.com/AlDanial/cloc v 1.84  T=0.16 s (1112.3 files/s, 138678.8 lines/s)</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Language                     files          blank        comment           code</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Markdown                       183           6028              0          16788</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">SUM:                           183           6028              0          16788</span><br><span class="line">-------------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+<h2 id="忽略某些路径的更改"><a href="#忽略某些路径的更改" class="headerlink" title="忽略某些路径的更改"></a>忽略某些路径的更改</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">log</span> -- . <span class="string">":(exclude)sub"</span></span><br><span class="line">git <span class="built_in">log</span> -- . <span class="string">":!sub"</span></span><br></pre></td></tr></table></figure>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://gist.github.com/ezamelczyk/78b9c0dd095f8706a3f6a41e8eae0afd" target="_blank" rel="noopener">Git count lines by author | gist ezamelczyk</a></li>
+<li><a href="https://stackoverflow.com/questions/5685007/making-git-log-ignore-changes-for-certain-paths" target="_blank" rel="noopener">Making ‘git log’ ignore changes for certain paths | stackoverflow</a></li>
 </ul>
-</blockquote>
+<p>– EOF –</p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -197,7 +204,7 @@
         </a>
     </div>
     <div class="toc-main">
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#统计个人增删行数"><span class="toc-text">统计个人增删行数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计每个人增删行数"><span class="toc-text">统计每个人增删行数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统计每个人提交次数"><span class="toc-text">统计每个人提交次数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cloc"><span class="toc-text">cloc</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#忽略某些路径的更改"><span class="toc-text">忽略某些路径的更改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-text">References</span></a></li></ol>
     </div>
 </div>
 

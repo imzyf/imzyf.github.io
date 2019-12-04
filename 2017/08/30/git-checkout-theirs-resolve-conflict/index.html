@@ -155,14 +155,14 @@
 <h2 id="实例情况"><a href="#实例情况" class="headerlink" title="实例情况"></a>实例情况</h2><p>两个分支 <code>master</code> 和 <code>dev</code>，<code>dev</code> 是从 <code>master</code> 顶端 <code>checkout</code> 出来的。</p>
 <p>在 <code>dev</code> 修改了 file.xml 文件后进行提交，到达 <code>b</code> 节点，在 <code>master</code> 修改了 file.xml 文件后进行提交，到达 <code>c</code> 节点。</p>
 <p>这时在 <code>dev</code> 执行 rebase 命令，想让 <code>dev</code> 保存线性，<code>b</code> 节点应用在 <code>c</code> 节点之后：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git rebase master</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rebase master</span><br></pre></td></tr></table></figure>
 <p>因为 <code>master</code> 和 <code>dev</code> 修改了 file.xml 同一位置，产生冲突。</p>
 <h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>此时想完全以 <code>dev</code> 中的 file.xml 内容为准则可以使用：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout --theirs file.xml</span><br><span class="line">$ git add file.xml</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --theirs file.xml</span><br><span class="line">git add file.xml</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>如果想以 <code>master</code> 为准：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ git checkout --ours file.xml</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git checkout --ours file.xml</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Reference:</p>
+<p>References:</p>
 <ul>
 <li><a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/" target="_blank" rel="noopener">化解冲突：git merge 与 git rebase 中的 ours 和 theirs</a></li>
 </ul>
