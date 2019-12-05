@@ -154,7 +154,7 @@
 <a id="more"></a>
 <h2 id="软件下载"><a href="#软件下载" class="headerlink" title="软件下载"></a>软件下载</h2><p>使用 <code>brew cask</code> 安装软件，非常方便。</p>
 <p>安装 <a href="https://brew.sh/" target="_blank" rel="noopener">brew</a>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找软件</span></span><br><span class="line">$ brew cask info iterm2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件</span></span><br><span class="line">$ brew cask install iterm2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找软件</span></span><br><span class="line">brew cask info iterm2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件</span></span><br><span class="line">brew cask install iterm2</span><br></pre></td></tr></table></figure>
 <h2 id="软件清单"><a href="#软件清单" class="headerlink" title="软件清单"></a>软件清单</h2><h3 id="必备"><a href="#必备" class="headerlink" title="必备"></a>必备</h3><ul>
 <li>iTerm 2</li>
 <li>Alfred</li>
@@ -163,11 +163,11 @@
 <li>ImageOptim</li>
 <li>iHosts - 管理 Host - </li>
 <li>The Unarchiver - </li>
-<li>~ShadowsocksX-NG~</li>
 <li>V2rayU</li>
 <li>百度云 - BaiduNetdisk</li>
+<li>~ShadowsocksX-NG~</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install iterm2 alfred google-chrome visual-studio-code imageoptim v2rayu baidunetdisk</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iterm2 alfred google-chrome visual-studio-code imageoptim v2rayu baidunetdisk</span><br></pre></td></tr></table></figure>
 <h3 id="Web-开发"><a href="#Web-开发" class="headerlink" title="Web 开发"></a>Web 开发</h3><ul>
 <li>Docker - ✨✨✨</li>
 <li>Navicat for MySQL - ✨✨✨ - 💰</li>
@@ -179,8 +179,8 @@
 <li><del>Sublime Text</del></li>
 <li><del>Paw - API 管理</del></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install docker dash sourcetree postman firefox</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install php@7.2</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install docker dash sourcetree postman firefox</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install php@7.2</span><br></pre></td></tr></table></figure>
 <h3 id="iOS-开发"><a href="#iOS-开发" class="headerlink" title="iOS 开发"></a>iOS 开发</h3><ul>
 <li>OpenSim - 快速打开模拟器应用文件夹 - ✨✨✨</li>
 <li>Reveal - UI 调试 - ✨✨✨ - 💰</li>
@@ -189,7 +189,7 @@
 <li>Realm Studio</li>
 <li>Wireshark</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install opensim reveal charles</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install opensim reveal charles</span><br></pre></td></tr></table></figure>
 <h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><ul>
 <li>go2shell - ✨✨✨</li>
 <li>SecureCRT - SSH 管理 - ✨✨✨ - 💰</li>
@@ -197,8 +197,8 @@
 <li>Proxifier - 代理 - ✨✨✨ - 💰</li>
 <li>fliqlo - 时钟屏保 - 可以配合 <code>触发角</code> 使用 - ✨✨✨</li>
 <li>QuicklookStephen - QuickLook plugin - ✨✨✨</li>
-<li>PopClip - ✨✨</li>
-<li>typora - Markdown 编辑器 - ✨✨</li>
+<li>PopClip - ✨</li>
+<li>typora - Markdown 编辑器 - 导出 PDF 的样式出色 - ✨✨✨</li>
 <li>Pap.er - 桌面壁纸</li>
 <li>Mounty</li>
 <li>Launchpad Manager Yosemite - 清理 Launchpad 图标</li>
@@ -206,8 +206,8 @@
 <li><a href="https://github.com/dteoh/SlowQuitApps" target="_blank" rel="noopener">SlowQuitApps</a> - 延迟 <code>⌘ + q</code></li>
 <li>Cyberduck - FTP</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install go2shell itsycal fliqlo qlstephen PopClip typora paper</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew tap dteoh/sqa</span><br><span class="line">$ brew cask install slowquitapps</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install go2shell itsycal fliqlo qlstephen PopClip typora paper</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew tap dteoh/sqa</span><br><span class="line">brew cask install slowquitapps</span><br></pre></td></tr></table></figure>
 <h3 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h3><ul>
 <li>IINA - ✨✨✨</li>
 <li>LICEcap - GIF 录屏 - ✨✨✨</li>
@@ -225,7 +225,7 @@
 <li>迅雷</li>
 <li><del>网易云音乐</del></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install iina licecap</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew cask install iina licecap</span><br></pre></td></tr></table></figure>
 <h3 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h3><ul>
 <li>Axure RP 8</li>
 <li>MindNode</li>
@@ -242,7 +242,8 @@
 <li>autojump</li>
 <li>fish</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew install autojump</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">brew install autojump</span><br></pre></td></tr></table></figure>
+<p>– EOF –</p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -390,6 +391,12 @@
       
       
       <li>
+        <a href="/2019/12/09/windows-text-file-to-mac-chinese-messy-code/">Windows 文本文件到 Mac 中文乱码</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/12/03/analyze-git-log/">Git log 统计分析</a>
       </li>
       
@@ -400,10 +407,6 @@
       </li>
       
       
-      
-      <li>
-        <a href="/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a>
-      </li>
       
       
       
@@ -744,7 +747,7 @@
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 15.43px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.14px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 

@@ -5,6 +5,8 @@
 
 
 
+
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,16 +20,16 @@
 	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
 	<link rel="preconnect" href="//gravatar.loli.net">
 
-	<title>Booklist | Yifans_Z Blog</title>
+	<title>Windows 文本文件到 Mac 中文乱码 | Yifans_Z Blog</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 	<meta name="generator" content="hexo">
 	<meta name="author" content="Yifans_Z">
-	<meta name="description" content="If I Rest, I Rust.">
+	<meta name="description" content>
 
 	
-	<meta name="keywords" content="imzyf, Yifans_Z">
+	<meta name="keywords" content>
 	
 
 	
@@ -42,11 +44,15 @@
 	
 
 	<meta property="og:site_name" content="Yifans_Z Blog">
-	<meta property="og:type" content="blog">
-	<meta property="og:title" content="Booklist | Yifans_Z Blog">
-	<meta property="og:description" content="If I Rest, I Rust.">
-	<meta property="og:url" content="https://zyf.im/about/booklist/index.html">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Windows 文本文件到 Mac 中文乱码 | Yifans_Z Blog">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/">
 
+	
+	<meta property="article:published_time" content="2019-12-09T14:12:00+08:00"> 
+	<meta property="article:author" content="Yifans_Z">
+	<meta property="article:published_first" content="Yifans_Z Blog, /2019/12/09/windows-text-file-to-mac-chinese-messy-code/">
 	
 
 	
@@ -65,17 +71,15 @@
 	
 	
 </head>
-<body class="tag-template">
+<body class="post-template">
 	<div class="site-wrapper">
 		
 
 
 
 
-<header class="site-header outer " style="background-image: url(https://i.loli.net/2017/11/26/5a19c56faa29f.jpg)">
+<header class="site-header post-site-header outer">
     <div class="inner">
-        
-        
         
 <nav class="site-nav"> 
     <div class="site-nav-left">
@@ -123,44 +127,81 @@
 </div>
     </div>
 </nav>
-        
-        <div class="site-header-content">
-            
-            <h1 class="site-title">
-                Booklist
-            </h1>
-            <h2 class="site-description"></h2>
-        </div>
-        
-        
     </div>
 </header>
 
 
-
 <div id="site-main" class="site-main outer" role="main">
-	<div class="inner">
-		<div class="post-feed">
-			<article class="post-card post no-image custom-page">
-				<article class="post-full no-image">
-					<section class="post-full-content page-full-content">
-						<div id="photoswipe" class="markdown-body">
-							<p>我的书单，好书推荐。</p>
-<h2 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h2><ul>
-<li><a href="https://store.raywenderlich.com/products/ios-apprentice" target="_blank" rel="noopener">Ray Wenderlich iOS Apprentice</a> 2017-09 初读。iOS 开发入门推荐读物。</li>
-<li><a href="https://objccn.io/products/swifter-tips/" target="_blank" rel="noopener">Swifter - Swift 开发者必备 Tips</a> 2018-03 初读。onevcat 主编，这就是推荐的理由。</li>
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-12-09T06:45:39.000Z">
+                    2019-12-9
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                
+            </div>
+            <h1 class="post-full-title">Windows 文本文件到 Mac 中文乱码</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <p>文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。</p>
+<a id="more"></a>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p><a href="https://zh.wikipedia.org/wiki/Iconv" target="_blank" rel="noopener">iconv | wikipedia</a> 它的作用是在多种国际编码格式之间进行文本内码的转换。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iconv [OPTION...] [-f ENCODING] [-t ENCODING] [INPUTFILE...]</span><br><span class="line"></span><br><span class="line">iconv -f GB18030 -t utf-8 &lt; infile.txt &gt; outfile.txt</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://super2bai.github.io/codec/w2m.html" target="_blank" rel="noopener">文本文件从 Windows 拷贝到 Mac 乱码 | super2bai</a></li>
 </ul>
-<h2 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h2><ul>
-<li>Modern PHP（中文版）- Jasb Lockbart 著，安道译。2017-06 初读。PHP 正在重生。</li>
-</ul>
+<p>– EOF –</p>
 
-						</div>
-					</section>
-				</article>
-			</article>
-		</div>
-	</div>
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/mac/" rel="tag"># mac</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="Git log 统计分析" href="/2019/12/03/analyze-git-log/">
+            Git log 统计分析 →
+        </a>
+        
+    </nav>
+
+    
 </div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+    </div>
+</div>
+
 
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
@@ -643,6 +684,8 @@
 		<div class="copyright">
 			<a href="/" title="Yifans_Z Blog">Yifans_Z Blog &copy; 2019</a>
 			
+				
+    		
 		</div>
 		<nav class="site-footer-nav">
 			
