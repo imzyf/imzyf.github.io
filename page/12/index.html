@@ -148,6 +148,56 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
+					<a class="post-card-content-link" title="Markdown 中使用网易云音乐插件" href="/2016/12/22/163-music-in-markdown/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								| 
+								
+								<time datetime="2016-12-22T12:00:00.000Z">
+									2016-12-22
+								</time>
+							</span>
+							<h2 class="post-card-title">Markdown 中使用网易云音乐插件</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								
+								
+								一直大爱网易云音乐，也想着在 markdown 中插入音乐播放组件。研究了下，发现实现很容易。
+选歌、生成代码Step 1：打开 网易云音乐网页版 ，检索歌曲打
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">Yifans_Z</div>
+								
+								<a href="/about" class="static-avatar author-profile-image">
+									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							2
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
 					<a class="post-card-content-link" title="解决 EasyUI Dialog 弹出窗移出界面后无法再移回" href="/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
@@ -168,13 +218,12 @@
 								
 								
 								
-								
-								
 								2019-08-08 更新： 内容价值低，不再维护。
 
 
 当不小心将 EasyUI Dialog 头部移出页面后，将无法再次移动弹出框，便只好刷新页面。
-解决方
+解决方法如下：
+/** * add by cgh * 针对panel window dialog三个组件拖动时会超出父级元素的修正 * 如果父级元素的overflow属性为hidden，则修复上下左右个方向 * 如果父级元素的overflow属性为非hidden，则只修复上左两个方向 * @param left * @par
 								...
 							</p>
 						</div>
@@ -599,55 +648,6 @@ LIMIT 优化思路1、尽可能从索引
 				</div>
 			</article>
 			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="Eclipse Maven 配置使用国内镜像库" href="/2016/09/14/eclipse-maven-settings-mirror-in-china/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								| 
-								
-								<time datetime="2016-09-14T07:00:00.000Z">
-									2016-09-14
-								</time>
-							</span>
-							<h2 class="post-card-title">Eclipse Maven 配置使用国内镜像库</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								Windows 下因为 Eclipse 自带了 Maven 插件，还算够用就懒得安装 Maven 了。在不使用代理的情况下，用 Maven 的下载库不是一般的慢。Eclipse Maven 的插件怎么配置国内的镜像库呢？其实很简单。
-
-创建 settings.xml 文件注意两个地方：1、&lt;localRepository&gt;C:\Users\Lenovo\.m2\repository&lt;/localRepository&gt; 本地仓库位置2、镜像配置，选取的是
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">Yifans_Z</div>
-								
-								<a href="/about" class="static-avatar author-profile-image">
-									<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							6
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
 		</div>
 	</div>
 </div>
@@ -692,6 +692,12 @@ LIMIT 优化思路1、尽可能从索引
       
       
       <li>
+        <a href="/2019/12/19/lonicera-framework/">Lonicera Framework</a>
+      </li>
+      
+      
+      
+      <li>
         <a href="/2019/12/09/windows-text-file-to-mac-chinese-messy-code/">Windows 文本文件到 Mac 中文乱码</a>
       </li>
       
@@ -702,10 +708,6 @@ LIMIT 优化思路1、尽可能从索引
       </li>
       
       
-      
-      <li>
-        <a href="/2019/12/02/git-modify-history-commont-user-email/">Git 批量修改历史 commit 中 user.email</a>
-      </li>
       
       
       
@@ -1048,7 +1050,7 @@ LIMIT 优化思路1、尽可能从索引
 		<h3 class="read-next-card-header-title">Tag Cloud</h3>
 	</header>
 	<div class="read-next-card-content-ext">
-		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.14px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
+		<a href="/tags/algorithm/" style="font-size: 18.29px;">algorithm</a> <a href="/tags/aws/" style="font-size: 14px;">aws</a> <a href="/tags/centos/" style="font-size: 14px;">centos</a> <a href="/tags/composer/" style="font-size: 14.71px;">composer</a> <a href="/tags/css/" style="font-size: 16.86px;">css</a> <a href="/tags/docker/" style="font-size: 14px;">docker</a> <a href="/tags/git/" style="font-size: 24px;">git</a> <a href="/tags/github/" style="font-size: 15.43px;">github</a> <a href="/tags/hexo/" style="font-size: 15.43px;">hexo</a> <a href="/tags/html/" style="font-size: 16.14px;">html</a> <a href="/tags/https/" style="font-size: 14.71px;">https</a> <a href="/tags/ios/" style="font-size: 19.71px;">ios</a> <a href="/tags/java/" style="font-size: 20.43px;">java</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/leetcode/" style="font-size: 23.29px;">leetcode</a> <a href="/tags/mac/" style="font-size: 16.14px;">mac</a> <a href="/tags/markdown/" style="font-size: 14px;">markdown</a> <a href="/tags/moive/" style="font-size: 14px;">moive</a> <a href="/tags/mysql/" style="font-size: 21.14px;">mysql</a> <a href="/tags/nginx/" style="font-size: 17.57px;">nginx</a> <a href="/tags/node-js/" style="font-size: 15.43px;">node-js</a> <a href="/tags/npm/" style="font-size: 14px;">npm</a> <a href="/tags/photoshop/" style="font-size: 14px;">photoshop</a> <a href="/tags/php/" style="font-size: 21.86px;">php</a> <a href="/tags/phpstorm/" style="font-size: 14.71px;">phpstorm</a> <a href="/tags/react/" style="font-size: 16.14px;">react</a> <a href="/tags/react-native/" style="font-size: 14px;">react-native</a> <a href="/tags/reading-notes/" style="font-size: 17.57px;">reading-notes</a> <a href="/tags/report/" style="font-size: 17.57px;">report</a> <a href="/tags/ssh/" style="font-size: 14.71px;">ssh</a> <a href="/tags/swift/" style="font-size: 19px;">swift</a> <a href="/tags/ubuntu/" style="font-size: 22.57px;">ubuntu</a> <a href="/tags/ufw/" style="font-size: 14px;">ufw</a> <a href="/tags/vscode/" style="font-size: 14px;">vscode</a> <a href="/tags/vue/" style="font-size: 14px;">vue</a> <a href="/tags/xcode/" style="font-size: 14px;">xcode</a>
 	</div>
 </article>
 
