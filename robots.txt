@@ -1,8 +1,10 @@
 User-agent: *
 Disallow: /search.xml
+
+Disallow: /archives/
+Disallow: /categories/
 Disallow: /tags/
 Disallow: /page/
-Disallow: /categories/
 
 Sitemap: https://zyf.im/sitemap.xml
 Sitemap: https://zyf.im/baidusitemap.xml

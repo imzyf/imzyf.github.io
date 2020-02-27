@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
-    <lastmod>2019-12-19</lastmod>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/01/04/review-2016/</loc>
+    <lastmod>2019-12-30</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2018/01/05/review-2017/</loc>
+    <lastmod>2019-12-30</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
     <lastmod>2019-12-19</lastmod>
@@ -16,13 +25,7 @@
     <loc>https://zyf.im/2016/08/31/20160601-20160831-report/</loc>
     <lastmod>2019-12-19</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/01/04/2017-happy-new-year/</loc>
-    <lastmod>2019-12-19</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
-    <lastmod>2019-12-19</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2018/01/05/dont-be-lonely-in-2017/</loc>
     <lastmod>2019-12-19</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</loc>
