@@ -4,6 +4,36 @@
     <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
     <lastmod>2020-02-27</lastmod>
   </url>  <url>
+    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/04/11/php-modify-memory-limit/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/09/php-interactive-mode/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/08/31/2016-08-report/</loc>
+    <lastmod>2020-02-27</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2020-02-27</lastmod>
   </url>  <url>
@@ -13,16 +43,10 @@
     <loc>https://zyf.im/2018/01/05/review-2017/</loc>
     <lastmod>2019-12-30</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
-    <lastmod>2019-12-19</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
     <lastmod>2019-12-19</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
-    <lastmod>2019-12-19</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/08/31/20160601-20160831-report/</loc>
     <lastmod>2019-12-19</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
@@ -56,9 +80,6 @@
     <lastmod>2019-12-04</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/</loc>
-    <lastmod>2019-12-04</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/06/23/css-font-summary/</loc>
     <lastmod>2019-12-04</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2018/04/08/chinese-copywriting-style-guide/</loc>
@@ -142,9 +163,6 @@
     <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
     <lastmod>2019-11-26</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
-    <lastmod>2019-11-25</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
@@ -161,9 +179,6 @@
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
-    <lastmod>2019-11-25</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2018/05/20/nginx-ip-forbidden/</loc>
@@ -253,18 +268,6 @@
     <loc>https://zyf.im/2017/06/13/atom-plugin-php-cs-fixer/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/04/11/php-modify-memory-limit/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/09/php-interactive-mode/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/02/21/atom-show-or-hidden-gitignore-files/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
@@ -297,12 +300,6 @@
   </url>  <url>
     <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
     <lastmod>2019-05-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
-    <lastmod>2019-04-28</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
-    <lastmod>2019-04-28</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/03/12/imooc-how-to-use-css-for-web-layout/</loc>
     <lastmod>2019-04-10</lastmod>
