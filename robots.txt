@@ -4,7 +4,7 @@ Disallow: /search.xml
 Disallow: /archives/
 Disallow: /categories/
 Disallow: /tags/
-Disallow: /page/
+Disallow: /links/
 
 Sitemap: https://zyf.im/sitemap.xml
 Sitemap: https://zyf.im/baidusitemap.xml
