@@ -1,49 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zyf.im/2020/04/16/php-gd-getting-started/</loc>
+    <lastmod>2020-04-24</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/04/15/php-common-commands/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</loc>
+    <lastmod>2020-04-23</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/04/20/mysql-the-group-by-and-order-by-difference-between-the-56-57/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/03/17/nginx-front-back-end-config/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/12/03/analyze-git-log/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2019/06/10/git-modify-commit-date/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
+    <lastmod>2020-04-21</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2020/04/13/paste-into-terminal-vim-invalid-format/</loc>
     <lastmod>2020-04-21</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
     <lastmod>2020-04-21</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/04/10/setting-time-zone-in-ubuntu-terminal/</loc>
     <lastmod>2020-04-20</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2020/03/17/nginx-front-back-end-config/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/12/03/analyze-git-log/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/06/10/git-modify-commit-date/</loc>
-    <lastmod>2020-04-20</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2020-04-20</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
@@ -88,9 +112,6 @@
     <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     <lastmod>2020-03-25</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
-    <lastmod>2020-02-27</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
     <lastmod>2020-02-27</lastmod>
   </url>  <url>
@@ -103,13 +124,7 @@
     <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
     <lastmod>2020-02-27</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/04/11/php-modify-memory-limit/</loc>
-    <lastmod>2020-02-27</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
-    <lastmod>2020-02-27</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/09/php-interactive-mode/</loc>
     <lastmod>2020-02-27</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/08/31/2016-08-report/</loc>
@@ -238,9 +253,6 @@
     <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part1/</loc>
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
-    <lastmod>2019-11-25</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
     <lastmod>2019-11-22</lastmod>
   </url>  <url>
@@ -295,12 +307,6 @@
     <loc>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</loc>
     <lastmod>2019-05-25</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/04/20/mysql-the-group-by-and-order-by-difference-between-the-56-57/</loc>
-    <lastmod>2019-05-24</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
-    <lastmod>2019-05-24</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2019/05/23/merge-sort/</loc>
     <lastmod>2019-05-23</lastmod>
   </url>  <url>
@@ -308,9 +314,6 @@
     <lastmod>2019-05-22</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
-    <lastmod>2019-05-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
     <lastmod>2019-05-22</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/03/12/imooc-how-to-use-css-for-web-layout/</loc>
