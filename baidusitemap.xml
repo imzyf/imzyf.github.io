@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2017/07/04/install-php-56-on-ubuntu/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2020/04/28/vim-common-commands/</loc>
     <lastmod>2020-04-28</lastmod>
   </url>  <url>
@@ -40,9 +70,6 @@
     <loc>https://zyf.im/2016/06/13/java-modifier-final/</loc>
     <lastmod>2020-04-24</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
-    <lastmod>2020-04-24</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
     <lastmod>2020-04-24</lastmod>
   </url>  <url>
@@ -79,14 +106,8 @@
     <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
     <lastmod>2020-04-23</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
-    <lastmod>2020-04-23</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</loc>
     <lastmod>2020-04-23</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
-    <lastmod>2020-04-21</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
     <lastmod>2020-04-21</lastmod>
@@ -133,9 +154,6 @@
     <loc>https://zyf.im/2017/08/27/music-player-by-react/</loc>
     <lastmod>2020-03-30</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
-    <lastmod>2020-03-26</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
     <lastmod>2020-03-26</lastmod>
   </url>  <url>
@@ -153,18 +171,6 @@
   </url>  <url>
     <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     <lastmod>2020-03-25</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
-    <lastmod>2020-02-27</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
-    <lastmod>2020-02-27</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
-    <lastmod>2020-02-27</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
-    <lastmod>2020-02-27</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2016/08/31/2016-08-report/</loc>
     <lastmod>2020-02-27</lastmod>
@@ -195,9 +201,6 @@
   </url>  <url>
     <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
     <lastmod>2019-12-09</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/</loc>
-    <lastmod>2019-12-04</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2018/04/08/chinese-copywriting-style-guide/</loc>
     <lastmod>2019-12-04</lastmod>
@@ -259,9 +262,6 @@
     <loc>https://zyf.im/2017/03/21/open-pdf-file-in-ubuntu-terminal/</loc>
     <lastmod>2019-12-02</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    <lastmod>2019-11-26</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
     <lastmod>2019-11-25</lastmod>
   </url>  <url>
@@ -292,9 +292,6 @@
     <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
     <lastmod>2019-10-31</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/</loc>
-    <lastmod>2019-08-08</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2019/01/03/review-2018/</loc>
     <lastmod>2019-07-18</lastmod>
   </url>  <url>
@@ -302,9 +299,6 @@
     <lastmod>2019-07-17</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/06/13/atom-plugin-php-cs-fixer/</loc>
-    <lastmod>2019-05-29</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/02/21/atom-show-or-hidden-gitignore-files/</loc>
     <lastmod>2019-05-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/01/15/build-own-ubuntu-work-development-environment/</loc>
@@ -394,9 +388,6 @@
     <loc>https://zyf.im/2018/03/31/swift-init/</loc>
     <lastmod>2018-04-19</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2018/04/16/use-php-cs-fixer-in-phpstorm/</loc>
-    <lastmod>2018-04-16</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/04/24/vagrant-getting-started-tutorial/</loc>
     <lastmod>2018-04-12</lastmod>
   </url>  <url>
@@ -480,9 +471,6 @@
   </url>  <url>
     <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
     <lastmod>2017-08-22</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
-    <lastmod>2017-06-01</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/02/26/imooc-html-css-basic-course-part3/</loc>
     <lastmod>2017-02-28</lastmod>

@@ -2,6 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    
+    <lastmod>2020-04-28T09:55:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
+    
+    <lastmod>2020-04-28T09:53:24.508Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
+    
+    <lastmod>2020-04-28T09:53:12.507Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
+    
+    <lastmod>2020-04-28T09:53:03.110Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
+    
+    <lastmod>2020-04-28T09:52:45.531Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
+    
+    <lastmod>2020-04-28T09:52:41.213Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
+    
+    <lastmod>2020-04-28T09:52:36.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
+    
+    <lastmod>2020-04-28T09:42:33.543Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
+    
+    <lastmod>2020-04-28T09:40:06.682Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/04/install-php-56-on-ubuntu/</loc>
+    
+    <lastmod>2020-04-28T09:32:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2020/04/28/vim-common-commands/</loc>
     
     <lastmod>2020-04-28T09:29:28.596Z</lastmod>
@@ -93,13 +163,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
-    
-    <lastmod>2020-04-24T09:55:23.413Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
     
     <lastmod>2020-04-24T09:50:18.361Z</lastmod>
@@ -184,23 +247,9 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
-    
-    <lastmod>2020-04-23T09:23:24.540Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</loc>
     
     <lastmod>2020-04-23T09:04:53.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/04/install-php-in-ubuntu-and-faq/</loc>
-    
-    <lastmod>2020-04-21T10:15:45.814Z</lastmod>
     
   </url>
   
@@ -317,13 +366,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/12/22/163-music-in-markdown/</loc>
-    
-    <lastmod>2020-03-26T02:01:07.676Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
     
     <lastmod>2020-03-26T01:58:19.662Z</lastmod>
@@ -383,34 +425,6 @@
     <loc>https://zyf.im/links/index.html</loc>
     
     <lastmod>2020-03-25T14:39:06.063Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
-    
-    <lastmod>2020-02-27T12:50:55.807Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/21/what-is-fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
-    
-    <lastmod>2020-02-27T12:50:30.779Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/21/what-is-cgi-fastcgi-phpcgi-phpfpm/</loc>
-    
-    <lastmod>2020-02-27T12:50:24.444Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
-    
-    <lastmod>2020-02-27T12:50:09.930Z</lastmod>
     
   </url>
   
@@ -481,13 +495,6 @@
     <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
     
     <lastmod>2019-12-09T07:01:32.912Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/12/08/sublime-text-killer-atom-tips-and-shortcuts/</loc>
-    
-    <lastmod>2019-12-04T10:12:30.000Z</lastmod>
     
   </url>
   
@@ -639,13 +646,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    
-    <lastmod>2019-11-26T03:33:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
     
     <lastmod>2019-11-25T11:44:35.625Z</lastmod>
@@ -723,13 +723,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/12/17/resolving-easyui-dialog-out-of-windows-can-not-be-moved-back/</loc>
-    
-    <lastmod>2019-08-08T09:26:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2019/01/03/review-2018/</loc>
     
     <lastmod>2019-07-18T06:55:50.000Z</lastmod>
@@ -747,13 +740,6 @@
     <loc>https://zyf.im/2017/06/13/atom-plugin-php-cs-fixer/</loc>
     
     <lastmod>2019-05-29T09:10:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/02/21/atom-show-or-hidden-gitignore-files/</loc>
-    
-    <lastmod>2019-05-29T09:05:45.000Z</lastmod>
     
   </url>
   
@@ -961,13 +947,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2018/04/16/use-php-cs-fixer-in-phpstorm/</loc>
-    
-    <lastmod>2018-04-16T01:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/04/24/vagrant-getting-started-tutorial/</loc>
     
     <lastmod>2018-04-12T11:00:00.000Z</lastmod>
@@ -1160,13 +1139,6 @@
     <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
     
     <lastmod>2017-08-22T05:55:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
-    
-    <lastmod>2017-06-01T04:00:00.000Z</lastmod>
     
   </url>
   
