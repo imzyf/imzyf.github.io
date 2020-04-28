@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zyf.im/2020/04/28/vim-common-commands/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/04/13/paste-into-terminal-vim-invalid-format/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2020/04/15/php-common-commands/</loc>
+    <lastmod>2020-04-26</lastmod>
+  </url>  <url>
     <loc>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</loc>
     <lastmod>2020-04-24</lastmod>
   </url>  <url>
@@ -70,9 +79,6 @@
     <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
     <lastmod>2020-04-23</lastmod>
   </url>  <url>
-    <loc>https://zyf.im/2020/04/15/php-common-commands/</loc>
-    <lastmod>2020-04-23</lastmod>
-  </url>  <url>
     <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
     <lastmod>2020-04-23</lastmod>
   </url>  <url>
@@ -104,9 +110,6 @@
     <lastmod>2020-04-21</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
-    <lastmod>2020-04-21</lastmod>
-  </url>  <url>
-    <loc>https://zyf.im/2020/04/13/paste-into-terminal-vim-invalid-format/</loc>
     <lastmod>2020-04-21</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
