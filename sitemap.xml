@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    <loc>https://zyf.im/2020/04/28/make-install-php-56-on-macos/</loc>
     
-    <lastmod>2020-04-28T09:55:17.000Z</lastmod>
+    <lastmod>2020-04-29T02:41:20.340Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
     
-    <lastmod>2020-04-28T09:53:24.508Z</lastmod>
+    <lastmod>2020-04-28T10:04:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    
+    <lastmod>2020-04-28T09:55:17.000Z</lastmod>
     
   </url>
   

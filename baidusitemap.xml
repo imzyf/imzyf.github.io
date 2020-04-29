@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    <lastmod>2020-04-28</lastmod>
+    <loc>https://zyf.im/2020/04/28/make-install-php-56-on-macos/</loc>
+    <lastmod>2020-04-29</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
+    <lastmod>2020-04-28</lastmod>
+  </url>  <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
     <lastmod>2020-04-28</lastmod>
   </url>  <url>
     <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
