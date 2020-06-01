@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</loc>
+    
+    <lastmod>2020-05-27T09:05:19.898Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/about/index.html</loc>
+    
+    <lastmod>2020-05-21T03:13:09.719Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
     
     <lastmod>2020-05-11T06:07:34.000Z</lastmod>
@@ -411,13 +425,6 @@
     <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
     
     <lastmod>2020-04-21T03:26:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/about/index.html</loc>
-    
-    <lastmod>2020-03-30T03:24:39.439Z</lastmod>
     
   </url>
   
