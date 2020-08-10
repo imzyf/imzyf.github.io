@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2020-07-20T09:00:07.440Z</updated>
+  <updated>2020-08-10T10:25:15.727Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Composer vendor 提交至 Git</title>
+    <link href="https://zyf.im/2020/08/10/commit-composer-vendor-to-git/"/>
+    <id>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</id>
+    <published>2020-08-10T06:24:47.000Z</published>
+    <updated>2020-08-10T10:25:15.727Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="应该将-vendor-提交到-Git-吗"><a href="#应该将-vendor-提交到-Git-吗" class="headerlink" title="应该将 vendor 提交到 Git 吗"></a>应该将 vendor 提交到 Git 吗</h2><p>一般建议是 <strong>不</strong>。<code>vendor</code> 目录应添加到 <code>.gitignore</code>。</p><p>最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行 Composer。</p><p>虽然在某些环境下这样做很诱人，但也会导致一些问题：</p><ul><li>大型 VCS 存储库的大小和更新代码时的差异。</li><li>在你自己的 VCS 复制你所有依赖的历史。</li><li>将通过 git 安装的依赖项添加到 git repo 中将显示为 <code>submodules</code>。这是有问题的，因为它们不是真正的 <code>submodules</code>，您将会遇到问题。</li></ul><p>如果你真的觉得你必须这样做，你有几个选择：</p><ul><li>限制自己安装带标记的版本（没有 dev 版本），这样就只能安装压缩版，并避免与 git <code>submodules</code> 有关的问题。</li><li>Use <code>--prefer-dist</code> or set <code>preferred-install</code> to <code>dist</code> in your config.</li><li>Remove the <code>.git</code> directory of every dependency after the installation, then you can add them to your git repo. You can do that with <code>rm -rf vendor/\*\*/.git</code> in ZSH or <code>find vendor/ -type d -name &quot;.git&quot; -exec rm -rf {} \;</code> in Bash. 但这意味着您必须在运行 composer 更新之前从磁盘中删除这些依赖项。</li><li>Add a <code>.gitignore</code> rule <code>/vendor/**/.git</code> to ignore all the vendor <code>.git</code> folders. 这种方法不需要在运行编写器更新之前从磁盘删除依赖项。</li></ul><h2 id="我的做法"><a href="#我的做法" class="headerlink" title="我的做法"></a>我的做法</h2><p>因为网络环境与部署的原因，在生产环境下是将 <code>vendor</code> 目录提交到 <code>git</code> 中的。使用过程中确实出现了，部分类库成为了 <code>submodules</code>，无法把真实的代码提交进 git。</p><p>可尝试执行：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git rm rf --cache vendor</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"add vendor"</span></span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md" target="_blank" rel="noopener">Should I commit the dependencies in my vendor directory? | getcomposer</a></li></ul><p>– EOF –</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;应该将-vendor-提交到-Git-吗&quot;&gt;&lt;a href=&quot;#应该将-vendor-提交到-Git-吗&quot; class=&quot;headerlink&quot; title=&quot;应该将 vendor 提交到 Git 吗&quot;&gt;&lt;/a&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+      <category term="git" scheme="https://zyf.im/tags/git/"/>
+    
+      <category term="composer" scheme="https://zyf.im/tags/composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP Swoft 框架环境配置</title>
+    <link href="https://zyf.im/2020/08/07/deploy-swoft-framework/"/>
+    <id>https://zyf.im/2020/08/07/deploy-swoft-framework/</id>
+    <published>2020-08-07T03:45:19.000Z</published>
+    <updated>2020-08-08T04:11:56.027Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装-Swoole"><a href="#安装-Swoole" class="headerlink" title="安装 Swoole"></a>安装 Swoole</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pecl install swoole</span><br></pre></td></tr></table></figure><p>可能出现：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Connection to &#96;ssl:&#x2F;&#x2F;pecl.php.net:443′ failed:</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查</span></span><br><span class="line">php -r <span class="string">"print_r(openssl_get_cert_locations());"</span></span><br><span class="line"></span><br><span class="line">Array</span><br><span class="line">(</span><br><span class="line">    [default_cert_file] =&gt; /private/etc/ssl/cert.pem</span><br><span class="line">    [default_cert_file_env] =&gt; SSL_CERT_FILE</span><br><span class="line">    [default_cert_dir] =&gt; /private/etc/ssl/certs</span><br><span class="line">    [default_cert_dir_env] =&gt; SSL_CERT_DIR</span><br><span class="line">    [default_private_dir] =&gt; /private/etc/ssl/private</span><br><span class="line">    [default_default_cert_area] =&gt; /private/etc/ssl</span><br><span class="line">    [ini_cafile] =&gt;</span><br><span class="line">    [ini_capath] =&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ls /private/etc/ssl/</span><br><span class="line"><span class="comment"># 现没有 cert.pem 这个证书</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载证书</span></span><br><span class="line">wget -c https://curl.haxx.se/ca/cacert.pem /private/etc/ssl/cert.pem --no-check-certificate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再次执行</span></span><br><span class="line">pecl install swoole</span><br></pre></td></tr></table></figure><h2 id="PEAR-PECL-Composer"><a href="#PEAR-PECL-Composer" class="headerlink" title="PEAR PECL Composer"></a>PEAR PECL Composer</h2><p><a href="http://pear.php.net/" target="_blank" rel="noopener">PEAR</a>：PHP Extension and Application Repository，PEAR 将 PHP 程序开发过程中常用的功能编写成类库，涵盖了页面呈现、数据库访问、文件操作、数据结构、缓存操作、网络协议、WebService 等许多方面，用户可以通过下载这些类库并适当的作一些定制以实现自己需要的功能。避免重复发明“车轮”。PEAR 的出现大大提高了 PHP 程序的开发效率和开发质量。使用的时候，要在代码中进行 Include 才能够使用。但基本已经没落，被 Composer 取而代之。</p><p><a href="https://pecl.php.net/" target="_blank" rel="noopener">PECL</a>：PHP Extension Community Library，是使用 C 语言开发的，通常用于补充一些用 PHP 难以完成的底层功能，往往需要重新编译或者在配置文件中设置后才能在用户自己的代码中使用。相对来说是比较底层的扩展。PECL 是 PEAR 的一部分。</p><p>官网说明：<a href="https://pecl.php.net/" target="_blank" rel="noopener">https://pecl.php.net/</a></p><p>eg：安装 Reids 扩展 <a href="https://pecl.php.net/package/redis" target="_blank" rel="noopener">https://pecl.php.net/package/redis</a></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pecl install redis</span><br></pre></td></tr></table></figure><p>Composer：PHP 的包管理工具，优点在于仅需要提供一个 composer.json 文件，申明需要用到的三方库，一个简单的命令就能将其依赖全部装好。</p><p>目前，我们使用 Composer 来管理 PHP 代码包，使用 PECL 来管理 C 扩展。</p><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="http://itman.su520.com/2017/08/23/pecl-%E5%92%8C-pear-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" target="_blank" rel="noopener">关于 PHP 的扩展 PECL、PEAR、Composer | su520</a></li></ul><p>– EOF –</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装-Swoole&quot;&gt;&lt;a href=&quot;#安装-Swoole&quot; class=&quot;headerlink&quot; title=&quot;安装 Swoole&quot;&gt;&lt;/a&gt;安装 Swoole&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+      
+    
+    </summary>
+    
+    
+      <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+      <category term="swoft" scheme="https://zyf.im/tags/swoft/"/>
+    
+  </entry>
   
   <entry>
     <title>tcpdump 入门使用</title>
@@ -382,48 +434,6 @@
     <summary type="html">
     
       &lt;p&gt;注意：&lt;strong&gt;此操作会修改 Git 历史记录&lt;/strong&gt;，正式工作环境慎用。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="git" scheme="https://zyf.im/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CentOS yum 升级 git 版本</title>
-    <link href="https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/"/>
-    <id>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</id>
-    <published>2019-11-25T07:36:16.000Z</published>
-    <updated>2019-12-04T04:04:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>先去官网看看 <a href="https://git-scm.com/download/linux" target="_blank" rel="noopener">Download for Linux and Unix</a>:</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.</span><br></pre></td></tr></table></figure><a id="more"></a><p>RHEL 和衍生通常提供较老版本的 git。您可以下载 tarball 并从源代码构建，或者使用第三方存储库，如 <a href="https://ius.io/" target="_blank" rel="noopener">IUS Community Project</a> 来获得最新版本的 git。</p><h2 id="使用-IUS"><a href="#使用-IUS" class="headerlink" title="使用 IUS"></a>使用 IUS</h2><p>RHEL/CentOS 7</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install \</span><br><span class="line">https://repo.ius.io/ius-release-el7.rpm \</span><br><span class="line">https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><br></pre></td></tr></table></figure><p>安装新版 git：</p><p>ius 通常会在高版本的软件名后面 + ‘u’</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum list git git\*u</span><br></pre></td></tr></table></figure><p>如果你已经装有低版本的 git，你需要先 remove（否则安装的时候会报错）</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum remove git</span><br></pre></td></tr></table></figure><p>安装 2.0 以上版本的 git</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install git2u</span><br></pre></td></tr></table></figure><h2 id="WANdisco"><a href="#WANdisco" class="headerlink" title="WANdisco"></a>WANdisco</h2><p>另一个源：<a href="http://docs.wandisco.com/git/binaries/" target="_blank" rel="noopener">WANdisco Replication Binaries</a></p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/yum.repos.d/wandisco-git.repo</span><br></pre></td></tr></table></figure><p>wandisco-git.repo</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[wandisco-git]</span><br><span class="line">name=Wandisco GIT Repository</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/7/git/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco</span><br></pre></td></tr></table></figure><p>Import the repository GPG keys with:</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo rpm --import http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum remove git</span><br><span class="line"></span><br><span class="line">sudo yum install git</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://linuxize.com/post/how-to-install-git-on-centos-7/" target="_blank" rel="noopener">How To Install Git on CentOS 7 | linuxize</a></li><li><a href="https://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-7-x-6-x" target="_blank" rel="noopener">How to install latest version of git on CentOS 7.x/6.x | stackoverflow</a></li></ul><p>– EOF –</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;先去官网看看 &lt;a href=&quot;https://git-scm.com/download/linux&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Download for Linux and Unix&lt;/a&gt;:&lt;/p&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="git" scheme="https://zyf.im/tags/git/"/>
-    
-      <category term="centos" scheme="https://zyf.im/tags/centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CRLF will be replaced by LF</title>
-    <link href="https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/"/>
-    <id>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</id>
-    <published>2019-11-22T09:30:37.000Z</published>
-    <updated>2019-12-04T03:43:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add .</span><br><span class="line"></span><br><span class="line">warning: CRLF will be replaced by LF <span class="keyword">in</span> X.</span><br></pre></td></tr></table></figure><ul><li>CRLF：windows 环境下的换行符</li><li>LF：linux 环境下的换行符</li></ul><p>这个错误的意思，就是文件中存在两种环境的换行符，git 会自动替换 CRLF 为 LF ，所以提示警告。</p><a id="more"></a><p>首先推荐扩展阅读：<a href="https://help.github.com/cn/github/using-git/configuring-git-to-handle-line-endings" target="_blank" rel="noopener">配置 Git 处理行结束符 | GitHub</a></p><p>我项目中是配置了 <code>.gitattributes</code> 的：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Set the default behavior, in case people don&apos;t have core.autocrlf set.</span><br><span class="line">* text=auto</span><br><span class="line"></span><br><span class="line"># Explicitly declare text files you want to always be normalized and converted</span><br><span class="line"># to native line endings on checkout.</span><br><span class="line">*.c text</span><br><span class="line">*.h text</span><br><span class="line"></span><br><span class="line"># Declare files that will always have CRLF line endings on checkout.</span><br><span class="line">*.sln text eol=crlf</span><br><span class="line"></span><br><span class="line"># Denote all files that are truly binary and should not be modified.</span><br><span class="line">*.png binary</span><br><span class="line">*.jpg binary</span><br></pre></td></tr></table></figure><h2 id="gitattributes"><a href="#gitattributes" class="headerlink" title=".gitattributes"></a>.gitattributes</h2><p>公式：<code>要匹配的文件模式 属性1 属性2 ...</code>。</p><h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例 1"></a>示例 1</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* text=auto</span><br></pre></td></tr></table></figure><p>对任何文件，设置 text=auto，表示文件的行尾自动转换。如果是文本文件，则在文件入 Git 库时，行尾自动转换为 LF。如果已经在入 Git 库中的文件的行尾为 CRLF，则该文件在入 Git 库时，不再转换为 LF。</p><h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例 2"></a>示例 2</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*.txt text</span><br></pre></td></tr></table></figure><p>对于 txt 文件，标记为文本文件，并进行行尾规范化。</p><h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例 3"></a>示例 3</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*.jpg -text</span><br><span class="line"></span><br><span class="line">*.jpg binary</span><br></pre></td></tr></table></figure><p>对于 jpg 文件，标记为非文本文件，不进行任何的行尾转换。<code>*.jpg -text</code> 可能是旧版本的写法。</p><h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例 4"></a>示例 4</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*.vcproj text eol=crlf</span><br></pre></td></tr></table></figure><p>对于 vcproj 文件，标记为文本文件，在文件入 Git 库时进行规范化，即行尾为 LF。但是在检出到工作目录时，行尾自动转换为 CRLF。</p><h3 id="示例-5"><a href="#示例-5" class="headerlink" title="示例 5"></a>示例 5</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*.sh text eol=lf</span><br></pre></td></tr></table></figure><p>对于 sh 文件，标记为文本文件，在文件入 Git 库时进行规范化，即行尾为 LF。在检出到工作目录时，行尾也不会转换为 CRLF（即保持 LF）。</p><h3 id="示例-6"><a href="#示例-6" class="headerlink" title="示例 6"></a>示例 6</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*.py eol=lf</span><br></pre></td></tr></table></figure><p>对于 py 文件，只针对工作目录中的文件，行尾为 LF。</p><h2 id="还是有问题"><a href="#还是有问题" class="headerlink" title="还是有问题"></a>还是有问题</h2><p>在项目中已经添加 <code>.gitattributes</code> 文件，但是还是出现了报错，这时要检查 git 的版本。（CentOS 自带的 git 版本较低）</p><blockquote><p>可以参考：<a href="https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a></p></blockquote><p>后来还查到了一个方法，<code>.gitattributes</code>：</p><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* -crlf</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://blog.csdn.net/taiyangdao/article/details/78484623" target="_blank" rel="noopener">Git 的 gitattributes 文件详解 | csdn</a></li><li><a href="https://git-scm.com/docs/gitattributes" target="_blank" rel="noopener">gitattributes - Defining attributes per path | git-scm</a></li><li><a href="https://www.rtuin.nl/2013/02/how-to-make-git-ignore-different-line-endings/" target="_blank" rel="noopener">How to make Git ignore different line endings | rtuin</a></li></ul><p>– EOF –</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git add .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;warning: CRLF will be replaced by LF &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; X.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;&lt;li&gt;CRLF：windows 环境下的换行符&lt;/li&gt;&lt;li&gt;LF：linux 环境下的换行符&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;这个错误的意思，就是文件中存在两种环境的换行符，git 会自动替换 CRLF 为 LF ，所以提示警告。&lt;/p&gt;
     
     </summary>
     

@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</loc>
+    
+    <lastmod>2020-08-10T10:25:15.727Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
+    
+    <lastmod>2020-08-10T06:19:25.645Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
+    
+    <lastmod>2020-08-10T06:18:32.623Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/22/fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
+    
+    <lastmod>2020-08-10T06:16:16.960Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
+    
+    <lastmod>2020-08-10T06:15:26.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/08/07/deploy-swoft-framework/</loc>
+    
+    <lastmod>2020-08-08T04:11:56.027Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/24/gallery-by-react/</loc>
+    
+    <lastmod>2020-08-07T09:48:36.343Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
+    
+    <lastmod>2020-08-07T09:45:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
     
     <lastmod>2020-07-28T03:27:50.000Z</lastmod>
@@ -96,13 +152,6 @@
     <loc>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</loc>
     
     <lastmod>2020-05-09T09:32:01.287Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/22/fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
-    
-    <lastmod>2020-05-09T09:31:39.752Z</lastmod>
     
   </url>
   
@@ -208,27 +257,6 @@
     <loc>https://zyf.im/2017/06/01/imooc-install-php-extension-guide-notes/</loc>
     
     <lastmod>2020-04-28T10:04:53.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
-    
-    <lastmod>2020-04-28T09:53:12.507Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
-    
-    <lastmod>2020-04-28T09:53:03.110Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
-    
-    <lastmod>2020-04-28T09:52:36.524Z</lastmod>
     
   </url>
   
@@ -474,13 +502,6 @@
     <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
     
     <lastmod>2020-03-30T02:36:01.082Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/24/gallery-by-react/</loc>
-    
-    <lastmod>2020-03-30T02:35:58.749Z</lastmod>
     
   </url>
   
@@ -761,13 +782,6 @@
     <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
     
     <lastmod>2019-11-22T09:33:35.457Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/06/install-node-js-in-ubuntu-and-faq/</loc>
-    
-    <lastmod>2019-10-31T10:29:57.000Z</lastmod>
     
   </url>
   
