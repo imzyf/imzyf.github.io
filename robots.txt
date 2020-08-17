@@ -5,6 +5,6 @@ Disallow: /archives/
 Disallow: /categories/
 Disallow: /tags/
 Disallow: /links/
+Disallow: /atom.xml
 
 Sitemap: https://zyf.im/sitemap.xml
-Sitemap: https://zyf.im/baidusitemap.xml
