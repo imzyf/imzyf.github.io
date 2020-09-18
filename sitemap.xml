@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</loc>
+    
+    <lastmod>2020-09-18T07:00:42.706Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/09/18/yii2-where/</loc>
+    
+    <lastmod>2020-09-18T06:23:17.837Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
+    
+    <lastmod>2020-09-18T03:46:01.898Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
+    
+    <lastmod>2020-09-18T03:44:47.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</loc>
+    
+    <lastmod>2020-09-18T03:42:59.696Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
     
     <lastmod>2020-08-18T02:27:43.419Z</lastmod>
@@ -208,13 +243,6 @@
     <loc>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</loc>
     
     <lastmod>2020-05-11T06:07:19.327Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</loc>
-    
-    <lastmod>2020-05-09T09:32:01.287Z</lastmod>
     
   </url>
   
@@ -457,13 +485,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/04/28/php-composer-basic/</loc>
-    
-    <lastmod>2020-04-24T09:11:11.947Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     
     <lastmod>2020-04-24T09:11:05.915Z</lastmod>
@@ -488,13 +509,6 @@
     <loc>https://zyf.im/2017/04/20/mysql-the-group-by-and-order-by-difference-between-the-56-57/</loc>
     
     <lastmod>2020-04-21T07:32:46.476Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
-    
-    <lastmod>2020-04-21T06:36:42.448Z</lastmod>
     
   </url>
   
