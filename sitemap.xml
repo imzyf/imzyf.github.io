@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/about/index.html</loc>
+    
+    <lastmod>2021-02-04T10:03:38.954Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2021/01/28/git-credential-store/</loc>
     
     <lastmod>2021-02-04T09:54:21.701Z</lastmod>
@@ -240,9 +247,9 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/about/index.html</loc>
+    <loc>https://zyf.im/about/booklist/index.html</loc>
     
-    <lastmod>2020-12-29T09:28:33.432Z</lastmod>
+    <lastmod>2020-12-29T09:30:37.407Z</lastmod>
     
   </url>
   
@@ -751,14 +758,14 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
+    <loc>https://zyf.im/2019/06/10/git-modify-commit-date/</loc>
     
     <lastmod>2020-04-21T06:36:41.728Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/06/10/git-modify-commit-date/</loc>
+    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
     
     <lastmod>2020-04-21T06:36:41.728Z</lastmod>
     
@@ -803,13 +810,6 @@
     <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     
     <lastmod>2020-03-25T14:51:17.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/about/booklist/index.html</loc>
-    
-    <lastmod>2020-03-25T14:40:32.035Z</lastmod>
     
   </url>
   
