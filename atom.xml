@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2022-06-09T06:59:09.000Z</updated>
+  <updated>2022-07-28T03:55:03.161Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Front-end Code Snippet</title>
+    <link href="https://zyf.im/2022/07/28/front-end-code-snippet/"/>
+    <id>https://zyf.im/2022/07/28/front-end-code-snippet/</id>
+    <published>2022-07-28T03:51:46.000Z</published>
+    <updated>2022-07-28T03:55:03.161Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="库推荐"><a href="#库推荐" class="headerlink" title="库推荐"></a>库推荐</h2><h3 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h3><p><a href="https://github.com/Pana/nrm" target="_blank" rel="noopener">Pana/nrm</a></p><p>nrm can help you easy and fast switch between different npm registries, now include: npm, cnpm, taobao, nj(nodejitsu).</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"></span><br><span class="line">nrm ls</span><br><span class="line"></span><br><span class="line">nrm use tencent</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>– EOF –</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;h2 id=&quot;库推荐&quot;&gt;&lt;a href=&quot;#库推荐&quot; class=&quot;headerlink&quot; title=&quot;库推荐&quot;&gt;&lt;/a&gt;库推荐&lt;/h2&gt;&lt;h3 id=&quot;nrm&quot;&gt;&lt;a href=&quot;#nrm&quot; class=&quot;headerlink&quot; title
+      
+    
+    </summary>
+    
+      <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>读《JavaScript 教程 | 网道》笔记</title>
@@ -41,21 +64,21 @@
     <link href="https://zyf.im/2022/01/10/group-concat-max-len/"/>
     <id>https://zyf.im/2022/01/10/group-concat-max-len/</id>
     <published>2022-01-10T07:53:16.000Z</published>
-    <updated>2022-02-11T09:22:01.052Z</updated>
+    <updated>2022-07-28T06:38:45.612Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @@group_concat_max_len;</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>– EOF –</p>]]></content>
+    <content type="html"><![CDATA[<p>今日在生产环境发生了：因为 <code>GROUP_CONCAT</code> 聚合的数据列发生截断导致异常，原来 <code>GROUP_CONCAT</code> 是有大小限制的。</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @@GROUP_CONCAT_MAX_LEN;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 1024 bytes</span></span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><blockquote><p><a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_group_concat_max_len" target="_blank" rel="noopener">group_concat_max_len | mysql</a></p></blockquote><p>– EOF –</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; @@group_concat_max_len
+        &lt;p&gt;今日在生产环境发生了：因为 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 聚合的数据列发生截断导致异常，原来 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 是有大小限制的。&lt;/p&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;
       
     
     </summary>
     
     
-      <category term="sql" scheme="https://zyf.im/tags/sql/"/>
+      <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
     
   </entry>
   
@@ -79,29 +102,6 @@
     
       <category term="report" scheme="https://zyf.im/categories/report/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>AND OR 执行优先级</title>
-    <link href="https://zyf.im/2021/12/13/and-or-execution-order/"/>
-    <id>https://zyf.im/2021/12/13/and-or-execution-order/</id>
-    <published>2021-12-13T07:53:16.000Z</published>
-    <updated>2022-02-11T08:37:46.393Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>– EOF –</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;References&quot;&gt;&lt;a href=&quot;#References&quot; class=&quot;headerlink&quot; title=&quot;References&quot;&gt;&lt;/a&gt;References&lt;/h2&gt;&lt;p&gt;– EOF –&lt;/p&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="sql" scheme="https://zyf.im/tags/sql/"/>
     
   </entry>
   
@@ -308,7 +308,7 @@
     <link href="https://zyf.im/2021/09/14/sql-over-partition-by/"/>
     <id>https://zyf.im/2021/09/14/sql-over-partition-by/</id>
     <published>2021-09-14T03:58:42.000Z</published>
-    <updated>2021-09-15T02:24:26.714Z</updated>
+    <updated>2022-07-28T06:40:49.628Z</updated>
     
     <content type="html"><![CDATA[<h2 id="在-HIVE-中"><a href="#在-HIVE-中" class="headerlink" title="在 HIVE 中"></a>在 HIVE 中</h2><p>最近在使用 HIVE，需要统计 <code>当年累计和</code> 这样的指标，请教同事后发现了 <code>OVER(PARTITION BY)</code> 开窗函数。</p><p>分析函数用于计算基于组的某种聚合值，它和聚合函数的不同之处是：对于每个组返回多行，而聚合函数对于每个组只返回一行。</p><p>开窗函数指定了分析函数工作的数据窗口大小，这个数据窗口大小可能会随着行的变化而变化。</p><p>测试语句：</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> default.test_over_partition (</span><br><span class="line">  <span class="string">`fdate`</span> <span class="built_in">Date</span>,</span><br><span class="line">  <span class="string">`year`</span> <span class="built_in">Int</span>,</span><br><span class="line">  <span class="string">`month`</span> <span class="built_in">Int</span>,</span><br><span class="line">  <span class="string">`category1`</span> <span class="keyword">String</span>,</span><br><span class="line">  <span class="string">`category2`</span> <span class="keyword">String</span>,</span><br><span class="line">  <span class="string">`income`</span> <span class="keyword">Double</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> hdp_fin_dash_ods.test_over_partition (<span class="string">`fdate`</span>,<span class="string">`year`</span>,<span class="string">`month`</span>,<span class="string">`category1`</span>,<span class="string">`category2`</span>,<span class="string">`income`</span>) <span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'2020-01-01'</span>,<span class="number">2020</span>,<span class="number">1</span>,<span class="string">'3C'</span>,<span class="string">'电脑'</span>,<span class="string">'1010'</span>),</span><br><span class="line">(<span class="string">'2020-01-01'</span>,<span class="number">2020</span>,<span class="number">1</span>,<span class="string">'3C'</span>,<span class="string">'手机'</span>,<span class="string">'1011'</span>),</span><br><span class="line">(<span class="string">'2020-02-01'</span>,<span class="number">2020</span>,<span class="number">2</span>,<span class="string">'3C'</span>,<span class="string">'电脑'</span>,<span class="string">'1012'</span>),</span><br><span class="line">(<span class="string">'2020-02-01'</span>,<span class="number">2020</span>,<span class="number">2</span>,<span class="string">'3C'</span>,<span class="string">'手机'</span>,<span class="string">'1013'</span>),</span><br><span class="line">(<span class="string">'2020-03-01'</span>,<span class="number">2020</span>,<span class="number">3</span>,<span class="string">'3C'</span>,<span class="string">'电脑'</span>,<span class="string">'1014'</span>),</span><br><span class="line">(<span class="string">'2020-03-01'</span>,<span class="number">2020</span>,<span class="number">3</span>,<span class="string">'3C'</span>,<span class="string">'手机'</span>,<span class="string">'1015'</span>),</span><br><span class="line">(<span class="string">'2021-04-01'</span>,<span class="number">2021</span>,<span class="number">4</span>,<span class="string">'3C'</span>,<span class="string">'电脑'</span>,<span class="string">'1016'</span>),</span><br><span class="line">(<span class="string">'2021-04-01'</span>,<span class="number">2021</span>,<span class="number">4</span>,<span class="string">'3C'</span>,<span class="string">'手机'</span>,<span class="string">'1017'</span>),</span><br><span class="line">(<span class="string">'2021-05-01'</span>,<span class="number">2021</span>,<span class="number">5</span>,<span class="string">'3C'</span>,<span class="string">'电脑'</span>,<span class="string">'1018'</span>),</span><br><span class="line">(<span class="string">'2021-05-01'</span>,<span class="number">2021</span>,<span class="number">5</span>,<span class="string">'3C'</span>,<span class="string">'手机'</span>,<span class="string">'1019'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每年每 category2 日累计 income</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="string">`fdate`</span>,<span class="string">`year`</span>,<span class="string">`month`</span>,<span class="string">`category1`</span>,<span class="string">`category2`</span>,<span class="string">`income`</span></span><br><span class="line">,<span class="keyword">SUM</span>(income) <span class="keyword">OVER</span> (<span class="keyword">PARTITION</span> <span class="keyword">BY</span> <span class="string">`year`</span>,<span class="string">`category1`</span>,<span class="string">`category2`</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> fdate) <span class="keyword">AS</span> ttl_year_income</span><br><span class="line"><span class="keyword">FROM</span> hdp_fin_dash_ods.test_over_partition;</span><br></pre></td></tr></table></figure><p><img src="https://user-images.githubusercontent.com/9289792/133225004-be0d2c88-e713-407b-b41d-da44e16ac960.png"></p><h2 id="在-MySQL-中"><a href="#在-MySQL-中" class="headerlink" title="在 MySQL 中"></a>在 MySQL 中</h2><blockquote><p>Before MySQL 8.0 you can’t use window functions like ROW_NUMBER.</p></blockquote><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul><li><a href="https://www.cnblogs.com/zhwbqd/p/4205821.html" target="_blank" rel="noopener">Mysql 分组聚合实现 over partition by 功能 | cnblogs</a></li><li><a href="https://stackoverflow.com/questions/58645949/emulating-partition-over-with-mysql-5-7" target="_blank" rel="noopener">Emulating PARTITION OVER with MySQL 5.7 | stackoverflow</a></li></ul><p>– EOF –</p>]]></content>
     
