@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2022-07-28T03:55:03.161Z</updated>
+  <updated>2022-07-29T07:24:39.144Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Front-end Code Snippet</title>
-    <link href="https://zyf.im/2022/07/28/front-end-code-snippet/"/>
-    <id>https://zyf.im/2022/07/28/front-end-code-snippet/</id>
+    <title>Shell Code Snippet</title>
+    <link href="https://zyf.im/2022/07/28/shell-code-snippet/"/>
+    <id>https://zyf.im/2022/07/28/shell-code-snippet/</id>
     <published>2022-07-28T03:51:46.000Z</published>
-    <updated>2022-07-28T03:55:03.161Z</updated>
+    <updated>2022-07-29T07:24:39.144Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><ul><li><a href="https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html" target="_blank" rel="noopener">The Set Builtin | gnu</a></li><li><a href="http://www.ruanyifeng.com/blog/2017/11/bash-set.html" target="_blank" rel="noopener">Bash 脚本 set 命令教程 | ruanyifeng</a></li></ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -o errexit <span class="comment">#等价 set -e。只要发生错误，就终止执行。认为非0就是错误。</span></span><br><span class="line"><span class="built_in">set</span> +o nounset <span class="comment"># 等价 set +u。遇到不存在的变量不报错。默认如此。</span></span><br><span class="line"><span class="built_in">set</span> -o pipefail <span class="comment"># 只要一个子命令失败，整个管道命令就失败，脚本就会终止执行。</span></span><br><span class="line"><span class="built_in">set</span> -o xtrace <span class="comment"># 等价 set -x。在运行结果之前，先输出执行的那一行命令，调试复杂的脚本是很有用。</span></span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> -o errexit</span><br><span class="line"><span class="built_in">set</span> -o nounset</span><br><span class="line"><span class="built_in">set</span> -o pipefail</span><br><span class="line"><span class="built_in">set</span> -o xtrace</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4合1</span></span><br><span class="line"><span class="built_in">set</span> -euxo pipefail</span><br><span class="line"><span class="comment">## 写法二</span></span><br><span class="line"><span class="built_in">set</span> -eux</span><br><span class="line"><span class="built_in">set</span> -o pipefail</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者执行命令时</span></span><br><span class="line">bash -euxo pipefail script.sh</span><br></pre></td></tr></table></figure><p>如果脚本里面有运行失败的命令（返回值非 0），Bash 默认会继续执行后面的命令。</p><p>实际开发中，如果某个命令失败，往往需要脚本停止执行，防止错误累积。这时，一般采用下面的写法：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">command</span> || <span class="built_in">exit</span> 1</span><br></pre></td></tr></table></figure><p>上面的写法表示只要 command 有非零返回值，脚本就会停止执行。</p><p>如果停止执行之前需要完成多个操作，就要采用下面三种写法：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 写法一</span></span><br><span class="line"><span class="built_in">command</span> || &#123; <span class="built_in">echo</span> <span class="string">"command failed"</span>; <span class="built_in">exit</span> 1; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写法二</span></span><br><span class="line"><span class="keyword">if</span> ! <span class="built_in">command</span>; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"command failed"</span>; <span class="built_in">exit</span> 1; <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 写法三</span></span><br><span class="line"><span class="built_in">command</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"$?"</span> -ne 0 ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"command failed"</span>; <span class="built_in">exit</span> 1; <span class="keyword">fi</span></span><br></pre></td></tr></table></figure><p>如果两个命令有继承关系，只有第一个命令成功了，才能继续执行第二个命令，那么就要采用下面的写法：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">command1 &amp;&amp; command2</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>– EOF –</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;h2 id=&quot;set&quot;&gt;&lt;a href=&quot;#set&quot; class=&quot;headerlink&quot; title=&quot;set&quot;&gt;&lt;/a&gt;set&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.gnu.org/software/bash/m
+      
+    
+    </summary>
+    
+      <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Front-end Code Snippet</title>
+    <link href="https://zyf.im/2022/07/26/front-end-code-snippet/"/>
+    <id>https://zyf.im/2022/07/26/front-end-code-snippet/</id>
+    <published>2022-07-26T03:51:46.000Z</published>
+    <updated>2022-07-28T11:35:30.627Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a><h2 id="库推荐"><a href="#库推荐" class="headerlink" title="库推荐"></a>库推荐</h2><h3 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h3><p><a href="https://github.com/Pana/nrm" target="_blank" rel="noopener">Pana/nrm</a></p><p>nrm can help you easy and fast switch between different npm registries, now include: npm, cnpm, taobao, nj(nodejitsu).</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"></span><br><span class="line">nrm ls</span><br><span class="line"></span><br><span class="line">nrm use tencent</span><br></pre></td></tr></table></figure><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>– EOF –</p>]]></content>
     
@@ -87,15 +110,15 @@
     <link href="https://zyf.im/2021/12/30/review-2021/"/>
     <id>https://zyf.im/2021/12/30/review-2021/</id>
     <published>2021-12-30T12:16:41.000Z</published>
-    <updated>2022-02-11T08:45:27.090Z</updated>
+    <updated>2022-07-28T07:17:05.000Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="https://y.qq.com/n/ryqq/songDetail/000O1wTz209k94" target="_blank" rel="noopener">直到对的人来 · 追星族乐队</a></p><p>– EOF –</p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://music.163.com/#/song?id=25638375" target="_blank" rel="noopener">直到对的人来 · 追星族乐队</a></p><blockquote><p>我想跟他说：那家餐厅太美了，我一定要和你去一次。但是那个菜其实很一般的，那个老板娘戴的耳环特别漂亮。</p></blockquote><p>– EOF –</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;a href=&quot;https://y.qq.com/n/ryqq/songDetail/000O1wTz209k94&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;直到对的人来 · 追星族乐队&lt;/a&gt;&lt;/p&gt;&lt;p&gt;– EOF –&lt;/p&gt;
+        &lt;p&gt;&lt;a href=&quot;https://music.163.com/#/song?id=25638375&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;直到对的人来 · 追星族乐队&lt;/a&gt;&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;我想跟他说：那家餐厅太美了，我一定要
       
     
     </summary>
@@ -469,29 +492,6 @@
     
     
       <category term="git" scheme="https://zyf.im/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何做好技术协同及管理</title>
-    <link href="https://zyf.im/2021/07/08/how-to-do-technical-management/"/>
-    <id>https://zyf.im/2021/07/08/how-to-do-technical-management/</id>
-    <published>2021-07-08T13:08:08.000Z</published>
-    <updated>2021-07-22T06:48:18.475Z</updated>
-    
-    <content type="html"><![CDATA[<p>《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。</p><h2 id="招人"><a href="#招人" class="headerlink" title="招人"></a>招人</h2><ul><li>注重招人环节；在这一步要卡严，因为入职后再折腾就更费时费力了。</li><li>要关注的点：基础水平（工程能力）、离职原因（是否能长久）、个人性格（气场是否相合）。</li></ul><h2 id="入职"><a href="#入职" class="headerlink" title="入职"></a>入职</h2><ul><li>主动沟通是重要的特质。还有责任心、可塑性、执行力。</li><li>前紧后松；前期要做 code review，养成好习惯。</li><li>关注测试同学以及其他同学对其的反馈。了解工作状态、质量。</li><li>在突破底线后应该当机立断，无需心存幻想。</li></ul><h2 id="心态"><a href="#心态" class="headerlink" title="心态"></a>心态</h2><ul><li>没有归宿感；owner 意识。</li><li>每一位都是组内的一员。</li></ul><h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><ul><li>早会；任务安排，跟踪进度。不能不闻不问，最后容易抓瞎。</li><li>超过 30min 解决不了的问题，直接沟通，避免团队时间的浪费。</li><li>读书会，组内分享；打造一个好的技术氛围，这里不只是工作，还能成长。</li><li>要对任务的工作量有判断；并且明确开发规模，并且进行核对，防止 “大事小做，小题大做”。</li><li>通过先编写好单元测试、框架结构、interface，控制需求实现、代码质量。</li><li>在无法进行横向对比的情况下，可以对比加入前后是否释放自身生产力来进行判断。</li><li>三个卡点：需求评审、技术实现评审、测试用例评审，把关质量。</li></ul><p>– EOF –</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。&lt;/p&gt;&lt;h2 id=&quot;招人&quot;&gt;&lt;a href=&quot;#招人&quot; class=&quot;headerlink&quot; title=&quot;招人&quot;&gt;&lt;/a&gt;招人&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;注重招人环节；在这一步要卡严，因为入职后再折腾就更费时
-      
-    
-    </summary>
-    
-    
-      <category term="thinking" scheme="https://zyf.im/tags/thinking/"/>
     
   </entry>
   
