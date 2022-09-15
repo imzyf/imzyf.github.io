@@ -166,7 +166,7 @@
     
     </summary>
     
-      <category term="report" scheme="https://zyf.im/categories/report/"/>
+      <category term="review" scheme="https://zyf.im/categories/review/"/>
     
     
   </entry>
@@ -293,7 +293,7 @@
     <link href="https://zyf.im/2021/07/08/how-to-do-technical-management/"/>
     <id>https://zyf.im/2021/07/08/how-to-do-technical-management/</id>
     <published>2021-07-08T13:08:08.000Z</published>
-    <updated>2022-09-15T03:12:35.460Z</updated>
+    <updated>2022-09-15T06:31:56.840Z</updated>
     
     <content type="html"><![CDATA[<p>《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。</p><h2 id="招人"><a href="#招人" class="headerlink" title="招人"></a>招人</h2><ul><li>注重招人环节；在这一步要卡严，因为入职后再折腾就更费时费力了。</li><li>要关注的点：基础水平（工程能力）、离职原因（是否能长久）、个人性格（气场是否相合）。</li></ul><h2 id="入职"><a href="#入职" class="headerlink" title="入职"></a>入职</h2><ul><li>主动沟通是重要的特质。还有责任心、可塑性、执行力。</li><li>前紧后松；前期要做 code review，养成好习惯。</li><li>关注测试同学以及其他同学对其的反馈。了解工作状态、质量。</li><li>在突破底线后应该当机立断，无需心存幻想。</li></ul><h2 id="心态"><a href="#心态" class="headerlink" title="心态"></a>心态</h2><ul><li>没有归宿感；owner 意识。</li><li>每一位都是组内的一员。</li></ul><h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><ul><li>早会；任务安排，跟踪进度。不能不闻不问，最后容易抓瞎。</li><li>超过 30min 解决不了的问题，直接沟通，避免团队时间的浪费。</li><li>读书会，组内分享；打造一个好的技术氛围，这里不只是工作，还能成长。</li><li>要对任务的工作量有判断；并且明确开发规模，并且进行核对，防止 “大事小做，小题大做”。</li><li>通过先编写好单元测试、框架结构、interface，控制需求实现、代码质量。</li><li>在无法进行横向对比的情况下，可以对比加入前后是否释放自身生产力来进行判断。</li><li>三个卡点：需求评审、技术实现评审、测试用例评审，把关质量。</li></ul><p>– EOF –</p>]]></content>
     
@@ -307,7 +307,7 @@
     </summary>
     
     
-      <category term="thinking" scheme="https://zyf.im/tags/thinking/"/>
+      <category term="report" scheme="https://zyf.im/tags/report/"/>
     
   </entry>
   
@@ -464,7 +464,7 @@
     <link href="https://zyf.im/2020/12/31/review-2020/"/>
     <id>https://zyf.im/2020/12/31/review-2020/</id>
     <published>2020-12-31T12:00:00.000Z</published>
-    <updated>2022-09-15T06:17:44.792Z</updated>
+    <updated>2022-09-15T06:30:24.365Z</updated>
     
     <content type="html"><![CDATA[<h2 id="过年就在石家庄"><a href="#过年就在石家庄" class="headerlink" title="过年就在石家庄"></a>过年就在石家庄</h2><h2 id="lwl-走学"><a href="#lwl-走学" class="headerlink" title="lwl 走学"></a>lwl 走学</h2><h2 id="肺炎在家办公"><a href="#肺炎在家办公" class="headerlink" title="肺炎在家办公"></a>肺炎在家办公</h2><h2 id="PR-剪辑"><a href="#PR-剪辑" class="headerlink" title="PR 剪辑"></a>PR 剪辑</h2><h2 id="表情包制作"><a href="#表情包制作" class="headerlink" title="表情包制作"></a>表情包制作</h2><h2 id="自己染发剪发"><a href="#自己染发剪发" class="headerlink" title="自己染发剪发"></a>自己染发剪发</h2><p>– EOF –</p>]]></content>
     
@@ -477,7 +477,7 @@
     
     </summary>
     
-      <category term="report" scheme="https://zyf.im/categories/report/"/>
+      <category term="review" scheme="https://zyf.im/categories/review/"/>
     
     
   </entry>
