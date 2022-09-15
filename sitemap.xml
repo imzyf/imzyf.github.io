@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2022/07/01/2022-q3-thinking/</loc>
+    
+    <lastmod>2022-09-15T06:26:55.670Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/12/31/review-2020/</loc>
+    
+    <lastmod>2022-09-15T06:17:44.792Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2021/07/08/how-to-do-technical-management/</loc>
+    
+    <lastmod>2022-09-15T03:12:35.460Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</loc>
+    
+    <lastmod>2022-09-15T03:08:57.476Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/12/31/review-2016/</loc>
+    
+    <lastmod>2022-09-15T02:58:54.615Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/12/31/review-2017/</loc>
+    
+    <lastmod>2022-09-15T02:58:25.845Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/12/31/review-2019/</loc>
+    
+    <lastmod>2022-09-15T02:56:33.836Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/07/28/shell-code-snippet/</loc>
+    
+    <lastmod>2022-09-15T02:49:39.255Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/</loc>
     
     <lastmod>2022-09-06T10:53:58.000Z</lastmod>
@@ -103,13 +159,6 @@
     <loc>https://zyf.im/2020/04/28/make-install-php-on-macos/</loc>
     
     <lastmod>2022-09-01T07:04:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/07/28/shell-code-snippet/</loc>
-    
-    <lastmod>2022-08-25T08:23:08.828Z</lastmod>
     
   </url>
   
@@ -275,7 +324,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2021/12/30/review-2021/</loc>
+    <loc>https://zyf.im/2021/12/31/review-2021/</loc>
     
     <lastmod>2022-07-28T07:17:05.000Z</lastmod>
     
@@ -355,20 +404,6 @@
     <loc>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</loc>
     
     <lastmod>2022-06-09T06:59:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2018/01/05/review-2017/</loc>
-    
-    <lastmod>2022-02-11T08:43:47.319Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/01/04/review-2016/</loc>
-    
-    <lastmod>2022-02-11T08:43:38.786Z</lastmod>
     
   </url>
   
@@ -467,13 +502,6 @@
     <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/</loc>
     
     <lastmod>2021-07-22T06:49:00.213Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/07/08/how-to-do-technical-management/</loc>
-    
-    <lastmod>2021-07-22T06:48:18.475Z</lastmod>
     
   </url>
   
@@ -1045,7 +1073,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/01/03/review-2018/</loc>
+    <loc>https://zyf.im/2018/12/31/review-2018/</loc>
     
     <lastmod>2019-07-18T06:55:50.000Z</lastmod>
     
