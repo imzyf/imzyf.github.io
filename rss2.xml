@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>全力以赴</title>
+    <link>https://zyf.im/</link>
+    
+    <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description></description>
+    <pubDate>Thu, 15 Dec 2022 08:40:03 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PHP Migrating to 7.4 8.0</title>
+      <link>https://zyf.im/2022/12/14/php-migrating-to-74-80/</link>
+      <guid>https://zyf.im/2022/12/14/php-migrating-to-74-80/</guid>
+      <pubDate>Wed, 14 Dec 2022 08:40:03 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2022/12/14/php-migrating-to-74-80/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Migrating to 7.2 7.3</title>
+      <link>https://zyf.im/2022/12/12/php-migrating-to-72-73/</link>
+      <guid>https://zyf.im/2022/12/12/php-migrating-to-72-73/</guid>
+      <pubDate>Mon, 12 Dec 2022 12:51:51 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2022/12/12/php-migrating-to-72-73/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Migrating to 7.0 7.1</title>
+      <link>https://zyf.im/2022/11/28/php-migrating-to-70-71/</link>
+      <guid>https://zyf.im/2022/11/28/php-migrating-to-70-71/</guid>
+      <pubDate>Mon, 28 Nov 2022 02:36:34 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;PHP7-0-to-PHP7-1&quot;&gt;&lt;a href=&quot;#PHP7-0-to-PHP7-1&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2022/11/28/php-migrating-to-70-71/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>通过 ondrej/php PPA 管理多个 PHP 版本</title>
+      <link>https://zyf.im/2022/11/18/ondrej-multiversion-php/</link>
+      <guid>https://zyf.im/2022/11/18/ondrej-multiversion-php/</guid>
+      <pubDate>Fri, 18 Nov 2022 09:20:43 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;&lt;a href=&quot;https://ostechnix.com/how-to-switch-between-multiple-php-versions-in-ubuntu/&quot;&gt;https://ostechnix.com/how-to-switch-between-multiple-php-versions-in-ubuntu/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;References&quot;&gt;&lt;a href=&quot;#References&quot; class=&quot;headerlink&quot; title=&quot;References&quot;&gt;&lt;/a&gt;References&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2022/11/18/ondrej-multiversion-php/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Docker Code Snippet</title>
+      <link>https://zyf.im/2022/11/17/docker-code-snippet/</link>
+      <guid>https://zyf.im/2022/11/17/docker-code-snippet/</guid>
+      <pubDate>Thu, 17 Nov 2022 02:09:26 GMT</pubDate>
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      
+      <comments>https://zyf.im/2022/11/17/docker-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Laradock 学习笔记</title>
+      <link>https://zyf.im/2022/11/09/explore-laradock/</link>
+      <guid>https://zyf.im/2022/11/09/explore-laradock/</guid>
+      <pubDate>Wed, 09 Nov 2022 14:24:01 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;local-web-server-solutions&quot;&gt;&lt;a href=&quot;#local-web-server-solutions&quot; class=&quot;headerlink&quot; title=&quot;local web server solutions&quot;&gt;&lt;/a&gt;local web server solutions&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.apachefriends.org/&quot;&gt;XAMPP Apache + MariaDB + PHP + Perl&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/docker/">docker</category>
+      
+      
+      <comments>https://zyf.im/2022/11/09/explore-laradock/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>2022Q4 随想录</title>
+      <link>https://zyf.im/2022/10/01/2022-q4-thinking/</link>
+      <guid>https://zyf.im/2022/10/01/2022-q4-thinking/</guid>
+      <pubDate>Sat, 01 Oct 2022 13:08:08 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;工作&quot;&gt;&lt;a href=&quot;#工作&quot; class=&quot;headerlink&quot; title=&quot;工作&quot;&gt;&lt;/a&gt;工作&lt;/h2&gt;&lt;h2 id=&quot;生活&quot;&gt;&lt;a href=&quot;#生活&quot; class=&quot;headerlink&quot; title=&quot;生活&quot;&gt;&lt;/a&gt;生活&lt;/h2&gt;&lt;p&gt;– EOF</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/thinking/">thinking</category>
+      
+      
+      
+      <comments>https://zyf.im/2022/10/01/2022-q4-thinking/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>《MySQL 实战 45 讲》笔记 01</title>
+      <link>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/</link>
+      <guid>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/</guid>
+      <pubDate>Sun, 14 Aug 2022 07:53:16 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://gk.link/a/11AmM&quot;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;01-基础架构：一条-SQL-查询语句是如何执行的？&quot;&gt;&lt;a href=&quot;#01-基础架构：一条-SQL-查询语句是如何执行的？&quot; class=&quot;headerlink&quot; title=&quot;01 | 基础架构：一条 SQL 查询语句是如何执行的？&quot;&gt;&lt;/a&gt;01 | 基础架构：一条 SQL 查询语句是如何执行的？&lt;/h2&gt;&lt;img alt=&quot;image&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Shell Code Snippet</title>
+      <link>https://zyf.im/2022/07/28/shell-code-snippet/</link>
+      <guid>https://zyf.im/2022/07/28/shell-code-snippet/</guid>
+      <pubDate>Thu, 28 Jul 2022 03:51:46 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;查找大文件&quot;&gt;&lt;a href=&quot;#查找大文件&quot; class=&quot;headerlink&quot; title=&quot;查找大文件&quot;&gt;&lt;/a&gt;查找大文件&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;du&lt;/span&gt; -s ./*|&lt;span class=&quot;built_in&quot;&gt;sort&lt;/span&gt; -nr|&lt;span class=&quot;built_in&quot;&gt;head&lt;/span&gt; -3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;一般说来不会出现删除文件后空间不释放的情况，但是也存在例外，比如文件被进程锁定，或者有进程一直在向这个文件写数据等等，要理解这个问题，就需要知道 Linux 下文件的存储机制和存储结构。&lt;/p&gt;
+&lt;p&gt;一个文件在文件系统中的存放分为两个部分：数据部分和指针部分，指针位于文件系统的 meta-data 中，数据被删除后，这个指针就从 meta-data 中清除了，而数据部分存储在磁盘中，数据对应的指针从 meta-data 中清除后，文件数据部分占用的空间就可以被覆盖并写入新的内容，之所以出现删除 access_log 文件后，空间还没释放，就是因为 httpd 进程还在一直向这个文件写入内容，导致虽然删除了 access_log 文件，但文件对应的指针部分由于进程锁定，并未从 meta-data 中清除，而由于指针并未被删除，那么系统内核就认为文件并未被删除，因此通过 df 命令查询空间并未释放也就不足为奇了。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 获取一个已经被删除但仍然被应用程序占用的文件列表&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lsof | grep delete&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;通过这种方法，磁盘空间不但可以马上释放，也可保障进程继续向文件写入日志，这种方法经常用于在线清理 Apache、Tomcat、Nginx 等 Web 服务产生的日志文件：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt; &amp;gt;/tmp/acess.log&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;grep-遍历文件夹查找文本内容&quot;&gt;&lt;a href=&quot;#grep-遍历文件夹查找文本内容&quot; class=&quot;headerlink&quot; title=&quot;grep 遍历文件夹查找文本内容&quot;&gt;&lt;/a&gt;grep 遍历文件夹查找文本内容&lt;/h2&gt;&lt;p&gt;有时候我们需要在某一个包含很多子目录的目录中搜索查找包含某个文本内容的文本，我们可以在 grep 中加上 -r 选项让 grep 命令迭代进入子目录查找。同时在命令最后加上代表文件通配符的*号，不然 grep 会一直等待输入。&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;grep -r &lt;span class=&quot;string&quot;&gt;&amp;quot;查找文本内容&amp;quot;&lt;/span&gt; *&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;set&quot;&gt;&lt;a href=&quot;#set&quot; class=&quot;headerlink&quot; title=&quot;set&quot;&gt;&lt;/a&gt;set&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html&quot;&gt;The Set Builtin | gnu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2017/11/bash-set.html&quot;&gt;Bash 脚本 set 命令教程 | ruanyifeng&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      
+      <comments>https://zyf.im/2022/07/28/shell-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Front-end Code Snippet</title>
+      <link>https://zyf.im/2022/07/26/front-end-code-snippet/</link>
+      <guid>https://zyf.im/2022/07/26/front-end-code-snippet/</guid>
+      <pubDate>Tue, 26 Jul 2022 03:51:46 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;h2 id=&quot;库推荐&quot;&gt;&lt;a href=&quot;#库推荐&quot; class=&quot;headerlink&quot; title=&quot;库推荐&quot;&gt;&lt;/a&gt;库推荐&lt;/h2&gt;&lt;h3 id=&quot;nrm&quot;&gt;&lt;a href=&quot;#nrm&quot; class=&quot;headerlink&quot; title=&quot;nrm&quot;&gt;&lt;/a&gt;nrm&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Pana/nrm&quot;&gt;Pana&amp;#x2F;nrm&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;nrm can help you easy and fast switch between different npm</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      
+      <comments>https://zyf.im/2022/07/26/front-end-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>2022Q3 随想录</title>
+      <link>https://zyf.im/2022/07/01/2022-q3-thinking/</link>
+      <guid>https://zyf.im/2022/07/01/2022-q3-thinking/</guid>
+      <pubDate>Fri, 01 Jul 2022 13:08:08 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;生活或者工作中总有些值得记录下的小感想，没必单独写一篇独立文章那就写在 &lt;code&gt;随想录&lt;/code&gt; 里吧。&lt;code&gt;随想录&lt;/code&gt; 以季度为单位开设。&lt;/p&gt;
+&lt;p&gt;开 &lt;code&gt;随想录&lt;/code&gt; 专题的直接原因是：在翻看扔进 &lt;code&gt;_drafts&lt;/code&gt; 里 18</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/thinking/">thinking</category>
+      
+      
+      
+      <comments>https://zyf.im/2022/07/01/2022-q3-thinking/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>读《JavaScript 教程 | 网道》笔记</title>
+      <link>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</link>
+      <guid>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</guid>
+      <pubDate>Thu, 09 Jun 2022 06:59:09 GMT</pubDate>
+      
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://wangdoc.com/javascript/index.html&quot;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/javascript/">javascript</category>
+      
+      
+      <comments>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>GROUP_CONCAT 截断</title>
+      <link>https://zyf.im/2022/01/10/group-concat-max-len/</link>
+      <guid>https://zyf.im/2022/01/10/group-concat-max-len/</guid>
+      <pubDate>Mon, 10 Jan 2022 07:53:16 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;今日在生产环境发生了：因为 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 聚合的数据列发生截断导致异常，原来 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 是有大小限制的。&lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; @&lt;span class=&quot;variable&quot;&gt;@GROUP&lt;/span&gt;_CONCAT_MAX_LEN;&lt;/span&gt;&lt;br&gt;&lt;span</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2022/01/10/group-concat-max-len/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>回顾 2021</title>
+      <link>https://zyf.im/2021/12/31/review-2021/</link>
+      <guid>https://zyf.im/2021/12/31/review-2021/</guid>
+      <pubDate>Fri, 31 Dec 2021 12:16:41 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;&lt;a href=&quot;https://music.163.com/#/song?id=25638375&quot;&gt;直到对的人来 · 追星族乐队&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我想跟他说：那家餐厅太美了，我一定要和你去一次。但是那个菜其实很一般的，那个老板娘戴的耳环特别漂亮。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;– EOF</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/review/">review</category>
+      
+      
+      
+      <comments>https://zyf.im/2021/12/31/review-2021/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP 安装 gRPC</title>
+      <link>https://zyf.im/2021/10/13/php-install-grpc/</link>
+      <guid>https://zyf.im/2021/10/13/php-install-grpc/</guid>
+      <pubDate>Wed, 13 Oct 2021 07:48:41 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;ENV&quot;&gt;&lt;a href=&quot;#ENV&quot; class=&quot;headerlink&quot; title=&quot;ENV&quot;&gt;&lt;/a&gt;ENV&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cat&lt;/span&gt; /etc/redhat-release&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;CentOS Linux release 7.2</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2021/10/13/php-install-grpc/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>分组聚合 OVER PARTITION BY</title>
+      <link>https://zyf.im/2021/09/14/sql-over-partition-by/</link>
+      <guid>https://zyf.im/2021/09/14/sql-over-partition-by/</guid>
+      <pubDate>Tue, 14 Sep 2021 03:58:42 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;在-HIVE-中&quot;&gt;&lt;a href=&quot;#在-HIVE-中&quot; class=&quot;headerlink&quot; title=&quot;在 HIVE 中&quot;&gt;&lt;/a&gt;在 HIVE 中&lt;/h2&gt;&lt;p&gt;最近在使用 HIVE，需要统计 &lt;code&gt;当年累计和&lt;/code&gt; 这样的指标，请教同事后发现了 &lt;code&gt;OVER(PARTITION BY)&lt;/code&gt;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      <category domain="https://zyf.im/tags/hive/">hive</category>
+      
+      
+      <comments>https://zyf.im/2021/09/14/sql-over-partition-by/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP __invoke 使用</title>
+      <link>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</link>
+      <guid>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</guid>
+      <pubDate>Tue, 20 Jul 2021 06:58:33 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;why they are magic? Because they are magically called by PHP when specific actions happen.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;__invoke()&lt;/code&gt; method is called when a script tries to call an object as a function.&lt;/p&gt;
+&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP strict_types 严格模式</title>
+      <link>https://zyf.im/2021/07/19/php-strict-types/</link>
+      <guid>https://zyf.im/2021/07/19/php-strict-types/</guid>
+      <pubDate>Mon, 19 Jul 2021 11:58:26 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;严格模式的声明 &lt;em&gt;必须&lt;/em&gt; 放在文件的顶部。&lt;/li&gt;
+&lt;li&gt;严格模式不仅作用于函数参数的类型声明，也作用于函数的返回值类型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;声明 PHP 文件作为严格模式的一个好事是，实际上只适用于当前文件。这确保了这个文件是严格类型，但是他没有影响到整个项目中的其他文件。这允许你一步一步的迁移非严格模式的代码。&lt;/p&gt;
+&lt;p&gt;使用提示类型没有 strict_types 可能导致微妙的错误。&lt;/p&gt;
+&lt;p&gt;严格类型之前，&lt;code&gt;int $x&lt;/code&gt; 意味着 &lt;code&gt;$x must have a value coercible to</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2021/07/19/php-strict-types/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Git and GitHub Secrets</title>
+      <link>https://zyf.im/2021/07/12/git-and-github-secrets/</link>
+      <guid>https://zyf.im/2021/07/12/git-and-github-secrets/</guid>
+      <pubDate>Mon, 12 Jul 2021 02:40:15 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;记住密码&quot;&gt;&lt;a href=&quot;#记住密码&quot; class=&quot;headerlink&quot; title=&quot;记住密码&quot;&gt;&lt;/a&gt;记住密码&lt;/h2&gt;&lt;p&gt;Git 记住密码配置后，不用每次 pull、push 都需要输入密码：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git config --global credential.helper store&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;会在</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/git/">git</category>
+      
+      
+      <comments>https://zyf.im/2021/07/12/git-and-github-secrets/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>如何做好技术协同及管理</title>
+      <link>https://zyf.im/2021/07/08/how-to-do-technical-management/</link>
+      <guid>https://zyf.im/2021/07/08/how-to-do-technical-management/</guid>
+      <pubDate>Thu, 08 Jul 2021 13:08:08 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。&lt;/p&gt;
+&lt;h2 id=&quot;招人&quot;&gt;&lt;a href=&quot;#招人&quot; class=&quot;headerlink&quot; title=&quot;招人&quot;&gt;&lt;/a&gt;招人&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;注重招人环节；在这一步要卡严，因为入职后再折腾就更费时费力了。&lt;/li&gt;
+&lt;li&gt;要关注的点：基础水平（工程能力）、离职原因（是否能长久）、个人性格（气场是否相合）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;入职&quot;&gt;&lt;a href=&quot;#入职&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/report/">report</category>
+      
+      
+      <comments>https://zyf.im/2021/07/08/how-to-do-technical-management/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>【设计模式之美】笔记 Part 2</title>
+      <link>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-reading-notes-part2/</link>
+      <guid>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-reading-notes-part2/</guid>
+      <pubDate>Sat, 06 Feb 2021 03:00:41 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;11&quot;&gt;&lt;a href=&quot;#11&quot; class=&quot;headerlink&quot; title=&quot;11&quot;&gt;&lt;/a&gt;11&lt;/h2&gt;&lt;p&gt;领域驱动设计（Domain Driven Design，简称 DDD）。&lt;/p&gt;
+&lt;h3 id=&quot;什么是基于贫血模型的传统开发模式？&quot;&gt;&lt;a href=&quot;#什么是基于贫血模型的传统开发模式？&quot; class=&quot;headerlink&quot; title=&quot;什么是基于贫血模型的传统开发模式？&quot;&gt;&lt;/a&gt;什么是基于贫血模型的传统开发模式？&lt;/h3&gt;&lt;p&gt;UserEntity 和 UserRepository 组成了数据访问层，UserBo 和 UserService</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/design-patterns/">design-patterns</category>
+      
+      
+      <comments>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-reading-notes-part2/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>【设计模式之美】笔记 Part 1</title>
+      <link>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/</link>
+      <guid>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/</guid>
+      <pubDate>Fri, 05 Feb 2021 03:00:41 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;00&quot;&gt;&lt;a href=&quot;#00&quot; class=&quot;headerlink&quot; title=&quot;00&quot;&gt;&lt;/a&gt;00&lt;/h2&gt;&lt;p&gt;KISS 原则（Keep It Simple and Stupid），这个原则理解起来很简单，一看貌似就懂了，那我问你，怎样的代码才算是足够简单呢？怎样才算不够简单需要优化呢？&lt;/p&gt;
+&lt;p&gt;“Talk is cheap, show me the code.”&lt;/p&gt;
+&lt;h2 id=&quot;01&quot;&gt;&lt;a href=&quot;#01&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/design-patterns/">design-patterns</category>
+      
+      
+      <comments>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL Code Snippet</title>
+      <link>https://zyf.im/2021/01/29/mysql-code-snippet/</link>
+      <guid>https://zyf.im/2021/01/29/mysql-code-snippet/</guid>
+      <pubDate>Fri, 29 Jan 2021 10:08:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Tips-SQL&quot;&gt;&lt;a href=&quot;#Tips-SQL&quot; class=&quot;headerlink&quot; title=&quot;Tips SQL&quot;&gt;&lt;/a&gt;Tips SQL&lt;/h2&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;-- 查看优化后的 SQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;--</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2021/01/29/mysql-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP 月份加减问题</title>
+      <link>https://zyf.im/2021/01/27/php-strtotime-month/</link>
+      <guid>https://zyf.im/2021/01/27/php-strtotime-month/</guid>
+      <pubDate>Wed, 27 Jan 2021 10:18:24 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;看现象&quot;&gt;&lt;a href=&quot;#看现象&quot; class=&quot;headerlink&quot; title=&quot;看现象&quot;&gt;&lt;/a&gt;看现象&lt;/h2&gt;&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;title function_ invoke__&quot;&gt;var_dump&lt;/span&gt;(&lt;span class=&quot;title function_ invoke__&quot;&gt;date&lt;/span&gt;(&lt;span</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2021/01/27/php-strtotime-month/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Yii2 Code Snippet</title>
+      <link>https://zyf.im/2021/01/19/yii2-code-snippet/</link>
+      <guid>https://zyf.im/2021/01/19/yii2-code-snippet/</guid>
+      <pubDate>Tue, 19 Jan 2021 04:08:13 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;gii-CLI&quot;&gt;&lt;a href=&quot;#gii-CLI&quot; class=&quot;headerlink&quot; title=&quot;gii CLI&quot;&gt;&lt;/a&gt;gii CLI&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;php yii &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt; gii/mode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;php yii gii/model</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/yii2/">yii2</category>
+      
+      
+      <comments>https://zyf.im/2021/01/19/yii2-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Yii2 Vue 跨域问题</title>
+      <link>https://zyf.im/2021/01/10/yii2-vue-cors/</link>
+      <guid>https://zyf.im/2021/01/10/yii2-vue-cors/</guid>
+      <pubDate>Sun, 10 Jan 2021 04:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;旧的解决办法&quot;&gt;&lt;a href=&quot;#旧的解决办法&quot; class=&quot;headerlink&quot; title=&quot;旧的解决办法&quot;&gt;&lt;/a&gt;旧的解决办法&lt;/h2&gt;&lt;p&gt;在控制器的 behaviors 方法中增加下面的代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/yii2/">yii2</category>
+      
+      <category domain="https://zyf.im/tags/vue/">vue</category>
+      
+      
+      <comments>https://zyf.im/2021/01/10/yii2-vue-cors/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>回顾 2020</title>
+      <link>https://zyf.im/2020/12/31/review-2020/</link>
+      <guid>https://zyf.im/2020/12/31/review-2020/</guid>
+      <pubDate>Thu, 31 Dec 2020 12:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;过年就在石家庄&quot;&gt;&lt;a href=&quot;#过年就在石家庄&quot; class=&quot;headerlink&quot; title=&quot;过年就在石家庄&quot;&gt;&lt;/a&gt;过年就在石家庄&lt;/h2&gt;&lt;h2 id=&quot;lwl-走学&quot;&gt;&lt;a href=&quot;#lwl-走学&quot; class=&quot;headerlink&quot; title=&quot;lwl 走学&quot;&gt;&lt;/a&gt;lwl 走学&lt;/h2&gt;&lt;h2 id=&quot;肺炎在家办公&quot;&gt;&lt;a href=&quot;#肺炎在家办公&quot; class=&quot;headerlink&quot; title=&quot;肺炎在家办公&quot;&gt;&lt;/a&gt;肺炎在家办公&lt;/h2&gt;&lt;h2 id=&quot;PR-剪辑&quot;&gt;&lt;a href=&quot;#PR-剪辑&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/review/">review</category>
+      
+      
+      
+      <comments>https://zyf.im/2020/12/31/review-2020/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>优化 PHP-FPM</title>
+      <link>https://zyf.im/2020/12/30/optimization-of-php-fpm/</link>
+      <guid>https://zyf.im/2020/12/30/optimization-of-php-fpm/</guid>
+      <pubDate>Wed, 30 Dec 2020 11:10:03 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;2022-05-06 内容是否过期犹未可知。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/manual/zh/install.fpm.configuration.php&quot;&gt;php-fpm.conf | php.net&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/12/30/optimization-of-php-fpm/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL 空格问题</title>
+      <link>https://zyf.im/2020/11/28/mysql-blank-space/</link>
+      <guid>https://zyf.im/2020/11/28/mysql-blank-space/</guid>
+      <pubDate>Sat, 28 Nov 2020 03:11:59 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;看现象&quot;&gt;&lt;a href=&quot;#看现象&quot; class=&quot;headerlink&quot; title=&quot;看现象&quot;&gt;&lt;/a&gt;看现象&lt;/h2&gt;&lt;p&gt;创建一个测试数据库表，插入测试数据：&lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;TABLE&lt;/span&gt; `blank_space` (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; </description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2020/11/28/mysql-blank-space/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在 Laravel 之外使用 illuminate 组件</title>
+      <link>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</link>
+      <guid>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</guid>
+      <pubDate>Fri, 11 Sep 2020 07:00:39 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;当代框架基本都是有组件构成，这使得框架变得更加灵活。&lt;a href=&quot;https://github.com/illuminate&quot;&gt;The Laravel Components | github&lt;/a&gt; Laravel 中有不少优质组件，那如何在 Laravel 之外使用 illuminate 组件呢？&lt;/p&gt;
+&lt;h2 id=&quot;illuminate-x2F-validation&quot;&gt;&lt;a href=&quot;#illuminate-x2F-validation&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Redis 正则批量删除 key</title>
+      <link>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</link>
+      <guid>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</guid>
+      <pubDate>Mon, 17 Aug 2020 11:34:29 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;figure class=&quot;highlight lua&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;EVAL &lt;span class=&quot;string&quot;&gt;&amp;quot;return redis.call(&amp;#x27;del&amp;#x27;, &amp;#x27;defaultKey&amp;#x27;, unpack(redis.call(&amp;#x27;keys&amp;#x27;, ARGV[1])))&amp;quot;&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/redis/">redis</category>
+      
+      
+      <comments>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL JSON 数据类型</title>
+      <link>https://zyf.im/2020/08/14/mysql-json-data-type/</link>
+      <guid>https://zyf.im/2020/08/14/mysql-json-data-type/</guid>
+      <pubDate>Fri, 14 Aug 2020 11:39:55 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/json.html&quot;&gt;The JSON Data Type | mysql&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As of MySQL 5.7.8, MySQL supports a native JSON data type&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/json-function-reference.html&quot;&gt;JSON Function Reference |</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2020/08/14/mysql-json-data-type/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Composer vendor 提交至 Git</title>
+      <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
+      <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
+      <pubDate>Mon, 10 Aug 2020 06:24:47 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;应该将-vendor-提交到-Git-吗&quot;&gt;&lt;a href=&quot;#应该将-vendor-提交到-Git-吗&quot; class=&quot;headerlink&quot; title=&quot;应该将 vendor 提交到 Git 吗&quot;&gt;&lt;/a&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;&lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/composer/">composer</category>
+      
+      <category domain="https://zyf.im/tags/git/">git</category>
+      
+      
+      <comments>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Swoft 框架环境配置</title>
+      <link>https://zyf.im/2020/08/07/deploy-swoft-framework/</link>
+      <guid>https://zyf.im/2020/08/07/deploy-swoft-framework/</guid>
+      <pubDate>Fri, 07 Aug 2020 03:45:19 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;安装-Swoole&quot;&gt;&lt;a href=&quot;#安装-Swoole&quot; class=&quot;headerlink&quot; title=&quot;安装 Swoole&quot;&gt;&lt;/a&gt;安装 Swoole&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pecl install swoole&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;可能出现：&lt;/p&gt;
+&lt;figure class=&quot;highlight</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/swoft/">swoft</category>
+      
+      
+      <comments>https://zyf.im/2020/08/07/deploy-swoft-framework/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>tcpdump 入门使用</title>
+      <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
+      <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
+      <pubDate>Mon, 29 Jun 2020 02:24:16 GMT</pubDate>
+      
+      <description>&lt;p&gt;tcpdump 是 Unix&amp;#x2F;Linux 下的抓包工具，可以针对指定网卡、端口、协议进行抓包。&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/linux/">linux</category>
+      
+      
+      <comments>https://zyf.im/2020/06/29/tcpdump-getting-started/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>配置 Laradock PhpStorm Xdubug</title>
+      <link>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</link>
+      <guid>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</guid>
+      <pubDate>Tue, 26 May 2020 01:45:15 GMT</pubDate>
+      
+      <description>&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
+&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;macOS&lt;/li&gt;
+&lt;li&gt;Laradock v10.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;请保证 Laradock 是最新的版本，可以减少不必要的麻烦。也推荐使用我精简过的项目 &lt;a href=&quot;https://github.com/imzyf/my-dock&quot;&gt;imzyf&amp;#x2F;my-dock | github&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/phpstorm/">phpstorm</category>
+      
+      
+      <comments>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP float 精度</title>
+      <link>https://zyf.im/2020/05/09/php-float-precision/</link>
+      <guid>https://zyf.im/2020/05/09/php-float-precision/</guid>
+      <pubDate>Sat, 09 May 2020 09:32:34 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;实例-1&quot;&gt;&lt;a href=&quot;#实例-1&quot; class=&quot;headerlink&quot; title=&quot;实例 1&quot;&gt;&lt;/a&gt;实例 1&lt;/h2&gt;&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;$a&lt;/span&gt; = &lt;span class=&quot;number&quot;&gt;1.1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;title function_</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/05/09/php-float-precision/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Call to undefined function ftp_ssl_connect</title>
+      <link>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</link>
+      <guid>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</guid>
+      <pubDate>Fri, 08 May 2020 09:17:46 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;CentOS 7.4&lt;/li&gt;
+&lt;li&gt;PHP 7.1.12 编译安装&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在 CentOS 编译安装 PHP</title>
+      <link>https://zyf.im/2020/04/29/make-install-php-on-centos/</link>
+      <guid>https://zyf.im/2020/04/29/make-install-php-on-centos/</guid>
+      <pubDate>Wed, 29 Apr 2020 03:37:51 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;CentOS 7.4&lt;/li&gt;
+&lt;li&gt;PHP 5.6.40&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/centos/">centos</category>
+      
+      
+      <comments>https://zyf.im/2020/04/29/make-install-php-on-centos/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>在 macOS 编译安装 PHP</title>
+      <link>https://zyf.im/2020/04/28/make-install-php-on-macos/</link>
+      <guid>https://zyf.im/2020/04/28/make-install-php-on-macos/</guid>
+      <pubDate>Tue, 28 Apr 2020 10:09:59 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;macOS 10.15.7&lt;/li&gt;
+&lt;li&gt;PHP 7.1.33&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/mac/">mac</category>
+      
+      
+      <comments>https://zyf.im/2020/04/28/make-install-php-on-macos/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>vim Code Snippet</title>
+      <link>https://zyf.im/2020/04/28/vim-code-snippet/</link>
+      <guid>https://zyf.im/2020/04/28/vim-code-snippet/</guid>
+      <pubDate>Tue, 28 Apr 2020 02:43:39 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;常用&quot;&gt;&lt;a href=&quot;#常用&quot; class=&quot;headerlink&quot; title=&quot;常用&quot;&gt;&lt;/a&gt;常用&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;全选（高亮显示）：按 esc 后，然后 &lt;code&gt;ggvG&lt;/code&gt; 或者 &lt;code&gt;ggVG&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;全部复制：按 esc 后，然后 &lt;code&gt;ggyG&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;全部删除：按 esc 后，然后 &lt;code&gt;dG&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      <category domain="https://zyf.im/tags/vim/">vim</category>
+      
+      
+      <comments>https://zyf.im/2020/04/28/vim-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP GD 入门使用</title>
+      <link>https://zyf.im/2020/04/16/php-gd-getting-started/</link>
+      <guid>https://zyf.im/2020/04/16/php-gd-getting-started/</guid>
+      <pubDate>Thu, 16 Apr 2020 09:24:37 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
+&lt;h3 id=&quot;字体库-FreeType-2&quot;&gt;&lt;a href=&quot;#字体库-FreeType-2&quot; class=&quot;headerlink&quot; title=&quot;字体库 FreeType 2&quot;&gt;&lt;/a&gt;字体库 FreeType 2&lt;/h3&gt;&lt;p&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/04/16/php-gd-getting-started/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Code Snippet</title>
+      <link>https://zyf.im/2020/04/15/php-code-snippet/</link>
+      <guid>https://zyf.im/2020/04/15/php-code-snippet/</guid>
+      <pubDate>Wed, 15 Apr 2020 10:03:44 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;PHP-Sandbox&quot;&gt;&lt;a href=&quot;#PHP-Sandbox&quot; class=&quot;headerlink&quot; title=&quot;PHP Sandbox&quot;&gt;&lt;/a&gt;PHP Sandbox&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://legacy-sandbox.onlinephpfunctions.com/&quot;&gt;https://legacy-sandbox.onlinephpfunctions.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/04/15/php-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL Illegal mix of collations</title>
+      <link>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</link>
+      <guid>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</guid>
+      <pubDate>Tue, 14 Apr 2020 09:05:01 GMT</pubDate>
+      
+      <description>&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>NGINX 前后端分离配置</title>
+      <link>https://zyf.im/2020/03/17/nginx-front-back-end-config/</link>
+      <guid>https://zyf.im/2020/03/17/nginx-front-back-end-config/</guid>
+      <pubDate>Tue, 17 Mar 2020 03:33:24 GMT</pubDate>
+      
+      <description>&lt;p&gt;前后端分离的开发已是主流，本文主要是记录前后端分离项目的 NGINX 配置。&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/nginx/">nginx</category>
+      
+      
+      <comments>https://zyf.im/2020/03/17/nginx-front-back-end-config/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>【PRCC2019 全套入门教程】笔记</title>
+      <link>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</link>
+      <guid>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</guid>
+      <pubDate>Fri, 13 Mar 2020 14:25:25 GMT</pubDate>
+      
+      <description>&lt;blockquote&gt;
+&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;用视频记录生活越来越普及，年初旅行也拍了些素材，想着自己也当个 up 主。先来学学 PR。&lt;a href=&quot;https://www.bilibili.com/video/av37550078&quot;&gt;【PR】Premiere Pro CC 2019 全套入门教程 | bilibili&lt;/a&gt; 是我在 B 站看的第一套教学视频，坦白说内容不多，有不少重复的东西，但是这样适合完全零基础的同学。&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/pr/">pr</category>
+      
+      
+      <comments>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP FTP 间歇性无法上传文件</title>
+      <link>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</link>
+      <guid>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</guid>
+      <pubDate>Thu, 27 Feb 2020 12:23:45 GMT</pubDate>
+      
+      <description>&lt;p&gt;2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。&lt;/p&gt;
+&lt;hr&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;PHP Warning:  ftp_put(): php_connect_nonb() failed: Operation now &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; progress (115) &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>回顾 2019</title>
+      <link>https://zyf.im/2019/12/31/review-2019/</link>
+      <guid>https://zyf.im/2019/12/31/review-2019/</guid>
+      <pubDate>Tue, 31 Dec 2019 15:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;&lt;a href=&quot;https://y.qq.com/n/ryqq/songDetail/235474091&quot;&gt;新裤子 · 夏日终曲&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2019 年的第一天从三亚开始，在 &lt;em&gt;第一市场海鲜市场&lt;/em&gt; 买了海味，然后直接到旁边的 &lt;em&gt;林姐香味海鲜&lt;/em&gt; 加工，迟到了超级好吃的香辣蟹。飞回北京就是滑雪团建，年后双双得到了最佳合作奖，感谢我们每周的火锅，让大家多了些感情。&lt;/p&gt;
+&lt;p&gt;– EOF –&lt;/p&gt;
+&lt;p&gt;年后买了烤箱烹饪技术再次升级，烤鸡翅、披萨、蛋挞甚至烤鱼，都已不在话下。受 shilei 推荐也喜欢玩德州扑克。看 B 站 UP</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/review/">review</category>
+      
+      
+      
+      <comments>https://zyf.im/2019/12/31/review-2019/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Lonicera Framework</title>
+      <link>https://zyf.im/2019/12/19/lonicera-framework/</link>
+      <guid>https://zyf.im/2019/12/19/lonicera-framework/</guid>
+      <pubDate>Thu, 19 Dec 2019 08:46:06 GMT</pubDate>
+      
+      <description>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/composer/">composer</category>
+      
+      
+      <comments>https://zyf.im/2019/12/19/lonicera-framework/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Windows 文本文件到 Mac 中文乱码</title>
+      <link>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</link>
+      <guid>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</guid>
+      <pubDate>Mon, 09 Dec 2019 06:45:39 GMT</pubDate>
+      
+      <description>&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mac/">mac</category>
+      
+      
+      <comments>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
