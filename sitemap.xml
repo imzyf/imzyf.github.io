@@ -2,7 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2022/12/21/php-migrating-to-81-82/</loc>
+    
+    <lastmod>2022-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2022/12/14/php-migrating-to-74-80/</loc>
+    
+    <lastmod>2022-12-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
     
     <lastmod>2022-12-15</lastmod>
     
@@ -13,16 +31,16 @@
   <url>
     <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
     
-    <lastmod>2022-12-14</lastmod>
+    <lastmod>2022-12-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
+    <loc>https://zyf.im/about/</loc>
     
-    <lastmod>2022-12-14</lastmod>
+    <lastmod>2022-12-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -435,15 +453,6 @@
   
   <url>
     <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/05/24/install-and-configre-sphinx-and-using-by-php-in-ubuntu/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -1136,15 +1145,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/about/</loc>
-    
-    <lastmod>2021-10-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2021/01/29/mysql-code-snippet/</loc>
     
     <lastmod>2021-07-19</lastmod>
@@ -1211,15 +1211,6 @@
     <loc>https://zyf.im/links/</loc>
     
     <lastmod>2021-01-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/about/booklist/</loc>
-    
-    <lastmod>2020-12-29</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1460,15 +1451,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/06/13/atom-plugin-php-cs-fixer/</loc>
-    
-    <lastmod>2019-05-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</loc>
     
     <lastmod>2019-05-25</lastmod>
@@ -1508,15 +1490,6 @@
     <loc>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</loc>
     
     <lastmod>2019-05-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/12/imooc-how-to-use-css-for-web-layout/</loc>
-    
-    <lastmod>2019-04-10</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1625,15 +1598,6 @@
     <loc>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</loc>
     
     <lastmod>2018-10-30</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2018/06/22/aws-cli-getting-started/</loc>
-    
-    <lastmod>2018-08-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1813,7 +1777,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2022-12-14</lastmod>
+    <lastmod>2022-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

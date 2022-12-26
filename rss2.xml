@@ -8,9 +8,38 @@
     
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description></description>
-    <pubDate>Thu, 15 Dec 2022 08:40:03 GMT</pubDate>
+    <description>永远热泪盈眶</description>
+    <pubDate>Wed, 21 Dec 2022 11:22:51 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PHP Migrating to 8.1 8.2</title>
+      <link>https://zyf.im/2022/12/21/php-migrating-to-81-82/</link>
+      <guid>https://zyf.im/2022/12/21/php-migrating-to-81-82/</guid>
+      <pubDate>Wed, 21 Dec 2022 10:25:49 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;PHP8-0-to-PHP8-1&quot;&gt;&lt;a href=&quot;#PHP8-0-to-PHP8-1&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2022/12/21/php-migrating-to-81-82/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>PHP Migrating to 7.4 8.0</title>
@@ -26,7 +55,7 @@
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot;</description>
+&lt;h2 id=&quot;PHP7-3-to-PHP7-4&quot;&gt;&lt;a href=&quot;#PHP7-3-to-PHP7-4&quot; class=&quot;headerlink&quot;</description>
           
         
       
@@ -131,6 +160,15 @@
       <link>https://zyf.im/2022/11/17/docker-code-snippet/</link>
       <guid>https://zyf.im/2022/11/17/docker-code-snippet/</guid>
       <pubDate>Thu, 17 Nov 2022 02:09:26 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Dockerfile&quot;&gt;&lt;a href=&quot;#Dockerfile&quot; class=&quot;headerlink&quot; title=&quot;Dockerfile&quot;&gt;&lt;/a&gt;Dockerfile&lt;/h2&gt;&lt;h3 id=&quot;ARG-构建参数&quot;&gt;&lt;a href=&quot;#ARG-构建参数&quot; class=&quot;headerlink&quot; title=&quot;ARG 构建参数&quot;&gt;&lt;/a&gt;ARG 构建参数&lt;/h3&gt;&lt;p&gt;&lt;code&gt;ARG &amp;lt;参数名&amp;gt;[=&amp;lt;默认值&amp;gt;]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;该默认值可以在构建命令 docker build 中用 –build-arg</description>
+          
+        
       
       
       
@@ -1290,25 +1328,6 @@
       
       
       <comments>https://zyf.im/2019/12/19/lonicera-framework/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Windows 文本文件到 Mac 中文乱码</title>
-      <link>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</link>
-      <guid>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</guid>
-      <pubDate>Mon, 09 Dec 2019 06:45:39 GMT</pubDate>
-      
-      <description>&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/mac/">mac</category>
-      
-      
-      <comments>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/#disqus_thread</comments>
       
     </item>
     

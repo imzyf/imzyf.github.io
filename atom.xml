@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2022-12-15T08:40:03.000Z</updated>
+  <updated>2022-12-21T11:22:51.301Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>PHP Migrating to 7.4 8.0</title>
-    <link href="https://zyf.im/2022/12/14/php-migrating-to-74-80/"/>
-    <id>https://zyf.im/2022/12/14/php-migrating-to-74-80/</id>
-    <published>2022-12-14T08:40:03.000Z</published>
-    <updated>2022-12-15T08:40:03.000Z</updated>
+    <title>PHP Migrating to 8.1 8.2</title>
+    <link href="https://zyf.im/2022/12/21/php-migrating-to-81-82/"/>
+    <id>https://zyf.im/2022/12/21/php-migrating-to-81-82/</id>
+    <published>2022-12-21T10:25:49.000Z</published>
+    <updated>2022-12-21T11:22:51.301Z</updated>
     
     
       
@@ -32,7 +32,34 @@
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2 id=&quot;PHP8-0-to-PHP8-1&quot;&gt;&lt;a href=&quot;#PHP8-0-to-PHP8-1&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP Migrating to 7.4 8.0</title>
+    <link href="https://zyf.im/2022/12/14/php-migrating-to-74-80/"/>
+    <id>https://zyf.im/2022/12/14/php-migrating-to-74-80/</id>
+    <published>2022-12-14T08:40:03.000Z</published>
+    <updated>2022-12-21T06:13:54.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;PHP7-3-to-PHP7-4&quot;&gt;&lt;a href=&quot;#PHP7-3-to-PHP7-4&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -75,7 +102,7 @@
     <link href="https://zyf.im/2022/11/28/php-migrating-to-70-71/"/>
     <id>https://zyf.im/2022/11/28/php-migrating-to-70-71/</id>
     <published>2022-11-28T02:36:34.000Z</published>
-    <updated>2022-12-14T13:37:11.865Z</updated>
+    <updated>2022-12-15T03:06:00.368Z</updated>
     
     
       
@@ -127,8 +154,17 @@
     <link href="https://zyf.im/2022/11/17/docker-code-snippet/"/>
     <id>https://zyf.im/2022/11/17/docker-code-snippet/</id>
     <published>2022-11-17T02:09:26.000Z</published>
-    <updated>2022-12-14T13:39:54.081Z</updated>
+    <updated>2022-12-15T02:57:18.913Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Dockerfile&quot;&gt;&lt;a href=&quot;#Dockerfile&quot; class=&quot;headerlink&quot; title=&quot;Dockerfile&quot;&gt;&lt;/a&gt;Dockerfile&lt;/h2&gt;&lt;h3 id=&quot;ARG-构建参数&quot;&gt;&lt;a href=&quot;#ARG-构建参数&quot; class=&quot;headerlink&quot; title=&quot;ARG 构建参数&quot;&gt;&lt;/a&gt;ARG 构建参数&lt;/h3&gt;&lt;p&gt;&lt;code&gt;ARG &amp;lt;参数名&amp;gt;[=&amp;lt;默认值&amp;gt;]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;该默认值可以在构建命令 docker build 中用 –build-arg</summary>
+        
+      
     
     
     
@@ -1196,23 +1232,6 @@
     <category term="php" scheme="https://zyf.im/tags/php/"/>
     
     <category term="composer" scheme="https://zyf.im/tags/composer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Windows 文本文件到 Mac 中文乱码</title>
-    <link href="https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/"/>
-    <id>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</id>
-    <published>2019-12-09T06:45:39.000Z</published>
-    <updated>2022-12-14T11:24:33.878Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="mac" scheme="https://zyf.im/tags/mac/"/>
     
   </entry>
   
