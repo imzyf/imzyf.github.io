@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/about/</loc>
+    
+    <lastmod>2022-12-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2022/12/21/php-migrating-to-81-82/</loc>
     
     <lastmod>2022-12-21</lastmod>
@@ -30,15 +39,6 @@
   
   <url>
     <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
-    
-    <lastmod>2022-12-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/about/</loc>
     
     <lastmod>2022-12-15</lastmod>
     
