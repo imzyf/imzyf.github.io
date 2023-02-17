@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2022-12-21T11:22:51.301Z</updated>
+  <updated>2023-02-17T07:09:19.929Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,82 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>PHP Migrating to 8.1 8.2</title>
-    <link href="https://zyf.im/2022/12/21/php-migrating-to-81-82/"/>
-    <id>https://zyf.im/2022/12/21/php-migrating-to-81-82/</id>
+    <title>Kubernetes 入门实战</title>
+    <link href="https://zyf.im/2023/02/15/kubernetes-first-practice/"/>
+    <id>https://zyf.im/2023/02/15/kubernetes-first-practice/</id>
+    <published>2023-02-15T06:46:38.000Z</published>
+    <updated>2023-02-17T07:09:19.929Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;01-初识-Docker&quot;&gt;&lt;a href=&quot;#01-初识-Docker&quot; class=&quot;headerlink&quot; title=&quot;01 初识 Docker&quot;&gt;&lt;/a&gt;01 初识 Docker&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt install -y docker.io&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;service docker start&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="kubernetes" scheme="https://zyf.im/tags/kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go 语言第一课</title>
+    <link href="https://zyf.im/2023/02/01/go-lesson-one/"/>
+    <id>https://zyf.im/2023/02/01/go-lesson-one/</id>
+    <published>2023-02-01T03:44:27.000Z</published>
+    <updated>2023-02-07T11:29:18.332Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Go-语言的设计哲学&quot;&gt;&lt;a href=&quot;#Go-语言的设计哲学&quot; class=&quot;headerlink&quot; title=&quot;Go 语言的设计哲学&quot;&gt;&lt;/a&gt;Go 语言的设计哲学&lt;/h2&gt;&lt;p&gt;简单、显式、组合、并发和面向工程。&lt;/p&gt;
+&lt;h2 id=&quot;Go-安装方法&quot;&gt;&lt;a href=&quot;#Go-安装方法&quot; class=&quot;headerlink&quot; title=&quot;Go 安装方法&quot;&gt;&lt;/a&gt;Go 安装方法&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="go" scheme="https://zyf.im/tags/go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2023Q1 随想录</title>
+    <link href="https://zyf.im/2023/01/01/2023-q1-thinking/"/>
+    <id>https://zyf.im/2023/01/01/2023-q1-thinking/</id>
+    <published>2023-01-01T13:08:08.000Z</published>
+    <updated>2023-02-01T03:15:27.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;工作&quot;&gt;&lt;a href=&quot;#工作&quot; class=&quot;headerlink&quot; title=&quot;工作&quot;&gt;&lt;/a&gt;工作&lt;/h2&gt;&lt;h2 id=&quot;生活&quot;&gt;&lt;a href=&quot;#生活&quot; class=&quot;headerlink&quot; title=&quot;生活&quot;&gt;&lt;/a&gt;生活&lt;/h2&gt;&lt;p&gt;– EOF</summary>
+        
+      
+    
+    
+    
+    <category term="thinking" scheme="https://zyf.im/categories/thinking/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP Migrating to 8.1</title>
+    <link href="https://zyf.im/2022/12/21/php-migrating-to-81/"/>
+    <id>https://zyf.im/2022/12/21/php-migrating-to-81/</id>
     <published>2022-12-21T10:25:49.000Z</published>
-    <updated>2022-12-21T11:22:51.301Z</updated>
+    <updated>2023-01-31T11:06:37.000Z</updated>
     
     
       
@@ -102,7 +173,7 @@
     <link href="https://zyf.im/2022/11/28/php-migrating-to-70-71/"/>
     <id>https://zyf.im/2022/11/28/php-migrating-to-70-71/</id>
     <published>2022-11-28T02:36:34.000Z</published>
-    <updated>2022-12-15T03:06:00.368Z</updated>
+    <updated>2023-01-31T07:35:41.740Z</updated>
     
     
       
@@ -154,7 +225,7 @@
     <link href="https://zyf.im/2022/11/17/docker-code-snippet/"/>
     <id>https://zyf.im/2022/11/17/docker-code-snippet/</id>
     <published>2022-11-17T02:09:26.000Z</published>
-    <updated>2022-12-15T02:57:18.913Z</updated>
+    <updated>2023-02-13T06:48:53.875Z</updated>
     
     
       
@@ -195,29 +266,6 @@
     
     
     <category term="docker" scheme="https://zyf.im/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2022Q4 随想录</title>
-    <link href="https://zyf.im/2022/10/01/2022-q4-thinking/"/>
-    <id>https://zyf.im/2022/10/01/2022-q4-thinking/</id>
-    <published>2022-10-01T13:08:08.000Z</published>
-    <updated>2022-10-18T11:21:20.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;工作&quot;&gt;&lt;a href=&quot;#工作&quot; class=&quot;headerlink&quot; title=&quot;工作&quot;&gt;&lt;/a&gt;工作&lt;/h2&gt;&lt;h2 id=&quot;生活&quot;&gt;&lt;a href=&quot;#生活&quot; class=&quot;headerlink&quot; title=&quot;生活&quot;&gt;&lt;/a&gt;生活&lt;/h2&gt;&lt;p&gt;– EOF</summary>
-        
-      
-    
-    
-    
-    <category term="thinking" scheme="https://zyf.im/categories/thinking/"/>
-    
     
   </entry>
   
@@ -284,7 +332,7 @@
     <link href="https://zyf.im/2022/07/26/front-end-code-snippet/"/>
     <id>https://zyf.im/2022/07/26/front-end-code-snippet/</id>
     <published>2022-07-26T03:51:46.000Z</published>
-    <updated>2022-12-14T11:24:32.450Z</updated>
+    <updated>2023-02-07T06:55:39.813Z</updated>
     
     
       
@@ -532,7 +580,7 @@
     <link href="https://zyf.im/2021/07/08/how-to-do-technical-management/"/>
     <id>https://zyf.im/2021/07/08/how-to-do-technical-management/</id>
     <published>2021-07-08T13:08:08.000Z</published>
-    <updated>2022-12-14T11:24:39.693Z</updated>
+    <updated>2023-02-01T03:13:23.836Z</updated>
     
     
       
@@ -551,7 +599,7 @@
     
     
     
-    <category term="report" scheme="https://zyf.im/tags/report/"/>
+    <category term="thinking" scheme="https://zyf.im/tags/thinking/"/>
     
   </entry>
   
@@ -1187,51 +1235,6 @@
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>回顾 2019</title>
-    <link href="https://zyf.im/2019/12/31/review-2019/"/>
-    <id>https://zyf.im/2019/12/31/review-2019/</id>
-    <published>2019-12-31T15:00:00.000Z</published>
-    <updated>2022-12-14T11:25:06.079Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://y.qq.com/n/ryqq/songDetail/235474091&quot;&gt;新裤子 · 夏日终曲&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;2019 年的第一天从三亚开始，在 &lt;em&gt;第一市场海鲜市场&lt;/em&gt; 买了海味，然后直接到旁边的 &lt;em&gt;林姐香味海鲜&lt;/em&gt; 加工，迟到了超级好吃的香辣蟹。飞回北京就是滑雪团建，年后双双得到了最佳合作奖，感谢我们每周的火锅，让大家多了些感情。&lt;/p&gt;
-&lt;p&gt;– EOF –&lt;/p&gt;
-&lt;p&gt;年后买了烤箱烹饪技术再次升级，烤鸡翅、披萨、蛋挞甚至烤鱼，都已不在话下。受 shilei 推荐也喜欢玩德州扑克。看 B 站 UP</summary>
-        
-      
-    
-    
-    
-    <category term="review" scheme="https://zyf.im/categories/review/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Lonicera Framework</title>
-    <link href="https://zyf.im/2019/12/19/lonicera-framework/"/>
-    <id>https://zyf.im/2019/12/19/lonicera-framework/</id>
-    <published>2019-12-19T08:46:06.000Z</published>
-    <updated>2022-12-14T11:25:18.786Z</updated>
-    
-    
-    <summary type="html">【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</summary>
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-    <category term="composer" scheme="https://zyf.im/tags/composer/"/>
     
   </entry>
   

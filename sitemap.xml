@@ -2,6 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2023/02/15/kubernetes-first-practice/</loc>
+    
+    <lastmod>2023-02-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
+    
+    <lastmod>2023-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/02/01/go-lesson-one/</loc>
+    
+    <lastmod>2023-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/07/26/front-end-code-snippet/</loc>
+    
+    <lastmod>2023-02-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/01/01/2023-q1-thinking/</loc>
+    
+    <lastmod>2023-02-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2021/07/08/how-to-do-technical-management/</loc>
+    
+    <lastmod>2023-02-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/08/31/2016-08-report/</loc>
+    
+    <lastmod>2023-02-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
+    
+    <lastmod>2023-02-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
+    
+    <lastmod>2023-02-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/12/21/php-migrating-to-81/</loc>
+    
+    <lastmod>2023-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
+    
+    <lastmod>2023-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
+    
+    <lastmod>2023-01-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/about/</loc>
     
     <lastmod>2022-12-26</lastmod>
@@ -11,36 +119,9 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/12/21/php-migrating-to-81-82/</loc>
-    
-    <lastmod>2022-12-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2022/12/14/php-migrating-to-74-80/</loc>
     
     <lastmod>2022-12-21</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
-    
-    <lastmod>2022-12-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
-    
-    <lastmod>2022-12-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -434,24 +515,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/07/08/how-to-do-technical-management/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/05/10/install-and-setting-ngx-pagespeed-in-ubuntu/</loc>
     
     <lastmod>2022-12-14</lastmod>
@@ -803,15 +866,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/07/26/front-end-code-snippet/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2022/07/28/shell-code-snippet/</loc>
     
     <lastmod>2022-12-14</lastmod>
@@ -965,24 +1019,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/08/31/2016-08-report/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
     
     <lastmod>2022-12-14</lastmod>
@@ -1083,15 +1119,6 @@
   
   <url>
     <loc>https://zyf.im/2022/07/01/2022-q3-thinking/</loc>
-    
-    <lastmod>2022-10-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/10/01/2022-q4-thinking/</loc>
     
     <lastmod>2022-10-18</lastmod>
     
@@ -1317,15 +1344,6 @@
   
   <url>
     <loc>https://zyf.im/2017/10/28/simple-macbook-report/</loc>
-    
-    <lastmod>2020-03-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     
     <lastmod>2020-03-25</lastmod>
     
@@ -1777,7 +1795,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2022-12-26</lastmod>
+    <lastmod>2023-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
