@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2023-02-17T07:09:19.929Z</updated>
+  <updated>2023-02-28T03:48:52.061Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,98 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Kubernetes 入门实战</title>
-    <link href="https://zyf.im/2023/02/15/kubernetes-first-practice/"/>
-    <id>https://zyf.im/2023/02/15/kubernetes-first-practice/</id>
+    <title>Vim 实用技巧必知必会</title>
+    <link href="https://zyf.im/2023/02/28/vim-practical-tips/"/>
+    <id>https://zyf.im/2023/02/28/vim-practical-tips/</id>
+    <published>2023-02-28T03:33:27.000Z</published>
+    <updated>2023-02-28T03:48:52.061Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum list installed | grep vim&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt list --installed | grep</summary>
+        
+      
+    
+    
+    
+    
+    <category term="vim" scheme="https://zyf.im/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大数据经典论文解读笔记</title>
+    <link href="https://zyf.im/2023/02/27/null/"/>
+    <id>https://zyf.im/2023/02/27/null/</id>
+    <published>2023-02-27T07:54:08.000Z</published>
+    <updated>2023-02-27T07:54:22.906Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes 入门实战 Part3</title>
+    <link href="https://zyf.im/2023/02/24/kubernetes-first-practice-part3/"/>
+    <id>https://zyf.im/2023/02/24/kubernetes-first-practice-part3/</id>
+    <published>2023-02-24T09:24:14.000Z</published>
+    <updated>2023-02-28T09:00:18.020Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;24-PersistentVolume-数据持久化&quot;&gt;&lt;a href=&quot;#24-PersistentVolume-数据持久化&quot; class=&quot;headerlink&quot; title=&quot;24 PersistentVolume 数据持久化&quot;&gt;&lt;/a&gt;24 PersistentVolume 数据持久化&lt;/h2&gt;&lt;p&gt;PersistentVolume 属于集群的系统资源，是和 Node 平级的一种对象，Pod 对它没有管理权，只有使用权。&lt;/p&gt;
+&lt;p&gt;StorageClass 它抽象了特定类型的存储系统（比如 Ceph、NFS），在 PVC 和 PV 之间充当“协调人”的角色，帮助</summary>
+        
+      
+    
+    
+    
+    
+    <category term="kubernetes" scheme="https://zyf.im/tags/kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes 入门实战 Part2</title>
+    <link href="https://zyf.im/2023/02/22/kubernetes-first-practice-part2/"/>
+    <id>https://zyf.im/2023/02/22/kubernetes-first-practice-part2/</id>
+    <published>2023-02-22T09:11:27.000Z</published>
+    <updated>2023-02-24T09:03:14.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;17-多节点的-Kubernetes-集群&quot;&gt;&lt;a href=&quot;#17-多节点的-Kubernetes-集群&quot; class=&quot;headerlink&quot; title=&quot;17 多节点的 Kubernetes 集群&quot;&gt;&lt;/a&gt;17 多节点的 Kubernetes 集群&lt;/h2&gt;&lt;p&gt;在腾讯云 TencentOS Server 3.1 (TK4) 下测试：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;master SA3.MEDIUM4 2 核 4GB 5Mbps&lt;/li&gt;
+&lt;li&gt;worker S5.SMALL2 1 核 2GB 1Mbps&lt;/li&gt;
+&lt;li&gt;worker S5.SMALL2 1 核</summary>
+        
+      
+    
+    
+    
+    
+    <category term="kubernetes" scheme="https://zyf.im/tags/kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes 入门实战 Part1</title>
+    <link href="https://zyf.im/2023/02/15/kubernetes-first-practice-part1/"/>
+    <id>https://zyf.im/2023/02/15/kubernetes-first-practice-part1/</id>
     <published>2023-02-15T06:46:38.000Z</published>
-    <updated>2023-02-17T07:09:19.929Z</updated>
+    <updated>2023-02-28T08:59:01.835Z</updated>
     
     
       
@@ -203,7 +290,7 @@
     <link href="https://zyf.im/2022/11/18/ondrej-multiversion-php/"/>
     <id>https://zyf.im/2022/11/18/ondrej-multiversion-php/</id>
     <published>2022-11-18T09:20:43.000Z</published>
-    <updated>2022-12-14T11:25:17.970Z</updated>
+    <updated>2023-02-07T06:43:32.226Z</updated>
     
     
       
@@ -248,31 +335,6 @@
   </entry>
   
   <entry>
-    <title>Laradock 学习笔记</title>
-    <link href="https://zyf.im/2022/11/09/explore-laradock/"/>
-    <id>https://zyf.im/2022/11/09/explore-laradock/</id>
-    <published>2022-11-09T14:24:01.000Z</published>
-    <updated>2022-11-21T15:51:28.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;local-web-server-solutions&quot;&gt;&lt;a href=&quot;#local-web-server-solutions&quot; class=&quot;headerlink&quot; title=&quot;local web server solutions&quot;&gt;&lt;/a&gt;local web server solutions&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.apachefriends.org/&quot;&gt;XAMPP Apache + MariaDB + PHP + Perl&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="docker" scheme="https://zyf.im/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
     <title>《MySQL 实战 45 讲》笔记 01</title>
     <link href="https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/"/>
     <id>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/</id>
@@ -303,25 +365,16 @@
     <link href="https://zyf.im/2022/07/28/shell-code-snippet/"/>
     <id>https://zyf.im/2022/07/28/shell-code-snippet/</id>
     <published>2022-07-28T03:51:46.000Z</published>
-    <updated>2022-12-14T11:24:32.450Z</updated>
+    <updated>2023-02-20T02:39:39.000Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;查找大文件&quot;&gt;&lt;a href=&quot;#查找大文件&quot; class=&quot;headerlink&quot; title=&quot;查找大文件&quot;&gt;&lt;/a&gt;查找大文件&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;du&lt;/span&gt; -s ./*|&lt;span class=&quot;built_in&quot;&gt;sort&lt;/span&gt; -nr|&lt;span class=&quot;built_in&quot;&gt;head&lt;/span&gt; -3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;一般说来不会出现删除文件后空间不释放的情况，但是也存在例外，比如文件被进程锁定，或者有进程一直在向这个文件写数据等等，要理解这个问题，就需要知道 Linux 下文件的存储机制和存储结构。&lt;/p&gt;
-&lt;p&gt;一个文件在文件系统中的存放分为两个部分：数据部分和指针部分，指针位于文件系统的 meta-data 中，数据被删除后，这个指针就从 meta-data 中清除了，而数据部分存储在磁盘中，数据对应的指针从 meta-data 中清除后，文件数据部分占用的空间就可以被覆盖并写入新的内容，之所以出现删除 access_log 文件后，空间还没释放，就是因为 httpd 进程还在一直向这个文件写入内容，导致虽然删除了 access_log 文件，但文件对应的指针部分由于进程锁定，并未从 meta-data 中清除，而由于指针并未被删除，那么系统内核就认为文件并未被删除，因此通过 df 命令查询空间并未释放也就不足为奇了。&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 获取一个已经被删除但仍然被应用程序占用的文件列表&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lsof | grep delete&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;通过这种方法，磁盘空间不但可以马上释放，也可保障进程继续向文件写入日志，这种方法经常用于在线清理 Apache、Tomcat、Nginx 等 Web 服务产生的日志文件：&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;quot; &amp;quot;&lt;/span&gt; &amp;gt;/tmp/acess.log&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;grep-遍历文件夹查找文本内容&quot;&gt;&lt;a href=&quot;#grep-遍历文件夹查找文本内容&quot; class=&quot;headerlink&quot; title=&quot;grep 遍历文件夹查找文本内容&quot;&gt;&lt;/a&gt;grep 遍历文件夹查找文本内容&lt;/h2&gt;&lt;p&gt;有时候我们需要在某一个包含很多子目录的目录中搜索查找包含某个文本内容的文本，我们可以在 grep 中加上 -r 选项让 grep 命令迭代进入子目录查找。同时在命令最后加上代表文件通配符的*号，不然 grep 会一直等待输入。&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;grep -r &lt;span class=&quot;string&quot;&gt;&amp;quot;查找文本内容&amp;quot;&lt;/span&gt; *&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;set&quot;&gt;&lt;a href=&quot;#set&quot; class=&quot;headerlink&quot; title=&quot;set&quot;&gt;&lt;/a&gt;set&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html&quot;&gt;The Set Builtin | gnu&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2017/11/bash-set.html&quot;&gt;Bash 脚本 set 命令教程 | ruanyifeng&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;命令后台运行&quot;&gt;&lt;a href=&quot;#命令后台运行&quot; class=&quot;headerlink&quot; title=&quot;命令后台运行&quot;&gt;&lt;/a&gt;命令后台运行&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 后台运行，关掉终端会停止运行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cmd &amp;amp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span</summary>
+        
+      
     
     
     
@@ -455,7 +508,7 @@
     <link href="https://zyf.im/2021/10/13/php-install-grpc/"/>
     <id>https://zyf.im/2021/10/13/php-install-grpc/</id>
     <published>2021-10-13T07:48:41.000Z</published>
-    <updated>2022-12-14T11:25:06.437Z</updated>
+    <updated>2023-02-07T06:44:22.330Z</updated>
     
     
       
@@ -478,7 +531,7 @@
     <link href="https://zyf.im/2021/09/14/sql-over-partition-by/"/>
     <id>https://zyf.im/2021/09/14/sql-over-partition-by/</id>
     <published>2021-09-14T03:58:42.000Z</published>
-    <updated>2022-12-14T11:24:40.135Z</updated>
+    <updated>2023-02-27T07:49:05.161Z</updated>
     
     
       
@@ -528,7 +581,7 @@
     <link href="https://zyf.im/2021/07/19/php-strict-types/"/>
     <id>https://zyf.im/2021/07/19/php-strict-types/</id>
     <published>2021-07-19T11:58:26.000Z</published>
-    <updated>2022-12-14T11:24:24.882Z</updated>
+    <updated>2023-01-31T11:23:27.842Z</updated>
     
     
       
@@ -685,7 +738,7 @@
     <link href="https://zyf.im/2021/01/27/php-strtotime-month/"/>
     <id>https://zyf.im/2021/01/27/php-strtotime-month/</id>
     <published>2021-01-27T10:18:24.000Z</published>
-    <updated>2022-12-14T11:25:18.786Z</updated>
+    <updated>2023-02-07T06:46:16.393Z</updated>
     
     
       
@@ -1100,11 +1153,18 @@
     <updated>2022-08-04T09:33:46.000Z</updated>
     
     
+      
+      
+        
+        
     <summary type="html">&lt;h2 id=&quot;常用&quot;&gt;&lt;a href=&quot;#常用&quot; class=&quot;headerlink&quot; title=&quot;常用&quot;&gt;&lt;/a&gt;常用&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;全选（高亮显示）：按 esc 后，然后 &lt;code&gt;ggvG&lt;/code&gt; 或者 &lt;code&gt;ggVG&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;全部复制：按 esc 后，然后 &lt;code&gt;ggyG&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;全部删除：按 esc 后，然后 &lt;code&gt;dG&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary>
+&lt;/ul&gt;
+&lt;h2 id=&quot;粘贴到终端-vim-缩进错乱&quot;&gt;&lt;a href=&quot;#粘贴到终端-vim-缩进错乱&quot; class=&quot;headerlink&quot;</summary>
+        
+      
     
     
     
@@ -1182,62 +1242,6 @@
     
     
     <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>NGINX 前后端分离配置</title>
-    <link href="https://zyf.im/2020/03/17/nginx-front-back-end-config/"/>
-    <id>https://zyf.im/2020/03/17/nginx-front-back-end-config/</id>
-    <published>2020-03-17T03:33:24.000Z</published>
-    <updated>2022-12-14T11:24:32.567Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;前后端分离的开发已是主流，本文主要是记录前后端分离项目的 NGINX 配置。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="nginx" scheme="https://zyf.im/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【PRCC2019 全套入门教程】笔记</title>
-    <link href="https://zyf.im/2020/03/13/prcc2019-getting-started-notes/"/>
-    <id>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</id>
-    <published>2020-03-13T14:25:25.000Z</published>
-    <updated>2022-12-14T11:24:32.567Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;用视频记录生活越来越普及，年初旅行也拍了些素材，想着自己也当个 up 主。先来学学 PR。&lt;a href=&quot;https://www.bilibili.com/video/av37550078&quot;&gt;【PR】Premiere Pro CC 2019 全套入门教程 | bilibili&lt;/a&gt; 是我在 B 站看的第一套教学视频，坦白说内容不多，有不少重复的东西，但是这样适合完全零基础的同学。&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="pr" scheme="https://zyf.im/tags/pr/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP FTP 间歇性无法上传文件</title>
-    <link href="https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/"/>
-    <id>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</id>
-    <published>2020-02-27T12:23:45.000Z</published>
-    <updated>2020-04-23T09:26:22.000Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。&lt;/p&gt;
-&lt;hr&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;PHP Warning:  ftp_put(): php_connect_nonb() failed: Operation now &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; progress (115) &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
     
   </entry>
   
