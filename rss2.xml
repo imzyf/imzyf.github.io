@@ -9,8 +9,35 @@
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>永远热泪盈眶</description>
-    <pubDate>Tue, 28 Feb 2023 03:48:52 GMT</pubDate>
+    <pubDate>Wed, 01 Mar 2023 10:10:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>正则表达式入门课</title>
+      <link>https://zyf.im/2023/03/01/null/</link>
+      <guid>https://zyf.im/2023/03/01/null/</guid>
+      <pubDate>Wed, 01 Mar 2023 07:31:15 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;01-元字符&quot;&gt;&lt;a href=&quot;#01-元字符&quot; class=&quot;headerlink&quot; title=&quot;01 元字符&quot;&gt;&lt;/a&gt;01 元字符&lt;/h2&gt;&lt;p&gt;正则表达式 —— 字符串的规则。&lt;/p&gt;
+&lt;p&gt;元字符就是指那些在正则表达式中具有特殊意义的专用字符。&lt;/p&gt;
+&lt;img width=&quot;900&quot; alt=&quot;image&quot; src=&quot;https://user-images.githubusercontent.com/9289792/222077541-e90a8a4f-7f2e-4047-ab7c-507a78273a2e.png&quot;&gt;
+
+&lt;h2</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://zyf.im/2023/03/01/null/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Vim 实用技巧必知必会</title>
@@ -22,7 +49,7 @@
         
           
           
-      <description>&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum list installed | grep vim&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt list --installed | grep</description>
+      <description>&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum list installed | grep vim&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# vim-X11.x86_64                   2:7.4.629-8.el7_9            </description>
           
         
       
@@ -38,9 +65,9 @@
     </item>
     
     <item>
-      <title>大数据经典论文解读笔记</title>
-      <link>https://zyf.im/2023/02/27/null/</link>
-      <guid>https://zyf.im/2023/02/27/null/</guid>
+      <title>大数据经典论文解读</title>
+      <link>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</link>
+      <guid>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</guid>
       <pubDate>Mon, 27 Feb 2023 07:54:08 GMT</pubDate>
       
       
@@ -48,14 +75,14 @@
       
       
       
-      <comments>https://zyf.im/2023/02/27/null/#disqus_thread</comments>
+      <comments>https://zyf.im/2023/02/27/big-data-papers-reading-notes/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Kubernetes 入门实战 Part3</title>
-      <link>https://zyf.im/2023/02/24/kubernetes-first-practice-part3/</link>
-      <guid>https://zyf.im/2023/02/24/kubernetes-first-practice-part3/</guid>
+      <link>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</link>
+      <guid>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</guid>
       <pubDate>Fri, 24 Feb 2023 09:24:14 GMT</pubDate>
       
         
@@ -74,14 +101,14 @@
       <category domain="https://zyf.im/tags/kubernetes/">kubernetes</category>
       
       
-      <comments>https://zyf.im/2023/02/24/kubernetes-first-practice-part3/#disqus_thread</comments>
+      <comments>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Kubernetes 入门实战 Part2</title>
-      <link>https://zyf.im/2023/02/22/kubernetes-first-practice-part2/</link>
-      <guid>https://zyf.im/2023/02/22/kubernetes-first-practice-part2/</guid>
+      <link>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</link>
+      <guid>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</guid>
       <pubDate>Wed, 22 Feb 2023 09:11:27 GMT</pubDate>
       
         
@@ -103,14 +130,14 @@
       <category domain="https://zyf.im/tags/kubernetes/">kubernetes</category>
       
       
-      <comments>https://zyf.im/2023/02/22/kubernetes-first-practice-part2/#disqus_thread</comments>
+      <comments>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/#disqus_thread</comments>
       
     </item>
     
     <item>
       <title>Kubernetes 入门实战 Part1</title>
-      <link>https://zyf.im/2023/02/15/kubernetes-first-practice-part1/</link>
-      <guid>https://zyf.im/2023/02/15/kubernetes-first-practice-part1/</guid>
+      <link>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</link>
+      <guid>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</guid>
       <pubDate>Wed, 15 Feb 2023 06:46:38 GMT</pubDate>
       
         
@@ -128,7 +155,7 @@
       <category domain="https://zyf.im/tags/kubernetes/">kubernetes</category>
       
       
-      <comments>https://zyf.im/2023/02/15/kubernetes-first-practice-part1/#disqus_thread</comments>
+      <comments>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/#disqus_thread</comments>
       
     </item>
     
@@ -394,7 +421,8 @@
         
           
           
-      <description>&lt;h2 id=&quot;命令后台运行&quot;&gt;&lt;a href=&quot;#命令后台运行&quot; class=&quot;headerlink&quot; title=&quot;命令后台运行&quot;&gt;&lt;/a&gt;命令后台运行&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 后台运行，关掉终端会停止运行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cmd &amp;amp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span</description>
+      <description>&lt;h2 id=&quot;pkgs-org&quot;&gt;&lt;a href=&quot;#pkgs-org&quot; class=&quot;headerlink&quot; title=&quot;pkgs.org&quot;&gt;&lt;/a&gt;pkgs.org&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://pkgs.org/download/vim-common&quot;&gt;https://pkgs.org/download/vim-common&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;命令后台运行&quot;&gt;&lt;a href=&quot;#命令后台运行&quot; class=&quot;headerlink&quot; title=&quot;命令后台运行&quot;&gt;&lt;/a&gt;命令后台运行&lt;/h2&gt;&lt;figure class=&quot;highlight</description>
           
         
       
@@ -1319,25 +1347,6 @@
       
       
       <comments>https://zyf.im/2020/04/15/php-code-snippet/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>MySQL Illegal mix of collations</title>
-      <link>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</link>
-      <guid>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</guid>
-      <pubDate>Tue, 14 Apr 2020 09:05:01 GMT</pubDate>
-      
-      <description>&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/mysql/">mysql</category>
-      
-      
-      <comments>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/#disqus_thread</comments>
       
     </item>
     

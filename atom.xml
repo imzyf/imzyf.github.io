@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2023-02-28T03:48:52.061Z</updated>
+  <updated>2023-03-01T10:10:37.360Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,18 +17,43 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>正则表达式入门课</title>
+    <link href="https://zyf.im/2023/03/01/null/"/>
+    <id>https://zyf.im/2023/03/01/null/</id>
+    <published>2023-03-01T07:31:15.000Z</published>
+    <updated>2023-03-01T10:10:37.360Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;01-元字符&quot;&gt;&lt;a href=&quot;#01-元字符&quot; class=&quot;headerlink&quot; title=&quot;01 元字符&quot;&gt;&lt;/a&gt;01 元字符&lt;/h2&gt;&lt;p&gt;正则表达式 —— 字符串的规则。&lt;/p&gt;
+&lt;p&gt;元字符就是指那些在正则表达式中具有特殊意义的专用字符。&lt;/p&gt;
+&lt;img width=&quot;900&quot; alt=&quot;image&quot; src=&quot;https://user-images.githubusercontent.com/9289792/222077541-e90a8a4f-7f2e-4047-ab7c-507a78273a2e.png&quot;&gt;
+
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>Vim 实用技巧必知必会</title>
     <link href="https://zyf.im/2023/02/28/vim-practical-tips/"/>
     <id>https://zyf.im/2023/02/28/vim-practical-tips/</id>
     <published>2023-02-28T03:33:27.000Z</published>
-    <updated>2023-02-28T03:48:52.061Z</updated>
+    <updated>2023-03-01T04:11:26.873Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum list installed | grep vim&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;apt list --installed | grep</summary>
+    <summary type="html">&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yum list installed | grep vim&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# vim-X11.x86_64                   2:7.4.629-8.el7_9            </summary>
         
       
     
@@ -40,11 +65,11 @@
   </entry>
   
   <entry>
-    <title>大数据经典论文解读笔记</title>
-    <link href="https://zyf.im/2023/02/27/null/"/>
-    <id>https://zyf.im/2023/02/27/null/</id>
+    <title>大数据经典论文解读</title>
+    <link href="https://zyf.im/2023/02/27/big-data-papers-reading-notes/"/>
+    <id>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</id>
     <published>2023-02-27T07:54:08.000Z</published>
-    <updated>2023-02-27T07:54:22.906Z</updated>
+    <updated>2023-03-01T10:11:29.676Z</updated>
     
     
     
@@ -54,10 +79,10 @@
   
   <entry>
     <title>Kubernetes 入门实战 Part3</title>
-    <link href="https://zyf.im/2023/02/24/kubernetes-first-practice-part3/"/>
-    <id>https://zyf.im/2023/02/24/kubernetes-first-practice-part3/</id>
+    <link href="https://zyf.im/2023/02/24/kubernetes-getting-started-part3/"/>
+    <id>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</id>
     <published>2023-02-24T09:24:14.000Z</published>
-    <updated>2023-02-28T09:00:18.020Z</updated>
+    <updated>2023-03-01T07:38:50.963Z</updated>
     
     
       
@@ -78,8 +103,8 @@
   
   <entry>
     <title>Kubernetes 入门实战 Part2</title>
-    <link href="https://zyf.im/2023/02/22/kubernetes-first-practice-part2/"/>
-    <id>https://zyf.im/2023/02/22/kubernetes-first-practice-part2/</id>
+    <link href="https://zyf.im/2023/02/22/kubernetes-getting-started-part2/"/>
+    <id>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</id>
     <published>2023-02-22T09:11:27.000Z</published>
     <updated>2023-02-24T09:03:14.000Z</updated>
     
@@ -105,10 +130,10 @@
   
   <entry>
     <title>Kubernetes 入门实战 Part1</title>
-    <link href="https://zyf.im/2023/02/15/kubernetes-first-practice-part1/"/>
-    <id>https://zyf.im/2023/02/15/kubernetes-first-practice-part1/</id>
+    <link href="https://zyf.im/2023/02/15/kubernetes-getting-started-part1/"/>
+    <id>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</id>
     <published>2023-02-15T06:46:38.000Z</published>
-    <updated>2023-02-28T08:59:01.835Z</updated>
+    <updated>2023-03-01T07:38:33.911Z</updated>
     
     
       
@@ -315,7 +340,7 @@
     <link href="https://zyf.im/2022/11/17/docker-code-snippet/"/>
     <id>https://zyf.im/2022/11/17/docker-code-snippet/</id>
     <published>2022-11-17T02:09:26.000Z</published>
-    <updated>2023-02-13T06:48:53.875Z</updated>
+    <updated>2023-03-01T07:04:28.339Z</updated>
     
     
       
@@ -372,7 +397,8 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;命令后台运行&quot;&gt;&lt;a href=&quot;#命令后台运行&quot; class=&quot;headerlink&quot; title=&quot;命令后台运行&quot;&gt;&lt;/a&gt;命令后台运行&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# 后台运行，关掉终端会停止运行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cmd &amp;amp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span</summary>
+    <summary type="html">&lt;h2 id=&quot;pkgs-org&quot;&gt;&lt;a href=&quot;#pkgs-org&quot; class=&quot;headerlink&quot; title=&quot;pkgs.org&quot;&gt;&lt;/a&gt;pkgs.org&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://pkgs.org/download/vim-common&quot;&gt;https://pkgs.org/download/vim-common&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;命令后台运行&quot;&gt;&lt;a href=&quot;#命令后台运行&quot; class=&quot;headerlink&quot; title=&quot;命令后台运行&quot;&gt;&lt;/a&gt;命令后台运行&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
         
       
     
@@ -1225,23 +1251,6 @@
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL Illegal mix of collations</title>
-    <link href="https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/"/>
-    <id>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</id>
-    <published>2020-04-14T09:05:01.000Z</published>
-    <updated>2020-08-17T13:34:58.000Z</updated>
-    
-    
-    <summary type="html">&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
-    
-    
-    
-    
-    <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
     
   </entry>
   

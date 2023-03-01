@@ -2,6 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/03/01/null/</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/02/28/vim-practical-tips/</loc>
+    
+    <lastmod>2023-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2018/05/20/nginx-ip-forbidden/</loc>
+    
+    <lastmod>2023-02-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</loc>
+    
+    <lastmod>2023-02-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
     
     <lastmod>2023-02-28</lastmod>
@@ -29,42 +101,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2023/02/24/kubernetes-first-practice-part3/</loc>
-    
-    <lastmod>2023-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2023/02/15/kubernetes-first-practice-part1/</loc>
-    
-    <lastmod>2023-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2023/02/28/vim-practical-tips/</loc>
-    
-    <lastmod>2023-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2023/02/27/null/</loc>
-    
-    <lastmod>2023-02-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2021/09/14/sql-over-partition-by/</loc>
     
     <lastmod>2023-02-27</lastmod>
@@ -74,7 +110,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2023/02/22/kubernetes-first-practice-part2/</loc>
+    <loc>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</loc>
     
     <lastmod>2023-02-24</lastmod>
     
@@ -104,15 +140,6 @@
     <loc>https://zyf.im/2023/02/01/go-lesson-one/</loc>
     
     <lastmod>2023-02-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
-    
-    <lastmod>2023-02-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -281,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</loc>
+    <loc>https://zyf.im/2020/08/07/deploy-swoft-framework/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -290,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/08/07/deploy-swoft-framework/</loc>
+    <loc>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -326,7 +353,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</loc>
+    <loc>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -335,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</loc>
+    <loc>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -398,7 +425,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/04/19/core-java-method-parameter/</loc>
+    <loc>https://zyf.im/2016/03/23/core-java-array-dome/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -407,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/03/23/core-java-array-dome/</loc>
+    <loc>https://zyf.im/2016/04/19/core-java-method-parameter/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -695,7 +722,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
+    <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -704,7 +731,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
+    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -794,24 +821,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/04/22/fastcgi-params-fastcgi-conf-snippets-fastcgi-php-conf/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2018/05/20/nginx-ip-forbidden/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2020/03/17/nginx-front-back-end-config/</loc>
     
     <lastmod>2022-12-14</lastmod>
@@ -821,7 +830,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
+    <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -830,7 +839,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
+    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -1750,7 +1759,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2023-02-28</lastmod>
+    <lastmod>2023-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
