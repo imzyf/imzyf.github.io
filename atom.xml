@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2023-03-01T10:10:37.360Z</updated>
+  <updated>2023-03-09T11:24:51.886Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>手把手教你落地 DDD Part1</title>
+    <link href="https://zyf.im/2023/03/09/hands-on-ddd-part1/"/>
+    <id>https://zyf.im/2023/03/09/hands-on-ddd-part1/</id>
+    <published>2023-03-09T09:18:46.000Z</published>
+    <updated>2023-03-09T11:24:51.886Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;01-小传&quot;&gt;&lt;a href=&quot;#01-小传&quot; class=&quot;headerlink&quot; title=&quot;01 小传&quot;&gt;&lt;/a&gt;01 小传&lt;/h2&gt;&lt;p&gt;Domain-Driven Design 是一种开发复杂软件的系统化的</summary>
+        
+      
+    
+    
+    
+    
+    <category term="design-pattern" scheme="https://zyf.im/tags/design-pattern/"/>
+    
+    <category term="ddd" scheme="https://zyf.im/tags/ddd/"/>
+    
+  </entry>
+  
+  <entry>
     <title>正则表达式入门课</title>
     <link href="https://zyf.im/2023/03/01/null/"/>
     <id>https://zyf.im/2023/03/01/null/</id>
     <published>2023-03-01T07:31:15.000Z</published>
-    <updated>2023-03-01T10:10:37.360Z</updated>
+    <updated>2023-03-01T10:59:21.017Z</updated>
     
     
       
@@ -30,7 +55,7 @@
         
     <summary type="html">&lt;h2 id=&quot;01-元字符&quot;&gt;&lt;a href=&quot;#01-元字符&quot; class=&quot;headerlink&quot; title=&quot;01 元字符&quot;&gt;&lt;/a&gt;01 元字符&lt;/h2&gt;&lt;p&gt;正则表达式 —— 字符串的规则。&lt;/p&gt;
 &lt;p&gt;元字符就是指那些在正则表达式中具有特殊意义的专用字符。&lt;/p&gt;
-&lt;img width=&quot;900&quot; alt=&quot;image&quot; src=&quot;https://user-images.githubusercontent.com/9289792/222077541-e90a8a4f-7f2e-4047-ab7c-507a78273a2e.png&quot;&gt;
+&lt;img width=&quot;500&quot; alt=&quot;image&quot; src=&quot;https://user-images.githubusercontent.com/9289792/222112912-52319e65-fefa-4815-b401-cbec352a9a1b.png&quot;&gt;
 
 &lt;h2</summary>
         
@@ -360,9 +385,9 @@
   </entry>
   
   <entry>
-    <title>《MySQL 实战 45 讲》笔记 01</title>
-    <link href="https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/"/>
-    <id>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/</id>
+    <title>MySQL 实战 45 讲 Part1</title>
+    <link href="https://zyf.im/2022/08/14/mysql-course-45-part1/"/>
+    <id>https://zyf.im/2022/08/14/mysql-course-45-part1/</id>
     <published>2022-08-14T07:53:16.000Z</published>
     <updated>2022-09-06T10:53:58.000Z</updated>
     
@@ -686,11 +711,11 @@
   </entry>
   
   <entry>
-    <title>【设计模式之美】笔记 Part 2</title>
-    <link href="https://zyf.im/2021/02/06/the-beauty-of-design-patterns-reading-notes-part2/"/>
-    <id>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-reading-notes-part2/</id>
+    <title>设计模式之美 Part2</title>
+    <link href="https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/"/>
+    <id>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</id>
     <published>2021-02-06T03:00:41.000Z</published>
-    <updated>2022-12-14T11:24:32.305Z</updated>
+    <updated>2023-03-09T09:12:09.209Z</updated>
     
     
       
@@ -705,16 +730,16 @@
     
     
     
-    <category term="design-patterns" scheme="https://zyf.im/tags/design-patterns/"/>
+    <category term="design-pattern" scheme="https://zyf.im/tags/design-pattern/"/>
     
   </entry>
   
   <entry>
-    <title>【设计模式之美】笔记 Part 1</title>
-    <link href="https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/"/>
-    <id>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/</id>
+    <title>设计模式之美 Part1</title>
+    <link href="https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/"/>
+    <id>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</id>
     <published>2021-02-05T03:00:41.000Z</published>
-    <updated>2022-12-14T11:24:32.407Z</updated>
+    <updated>2023-03-09T09:12:02.681Z</updated>
     
     
       
@@ -730,7 +755,7 @@
     
     
     
-    <category term="design-patterns" scheme="https://zyf.im/tags/design-patterns/"/>
+    <category term="design-pattern" scheme="https://zyf.im/tags/design-pattern/"/>
     
   </entry>
   
@@ -1219,35 +1244,6 @@
       
     
     
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP Code Snippet</title>
-    <link href="https://zyf.im/2020/04/15/php-code-snippet/"/>
-    <id>https://zyf.im/2020/04/15/php-code-snippet/</id>
-    <published>2020-04-15T10:03:44.000Z</published>
-    <updated>2020-04-26T07:43:32.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;PHP-Sandbox&quot;&gt;&lt;a href=&quot;#PHP-Sandbox&quot; class=&quot;headerlink&quot; title=&quot;PHP Sandbox&quot;&gt;&lt;/a&gt;PHP Sandbox&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://legacy-sandbox.onlinephpfunctions.com/&quot;&gt;https://legacy-sandbox.onlinephpfunctions.com/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>

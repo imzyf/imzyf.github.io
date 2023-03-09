@@ -2,7 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</loc>
+    <loc>https://zyf.im/2023/03/09/hands-on-ddd-part1/</loc>
+    
+    <lastmod>2023-03-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</loc>
+    
+    <lastmod>2023-03-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</loc>
+    
+    <lastmod>2023-03-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</loc>
+    
+    <lastmod>2023-03-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</loc>
+    
+    <lastmod>2023-03-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2023/03/01/null/</loc>
     
     <lastmod>2023-03-01</lastmod>
     
@@ -11,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2023/03/01/null/</loc>
+    <loc>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</loc>
     
     <lastmod>2023-03-01</lastmod>
     
@@ -65,15 +110,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</loc>
-    
-    <lastmod>2023-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
     
     <lastmod>2023-02-28</lastmod>
@@ -84,15 +120,6 @@
   
   <url>
     <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
-    
-    <lastmod>2023-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/15/add-website-icons-to-the-home-screen/</loc>
     
     <lastmod>2023-02-28</lastmod>
     
@@ -471,15 +498,6 @@
   
   <url>
     <loc>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -884,15 +902,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-reading-notes-part1/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2016/08/29/leetcode-happy-number-202/</loc>
     
     <lastmod>2022-12-14</lastmod>
@@ -903,15 +912,6 @@
   
   <url>
     <loc>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-reading-notes-part2/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -1118,7 +1118,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/08/14/mysql-course-45-reading-notes-01/</loc>
+    <loc>https://zyf.im/2022/08/14/mysql-course-45-part1/</loc>
     
     <lastmod>2022-09-06</lastmod>
     
@@ -1265,6 +1265,15 @@
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
     
     <lastmod>2020-07-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/24/vagrant-getting-started-tutorial/</loc>
+    
+    <lastmod>2020-04-28</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1649,15 +1658,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2017/04/24/vagrant-getting-started-tutorial/</loc>
-    
-    <lastmod>2018-04-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2018/03/29/ios-safe-area/</loc>
     
     <lastmod>2018-03-29</lastmod>
@@ -1759,7 +1759,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2023-03-01</lastmod>
+    <lastmod>2023-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
