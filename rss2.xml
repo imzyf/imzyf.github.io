@@ -9,7 +9,7 @@
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>永远热泪盈眶</description>
-    <pubDate>Thu, 09 Mar 2023 11:24:51 GMT</pubDate>
+    <pubDate>Thu, 09 Mar 2023 11:39:57 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -41,18 +41,19 @@
     
     <item>
       <title>正则表达式入门课</title>
-      <link>https://zyf.im/2023/03/01/null/</link>
-      <guid>https://zyf.im/2023/03/01/null/</guid>
+      <link>https://zyf.im/2023/03/01/regular-expression-getting-started/</link>
+      <guid>https://zyf.im/2023/03/01/regular-expression-getting-started/</guid>
       <pubDate>Wed, 01 Mar 2023 07:31:15 GMT</pubDate>
       
         
         
           
           
-      <description>&lt;h2 id=&quot;01-元字符&quot;&gt;&lt;a href=&quot;#01-元字符&quot; class=&quot;headerlink&quot; title=&quot;01 元字符&quot;&gt;&lt;/a&gt;01 元字符&lt;/h2&gt;&lt;p&gt;正则表达式 —— 字符串的规则。&lt;/p&gt;
-&lt;p&gt;元字符就是指那些在正则表达式中具有特殊意义的专用字符。&lt;/p&gt;
-&lt;img width=&quot;500&quot; alt=&quot;image&quot; src=&quot;https://user-images.githubusercontent.com/9289792/222112912-52319e65-fefa-4815-b401-cbec352a9a1b.png&quot;&gt;
-
+      <description>&lt;h2 id=&quot;00&quot;&gt;&lt;a href=&quot;#00&quot; class=&quot;headerlink&quot; title=&quot;00&quot;&gt;&lt;/a&gt;00&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://regex101.com/&quot;&gt;regex101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://jex.im/regulex/#!flags=&amp;re=%5E(a%7Cb)*%3F%24&quot;&gt;regulex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ihateregex.io/expr/username/&quot;&gt;ihateregex&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2</description>
           
         
@@ -61,8 +62,10 @@
       
       
       
+      <category domain="https://zyf.im/tags/regular-expression/">regular-expression</category>
       
-      <comments>https://zyf.im/2023/03/01/null/#disqus_thread</comments>
+      
+      <comments>https://zyf.im/2023/03/01/regular-expression-getting-started/#disqus_thread</comments>
       
     </item>
     

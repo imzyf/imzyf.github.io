@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2023-03-09T11:24:51.886Z</updated>
+  <updated>2023-03-09T11:39:57.834Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://zyf.im/2023/03/09/hands-on-ddd-part1/"/>
     <id>https://zyf.im/2023/03/09/hands-on-ddd-part1/</id>
     <published>2023-03-09T09:18:46.000Z</published>
-    <updated>2023-03-09T11:24:51.886Z</updated>
+    <updated>2023-03-09T11:39:57.834Z</updated>
     
     
       
@@ -43,26 +43,29 @@
   
   <entry>
     <title>正则表达式入门课</title>
-    <link href="https://zyf.im/2023/03/01/null/"/>
-    <id>https://zyf.im/2023/03/01/null/</id>
+    <link href="https://zyf.im/2023/03/01/regular-expression-getting-started/"/>
+    <id>https://zyf.im/2023/03/01/regular-expression-getting-started/</id>
     <published>2023-03-01T07:31:15.000Z</published>
-    <updated>2023-03-01T10:59:21.017Z</updated>
+    <updated>2023-04-07T10:36:01.729Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;01-元字符&quot;&gt;&lt;a href=&quot;#01-元字符&quot; class=&quot;headerlink&quot; title=&quot;01 元字符&quot;&gt;&lt;/a&gt;01 元字符&lt;/h2&gt;&lt;p&gt;正则表达式 —— 字符串的规则。&lt;/p&gt;
-&lt;p&gt;元字符就是指那些在正则表达式中具有特殊意义的专用字符。&lt;/p&gt;
-&lt;img width=&quot;500&quot; alt=&quot;image&quot; src=&quot;https://user-images.githubusercontent.com/9289792/222112912-52319e65-fefa-4815-b401-cbec352a9a1b.png&quot;&gt;
-
+    <summary type="html">&lt;h2 id=&quot;00&quot;&gt;&lt;a href=&quot;#00&quot; class=&quot;headerlink&quot; title=&quot;00&quot;&gt;&lt;/a&gt;00&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://regex101.com/&quot;&gt;regex101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://jex.im/regulex/#!flags=&amp;re=%5E(a%7Cb)*%3F%24&quot;&gt;regulex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://ihateregex.io/expr/username/&quot;&gt;ihateregex&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2</summary>
         
       
     
     
     
+    
+    <category term="regular-expression" scheme="https://zyf.im/tags/regular-expression/"/>
     
   </entry>
   
