@@ -2,6 +2,69 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2020/08/14/mysql-json-data-type/</loc>
+    
+    <lastmod>2023-04-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
+    
+    <lastmod>2023-04-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
+    
+    <lastmod>2023-04-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/about/stack/</loc>
+    
+    <lastmod>2023-04-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/links/</loc>
+    
+    <lastmod>2023-04-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
+    
+    <lastmod>2023-04-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</loc>
+    
+    <lastmod>2023-04-07</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2023/03/01/regular-expression-getting-started/</loc>
     
     <lastmod>2023-04-07</lastmod>
@@ -41,15 +104,6 @@
     <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</loc>
     
     <lastmod>2023-03-09</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</loc>
-    
-    <lastmod>2023-03-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -111,15 +165,6 @@
   
   <url>
     <loc>https://zyf.im/2017/06/03/resolving-multiple-inline-block-not-in-a-single-row/</loc>
-    
-    <lastmod>2023-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
     
     <lastmod>2023-02-28</lastmod>
     
@@ -605,33 +650,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2020/08/14/mysql-json-data-type/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2022/01/10/group-concat-max-len/</loc>
     
     <lastmod>2022-12-14</lastmod>
@@ -876,15 +894,6 @@
   
   <url>
     <loc>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -1226,15 +1235,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/links/</loc>
-    
-    <lastmod>2021-01-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</loc>
     
     <lastmod>2020-08-17</lastmod>
@@ -1265,15 +1265,6 @@
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
     
     <lastmod>2020-07-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/04/24/vagrant-getting-started-tutorial/</loc>
-    
-    <lastmod>2020-04-28</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1382,33 +1373,6 @@
     <loc>https://zyf.im/tags/</loc>
     
     <lastmod>2019-11-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/01/imooc-html-css-basic-course-part4/</loc>
-    
-    <lastmod>2019-11-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part2/</loc>
-    
-    <lastmod>2019-11-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course-part1/</loc>
-    
-    <lastmod>2019-11-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1747,19 +1711,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://zyf.im/2017/02/26/imooc-html-css-basic-course-part3/</loc>
-    
-    <lastmod>2017-02-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2023-04-07</lastmod>
+    <lastmod>2023-04-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

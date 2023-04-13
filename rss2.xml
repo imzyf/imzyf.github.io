@@ -828,7 +828,7 @@
         
           
           
-      <description>&lt;h2 id=&quot;Tips-SQL&quot;&gt;&lt;a href=&quot;#Tips-SQL&quot; class=&quot;headerlink&quot; title=&quot;Tips SQL&quot;&gt;&lt;/a&gt;Tips SQL&lt;/h2&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;-- 查看优化后的 SQL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;--</description>
+      <description>&lt;h2 id=&quot;Tips-SQL&quot;&gt;&lt;a href=&quot;#Tips-SQL&quot; class=&quot;headerlink&quot; title=&quot;Tips SQL&quot;&gt;&lt;/a&gt;Tips SQL&lt;/h2&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;-- 追踪优化器 Trace 功能&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;-- </description>
           
         
       
@@ -1085,6 +1085,8 @@
       
       
       <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      <category domain="https://zyf.im/tags/yii2/">yii2</category>
       
       
       <comments>https://zyf.im/2020/08/14/mysql-json-data-type/#disqus_thread</comments>
