@@ -9,8 +9,37 @@
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>永远热泪盈眶</description>
-    <pubDate>Thu, 09 Mar 2023 11:39:57 GMT</pubDate>
+    <pubDate>Thu, 27 Apr 2023 07:31:35 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>MongoDB 高手课</title>
+      <link>https://zyf.im/2023/04/19/mongodb-course/</link>
+      <guid>https://zyf.im/2023/04/19/mongodb-course/</guid>
+      <pubDate>Wed, 19 Apr 2023 02:47:10 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;04-特色及优势&quot;&gt;&lt;a href=&quot;#04-特色及优势&quot; class=&quot;headerlink&quot; title=&quot;04 特色及优势&quot;&gt;&lt;/a&gt;04 特色及优势&lt;/h2&gt;&lt;p&gt;对象模型，快速响应业务变化：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多形性：同一个集合中可以包含不同字段（类型）的文档对象。&lt;/li&gt;
+&lt;li&gt;动态性：线上修改数据模式，修改是应用与数据库均无须下线。&lt;/li&gt;
+&lt;li&gt;数据治理：支持使用JSONSchema</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mongodb/">mongodb</category>
+      
+      
+      <comments>https://zyf.im/2023/04/19/mongodb-course/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>手把手教你落地 DDD Part1</title>
@@ -452,7 +481,7 @@
           
           
       <description>&lt;h2 id=&quot;pkgs-org&quot;&gt;&lt;a href=&quot;#pkgs-org&quot; class=&quot;headerlink&quot; title=&quot;pkgs.org&quot;&gt;&lt;/a&gt;pkgs.org&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://pkgs.org/download/vim-common&quot;&gt;https://pkgs.org/download/vim-common&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;命令后台运行&quot;&gt;&lt;a href=&quot;#命令后台运行&quot; class=&quot;headerlink&quot; title=&quot;命令后台运行&quot;&gt;&lt;/a&gt;命令后台运行&lt;/h2&gt;&lt;figure class=&quot;highlight</description>
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# rpm</description>
           
         
       
@@ -522,7 +551,7 @@
     </item>
     
     <item>
-      <title>读《JavaScript 教程 | 网道》笔记</title>
+      <title>【JavaScript 教程 | 网道】笔记</title>
       <link>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</link>
       <guid>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</guid>
       <pubDate>Thu, 09 Jun 2022 06:59:09 GMT</pubDate>
@@ -1322,32 +1351,6 @@
       
       
       <comments>https://zyf.im/2020/04/28/vim-code-snippet/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>PHP GD 入门使用</title>
-      <link>https://zyf.im/2020/04/16/php-gd-getting-started/</link>
-      <guid>https://zyf.im/2020/04/16/php-gd-getting-started/</guid>
-      <pubDate>Thu, 16 Apr 2020 09:24:37 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
-&lt;h3 id=&quot;字体库-FreeType-2&quot;&gt;&lt;a href=&quot;#字体库-FreeType-2&quot; class=&quot;headerlink&quot; title=&quot;字体库 FreeType 2&quot;&gt;&lt;/a&gt;字体库 FreeType 2&lt;/h3&gt;&lt;p&gt;&lt;a</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      
-      <comments>https://zyf.im/2020/04/16/php-gd-getting-started/#disqus_thread</comments>
       
     </item>
     
