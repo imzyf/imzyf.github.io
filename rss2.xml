@@ -9,8 +9,61 @@
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>永远热泪盈眶</description>
-    <pubDate>Thu, 27 Apr 2023 07:31:35 GMT</pubDate>
+    <pubDate>Wed, 15 Nov 2023 08:58:40 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>IT 交付能效提升问卷调查</title>
+      <link>https://zyf.im/2023/11/15/null/</link>
+      <guid>https://zyf.im/2023/11/15/null/</guid>
+      <pubDate>Wed, 15 Nov 2023 08:29:13 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;需求阶段有哪些待提升或待改进的事项？&quot;&gt;&lt;a href=&quot;#需求阶段有哪些待提升或待改进的事项？&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/thinking/">thinking</category>
+      
+      
+      
+      <comments>https://zyf.im/2023/11/15/null/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Vue 开发实战</title>
+      <link>https://zyf.im/2023/05/23/vue-practice/</link>
+      <guid>https://zyf.im/2023/05/23/vue-practice/</guid>
+      <pubDate>Tue, 23 May 2023 09:45:47 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://time.geekbang.org/course/detail/100024601-89259&quot;&gt;Vue 开发实战 | GeekTime&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;32-使用-Vue-CLI-快速创建项目&quot;&gt;&lt;a href=&quot;#32-使用-Vue-CLI-快速创建项目&quot; class=&quot;headerlink&quot; title=&quot;32 使用 Vue CLI 快速创建项目&quot;&gt;&lt;/a&gt;32 使用 Vue CLI 快速创建项目&lt;/h2&gt;&lt;figure class=&quot;highlight</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/vue/">vue</category>
+      
+      
+      <comments>https://zyf.im/2023/05/23/vue-practice/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>MongoDB 高手课</title>
@@ -220,17 +273,21 @@
     
     <item>
       <title>Go 语言第一课</title>
-      <link>https://zyf.im/2023/02/01/go-lesson-one/</link>
-      <guid>https://zyf.im/2023/02/01/go-lesson-one/</guid>
+      <link>https://zyf.im/2023/02/01/go-language-lesson-one/</link>
+      <guid>https://zyf.im/2023/02/01/go-language-lesson-one/</guid>
       <pubDate>Wed, 01 Feb 2023 03:44:27 GMT</pubDate>
       
         
         
           
           
-      <description>&lt;h2 id=&quot;Go-语言的设计哲学&quot;&gt;&lt;a href=&quot;#Go-语言的设计哲学&quot; class=&quot;headerlink&quot; title=&quot;Go 语言的设计哲学&quot;&gt;&lt;/a&gt;Go 语言的设计哲学&lt;/h2&gt;&lt;p&gt;简单、显式、组合、并发和面向工程。&lt;/p&gt;
-&lt;h2 id=&quot;Go-安装方法&quot;&gt;&lt;a href=&quot;#Go-安装方法&quot; class=&quot;headerlink&quot; title=&quot;Go 安装方法&quot;&gt;&lt;/a&gt;Go 安装方法&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a</description>
+      <description>&lt;h2 id=&quot;02-设计哲学&quot;&gt;&lt;a href=&quot;#02-设计哲学&quot; class=&quot;headerlink&quot; title=&quot;02 设计哲学&quot;&gt;&lt;/a&gt;02 设计哲学&lt;/h2&gt;&lt;p&gt;设计哲学之于编程语言，就好比一个人的价值观之于这个人的行为。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单：Go 生产力的源泉。&lt;/li&gt;
+&lt;li&gt;显式：Go 希望开发人员 明确知道自己在做什么；显式的基于值比较的错误处理方案。&lt;/li&gt;
+&lt;li&gt;组合：类型嵌入(Type Embedding)。&lt;/li&gt;
+&lt;li&gt;并发：面向多核、原生支持并发、用户层轻量级线程 goroutine。&lt;/li&gt;
+&lt;li&gt;面向工程：将解决工程问题作为</description>
           
         
       
@@ -241,7 +298,7 @@
       <category domain="https://zyf.im/tags/go/">go</category>
       
       
-      <comments>https://zyf.im/2023/02/01/go-lesson-one/#disqus_thread</comments>
+      <comments>https://zyf.im/2023/02/01/go-language-lesson-one/#disqus_thread</comments>
       
     </item>
     
@@ -439,6 +496,60 @@
       
       
       <comments>https://zyf.im/2022/11/17/docker-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Git Code Snippet</title>
+      <link>https://zyf.im/2022/10/01/git-code-snippet/</link>
+      <guid>https://zyf.im/2022/10/01/git-code-snippet/</guid>
+      <pubDate>Sat, 01 Oct 2022 02:00:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;建立独立的分支&quot;&gt;&lt;a href=&quot;#建立独立的分支&quot; class=&quot;headerlink&quot; title=&quot;建立独立的分支&quot;&gt;&lt;/a&gt;建立独立的分支&lt;/h2&gt;&lt;p&gt;当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
+      
+      
+      <category domain="https://zyf.im/tags/git/">git</category>
+      
+      
+      <comments>https://zyf.im/2022/10/01/git-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL 实战 45 讲 Part2</title>
+      <link>https://zyf.im/2022/09/14/mysql-course-45-part2/</link>
+      <guid>https://zyf.im/2022/09/14/mysql-course-45-part2/</guid>
+      <pubDate>Wed, 14 Sep 2022 10:55:54 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://gk.link/a/11AmM&quot;&gt;MySQL 实战 45 讲 |</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2022/09/14/mysql-course-45-part2/#disqus_thread</comments>
       
     </item>
     
@@ -949,9 +1060,9 @@
       
       <category domain="https://zyf.im/tags/php/">php</category>
       
-      <category domain="https://zyf.im/tags/yii2/">yii2</category>
-      
       <category domain="https://zyf.im/tags/vue/">vue</category>
+      
+      <category domain="https://zyf.im/tags/yii2/">yii2</category>
       
       
       <comments>https://zyf.im/2021/01/10/yii2-vue-cors/#disqus_thread</comments>
@@ -1249,108 +1360,6 @@
       
       
       <comments>https://zyf.im/2020/05/09/php-float-precision/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>PHP Call to undefined function ftp_ssl_connect</title>
-      <link>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</link>
-      <guid>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</guid>
-      <pubDate>Fri, 08 May 2020 09:17:46 GMT</pubDate>
-      
-      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;CentOS 7.4&lt;/li&gt;
-&lt;li&gt;PHP 7.1.12 编译安装&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      
-      <comments>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>在 CentOS 编译安装 PHP</title>
-      <link>https://zyf.im/2020/04/29/make-install-php-on-centos/</link>
-      <guid>https://zyf.im/2020/04/29/make-install-php-on-centos/</guid>
-      <pubDate>Wed, 29 Apr 2020 03:37:51 GMT</pubDate>
-      
-      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;CentOS 7.4&lt;/li&gt;
-&lt;li&gt;PHP 5.6.40&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      <category domain="https://zyf.im/tags/centos/">centos</category>
-      
-      
-      <comments>https://zyf.im/2020/04/29/make-install-php-on-centos/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>在 macOS 编译安装 PHP</title>
-      <link>https://zyf.im/2020/04/28/make-install-php-on-macos/</link>
-      <guid>https://zyf.im/2020/04/28/make-install-php-on-macos/</guid>
-      <pubDate>Tue, 28 Apr 2020 10:09:59 GMT</pubDate>
-      
-      <description>&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;macOS 10.15.7&lt;/li&gt;
-&lt;li&gt;PHP 7.1.33&lt;/li&gt;
-&lt;/ul&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      <category domain="https://zyf.im/tags/mac/">mac</category>
-      
-      
-      <comments>https://zyf.im/2020/04/28/make-install-php-on-macos/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>vim Code Snippet</title>
-      <link>https://zyf.im/2020/04/28/vim-code-snippet/</link>
-      <guid>https://zyf.im/2020/04/28/vim-code-snippet/</guid>
-      <pubDate>Tue, 28 Apr 2020 02:43:39 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;常用&quot;&gt;&lt;a href=&quot;#常用&quot; class=&quot;headerlink&quot; title=&quot;常用&quot;&gt;&lt;/a&gt;常用&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;全选（高亮显示）：按 esc 后，然后 &lt;code&gt;ggvG&lt;/code&gt; 或者 &lt;code&gt;ggVG&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;全部复制：按 esc 后，然后 &lt;code&gt;ggyG&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;全部删除：按 esc 后，然后 &lt;code&gt;dG&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;粘贴到终端-vim-缩进错乱&quot;&gt;&lt;a href=&quot;#粘贴到终端-vim-缩进错乱&quot; class=&quot;headerlink&quot;</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
-      
-      
-      <category domain="https://zyf.im/tags/vim/">vim</category>
-      
-      
-      <comments>https://zyf.im/2020/04/28/vim-code-snippet/#disqus_thread</comments>
       
     </item>
     

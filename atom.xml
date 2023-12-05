@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2023-04-27T07:31:35.870Z</updated>
+  <updated>2023-11-15T08:58:40.359Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,60 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>IT 交付能效提升问卷调查</title>
+    <link href="https://zyf.im/2023/11/15/null/"/>
+    <id>https://zyf.im/2023/11/15/null/</id>
+    <published>2023-11-15T08:29:13.000Z</published>
+    <updated>2023-11-15T08:58:40.359Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;需求阶段有哪些待提升或待改进的事项？&quot;&gt;&lt;a href=&quot;#需求阶段有哪些待提升或待改进的事项？&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="thinking" scheme="https://zyf.im/categories/thinking/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vue 开发实战</title>
+    <link href="https://zyf.im/2023/05/23/vue-practice/"/>
+    <id>https://zyf.im/2023/05/23/vue-practice/</id>
+    <published>2023-05-23T09:45:47.000Z</published>
+    <updated>2023-05-23T10:56:44.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://time.geekbang.org/course/detail/100024601-89259&quot;&gt;Vue 开发实战 | GeekTime&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;32-使用-Vue-CLI-快速创建项目&quot;&gt;&lt;a href=&quot;#32-使用-Vue-CLI-快速创建项目&quot; class=&quot;headerlink&quot; title=&quot;32 使用 Vue CLI 快速创建项目&quot;&gt;&lt;/a&gt;32 使用 Vue CLI 快速创建项目&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    
+    
+    <category term="vue" scheme="https://zyf.im/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MongoDB 高手课</title>
     <link href="https://zyf.im/2023/04/19/mongodb-course/"/>
     <id>https://zyf.im/2023/04/19/mongodb-course/</id>
     <published>2023-04-19T02:47:10.000Z</published>
-    <updated>2023-04-27T07:31:35.870Z</updated>
+    <updated>2023-04-27T07:31:35.000Z</updated>
     
     
       
@@ -48,7 +97,7 @@
     <link href="https://zyf.im/2023/03/09/hands-on-ddd-part1/"/>
     <id>https://zyf.im/2023/03/09/hands-on-ddd-part1/</id>
     <published>2023-03-09T09:18:46.000Z</published>
-    <updated>2023-03-09T11:39:57.834Z</updated>
+    <updated>2023-04-27T08:09:10.000Z</updated>
     
     
       
@@ -101,7 +150,7 @@
     <link href="https://zyf.im/2023/02/28/vim-practical-tips/"/>
     <id>https://zyf.im/2023/02/28/vim-practical-tips/</id>
     <published>2023-02-28T03:33:27.000Z</published>
-    <updated>2023-03-01T04:11:26.873Z</updated>
+    <updated>2023-03-01T04:11:26.000Z</updated>
     
     
       
@@ -124,7 +173,7 @@
     <link href="https://zyf.im/2023/02/27/big-data-papers-reading-notes/"/>
     <id>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</id>
     <published>2023-02-27T07:54:08.000Z</published>
-    <updated>2023-03-01T10:11:29.676Z</updated>
+    <updated>2023-03-01T10:11:29.000Z</updated>
     
     
     
@@ -137,7 +186,7 @@
     <link href="https://zyf.im/2023/02/24/kubernetes-getting-started-part3/"/>
     <id>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</id>
     <published>2023-02-24T09:24:14.000Z</published>
-    <updated>2023-03-01T07:38:50.963Z</updated>
+    <updated>2023-04-27T08:05:33.000Z</updated>
     
     
       
@@ -188,7 +237,7 @@
     <link href="https://zyf.im/2023/02/15/kubernetes-getting-started-part1/"/>
     <id>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</id>
     <published>2023-02-15T06:46:38.000Z</published>
-    <updated>2023-03-01T07:38:33.911Z</updated>
+    <updated>2023-04-27T08:06:45.000Z</updated>
     
     
       
@@ -208,19 +257,23 @@
   
   <entry>
     <title>Go 语言第一课</title>
-    <link href="https://zyf.im/2023/02/01/go-lesson-one/"/>
-    <id>https://zyf.im/2023/02/01/go-lesson-one/</id>
+    <link href="https://zyf.im/2023/02/01/go-language-lesson-one/"/>
+    <id>https://zyf.im/2023/02/01/go-language-lesson-one/</id>
     <published>2023-02-01T03:44:27.000Z</published>
-    <updated>2023-02-17T07:22:09.072Z</updated>
+    <updated>2023-05-18T03:32:06.000Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;Go-语言的设计哲学&quot;&gt;&lt;a href=&quot;#Go-语言的设计哲学&quot; class=&quot;headerlink&quot; title=&quot;Go 语言的设计哲学&quot;&gt;&lt;/a&gt;Go 语言的设计哲学&lt;/h2&gt;&lt;p&gt;简单、显式、组合、并发和面向工程。&lt;/p&gt;
-&lt;h2 id=&quot;Go-安装方法&quot;&gt;&lt;a href=&quot;#Go-安装方法&quot; class=&quot;headerlink&quot; title=&quot;Go 安装方法&quot;&gt;&lt;/a&gt;Go 安装方法&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
+    <summary type="html">&lt;h2 id=&quot;02-设计哲学&quot;&gt;&lt;a href=&quot;#02-设计哲学&quot; class=&quot;headerlink&quot; title=&quot;02 设计哲学&quot;&gt;&lt;/a&gt;02 设计哲学&lt;/h2&gt;&lt;p&gt;设计哲学之于编程语言，就好比一个人的价值观之于这个人的行为。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单：Go 生产力的源泉。&lt;/li&gt;
+&lt;li&gt;显式：Go 希望开发人员 明确知道自己在做什么；显式的基于值比较的错误处理方案。&lt;/li&gt;
+&lt;li&gt;组合：类型嵌入(Type Embedding)。&lt;/li&gt;
+&lt;li&gt;并发：面向多核、原生支持并发、用户层轻量级线程 goroutine。&lt;/li&gt;
+&lt;li&gt;面向工程：将解决工程问题作为</summary>
         
       
     
@@ -236,7 +289,7 @@
     <link href="https://zyf.im/2022/12/31/review-2022/"/>
     <id>https://zyf.im/2022/12/31/review-2022/</id>
     <published>2022-12-31T12:16:41.000Z</published>
-    <updated>2023-02-17T07:39:21.332Z</updated>
+    <updated>2023-02-17T07:39:21.000Z</updated>
     
     
       
@@ -343,7 +396,7 @@
     <link href="https://zyf.im/2022/11/28/php-migrating-to-70-71/"/>
     <id>https://zyf.im/2022/11/28/php-migrating-to-70-71/</id>
     <published>2022-11-28T02:36:34.000Z</published>
-    <updated>2023-01-31T07:35:41.740Z</updated>
+    <updated>2023-01-31T07:35:41.000Z</updated>
     
     
       
@@ -370,7 +423,7 @@
     <link href="https://zyf.im/2022/11/18/ondrej-multiversion-php/"/>
     <id>https://zyf.im/2022/11/18/ondrej-multiversion-php/</id>
     <published>2022-11-18T09:20:43.000Z</published>
-    <updated>2023-02-07T06:43:32.226Z</updated>
+    <updated>2023-02-07T06:43:32.000Z</updated>
     
     
       
@@ -395,7 +448,7 @@
     <link href="https://zyf.im/2022/11/17/docker-code-snippet/"/>
     <id>https://zyf.im/2022/11/17/docker-code-snippet/</id>
     <published>2022-11-17T02:09:26.000Z</published>
-    <updated>2023-04-24T08:54:56.301Z</updated>
+    <updated>2023-05-25T08:09:00.346Z</updated>
     
     
       
@@ -415,11 +468,61 @@
   </entry>
   
   <entry>
+    <title>Git Code Snippet</title>
+    <link href="https://zyf.im/2022/10/01/git-code-snippet/"/>
+    <id>https://zyf.im/2022/10/01/git-code-snippet/</id>
+    <published>2022-10-01T02:00:00.000Z</published>
+    <updated>2023-12-05T10:15:37.822Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;建立独立的分支&quot;&gt;&lt;a href=&quot;#建立独立的分支&quot; class=&quot;headerlink&quot; title=&quot;建立独立的分支&quot;&gt;&lt;/a&gt;建立独立的分支&lt;/h2&gt;&lt;p&gt;当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
+    
+    
+    <category term="git" scheme="https://zyf.im/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL 实战 45 讲 Part2</title>
+    <link href="https://zyf.im/2022/09/14/mysql-course-45-part2/"/>
+    <id>https://zyf.im/2022/09/14/mysql-course-45-part2/</id>
+    <published>2022-09-14T10:55:54.000Z</published>
+    <updated>2023-04-27T10:55:54.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://gk.link/a/11AmM&quot;&gt;MySQL 实战 45 讲 |</summary>
+        
+      
+    
+    
+    
+    
+    <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>MySQL 实战 45 讲 Part1</title>
     <link href="https://zyf.im/2022/08/14/mysql-course-45-part1/"/>
     <id>https://zyf.im/2022/08/14/mysql-course-45-part1/</id>
     <published>2022-08-14T07:53:16.000Z</published>
-    <updated>2022-09-06T10:53:58.000Z</updated>
+    <updated>2023-04-27T08:09:44.000Z</updated>
     
     
       
@@ -469,7 +572,7 @@
     <link href="https://zyf.im/2022/07/26/front-end-code-snippet/"/>
     <id>https://zyf.im/2022/07/26/front-end-code-snippet/</id>
     <published>2022-07-26T03:51:46.000Z</published>
-    <updated>2023-02-07T06:55:39.813Z</updated>
+    <updated>2023-12-05T07:13:58.794Z</updated>
     
     
       
@@ -538,7 +641,7 @@
     <link href="https://zyf.im/2022/01/10/group-concat-max-len/"/>
     <id>https://zyf.im/2022/01/10/group-concat-max-len/</id>
     <published>2022-01-10T07:53:16.000Z</published>
-    <updated>2022-12-14T11:24:40.135Z</updated>
+    <updated>2023-12-05T07:13:58.821Z</updated>
     
     
       
@@ -589,7 +692,7 @@
     <link href="https://zyf.im/2021/10/13/php-install-grpc/"/>
     <id>https://zyf.im/2021/10/13/php-install-grpc/</id>
     <published>2021-10-13T07:48:41.000Z</published>
-    <updated>2023-02-07T06:44:22.330Z</updated>
+    <updated>2023-12-05T07:13:58.933Z</updated>
     
     
       
@@ -612,7 +715,7 @@
     <link href="https://zyf.im/2021/09/14/sql-over-partition-by/"/>
     <id>https://zyf.im/2021/09/14/sql-over-partition-by/</id>
     <published>2021-09-14T03:58:42.000Z</published>
-    <updated>2023-02-27T07:49:05.161Z</updated>
+    <updated>2023-04-27T07:59:02.000Z</updated>
     
     
       
@@ -637,7 +740,7 @@
     <link href="https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/"/>
     <id>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</id>
     <published>2021-07-20T06:58:33.000Z</published>
-    <updated>2022-12-14T11:25:06.343Z</updated>
+    <updated>2023-12-05T07:13:59.035Z</updated>
     
     
       
@@ -662,7 +765,7 @@
     <link href="https://zyf.im/2021/07/19/php-strict-types/"/>
     <id>https://zyf.im/2021/07/19/php-strict-types/</id>
     <published>2021-07-19T11:58:26.000Z</published>
-    <updated>2023-01-31T11:23:27.842Z</updated>
+    <updated>2023-12-05T07:13:58.879Z</updated>
     
     
       
@@ -717,7 +820,7 @@
     <link href="https://zyf.im/2021/07/08/how-to-do-technical-management/"/>
     <id>https://zyf.im/2021/07/08/how-to-do-technical-management/</id>
     <published>2021-07-08T13:08:08.000Z</published>
-    <updated>2023-02-01T03:13:23.836Z</updated>
+    <updated>2023-12-05T07:13:58.803Z</updated>
     
     
       
@@ -745,7 +848,7 @@
     <link href="https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/"/>
     <id>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</id>
     <published>2021-02-06T03:00:41.000Z</published>
-    <updated>2023-03-09T09:12:09.209Z</updated>
+    <updated>2023-12-05T07:13:59.054Z</updated>
     
     
       
@@ -769,7 +872,7 @@
     <link href="https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/"/>
     <id>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</id>
     <published>2021-02-05T03:00:41.000Z</published>
-    <updated>2023-03-09T09:12:02.681Z</updated>
+    <updated>2023-12-05T07:13:59.147Z</updated>
     
     
       
@@ -819,7 +922,7 @@
     <link href="https://zyf.im/2021/01/27/php-strtotime-month/"/>
     <id>https://zyf.im/2021/01/27/php-strtotime-month/</id>
     <published>2021-01-27T10:18:24.000Z</published>
-    <updated>2023-02-07T06:46:16.393Z</updated>
+    <updated>2023-12-05T07:13:59.055Z</updated>
     
     
       
@@ -869,7 +972,7 @@
     <link href="https://zyf.im/2021/01/10/yii2-vue-cors/"/>
     <id>https://zyf.im/2021/01/10/yii2-vue-cors/</id>
     <published>2021-01-10T04:00:00.000Z</published>
-    <updated>2022-12-14T11:25:06.404Z</updated>
+    <updated>2023-12-05T07:13:59.042Z</updated>
     
     
       
@@ -886,9 +989,9 @@
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
     
-    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
-    
     <category term="vue" scheme="https://zyf.im/tags/vue/"/>
+    
+    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
     
   </entry>
   
@@ -897,7 +1000,7 @@
     <link href="https://zyf.im/2020/12/31/review-2020/"/>
     <id>https://zyf.im/2020/12/31/review-2020/</id>
     <published>2020-12-31T12:00:00.000Z</published>
-    <updated>2022-12-14T11:25:18.623Z</updated>
+    <updated>2022-12-14T11:25:18.000Z</updated>
     
     
       
@@ -920,7 +1023,7 @@
     <link href="https://zyf.im/2020/12/30/optimization-of-php-fpm/"/>
     <id>https://zyf.im/2020/12/30/optimization-of-php-fpm/</id>
     <published>2020-12-30T11:10:03.000Z</published>
-    <updated>2022-12-14T11:25:17.966Z</updated>
+    <updated>2023-12-05T07:13:58.973Z</updated>
     
     
       
@@ -949,7 +1052,7 @@
     <link href="https://zyf.im/2020/11/28/mysql-blank-space/"/>
     <id>https://zyf.im/2020/11/28/mysql-blank-space/</id>
     <published>2020-11-28T03:11:59.000Z</published>
-    <updated>2022-12-14T11:25:06.079Z</updated>
+    <updated>2023-12-05T07:13:58.973Z</updated>
     
     
       
@@ -973,7 +1076,7 @@
     <link href="https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/"/>
     <id>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</id>
     <published>2020-09-11T07:00:39.000Z</published>
-    <updated>2022-12-14T11:25:18.786Z</updated>
+    <updated>2023-12-05T07:13:58.935Z</updated>
     
     
       
@@ -997,7 +1100,7 @@
     <link href="https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/"/>
     <id>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</id>
     <published>2020-08-17T11:34:29.000Z</published>
-    <updated>2022-12-14T11:24:40.350Z</updated>
+    <updated>2023-12-05T07:13:58.794Z</updated>
     
     
       
@@ -1020,7 +1123,7 @@
     <link href="https://zyf.im/2020/08/14/mysql-json-data-type/"/>
     <id>https://zyf.im/2020/08/14/mysql-json-data-type/</id>
     <published>2020-08-14T11:39:55.000Z</published>
-    <updated>2023-04-13T04:01:47.946Z</updated>
+    <updated>2023-12-05T07:13:58.866Z</updated>
     
     
       
@@ -1049,7 +1152,7 @@
     <link href="https://zyf.im/2020/08/10/commit-composer-vendor-to-git/"/>
     <id>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</id>
     <published>2020-08-10T06:24:47.000Z</published>
-    <updated>2022-12-14T11:25:18.787Z</updated>
+    <updated>2023-12-05T07:13:58.998Z</updated>
     
     
       
@@ -1077,7 +1180,7 @@
     <link href="https://zyf.im/2020/08/07/deploy-swoft-framework/"/>
     <id>https://zyf.im/2020/08/07/deploy-swoft-framework/</id>
     <published>2020-08-07T03:45:19.000Z</published>
-    <updated>2022-12-14T11:25:18.787Z</updated>
+    <updated>2023-12-05T07:13:59.105Z</updated>
     
     
       
@@ -1105,7 +1208,7 @@
     <link href="https://zyf.im/2020/06/29/tcpdump-getting-started/"/>
     <id>https://zyf.im/2020/06/29/tcpdump-getting-started/</id>
     <published>2020-06-29T02:24:16.000Z</published>
-    <updated>2022-12-14T11:24:33.878Z</updated>
+    <updated>2023-12-05T07:13:58.787Z</updated>
     
     
     <summary type="html">&lt;p&gt;tcpdump 是 Unix&amp;#x2F;Linux 下的抓包工具，可以针对指定网卡、端口、协议进行抓包。&lt;/p&gt;</summary>
@@ -1122,7 +1225,7 @@
     <link href="https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/"/>
     <id>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</id>
     <published>2020-05-26T01:45:15.000Z</published>
-    <updated>2022-12-14T11:25:18.786Z</updated>
+    <updated>2023-12-05T07:13:59.184Z</updated>
     
     
     <summary type="html">&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
@@ -1161,100 +1264,6 @@
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>PHP Call to undefined function ftp_ssl_connect</title>
-    <link href="https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/"/>
-    <id>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</id>
-    <published>2020-05-08T09:17:46.000Z</published>
-    <updated>2022-12-14T11:25:18.786Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;CentOS 7.4&lt;/li&gt;
-&lt;li&gt;PHP 7.1.12 编译安装&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 CentOS 编译安装 PHP</title>
-    <link href="https://zyf.im/2020/04/29/make-install-php-on-centos/"/>
-    <id>https://zyf.im/2020/04/29/make-install-php-on-centos/</id>
-    <published>2020-04-29T03:37:51.000Z</published>
-    <updated>2022-12-14T11:25:18.787Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;CentOS 7.4&lt;/li&gt;
-&lt;li&gt;PHP 5.6.40&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-    <category term="centos" scheme="https://zyf.im/tags/centos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 macOS 编译安装 PHP</title>
-    <link href="https://zyf.im/2020/04/28/make-install-php-on-macos/"/>
-    <id>https://zyf.im/2020/04/28/make-install-php-on-macos/</id>
-    <published>2020-04-28T10:09:59.000Z</published>
-    <updated>2022-09-01T07:04:40.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;macOS 10.15.7&lt;/li&gt;
-&lt;li&gt;PHP 7.1.33&lt;/li&gt;
-&lt;/ul&gt;</summary>
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-    <category term="mac" scheme="https://zyf.im/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vim Code Snippet</title>
-    <link href="https://zyf.im/2020/04/28/vim-code-snippet/"/>
-    <id>https://zyf.im/2020/04/28/vim-code-snippet/</id>
-    <published>2020-04-28T02:43:39.000Z</published>
-    <updated>2022-08-04T09:33:46.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;常用&quot;&gt;&lt;a href=&quot;#常用&quot; class=&quot;headerlink&quot; title=&quot;常用&quot;&gt;&lt;/a&gt;常用&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;全选（高亮显示）：按 esc 后，然后 &lt;code&gt;ggvG&lt;/code&gt; 或者 &lt;code&gt;ggVG&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;全部复制：按 esc 后，然后 &lt;code&gt;ggyG&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;全部删除：按 esc 后，然后 &lt;code&gt;dG&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;粘贴到终端-vim-缩进错乱&quot;&gt;&lt;a href=&quot;#粘贴到终端-vim-缩进错乱&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
-    
-    
-    <category term="vim" scheme="https://zyf.im/tags/vim/"/>
     
   </entry>
   
