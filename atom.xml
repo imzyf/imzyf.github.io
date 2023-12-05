@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2023-11-15T08:58:40.359Z</updated>
+  <updated>2023-04-27T07:31:35.000Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -15,55 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>IT 交付能效提升问卷调查</title>
-    <link href="https://zyf.im/2023/11/15/null/"/>
-    <id>https://zyf.im/2023/11/15/null/</id>
-    <published>2023-11-15T08:29:13.000Z</published>
-    <updated>2023-11-15T08:58:40.359Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;需求阶段有哪些待提升或待改进的事项？&quot;&gt;&lt;a href=&quot;#需求阶段有哪些待提升或待改进的事项？&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="thinking" scheme="https://zyf.im/categories/thinking/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Vue 开发实战</title>
-    <link href="https://zyf.im/2023/05/23/vue-practice/"/>
-    <id>https://zyf.im/2023/05/23/vue-practice/</id>
-    <published>2023-05-23T09:45:47.000Z</published>
-    <updated>2023-05-23T10:56:44.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://time.geekbang.org/course/detail/100024601-89259&quot;&gt;Vue 开发实战 | GeekTime&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;32-使用-Vue-CLI-快速创建项目&quot;&gt;&lt;a href=&quot;#32-使用-Vue-CLI-快速创建项目&quot; class=&quot;headerlink&quot; title=&quot;32 使用 Vue CLI 快速创建项目&quot;&gt;&lt;/a&gt;32 使用 Vue CLI 快速创建项目&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
-        
-      
-    
-    
-    
-    
-    <category term="vue" scheme="https://zyf.im/tags/vue/"/>
-    
-  </entry>
   
   <entry>
     <title>MongoDB 高手课</title>
@@ -1264,6 +1215,48 @@
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP Call to undefined function ftp_ssl_connect</title>
+    <link href="https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/"/>
+    <id>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</id>
+    <published>2020-05-08T09:17:46.000Z</published>
+    <updated>2023-12-05T07:13:59.004Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;CentOS 7.4&lt;/li&gt;
+&lt;li&gt;PHP 7.1.12 编译安装&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 CentOS 编译安装 PHP</title>
+    <link href="https://zyf.im/2020/04/29/make-install-php-on-centos/"/>
+    <id>https://zyf.im/2020/04/29/make-install-php-on-centos/</id>
+    <published>2020-04-29T03:37:51.000Z</published>
+    <updated>2023-12-05T07:13:58.898Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;CentOS 7.4&lt;/li&gt;
+&lt;li&gt;PHP 5.6.40&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    
+    <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+    <category term="centos" scheme="https://zyf.im/tags/centos/"/>
     
   </entry>
   

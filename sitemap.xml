@@ -272,15 +272,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2023/11/15/null/</loc>
-    
-    <lastmod>2023-11-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
     
     <lastmod>2023-10-08</lastmod>
@@ -302,15 +293,6 @@
     <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
     
     <lastmod>2023-05-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2023/05/23/vue-practice/</loc>
-    
-    <lastmod>2023-05-23</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

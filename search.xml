@@ -4,44 +4,6 @@
   
     
     <entry>
-      <title>IT 交付能效提升问卷调查</title>
-      <link href="/2023/11/15/null/"/>
-      <url>/2023/11/15/null/</url>
-      
-        <content type="html"><![CDATA[<h2 id="需求阶段有哪些待提升或待改进的事项？"><a href="#需求阶段有哪些待提升或待改进的事项？" class="headerlink" title="需求阶段有哪些待提升或待改进的事项？"></a>需求阶段有哪些待提升或待改进的事项？</h2><ul><li>迭代变更管理流程优化：控制迭代变更率，避免临近上线需求变更，紧急插入需求，变更范围的控制等管理机制。</li><li>需求颗粒度管理：需求、任务颗粒度管理，如：需求任务拆分成多大颗粒度适合。</li><li>需求端到端管理工具优化：业务需求与交付需求街接工具打通自动化，现状系统之间分离，靠人工记录及状态更新耗时大，效率低。</li><li>交付团队内需求交接流程优化：需求交接过程管理无工具化或机制管理，开发人员是否完全理解需求并接受，避免一句话需求，交接不清晰。</li><li>业务需求到产品需求的确认管理机制。</li><li>技术负责人参与需求方案评审不足。</li></ul><h2 id="研发阶段有哪些待提升或待改进的事项？"><a href="#研发阶段有哪些待提升或待改进的事项？" class="headerlink" title="研发阶段有哪些待提升或待改进的事项？"></a>研发阶段有哪些待提升或待改进的事项？</h2><ul><li>建立持续集成的统一配置，包括统一代码分支管理策路及系统化管理。</li><li>统一的代码编写规范。</li><li>统一的单元测试的规范标准和规范指标监控平台。</li><li>统一的编译打包镜像生成和发布的规范。</li><li>统一的 CodeReview 流程规范及管理工具。</li><li>统一的技术方案的评审规范及标准。</li></ul><h2 id="测试阶段有哪些待提升或待改进的事项？"><a href="#测试阶段有哪些待提升或待改进的事项？" class="headerlink" title="测试阶段有哪些待提升或待改进的事项？"></a>测试阶段有哪些待提升或待改进的事项？</h2><ul><li>测试用例管理（编写规范、内部共享、需求关联、用例评审机制等）。</li><li>测试环境管理（准备数据耗时，脏数据，影响测试进度因素等）。</li><li>测试工具建设和统一（自动化测试、压测等）。</li><li>SIT 准出标准（测试 bug 全部解决，性能测试通过，安全测试通过等）。</li><li>UAT 准出标准（UAT 测试 bug 全部解决，用户验证需求全部通过等）。</li></ul><h2 id="发布阶段有哪些待提升或待改进的事项？"><a href="#发布阶段有哪些待提升或待改进的事项？" class="headerlink" title="发布阶段有哪些待提升或待改进的事项？"></a>发布阶段有哪些待提升或待改进的事项？</h2><ul><li>发布标准（统一的质量上线标准，譬如上线需要提：SIT 报告，UAT 报告，遗留问题 DI 值小于 12，不能带严重问题上线等）。</li><li>发布审批流程优化：统一时间商发布，避免审批耗时太长等相关流程优化。</li><li>发布版本回退流程管理及机制。</li></ul><h2 id="交付过程能力方面有哪些待提升或待改进的事项？"><a href="#交付过程能力方面有哪些待提升或待改进的事项？" class="headerlink" title="交付过程能力方面有哪些待提升或待改进的事项？"></a>交付过程能力方面有哪些待提升或待改进的事项？</h2><ul><li>沟通管理机制：问题&#x2F;需求&#x2F;技术沟通的升级机制。</li><li>统一的 WIKI 建设（包含所有的规约制度一站式看板）。</li><li>工程能力建设：需求&amp;代码&amp;任务&amp;测试用例关联，CI&#x2F;CD 持续构建。</li><li>交付工具化，现有的交付工具系统的优化，譬如 TAPD 无自定义可以配置的仪表盘展示开发周期，交付过程中的数据，自定义配置仪表盘查看项目进展；PPMP（产品项目管理系统）过程活动流程统一不能自定义或裁剪功能。</li><li>交付过程文档库建设及管理规范，及文档评审（技术评审、安全评审、运维评审）。</li><li>代码规约扫描能力及工具建设，实现线上化查看各产品系统的编码规范。</li><li>建设交付过程指标及质量指标展示平台，实现线上化展示，团队更清晰实时的查看分析指标问题，针对性的改进。</li></ul><h2 id="产品运营方面有哪些待提升或待改进的事项？"><a href="#产品运营方面有哪些待提升或待改进的事项？" class="headerlink" title="产品运营方面有哪些待提升或待改进的事项？"></a>产品运营方面有哪些待提升或待改进的事项？</h2><ul><li>产品运维告警机制，生产环境监控告警，更新配置机制。</li><li>产品运营指标管理，产品性能临控指标，API 接口调用指标，UV、PV，监控指标，通过指标优化产品应用。</li><li>产品下架标准不明确。</li><li>生产运维服务器权限申请流程规范优化。</li><li>研发转运营的坏节不够标准，缺少线上工具及标准。</li></ul><h2 id="您在交付过程中哪个环节最痛，您有什么其他的建议或意见，能在交付过程中能提升或改进的地方？"><a href="#您在交付过程中哪个环节最痛，您有什么其他的建议或意见，能在交付过程中能提升或改进的地方？" class="headerlink" title="您在交付过程中哪个环节最痛，您有什么其他的建议或意见，能在交付过程中能提升或改进的地方？"></a>您在交付过程中哪个环节最痛，您有什么其他的建议或意见，能在交付过程中能提升或改进的地方？</h2><ul><li>开放式。</li><li>暂无。</li><li>其他。</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> thinking </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Vue 开发实战</title>
-      <link href="/2023/05/23/vue-practice/"/>
-      <url>/2023/05/23/vue-practice/</url>
-      
-        <content type="html"><![CDATA[<blockquote><p><a href="https://time.geekbang.org/course/detail/100024601-89259">Vue 开发实战 | GeekTime</a></p></blockquote><h2 id="32-使用-Vue-CLI-快速创建项目"><a href="#32-使用-Vue-CLI-快速创建项目" class="headerlink" title="32 使用 Vue CLI 快速创建项目"></a>32 使用 Vue CLI 快速创建项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vue create ant-design-vue-pro</span><br><span class="line"><span class="comment"># Manually select features</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Babel</span></span><br><span class="line"><span class="comment"># Router</span></span><br><span class="line"><span class="comment"># Vuex</span></span><br><span class="line"><span class="comment"># CSS Pre-processors</span></span><br><span class="line"><span class="comment"># Linter / Formatter</span></span><br><span class="line"><span class="comment"># Unit Testing</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Sass/SCSS (with dart-sass)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ESLint + Prettier</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Lint on save</span></span><br><span class="line"><span class="comment"># Lint and fix on commit</span></span><br><span class="line">npm i ant-design-vue moment</span><br></pre></td></tr></table></figure><h2 id="34"><a href="#34" class="headerlink" title="34"></a>34</h2><p>npm install babel-plugin-import –save-dev</p><h2 id="npm-install-less-less-loader-D"><a href="#npm-install-less-less-loader-D" class="headerlink" title="npm install less less-loader -D"></a>npm install less less-loader -D</h2>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> vue </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MongoDB 高手课</title>
       <link href="/2023/04/19/mongodb-course/"/>
       <url>/2023/04/19/mongodb-course/</url>
