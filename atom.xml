@@ -120,19 +120,6 @@
   </entry>
   
   <entry>
-    <title>大数据经典论文解读</title>
-    <link href="https://zyf.im/2023/02/27/big-data-papers-reading-notes/"/>
-    <id>https://zyf.im/2023/02/27/big-data-papers-reading-notes/</id>
-    <published>2023-02-27T07:54:08.000Z</published>
-    <updated>2023-03-01T10:11:29.000Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>Kubernetes 入门实战 Part3</title>
     <link href="https://zyf.im/2023/02/24/kubernetes-getting-started-part3/"/>
     <id>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</id>
@@ -545,30 +532,6 @@
   </entry>
   
   <entry>
-    <title>2022Q3 随想录</title>
-    <link href="https://zyf.im/2022/07/01/2022-q3-thinking/"/>
-    <id>https://zyf.im/2022/07/01/2022-q3-thinking/</id>
-    <published>2022-07-01T13:08:08.000Z</published>
-    <updated>2022-10-18T11:21:20.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;生活或者工作中总有些值得记录下的小感想，没必单独写一篇独立文章那就写在 &lt;code&gt;随想录&lt;/code&gt; 里吧。&lt;code&gt;随想录&lt;/code&gt; 以季度为单位开设。&lt;/p&gt;
-&lt;p&gt;开 &lt;code&gt;随想录&lt;/code&gt; 专题的直接原因是：在翻看扔进 &lt;code&gt;_drafts&lt;/code&gt; 里 18</summary>
-        
-      
-    
-    
-    
-    <category term="thinking" scheme="https://zyf.im/categories/thinking/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【JavaScript 教程 | 网道】笔记</title>
     <link href="https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/"/>
     <id>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</id>
@@ -691,7 +654,7 @@
     <link href="https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/"/>
     <id>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</id>
     <published>2021-07-20T06:58:33.000Z</published>
-    <updated>2023-12-05T07:13:59.035Z</updated>
+    <updated>2024-06-06T02:31:02.859Z</updated>
     
     
       
@@ -970,35 +933,6 @@
   </entry>
   
   <entry>
-    <title>优化 PHP-FPM</title>
-    <link href="https://zyf.im/2020/12/30/optimization-of-php-fpm/"/>
-    <id>https://zyf.im/2020/12/30/optimization-of-php-fpm/</id>
-    <published>2020-12-30T11:10:03.000Z</published>
-    <updated>2023-12-05T07:13:58.973Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;2022-05-06 内容是否过期犹未可知。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.php.net/manual/zh/install.fpm.configuration.php&quot;&gt;php-fpm.conf | php.net&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MySQL 空格问题</title>
     <link href="https://zyf.im/2020/11/28/mysql-blank-space/"/>
     <id>https://zyf.im/2020/11/28/mysql-blank-space/</id>
@@ -1127,34 +1061,6 @@
   </entry>
   
   <entry>
-    <title>PHP Swoft 框架环境配置</title>
-    <link href="https://zyf.im/2020/08/07/deploy-swoft-framework/"/>
-    <id>https://zyf.im/2020/08/07/deploy-swoft-framework/</id>
-    <published>2020-08-07T03:45:19.000Z</published>
-    <updated>2023-12-05T07:13:59.105Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;安装-Swoole&quot;&gt;&lt;a href=&quot;#安装-Swoole&quot; class=&quot;headerlink&quot; title=&quot;安装 Swoole&quot;&gt;&lt;/a&gt;安装 Swoole&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pecl install swoole&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-&lt;p&gt;可能出现：&lt;/p&gt;
-&lt;figure class=&quot;highlight</summary>
-        
-      
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-    <category term="swoft" scheme="https://zyf.im/tags/swoft/"/>
-    
-  </entry>
-  
-  <entry>
     <title>tcpdump 入门使用</title>
     <link href="https://zyf.im/2020/06/29/tcpdump-getting-started/"/>
     <id>https://zyf.im/2020/06/29/tcpdump-getting-started/</id>
@@ -1239,24 +1145,119 @@
   </entry>
   
   <entry>
-    <title>在 CentOS 编译安装 PHP</title>
-    <link href="https://zyf.im/2020/04/29/make-install-php-on-centos/"/>
-    <id>https://zyf.im/2020/04/29/make-install-php-on-centos/</id>
-    <published>2020-04-29T03:37:51.000Z</published>
-    <updated>2023-12-05T07:13:58.898Z</updated>
+    <title>vim Code Snippet</title>
+    <link href="https://zyf.im/2020/04/28/vim-code-snippet/"/>
+    <id>https://zyf.im/2020/04/28/vim-code-snippet/</id>
+    <published>2020-04-28T02:43:39.000Z</published>
+    <updated>2022-08-04T09:33:46.000Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;CentOS 7.4&lt;/li&gt;
-&lt;li&gt;PHP 5.6.40&lt;/li&gt;
-&lt;/ul&gt;</summary>
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;常用&quot;&gt;&lt;a href=&quot;#常用&quot; class=&quot;headerlink&quot; title=&quot;常用&quot;&gt;&lt;/a&gt;常用&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;全选（高亮显示）：按 esc 后，然后 &lt;code&gt;ggvG&lt;/code&gt; 或者 &lt;code&gt;ggVG&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;全部复制：按 esc 后，然后 &lt;code&gt;ggyG&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;全部删除：按 esc 后，然后 &lt;code&gt;dG&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;粘贴到终端-vim-缩进错乱&quot;&gt;&lt;a href=&quot;#粘贴到终端-vim-缩进错乱&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
+    
+    
+    <category term="vim" scheme="https://zyf.im/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP GD 入门使用</title>
+    <link href="https://zyf.im/2020/04/16/php-gd-getting-started/"/>
+    <id>https://zyf.im/2020/04/16/php-gd-getting-started/</id>
+    <published>2020-04-16T09:24:37.000Z</published>
+    <updated>2023-12-05T07:13:59.009Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
+&lt;h3 id=&quot;字体库-FreeType-2&quot;&gt;&lt;a href=&quot;#字体库-FreeType-2&quot; class=&quot;headerlink&quot; title=&quot;字体库 FreeType 2&quot;&gt;&lt;/a&gt;字体库 FreeType 2&lt;/h3&gt;&lt;p&gt;&lt;a</summary>
+        
+      
     
     
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
     
-    <category term="centos" scheme="https://zyf.im/tags/centos/"/>
+  </entry>
+  
+  <entry>
+    <title>PHP Code Snippet</title>
+    <link href="https://zyf.im/2020/04/15/php-code-snippet/"/>
+    <id>https://zyf.im/2020/04/15/php-code-snippet/</id>
+    <published>2020-04-15T10:03:44.000Z</published>
+    <updated>2020-04-26T07:43:32.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;PHP-Sandbox&quot;&gt;&lt;a href=&quot;#PHP-Sandbox&quot; class=&quot;headerlink&quot; title=&quot;PHP Sandbox&quot;&gt;&lt;/a&gt;PHP Sandbox&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://legacy-sandbox.onlinephpfunctions.com/&quot;&gt;https://legacy-sandbox.onlinephpfunctions.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
+    
+    
+    <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL Illegal mix of collations</title>
+    <link href="https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/"/>
+    <id>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</id>
+    <published>2020-04-14T09:05:01.000Z</published>
+    <updated>2020-08-17T13:34:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+    <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NGINX 前后端分离配置</title>
+    <link href="https://zyf.im/2020/03/17/nginx-front-back-end-config/"/>
+    <id>https://zyf.im/2020/03/17/nginx-front-back-end-config/</id>
+    <published>2020-03-17T03:33:24.000Z</published>
+    <updated>2023-12-05T07:13:58.508Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前后端分离的开发已是主流，本文主要是记录前后端分离项目的 NGINX 配置。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="nginx" scheme="https://zyf.im/tags/nginx/"/>
     
   </entry>
   
