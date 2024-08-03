@@ -1027,6 +1027,38 @@
     </item>
     
     <item>
+      <title>Composer 文档笔记</title>
+      <link>https://zyf.im/2020/10/28/composer-document-note/</link>
+      <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
+      <pubDate>Wed, 28 Oct 2020 03:36:27 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Book&quot;&gt;&lt;a href=&quot;#Book&quot; class=&quot;headerlink&quot; title=&quot;Book&quot;&gt;&lt;/a&gt;Book&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://getcomposer.org/doc/00-intro.md&quot;&gt;https://getcomposer.org/doc/00-intro.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Composer 最新版本需要 PHP 7.2.5 才能运行。长期支持版本 (2.2.x) 仍然提供对 PHP 5.3.2+ 的支持。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      <category domain="https://zyf.im/tags/composer/">composer</category>
+      
+      
+      <comments>https://zyf.im/2020/10/28/composer-document-note/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>在 Laravel 之外使用 illuminate 组件</title>
       <link>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</link>
       <guid>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</guid>
@@ -1335,25 +1367,6 @@
       
       
       <comments>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>NGINX 前后端分离配置</title>
-      <link>https://zyf.im/2020/03/17/nginx-front-back-end-config/</link>
-      <guid>https://zyf.im/2020/03/17/nginx-front-back-end-config/</guid>
-      <pubDate>Tue, 17 Mar 2020 03:33:24 GMT</pubDate>
-      
-      <description>&lt;p&gt;前后端分离的开发已是主流，本文主要是记录前后端分离项目的 NGINX 配置。&lt;/p&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/nginx/">nginx</category>
-      
-      
-      <comments>https://zyf.im/2020/03/17/nginx-front-back-end-config/#disqus_thread</comments>
       
     </item>
     

@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2020/10/28/composer-document-note/</loc>
+    
+    <lastmod>2024-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/links/</loc>
+    
+    <lastmod>2024-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2017/03/07/linux-crontab-content-backup/</loc>
+    
+    <lastmod>2024-06-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</loc>
     
     <lastmod>2024-06-06</lastmod>
@@ -425,15 +452,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/links/</loc>
-    
-    <lastmod>2023-04-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
     
     <lastmod>2023-04-07</lastmod>
@@ -759,15 +777,6 @@
   
   <url>
     <loc>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</loc>
-    
-    <lastmod>2022-12-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2017/03/07/linux-crontab-content-backup/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -1624,7 +1633,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2024-06-06</lastmod>
+    <lastmod>2024-08-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
