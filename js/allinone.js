@@ -805,7 +805,6 @@ var searchFuncSW = function(siteRoot) {
 
 // 打印结果
 var printRs = function (input, datas, resultContent) {
-  console.log({input, datas, resultContent});
     var str = '<ul class="search-result-list">';
     var keywords = input.value.trim().toLowerCase().split(/[\s\-]+/);
     resultContent.innerHTML = "";
@@ -1019,7 +1018,7 @@ var openPhotoSwipe = function (pswpElement, postImg, index) {
             var pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
 
             var rect = postImg[idx].getBoundingClientRect();
-
+            
             return {
                 x: rect.left,
                 y: rect.top + pageYScroll,

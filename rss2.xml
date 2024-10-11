@@ -9,8 +9,37 @@
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>永远热泪盈眶</description>
-    <pubDate>Thu, 27 Apr 2023 07:31:35 GMT</pubDate>
+    <pubDate>Tue, 08 Oct 2024 08:26:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>PHP Migrating to 8.2</title>
+      <link>https://zyf.im/2024/08/16/php-migrating-to-82/</link>
+      <guid>https://zyf.im/2024/08/16/php-migrating-to-82/</guid>
+      <pubDate>Fri, 16 Aug 2024 01:24:50 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;PHP8-2&quot;&gt;&lt;a href=&quot;#PHP8-2&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2024/08/16/php-migrating-to-82/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>MongoDB 高手课</title>
@@ -69,7 +98,7 @@
     </item>
     
     <item>
-      <title>正则表达式入门课</title>
+      <title>正则表达式</title>
       <link>https://zyf.im/2023/03/01/regular-expression-getting-started/</link>
       <guid>https://zyf.im/2023/03/01/regular-expression-getting-started/</guid>
       <pubDate>Wed, 01 Mar 2023 07:31:15 GMT</pubDate>
@@ -1069,7 +1098,7 @@
           
           
       <description>&lt;p&gt;当代框架基本都是有组件构成，这使得框架变得更加灵活。&lt;a href=&quot;https://github.com/illuminate&quot;&gt;The Laravel Components | github&lt;/a&gt; Laravel 中有不少优质组件，那如何在 Laravel 之外使用 illuminate 组件呢？&lt;/p&gt;
-&lt;h2 id=&quot;illuminate-x2F-validation&quot;&gt;&lt;a href=&quot;#illuminate-x2F-validation&quot; class=&quot;headerlink&quot;</description>
+&lt;h2 id=&quot;illuminate-validation&quot;&gt;&lt;a href=&quot;#illuminate-validation&quot; class=&quot;headerlink&quot;</description>
           
         
       
@@ -1161,9 +1190,9 @@
       
       <category domain="https://zyf.im/tags/php/">php</category>
       
-      <category domain="https://zyf.im/tags/composer/">composer</category>
-      
       <category domain="https://zyf.im/tags/git/">git</category>
+      
+      <category domain="https://zyf.im/tags/composer/">composer</category>
       
       
       <comments>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/#disqus_thread</comments>
@@ -1348,25 +1377,6 @@
       
       
       <comments>https://zyf.im/2020/04/15/php-code-snippet/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>MySQL Illegal mix of collations</title>
-      <link>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</link>
-      <guid>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</guid>
-      <pubDate>Tue, 14 Apr 2020 09:05:01 GMT</pubDate>
-      
-      <description>&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/mysql/">mysql</category>
-      
-      
-      <comments>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/#disqus_thread</comments>
       
     </item>
     
