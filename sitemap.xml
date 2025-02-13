@@ -2,9 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2024/08/16/php-migrating-81-to-82/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/about/</loc>
     
-    <lastmod>2024-10-10</lastmod>
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/10/01/git-code-snippet/</loc>
+    
+    <lastmod>2024-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
+    
+    <lastmod>2024-11-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -20,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/10/01/git-code-snippet/</loc>
+    <loc>https://zyf.im/categories/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -30,15 +75,6 @@
   
   <url>
     <loc>https://zyf.im/links/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/categories/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -83,6 +119,33 @@
   </url>
   
   <url>
+    <loc>https://zyf.im/2019/12/31/review-2019/</loc>
+    
+    <lastmod>2024-10-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/12/31/review-2020/</loc>
+    
+    <lastmod>2024-10-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/12/31/review-2022/</loc>
+    
+    <lastmod>2024-10-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
     
     <lastmod>2024-10-08</lastmod>
@@ -111,51 +174,6 @@
   
   <url>
     <loc>https://zyf.im/2021/07/08/how-to-do-technical-management/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2019/12/31/review-2019/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2020/12/31/review-2020/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/12/31/review-2022/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2024/08/16/php-migrating-to-82/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -272,6 +290,15 @@
   </url>
   
   <url>
+    <loc>https://zyf.im/2021/07/19/php-strict-types/</loc>
+    
+    <lastmod>2024-10-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</loc>
     
     <lastmod>2024-10-08</lastmod>
@@ -291,15 +318,6 @@
   
   <url>
     <loc>https://zyf.im/2022/11/18/ondrej-multiversion-php/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/07/19/php-strict-types/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -344,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</loc>
+    <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -353,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
+    <loc>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -587,7 +605,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</loc>
+    <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -596,7 +614,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
+    <loc>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -749,15 +767,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2020/11/28/mysql-blank-space/</loc>
     
     <lastmod>2024-10-08</lastmod>
@@ -902,7 +911,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</loc>
+    <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -911,7 +920,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</loc>
+    <loc>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -1055,7 +1064,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/12/21/php-migrating-to-81/</loc>
+    <loc>https://zyf.im/2022/12/21/php-migrating-80-to-81/</loc>
     
     <lastmod>2023-01-31</lastmod>
     
@@ -1073,7 +1082,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/12/14/php-migrating-to-74-80/</loc>
+    <loc>https://zyf.im/2022/12/14/php-migrating-74-to-80/</loc>
     
     <lastmod>2022-12-21</lastmod>
     
@@ -1082,7 +1091,7 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/12/12/php-migrating-to-72-73/</loc>
+    <loc>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</loc>
     
     <lastmod>2022-12-14</lastmod>
     
@@ -1157,15 +1166,6 @@
     <loc>https://zyf.im/2021/07/12/git-and-github-secrets/</loc>
     
     <lastmod>2021-07-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    
-    <lastmod>2021-03-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1642,7 +1642,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2024-10-11</lastmod>
+    <lastmod>2025-02-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

@@ -9,13 +9,13 @@
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>永远热泪盈眶</description>
-    <pubDate>Tue, 08 Oct 2024 08:26:16 GMT</pubDate>
+    <pubDate>Thu, 13 Feb 2025 07:58:41 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>PHP Migrating to 8.2</title>
-      <link>https://zyf.im/2024/08/16/php-migrating-to-82/</link>
-      <guid>https://zyf.im/2024/08/16/php-migrating-to-82/</guid>
+      <title>PHP Migrating 8.1 to 8.2</title>
+      <link>https://zyf.im/2024/08/16/php-migrating-81-to-82/</link>
+      <guid>https://zyf.im/2024/08/16/php-migrating-81-to-82/</guid>
       <pubDate>Fri, 16 Aug 2024 01:24:50 GMT</pubDate>
       
         
@@ -24,9 +24,8 @@
           
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;PHP8-2&quot;&gt;&lt;a href=&quot;#PHP8-2&quot; class=&quot;headerlink&quot;</description>
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.1/en.php&quot;&gt;https://www.php.net/releases/8.1/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
           
         
       
@@ -37,7 +36,7 @@
       <category domain="https://zyf.im/tags/php/">php</category>
       
       
-      <comments>https://zyf.im/2024/08/16/php-migrating-to-82/#disqus_thread</comments>
+      <comments>https://zyf.im/2024/08/16/php-migrating-81-to-82/#disqus_thread</comments>
       
     </item>
     
@@ -292,9 +291,9 @@
     </item>
     
     <item>
-      <title>PHP Migrating to 8.1</title>
-      <link>https://zyf.im/2022/12/21/php-migrating-to-81/</link>
-      <guid>https://zyf.im/2022/12/21/php-migrating-to-81/</guid>
+      <title>PHP Migrating 8.0 to 8.1</title>
+      <link>https://zyf.im/2022/12/21/php-migrating-80-to-81/</link>
+      <guid>https://zyf.im/2022/12/21/php-migrating-80-to-81/</guid>
       <pubDate>Wed, 21 Dec 2022 10:25:49 GMT</pubDate>
       
         
@@ -303,9 +302,8 @@
           
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;PHP8-0-to-PHP8-1&quot;&gt;&lt;a href=&quot;#PHP8-0-to-PHP8-1&quot; class=&quot;headerlink&quot;</description>
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.1/en.php&quot;&gt;https://www.php.net/releases/8.1/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
           
         
       
@@ -316,14 +314,14 @@
       <category domain="https://zyf.im/tags/php/">php</category>
       
       
-      <comments>https://zyf.im/2022/12/21/php-migrating-to-81/#disqus_thread</comments>
+      <comments>https://zyf.im/2022/12/21/php-migrating-80-to-81/#disqus_thread</comments>
       
     </item>
     
     <item>
-      <title>PHP Migrating to 7.4 8.0</title>
-      <link>https://zyf.im/2022/12/14/php-migrating-to-74-80/</link>
-      <guid>https://zyf.im/2022/12/14/php-migrating-to-74-80/</guid>
+      <title>PHP Migrating 7.4 to 8.0</title>
+      <link>https://zyf.im/2022/12/14/php-migrating-74-to-80/</link>
+      <guid>https://zyf.im/2022/12/14/php-migrating-74-to-80/</guid>
       <pubDate>Wed, 14 Dec 2022 08:40:03 GMT</pubDate>
       
         
@@ -332,9 +330,8 @@
           
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;PHP7-3-to-PHP7-4&quot;&gt;&lt;a href=&quot;#PHP7-3-to-PHP7-4&quot; class=&quot;headerlink&quot;</description>
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.0/en.php&quot;&gt;https://www.php.net/releases/8.0/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
           
         
       
@@ -345,14 +342,14 @@
       <category domain="https://zyf.im/tags/php/">php</category>
       
       
-      <comments>https://zyf.im/2022/12/14/php-migrating-to-74-80/#disqus_thread</comments>
+      <comments>https://zyf.im/2022/12/14/php-migrating-74-to-80/#disqus_thread</comments>
       
     </item>
     
     <item>
-      <title>PHP Migrating to 7.2 7.3</title>
-      <link>https://zyf.im/2022/12/12/php-migrating-to-72-73/</link>
-      <guid>https://zyf.im/2022/12/12/php-migrating-to-72-73/</guid>
+      <title>PHP Migrating to 7.2 7.3 7.4</title>
+      <link>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</link>
+      <guid>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</guid>
       <pubDate>Mon, 12 Dec 2022 12:51:51 GMT</pubDate>
       
         
@@ -361,9 +358,9 @@
           
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot;</description>
+&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot; title=&quot;PHP7.1 to PHP7.2&quot;&gt;&lt;/a&gt;PHP7.1 to PHP7.2&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</description>
           
         
       
@@ -374,7 +371,7 @@
       <category domain="https://zyf.im/tags/php/">php</category>
       
       
-      <comments>https://zyf.im/2022/12/12/php-migrating-to-72-73/#disqus_thread</comments>
+      <comments>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/#disqus_thread</comments>
       
     </item>
     
@@ -628,7 +625,7 @@
           
           
       <description>&lt;p&gt;今日在生产环境发生了：因为 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 聚合的数据列发生截断导致异常，原来 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 是有大小限制的。&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; @&lt;span class=&quot;variable&quot;&gt;@GROUP&lt;/span&gt;_CONCAT_MAX_LEN;&lt;/span&gt;&lt;br&gt;&lt;span</description>
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; @&lt;span class=&quot;variable&quot;&gt;@GROUP_CONCAT_MAX_LEN&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span</description>
           
         
       
@@ -962,12 +959,6 @@
       
       
       
-      <category domain="https://zyf.im/categories/code-snippet/">code-snippet</category>
-      
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      <category domain="https://zyf.im/tags/yii2/">yii2</category>
       
       
       <comments>https://zyf.im/2021/01/19/yii2-code-snippet/#disqus_thread</comments>
@@ -993,11 +984,11 @@
       
       
       
+      <category domain="https://zyf.im/tags/yii2/">yii2</category>
+      
       <category domain="https://zyf.im/tags/php/">php</category>
       
       <category domain="https://zyf.im/tags/vue/">vue</category>
-      
-      <category domain="https://zyf.im/tags/yii2/">yii2</category>
       
       
       <comments>https://zyf.im/2021/01/10/yii2-vue-cors/#disqus_thread</comments>
@@ -1040,7 +1031,7 @@
           
           
       <description>&lt;h2 id=&quot;看现象&quot;&gt;&lt;a href=&quot;#看现象&quot; class=&quot;headerlink&quot; title=&quot;看现象&quot;&gt;&lt;/a&gt;看现象&lt;/h2&gt;&lt;p&gt;创建一个测试数据库表，插入测试数据：&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;TABLE&lt;/span&gt; `blank_space` (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; </description>
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE TABLE&lt;/span&gt; `blank_space` (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  `id` &lt;span</description>
           
         
       
@@ -1333,7 +1324,7 @@
         
           
           
-      <description>&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
+      <description>&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg&#92;png 所以先安装相关库。&lt;/p&gt;
 &lt;h3 id=&quot;字体库-FreeType-2&quot;&gt;&lt;a href=&quot;#字体库-FreeType-2&quot; class=&quot;headerlink&quot; title=&quot;字体库 FreeType 2&quot;&gt;&lt;/a&gt;字体库 FreeType 2&lt;/h3&gt;&lt;p&gt;&lt;a</description>
           
         
@@ -1360,10 +1351,10 @@
           
           
       <description>&lt;h2 id=&quot;PHP-Sandbox&quot;&gt;&lt;a href=&quot;#PHP-Sandbox&quot; class=&quot;headerlink&quot; title=&quot;PHP Sandbox&quot;&gt;&lt;/a&gt;PHP Sandbox&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://legacy-sandbox.onlinephpfunctions.com/&quot;&gt;https://legacy-sandbox.onlinephpfunctions.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://3v4l.org/&quot;&gt;Online PHP editor | 3v4l.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox | onlinephp.io&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2</description>
+&lt;h2 id=&quot;PHP-net&quot;&gt;&lt;a href=&quot;#PHP-net&quot;</description>
           
         
       

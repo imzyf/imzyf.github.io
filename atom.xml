@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2024-10-08T08:26:16.500Z</updated>
+  <updated>2025-02-13T07:58:41.367Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>PHP Migrating to 8.2</title>
-    <link href="https://zyf.im/2024/08/16/php-migrating-to-82/"/>
-    <id>https://zyf.im/2024/08/16/php-migrating-to-82/</id>
+    <title>PHP Migrating 8.1 to 8.2</title>
+    <link href="https://zyf.im/2024/08/16/php-migrating-81-to-82/"/>
+    <id>https://zyf.im/2024/08/16/php-migrating-81-to-82/</id>
     <published>2024-08-16T01:24:50.000Z</published>
-    <updated>2024-10-08T08:26:16.500Z</updated>
+    <updated>2025-02-13T07:58:41.367Z</updated>
     
     
       
@@ -30,9 +30,8 @@
         
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;PHP8-2&quot;&gt;&lt;a href=&quot;#PHP8-2&quot; class=&quot;headerlink&quot;</summary>
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.1/en.php&quot;&gt;https://www.php.net/releases/8.1/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
         
       
     
@@ -276,9 +275,9 @@
   </entry>
   
   <entry>
-    <title>PHP Migrating to 8.1</title>
-    <link href="https://zyf.im/2022/12/21/php-migrating-to-81/"/>
-    <id>https://zyf.im/2022/12/21/php-migrating-to-81/</id>
+    <title>PHP Migrating 8.0 to 8.1</title>
+    <link href="https://zyf.im/2022/12/21/php-migrating-80-to-81/"/>
+    <id>https://zyf.im/2022/12/21/php-migrating-80-to-81/</id>
     <published>2022-12-21T10:25:49.000Z</published>
     <updated>2023-01-31T11:06:37.000Z</updated>
     
@@ -289,9 +288,8 @@
         
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;PHP8-0-to-PHP8-1&quot;&gt;&lt;a href=&quot;#PHP8-0-to-PHP8-1&quot; class=&quot;headerlink&quot;</summary>
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.1/en.php&quot;&gt;https://www.php.net/releases/8.1/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
         
       
     
@@ -303,9 +301,9 @@
   </entry>
   
   <entry>
-    <title>PHP Migrating to 7.4 8.0</title>
-    <link href="https://zyf.im/2022/12/14/php-migrating-to-74-80/"/>
-    <id>https://zyf.im/2022/12/14/php-migrating-to-74-80/</id>
+    <title>PHP Migrating 7.4 to 8.0</title>
+    <link href="https://zyf.im/2022/12/14/php-migrating-74-to-80/"/>
+    <id>https://zyf.im/2022/12/14/php-migrating-74-to-80/</id>
     <published>2022-12-14T08:40:03.000Z</published>
     <updated>2022-12-21T06:13:54.000Z</updated>
     
@@ -316,9 +314,8 @@
         
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;PHP7-3-to-PHP7-4&quot;&gt;&lt;a href=&quot;#PHP7-3-to-PHP7-4&quot; class=&quot;headerlink&quot;</summary>
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.0/en.php&quot;&gt;https://www.php.net/releases/8.0/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
         
       
     
@@ -330,9 +327,9 @@
   </entry>
   
   <entry>
-    <title>PHP Migrating to 7.2 7.3</title>
-    <link href="https://zyf.im/2022/12/12/php-migrating-to-72-73/"/>
-    <id>https://zyf.im/2022/12/12/php-migrating-to-72-73/</id>
+    <title>PHP Migrating to 7.2 7.3 7.4</title>
+    <link href="https://zyf.im/2022/12/12/php-migrating-to-72-73-74/"/>
+    <id>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</id>
     <published>2022-12-12T12:51:51.000Z</published>
     <updated>2022-12-14T08:39:16.000Z</updated>
     
@@ -343,9 +340,9 @@
         
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot;</summary>
+&lt;h2 id=&quot;PHP7-1-to-PHP7-2&quot;&gt;&lt;a href=&quot;#PHP7-1-to-PHP7-2&quot; class=&quot;headerlink&quot; title=&quot;PHP7.1 to PHP7.2&quot;&gt;&lt;/a&gt;PHP7.1 to PHP7.2&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
         
       
     
@@ -361,7 +358,7 @@
     <link href="https://zyf.im/2022/11/28/php-migrating-to-70-71/"/>
     <id>https://zyf.im/2022/11/28/php-migrating-to-70-71/</id>
     <published>2022-11-28T02:36:34.000Z</published>
-    <updated>2024-10-08T08:26:16.500Z</updated>
+    <updated>2025-02-13T08:59:52.123Z</updated>
     
     
       
@@ -437,7 +434,7 @@
     <link href="https://zyf.im/2022/10/01/git-code-snippet/"/>
     <id>https://zyf.im/2022/10/01/git-code-snippet/</id>
     <published>2022-10-01T02:00:00.000Z</published>
-    <updated>2024-10-08T08:26:16.502Z</updated>
+    <updated>2024-12-25T03:14:38.934Z</updated>
     
     
       
@@ -590,7 +587,7 @@
         
         
     <summary type="html">&lt;p&gt;今日在生产环境发生了：因为 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 聚合的数据列发生截断导致异常，原来 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 是有大小限制的。&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; @&lt;span class=&quot;variable&quot;&gt;@GROUP&lt;/span&gt;_CONCAT_MAX_LEN;&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;SELECT&lt;/span&gt; @&lt;span class=&quot;variable&quot;&gt;@GROUP_CONCAT_MAX_LEN&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span</summary>
         
       
     
@@ -899,12 +896,6 @@
     
     
     
-    <category term="code-snippet" scheme="https://zyf.im/categories/code-snippet/"/>
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
     
   </entry>
   
@@ -928,11 +919,11 @@
     
     
     
+    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
+    
     <category term="php" scheme="https://zyf.im/tags/php/"/>
     
     <category term="vue" scheme="https://zyf.im/tags/vue/"/>
-    
-    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
     
   </entry>
   
@@ -972,7 +963,7 @@
         
         
     <summary type="html">&lt;h2 id=&quot;看现象&quot;&gt;&lt;a href=&quot;#看现象&quot; class=&quot;headerlink&quot; title=&quot;看现象&quot;&gt;&lt;/a&gt;看现象&lt;/h2&gt;&lt;p&gt;创建一个测试数据库表，插入测试数据：&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;TABLE&lt;/span&gt; `blank_space` (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; </summary>
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE TABLE&lt;/span&gt; `blank_space` (&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  `id` &lt;span</summary>
         
       
     
@@ -1042,7 +1033,7 @@
     <link href="https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/"/>
     <id>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</id>
     <published>2020-08-17T11:34:29.000Z</published>
-    <updated>2024-10-08T08:26:16.490Z</updated>
+    <updated>2025-02-13T05:32:30.988Z</updated>
     
     
       
@@ -1243,7 +1234,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;GD-安装、配置&quot;&gt;&lt;a href=&quot;#GD-安装、配置&quot; class=&quot;headerlink&quot; title=&quot;GD 安装、配置&quot;&gt;&lt;/a&gt;GD 安装、配置&lt;/h2&gt;&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg&#92;png 所以先安装相关库。&lt;/p&gt;
 &lt;h3 id=&quot;字体库-FreeType-2&quot;&gt;&lt;a href=&quot;#字体库-FreeType-2&quot; class=&quot;headerlink&quot; title=&quot;字体库 FreeType 2&quot;&gt;&lt;/a&gt;字体库 FreeType 2&lt;/h3&gt;&lt;p&gt;&lt;a</summary>
         
       
@@ -1268,10 +1259,10 @@
         
         
     <summary type="html">&lt;h2 id=&quot;PHP-Sandbox&quot;&gt;&lt;a href=&quot;#PHP-Sandbox&quot; class=&quot;headerlink&quot; title=&quot;PHP Sandbox&quot;&gt;&lt;/a&gt;PHP Sandbox&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://legacy-sandbox.onlinephpfunctions.com/&quot;&gt;https://legacy-sandbox.onlinephpfunctions.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://3v4l.org/&quot;&gt;Online PHP editor | 3v4l.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://onlinephp.io/&quot;&gt;PHP Sandbox | onlinephp.io&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;PHP-net&quot;&gt;&lt;a href=&quot;#PHP-net&quot;</summary>
         
       
     
