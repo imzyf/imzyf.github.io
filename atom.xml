@@ -6,7 +6,7 @@
   <link href="https://zyf.im/atom.xml" rel="self"/>
   
   <link href="https://zyf.im/"/>
-  <updated>2025-02-13T07:58:41.367Z</updated>
+  <updated>2025-02-17T07:23:39.931Z</updated>
   <id>https://zyf.im/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>PHP Migrating 8.1 to 8.2</title>
-    <link href="https://zyf.im/2024/08/16/php-migrating-81-to-82/"/>
-    <id>https://zyf.im/2024/08/16/php-migrating-81-to-82/</id>
-    <published>2024-08-16T01:24:50.000Z</published>
-    <updated>2025-02-13T07:58:41.367Z</updated>
+    <title>PHP Migrating 8.3 to 8.4</title>
+    <link href="https://zyf.im/2025/02/01/php-migrating-83-to-84/"/>
+    <id>https://zyf.im/2025/02/01/php-migrating-83-to-84/</id>
+    <published>2025-02-01T09:42:42.000Z</published>
+    <updated>2025-02-17T07:23:39.931Z</updated>
     
     
       
@@ -30,7 +30,59 @@
         
     <summary type="html">&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.1/en.php&quot;&gt;https://www.php.net/releases/8.1/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.4/en.php&quot;&gt;https://www.php.net/releases/8.4/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP Migrating 8.2 to 8.3</title>
+    <link href="https://zyf.im/2024/08/01/php-migrating-82-to-83/"/>
+    <id>https://zyf.im/2024/08/01/php-migrating-82-to-83/</id>
+    <published>2024-08-01T09:37:13.000Z</published>
+    <updated>2025-02-17T06:46:44.266Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.3/en.php&quot;&gt;https://www.php.net/releases/8.3/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP Migrating 8.1 to 8.2</title>
+    <link href="https://zyf.im/2024/07/01/php-migrating-81-to-82/"/>
+    <id>https://zyf.im/2024/07/01/php-migrating-81-to-82/</id>
+    <published>2024-07-01T01:24:50.000Z</published>
+    <updated>2025-02-13T09:37:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.2/en.php&quot;&gt;https://www.php.net/releases/8.2/en.php&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a</summary>
         
       
@@ -279,7 +331,7 @@
     <link href="https://zyf.im/2022/12/21/php-migrating-80-to-81/"/>
     <id>https://zyf.im/2022/12/21/php-migrating-80-to-81/</id>
     <published>2022-12-21T10:25:49.000Z</published>
-    <updated>2023-01-31T11:06:37.000Z</updated>
+    <updated>2025-02-13T09:37:55.000Z</updated>
     
     
       
@@ -305,7 +357,7 @@
     <link href="https://zyf.im/2022/12/14/php-migrating-74-to-80/"/>
     <id>https://zyf.im/2022/12/14/php-migrating-74-to-80/</id>
     <published>2022-12-14T08:40:03.000Z</published>
-    <updated>2022-12-21T06:13:54.000Z</updated>
+    <updated>2025-02-13T09:37:55.000Z</updated>
     
     
       
@@ -358,7 +410,7 @@
     <link href="https://zyf.im/2022/11/28/php-migrating-to-70-71/"/>
     <id>https://zyf.im/2022/11/28/php-migrating-to-70-71/</id>
     <published>2022-11-28T02:36:34.000Z</published>
-    <updated>2025-02-13T08:59:52.123Z</updated>
+    <updated>2025-02-13T09:40:38.755Z</updated>
     
     
       
@@ -370,31 +422,6 @@
 &lt;li&gt;Polyfill &lt;a href=&quot;https://github.com/symfony/polyfill/tree/main/src&quot;&gt;https://github.com/symfony/polyfill/tree/main/src&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;PHP7-0-to-PHP7-1&quot;&gt;&lt;a href=&quot;#PHP7-0-to-PHP7-1&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过 ondrej/php PPA 管理多个 PHP 版本</title>
-    <link href="https://zyf.im/2022/11/18/ondrej-multiversion-php/"/>
-    <id>https://zyf.im/2022/11/18/ondrej-multiversion-php/</id>
-    <published>2022-11-18T09:20:43.000Z</published>
-    <updated>2024-10-08T08:26:16.499Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://ostechnix.com/how-to-switch-between-multiple-php-versions-in-ubuntu/&quot;&gt;https://ostechnix.com/how-to-switch-between-multiple-php-versions-in-ubuntu/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;References&quot;&gt;&lt;a href=&quot;#References&quot; class=&quot;headerlink&quot; title=&quot;References&quot;&gt;&lt;/a&gt;References&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a</summary>
         
       
     
@@ -630,7 +657,7 @@
     <link href="https://zyf.im/2021/10/13/php-install-grpc/"/>
     <id>https://zyf.im/2021/10/13/php-install-grpc/</id>
     <published>2021-10-13T07:48:41.000Z</published>
-    <updated>2024-10-08T08:26:16.499Z</updated>
+    <updated>2025-02-13T09:40:54.926Z</updated>
     
     
       
@@ -678,7 +705,7 @@
     <link href="https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/"/>
     <id>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</id>
     <published>2021-07-20T06:58:33.000Z</published>
-    <updated>2024-10-08T08:26:16.499Z</updated>
+    <updated>2025-02-13T09:40:59.243Z</updated>
     
     
       
@@ -879,55 +906,6 @@
   </entry>
   
   <entry>
-    <title>Yii2 Code Snippet</title>
-    <link href="https://zyf.im/2021/01/19/yii2-code-snippet/"/>
-    <id>https://zyf.im/2021/01/19/yii2-code-snippet/</id>
-    <published>2021-01-19T04:08:13.000Z</published>
-    <updated>2021-01-27T09:17:54.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;gii-CLI&quot;&gt;&lt;a href=&quot;#gii-CLI&quot; class=&quot;headerlink&quot; title=&quot;gii CLI&quot;&gt;&lt;/a&gt;gii CLI&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;php yii &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt; gii/mode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;php yii gii/model</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Yii2 Vue 跨域问题</title>
-    <link href="https://zyf.im/2021/01/10/yii2-vue-cors/"/>
-    <id>https://zyf.im/2021/01/10/yii2-vue-cors/</id>
-    <published>2021-01-10T04:00:00.000Z</published>
-    <updated>2024-10-08T08:26:16.499Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;旧的解决办法&quot;&gt;&lt;a href=&quot;#旧的解决办法&quot; class=&quot;headerlink&quot; title=&quot;旧的解决办法&quot;&gt;&lt;/a&gt;旧的解决办法&lt;/h2&gt;&lt;p&gt;在控制器的 behaviors 方法中增加下面的代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
-    
-    <category term="php" scheme="https://zyf.im/tags/php/"/>
-    
-    <category term="vue" scheme="https://zyf.im/tags/vue/"/>
-    
-  </entry>
-  
-  <entry>
     <title>回顾 2020</title>
     <link href="https://zyf.im/2020/12/31/review-2020/"/>
     <id>https://zyf.im/2020/12/31/review-2020/</id>
@@ -1056,7 +1034,7 @@
     <link href="https://zyf.im/2020/08/14/mysql-json-data-type/"/>
     <id>https://zyf.im/2020/08/14/mysql-json-data-type/</id>
     <published>2020-08-14T11:39:55.000Z</published>
-    <updated>2024-10-08T08:26:16.490Z</updated>
+    <updated>2025-02-15T13:55:07.669Z</updated>
     
     
       
@@ -1075,8 +1053,6 @@
     
     
     <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
-    
-    <category term="yii2" scheme="https://zyf.im/tags/yii2/"/>
     
   </entry>
   
@@ -1177,7 +1153,7 @@
     <link href="https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/"/>
     <id>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</id>
     <published>2020-05-08T09:17:46.000Z</published>
-    <updated>2024-10-08T08:26:16.499Z</updated>
+    <updated>2025-02-15T13:45:09.367Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h2&gt;&lt;ul&gt;
@@ -1272,6 +1248,23 @@
     
     
     <category term="php" scheme="https://zyf.im/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL Illegal mix of collations</title>
+    <link href="https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/"/>
+    <id>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</id>
+    <published>2020-04-14T09:05:01.000Z</published>
+    <updated>2020-08-17T13:34:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+    <category term="mysql" scheme="https://zyf.im/tags/mysql/"/>
     
   </entry>
   

@@ -8,15 +8,15 @@
     
     <atom:link href="https://zyf.im/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description>永远热泪盈眶</description>
-    <pubDate>Thu, 13 Feb 2025 07:58:41 GMT</pubDate>
+    <description>Coding with passion.</description>
+    <pubDate>Mon, 17 Feb 2025 07:23:39 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>PHP Migrating 8.1 to 8.2</title>
-      <link>https://zyf.im/2024/08/16/php-migrating-81-to-82/</link>
-      <guid>https://zyf.im/2024/08/16/php-migrating-81-to-82/</guid>
-      <pubDate>Fri, 16 Aug 2024 01:24:50 GMT</pubDate>
+      <title>PHP Migrating 8.3 to 8.4</title>
+      <link>https://zyf.im/2025/02/01/php-migrating-83-to-84/</link>
+      <guid>https://zyf.im/2025/02/01/php-migrating-83-to-84/</guid>
+      <pubDate>Sat, 01 Feb 2025 09:42:42 GMT</pubDate>
       
         
         
@@ -24,7 +24,7 @@
           
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.1/en.php&quot;&gt;https://www.php.net/releases/8.1/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.4/en.php&quot;&gt;https://www.php.net/releases/8.4/en.php&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a</description>
           
         
@@ -36,7 +36,63 @@
       <category domain="https://zyf.im/tags/php/">php</category>
       
       
-      <comments>https://zyf.im/2024/08/16/php-migrating-81-to-82/#disqus_thread</comments>
+      <comments>https://zyf.im/2025/02/01/php-migrating-83-to-84/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Migrating 8.2 to 8.3</title>
+      <link>https://zyf.im/2024/08/01/php-migrating-82-to-83/</link>
+      <guid>https://zyf.im/2024/08/01/php-migrating-82-to-83/</guid>
+      <pubDate>Thu, 01 Aug 2024 09:37:13 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.3/en.php&quot;&gt;https://www.php.net/releases/8.3/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2024/08/01/php-migrating-82-to-83/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PHP Migrating 8.1 to 8.2</title>
+      <link>https://zyf.im/2024/07/01/php-migrating-81-to-82/</link>
+      <guid>https://zyf.im/2024/07/01/php-migrating-81-to-82/</guid>
+      <pubDate>Mon, 01 Jul 2024 01:24:50 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;ul&gt;
+&lt;li&gt;实验环境：&lt;a href=&quot;https://onlinephp.io/&quot;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.php.net/releases/8.2/en.php&quot;&gt;https://www.php.net/releases/8.2/en.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/php/">php</category>
+      
+      
+      <comments>https://zyf.im/2024/07/01/php-migrating-81-to-82/#disqus_thread</comments>
       
     </item>
     
@@ -401,33 +457,6 @@
       
       
       <comments>https://zyf.im/2022/11/28/php-migrating-to-70-71/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>通过 ondrej/php PPA 管理多个 PHP 版本</title>
-      <link>https://zyf.im/2022/11/18/ondrej-multiversion-php/</link>
-      <guid>https://zyf.im/2022/11/18/ondrej-multiversion-php/</guid>
-      <pubDate>Fri, 18 Nov 2022 09:20:43 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;&lt;a href=&quot;https://ostechnix.com/how-to-switch-between-multiple-php-versions-in-ubuntu/&quot;&gt;https://ostechnix.com/how-to-switch-between-multiple-php-versions-in-ubuntu/&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;References&quot;&gt;&lt;a href=&quot;#References&quot; class=&quot;headerlink&quot; title=&quot;References&quot;&gt;&lt;/a&gt;References&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      
-      <comments>https://zyf.im/2022/11/18/ondrej-multiversion-php/#disqus_thread</comments>
       
     </item>
     
@@ -943,59 +972,6 @@
     </item>
     
     <item>
-      <title>Yii2 Code Snippet</title>
-      <link>https://zyf.im/2021/01/19/yii2-code-snippet/</link>
-      <guid>https://zyf.im/2021/01/19/yii2-code-snippet/</guid>
-      <pubDate>Tue, 19 Jan 2021 04:08:13 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;gii-CLI&quot;&gt;&lt;a href=&quot;#gii-CLI&quot; class=&quot;headerlink&quot; title=&quot;gii CLI&quot;&gt;&lt;/a&gt;gii CLI&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;php yii &lt;span class=&quot;built_in&quot;&gt;help&lt;/span&gt; gii/mode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;php yii gii/model</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://zyf.im/2021/01/19/yii2-code-snippet/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Yii2 Vue 跨域问题</title>
-      <link>https://zyf.im/2021/01/10/yii2-vue-cors/</link>
-      <guid>https://zyf.im/2021/01/10/yii2-vue-cors/</guid>
-      <pubDate>Sun, 10 Jan 2021 04:00:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h2 id=&quot;旧的解决办法&quot;&gt;&lt;a href=&quot;#旧的解决办法&quot; class=&quot;headerlink&quot; title=&quot;旧的解决办法&quot;&gt;&lt;/a&gt;旧的解决办法&lt;/h2&gt;&lt;p&gt;在控制器的 behaviors 方法中增加下面的代码：&lt;/p&gt;
-&lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;</description>
-          
-        
-      
-      
-      
-      
-      
-      <category domain="https://zyf.im/tags/yii2/">yii2</category>
-      
-      <category domain="https://zyf.im/tags/php/">php</category>
-      
-      <category domain="https://zyf.im/tags/vue/">vue</category>
-      
-      
-      <comments>https://zyf.im/2021/01/10/yii2-vue-cors/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
       <title>回顾 2020</title>
       <link>https://zyf.im/2020/12/31/review-2020/</link>
       <guid>https://zyf.im/2020/12/31/review-2020/</guid>
@@ -1152,8 +1128,6 @@
       
       
       <category domain="https://zyf.im/tags/mysql/">mysql</category>
-      
-      <category domain="https://zyf.im/tags/yii2/">yii2</category>
       
       
       <comments>https://zyf.im/2020/08/14/mysql-json-data-type/#disqus_thread</comments>
@@ -1368,6 +1342,25 @@
       
       
       <comments>https://zyf.im/2020/04/15/php-code-snippet/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL Illegal mix of collations</title>
+      <link>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</link>
+      <guid>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</guid>
+      <pubDate>Tue, 14 Apr 2020 09:05:01 GMT</pubDate>
+      
+      <description>&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Illegal mix &lt;span class=&quot;keyword&quot;&gt;of&lt;/span&gt; collations (utf8mb4_general_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; (utf8mb4_unicode_ci,IMPLICIT) &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; operation&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</description>
+      
+      
+      
+      
+      
+      <category domain="https://zyf.im/tags/mysql/">mysql</category>
+      
+      
+      <comments>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/#disqus_thread</comments>
       
     </item>
     

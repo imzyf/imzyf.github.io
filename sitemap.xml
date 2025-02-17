@@ -2,6 +2,60 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zyf.im/2025/02/01/php-migrating-83-to-84/</loc>
+    
+    <lastmod>2025-02-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2024/08/01/php-migrating-82-to-83/</loc>
+    
+    <lastmod>2025-02-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/08/14/mysql-json-data-type/</loc>
+    
+    <lastmod>2025-02-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</loc>
+    
+    <lastmod>2025-02-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2021/10/13/php-install-grpc/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
     
     <lastmod>2025-02-13</lastmod>
@@ -11,7 +65,25 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2024/08/16/php-migrating-81-to-82/</loc>
+    <loc>https://zyf.im/2022/12/21/php-migrating-80-to-81/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2022/12/14/php-migrating-74-to-80/</loc>
+    
+    <lastmod>2025-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://zyf.im/2024/07/01/php-migrating-81-to-82/</loc>
     
     <lastmod>2025-02-13</lastmod>
     
@@ -236,15 +308,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/05/08/php-call-to-undefined-function-ftp-ssl-connect/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</loc>
     
     <lastmod>2024-10-08</lastmod>
@@ -272,15 +335,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2021/01/10/yii2-vue-cors/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2021/01/27/php-strtotime-month/</loc>
     
     <lastmod>2024-10-08</lastmod>
@@ -291,33 +345,6 @@
   
   <url>
     <loc>https://zyf.im/2021/07/19/php-strict-types/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/10/13/php-install-grpc/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/11/18/ondrej-multiversion-php/</loc>
     
     <lastmod>2024-10-08</lastmod>
     
@@ -758,15 +785,6 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2020/08/14/mysql-json-data-type/</loc>
-    
-    <lastmod>2024-10-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2020/11/28/mysql-blank-space/</loc>
     
     <lastmod>2024-10-08</lastmod>
@@ -1064,27 +1082,9 @@
   </url>
   
   <url>
-    <loc>https://zyf.im/2022/12/21/php-migrating-80-to-81/</loc>
-    
-    <lastmod>2023-01-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     
     <lastmod>2023-01-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2022/12/14/php-migrating-74-to-80/</loc>
-    
-    <lastmod>2022-12-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1184,15 +1184,6 @@
     <loc>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</loc>
     
     <lastmod>2021-01-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://zyf.im/2021/01/19/yii2-code-snippet/</loc>
-    
-    <lastmod>2021-01-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -1642,7 +1633,7 @@
 
   <url>
     <loc>https://zyf.im/</loc>
-    <lastmod>2025-02-13</lastmod>
+    <lastmod>2025-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
