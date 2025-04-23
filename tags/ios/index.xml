@@ -13,8 +13,7 @@
       <link>https://zyf.im/2019/02/28/fastlane-getting-started/</link>
       <pubDate>Thu, 28 Feb 2019 10:00:00 +0000</pubDate>
       <guid>https://zyf.im/2019/02/28/fastlane-getting-started/</guid>
-      <description>&lt;img src=&#34;https://images.unsplash.com/37/QAdTsSj8TOOWzlyLn3Rg_14248396556_aefcd9a926_o.jpg?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=960&amp;q=80&#34; /&gt;
-&lt;p&gt;这次以 &lt;a href=&#34;https://fastlane.tools/&#34;&gt;fastlane&lt;/a&gt; 为例，尝试项目中有什么事情可以被自动完成。&lt;/p&gt;
+      <description>&lt;p&gt;这次以 &lt;a href=&#34;https://fastlane.tools/&#34;&gt;fastlane&lt;/a&gt; 为例，尝试项目中有什么事情可以被自动完成。&lt;/p&gt;
 &lt;p&gt;fastlane 是 Ruby scripts 的集合，安装方法不多说了见 &lt;a href=&#34;https://docs.fastlane.tools/&#34;&gt;官网文档&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;fastlane 中有但不限于以下工具集：&lt;/p&gt;
 &lt;ul&gt;
@@ -94,8 +93,7 @@
       <link>https://zyf.im/2019/01/19/promisekit-getting-started/</link>
       <pubDate>Sat, 19 Jan 2019 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2019/01/19/promisekit-getting-started/</guid>
-      <description>&lt;img src=&#34;https://images.unsplash.com/photo-1579208570378-8c970854bc23?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=960&amp;q=80&#34; /&gt;
-&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
+      <description>&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;环境：Swift 4.2、PromiseKit 6&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;then-and-done&#34;&gt;then and done&lt;/h2&gt;
