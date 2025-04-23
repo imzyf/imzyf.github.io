@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /search/
+Disallow: /page/
+Disallow: /posts/*/index.html
+Disallow: /categories/
+Disallow: /tags/
+Disallow: /links/
+
+Sitemap: https://zyf.im/sitemap.xml

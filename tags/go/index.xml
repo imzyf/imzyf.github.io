@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Go on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/go/</link>
+    <description>Recent content in Go on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Feb 2023 11:44:27 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go 语言第一课</title>
+      <link>https://zyf.im/2023/02/01/go-language-lesson-one/</link>
+      <pubDate>Wed, 01 Feb 2023 11:44:27 +0000</pubDate>
+      <guid>https://zyf.im/2023/02/01/go-language-lesson-one/</guid>
+      <description>&lt;h2 id=&#34;02-设计哲学&#34;&gt;02 设计哲学&lt;/h2&gt;
+&lt;p&gt;设计哲学之于编程语言，就好比一个人的价值观之于这个人的行为。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;简单：Go 生产力的源泉。&lt;/li&gt;
+&lt;li&gt;显式：Go 希望开发人员 明确知道自己在做什么；显式的基于值比较的错误处理方案。&lt;/li&gt;
+&lt;li&gt;组合：类型嵌入(Type Embedding)。&lt;/li&gt;
+&lt;li&gt;并发：面向多核、原生支持并发、用户层轻量级线程 goroutine。&lt;/li&gt;
+&lt;li&gt;面向工程：将解决工程问题作为 Go 的 设计原则之一，这些问题包括:程序构建慢、依赖管理失控、代码难于理 解、跨语言构建难等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;03-配好环境&#34;&gt;03 配好环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://go.dev/doc/devel/release&#34;&gt;https://go.dev/doc/devel/release&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://golang.google.cn/dl/&#34;&gt;https://golang.google.cn/dl/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装多个-go-版本&#34;&gt;安装多个 Go 版本&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go get golang.org/dl/go1.15.13
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go1.15.13 download
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go1.15.13 version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;配置-go&#34;&gt;配置 Go&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go env
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; environment
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;04-go-程序的结构&#34;&gt;04 Go 程序的结构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;import &amp;quot;fmt&amp;quot;&lt;/code&gt; 一行中 &lt;code&gt;fmt&lt;/code&gt; 代表的是包的导入路径(Import)，它表示的是标准库下的 fmt 目录，整个 import 声明语句的含义是导入标准库 fmt 目录下的包&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fmt.Println&lt;/code&gt; 函数调用一行中的 &lt;code&gt;fmt&lt;/code&gt; 代表的则是包名。&lt;/li&gt;
+&lt;li&gt;通常导入路径的最后一个分段名与包名是相同的，这也很容易让人误解 import 声明语句中的 &lt;code&gt;fmt&lt;/code&gt; 指的是包名，其实并不是这样的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;gofmt&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;go&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;go-module&#34;&gt;Go module&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go mod init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go mod tidy
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;05-go-项目的布局标准&#34;&gt;05 Go 项目的布局标准&lt;/h2&gt;
+&lt;p&gt;loccount 工具&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/git/</link>
+    <description>Recent content in Git on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Oct 2022 10:00:00 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Code Snippet</title>
+      <link>https://zyf.im/2022/10/01/git-code-snippet/</link>
+      <pubDate>Sat, 01 Oct 2022 10:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2022/10/01/git-code-snippet/</guid>
+      <description>&lt;h2 id=&#34;建立独立的分支&#34;&gt;建立独立的分支&lt;/h2&gt;
+&lt;p&gt;当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; checkout
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# git checkout --orphan &amp;lt;new-branch&amp;gt; &amp;lt;start-point&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改提交时间&#34;&gt;修改提交时间&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 指定本次提交时间&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;fix...&amp;#34;&lt;/span&gt; --date&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;date -R&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;fix...&amp;#34;&lt;/span&gt; --date&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date -R&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;fix...&amp;#34;&lt;/span&gt; --date&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Tue, 11 Jun 2019 17:50:50 +0800&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 修改上次提交时间&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend --date&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;date -R&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 风险操作。会修改 history hash.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;忽略文件权限修改&#34;&gt;忽略文件权限修改&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Git 默认会记录文件权限的修改，可关闭&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config core.filemode &lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;git-status-中文文件名乱码&#34;&gt;git status 中文文件名乱码&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global core.quotepath &lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当 &lt;code&gt;core.quotepath&lt;/code&gt; 设置为 &lt;code&gt;false&lt;/code&gt; 时，Git 将不会对路径名进行 quoting，这意味着路径名中的特殊字符将不被转义。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;工作区中删除未跟踪的文件&#34;&gt;工作区中删除未跟踪的文件&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看文档&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; clean
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clean -h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# git clean [-d] [-f] [-i] [-n] [-q] [-e &amp;lt;pattern&amp;gt;] [-x | -X] [--] [&amp;lt;pathspec&amp;gt;...]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 【查看】有哪些文件将被删除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clean -n
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 【查看】删除 Git【忽略】的文件与文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clean -Xn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 【查看】删除【src 路径下】下的【未跟踪】文件以及文件夹&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clean -d -- src
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果想执行删除 -n 替换为 -f，注意风险。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://glgjing.github.io/blog/2015/01/09/git-qing-chu-wei-gen-zong-wen-jian/&#34;&gt;Git 清除未跟踪文件 | github.io&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git and GitHub Secrets</title>
+      <link>https://zyf.im/2021/07/12/git-and-github-secrets/</link>
+      <pubDate>Mon, 12 Jul 2021 10:40:15 +0000</pubDate>
+      <guid>https://zyf.im/2021/07/12/git-and-github-secrets/</guid>
+      <description>&lt;h2 id=&#34;记住密码&#34;&gt;记住密码&lt;/h2&gt;
+&lt;p&gt;Git 记住密码配置后，不用每次 pull、push 都需要输入密码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global credential.helper store
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;会在 &lt;code&gt;cat ~/.gitconfig&lt;/code&gt; 看到：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;credential&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;helper&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; store
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;快速检出上一个分支&#34;&gt;快速检出上一个分支&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;提交空改动&#34;&gt;提交空改动&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;empty commit&amp;#34;&lt;/span&gt; --allow-empty
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在如下几种情况下是有意义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;标记一批工作或一个新功能的开始。&lt;/li&gt;
+&lt;li&gt;记录你对项目进行了跟代码无关的改动。&lt;/li&gt;
+&lt;li&gt;跟使用你仓库的其他人交流。&lt;/li&gt;
+&lt;li&gt;作为仓库的第一次提交，因为第一次提交日后是不能被 rebase 的：&lt;code&gt;git commit -m &amp;quot;init repo&amp;quot; --allow-empty&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;更直观的-status&#34;&gt;更直观的 status&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git status -sb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;更直观的-log&#34;&gt;更直观的 log&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log --all --graph --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;format:&lt;span class=&#34;s1&#34;&gt;&amp;#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an %ae&amp;gt;%Creset&amp;#39;&lt;/span&gt; --abbrev-commit --date&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;relative
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;提交信息查询&#34;&gt;提交信息查询&lt;/h2&gt;
+&lt;p&gt;找到其中和搜索条件相匹配的最近的一条。query （区别大小写）是你想要搜索的词语。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git show :/query
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;分支合并&#34;&gt;分支合并&lt;/h2&gt;
+&lt;p&gt;显示所有已经合并到你当前分支的分支列表：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch --merged
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;相反地：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Composer vendor 提交至 Git</title>
+      <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
+      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
+      <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
+      <description>&lt;h2 id=&#34;应该将-vendor-提交到-git-吗&#34;&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;
+&lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行 Composer。&lt;/p&gt;
+&lt;p&gt;虽然在某些环境下这样做很诱人，但也会导致一些问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;大型 VCS 存储库的大小和更新代码时的差异。&lt;/li&gt;
+&lt;li&gt;在你自己的 VCS 复制你所有依赖的历史。&lt;/li&gt;
+&lt;li&gt;将通过 git 安装的依赖项添加到 git repo 中将显示为 &lt;code&gt;submodules&lt;/code&gt;。这是有问题的，因为它们不是真正的 &lt;code&gt;submodules&lt;/code&gt;，您将会遇到问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你真的觉得你必须这样做，你有几个选择：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;限制自己安装带标记的版本（没有 dev 版本），这样就只能安装压缩版，并避免与 git &lt;code&gt;submodules&lt;/code&gt; 有关的问题。&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;--prefer-dist&lt;/code&gt; or set &lt;code&gt;preferred-install&lt;/code&gt; to &lt;code&gt;dist&lt;/code&gt; in your config.&lt;/li&gt;
+&lt;li&gt;Remove the &lt;code&gt;.git&lt;/code&gt; directory of every dependency after the installation, then you can add them to your git repo. You can do that with &lt;code&gt;rm -rf vendor/\*\*/.git&lt;/code&gt; in ZSH or &lt;code&gt;find vendor/ -type d -name &amp;quot;.git&amp;quot; -exec rm -rf {} \;&lt;/code&gt; in Bash. 但这意味着您必须在运行 composer 更新之前从磁盘中删除这些依赖项。&lt;/li&gt;
+&lt;li&gt;Add a &lt;code&gt;.gitignore&lt;/code&gt; rule &lt;code&gt;/vendor/**/.git&lt;/code&gt; to ignore all the vendor &lt;code&gt;.git&lt;/code&gt; folders. 这种方法不需要在运行编写器更新之前从磁盘删除依赖项。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;我的做法&#34;&gt;我的做法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;问题解决了，但是不确信做法是否正确。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git log 统计分析</title>
+      <link>https://zyf.im/2019/12/03/analyze-git-log/</link>
+      <pubDate>Tue, 03 Dec 2019 14:47:28 +0000</pubDate>
+      <guid>https://zyf.im/2019/12/03/analyze-git-log/</guid>
+      <description>&lt;h2 id=&#34;统计个人增删行数&#34;&gt;统计个人增删行数&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config user.name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log --author&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;zhaoyifan&amp;#34;&lt;/span&gt; --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;tformat: --numstat &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; awk &lt;span class=&#34;s1&#34;&gt;&amp;#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &amp;#34;added lines: %s, removed lines: %s, total lines: %s\n&amp;#34;, add, subs, loc }&amp;#39;&lt;/span&gt; -
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;added lines: 82813, removed lines: 53707, total lines: 29106
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;统计每个人增删行数&#34;&gt;统计每个人增删行数&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log --shortstat &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s2&#34;&gt;&amp;#34;(Author: )(\s*(\w+)){2}|fil(e|es) changed&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; awk &lt;span class=&#34;s1&#34;&gt;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt; if($1 ~ /Author/) {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;  author = $2&amp;#34; &amp;#34;$3
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt; } else {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;  files[author]+=$1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;  inserted[author]+=$4
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;  deleted[author]+=$6
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;END { for (key in files) { print &amp;#34;Author: &amp;#34; key &amp;#34;\n\tfiles changed: &amp;#34;, files[key], &amp;#34;\n\tlines inserted: &amp;#34;, inserted[key], &amp;#34;\n\tlines deleted: &amp;#34;, deleted[key] } }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;统计每个人提交次数&#34;&gt;统计每个人提交次数&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git shortlog -sn --no-merges
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;忽略某些路径的更改&#34;&gt;忽略某些路径的更改&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log -- . &lt;span class=&#34;s2&#34;&gt;&amp;#34;:(exclude)sub&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log -- . &lt;span class=&#34;s2&#34;&gt;&amp;#34;:!sub&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;cloc&#34;&gt;cloc&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/AlDanial/cloc&#34;&gt;AlDanial/cloc - cloc counts blank lines, comment lines, and physical lines of source code in many programming languages.&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git 批量修改历史 commit 中 user.email</title>
+      <link>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</link>
+      <pubDate>Mon, 02 Dec 2019 14:47:28 +0000</pubDate>
+      <guid>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</guid>
+      <description>&lt;p&gt;注意：&lt;strong&gt;此操作会修改 Git 历史记录&lt;/strong&gt;，正式工作环境不允许。&lt;/p&gt;
+&lt;p&gt;查询都有什么：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log --format&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%aN %aE&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -u
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注：一个特殊情况如果 email 没被设置过 OLD_EMAIL 可以填 &lt;code&gt;user.name&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OLD_EMAIL 原来的邮箱&lt;/li&gt;
+&lt;li&gt;CORRECT_NAME 更正的名字&lt;/li&gt;
+&lt;li&gt;CORRECT_EMAIL 更正的邮箱&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git filter-branch -f --env-filter &lt;span class=&#34;s1&#34;&gt;&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;OLD_EMAIL=&amp;#34;old@qq.com&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;CORRECT_NAME=&amp;#34;new_name&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;CORRECT_EMAIL=&amp;#34;new@gmail.com&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;if [ &amp;#34;$GIT_COMMITTER_EMAIL&amp;#34; = &amp;#34;$OLD_EMAIL&amp;#34; ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;then
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_COMMITTER_NAME=&amp;#34;$CORRECT_NAME&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_COMMITTER_EMAIL=&amp;#34;$CORRECT_EMAIL&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;fi
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;if [ &amp;#34;$GIT_AUTHOR_EMAIL&amp;#34; = &amp;#34;$OLD_EMAIL&amp;#34; ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;then
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_NAME=&amp;#34;$CORRECT_NAME&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_EMAIL=&amp;#34;$CORRECT_EMAIL&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;fi
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;if [ &amp;#34;$GIT_AUTHOR_NAME&amp;#34; != &amp;#34;$CORRECT_NAME&amp;#34; ]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;then
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_NAME=&amp;#34;$CORRECT_NAME&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_EMAIL=&amp;#34;$CORRECT_EMAIL&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;fi
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt; --tag-name-filter cat -- --branches --tags
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;因为修改了 Git 历史所有要使用强制推送：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CentOS yum 升级 git 版本</title>
+      <link>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</link>
+      <pubDate>Mon, 25 Nov 2019 15:36:16 +0000</pubDate>
+      <guid>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</guid>
+      <description>&lt;p&gt;先去官网看看 &lt;a href=&#34;https://git-scm.com/download/linux&#34;&gt;Download for Linux and Unix&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;RHEL 和衍生通常提供较老版本的 git。您可以下载 tarball 并从源代码构建，或者使用第三方存储库，如 &lt;a href=&#34;https://ius.io/&#34;&gt;IUS Community Project&lt;/a&gt; 来获得最新版本的 git。&lt;/p&gt;
+&lt;h2 id=&#34;使用-ius&#34;&gt;使用 IUS&lt;/h2&gt;
+&lt;p&gt;RHEL/CentOS 7&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;https://repo.ius.io/ius-release-el7.rpm &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装新版 git：&lt;/p&gt;
+&lt;p&gt;ius 通常会在高版本的软件名后面 + u&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum list git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你已经装有低版本的 git，你需要先 remove（否则安装的时候会报错）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum remove git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装 2.0 以上版本的 git&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CRLF will be replaced by LF</title>
+      <link>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</link>
+      <pubDate>Fri, 22 Nov 2019 17:30:37 +0000</pubDate>
+      <guid>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</guid>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;warning: CRLF will be replaced by LF in X.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;CRLF：windows 环境下的换行符&lt;/li&gt;
+&lt;li&gt;LF：linux 环境下的换行符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个错误的意思，就是文件中存在两种环境的换行符，git 会自动替换 CRLF 为 LF ，所以提示警告。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;首先推荐扩展阅读：&lt;a href=&#34;https://help.github.com/cn/github/using-git/configuring-git-to-handle-line-endings&#34;&gt;配置 Git 处理行结束符 | GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我项目中是配置了 &lt;code&gt;.gitattributes&lt;/code&gt; 的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# Set the default behavior, in case people don&amp;#39;t have core.autocrlf set.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* text=auto
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# Explicitly declare text files you want to always be normalized and converted
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# to native line endings on checkout.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.c text
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.h text
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# Declare files that will always have CRLF line endings on checkout.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.sln text eol=crlf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# Denote all files that are truly binary and should not be modified.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.png binary
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.jpg binary
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;gitattributes&#34;&gt;.gitattributes&lt;/h2&gt;
+&lt;p&gt;公式：&lt;code&gt;要匹配的文件模式 属性1 属性2 ...&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git 提交 message 规范</title>
+      <link>https://zyf.im/2019/06/04/git-commit-message-style-guide/</link>
+      <pubDate>Tue, 04 Jun 2019 14:07:46 +0000</pubDate>
+      <guid>https://zyf.im/2019/06/04/git-commit-message-style-guide/</guid>
+      <description>&lt;p&gt;commit message 应该清晰明了，说明本次提交的目的。基本公式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;type&amp;gt;(&amp;lt;scope&amp;gt;): &amp;lt;subject&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;p&gt;完整公式：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;type&amp;gt;(&amp;lt;scope&amp;gt;): &amp;lt;subject&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;BLANK LINE&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;BLANK LINE&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;footer&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;type&#34;&gt;type&lt;/h2&gt;
+&lt;p&gt;用于说明 commit 的类别，只允许使用下面 7 个标识。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;feat：新功能（feature）&lt;/li&gt;
+&lt;li&gt;fix：修补 bug&lt;/li&gt;
+&lt;li&gt;docs：文档（documentation）&lt;/li&gt;
+&lt;li&gt;style：格式（不影响代码运行的变动）&lt;/li&gt;
+&lt;li&gt;refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）&lt;/li&gt;
+&lt;li&gt;test：增加测试&lt;/li&gt;
+&lt;li&gt;chore：构建过程或辅助工具的变动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;scope&#34;&gt;scope&lt;/h2&gt;
+&lt;p&gt;用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。&lt;/p&gt;
+&lt;h2 id=&#34;subject&#34;&gt;subject&lt;/h2&gt;
+&lt;p&gt;是 commit 目的的简短描述，不超过 50 个字符。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;以动词开头，使用第一人称现在时，比如 change，而不是 changed 或 changes&lt;/li&gt;
+&lt;li&gt;第一个字母小写&lt;/li&gt;
+&lt;li&gt;结尾不加句号 &lt;code&gt;.&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;cli-工具&#34;&gt;cli 工具&lt;/h2&gt;
+&lt;h3 id=&#34;commitizen-cli&#34;&gt;commitizen cli&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/commitizen/cz-cli&#34;&gt;commitizen/cz-cli&lt;/a&gt; 使用它提供的 &lt;code&gt;git cz&lt;/code&gt; 命令替代我们的 &lt;code&gt;git commit&lt;/code&gt; 命令，帮助我们生成符合规范的 commit message。&lt;/p&gt;
+&lt;p&gt;除此之外，我们还需要为 &lt;code&gt;commitizen&lt;/code&gt; 指定一个 &lt;code&gt;Adapter&lt;/code&gt; 比如：&lt;a href=&#34;https://github.com/commitizen/cz-conventional-changelog&#34;&gt;commitizen/cz-conventional-changelog&lt;/a&gt;（一个符合 Angular 团队规范的 preset）使得 &lt;code&gt;commitizen&lt;/code&gt; 按照我们指定的规范帮助我们生成 commit message。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 协同模型</title>
+      <link>https://zyf.im/2018/01/19/got-git-reading-notes-model/</link>
+      <pubDate>Fri, 19 Jan 2018 14:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2018/01/19/got-git-reading-notes-model/</guid>
+      <description>&lt;p&gt;主要内容：【Git 协同模型】&lt;/p&gt;
+&lt;h2 id=&#34;经典-git-协同模型&#34;&gt;经典 Git 协同模型&lt;/h2&gt;
+&lt;h3 id=&#34;集中式协同模型&#34;&gt;集中式协同模型&lt;/h3&gt;
+&lt;p&gt;可以像集中式版本控制系统那样使用 Git，在一个大家都可以访问到的服务器上架设 Git 服务器，每个人从该服务器克隆代码，本地提交推送到服务器上。&lt;/p&gt;
+&lt;h2 id=&#34;金字塔式协同模型&#34;&gt;金字塔式协同模型&lt;/h2&gt;
+&lt;p&gt;虽然理论上每个开发者的版本库都是平等的，但是会有一个公认的权威的版本库，这个版本库由一个或者多个核心开发者负责维护（具有推送的权限）。&lt;/p&gt;
+&lt;p&gt;开源社区逐渐发展出金字塔模型，而这也是必然之选。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;topgit-协同模型&#34;&gt;Topgit 协同模型&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;笔者注：Topgit 是否已经过时？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;卖主分支 Vendor Branch&lt;/code&gt; 是在版本库中专门创建一个和上游同步的分支，一旦有上游代码发布就捡入到卖主分支中。&lt;/p&gt;
+&lt;h2 id=&#34;子模组协同模型&#34;&gt;子模组协同模型&lt;/h2&gt;
+&lt;h3 id=&#34;创建子模组&#34;&gt;创建子模组&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git submodule add /path/to/repos/libA.git lib/lib_a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;.gitmodules&lt;/code&gt; 的内容：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat .gitmodules
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;submodule &lt;span class=&#34;s2&#34;&gt;&amp;#34;lib/lib_a&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;path&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; lib/lib_a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; /path/to/repos/libA.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;克隆带子模组的版本库&#34;&gt;克隆带子模组的版本库&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone /path/to/repos/super.git /path/to/my/workspace/super-clone
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;子模组的版本库并不会默认克隆，如果需要克隆出子模组型式引用的外部库，需要执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git submodule init
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;在子模组中修改和子模组的更新&#34;&gt;在子模组中修改和子模组的更新&lt;/h3&gt;
+&lt;p&gt;修改更新的方式和普通仓库一样。如果修改了子模块，要先推送子模块的修改，再推送主仓库，以防止其他人克隆 super 版本库、更新模组时因为找不到该子模组版本库相应的提交而导致出错。&lt;/p&gt;
+&lt;p&gt;查看子模组状态：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git submodule status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;子树合并&#34;&gt;子树合并&lt;/h2&gt;
+&lt;h3 id=&#34;引入外部版本库&#34;&gt;引入外部版本库&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 注册外部版本库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git remote add util /path/to/repos/util.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git fetch util
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看所有分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch -a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 从 util/master 远程分支创建一个本地分支 util-branch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -b util-branch util/master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;子目录方式合并外部版本库&#34;&gt;子目录方式合并外部版本库&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在主分支，将分支 util-branch 读取到当前分支的一个子目录下&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git read-tree --prefix&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;lib util-branch
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 将 lib 目录下的文件更新出来&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -- lib
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在还不能忙着提交，因为如果现在进行提交就体现不出来两个分支的合并关系。需要使用 Git 底层的命令进行数据提交。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 和声</title>
+      <link>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</link>
+      <pubDate>Wed, 17 Jan 2018 19:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</guid>
+      <description>&lt;p&gt;主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】&lt;/p&gt;
+&lt;h2 id=&#34;git-协议与工作协同&#34;&gt;Git 协议与工作协同&lt;/h2&gt;
+&lt;h3 id=&#34;git-支持的协议&#34;&gt;Git 支持的协议&lt;/h3&gt;
+&lt;p&gt;SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。&lt;/p&gt;
+&lt;p&gt;SSH 协议：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ssh://[user@]example.com[:port]/path/to/repo.git/
+
+[user@]example.com:path/to/repo.git/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;GIT 协议，最常用的只读协议：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git://example.com[:port]/path/to/repo.git/
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;HTTP[S] 协议：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http[s]://example.com[:port]/path/to/repo.git/
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- more --&gt;
+&lt;h3 id=&#34;强制非快进式推送&#34;&gt;强制非快进式推送&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git push -f
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;强制推送，会强制刷新服务器中的版本。&lt;/p&gt;
+&lt;h3 id=&#34;禁止非快进式推送&#34;&gt;禁止非快进式推送&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;冲突解决&#34;&gt;冲突解决&lt;/h2&gt;
+&lt;h3 id=&#34;拉回操作中的合并&#34;&gt;拉回操作中的合并&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git pull = git fetch + git merge
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;合并策略&#34;&gt;合并策略&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/docs/git-merge#_merge_strategies&#34;&gt;Merge Strategis&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git merge [-s &amp;lt;strategy&amp;gt;] [-X &amp;lt;strategy-option&amp;gt;] [&amp;lt;commit&amp;gt;...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git merge -s recursive -X ours [&amp;lt;commit&amp;gt;...]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Merge branch obsolete into the current branch, using ours merge strategy:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 独奏 - Part 4</title>
+      <link>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</link>
+      <pubDate>Mon, 25 Dec 2017 16:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</guid>
+      <description>&lt;p&gt;主要内容：【历史穿梭】、【改变历史】、【Git 克隆】&lt;/p&gt;
+&lt;h2 id=&#34;历史穿梭&#34;&gt;历史穿梭&lt;/h2&gt;
+&lt;p&gt;查看条件个数：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git rev-list HEAD | wc -l
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;版本表示法git-rev-parse&#34;&gt;版本表示法：git rev-parse&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;git rev-parse&lt;/code&gt; pick out and massage parameters for other git commands.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--git-dir&lt;/code&gt; 可以显示 Git 版本库的位置&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--show-cdup&lt;/code&gt; 当前工作区目录的深度&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--parseopt&lt;/code&gt; 可以用于被 Git 无关应用用于解析命令行参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 显示分支，tag
+git rev-parse --symbolic --branches
+
+git rev-parse --symbolic --branches
+
+# 显示定义的所有引用
+git rev-parse --symbolic --glob=refs/*
+&lt;/code&gt;&lt;/pre&gt;&lt;!-- more --&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 显示多个表达式的 SHA1 哈希值：
+
+git rev-parse  master  refs/heads/master
+6652a0dce6a5067732c00ef0a220810a7230655e
+6652a0dce6a5067732c00ef0a220810a7230655e
+
+^后面的数字代表该提交的第几个父提交，~&amp;lt;n&amp;gt;就相当于连续&amp;lt;n&amp;gt;个符号^
+
+git rev-parse  A~3  A^^^
+e80aa7481beda65ae00e35afc4bc4b171f9b0ebf
+e80aa7481beda65ae00e35afc4bc4b171f9b0ebf
+
+# 暂存区里的文件和HEAD中的文件相同
+
+git rev-parse  :gitg.png  HEAD:gitg.png
+fc58966ccc1e5af24c2c9746196550241bc01c50
+fc58966ccc1e5af24c2c9746196550241bc01c50
+
+# 在提交日志中查找字串的方式显示提交
+git rev-parse :/&amp;#34;Commit A&amp;#34;
+81993234fc12a325d303eccea20f6fd629412712
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;版本范围表示法git-rev-list&#34;&gt;版本范围表示法：git rev-list&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;git rev-list&lt;/code&gt; 可以帮助研究 Git 的各种版本范围语法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>关于 GitHub README.md 中图片加载失败</title>
+      <link>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</link>
+      <pubDate>Wed, 22 Nov 2017 16:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</guid>
+      <description>&lt;h2 id=&#34;遇到的问题&#34;&gt;遇到的问题&lt;/h2&gt;
+&lt;p&gt;在编写 GitHub 的 README.md 后，其中引用的网络图片无法正常显示，点击 &lt;code&gt;alt&lt;/code&gt; 的文字提示：&lt;code&gt;Content length exceeded&lt;/code&gt;。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
+&lt;p&gt;根据 &lt;a href=&#34;https://help.github.com/articles/about-anonymized-image-urls/&#34;&gt;About anonymized image URLs&lt;/a&gt; 这篇文章：上传的图片 URL 将被修改，所以个人信息将不会被跟踪。GitHub 将使用 &lt;a href=&#34;https://github.com/atmos/camo&#34;&gt;开源项目 Camo&lt;/a&gt;。Camo 将为每一个图片生成一个以 &lt;code&gt;https://camo.githubusercontent.com/&lt;/code&gt; 匿名代理 URL 同时隐藏来自其他用户的浏览器详细信息和相关信息。&lt;/p&gt;
+&lt;p&gt;我引用的 GIF 图片有 &lt;strong&gt;7MB&lt;/strong&gt; 多，那么图片大小的限制是多少？&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/atmos/camo/blob/master/server.coffee#L18&#34;&gt;camo - server.coffee#L18&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content_length_limit = parseInt(process.env.CAMO_LENGTH_LIMIT || 5242880, 10)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;换算后大小正好是 &lt;strong&gt;5MB&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://soyaine.cn/blog/2016/12/31/soyaine-daily-070&#34;&gt;关于 GitHub 无法图片加载的问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Git checkout --theirs --ours 解决冲突文件</title>
+      <link>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</link>
+      <pubDate>Wed, 30 Aug 2017 20:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</guid>
+      <description>&lt;p&gt;在代码合并时遇到 &lt;code&gt;conflict&lt;/code&gt; 是常有的事情，有些内容是自动生成的资源文件，手工处理起来很麻烦，某一文件如何全部以某一分支的内容为准？&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;checkout --theirs .&lt;/code&gt; &lt;code&gt;checkout --ours .&lt;/code&gt;。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;场景实例&#34;&gt;场景实例&lt;/h2&gt;
+&lt;p&gt;Engineer A、B 同时从 master checkout 自己的功能分支：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Engineer A&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -b feature-a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Engineer B&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -b feature-b
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Engineer A 开发比较快先进行了 push：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;feat: feature-a&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout master
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git merge feature-a
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Engineer B 再 push 前需要拉最新的 master，因为改到了同一行代码，出现代码冲突。&lt;/p&gt;
+&lt;h3 id=&#34;merge-合并代码&#34;&gt;merge 合并代码&lt;/h3&gt;
+&lt;p&gt;使用 merge 命令导致的代码冲突。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout master
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git merge feature-a
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在处理冲突的过程中：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 独奏 - Part 3</title>
+      <link>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</link>
+      <pubDate>Thu, 03 Aug 2017 11:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</guid>
+      <description>&lt;p&gt;主要内容：【Git 基本操作】&lt;/p&gt;
+&lt;h2 id=&#34;git-基本操作&#34;&gt;Git 基本操作&lt;/h2&gt;
+&lt;h3 id=&#34;先来合个影&#34;&gt;先来合个影&lt;/h3&gt;
+&lt;p&gt;在 Git 里，“留影”用的命令叫做 &lt;code&gt;tag&lt;/code&gt;，更加专业的术语叫做“里程碑”（打 tag，或打标签）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git tag -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;Say bye-bye to all previous practice.&amp;#34;&lt;/span&gt; old_practice
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;里程碑无非也是一个引用，通过记录提交 ID（或者创建 Tag 对象）来为当前版本库状态进行“留影”。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git rev-parse refs/tags/old_practice
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;41bd4e2cce0f8baa9bb4cdda62927b408c846cd6
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;git describe&lt;/code&gt; 显示当前版本库的最新提交的版本号。格式：&lt;code&gt;最近的 tag - 距离此 tag 的个数 - 该提交的 SHA1&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git describe
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;old_practice
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# .. commit something&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git describe
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;old_practice-2-g8861c65
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h3 id=&#34;删除文件&#34;&gt;删除文件&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;rm *.txt&lt;/code&gt; 针对的是 &lt;code&gt;工作区&lt;/code&gt;，对 &lt;code&gt;暂存区&lt;/code&gt; 和 &lt;code&gt;版本库&lt;/code&gt; 没有任何影响。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git rm detached-commit.txt hack-1.txt new-commit.txt welcome.txt&lt;/code&gt; 删除动作加入了暂存区，commit 后在版本库罪行提交中删除了，在历史提交中尚在。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 独奏 - Part 2</title>
+      <link>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</link>
+      <pubDate>Thu, 20 Jul 2017 11:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</guid>
+      <description>&lt;p&gt;主要内容：【Git 重置】、【Git 检出】、【恢复进度】&lt;/p&gt;
+&lt;h2 id=&#34;git-重置&#34;&gt;Git 重置&lt;/h2&gt;
+&lt;h3 id=&#34;分支游标-master-的探秘&#34;&gt;分支游标 master 的探秘&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log --graph --oneline
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* e695606 which version checked in?
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* a0c641e who does commit?
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;* 9e8a761 initialized.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;引用 &lt;code&gt;refs/heads/master&lt;/code&gt; 就好像是一个游标，在有新的提交发生的时候指向了新的提交。&lt;/p&gt;
+&lt;p&gt;Git 提供了 &lt;code&gt;git reset&lt;/code&gt; 命令，可以将“游标”指向任意一个存在的提交 ID。注意下面的命令中使用了 &lt;code&gt;--hard&lt;/code&gt; 参数，会破坏工作区未提交的改动，慎用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset --hard HEAD^
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HEAD is now at e695606 which version checked in?
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h3 id=&#34;用-reflog-挽救错误的重置&#34;&gt;用 reflog 挽救错误的重置&lt;/h3&gt;
+&lt;p&gt;通过 &lt;code&gt;.git/logs&lt;/code&gt; 目录下日志文件记录了分支的变更。默认非裸版本库（带有工作区）都提供分支日志功能，这是因为带有工作区的版本库都有如下设置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config core.logallrefupdates
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看一下 &lt;code&gt;master&lt;/code&gt; 分支的日志文件 &lt;code&gt;.git/logs/refs/heads/master&lt;/code&gt; 中的内容。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tail -5 .git/logs/refs/heads/master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Git 提供了一个 &lt;code&gt;git reflog&lt;/code&gt; 命令，对这个文件进行操作。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 独奏 - Part 1</title>
+      <link>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</link>
+      <pubDate>Wed, 19 Jul 2017 16:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</guid>
+      <description>&lt;p&gt;主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】&lt;/p&gt;
+&lt;h2 id=&#34;git-初始化&#34;&gt;Git 初始化&lt;/h2&gt;
+&lt;p&gt;设置一下 Git 的环境变量，这个设置是一次性的工作。即这些设置会在全局文件（用户主目录下的 &lt;code&gt;~/.gitconfig&lt;/code&gt;）或系统文件（&lt;code&gt;/etc/gitconfig&lt;/code&gt;）中做永久的记录。&lt;/p&gt;
+&lt;p&gt;配置的用户名和邮件地址将在版本库提交时作为提交者的用户名和邮件地址。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.name &lt;span class=&#34;s2&#34;&gt;&amp;#34;Jiang Xin&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global user.email jiangxin@ossxp.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;设置一些-git-别名以便可以使用更为简洁的子命令&#34;&gt;设置一些 Git 别名，以便可以使用更为简洁的子命令&lt;/h3&gt;
+&lt;p&gt;只在本用户的全局配置中添加 Git 命令别名：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global alias.br branch
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global alias.ci &lt;span class=&#34;s2&#34;&gt;&amp;#34;commit -s&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global alias.co checkout
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global alias.st &lt;span class=&#34;s2&#34;&gt;&amp;#34;-p status&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h3 id=&#34;版本库的初始化&#34;&gt;版本库的初始化&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir demo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; demo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;初始化空的 Git 版本库于 &lt;code&gt;/path/to/my/workspace/demo/.git/&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;git init 命令的后面直接输入目录名称&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /path/to/my/workspace
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git init demo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -aF
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./  ../  .git/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个隐藏的 &lt;code&gt;.git&lt;/code&gt; 目录就是 Git 版本库（又叫仓库，repository）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【Git 权威指南】读书笔记 - 初识 Git</title>
+      <link>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</link>
+      <pubDate>Wed, 12 Jul 2017 15:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</guid>
+      <description>&lt;p&gt;Git 是一款分布式版本控制系统，有别于 CVS 和 SVN 等集中式版本控制系统，Git 可以让研发团队更加高效地协同工作、提高生产率。使用 Git，开发人员的工作不会因为频繁地遭遇提交冲突而中断，管理人员也无须为数据的备份而担心。经过 Linux 这样庞大的项目的考验之后，Git 被证明可以胜任任何规模的团队，即便这个团队的成员分布于世界各地。&lt;/p&gt;
+&lt;p&gt;Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人的知识积累、保护好自己的数据，而且还能与他人分享自己的成果。&lt;/p&gt;
+&lt;h2 id=&#34;版本控制的前世和今生&#34;&gt;版本控制的前世和今生&lt;/h2&gt;
+&lt;p&gt;即便是在 CVS 出现之前的“史前时代”，也已经有了非常好用的源码比较和打补丁的工具：&lt;code&gt;diff&lt;/code&gt; 和 &lt;code&gt;patch&lt;/code&gt;，他们今天生命力依然顽强。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;对这 &lt;code&gt;hello&lt;/code&gt; &lt;code&gt;world&lt;/code&gt; 两个文件执行 diff 命令，查看两个文件的差异。如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;diff -u hello world &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; less -N
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;上面执行 &lt;code&gt;diff&lt;/code&gt; 命令的 &lt;code&gt;-u&lt;/code&gt; 参数很重要，使得差异输出中带有上下文。管道后面带有 &lt;code&gt;-N&lt;/code&gt; 参数的 &lt;code&gt;less&lt;/code&gt; 命令（按字母 &lt;code&gt;q&lt;/code&gt; 退出）会在输出的每一行前面添加行号，便于对输出结果进行说明。&lt;/p&gt;
+&lt;p&gt;命令 &lt;code&gt;patch&lt;/code&gt; 相当于 &lt;code&gt;diff&lt;/code&gt; 的反向操作&lt;/p&gt;
+&lt;p&gt;分布式版本控制系统最大的反传统之处在于，可以不需要集中式的版本库，每个人都工作在通过克隆操作建立的本地版本库中，也就是说每个人都拥有一个完整的版本库。分布式版本控制系统的几乎所有操作包括查看提交日志、提交、创建里程碑和分支、合并分支、回退等都直接在本地完成而不需要网络连接。每个人都是本地版本库的主人，不再有谁能提交谁不能提交的限制，加之多样的协同工作模型（版本库间推送、拉回，及补丁文件传送等）让开源项目的参与度有爆发式增长。&lt;/p&gt;
+&lt;h2 id=&#34;爱上-git-的理由&#34;&gt;爱上 Git 的理由&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;每日的工作备份。鸡蛋不全放在一个篮子里。&lt;/li&gt;
+&lt;li&gt;异地协同工作。通过一个远程版本库，同步数据。&lt;/li&gt;
+&lt;li&gt;现场版本控制。在部署的现场，进行源代码的修改，能够将修改结果甚至修改过程一并带走，并能够将修改结果合并至项目对应的代码库中。&lt;/li&gt;
+&lt;li&gt;避免引入辅助目录。只在工作区的顶级目录下创建名为 &lt;code&gt;.git&lt;/code&gt; 的目录（版本库目录），如果认为唯一的一个 &lt;code&gt;.git&lt;/code&gt; 目录也过于碍眼，可以将其放到工作区之外的任意目录。一旦这么做了，你在执行 Git 命令时，要通过命令行 &lt;code&gt;--git-dir&lt;/code&gt; 或环境变量 &lt;code&gt;GIT_DIR&lt;/code&gt; 为工作区指定版本库目录，甚至还要指定工作区目录。&lt;/li&gt;
+&lt;li&gt;重写提交说明。这个命令如果不带 &lt;code&gt;-m&lt;/code&gt; 参数，会进入提交说明编辑界面。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;想吃后悔药。假如提交的数据中不小心包含了一个不应该检入的虚拟机文件——大约有 1 个 GB。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git rm --cached winxp.img
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;更好用的提交列表。正确的版本控制系统的使用方法是：一次提交只干一件事。而不要在下班时才想起来要提交，那样的话版本控制系统就被降格为文件备份系统了。&lt;/li&gt;
+&lt;li&gt;更好的差异比较。&lt;code&gt;git diff&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;工作进度保存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git stash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout &amp;lt;new_branch&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# do something&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout &amp;lt;orignal_branch&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git stash pop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;代理 SVN 提交实现移动式办公。&lt;/li&gt;
+&lt;li&gt;无处不在的分页器。&lt;code&gt;-p&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;快。Git 作为分布式版本控制系统几乎所有的操作都在本地进行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装-git&#34;&gt;安装 Git&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo aptitude install git
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo aptitude install git-doc git-svn git-email gitk
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;软件包 git-svn、git-email、gitk 本来也是 Git 软件包的一部分，但是因为有着不一样的软件包依赖（如更多 perl 模组，tk 等），所以单独作为软件包发布。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git 在工作目录之间使用 push 进行同步</title>
+      <link>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</link>
+      <pubDate>Thu, 30 Mar 2017 18:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Pushing to a non-bare repo is now possible (Git 2.3.0 February 2015).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;And it is possible when you are pushing the branch currently checked out at the remote repo!&lt;/p&gt;
+&lt;p&gt;现在已经是可以在俩个 non-bare 的仓库之间推送代码。&lt;/p&gt;
+&lt;p&gt;只需要再远程仓库配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config receive.denyCurrentBranch updateInstead
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;就可以直接 &lt;code&gt;push&lt;/code&gt; 分支到远程，并更新工作区。此方法可以用于项目部署。&lt;/p&gt;
+&lt;!--more --&gt;
+&lt;p&gt;&lt;strong&gt;receive-pack: add another option for &lt;code&gt;receive.denyCurrentBranch&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When synchronizing between working directories, it can be handy to update the current branch via &amp;lsquo;push&amp;rsquo; rather than &amp;lsquo;pull&amp;rsquo;, e.g. when pushing a fix from inside a VM, or when pushing a fix made on a user&amp;rsquo;s machine (where the developer is not at liberty to install an ssh daemon let alone know the user&amp;rsquo;s password).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git pull rebase 和 merge no-ff 保持提交线图整洁</title>
+      <link>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</link>
+      <pubDate>Fri, 17 Mar 2017 16:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</guid>
+      <description>&lt;p&gt;git log 中的一个清晰的提交线图是很方便进行 code review 和代码回退
+&lt;code&gt;git pull --rebase&lt;/code&gt; 主要是为是将提交约线图平坦化，而 &lt;code&gt;git merge --no-ff&lt;/code&gt; 则是刻意制造分叉&lt;/p&gt;
+&lt;h2 id=&#34;pull-rebase&#34;&gt;pull rebase&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;perform a rebase after fetching&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;状况&#34;&gt;状况&lt;/h3&gt;
+&lt;p&gt;Git 作为分布式版本控制系统，所有修改操作都是基于本地的，在团队协作过程中，假设你和你的同伴在本地中分别有各自的新提交，而你的同伴先于你 push 了代码到远程分支上，所以你必须先执行 &lt;code&gt;git pull&lt;/code&gt; 来获取同伴的提交，然后才能 push 自己的提交到远程分支。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-01&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80202129-c1cdfb00-8657-11ea-814e-49f8618f301c.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;按照 Git 的默认策略，如果远程分支和本地分支之间的提交线图有分叉的话（即不是 fast-forwarded），Git 会执行一次 merge 操作，因此产生&lt;strong&gt;一次没意义的提交记录&lt;/strong&gt;，从而造成了像上图那样的混乱。&lt;/p&gt;
+&lt;h3 id=&#34;解决&#34;&gt;解决&lt;/h3&gt;
+&lt;p&gt;其实在 pull 操作的时候，使用 &lt;code&gt;git pull --rebase&lt;/code&gt; 选项即可很好地解决上述问题。 加上 &lt;code&gt;--rebase&lt;/code&gt; 参数的作用是，提交线图有分叉的话，Git 会 &lt;code&gt;rebase&lt;/code&gt; 策略来代替默认的 &lt;code&gt;merge&lt;/code&gt; 策略。
+假设提交线图在执行 pull 前是这样的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                 A---B---C  remotes/origin/master
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                /
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;           D---E---F---G  master
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果是执行 &lt;code&gt;git pull&lt;/code&gt; 后，结果多出了 H 这个没必要的提交记录。提交线图会变成这样：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Git 修改提交历史</title>
+      <link>https://zyf.im/2017/03/13/git-modify-commits-history/</link>
+      <pubDate>Mon, 13 Mar 2017 17:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/13/git-modify-commits-history/</guid>
+      <description>&lt;p&gt;在使用 Git 时，我们经常会遇到修改本地提交记录的情况。比如：修改最近一次提交记，还比如：将多次小的 &lt;code&gt;commit&lt;/code&gt; 合并成一个大的 &lt;code&gt;commit&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这种做发有利也有弊，利在：review 代码时，可以按功能看，可以省去 review 一些前期写的无效的代码；弊是：一次提交修改过多，如果有问题，不利于调试。&lt;/p&gt;
+&lt;p&gt;具体情况具体分析，是解决问题的金句。&lt;/p&gt;
+&lt;h2 id=&#34;修改最近一次提交记录&#34;&gt;修改最近一次提交记录&lt;/h2&gt;
+&lt;h3 id=&#34;修改提交说明&#34;&gt;修改提交说明&lt;/h3&gt;
+&lt;p&gt;如果只想更改最近一次的提交说明，只需输入：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后你就会进入文本编辑器，输入你想要的内容，保存并退出即可&lt;/p&gt;
+&lt;h3 id=&#34;改被提交的快照&#34;&gt;改被提交的快照&lt;/h3&gt;
+&lt;p&gt;如果你完成 &lt;code&gt;commit&lt;/code&gt; 后又想修改被提交的快照，增加或者修改其中的文件。&lt;/p&gt;
+&lt;p&gt;先执行 &lt;code&gt;git add&lt;/code&gt; 命令，将修改的文件添加到缓存区，然后运行 &lt;code&gt;git commit -amend&lt;/code&gt; 命令，该命令会获取你当前的暂存区的内容一并提交到最后一次 &lt;code&gt;commit&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;例如：新加了一个文件 &lt;code&gt;new_file.cpp&lt;/code&gt; ，想要合并到最后一次提交，过程如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add new_file.cpp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -amend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以直接运行下面的命令，不过要小心，不要提交了多余的文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -a -amend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;将文件从本次提交中移除&#34;&gt;将文件从本次提交中移除&lt;/h3&gt;
+&lt;p&gt;如果想把已经 &lt;code&gt;commit&lt;/code&gt; 的文件从这次 &lt;code&gt;commit&lt;/code&gt; 移除的话，运行命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-soft&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; HEAD~1 &lt;span class=&#34;c1&#34;&gt;# -soft可加可不加，默认就是soft选项&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -filename &lt;span class=&#34;c1&#34;&gt;# 要从本次提交移除的文件名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;new commit&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h2 id=&#34;修改多个提交记录&#34;&gt;修改多个提交记录&lt;/h2&gt;
+&lt;p&gt;要修改历史中更早的提交，你必须采用更复杂的工具。Git 没有一个修改历史的工具，但是你可以使用 rebase 工具来衍合一系列的提交到它们原来所在的 HEAD 上。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>GitHub Webhook 自动部署 Hexo</title>
+      <link>https://zyf.im/2016/07/01/github-webhook-example/</link>
+      <pubDate>Fri, 01 Jul 2016 20:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/07/01/github-webhook-example/</guid>
+      <description>&lt;p&gt;在 &lt;a href=&#34;https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/&#34;&gt;GitHub Pages 不被百度收录解决方案&lt;/a&gt; 中，思路二是通过 Dnspod 的智能 DNS 服务。简而言之就是搭建一个 Server，做一个 Blog 的镜像站，专为百度收录使用。&lt;/p&gt;
+&lt;p&gt;但是每次将新建的博客文章 &lt;code&gt;PUSH&lt;/code&gt; 到 GitHub 后，还要再登陆 Server &lt;code&gt;PULL&lt;/code&gt; 一下，简直是太蠢了。那有什么解决办法吗？答：GitHub Webhook。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;webhook&#34;&gt;Webhook&lt;/h2&gt;
+&lt;p&gt;Webhook，也就是人们常说的钩子，是一个很有用的工具。你可以通过定制 Webhook 来监测你在 Github.com 上的各种事件，最常见的莫过于 push 事件。&lt;/p&gt;
+&lt;p&gt;如果你设置了一个监测 push 事件的 Webhook，那么每当你的这个项目有了任何提交，这个 Webhook 都会被触发，这时 Github 就会发送一个 HTTP POST 请求到你配置好的地址。&lt;/p&gt;
+&lt;p&gt;如此一来，你就可以通过这种方式去自动完成一些重复性工作；比如，你可以用 Webhook 来自动触发一些持续集成（CI）工具的运作，比如 Travis CI；又或者是通过 Webhook 去部署你的线上服务器。&lt;/p&gt;
+&lt;p&gt;Github 开发者平台的文档中对 Webhook 的所能做的事是这样描述的：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;响应-webhook&#34;&gt;响应 Webhook&lt;/h2&gt;
+&lt;p&gt;在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。&lt;/p&gt;
+&lt;p&gt;自己在 GitHub 搜索下 &lt;code&gt;github webhook&lt;/code&gt;，&lt;code&gt;language&lt;/code&gt; 选择 &lt;code&gt;Python&lt;/code&gt; 便找到了 Python 编写的：&lt;a href=&#34;https://github.com/razius/github-webhook-handler&#34;&gt;razius/github-webhook-handler&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>GitHub Pages 不被百度收录解决方案</title>
+      <link>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</link>
+      <pubDate>Thu, 30 Jun 2016 20:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</guid>
+      <description>&lt;p&gt;2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。&lt;/p&gt;
+&lt;p&gt;2017-04-22 更新：现在我的 Blog 使用的是 &lt;a href=&#34;https://www.ufovps.com/&#34;&gt;UFOVPS&lt;/a&gt; 直接部署的。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;在 &lt;a href=&#34;https://zyf.im/2016/06/24/hexo-github-blog/&#34;&gt;使用 Hexo 和 Github 搭建个人独立博客&lt;/a&gt; 几天后，发现百度并不对博客进行收录。&lt;/p&gt;
+&lt;p&gt;在天朝使用百度搜索毕竟多数，使用百度站长工具-抓取诊断，在百度 Spider 抓取结果返回 HTTP 头：HTTP/1.1 403 Forbidden，原来是 GitHub 禁止了百度爬虫的爬去。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;Google 后早已有许多热心网友给出了解决方案，自己在这里总结下。&lt;/p&gt;
+&lt;h2 id=&#34;思路一利用-cdn-解决百度爬虫被-github-pages-拒绝的问题&#34;&gt;思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题&lt;/h2&gt;
+&lt;h3 id=&#34;解决思路&#34;&gt;解决思路&lt;/h3&gt;
+&lt;p&gt;既然 Github 彻底和百度决裂了，那我们也只能自己动手来解决了。Github 可能是封了百度的 IP，也有可能是封了百度爬虫的 User-Agent。&lt;/p&gt;
+&lt;p&gt;所以要解决这个问题，最好就不要让百度爬虫直接访问 Github 了，需要在中间套一层 &lt;a href=&#34;https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86&#34;&gt;反向代理&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;那么问题又来了，既然我可以搭一个反向代理服务器了，那我为什么不直接把博客放在这台服务器上？放 Github Pages 上不就是为了少一台服务器，少一点费用吗？&lt;/p&gt;
+&lt;p&gt;那有没有免费的第三方反向代理服务呢？当然有，其实现在各种 &lt;strong&gt;CDN 服务&lt;/strong&gt; 不就是吗？而且还额外提供了各种网络环境下的加速功能。&lt;/p&gt;
+&lt;p&gt;但是使用 CDN 也会有一个非常大的缺点：只能对 &lt;strong&gt;静态资源&lt;/strong&gt; 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。&lt;/p&gt;
+&lt;p&gt;所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！&lt;/p&gt;
+&lt;p&gt;国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 GitHub 和 Hexo 搭建个人独立博客</title>
+      <link>https://zyf.im/2016/06/24/hexo-github-blog/</link>
+      <pubDate>Fri, 24 Jun 2016 18:30:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/06/24/hexo-github-blog/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Wordpress&lt;/code&gt; 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 &lt;code&gt;Wordpress&lt;/code&gt; 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。&lt;/p&gt;
+&lt;p&gt;近来接触到一种新的博客系统 Hexo，它的不同地方就是将：&lt;strong&gt;在上线编写博客和页面渲染的过程在线下完成&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;在本地编写博文的 Markdown 文件，使用 Hexo 将博客网站的所有前台 HTML 等全部生成，让后将生成的文件上传的服务器就行了。&lt;/p&gt;
+&lt;p&gt;那么原来 wp 中的评论等动态功能怎么办呢？放心第三方服务商早已为我们考虑了。例如：&lt;a href=&#34;https://disqus.com/&#34;&gt;disqus&lt;/a&gt;就是一家第三方社会化评论系统，主要为网站主提供评论托管服务。&lt;/p&gt;
+&lt;p&gt;本文的操作的系统环境是 Ubuntu 15，Windows 下的搭建可触类旁通。&lt;/p&gt;
+&lt;h2 id=&#34;了解-hexo&#34;&gt;了解 Hexo&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，&lt;a href=&#34;https://hexo.io/zh-cn/docs/setup.html&#34;&gt;Hexo setup 官方文档&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

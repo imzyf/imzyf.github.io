@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Centos on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/centos/</link>
+    <description>Recent content in Centos on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Nov 2019 15:36:16 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CentOS yum 升级 git 版本</title>
+      <link>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</link>
+      <pubDate>Mon, 25 Nov 2019 15:36:16 +0000</pubDate>
+      <guid>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</guid>
+      <description>&lt;p&gt;先去官网看看 &lt;a href=&#34;https://git-scm.com/download/linux&#34;&gt;Download for Linux and Unix&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;RHEL 和衍生通常提供较老版本的 git。您可以下载 tarball 并从源代码构建，或者使用第三方存储库，如 &lt;a href=&#34;https://ius.io/&#34;&gt;IUS Community Project&lt;/a&gt; 来获得最新版本的 git。&lt;/p&gt;
+&lt;h2 id=&#34;使用-ius&#34;&gt;使用 IUS&lt;/h2&gt;
+&lt;p&gt;RHEL/CentOS 7&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;https://repo.ius.io/ius-release-el7.rpm &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装新版 git：&lt;/p&gt;
+&lt;p&gt;ius 通常会在高版本的软件名后面 + u&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum list git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你已经装有低版本的 git，你需要先 remove（否则安装的时候会报错）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum remove git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装 2.0 以上版本的 git&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

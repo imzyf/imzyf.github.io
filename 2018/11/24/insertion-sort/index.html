@@ -1,0 +1,174 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>插入排序 Insertion Sort | ZYF.IM BLOG</title>
+<meta name=keywords content="algorithm,swift"><meta name=description content="将一个数组从高到低或者从低到高排序。
+插入排序算法的工作原理：
+
+将若干数字放在一个数组里，数组是乱序的。
+从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。
+将这个数字插入到一个新的数组里。
+从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。
+再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。
+一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。
+
+
+自己的一个实现：
+let array = [2, 1, 3, 8, 3, 5, 4]
+
+var newArray = [Int]()
+for (k, v) in array.enumerated() {
+    for (nK, nV) in newArray.enumerated() {
+        // 本次的数 小于 存在的数的第一个(nv)
+        if v < nV {
+            newArray.insert(v, at: nK)
+            break
+        }
+    }
+    // 没有插入成功 放在末尾
+    if newArray.count < k + 1 {
+        newArray.append(v)
+    }
+}
+In-place sort
+上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 就地排序 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。"><meta name=author content="Me"><link rel=canonical href=https://zyf.im/2018/11/24/insertion-sort/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2018/11/24/insertion-sort/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://zyf.im/2018/11/24/insertion-sort/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="插入排序 Insertion Sort"><meta property="og:description" content="将一个数组从高到低或者从低到高排序。
+插入排序算法的工作原理：
+将若干数字放在一个数组里，数组是乱序的。 从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。 将这个数字插入到一个新的数组里。 从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。 再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。 一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。 自己的一个实现：
+let array = [2, 1, 3, 8, 3, 5, 4] var newArray = [Int]() for (k, v) in array.enumerated() { for (nK, nV) in newArray.enumerated() { // 本次的数 小于 存在的数的第一个(nv) if v < nV { newArray.insert(v, at: nK) break } } // 没有插入成功 放在末尾 if newArray.count < k + 1 { newArray.append(v) } } In-place sort 上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 就地排序 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-11-24T16:00:00+00:00"><meta property="article:modified_time" content="2018-11-24T16:00:00+00:00"><meta property="article:tag" content="Algorithm"><meta property="article:tag" content="Swift"><meta name=twitter:card content="summary"><meta name=twitter:title content="插入排序 Insertion Sort"><meta name=twitter:description content="将一个数组从高到低或者从低到高排序。
+插入排序算法的工作原理：
+
+将若干数字放在一个数组里，数组是乱序的。
+从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。
+将这个数字插入到一个新的数组里。
+从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。
+再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。
+一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。
+
+
+自己的一个实现：
+let array = [2, 1, 3, 8, 3, 5, 4]
+
+var newArray = [Int]()
+for (k, v) in array.enumerated() {
+    for (nK, nV) in newArray.enumerated() {
+        // 本次的数 小于 存在的数的第一个(nv)
+        if v < nV {
+            newArray.insert(v, at: nK)
+            break
+        }
+    }
+    // 没有插入成功 放在末尾
+    if newArray.count < k + 1 {
+        newArray.append(v)
+    }
+}
+In-place sort
+上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 就地排序 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"插入排序 Insertion Sort","item":"https://zyf.im/2018/11/24/insertion-sort/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"插入排序 Insertion Sort","name":"插入排序 Insertion Sort","description":"将一个数组从高到低或者从低到高排序。\n插入排序算法的工作原理：\n将若干数字放在一个数组里，数组是乱序的。 从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。 将这个数字插入到一个新的数组里。 从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。 再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。 一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。 自己的一个实现：\nlet array = [2, 1, 3, 8, 3, 5, 4] var newArray = [Int]() for (k, v) in array.enumerated() { for (nK, nV) in newArray.enumerated() { // 本次的数 小于 存在的数的第一个(nv) if v \u0026lt; nV { newArray.insert(v, at: nK) break } } // 没有插入成功 放在末尾 if newArray.count \u0026lt; k + 1 { newArray.append(v) } } In-place sort 上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 就地排序 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。\n","keywords":["algorithm","swift"],"articleBody":"将一个数组从高到低或者从低到高排序。\n插入排序算法的工作原理：\n将若干数字放在一个数组里，数组是乱序的。 从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。 将这个数字插入到一个新的数组里。 从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。 再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。 一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。 自己的一个实现：\nlet array = [2, 1, 3, 8, 3, 5, 4] var newArray = [Int]() for (k, v) in array.enumerated() { for (nK, nV) in newArray.enumerated() { // 本次的数 小于 存在的数的第一个(nv) if v \u003c nV { newArray.insert(v, at: nK) break } } // 没有插入成功 放在末尾 if newArray.count \u003c k + 1 { newArray.append(v) } } In-place sort 上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 就地排序 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。\n举例：[ 8, 3, 5, 4, 6 ] 使用 | 分割是否排好顺序的部分。\n// 开始时 | 在最前 [| 8, 3, 5, 4, 6 ] // 开始向左移动，左侧只有个 8 无论什么顺序都是正确的，右侧是未排序的部分 [ 8 | 3, 5, 4, 6 ] // 依次进行 将未排序的头部元素放在已排部分的正确位置 [ 3, 8 | 5, 4, 6 ] [ 3, 5, 8 | 4, 6 ] [ 3, 4, 5, 8 | 6 ] [ 3, 4, 5, 6, 8 |] 每次 | 移动，都对左侧进行排序，未排序的部分逐渐减少，排序部分增加。直到未排序部分为零。\nHow to insert 将未排序的头部元素放在已排部分的正确位置，如何这到这点的？\n// 从此状态开始。下个说的 4，我们需要将 4 插入到 [ 3, 5, 8 ] 这个已经排好的数组里 [ 3, 5, 8 | 4, 6 ] // 移动 |，这时我们注意 8 这个元素 [ 3, 5, 8, 4 | 6 ] ^ // 8 大于 4，所有 8 应该在 4 的右边，8 与 4 进行位置调换 [ 3, 5, 4, 8 | 6 ] \u003c--\u003e swapped // 将 4 与现在的前面的元素 5 进行比较，5 大于 4，所以 5 与 4 进行位置调换 [ 3, 4, 5, 8 | 6 ] \u003c--\u003e swapped // 3 小于 4 这个数，所以我们完成了对 4 的排序，这时从头到 |，是排好顺序的 [ 3, 4, 5, 8 | 6 ] 这就是对插入排序算法的内循环的描述。\nThe code func insertionSort(_ array: [Int]) -\u003e [Int] { // 1 var a = array // 2 for x in 1.. 0 \u0026\u0026 a[y] \u003c a[y - 1] { a.swapAt(y - 1, y) y -= 1 } } return a } 将 array 复制一个副本。因为我们无法直接修改参数中的 array，就想 Swift 自身的 sort()，insertionSort() 将返回一个排序顺序的副本数组。 两个循环在方法中。外层循环遍历轮到排序的元素，也就是从待排数组中挑选出头部的元素。x 索引为排好顺序的结尾索引同时也是待排数组的开头。记住，如何时间从开头到 x 永远都是排好顺序的，从 x 到最后的元素都是未排序的。 内层循环查询 x 索引位置的元素。这个元素可能小于之前排序顺序数组中的每一个元素。内层循环从后倒序遍历每一个已排序的元素，每次发现这个元素之前的元素比它大，则交互位置。当内层循环完成时，数组从开头到 x 将又是已排序的。 tip：外层循环从索引 1 开始，而不是 0。将第一个元素从堆移动到排序部分实际上并没有改变任何东西，所以我们不妨跳过它。\nNo more swaps 上面的插入排序可以正常的工作了。我们还可以通过移除调用 swap() 让程序更快一些。\n我们可以将所有需要换位置的元素向右移动一个位置，然后将新数字复制到正确的位置。\n[ 3, 5, 8, 4 | 6 ] remember 4 * [ 3, 5, 8, 8 | 6 ] shift 8 to the right ---\u003e [ 3, 5, 5, 8 | 6 ] shift 5 to the right ---\u003e [ 3, 4, 5, 8 | 6 ] copy 4 into place * func insertionSort(_ array: [Int]) -\u003e [Int] { var a = array for x in 1.. 0 \u0026\u0026 temp \u003c a[y - 1] { // 1 a[y] = a[y - 1] y -= 1 } // 2 a[y] = temp } return a } 原本需要换位置的元素右移一个位置。 当内层结束时，y 的索引位置就是新元素的排序后的位置，将元素放在此。 tip：这里我自己写成了 while y \u003e 0 \u0026\u0026 a[y] \u003c a[y - 1] 这是不对的，因为我要找的是 原本 的 a[y] 的位置，但是循环一次后 a[y] 将发生变化。\nMaking it generic func insertionSort(_ array: [T], _ isOrderedBefore: (T, T) -\u003e Bool) -\u003e [T] { var a = array for x in 1.. 0, isOrderedBefore(temp, a[y - 1]) { a[y] = a[y - 1] y -= 1 } a[y] = temp } return a } 通过闭包来执行大小比较。\nlet numbers = [ 10, -1, 3, 9, 2, 27, 8, 5, 1, 3, 0, 26 ] insertionSort(numbers, \u003c) let objects = [ obj1, obj2, obj3, ... ] insertionSort(objects) { $0.priority \u003c $1.priority } 插入排序是一种稳定 stable 的排序。当排序后具有相同排序键的元素保持相同的相对顺序时，排序是稳定的。这对于诸如数字或字符串之类的简单值并不重要，但在排序更复杂的对象时这很重要。在上面的示例中，如果两个对象具有相同的优先级，则无论其他属性的值如何，这两个对象都不会被交换。\nPerformance 最差的插入排序是 O(n^2) 因为俩个相近的循环嵌套。其他排序算法（如快速排序和合并排序）具有 O(n log n) 性能，在大输入时速度更快。\n插入排序实际上对于排序小数组非常快。某些标准库具有排序功能，当分区大小为 10 或更小时，可以从快速排序切换到插入排序。\n将 insertSort() 与 Swift 的内置 sort() 进行比较。在大约 100 元素左右的阵列上，速度差异很小。但是，随着输入变大，O(n^2) 快速开始执行比 O(n log n) 差很多，并且插入排序无法跟上。\n文章代码：GitHub - imzyf/data-structure-and-algorithm/003-Insertion Sort/。\nReferences raywenderlich/swift-algorithm-club/Insertion Sort ","wordCount":"574","inLanguage":"en","datePublished":"2018-11-24T16:00:00Z","dateModified":"2018-11-24T16:00:00Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2018/11/24/insertion-sort/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body class=dark id=top><script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">插入排序 Insertion Sort</h1><div class=post-meta><span title='2018-11-24 16:00:00 +0000 UTC'>November 24, 2018</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;574 words&nbsp;·&nbsp;Me</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#in-place-sort>In-place sort</a></li><li><a href=#how-to-insert>How to insert</a></li><li><a href=#the-code>The code</a></li><li><a href=#no-more-swaps>No more swaps</a></li><li><a href=#making-it-generic>Making it generic</a></li><li><a href=#performance>Performance</a></li><li><a href=#references>References</a></li></ul></nav></div></details></div><div class=post-content><p>将一个数组从高到低或者从低到高排序。</p><p>插入排序算法的工作原理：</p><ol><li>将若干数字放在一个数组里，数组是乱序的。</li><li>从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。</li><li>将这个数字插入到一个新的数组里。</li><li>从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。</li><li>再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。</li><li>一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。</li></ol><p>自己的一个实现：</p><pre tabindex=0><code>let array = [2, 1, 3, 8, 3, 5, 4]
+
+var newArray = [Int]()
+for (k, v) in array.enumerated() {
+    for (nK, nV) in newArray.enumerated() {
+        // 本次的数 小于 存在的数的第一个(nv)
+        if v &lt; nV {
+            newArray.insert(v, at: nK)
+            break
+        }
+    }
+    // 没有插入成功 放在末尾
+    if newArray.count &lt; k + 1 {
+        newArray.append(v)
+    }
+}
+</code></pre><h2 id=in-place-sort>In-place sort<a hidden class=anchor aria-hidden=true href=#in-place-sort>#</a></h2><p>上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 <em>就地排序</em> 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。</p><p>举例：<code>[ 8, 3, 5, 4, 6 ]</code> 使用 <code>|</code> 分割是否排好顺序的部分。</p><pre tabindex=0><code>// 开始时 | 在最前
+[| 8, 3, 5, 4, 6 ]
+
+// 开始向左移动，左侧只有个 8 无论什么顺序都是正确的，右侧是未排序的部分
+[ 8 | 3, 5, 4, 6 ]
+
+// 依次进行 将未排序的头部元素放在已排部分的正确位置
+[ 3, 8 | 5, 4, 6 ]
+[ 3, 5, 8 | 4, 6 ]
+[ 3, 4, 5, 8 | 6 ]
+[ 3, 4, 5, 6, 8 |]
+</code></pre><p>每次 <code>|</code> 移动，都对左侧进行排序，未排序的部分逐渐减少，排序部分增加。直到未排序部分为零。</p><h2 id=how-to-insert>How to insert<a hidden class=anchor aria-hidden=true href=#how-to-insert>#</a></h2><p>将未排序的头部元素放在已排部分的正确位置，如何这到这点的？</p><pre tabindex=0><code>// 从此状态开始。下个说的 4，我们需要将 4 插入到 [ 3, 5, 8 ] 这个已经排好的数组里
+[ 3, 5, 8 | 4, 6 ]
+
+// 移动 |，这时我们注意 8 这个元素
+[ 3, 5, 8, 4 | 6 ]
+        ^
+
+// 8 大于 4，所有 8 应该在 4 的右边，8 与 4 进行位置调换
+[ 3, 5, 4, 8 | 6 ]
+        &lt;--&gt;
+      swapped
+
+// 将 4 与现在的前面的元素 5 进行比较，5 大于 4，所以 5 与 4 进行位置调换
+[ 3, 4, 5, 8 | 6 ]
+     &lt;--&gt;
+    swapped
+
+// 3 小于 4 这个数，所以我们完成了对 4 的排序，这时从头到 |，是排好顺序的
+[ 3, 4, 5, 8 | 6 ]
+</code></pre><p>这就是对插入排序算法的内循环的描述。</p><h2 id=the-code>The code<a hidden class=anchor aria-hidden=true href=#the-code>#</a></h2><pre tabindex=0><code>func insertionSort(_ array: [Int]) -&gt; [Int] {
+    // 1
+    var a = array
+    // 2
+    for x in 1..&lt;a.count {
+        var y = x
+        // 3
+        while y &gt; 0 &amp;&amp; a[y] &lt; a[y - 1] {
+            a.swapAt(y - 1, y)
+            y -= 1
+        }
+    }
+    return a
+}
+</code></pre><ol><li>将 <code>array</code> 复制一个副本。因为我们无法直接修改参数中的 <code>array</code>，就想 Swift 自身的 <code>sort()</code>，<code>insertionSort()</code> 将返回一个排序顺序的副本数组。</li><li>两个循环在方法中。外层循环遍历轮到排序的元素，也就是从待排数组中挑选出头部的元素。<code>x</code> 索引为排好顺序的结尾索引同时也是待排数组的开头。记住，如何时间从开头到 <code>x</code> 永远都是排好顺序的，从 <code>x</code> 到最后的元素都是未排序的。</li><li>内层循环查询 x 索引位置的元素。这个元素可能小于之前排序顺序数组中的每一个元素。内层循环从后倒序遍历每一个已排序的元素，每次发现这个元素之前的元素比它大，则交互位置。当内层循环完成时，数组从开头到 x 将又是已排序的。</li></ol><p>tip：外层循环从索引 1 开始，而不是 0。将第一个元素从堆移动到排序部分实际上并没有改变任何东西，所以我们不妨跳过它。</p><h2 id=no-more-swaps>No more swaps<a hidden class=anchor aria-hidden=true href=#no-more-swaps>#</a></h2><p>上面的插入排序可以正常的工作了。我们还可以通过移除调用 swap() 让程序更快一些。</p><p>我们可以将所有需要换位置的元素向右移动一个位置，然后将新数字复制到正确的位置。</p><pre tabindex=0><code>[ 3, 5, 8, 4 | 6 ]   remember 4
+           *
+
+[ 3, 5, 8, 8 | 6 ]   shift 8 to the right
+        ---&gt;
+
+[ 3, 5, 5, 8 | 6 ]   shift 5 to the right
+     ---&gt;
+
+[ 3, 4, 5, 8 | 6 ]   copy 4 into place
+     *
+</code></pre><pre tabindex=0><code>func insertionSort(_ array: [Int]) -&gt; [Int] {
+    var a = array
+    for x in 1..&lt;a.count {
+        var y = x
+        let temp = a[y]
+        // tip
+        while y &gt; 0 &amp;&amp; temp &lt; a[y - 1] {
+            // 1
+            a[y] = a[y - 1]
+            y -= 1
+        }
+        // 2
+        a[y] = temp
+    }
+    return a
+}
+</code></pre><ol><li>原本需要换位置的元素右移一个位置。</li><li>当内层结束时，<code>y</code> 的索引位置就是新元素的排序后的位置，将元素放在此。</li></ol><p>tip：这里我自己写成了 <code>while y > 0 && a[y] &lt; a[y - 1]</code> 这是不对的，因为我要找的是 <strong>原本</strong> 的 <code>a[y]</code> 的位置，但是循环一次后 <code>a[y]</code> 将发生变化。</p><h2 id=making-it-generic>Making it generic<a hidden class=anchor aria-hidden=true href=#making-it-generic>#</a></h2><pre tabindex=0><code>func insertionSort&lt;T&gt;(_ array: [T], _ isOrderedBefore: (T, T) -&gt; Bool) -&gt; [T] {
+    var a = array
+    for x in 1..&lt;a.count {
+        var y = x
+        let temp = a[y]
+        while y &gt; 0, isOrderedBefore(temp, a[y - 1])  {
+            a[y] = a[y - 1]
+            y -= 1
+        }
+        a[y] = temp
+    }
+
+    return a
+}
+</code></pre><p>通过闭包来执行大小比较。</p><pre tabindex=0><code>let numbers = [ 10, -1, 3, 9, 2, 27, 8, 5, 1, 3, 0, 26 ]
+insertionSort(numbers, &lt;)
+
+let objects = [ obj1, obj2, obj3, ... ]
+insertionSort(objects) { $0.priority &lt; $1.priority }
+</code></pre><p>插入排序是一种稳定 <code>stable</code> 的排序。当排序后具有相同排序键的元素保持相同的相对顺序时，排序是稳定的。这对于诸如数字或字符串之类的简单值并不重要，但在排序更复杂的对象时这很重要。在上面的示例中，如果两个对象具有相同的优先级，则无论其他属性的值如何，这两个对象都不会被交换。</p><h2 id=performance>Performance<a hidden class=anchor aria-hidden=true href=#performance>#</a></h2><p>最差的插入排序是 <code>O(n^2)</code> 因为俩个相近的循环嵌套。其他排序算法（如快速排序和合并排序）具有 <code>O(n log n)</code> 性能，在大输入时速度更快。</p><p>插入排序实际上对于排序小数组非常快。某些标准库具有排序功能，当分区大小为 <code>10</code> 或更小时，可以从快速排序切换到插入排序。</p><p>将 <code>insertSort()</code> 与 Swift 的内置 <code>sort()</code> 进行比较。在大约 <code>100</code> 元素左右的阵列上，速度差异很小。但是，随着输入变大，<code>O(n^2)</code> 快速开始执行比 <code>O(n log n)</code> 差很多，并且插入排序无法跟上。</p><p>文章代码：<a href=https://github.com/imzyf/data-structure-and-algorithm/tree/master/003-Insertion%20Sort>GitHub - imzyf/data-structure-and-algorithm/003-Insertion Sort/</a>。</p><h2 id=references>References<a hidden class=anchor aria-hidden=true href=#references>#</a></h2><ul><li><a href=https://github.com/raywenderlich/swift-algorithm-club/tree/master/Insertion%20Sort>raywenderlich/swift-algorithm-club/Insertion Sort</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/algorithm/>Algorithm</a></li><li><a href=https://zyf.im/tags/swift/>Swift</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2018/12/10/binary-search/><span class=title>« Prev</span><br><span>二分查找 Binary Search</span>
+</a><a class=next href=https://zyf.im/2018/11/22/queue-data-structure/><span class=title>Next »</span><br><span>队列 Queue Data Structure</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Regular-Expression on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/regular-expression/</link>
+    <description>Recent content in Regular-Expression on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Mar 2023 15:31:15 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/regular-expression/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>正则表达式</title>
+      <link>https://zyf.im/2023/03/01/regular-expression-getting-started/</link>
+      <pubDate>Wed, 01 Mar 2023 15:31:15 +0000</pubDate>
+      <guid>https://zyf.im/2023/03/01/regular-expression-getting-started/</guid>
+      <description>&lt;h2 id=&#34;00&#34;&gt;00&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://regex101.com/&#34;&gt;regex101&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jex.im/regulex/#!flags=&amp;amp;re=%5E(a%7Cb)*%3F%24&#34;&gt;regulex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ihateregex.io/expr/username/&#34;&gt;ihateregex&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;01-元字符&#34;&gt;01 元字符&lt;/h2&gt;
+&lt;p&gt;正则表达式 —— 字符串的规则。&lt;/p&gt;
+&lt;p&gt;元字符就是指那些在正则表达式中具有特殊意义的专用字符。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特殊单字符
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.&lt;/code&gt; 任意字符（换行除外）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\d&lt;/code&gt; 任意数字 &lt;code&gt;\D&lt;/code&gt; 任意非数字&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\w&lt;/code&gt; A-Za-z0-9_ &lt;code&gt;\W&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\s&lt;/code&gt; 空白符 &lt;code&gt;\S&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;空白符
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;\r&lt;/code&gt; 回车符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\n&lt;/code&gt; 换行符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\f&lt;/code&gt; 换页符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\t&lt;/code&gt; 制表符&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;\v&lt;/code&gt; 垂直制表符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;范围
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;|&lt;/code&gt; 或&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[abc]&lt;/code&gt; 多选一&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[a-z]&lt;/code&gt; 之间&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;[^abc]&lt;/code&gt; 取反，不能是括号中的任意单个元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;量词
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; 0&amp;lt;=&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt; 1&amp;lt;=&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; 0或1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m}&lt;/code&gt; m&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,}&lt;/code&gt; m&amp;lt;=&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{m,n}&lt;/code&gt; m-n&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;02-量词与贪婪&#34;&gt;02 量词与贪婪&lt;/h2&gt;
+&lt;p&gt;贪婪(Greedy) &lt;code&gt;*&lt;/code&gt;：匹配最长。在贪婪量词模式下，正则表达式会尽可能长地去匹配符合规则的字符串，且会回溯。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;preg_match_all&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/a*/i&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;aaabb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$matches&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$matches&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;非贪婪(Reluctant) &lt;code&gt;+?&lt;/code&gt;：匹配最短。在非贪婪量词模式下，正则表达式会匹配尽可能短的字符串。&lt;/p&gt;
+&lt;p&gt;ENV：Python3&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a*&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;aaabb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 贪婪模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;aaa&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;&amp;#39;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a*?&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;aaabb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 非贪婪模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;a&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;&amp;#39;, &amp;#39;&amp;#39;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;.+&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;the little cat&amp;#34; is a toy, it lokks &amp;#34;a little bad&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 贪婪模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;&amp;#34;the little cat&amp;#34; is a toy, it lokks &amp;#34;a little bad&amp;#34;&amp;#39;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;.+?&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;the little cat&amp;#34; is a toy, it lokks &amp;#34;a little bad&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 非贪婪模式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;&amp;#34;the little cat&amp;#34;&amp;#39;, &amp;#39;&amp;#34;a little bad&amp;#34;&amp;#39;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独占模式(Possessive) &lt;code&gt;++&lt;/code&gt;：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 &lt;strong&gt;不会回溯&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

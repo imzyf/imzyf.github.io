@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Thinking on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/thinking/</link>
+    <description>Recent content in Thinking on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Jul 2021 21:08:08 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/thinking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何做好技术协同及管理</title>
+      <link>https://zyf.im/2021/07/08/how-to-do-technical-management/</link>
+      <pubDate>Thu, 08 Jul 2021 21:08:08 +0000</pubDate>
+      <guid>https://zyf.im/2021/07/08/how-to-do-technical-management/</guid>
+      <description>&lt;p&gt;《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。&lt;/p&gt;
+&lt;h2 id=&#34;招人&#34;&gt;招人&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;注重招人环节；在这一步要卡严，因为入职后再折腾就更费时费力了。&lt;/li&gt;
+&lt;li&gt;要关注的点：基础水平（工程能力）、离职原因（是否能长久）、个人性格（气场是否相合）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入职&#34;&gt;入职&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;主动沟通是重要的特质。还有责任心、可塑性、执行力。&lt;/li&gt;
+&lt;li&gt;前紧后松；前期要做 code review，养成好习惯。&lt;/li&gt;
+&lt;li&gt;关注测试同学以及其他同学对其的反馈。了解工作状态、质量。&lt;/li&gt;
+&lt;li&gt;在突破底线后应该当机立断，无需心存幻想。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;心态&#34;&gt;心态&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;没有归宿感；owner 意识。&lt;/li&gt;
+&lt;li&gt;每一位都是组内的一员。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;管理&#34;&gt;管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;早会；任务安排，跟踪进度。不能不闻不问，最后容易抓瞎。&lt;/li&gt;
+&lt;li&gt;超过 30min 解决不了的问题，直接沟通，避免团队时间的浪费。&lt;/li&gt;
+&lt;li&gt;读书会，组内分享；打造一个好的技术氛围，这里不只是工作，还能成长。&lt;/li&gt;
+&lt;li&gt;要对任务的工作量有判断；并且明确开发规模，并且进行核对，防止 “大事小做，小题大做”。&lt;/li&gt;
+&lt;li&gt;通过先编写好单元测试、框架结构、interface，控制需求实现、代码质量。&lt;/li&gt;
+&lt;li&gt;在无法进行横向对比的情况下，可以对比加入前后是否释放自身生产力来进行判断。&lt;/li&gt;
+&lt;li&gt;三个卡点：需求评审、技术实现评审、测试用例评审，把关质量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>刚刚毕业的两个月小结</title>
+      <link>https://zyf.im/2016/08/31/2016-08-report/</link>
+      <pubDate>Wed, 31 Aug 2016 23:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/08/31/2016-08-report/</guid>
+      <description>&lt;p&gt;走出校园已经两个月了，因为之前的暑期也没怎么在家待过，大一在中康、大二在腾骏、大三在大为，大四毕业也就是现在，所以也没有什么特别的感觉。可以说，这两个月也做了些事情，学了些东西的。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;从学校毕业，最直接的影响就是自己更加专注于计算机知识，不用再为学业担心。确定了先走技术的道路，也让自己不那么迷茫做什么。工作规律，自己开始读读书，才觉的读书是件有意思的事。也逼着自己常常写点东西，主要是觉的：写东西的时候自己会主动的思考，文笔练着练着也就能进步吧。&lt;/p&gt;
+&lt;p&gt;（一）&lt;/p&gt;
+&lt;p&gt;DMV 是毕业后自己第一个项目，全栈开发。初版两周上线，后有花了一周多的时间编写了答题记录的功能。其中的收获是：项目框架的搭建和前端入门知识。原来的项目搭建都不是自己做的，也一直觉的是一件很难的事情。也许就是因为没有做过才觉的难，做过之后也觉的不过如此。项目的页面不多，但都是自己一点点写的，HTML JS 原来也就是自己改改，没有完整写过，这次算是一次不错的锻炼。写前端的时候才发现现在的前端真的是日新月异 AngularJS React 好多好多自己都没有听过的东西，也是从 Mengqi 那里了解到了很多。可惜的是自己没有实际的用上这些，如有机会一定尝试。&lt;/p&gt;
+&lt;p&gt;DMV 项目流量平平，因为有 Domain 类项目的工作，DMV 的维护就暂时放置了，还是心有不舍的。期间和 John 聊过一次关于产品的事基本总结为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;产品项目是会有失败的，有流量的项目才有维护的意义。&lt;/li&gt;
+&lt;li&gt;大型项目只有成功与失败之分，没有中间项，失败将代价很大。&lt;/li&gt;
+&lt;li&gt;不一定要留住用户。&lt;/li&gt;
+&lt;li&gt;更小的成本更高的流量，高流量后就可以做很多的事。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;（二）&lt;/p&gt;
+&lt;p&gt;Domain 信息类项目，使用的架构和 DMV 一致，逻辑更加简单。自己主要做了数据整理，收获是关于 SQL 命令。SQL 就可以直接处理很多的事情。使用了 RMI 做数据同步，用反射写了一段程序，是一次有突破的尝试。
+一次看到自己年初的简历，笑了。自己是真敢写，能写个 Hello World 就敢标成了解。从会用到原理，是接下要走的路。&lt;/p&gt;
+&lt;p&gt;（三）&lt;/p&gt;
+&lt;p&gt;最近在看设计模式和算法的书，一直在做 LeetCode 的题。设计模式没用过，逮到能用机会绝不错过。算法健脑，刚刚开始接触觉的挺有意思，对数据结构也是种了解。&lt;/p&gt;
+&lt;p&gt;（四）&lt;/p&gt;
+&lt;p&gt;再次参加舍友的婚礼，又个结婚了。大一奶了一口，现在成真。祝福 Lu&amp;amp;Feifei。&lt;/p&gt;
+&lt;p&gt;（五）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;来说说程序员那无处安放的创造力&lt;/p&gt;
+&lt;p&gt;有了锤子想找钉子是很正常的原始冲动，但我们必须认识到，创造力对于程序员这个职业来讲，是锦上添花的东西。如果你没有强大的工程能力，那么创造力也不过是无本之木。所以扎扎实实的把工程基础打好，这是最根本的。&lt;/p&gt;
+&lt;p&gt;在此基础上，我比较推荐程序员采用内外两条线来培养自己。在公司内的项目上采取相对保守的策略，尽力把稳定性做到最好，培养出自己卓越的工程能力；然后在公司外的开源项目和自己的独立项目上，采用一些新的技术、实践一些新的想法、充分发挥自己的创造力，梦想还是要有的，对吧。&lt;/p&gt;
+&lt;p&gt;这样做最明显的好处是，你可以了解到新技术和激进方案的优缺点，从而在进行方案选型时，有更多的依据；还有一个职业发展上的好处：如果不是主负责人，公司的项目往往不能代表你的能力；但独立项目却可以作为一个非常好的能力证明出现在你的简历里边。&lt;/p&gt;
+&lt;p&gt;你可以是一个身怀绝技的手艺人，在自己家里你尝试各种手法各种风格的个人作品；但当你参与颐和园这种级别的工程时，好好的把自己负责的石头雕成总设计师要求的样子就好 —— 毕竟这个时代一个人已经很难负责整个项目了。这就是我所理解的程序员的工匠精神。&lt;/p&gt;
+&lt;p&gt;摘自：&lt;a href=&#34;http://mp.weixin.qq.com/s?__biz=MzI5OTI5Njg2Mg==&amp;amp;mid=2247483667&amp;amp;idx=1&amp;amp;sn=d6e5953c7a7835148e3822b919b82416#rd&#34;&gt;程序员到底是一个什么职业？&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;（尾）&lt;/p&gt;
+&lt;p&gt;现在自己能听见进去一些原来听不去的话了。我不认为自己是被同化了，也许是心中少了些恶意。&lt;/p&gt;
+&lt;p&gt;状态不错，继续前进。&lt;/p&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>写一些人文的日志</title>
+      <link>https://zyf.im/2016/07/11/write-some-humanities-diary/</link>
+      <pubDate>Mon, 11 Jul 2016 09:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/07/11/write-some-humanities-diary/</guid>
+      <description>&lt;p&gt;还是越来越觉的思想重要。每周给自己博客的计划是写三篇，稍稍改动下：其中一篇要是关于思想上的。&lt;/p&gt;
+&lt;p&gt;周末的时候和北京的朋友们：龙、梦、思，小聚了下。问起毕业一个月感觉有啥变化，都说没啥。是，刚刚才一个月。可我心里却有些小慌张，总想搞个大新闻，让自己不那么平凡。是眼高手低吗？&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;现在每天都会跑跑步，已经坚持了 6 天了也习惯了，挺赞的。也总是去了解新鲜的东西技术，并且尝试运用它们，才有点原来学长们不喜欢用用过的东西做事情的劲。关于英语的学习，现在找到一个法：阅读英文的技术教程或者技术文档。这些东西肯定和计算机有关，也写的比较通俗，感觉挺有收获的。&lt;/p&gt;
+&lt;p&gt;最近状态还不错，就是晚上想看会书，可眼睛挺累的。职业生涯的第一个月，经济有些困难。想参与个开源项目。现在手头项目就自己一个人在编，有点孤独，也不知道自己设计的和写的哪里好哪里不好。还有就是在 GitHub 或者 StackOverflow 有人给自己点赞，感觉挺激动的。&lt;/p&gt;
+&lt;p&gt;因为公司都是 Google 的服务，出门很方便，GitHub 也用的越来越多。时不时总能搜到、看到很多工程师写的博客，有教程、有分享，还有我最喜欢看的：他们的思想。我觉的他们现在都是比我棒的，我想知道他们是怎么想的、怎么解决问题、怎么看待问题、看待工作生活。&lt;/p&gt;
+&lt;p&gt;最后毒奶一口自己：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;与那些名校的同学的差距不是毕业后的薪水，也不是学业水平的差距，而是一种思维方式与做事标准。
+对自己的标准会不由自主的降低以适应这个环境，减少自身与环境的冲突，在一个低标准下，自觉“满意”的度过每一天。
+ 
+为什么名企喜欢要名校的学生？其实名企要的不是多么高的 GPA 成绩，而是一种内在的精神状态。他们的辛苦不叫辛苦，也不为百万年薪。辛苦是他们获得自我实现的途径，自我是实现使他无穷快乐。这世界就是一拨人在昼夜不停的高速运转，另一拨人起床发现世界变了。
+ 
+我们大部分人的工作和生活状态是怎样的呢？
+上班稍微努力点就开始讲究公平，自己不得志就开始抱怨公司和领导，下班后看几页书就觉得自己特别上进，辛苦上几天就觉得自己要赶紧去享受一下生活了，加几天班就担心自己会过劳死。
+遇到些鸡毛蒜皮的小事儿就郁郁寡欢，仿佛遇到了天大的人生难题磨磨唧唧解决不清。看见牛逼的人也会心生羡慕，但总也突破不了努力却总不得要领魔咒。
+ 
+越能干，越努力；越有钱，越上进
+而造成这一切的差异，最主要的来自人的精神内核。
+ 
+你要用牛人的标准要求自己，不断的走到牛人当中去，拉近和牛人之间的距离。当你觉得自己能够成为他们中的一员的时候，你才能成为了真正的牛人。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;成功？我才刚上路呢。&lt;/p&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>试着写东西</title>
+      <link>https://zyf.im/2016/03/18/try-to-write-something/</link>
+      <pubDate>Fri, 18 Mar 2016 17:41:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/03/18/try-to-write-something/</guid>
+      <description>&lt;p&gt;现在是大四下从学校出来实习。在面试一家公司时，面试官看到我的邮箱（168#yifans.com）是自己的域名后说：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;问：“有自己的网站吗？”
+“没有。”
+问：“域名都买了不自己搭个网站?”
+“……”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;其实这也不是自己要搭博客的根本原因。&lt;/p&gt;
+&lt;p&gt;在大学里，学了些做了些东西，可思考的不多。现在越发觉的一个人的强大在于思想。看书写些东西我想是提高一个人思想的方法吧。文字写下来了也方便交流。&lt;/p&gt;
+&lt;p&gt;出来了换了一个环境，遇到新的人，新的事，可以换个角度看人看事。原来我理解的一些技术博客，就是解决问题后的笔记本，有问题从中找，而且觉得很多网上的技术博客里的内容都是来回的转来转去，很多解决方案都是过时的，没什么的。可最近在浏览博客园、csdn 发现了很多精华的前人分享自己所理解的知识、技术中走的弯路，阅读后很受益。&lt;/p&gt;
+&lt;p&gt;想想自己，很多事、很多情况下就是这样：没见多少就下结论，管中窥豹，too young.&lt;/p&gt;
+&lt;p&gt;其中有这样的一个签名:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我不能保证写的每个地方都是对的，但是至少能保证不复制、不黏贴，保证每一句话、每一行代码都经过了认真的推敲、仔细的斟酌。每一篇文章的背后，希望都能看到自己对于技术、对于生活的态度。
+我相信乔布斯说的，只有那些疯狂到认为自己可以改变世界的人才能真正地改变世界。面对压力，我可以挑灯夜战、不眠不休；面对困难，我愿意迎难而上、永不退缩。
+其实我想说的是，我只是一个程序员，这就是我现在纯粹人生的全部。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;再认同不过了。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/19743861&#34;&gt;为什么你要写博客？ - 知乎&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Npm on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/npm/</link>
+    <description>Recent content in Npm on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Jul 2019 20:24:41 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>npx 入门使用</title>
+      <link>https://zyf.im/2019/07/17/npx-getting-started/</link>
+      <pubDate>Wed, 17 Jul 2019 20:24:41 +0000</pubDate>
+      <guid>https://zyf.im/2019/07/17/npx-getting-started/</guid>
+      <description>&lt;p&gt;今天在使用的 &lt;a href=&#34;https://gulpjs.com/&#34;&gt;Gulp&lt;/a&gt; 时看到首页的一段命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npx -p touch nodetouch gulpfile.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;a href=&#34;https://www.npmjs.com/package/npx&#34;&gt;npx&lt;/a&gt; 是个啥？决定一探究竟。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;调用项目安装的模块&#34;&gt;调用项目安装的模块&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;npx&lt;/code&gt; 是 npm 的自带模块，可以直接使用，手动安装为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install -g npx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;npx&lt;/code&gt; - execute npm package binaries. 它解决的问题是：更方便的从本地 &lt;code&gt;node_modules/.bin&lt;/code&gt; 或中央缓存中执行命令。&lt;/p&gt;
+&lt;p&gt;比如项目安装了 &lt;code&gt;gulp&lt;/code&gt; 需要执行命令时需要：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;node_modules/.bin/gulp -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果使用 &lt;code&gt;npx&lt;/code&gt; 只需要：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npx gulp -v
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;npx&lt;/code&gt; 的原理很简单，就是运行的时候，会到 &lt;code&gt;node_modules/.bin&lt;/code&gt; 路径和环境变量 &lt;code&gt;$PATH&lt;/code&gt; 里面，检查命令是否存在。由于 &lt;code&gt;npx&lt;/code&gt; 会检查环境变量 &lt;code&gt;$PATH&lt;/code&gt;，所以系统命令也可以调用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 等同于 ls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npx ls
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意，&lt;code&gt;Bash&lt;/code&gt; 内置的命令不在 &lt;code&gt;$PATH&lt;/code&gt; 里面，所以不能用。比如，&lt;code&gt;cd&lt;/code&gt; 是 &lt;code&gt;Bash&lt;/code&gt; 命令，因此就不能用 &lt;code&gt;npx cd&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;避免全局安装模块&#34;&gt;避免全局安装模块&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;create-react-app&lt;/code&gt; 这个模块是全局安装，&lt;code&gt;npx&lt;/code&gt; 可以运行它，而且不进行全局安装：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

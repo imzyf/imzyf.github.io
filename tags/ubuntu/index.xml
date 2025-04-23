@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ubuntu on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Apr 2017 15:00:00 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 命令行下免密码执行 sudo 命令</title>
+      <link>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</link>
+      <pubDate>Mon, 10 Apr 2017 15:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</guid>
+      <description>&lt;p&gt;解决你的问题的方法是将你的用户加入 sudoers 文件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo visudo
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在文件底部输入：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;username ALL=(ALL) NOPASSWD: ALL
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这只适用于终端窗口中的 sudo 命令。例如，当你尝试在 software center 中安装软件包时，将提示你输入密码。&lt;/p&gt;
+&lt;!--more --&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://askubuntu.com/questions/147241/execute-sudo-without-password&#34;&gt;command line - Execute sudo without Password? - Ask Ubuntu&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Ubuntu 下使用 sendmail mail 发送邮件</title>
+      <link>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</link>
+      <pubDate>Thu, 06 Apr 2017 11:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</guid>
+      <description>&lt;p&gt;使用邮件发送程序的执行情况、运行日志都非常方便，Ubuntu 下搭建邮件服务也不复杂。&lt;/p&gt;
+&lt;h2 id=&#34;sendmail&#34;&gt;sendmail&lt;/h2&gt;
+&lt;h3 id=&#34;install&#34;&gt;install&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install sendmail
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h3 id=&#34;configure&#34;&gt;configure&lt;/h3&gt;
+&lt;p&gt;run sendmail&amp;rsquo;s config and answer &lt;code&gt;Y&lt;/code&gt; to everything&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo sendmailconfig
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mail&#34;&gt;mail&lt;/h2&gt;
+&lt;h3 id=&#34;install-1&#34;&gt;install&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install mailutils
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;test&#34;&gt;test&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;test-email-content&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; mail -s &lt;span class=&#34;s1&#34;&gt;&amp;#39;email title&amp;#39;&lt;/span&gt; xxx@gmail.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;sendmail-mail-区别&#34;&gt;sendmail mail 区别&lt;/h2&gt;
+&lt;p&gt;先需要搞清三个概念：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;邮件用户代理（MUA，Mail User Agent）&lt;/li&gt;
+&lt;li&gt;邮件传送代理（MTA，Mail Transport Agent）&lt;/li&gt;
+&lt;li&gt;邮件分发代理（MDA，Mail Deliver Agent）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;sedmail 是负责邮件传输的 MTA，类似 apache、nginx 的作用。mail 是用户使用客户端 MUA，类似 foxmail。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/adamstac/7462202&#34;&gt;Install and configure Sendmail on Ubuntu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/19728556&#34;&gt;Linux 下 mail、mailx 和 sendmail 的区别？ - 知乎&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>解决 Ubuntu Sogou 无法选词输入中文</title>
+      <link>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</link>
+      <pubDate>Fri, 17 Mar 2017 17:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</guid>
+      <description>&lt;p&gt;sogou 输入法突然无法选词输入中文，候选词位置出现白框，多次重重装 fcitx 和 sogou 也没有解决。尝试使用 google pinyin 代替，但是感觉很不顺手。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;issue-in-github&#34;&gt;issue in GitHub&lt;/h2&gt;
+&lt;p&gt;sogou 输入法 GitHub 上的一些 issue：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/FZUG/repo/issues/43&#34;&gt;#43&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/FZUG/repo/issues/177&#34;&gt;#177&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/FZUG/repo/issues/179&#34;&gt;#179&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;解决&#34;&gt;解决&lt;/h2&gt;
+&lt;h3 id=&#34;方案一&#34;&gt;方案一&lt;/h3&gt;
+&lt;p&gt;try to lastest version&lt;/p&gt;
+&lt;h3 id=&#34;方案二&#34;&gt;方案二&lt;/h3&gt;
+&lt;p&gt;clean &lt;code&gt;fcitx&lt;/code&gt;, &lt;code&gt;SogouPY*&lt;/code&gt;, &lt;code&gt;sogou-qimpanel&lt;/code&gt; in &lt;code&gt;~/.config&lt;/code&gt;, then relogin and try again&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/.config
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo rm -rf  fcitx SogouPY sogou-qimpanel
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://colorwin.github.io/2017/02/17/ubuntu-sogou/&#34;&gt;ubuntu-sogou-不能显示候选词 | Color Win&amp;rsquo;s Notes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>解决 Ubuntu warning Setting locale failed</title>
+      <link>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</link>
+      <pubDate>Fri, 03 Mar 2017 17:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</guid>
+      <description>&lt;p&gt;在配置新服务器时遇到 &lt;code&gt;Setting locale failed&lt;/code&gt; 的警告，要求 &lt;code&gt;Please check that your locale settings&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;perl: warning: Setting locale failed.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;perl: warning: Please check that your locale settings:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;LANGUAGE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;unset&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;LC_ALL&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;unset&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;LC_MESSAGES&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;zh_CN.UTF-8&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;LANG&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;zh_CN.UTF-8&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    are supported and installed on your system.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;perl: warning: Falling back to the standard locale &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h2 id=&#34;解决方法&#34;&gt;解决方法&lt;/h2&gt;
+&lt;h3 id=&#34;安装-localepurge-管理语言文件&#34;&gt;安装 localepurge 管理语言文件&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install localepurge
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;选择我们想要的语言，例如 &lt;code&gt;en_US.UTF-8&lt;/code&gt; 和 &lt;code&gt;zh_CN.UTF-8&lt;/code&gt;
+当然也可以使用以下命令再次进行配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dpkg-reconfigure localepurge
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;生成自己想要的语言&#34;&gt;生成自己想要的语言&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo locale-gen zh_CN.UTF-8 en_US.UTF-8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;打印出当前的配置信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;locale
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;默认情况下终端 ssh 的时候会将本地的 locale 传到服务器中，可以通过命令指定 ssh 服务器的语言：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ubuntu 下使用 UFW 管理防火墙服务</title>
+      <link>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</link>
+      <pubDate>Mon, 10 Oct 2016 13:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</guid>
+      <description>&lt;p&gt;UFW (Uncomplicated Firewall) 作为 &lt;code&gt;iptables&lt;/code&gt; 的前端应用，给用户提供了简单的接口界面。使用着不需要去记非常复杂的 &lt;code&gt;iptables&lt;/code&gt; 语法。UFW 也使用了 简单英语 作为它的参数。像 allow、deny、reset 就是他们当中的一部分。UFW 绝对是那些想要快速、简单的就建立自己的防火墙，而且还很安全的用户的最佳替代品之一。&lt;/p&gt;
+&lt;h2 id=&#34;检查系统上是否已经安装-ufw&#34;&gt;检查系统上是否已经安装 UFW&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dpkg --get-selections &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep ufw
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装-ufw&#34;&gt;安装 UFW&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install ufw
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h2 id=&#34;ufw-常用命令&#34;&gt;UFW 常用命令&lt;/h2&gt;
+&lt;h3 id=&#34;查看-ufw-状态&#34;&gt;查看 UFW 状态&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw status
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;see-configured-rules-even-when-inactive&#34;&gt;see configured rules even when inactive&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ufw show added
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;启用禁用-ufw&#34;&gt;启用/禁用 UFW&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 禁用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw disable
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;先添加 &lt;code&gt;ufw allow ssh&lt;/code&gt;，防止墙掉自己&lt;/p&gt;
+&lt;h3 id=&#34;查看-ufw-规则&#34;&gt;查看 UFW 规则&lt;/h3&gt;
+&lt;p&gt;需要先启用 UFW&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo ufw status verbose
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在每条规则上加个序号数字&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ubuntu 下使用 sysv-rc-conf 管理开机启动服务</title>
+      <link>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</link>
+      <pubDate>Mon, 19 Sep 2016 14:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</guid>
+      <description>&lt;p&gt;&lt;code&gt;sysv-rc-conf&lt;/code&gt; gives an easy to use interface for managing &amp;ldquo;/etc/rc{runlevel}.d/&amp;rdquo; symlinks. The interface comes in two different flavors, one that simply allows turning services on or off and another that allows for more fine tuned management of the symlinks.&lt;/p&gt;
+&lt;h2 id=&#34;安装-sysv-rc-conf&#34;&gt;安装 sysv-rc-conf&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install sysv-rc-conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用-sysv-rc-conf&#34;&gt;使用 sysv-rc-conf&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo sysv-rc-conf
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;操作界面十分简洁，你可以用鼠标点击，也可以用键盘方向键定位，用空格键选择，用 &lt;code&gt;Ctrl+n&lt;/code&gt; 翻下一页，用 &lt;code&gt;Ctrl+p&lt;/code&gt; 翻上一页，用 &lt;code&gt;q&lt;/code&gt; 退出。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;相关知识&#34;&gt;相关知识&lt;/h2&gt;
+&lt;h3 id=&#34;ubuntu-运行级别&#34;&gt;Ubuntu 运行级别&lt;/h3&gt;
+&lt;p&gt;Linux 系统任何时候都运行在一个指定的运行级上，并且不同的运行级的程序和服务都不同，所要完成的工作和要达到的目的都不同，系统可以在这些运行级之间进行切换，以完成不同的工作。&lt;/p&gt;
+&lt;p&gt;Ubuntu 的系统运行级别：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; 停机
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; 单用户，Does not configure network interfaces, start daemons, or allow non-root logins
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; 多用户，无网络连接 Does not configure network interfaces or start daemons
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; 多用户，启动网络连接 Starts the system normally.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; 用户自定义
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt; 多用户带图形界面
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;6&lt;/span&gt; 重启
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看当前运行级别，执行命令：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ubuntu 下连接蓝牙键盘</title>
+      <link>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</link>
+      <pubDate>Tue, 14 Jun 2016 13:30:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</guid>
+      <description>&lt;p&gt;新买了 &lt;code&gt;Filco Majestouch Convertible 2&lt;/code&gt; 键盘。在自己的笔记本上连接没什么问题，搬到公司 Ubuntu 的 IBM 笔记本这么都连接不上，查找解决。&lt;/p&gt;
+&lt;p&gt;安装蓝牙的 &lt;code&gt;hcidump&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install bluez-hcidump
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后，监测蓝牙事件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo hcidump -at
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;再次连接蓝牙键盘，可以看到输出事件中有一条 &lt;code&gt;Pin ...&lt;/code&gt; 键盘输入对应的 Pin，Enter，连接成功。&lt;/p&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

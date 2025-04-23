@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Mac on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/mac/</link>
+    <description>Recent content in Mac on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Dec 2019 14:45:39 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows 文本文件到 Mac 中文乱码</title>
+      <link>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</link>
+      <pubDate>Mon, 09 Dec 2019 14:45:39 +0000</pubDate>
+      <guid>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</guid>
+      <description>&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;解决办法&#34;&gt;解决办法&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/Iconv&#34;&gt;iconv | wikipedia&lt;/a&gt; 它的作用是在多种国际编码格式之间进行文本内码的转换。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;OPTION...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-f ENCODING&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-t ENCODING&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;INPUTFILE...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv -f &amp;lt;原始编码&amp;gt; -t &amp;lt;目标编码&amp;gt; &amp;lt;输入文件&amp;gt; -o &amp;lt;输出文件&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv -f GB18030 -t utf-8 &amp;lt;infile.txt&amp;gt; outfile.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://super2bai.github.io/codec/w2m.html&#34;&gt;文本文件从 Windows 拷贝到 Mac 乱码 | super2bai&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>My MacBook</title>
+      <link>https://zyf.im/2019/05/20/my-macbook/</link>
+      <pubDate>Mon, 20 May 2019 17:14:59 +0000</pubDate>
+      <guid>https://zyf.im/2019/05/20/my-macbook/</guid>
+      <description>&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;软件下载&#34;&gt;软件下载&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;brew cask&lt;/code&gt; 安装软件，非常方便。&lt;/p&gt;
+&lt;p&gt;安装 &lt;a href=&#34;https://brew.sh/&#34;&gt;brew&lt;/a&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/bin/bash -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查找软件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew desc iterm2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew search iterm2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew info iterm2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 安装软件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install --cask iterm2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;软件清单&#34;&gt;软件清单&lt;/h2&gt;
+&lt;h3 id=&#34;brew-cask&#34;&gt;brew cask&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/arc#default&#34;&gt;arc&lt;/a&gt; Chromium based browser&lt;/li&gt;
+&lt;li&gt;chromium - Free and open-source web browser 🌐&lt;/li&gt;
+&lt;li&gt;dbeaver-community - Universal database tool and SQL client 🌐&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/docker#default&#34;&gt;docker&lt;/a&gt; - App to build and share containerised applications and microservices 🌐 office network can&amp;rsquo;t access &lt;code&gt;https://desktop.docker.com/&lt;/code&gt;, have to &lt;a href=&#34;https://www.docker.com/products/docker-desktop&#34;&gt;manual install&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;drawio - Online diagram software 🌐&lt;/li&gt;
+&lt;li&gt;figma - Collaborative team software 💅🏼&lt;/li&gt;
+&lt;li&gt;firefox&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/fork#default&#34;&gt;fork&lt;/a&gt; GIT client&lt;/li&gt;
+&lt;li&gt;github - Desktop client for GitHub repositories 🌐&lt;/li&gt;
+&lt;li&gt;google-chrome - Web browser 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/iina#default&#34;&gt;iina&lt;/a&gt; - Free and open-source media player 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/imageoptim#default&#34;&gt;imageoptim&lt;/a&gt; - Tool to optimise images to a smaller size 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/iterm2#default&#34;&gt;iterm2&lt;/a&gt; - Terminal emulator as alternative to Apple&amp;rsquo;s Terminal app 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/itsycal#default&#34;&gt;itsycal&lt;/a&gt; - Menu bar calendar 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/licecap#default&#34;&gt;licecap&lt;/a&gt; - Animated screen capture application 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/logitech-g-hub#default&#34;&gt;logitech-g-hub&lt;/a&gt; - Support for Logitech G gear 💻&lt;/li&gt;
+&lt;li&gt;mysqlworkbench&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/notion#default&#34;&gt;notion&lt;/a&gt; - App to write, plan, collaborate, and get organised 💻&lt;/li&gt;
+&lt;li&gt;openinterminal&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/orbstack#default&#34;&gt;orbstack&lt;/a&gt; Replacement for Docker Desktop&lt;/li&gt;
+&lt;li&gt;phpstorm&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/postman#default&#34;&gt;postman&lt;/a&gt; - Collaboration platform for API development 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/qlstephen#default&#34;&gt;qlstephen&lt;/a&gt; - Quick Look plugin for plaintext files without an extension 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/raycast#default&#34;&gt;raycast&lt;/a&gt; Control your tools with a few keystrokes&lt;/li&gt;
+&lt;li&gt;sequel-ace&lt;/li&gt;
+&lt;li&gt;slack&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/snipaste#default&#34;&gt;snipaste&lt;/a&gt; - Snip or pin screenshots 💻&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.sourcetreeapp.com/&#34;&gt;sourcetree&lt;/a&gt; - Graphical client for Git version control 💻&lt;/li&gt;
+&lt;li&gt;the-unarchiver - Unpacks archive files&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/visual-studio-code#default&#34;&gt;visual-studio-code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/warp#default&#34;&gt;warp&lt;/a&gt; - Rust-based terminal 💻&lt;/li&gt;
+&lt;li&gt;wetype - Text input app from WeChat team for Chinese users 💻&lt;/li&gt;
+&lt;li&gt;youdaodict - Youdao Dictionary 💻&lt;/li&gt;
+&lt;li&gt;zoom-for-it-admins&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;brew-cask-archive&#34;&gt;brew cask archive&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/adrive#default&#34;&gt;adrive&lt;/a&gt; - Intelligent cloud storage platform 💻&lt;/li&gt;
+&lt;li&gt;another-redis-desktop-manager - Redis desktop manager 🌐&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/baidunetdisk#default&#34;&gt;baidunetdisk&lt;/a&gt; - Cloud storage service 💻&lt;/li&gt;
+&lt;li&gt;blender - 3D creation suite 💅🏼&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/lens#default&#34;&gt;lens&lt;/a&gt; - Kubernetes IDE 🌐&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/mongodb-compass#default&#34;&gt;mongodb-compass&lt;/a&gt; - Interactive tool for analyzing MongoDB data 🌐&lt;/li&gt;
+&lt;li&gt;fliqlo - Flip clock screensaver - 可以配合 &lt;code&gt;触发角&lt;/code&gt; 使用&lt;/li&gt;
+&lt;li&gt;paper - Pap.er, 4K 5K HD Wallpaper Application 💻&lt;/li&gt;
+&lt;li&gt;wireshark - Network analyzer and capture tool - without graphical user interface 🌐&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/path-finder#default&#34;&gt;path-finder&lt;/a&gt;  - 💰&lt;/li&gt;
+&lt;li&gt;dash - API documentation browser and code snippet manager  - 💰&lt;/li&gt;
+&lt;li&gt;Medis 2 - 💰&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/redisinsight#default&#34;&gt;redisinsight&lt;/a&gt; GUI for streamlined Redis application development&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/craft#default&#34;&gt;craft&lt;/a&gt; Native document editor&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/input-source-pro#default&#34;&gt;input-source-pro&lt;/a&gt; Tool for multi-language users&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/cask/cleanshot#default&#34;&gt;cleanshot&lt;/a&gt; Screen capturing tool&lt;/li&gt;
+&lt;li&gt;cleanmymac-zh - Tool to remove unnecessary files and folders from disk  - 💰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# brew list&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# brew list --cask&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ==&amp;gt; Casks&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# arc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# chromium&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# dbeaver-community&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# drawio&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# eudic&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# figma&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# firefox&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# fork&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# github&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# google-chrome&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# iina&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# imageoptim&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# iterm2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# itsycal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# licecap&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# logitech-g-hub&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# mysqlworkbench&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# notion&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# openinterminal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# orbstack&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# phpstorm&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# postman&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# qlstephen&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# raycast&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# sequel-ace&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# slack&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# snipaste&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# sourcetree&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# the-unarchiver&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# visual-studio-code&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# warp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# wetype&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# youdaodict&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# zoom-for-it-admins&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 💻&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install --cask adrive alfred google-chrome visual-studio-code
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install --cask visual-studio-code wetype youdaodict
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 🌐&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install --cask itsycal
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 💅🏼&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install --cask blender
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;brew&#34;&gt;brew&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/formula/mas#default&#34;&gt;mas&lt;/a&gt; Mac App Store command-line interface&lt;/li&gt;
+&lt;li&gt;nvm&lt;/li&gt;
+&lt;li&gt;curl&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/formula/jmeter#default&#34;&gt;jmeter&lt;/a&gt; - Load testing and performance measurement application&lt;/li&gt;
+&lt;li&gt;wget&lt;/li&gt;
+&lt;li&gt;yarn&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://formulae.brew.sh/formula/protobuf#default&#34;&gt;protobuf&lt;/a&gt; - Protocol buffers (Google&amp;rsquo;s data interchange format)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/BurntSushi/ripgrep&#34;&gt;ripgrep&lt;/a&gt; recursively searches directories for a regex pattern while respecting your gitignore&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;fish&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;manual&#34;&gt;Manual&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;charles - Web debugging Proxy application - 💰&lt;/li&gt;
+&lt;li&gt;Navicat Premium  - 💰&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ohmyz.sh/&#34;&gt;oh-my-zsh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://install.appcenter.ms/users/clashx/apps/clashx-pro/distribution_groups/public&#34;&gt;ClashX Pro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;axure-rp - Planning and prototyping tool for developers - 💰&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://badgeify.app/&#34;&gt;Badgeify&lt;/a&gt; Add Any App to Your Mac Menu Bar&lt;/li&gt;
+&lt;li&gt;&lt;del&gt;&lt;a href=&#34;https://github.com/xzhih/one-key-hidpi&#34;&gt;one-key-hidpi&lt;/a&gt; 3182x1332&lt;/del&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;app-store-&#34;&gt;App Store &lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Xnip - Handy Screenshot App for Mac&lt;/li&gt;
+&lt;li&gt;iHosts - /etc/hosts 编辑器&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://apps.apple.com/cn/app/xiaomi-home/id957323480?l=en-GB&#34;&gt;Xiaomi Home&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# brew install mas&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# mas search Xnip&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# mas upgrade&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Xnip&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;1221250572&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# iHosts&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;408981434&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# WeChat&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;836500024&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# QQ音乐&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;595615424&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Xcode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;497799835&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# MoneyThings 记账&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;1549694221&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Xiaomi Home, needed manual install&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mas install &lt;span class=&#34;m&#34;&gt;957323480&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;ai&#34;&gt;AI&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;BoltAI&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.typingmind.com/&#34;&gt;TypingMind&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;LobeChat&lt;/li&gt;
+&lt;li&gt;Ollama&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;快捷键&#34;&gt;快捷键&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.apple.com/zh-cn/102650&#34;&gt;Mac 键盘快捷键&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://support.google.com/chrome/answer/157179?hl=zh-Hans&#34;&gt;Chrome 键盘快捷键&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;个性化设置&#34;&gt;个性化设置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;触发角：&lt;code&gt;系统偏好设置 -&amp;gt; 桌面与屏幕保护程序 -&amp;gt; 屏幕保护程序 -&amp;gt; 触发角&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux Mac 使用代理连接 SSH</title>
+      <link>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</link>
+      <pubDate>Sat, 28 Oct 2017 15:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</guid>
+      <description>&lt;h2 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -oProxyCommand&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nc -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mac&#34;&gt;Mac&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -o &lt;span class=&#34;s2&#34;&gt;&amp;#34;ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h2 id=&#34;secourecrt&#34;&gt;SecoureCRT&lt;/h2&gt;
+&lt;p&gt;Session Options - Connection - SSH2 - Firewall，创建、选择代理。&lt;/p&gt;
+&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-o ProxyCommand&lt;/code&gt;：SSH 命令选项，你可以理解成使用 “在 SSH 中使用代理”。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nc&lt;/code&gt;：netcat 命令。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;127.0.0.1:1080&lt;/code&gt;：本地 Shadowsocks 的监听地址和监听端口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;命令行-http-代理&#34;&gt;命令行 HTTP 代理&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;http_proxy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://127.0.0.1:1087&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;https_proxy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://127.0.0.1:1087&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;鉴别自己是否真的使用了代理来登陆服务器&#34;&gt;鉴别自己是否真的使用了代理来登陆服务器&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@ubuntu:~# who
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root     pts/2        2017-05-13 18:13 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;xxx.xxx.xxx.xxx&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.goodspb.net/mac-os-%E4%BD%BF%E7%94%A8-shadowsock-%E6%9D%A5%E4%BB%A3%E7%90%86-ssh-%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/&#34;&gt;Mac OS 使用 shadowsock 来代理 ssh 访问服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>MacBook 使用小感</title>
+      <link>https://zyf.im/2017/10/28/simple-macbook-report/</link>
+      <pubDate>Sat, 28 Oct 2017 14:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/10/28/simple-macbook-report/</guid>
+      <description>&lt;p&gt;现在自己的开发主力机是：2015 版的 MacBook Pro。对于工程师来讲，MacBook 绝对是用来提高生产力的，不是装杯的。如果条件允许十分推荐，反正我是回不来了。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;一些感受&#34;&gt;一些感受&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;购买型号选择：15 寸 i7 Pro 没的说，屏大看的很爽。&lt;/li&gt;
+&lt;li&gt;F1&amp;hellip; 等键并有没有原来想象的那么重要，游览器刷新什么的都有代替的键。我感觉 F 系列的键默认为功能键挺好的。Filco 键盘开始吃灰。&lt;/li&gt;
+&lt;li&gt;续航时间是真的长，待机功耗很小，不用关机。扣上盖子装包带走，不拿充电线。&lt;/li&gt;
+&lt;li&gt;触控板真的好用。原来都是没鼠标时不得已才用触控板。(后来发现老司机们都爱触控板)&lt;/li&gt;
+&lt;li&gt;鼠标 - 滚动方向：自然，需要适应。&lt;/li&gt;
+&lt;li&gt;Chrome Tab 随便开。&lt;/li&gt;
+&lt;li&gt;很安静。&lt;/li&gt;
+&lt;li&gt;装包时边沿有些割手。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;软件推荐&#34;&gt;软件推荐&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;2020-03-25 更新：&lt;/strong&gt; &lt;a href=&#34;https://zyf.im/2019/05/20/my-macbook/&#34;&gt;My MacBook | Yifans_Z&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

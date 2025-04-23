@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Phpstorm on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/phpstorm/</link>
+    <description>Recent content in Phpstorm on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 May 2020 09:45:15 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/phpstorm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置 Laradock PhpStorm Xdubug</title>
+      <link>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</link>
+      <pubDate>Tue, 26 May 2020 09:45:15 +0000</pubDate>
+      <guid>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</guid>
+      <description>&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
+&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;macOS&lt;/li&gt;
+&lt;li&gt;Laradock v10.0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;请保证 Laradock 是最新的版本，可以减少不必要的麻烦。也推荐使用我精简过的项目 &lt;a href=&#34;https://github.com/imzyf/my-dock&#34;&gt;imzyf/my-dock | github&lt;/a&gt;。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;配置-laradock&#34;&gt;配置 Laradock&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vim .env
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;WORKSPACE_INSTALL_XDEBUG&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PHP_FPM_INSTALL_XDEBUG&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重新编译 php-fpm 和 workspace 容器：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker-compose build php-fpm workspace
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置-phpstorm&#34;&gt;配置 PhpStorm&lt;/h2&gt;
+&lt;h3 id=&#34;配置-docker&#34;&gt;配置 Docker&lt;/h3&gt;
+&lt;p&gt;Preferences &amp;gt; Build, Execution, Deploymnent &amp;gt; Docker&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;docker&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/82999144-302d2100-a03b-11ea-8a21-08bc67838fc2.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;配置-php&#34;&gt;配置 PHP&lt;/h3&gt;
+&lt;p&gt;Preferences &amp;gt; Languages &amp;amp; Frameworks &amp;gt; PHP，PHP CLI Interpreter 点 &lt;code&gt;...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;php 1&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/82997395-e7746880-a038-11ea-98ca-d68052d5bd22.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;点击 +，选择 From Docker, Vagrant&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;php 2&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/82997724-55209480-a039-11ea-8235-4a0479aeb832.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>PhpStorm 使用经验</title>
+      <link>https://zyf.im/2018/05/05/phpstorm-using-experience/</link>
+      <pubDate>Sat, 05 May 2018 14:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2018/05/05/phpstorm-using-experience/</guid>
+      <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/phpstorm/getting-started/episode-1/&#34;&gt;Two shortcuts to get started&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Shift+Shift(⇧+⇧)&lt;/code&gt; helps you find anything within your project.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Alt+Enter(Option+Enter)&lt;/code&gt; provides instant access to contextual actions and quick fixes relevant to the selected code.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Getting started with PHP in PhpStorm&lt;/p&gt;
+&lt;p&gt;还有个 &lt;code&gt;One Dark theme&lt;/code&gt; 但是 &lt;code&gt;Material Theme UI&lt;/code&gt; 已经包含这个主题。&lt;/p&gt;
+&lt;p&gt;配置：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Preferences &amp;gt; Appearance &amp;amp; Behavior &amp;gt; Appearance&lt;/code&gt; 下，右侧配置：&lt;code&gt;Theme: Darcula&lt;/code&gt;，勾选 &lt;code&gt;User custom font: .AppleSystemUIFont&lt;/code&gt; &lt;code&gt;Size: 18&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Preferences &amp;gt; Editor &amp;gt; Font&lt;/code&gt; 下，右侧配置：&lt;code&gt;Font: Menlo&lt;/code&gt; &lt;code&gt;Size: 18&lt;/code&gt; &lt;code&gt;Line spacing: 1.2&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

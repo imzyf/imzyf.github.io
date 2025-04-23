@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Photoshop on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/photoshop/</link>
+    <description>Recent content in Photoshop on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Nov 2017 09:00:00 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/photoshop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Photoshop 编辑 GIF</title>
+      <link>https://zyf.im/2017/11/23/photoshop-edit-gif/</link>
+      <pubDate>Thu, 23 Nov 2017 09:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/11/23/photoshop-edit-gif/</guid>
+      <description>&lt;h2 id=&#34;录制-gif&#34;&gt;录制 GIF&lt;/h2&gt;
+&lt;p&gt;推荐使用 &lt;a href=&#34;https://www.cockos.com/licecap/&#34;&gt;LICEcap&lt;/a&gt; 小巧好用。&lt;/p&gt;
+&lt;h2 id=&#34;gif-查看方法&#34;&gt;GIF 查看方法&lt;/h2&gt;
+&lt;p&gt;在 Mac 上双击 GIF 将是按帧查看一幅一幅的图片，按住 &lt;code&gt;空格&lt;/code&gt; 可以动起来。也可以选择 GIF 图片直接点击空格预览。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;gif-编辑&#34;&gt;GIF 编辑&lt;/h2&gt;
+&lt;h3 id=&#34;预览&#34;&gt;预览&lt;/h3&gt;
+&lt;p&gt;在 Mac 中可以直接使用 &lt;code&gt;预览&lt;/code&gt; 对 GIF 进行删除帧的操作。但是发现再次保存的 GIF 只播放一次，不会循环播放。&lt;/p&gt;
+&lt;h3 id=&#34;photoshop&#34;&gt;Photoshop&lt;/h3&gt;
+&lt;p&gt;使用 Photoshop 打开 GIF，点击 &lt;code&gt;窗口 -&amp;gt; 时间轴&lt;/code&gt;，可在时间轴中对图片进行编辑。&lt;code&gt;文件 -&amp;gt; 导出 -&amp;gt; 存储为 Web 所用格式&lt;/code&gt; 然后在 &lt;code&gt;循环选项&lt;/code&gt; 选择 &lt;code&gt;永久&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;在这里也可以降低 &lt;code&gt;图像大小&lt;/code&gt; 对图片进行压缩。&lt;/p&gt;
+&lt;p&gt;点击 &lt;code&gt;存储&lt;/code&gt; 导出新的 GIF。&lt;/p&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

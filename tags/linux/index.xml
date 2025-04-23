@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Linux on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/linux/</link>
+    <description>Recent content in Linux on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tcpdump 入门使用</title>
+      <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
+      <pubDate>Mon, 29 Jun 2020 10:24:16 +0000</pubDate>
+      <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
+      <description>&lt;p&gt;tcpdump 是 Unix/Linux 下的抓包工具，可以针对指定网卡、端口、协议进行抓包。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&#34;字太多不看&#34;&gt;字太多不看&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump host api.test and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A -nn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump dst api.test and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;一举成名天下知&#34;&gt;一举成名天下知&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;man tcpdump
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;获取适配器列表&#34;&gt;获取适配器列表&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tcpdump -D
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tcpdump --list-interfaces
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.en0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2.p2p0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3.awdl0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4.llw0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5.utun0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6.utun1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;7.utun2 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8.en5 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;9.lo0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running, Loopback&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.bridge0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;11.en1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;12.en2 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;13.en3 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;14.en4 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;15.gif0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;16.stf0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;17.XHC0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;18.XHC1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;19.ap1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;20.XHC20 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;21.VHC128 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;监听适配器&#34;&gt;监听适配器&lt;/h2&gt;
+&lt;p&gt;Listen on interface.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux Mac 使用代理连接 SSH</title>
+      <link>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</link>
+      <pubDate>Sat, 28 Oct 2017 15:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</guid>
+      <description>&lt;h2 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -oProxyCommand&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nc -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mac&#34;&gt;Mac&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -o &lt;span class=&#34;s2&#34;&gt;&amp;#34;ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h2 id=&#34;secourecrt&#34;&gt;SecoureCRT&lt;/h2&gt;
+&lt;p&gt;Session Options - Connection - SSH2 - Firewall，创建、选择代理。&lt;/p&gt;
+&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-o ProxyCommand&lt;/code&gt;：SSH 命令选项，你可以理解成使用 “在 SSH 中使用代理”。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nc&lt;/code&gt;：netcat 命令。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;127.0.0.1:1080&lt;/code&gt;：本地 Shadowsocks 的监听地址和监听端口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;命令行-http-代理&#34;&gt;命令行 HTTP 代理&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;http_proxy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://127.0.0.1:1087&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;https_proxy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://127.0.0.1:1087&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;鉴别自己是否真的使用了代理来登陆服务器&#34;&gt;鉴别自己是否真的使用了代理来登陆服务器&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@ubuntu:~# who
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root     pts/2        2017-05-13 18:13 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;xxx.xxx.xxx.xxx&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.goodspb.net/mac-os-%E4%BD%BF%E7%94%A8-shadowsock-%E6%9D%A5%E4%BB%A3%E7%90%86-ssh-%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/&#34;&gt;Mac OS 使用 shadowsock 来代理 ssh 访问服务器&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>解决 SSH 连接提示 Permission denied publickey</title>
+      <link>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</link>
+      <pubDate>Thu, 30 Mar 2017 17:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</guid>
+      <description>&lt;p&gt;服务器是使用 publickey 进行连接，当在 git push 时发生 &lt;code&gt;Permission denied (publickey)&lt;/code&gt;。同时解决 ssh-add 重启后失效。&lt;/p&gt;
+&lt;h2 id=&#34;解决&#34;&gt;解决&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-add your_publickey
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果遇到报错&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Could not open a connection to your authentication agent.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Try to&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;eval&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;ssh-agent&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!--more --&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt; 在重启电脑后失效，一直没有找的其他合适的解决方案，所以选择在 &lt;code&gt;~/.bashrc&lt;/code&gt; 或 &lt;code&gt;~/.zshrc&lt;/code&gt; 中添加：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-add your_publickey 2&amp;gt; /dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;2&amp;gt; /dev/null&lt;/code&gt; 是为了保持静默运行&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.mr-wu.cn/ssh-permission-denied-publickey/&#34;&gt;ssh 连接提示 Permission denied (publickey) 怎么破？ | 吴川斌的博客&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Linux crontab 内容定时备份</title>
+      <link>https://zyf.im/2017/03/07/linux-crontab-content-backup/</link>
+      <pubDate>Tue, 07 Mar 2017 12:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2017/03/07/linux-crontab-content-backup/</guid>
+      <description>&lt;p&gt;&lt;code&gt;crontab -r&lt;/code&gt; 是一个很危险的命令，它将直接重置 crontab 中的内容；输入 &lt;code&gt;crontab&lt;/code&gt; 后，使用 &lt;code&gt;ctrl + d&lt;/code&gt; 退出也将清空 crontab 中的内容。所以 crontab 内容的定时备份也变得有必要了。&lt;/p&gt;
+&lt;h2 id=&#34;备份脚本&#34;&gt;备份脚本&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;crontab_bak.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;crontab -l &amp;gt; /home/tom/crontab_bak/bak&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;date &lt;span class=&#34;s1&#34;&gt;&amp;#39;+%Y%m%d_%H%M%S&amp;#39;&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;config in crontab&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;12&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;12&lt;/span&gt; * * * /bin/bash /home/tom/crontab_bak/crontab_bak.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
+&lt;h2 id=&#34;crontab-常用命令&#34;&gt;crontab 常用命令&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -l  &lt;span class=&#34;c1&#34;&gt;# 列举 crontab 的任务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -e  &lt;span class=&#34;c1&#34;&gt;# 编辑 crontab 的任务&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -r  &lt;span class=&#34;c1&#34;&gt;# 删除 crontab 的任务；风险&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -h  &lt;span class=&#34;c1&#34;&gt;# crontab 的帮助&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;crontab -i  &lt;span class=&#34;c1&#34;&gt;# 删除 crontab 前进行提示&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Linux SSH 密钥登陆免密码</title>
+      <link>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</link>
+      <pubDate>Fri, 29 Jul 2016 10:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</guid>
+      <description>&lt;p&gt;最近有需求使用 SSH 进行通信，而且要需免密码，总结了 SSH 密钥登陆免密码的方法。&lt;/p&gt;
+&lt;h2 id=&#34;快速配置&#34;&gt;快速配置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;本机 ip：192.168.1.1&lt;/li&gt;
+&lt;li&gt;服务器 ip：192.168.1.2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;要实现本机免密码登录服务器，执行如下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-copy-id username@192.168.1.2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果命令成功，则说明配置成功。如果执行失败，则需要参考下面的步骤进行配置。&lt;/p&gt;
+&lt;h2 id=&#34;本地配置步骤&#34;&gt;本地配置步骤&lt;/h2&gt;
+&lt;h3 id=&#34;客户端生成公钥私钥&#34;&gt;客户端生成公钥、私钥&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-keygen -t rsa -P &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-t&lt;/code&gt; 表示 &lt;code&gt;key&lt;/code&gt; 的类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-P&lt;/code&gt; 表示密码，&lt;code&gt;-P &#39;&#39;&lt;/code&gt; 就表示空密码，也可以不用 &lt;code&gt;-P&lt;/code&gt; 参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;运行完之后在 &lt;code&gt;~/.ssh&lt;/code&gt; 目录下生成私钥 &lt;code&gt;id_rsa&lt;/code&gt; 和公钥 &lt;code&gt;id_rsa.pub&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;将公钥添加到服务器&#34;&gt;将公钥添加到服务器&lt;/h3&gt;
+&lt;p&gt;将客户端公钥 &lt;code&gt;id_rsa.pub&lt;/code&gt; 写入到服务端 &lt;code&gt;~/.ssh/authorzied_keys&lt;/code&gt; 之中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat ~/.ssh/id_rsa.pub
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;复制输出的内容，登陆服务端：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vim ~/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;粘贴到最后一行。如果没有这个 &lt;code&gt;authorzied_keys&lt;/code&gt; 文件，可以创建一个。&lt;/p&gt;
+&lt;h3 id=&#34;设置文件权限&#34;&gt;设置文件权限&lt;/h3&gt;
+&lt;p&gt;服务端，非必须。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod &lt;span class=&#34;m&#34;&gt;755&lt;/span&gt; ~/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo chmod &lt;span class=&#34;m&#34;&gt;600&lt;/span&gt; ~/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;客户端重启服务&#34;&gt;客户端重启服务&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo service ssh restart
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;此时就可以不免密码登陆服务端了。&lt;/p&gt;
+&lt;h2 id=&#34;以证书登录后-使用-sudo-操作&#34;&gt;以证书登录后 使用 sudo 操作&lt;/h2&gt;
+&lt;p&gt;设置用户以证书登录后，使用 sudo 操作。在服务端设置：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

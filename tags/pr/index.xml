@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Pr on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/pr/</link>
+    <description>Recent content in Pr on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.146.7</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 13 Mar 2020 22:25:25 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/pr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【PRCC2019 全套入门教程】笔记</title>
+      <link>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</link>
+      <pubDate>Fri, 13 Mar 2020 22:25:25 +0000</pubDate>
+      <guid>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;用视频记录生活越来越普及，年初旅行也拍了些素材，想着自己也当个 up 主。先来学学 PR。&lt;a href=&#34;https://www.bilibili.com/video/av37550078&#34;&gt;【PR】Premiere Pro CC 2019 全套入门教程 | bilibili&lt;/a&gt; 是我在 B 站看的第一套教学视频，坦白说内容不多，有不少重复的东西，但是这样适合完全零基础的同学。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;课代表来收我的课后作业：&lt;a href=&#34;https://www.bilibili.com/video/bv17E41157Pz&#34;&gt;【交作业】PR CC 2019 全套入门教程 课后作业 | 菲菲与帆&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;我的一条 VLOG：&lt;a href=&#34;https://www.bilibili.com/video/BV1K7411o73B&#34;&gt;【VLOG】#01 新年之旅 成都 第一日 | 菲菲与帆&lt;/a&gt; 欢迎来一键三连。&lt;/p&gt;
+&lt;iframe src=&#34;//player.bilibili.com/player.html?aid=97184760&amp;bvid=BV1K7411o73B&amp;cid=166268624&amp;page=1&#34; scrolling=&#34;no&#34; border=&#34;0&#34; frameborder=&#34;no&#34; framespacing=&#34;0&#34; allowfullscreen=&#34;true&#34; width=&#34;480px&#34; height=&#34;270px&#34;&gt; &lt;/iframe&gt;
+&lt;h2 id=&#34;01-基础流程&#34;&gt;01-基础流程&lt;/h2&gt;
+&lt;p&gt;1、窗口乱了后：【窗口-工作区-编辑&amp;amp;重置为保存的布局】&lt;code&gt;alt + shift + 0&lt;/code&gt;
+2、【文字工具】加字幕
+3、修改字体：【窗口-基础图形】选择编辑
+4、【剃刀】剪切多余素材
+5、本素材图片来自 &lt;a href=&#34;http://unsample.net/&#34;&gt;http://unsample.net/&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;02-转场效果&#34;&gt;02-转场效果&lt;/h2&gt;
+&lt;p&gt;1、选择素材点击左键拖拽到【左下窗口】 右下的文件夹可以快速新建文件夹，方便素材分类
+2、时序新建时，选择 HDV 720
+3、&lt;code&gt;ctrl + d&lt;/code&gt; 添加转场效果
+4、【左下窗口】（项目窗口）选择【效果】视频过渡，可以切换效果
+5、点击时序上的过渡，【左上窗口】选择【效果控件】，可以编辑转场效果的持续时间、对齐等&lt;/p&gt;
+&lt;h2 id=&#34;0304-视频转场特效音频特效&#34;&gt;03&amp;amp;04-视频转场特效&amp;amp;音频特效&lt;/h2&gt;
+&lt;p&gt;1、【左上窗口】选择【效果控件】，可以编辑视频效果、过渡效果
+2、视频效果，可以点击秒表的图标添加关键帧
+3、新建时查看、修改【暂存盘】位置
+4、【编辑-首选项-时间轴】可以修改：静止图片默认持续时间等，
+已经导入的素材无效
+5、【时序窗口】计时器可以点击编辑，输入 500 会跳到第 5 秒的位置
+6、音频过渡，结尾声音淡出&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,910 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Kubernetes 入门实战 Part2 | ZYF.IM BLOG</title>
+<meta name=keywords content="kubernetes"><meta name=description content="17 多节点的 Kubernetes 集群
+在腾讯云 TencentOS Server 3.1 (TK4) 下测试：
+
+master SA3.MEDIUM4 2 核 4GB 5Mbps
+worker S5.SMALL2 1 核 2GB 1Mbps
+worker S5.SMALL2 1 核 2GB 1Mbps
+
+# 修改源 https://mirrors.cloud.tencent.com/
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
+yum clean all
+yum makecache
+
+# install docker
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+yum install -y yum-utils
+
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+systemctl start docker
+docker -v
+docker run hello-world
+一些准备工作："><meta name=author content="Me"><link rel=canonical href=https://zyf.im/2023/02/22/kubernetes-getting-started-part2/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2023/02/22/kubernetes-getting-started-part2/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://zyf.im/2023/02/22/kubernetes-getting-started-part2/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="Kubernetes 入门实战 Part2"><meta property="og:description" content="17 多节点的 Kubernetes 集群 在腾讯云 TencentOS Server 3.1 (TK4) 下测试：
+master SA3.MEDIUM4 2 核 4GB 5Mbps worker S5.SMALL2 1 核 2GB 1Mbps worker S5.SMALL2 1 核 2GB 1Mbps # 修改源 https://mirrors.cloud.tencent.com/ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo yum clean all yum makecache # install docker yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine yum install -y yum-utils yum-config-manager \ --add-repo \ https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin systemctl start docker docker -v docker run hello-world 一些准备工作："><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-02-22T17:11:27+00:00"><meta property="article:modified_time" content="2023-02-22T17:11:27+00:00"><meta property="article:tag" content="Kubernetes"><meta name=twitter:card content="summary"><meta name=twitter:title content="Kubernetes 入门实战 Part2"><meta name=twitter:description content="17 多节点的 Kubernetes 集群
+在腾讯云 TencentOS Server 3.1 (TK4) 下测试：
+
+master SA3.MEDIUM4 2 核 4GB 5Mbps
+worker S5.SMALL2 1 核 2GB 1Mbps
+worker S5.SMALL2 1 核 2GB 1Mbps
+
+# 修改源 https://mirrors.cloud.tencent.com/
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
+yum clean all
+yum makecache
+
+# install docker
+yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+
+yum install -y yum-utils
+
+yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+systemctl start docker
+docker -v
+docker run hello-world
+一些准备工作："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"Kubernetes 入门实战 Part2","item":"https://zyf.im/2023/02/22/kubernetes-getting-started-part2/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kubernetes 入门实战 Part2","name":"Kubernetes 入门实战 Part2","description":"17 多节点的 Kubernetes 集群 在腾讯云 TencentOS Server 3.1 (TK4) 下测试：\nmaster SA3.MEDIUM4 2 核 4GB 5Mbps worker S5.SMALL2 1 核 2GB 1Mbps worker S5.SMALL2 1 核 2GB 1Mbps # 修改源 https://mirrors.cloud.tencent.com/ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo yum clean all yum makecache # install docker yum remove docker \\ docker-client \\ docker-client-latest \\ docker-common \\ docker-latest \\ docker-latest-logrotate \\ docker-logrotate \\ docker-engine yum install -y yum-utils yum-config-manager \\ --add-repo \\ https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin systemctl start docker docker -v docker run hello-world 一些准备工作：\n","keywords":["kubernetes"],"articleBody":"17 多节点的 Kubernetes 集群 在腾讯云 TencentOS Server 3.1 (TK4) 下测试：\nmaster SA3.MEDIUM4 2 核 4GB 5Mbps worker S5.SMALL2 1 核 2GB 1Mbps worker S5.SMALL2 1 核 2GB 1Mbps # 修改源 https://mirrors.cloud.tencent.com/ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo yum clean all yum makecache # install docker yum remove docker \\ docker-client \\ docker-client-latest \\ docker-common \\ docker-latest \\ docker-latest-logrotate \\ docker-logrotate \\ docker-engine yum install -y yum-utils yum-config-manager \\ --add-repo \\ https://download.docker.com/linux/centos/docker-ce.repo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin systemctl start docker docker -v docker run hello-world 一些准备工作：\n# 改主机名 vi /etc/hostname # reboot # 把 cgroup 的驱动程序改成 systemd # 使用 Docker 作为 Kubernetes 的底层支持 cat \u003c","wordCount":"2610","inLanguage":"en","datePublished":"2023-02-22T17:11:27Z","dateModified":"2023-02-22T17:11:27Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2023/02/22/kubernetes-getting-started-part2/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body class=dark id=top><script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">Kubernetes 入门实战 Part2</h1><div class=post-meta><span title='2023-02-22 17:11:27 +0000 UTC'>February 22, 2023</span>&nbsp;·&nbsp;13 min&nbsp;·&nbsp;2610 words&nbsp;·&nbsp;Me</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#17-多节点的-kubernetes-集群>17 多节点的 Kubernetes 集群</a></li><li><a href=#18-deployment-部署应用>18 Deployment 部署应用</a></li><li><a href=#19-daemonset-看门狗>19 DaemonSet 看门狗</a></li><li><a href=#20-service-服务发现>20 Service 服务发现</a></li><li><a href=#21-ingress-流量总管>21 Ingress 流量总管</a></li><li><a href=#22-玩转-kubernetes-2>22 玩转 Kubernetes 2</a></li><li><a href=#23-中级篇实操总结>23 中级篇实操总结</a></li><li><a href=#references>References</a></li></ul></nav></div></details></div><div class=post-content><h2 id=17-多节点的-kubernetes-集群>17 多节点的 Kubernetes 集群<a hidden class=anchor aria-hidden=true href=#17-多节点的-kubernetes-集群>#</a></h2><p>在腾讯云 TencentOS Server 3.1 (TK4) 下测试：</p><ul><li>master SA3.MEDIUM4 2 核 4GB 5Mbps</li><li>worker S5.SMALL2 1 核 2GB 1Mbps</li><li>worker S5.SMALL2 1 核 2GB 1Mbps</li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 修改源 https://mirrors.cloud.tencent.com/</span>
+</span></span><span class=line><span class=cl>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+</span></span><span class=line><span class=cl>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
+</span></span><span class=line><span class=cl>yum clean all
+</span></span><span class=line><span class=cl>yum makecache
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># install docker</span>
+</span></span><span class=line><span class=cl>yum remove docker <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-client <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-client-latest <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-common <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-latest <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-latest-logrotate <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-logrotate <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>                  docker-engine
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum install -y yum-utils
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum-config-manager <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    --add-repo <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    https://download.docker.com/linux/centos/docker-ce.repo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>systemctl start docker
+</span></span><span class=line><span class=cl>docker -v
+</span></span><span class=line><span class=cl>docker run hello-world
+</span></span></code></pre></div><p>一些准备工作：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 改主机名</span>
+</span></span><span class=line><span class=cl>vi /etc/hostname
+</span></span><span class=line><span class=cl><span class=c1># reboot</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 把 cgroup 的驱动程序改成 systemd</span>
+</span></span><span class=line><span class=cl><span class=c1># 使用 Docker 作为 Kubernetes 的底层支持</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/docker/daemon.json
+</span></span></span><span class=line><span class=cl><span class=s>{
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;log-driver&#34;: &#34;json-file&#34;,
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;log-opts&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s>    &#34;max-size&#34;: &#34;100m&#34;
+</span></span></span><span class=line><span class=cl><span class=s>  },
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;storage-driver&#34;: &#34;overlay2&#34;
+</span></span></span><span class=line><span class=cl><span class=s>}
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> docker
+</span></span><span class=line><span class=cl>systemctl daemon-reload
+</span></span><span class=line><span class=cl>systemctl restart docker
+</span></span><span class=line><span class=cl>docker version
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># https://kubernetes.io/zh-cn/docs/setup/production-environment/container-runtimes/</span>
+</span></span><span class=line><span class=cl><span class=c1># 转发 IPv4 并让 iptables 看到桥接流量</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+</span></span></span><span class=line><span class=cl><span class=s>overlay
+</span></span></span><span class=line><span class=cl><span class=s>br_netfilter
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo modprobe overlay
+</span></span><span class=line><span class=cl>sudo modprobe br_netfilter
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check</span>
+</span></span><span class=line><span class=cl>lsmod <span class=p>|</span> grep br_netfilter
+</span></span><span class=line><span class=cl>lsmod <span class=p>|</span> grep overlay
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置所需的 sysctl 参数，参数在重新启动后保持不变</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-iptables  = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-ip6tables = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.ipv4.ip_forward                 = 1
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 应用 sysctl 参数而不重新启动</span>
+</span></span><span class=line><span class=cl>sudo sysctl --system
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+</span></span><span class=line><span class=cl><span class=c1># net.bridge.bridge-nf-call-iptables = 1</span>
+</span></span><span class=line><span class=cl><span class=c1># net.bridge.bridge-nf-call-ip6tables = 1</span>
+</span></span><span class=line><span class=cl><span class=c1># net.ipv4.ip_forward = 1</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 关闭 Linux 的 swap 分区</span>
+</span></span><span class=line><span class=cl>swapoff -a
+</span></span><span class=line><span class=cl>sed -ri <span class=s1>&#39;/\sswap\s/s/^#?/#/&#39;</span> /etc/fstab
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># https://developer.aliyun.com/mirror/kubernetes</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+</span></span></span><span class=line><span class=cl><span class=s>[kubernetes]
+</span></span></span><span class=line><span class=cl><span class=s>name=Kubernetes
+</span></span></span><span class=line><span class=cl><span class=s>baseurl=https://mirrors.cloud.tencent.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum clean all
+</span></span><span class=line><span class=cl>yum makecache
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 将 SELinux 设置为 permissive 模式（相当于将其禁用）</span>
+</span></span><span class=line><span class=cl>setenforce <span class=m>0</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s1>&#39;s/^SELINUX=enforcing$/SELINUX=permissive/&#39;</span> /etc/selinux/config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 新版本搞不定</span>
+</span></span><span class=line><span class=cl><span class=c1># yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes --nogpgcheck</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum --showduplicate list kubelet
+</span></span><span class=line><span class=cl>yum install -y kubelet-1.23.16-0 kubeadm-1.23.16-0 kubectl-1.23.16-0 --disableexcludes<span class=o>=</span>kubernetes --nogpgcheck
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> --now kubelet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubeadm version
+</span></span><span class=line><span class=cl>kubectl version --output<span class=o>=</span>yaml
+</span></span><span class=line><span class=cl>kubelet --version
+</span></span></code></pre></div><p>下载 Kubernetes 组件镜像：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># kubeadm config images list</span>
+</span></span><span class=line><span class=cl>kubeadm config images list --kubernetes-version v1.23.16
+</span></span></code></pre></div><p>安装 Master 节点：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vim /etc/containerd/config.toml
+</span></span><span class=line><span class=cl><span class=c1>#disabled_plugins = [&#34;cri&#34;]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> containerd
+</span></span><span class=line><span class=cl>systemctl restart containerd
+</span></span><span class=line><span class=cl>systemctl status containerd
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> kubelet.service
+</span></span><span class=line><span class=cl>systemctl restart kubelet
+</span></span><span class=line><span class=cl>systemctl status kubelet
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>containerd config default &gt; /etc/containerd/config.toml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum install -y nc
+</span></span><span class=line><span class=cl>nc 127.0.0.1 <span class=m>6443</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubeadm init -h
+</span></span><span class=line><span class=cl>kubeadm reset -f
+</span></span><span class=line><span class=cl>rm -rf ~/.kube/config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubeadm init <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    --image-repository<span class=o>=</span>registry.aliyuncs.com/google_containers <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    --pod-network-cidr<span class=o>=</span>10.10.0.0/16 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    --kubernetes-version<span class=o>=</span>v1.23.16 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    --v<span class=o>=</span><span class=m>9</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Run &#34;kubectl apply -f [podnetwork].yaml&#34; with one of the options listed at:</span>
+</span></span><span class=line><span class=cl><span class=c1>#   https://kubernetes.io/docs/concepts/cluster-administration/addons/</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># success</span>
+</span></span><span class=line><span class=cl>mkdir -p <span class=nv>$HOME</span>/.kube
+</span></span><span class=line><span class=cl>sudo cp -i /etc/kubernetes/admin.conf <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>sudo chown <span class=k>$(</span>id -u<span class=k>)</span>:<span class=k>$(</span>id -g<span class=k>)</span> <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>KUBECONFIG</span><span class=o>=</span>/etc/kubernetes/admin.conf
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl get node
+</span></span><span class=line><span class=cl><span class=c1># NAME     STATUS     ROLES                  AGE    VERSION</span>
+</span></span><span class=line><span class=cl><span class=c1># master   NotReady   control-plane,master   2m4s   v1.23.16</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># dubug</span>
+</span></span><span class=line><span class=cl>systemctl restart docker
+</span></span><span class=line><span class=cl>systemctl restart kubelet
+</span></span><span class=line><span class=cl>systemctl restart containerd
+</span></span><span class=line><span class=cl>journalctl -xeu kubelet
+</span></span><span class=line><span class=cl>crictr ps -a
+</span></span><span class=line><span class=cl>crictl --runtime-endpoint unix:///var/run/containerd/containerd.sock ps -a <span class=p>|</span> grep kube <span class=p>|</span> grep -v pause
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl get pods -n kube-system
+</span></span><span class=line><span class=cl>kubectl describe pods -n kube-system
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Flannel 网络插件 https://github.com/flannel-io/flannel/tree/master</span>
+</span></span><span class=line><span class=cl><span class=c1># curl https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml --output kube-flannel.yml</span>
+</span></span><span class=line><span class=cl><span class=c1>#  net-conf.json: |</span>
+</span></span><span class=line><span class=cl><span class=c1>#     {</span>
+</span></span><span class=line><span class=cl><span class=c1>#       &#34;Network&#34;: &#34;10.10.0.0/16&#34;,</span>
+</span></span><span class=line><span class=cl><span class=c1>#       &#34;Backend&#34;: {</span>
+</span></span><span class=line><span class=cl><span class=c1>#         &#34;Type&#34;: &#34;vxlan&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1>#       }</span>
+</span></span><span class=line><span class=cl><span class=c1>#     }</span>
+</span></span><span class=line><span class=cl>kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+</span></span><span class=line><span class=cl>kubectl get node
+</span></span><span class=line><span class=cl><span class=c1># NAME     STATUS   ROLES                  AGE   VERSION</span>
+</span></span><span class=line><span class=cl><span class=c1># master   Ready    control-plane,master   14h   v1.23.16</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># show join command in control-plane</span>
+</span></span><span class=line><span class=cl>kubeadm token create --print-join-command
+</span></span><span class=line><span class=cl><span class=c1># work join; 云服务记得开放入站端口</span>
+</span></span><span class=line><span class=cl>telnet 172.21.0.5 <span class=m>6443</span>
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> kubelet.service
+</span></span><span class=line><span class=cl>kubeadm join 172.21.0.5:6443 --token xxx --discovery-token-ca-cert-hash sha256:xxx --v<span class=o>=</span><span class=m>9</span>
+</span></span><span class=line><span class=cl><span class=c1># check in control-plane</span>
+</span></span><span class=line><span class=cl>kubectl get nodes
+</span></span><span class=line><span class=cl><span class=c1># NAME            STATUS   ROLES                  AGE     VERSION</span>
+</span></span><span class=line><span class=cl><span class=c1># master          Ready    control-plane,master   14h     v1.23.16</span>
+</span></span><span class=line><span class=cl><span class=c1># vm-0-9-centos   Ready    &lt;none&gt;                 3m27s   v1.23.16</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># run nginx</span>
+</span></span><span class=line><span class=cl>kubectl run ngx --image<span class=o>=</span>nginx:alpine
+</span></span><span class=line><span class=cl>kubectl get pod -o wide
+</span></span><span class=line><span class=cl><span class=c1># NAME   READY   STATUS    RESTARTS   AGE   IP          NODE      NOMINATED NODE   READINESS GATES</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx    1/1     Running   0          52m   10.10.1.2   woker01   &lt;none&gt;           &lt;none&gt;</span>
+</span></span></code></pre></div><h2 id=18-deployment-部署应用>18 Deployment 部署应用<a hidden class=anchor aria-hidden=true href=#18-deployment-部署应用>#</a></h2><p>“单一职责”和“对象组合”。既然 Pod 管理不了自己，那么我们就再创建一个新的对象，由它来管理 Pod，采用和 Job/CronJob 一样的形式——“对象套对象”。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl api-resources
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>out</span><span class=o>=</span><span class=s2>&#34;--dry-run=client -o yaml&#34;</span>
+</span></span><span class=line><span class=cl>kubectl create deploy ngx-dep --image<span class=o>=</span>nginx:alpine <span class=nv>$out</span> &gt; ngx-dep.yml
+</span></span><span class=line><span class=cl>vim ngx-dep.yml
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>creationTimestamp</span><span class=p>:</span><span class=w> </span><span class=kc>null</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 定义了 Pod 的“期望数量”，Kubernetes 会自动维护 Pod 数量到正常水平</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 定义了基于 labels 筛选 Pod 的规则，它必须与 template 里 Pod 的 labels 一致</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>strategy</span><span class=p>:</span><span class=w> </span>{}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>creationTimestamp</span><span class=p>:</span><span class=w> </span><span class=kc>null</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 贴标签</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>nginx:alpine</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>resources</span><span class=p>:</span><span class=w> </span>{}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>status</span><span class=p>:</span><span class=w> </span>{}<span class=w>
+</span></span></span></code></pre></div><p>Deployment 实际上并不“持有”Pod 对象，它只是帮助 Pod 对象能够有足够的副本数量运行。</p><p>通过标签这种设计，Kubernetes 就解除了 Deployment 和模板里 Pod 的强绑定，把组合关系变成了“弱引用”。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># replicas: 2</span>
+</span></span><span class=line><span class=cl>kubectl apply -f ngx-dep.yml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl get deploy
+</span></span><span class=line><span class=cl><span class=c1># NAME      READY   UP-TO-DATE   AVAILABLE   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep   2/2     2            2           57s</span>
+</span></span><span class=line><span class=cl>kubectl get pod
+</span></span><span class=line><span class=cl><span class=c1># NAME                      READY   STATUS    RESTARTS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-96scb   1/1     Running   0          3m20s</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-qnzbh   1/1     Running   0          3m20s</span>
+</span></span></code></pre></div><ul><li>READY：运行的 Pod 数量，当前数量/期望数量。</li><li>UP-TO-DATE：当前已经更新到最新状态的 Pod 数量。</li><li>AVAILABLE：不仅要求已经运行，还必须是健康状态，能够正常对外提供服务，它才是我们最关心的 Deployment 指标。</li><li>AGE：从创建到现在所经过的时间。</li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 测试自启恢复</span>
+</span></span><span class=line><span class=cl>kubectl delete pod ngx-dep-bfbb5f64b-qnzbh
+</span></span><span class=line><span class=cl>kubectl get pod
+</span></span><span class=line><span class=cl><span class=c1># NAME                      READY   STATUS    RESTARTS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-7n724   1/1     Running   0          33s</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-96scb   1/1     Running   0          4m52s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 测试伸缩</span>
+</span></span><span class=line><span class=cl>kubectl scale --replicas<span class=o>=</span><span class=m>5</span> deploy ngx-dep
+</span></span><span class=line><span class=cl>kubectl get pod
+</span></span><span class=line><span class=cl><span class=c1># NAME                      READY   STATUS    RESTARTS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-7n724   1/1     Running   0          77s</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-7xhbs   1/1     Running   0          7s</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-96scb   1/1     Running   0          5m36s</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-97qp5   1/1     Running   0          7s</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-dep-bfbb5f64b-vjn4q   1/1     Running   0          7s</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 筛选标签 ==、!=、in、notin</span>
+</span></span><span class=line><span class=cl>kubectl get pod -l <span class=nv>app</span><span class=o>=</span>nginx
+</span></span><span class=line><span class=cl>kubectl get pod -l <span class=s1>&#39;app in (ngx, nginx, ngx-dep)&#39;</span>
+</span></span></code></pre></div><h2 id=19-daemonset-看门狗>19 DaemonSet 看门狗<a hidden class=anchor aria-hidden=true href=#19-daemonset-看门狗>#</a></h2><p>在 Deployment 看来，Pod 的运行环境与功能是无关的，只要 Pod 的数量足够，应用程序应该会正常工作。</p><p>有些场景下，要在集群里的每个节点上都运行 Pod，也就是说 Pod 的数量与节点数量保持同步。防止在集群里漂移。</p><p>DaemonSet 的目标是在集群的每个节点上运行且仅运行一个 Pod。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl api-resources
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># export out=&#34;--dry-run=client -o yaml&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># kubectl create deploy redis-ds --image=redis:5-alpine $out</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># kind modify DaemonSet, delete spec.replicas</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># https://kubernetes.io/zh-cn/docs/concepts/workloads/controllers/daemonset/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># vim redis-ds.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>DaemonSet</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 和 deplayment 比没有 replicas</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>redis:5-alpine</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>6379</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f redis-ds.yml
+</span></span><span class=line><span class=cl>kubectl get ds
+</span></span><span class=line><span class=cl><span class=c1># NAME       DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds   2         2         2       2            2           &lt;none&gt;          30m</span>
+</span></span><span class=line><span class=cl>kubectl get pod -o wide
+</span></span><span class=line><span class=cl><span class=c1># 两个 worker 的场景</span>
+</span></span><span class=line><span class=cl><span class=c1># NAME                      READY   STATUS    RESTARTS   AGE   IP           NODE      NOMINATED NODE   READINESS GATES</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-9r96k            1/1     Running   0          2m52s   10.10.3.2    woker02   &lt;none&gt;           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-hdl28            1/1     Running   0          21m     10.10.1.11   woker01   &lt;none&gt;           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># Master 节点却被排除在外了</span>
+</span></span></code></pre></div><p>污点（taint）作用也是给节点“贴标签”。容忍度（toleration）Pod 能否“容忍”污点。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl describe node master
+</span></span><span class=line><span class=cl><span class=c1># Taints:             node-role.kubernetes.io/master:NoSchedule</span>
+</span></span><span class=line><span class=cl><span class=c1># 污点会拒绝 Pod 调度到本节点上运行</span>
+</span></span><span class=line><span class=cl>kubectl describe node woker01
+</span></span><span class=line><span class=cl><span class=c1># Taints:             &lt;none&gt;</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># - 出掉 master 污点</span>
+</span></span><span class=line><span class=cl>kubectl taint node master node-role.kubernetes.io/master:NoSchedule-
+</span></span><span class=line><span class=cl><span class=c1># NAME       DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds   3         3         3       3            3           &lt;none&gt;          31m</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># Pod 添加 tolerations</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># kubectl explain ds.spec.template.spec.tolerations</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># vim redis-ds-t.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>DaemonSet</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds-t</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds-t</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 和 deplayment 比没有 replicas</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds-t</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis-ds-t</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>redis:5-alpine</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>redis</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>6379</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 容忍 node-role.kubernetes.io/master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>tolerations</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>node-role.kubernetes.io/master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>effect</span><span class=p>:</span><span class=w> </span><span class=l>NoSchedule</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>operator</span><span class=p>:</span><span class=w> </span><span class=l>Exists</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f redis-ds-t.yml
+</span></span><span class=line><span class=cl>kubectl get ds
+</span></span><span class=line><span class=cl><span class=c1># NAME         DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds     2         2         2       2            2           &lt;none&gt;          41m</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-t   3         3         3       3            3           &lt;none&gt;          6s</span>
+</span></span><span class=line><span class=cl><span class=c1># 差别在 master</span>
+</span></span><span class=line><span class=cl>kubectl get pod -o wide
+</span></span><span class=line><span class=cl><span class=c1># NAME                      READY   STATUS    RESTARTS   AGE   IP           NODE      NOMINATED NODE   READINESS GATES</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-9r96k            1/1     Running   0          23m   10.10.3.2    woker02   &lt;none&gt;           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-hdl28            1/1     Running   0          42m   10.10.1.11   woker01   &lt;none&gt;           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-t-4mptv          1/1     Running   0          80s   10.10.3.4    woker02   &lt;none&gt;           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-t-dpcl8          1/1     Running   0          80s   10.10.1.12   woker01   &lt;none&gt;           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># redis-ds-t-kdjmn          1/1     Running   0          80s   10.10.0.6    master    &lt;none&gt;           &lt;none&gt;</span>
+</span></span></code></pre></div><p><a href=https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/>https://kubernetes.io/zh-cn/docs/concepts/scheduling-eviction/taint-and-toleration/</a></p><p>静态 Pod：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ll -a /etc/kubernetes/manifests
+</span></span><span class=line><span class=cl><span class=c1># -rw------- 1 root root 2274 Feb 22 12:47 etcd.yaml</span>
+</span></span><span class=line><span class=cl><span class=c1># -rw------- 1 root root 3358 Feb 22 12:47 kube-apiserver.yaml</span>
+</span></span><span class=line><span class=cl><span class=c1># -rw------- 1 root root 2878 Feb 22 12:47 kube-controller-manager.yaml</span>
+</span></span><span class=line><span class=cl><span class=c1># -rw------- 1 root root 1465 Feb 22 12:47 kube-scheduler.yaml</span>
+</span></span></code></pre></div><p>Kubernetes 的 4 个核心组件 apiserver、etcd、scheduler、controller-manager 原来都以静态 Pod 的形式存在的，这也是为什么它们能够先于 Kubernetes 集群启动的原因。</p><p>kubelet 会定期检查目录里的文件。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># flannel 就是一个 DaemonSet</span>
+</span></span><span class=line><span class=cl>kubectl get ns
+</span></span><span class=line><span class=cl>kubectl get ds -n kube-flannel
+</span></span><span class=line><span class=cl><span class=c1># NAME              DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># kube-flannel-ds   3         3         3       3            3           &lt;none&gt;          3h54m</span>
+</span></span></code></pre></div><h2 id=20-service-服务发现>20 Service 服务发现<a hidden class=anchor aria-hidden=true href=#20-service-服务发现>#</a></h2><p>由 kube-proxy 控制的四层负载均衡，在 TCP/IP 协议栈上转发流量。</p><p>Pod 的生命周期很短暂，会不停地创建销毁，所以就需要用 Service 来实现负载均衡，它由 Kubernetes 分配固定的 IP 地址，能够屏蔽后端的 Pod 变化。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>out</span><span class=o>=</span><span class=s2>&#34;--dry-run=client -o yaml&#34;</span>
+</span></span><span class=line><span class=cl>kubectl expose deploy ngx-dep --port<span class=o>=</span><span class=m>80</span> --target-port<span class=o>=</span><span class=m>80</span> <span class=nv>$ou</span>
+</span></span></code></pre></div><img width=600 alt=image src=https://user-images.githubusercontent.com/9289792/220598245-da0f7319-8c28-4c08-b003-1dd209af1ee6.png><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># vim ngx-svc.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class=l>TCP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>targetPort</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>status</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>loadBalancer</span><span class=p>:</span><span class=w> </span>{}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>ConfigMap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>data</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>default.conf</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>    server {
+</span></span></span><span class=line><span class=cl><span class=sd>      listen 80;
+</span></span></span><span class=line><span class=cl><span class=sd>      location / {
+</span></span></span><span class=line><span class=cl><span class=sd>        default_type text/plain;
+</span></span></span><span class=line><span class=cl><span class=sd>        return 200
+</span></span></span><span class=line><span class=cl><span class=sd>          &#39;srv : $server_addr:$server_port\nhost: $hostname\nuri : $request_method $host $request_uri\ndate: $time_iso8601\n&#39;;
+</span></span></span><span class=line><span class=cl><span class=sd>      }
+</span></span></span><span class=line><span class=cl><span class=sd>    }</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>ngx-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>volumes</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-conf-vol</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>configMap</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-conf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>nginx:alpine</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>volumeMounts</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>mountPath</span><span class=p>:</span><span class=w> </span><span class=l>/etc/nginx/conf.d</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-conf-vol</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f ngx-svc.yml
+</span></span><span class=line><span class=cl>kubectl get svc
+</span></span><span class=line><span class=cl><span class=c1># NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># kubernetes   ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP   5h10m</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-svc      ClusterIP   10.109.131.132   &lt;none&gt;        80/TCP    35s</span>
+</span></span><span class=line><span class=cl><span class=c1># 虚地址 10.109.131.132</span>
+</span></span><span class=line><span class=cl>kubectl describe svc ngx-svc
+</span></span><span class=line><span class=cl><span class=c1># Name:              ngx-svc</span>
+</span></span><span class=line><span class=cl><span class=c1># Namespace:         default</span>
+</span></span><span class=line><span class=cl><span class=c1># Labels:            &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># Annotations:       &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># Selector:          app=ngx-dep</span>
+</span></span><span class=line><span class=cl><span class=c1># Type:              ClusterIP</span>
+</span></span><span class=line><span class=cl><span class=c1># IP Family Policy:  SingleStack</span>
+</span></span><span class=line><span class=cl><span class=c1># IP Families:       IPv4</span>
+</span></span><span class=line><span class=cl><span class=c1># IP:                10.109.131.132</span>
+</span></span><span class=line><span class=cl><span class=c1># IPs:               10.109.131.132</span>
+</span></span><span class=line><span class=cl><span class=c1># Port:              &lt;unset&gt;  80/TCP</span>
+</span></span><span class=line><span class=cl><span class=c1># TargetPort:        80/TCP</span>
+</span></span><span class=line><span class=cl><span class=c1># Endpoints:         10.10.1.13:80,10.10.3.5:80</span>
+</span></span><span class=line><span class=cl><span class=c1># Session Affinity:  None</span>
+</span></span><span class=line><span class=cl><span class=c1># Events:            &lt;none&gt;</span>
+</span></span><span class=line><span class=cl>kubectl get pod -o wide
+</span></span><span class=line><span class=cl>NAME                       READY   STATUS    RESTARTS   AGE    IP           NODE
+</span></span><span class=line><span class=cl>ngx-dep-6796688696-cwm8f   1/1     Running   <span class=m>0</span>          2m4s   10.10.3.5    woker02
+</span></span><span class=line><span class=cl>ngx-dep-6796688696-khjnv   1/1     Running   <span class=m>0</span>          2m2s   10.10.1.13   woker01
+</span></span><span class=line><span class=cl><span class=c1># same Endpoints</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 因为 Service、 Pod 的 IP 地址都是 Kubernetes 集群的内部网段</span>
+</span></span><span class=line><span class=cl><span class=c1>#   所以我们需要用 kubectl exec 进入到 Pod 内部</span>
+</span></span><span class=line><span class=cl>kubectl <span class=nb>exec</span> -it ngx-dep-6796688696-cwm8f -- sh
+</span></span><span class=line><span class=cl>curl 10.109.131.132
+</span></span><span class=line><span class=cl><span class=c1># srv : 10.10.3.5:80</span>
+</span></span><span class=line><span class=cl><span class=c1># host: ngx-dep-6796688696-cwm8f</span>
+</span></span><span class=line><span class=cl><span class=c1># uri : GET 10.109.131.132 /</span>
+</span></span><span class=line><span class=cl><span class=c1># date: 2023-02-22T10:09:49+00:00</span>
+</span></span><span class=line><span class=cl>curl 10.109.131.132
+</span></span><span class=line><span class=cl><span class=c1># srv : 10.10.1.13:80</span>
+</span></span><span class=line><span class=cl><span class=c1># host: ngx-dep-6796688696-khjnv</span>
+</span></span><span class=line><span class=cl><span class=c1># uri : GET 10.109.131.132 /</span>
+</span></span><span class=line><span class=cl><span class=c1># date: 2023-02-22T10:09:50+00:00</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 测试恢复</span>
+</span></span><span class=line><span class=cl>kubectl delete pod ngx-dep-6796688696-khjnv
+</span></span><span class=line><span class=cl>kubectl describe svc ngx-svc
+</span></span><span class=line><span class=cl><span class=c1># Endpoints:         10.10.1.14:80,10.10.3.5:80</span>
+</span></span><span class=line><span class=cl><span class=c1># 之前是 10.10.1.13:80,10.10.3.5:80</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 测试扩容</span>
+</span></span><span class=line><span class=cl>kubectl scale --replicas<span class=o>=</span><span class=m>5</span> deploy ngx-dep
+</span></span><span class=line><span class=cl>kubectl describe svc ngx-svc
+</span></span><span class=line><span class=cl><span class=c1># Endpoints:         10.10.1.14:80,10.10.1.15:80,10.10.3.5:80 + 2 more...</span>
+</span></span></code></pre></div><p>Service 对象的域名完全形式是 <code>对象.名字空间.svc.cluster.local</code>，但很多时候也可以省略后面的部分，直接写 <code>对象.名字空间</code> 甚至 <code>对象名</code> 就足够了，默认会使用对象所在的名字空间（比如这里就是 default）。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Name:              ngx-svc</span>
+</span></span><span class=line><span class=cl><span class=c1># Namespace:         default</span>
+</span></span><span class=line><span class=cl>kubectl <span class=nb>exec</span> -it ngx-dep-6796688696-cwm8f -- sh
+</span></span><span class=line><span class=cl>curl ngx-svc
+</span></span><span class=line><span class=cl><span class=c1># srv : 10.10.3.5:80</span>
+</span></span><span class=line><span class=cl><span class=c1># host: ngx-dep-6796688696-cwm8f</span>
+</span></span><span class=line><span class=cl><span class=c1># uri : GET ngx-svc /</span>
+</span></span><span class=line><span class=cl><span class=c1># date: 2023-02-22T10:19:25+00:00</span>
+</span></span><span class=line><span class=cl>curl ngx-svc.default
+</span></span><span class=line><span class=cl><span class=c1># srv : 10.10.3.6:80</span>
+</span></span><span class=line><span class=cl><span class=c1># host: ngx-dep-6796688696-lpcfs</span>
+</span></span><span class=line><span class=cl><span class=c1># uri : GET ngx-svc.default /</span>
+</span></span><span class=line><span class=cl><span class=c1># date: 2023-02-22T10:19:41+00:00</span>
+</span></span><span class=line><span class=cl>curl ngx-svc.default.svc.cluster.local
+</span></span><span class=line><span class=cl><span class=c1># srv : 10.10.3.5:80</span>
+</span></span><span class=line><span class=cl><span class=c1># host: ngx-dep-6796688696-cwm8f</span>
+</span></span><span class=line><span class=cl><span class=c1># uri : GET ngx-svc.default.svc.cluster.local /</span>
+</span></span><span class=line><span class=cl><span class=c1># date: 2023-02-22T10:20:04+00:00</span>
+</span></span></code></pre></div><p>Pod 分配了域名：<code>IP 地址.名字空间.pod.cluster.local</code> IP 地址 . 改成 -。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># kubectl explain svc.spec.type</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># vim ngx-svc.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>NodePort</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f ngx-svc.yml
+</span></span><span class=line><span class=cl>kubectl get svc
+</span></span><span class=line><span class=cl><span class=c1># NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># kubernetes   ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP        5h56m</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-svc      NodePort    10.109.131.132   &lt;none&gt;        80:30916/TCP   46m</span>
+</span></span><span class=line><span class=cl><span class=c1># Service 的默认类型是“ClusterIP”，只能在集群内部访问，</span>
+</span></span><span class=line><span class=cl><span class=c1>#   如果改成“NodePort”，就会在节点上开启一个随机端口号，让外界也能够访问内部的服务。</span>
+</span></span><span class=line><span class=cl>curl localhost:30916
+</span></span><span class=line><span class=cl><span class=c1># srv : 10.10.1.15:80</span>
+</span></span><span class=line><span class=cl><span class=c1># host: ngx-dep-6796688696-l6skl</span>
+</span></span><span class=line><span class=cl><span class=c1># uri : GET localhost /</span>
+</span></span><span class=line><span class=cl><span class=c1># date: 2023-02-22T10:48:32+00:00</span>
+</span></span></code></pre></div><img width=600 alt=image src=https://user-images.githubusercontent.com/9289792/220598107-2899f665-3977-4e19-894d-bd273046fbae.png><h2 id=21-ingress-流量总管>21 Ingress 流量总管<a hidden class=anchor aria-hidden=true href=#21-ingress-流量总管>#</a></h2><p>Service 本身是没有服务能力的，它只是一些 iptables 规则，真正配置、应用这些规则的实际上是节点里的 kube-proxy 组件。</p><p>Ingress 也只是一些 HTTP 路由规则的集合，相当于一份静态的描述文件，真正要把这些规则在集群里实施运行，还需要有另外一个东西，这就是 Ingress Controller，它的作用就相当于 Service 的 kube-proxy，能够读取、应用 Ingress 规则，处理、调度流量。</p><p>Ingress Class 是插在 Ingress 和 Ingress Controller 中间，作为流量规则和控制器的协调人，解除了 Ingress 和 Ingress Controller 的强绑定关系。</p><p>Kubernetes 用户可以转向管理 Ingress Class，用它来定义不同的业务逻辑分组，简化 Ingress 规则的复杂度。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>out</span><span class=o>=</span><span class=s2>&#34;--dry-run=client -o yaml&#34;</span>
+</span></span><span class=line><span class=cl>kubectl create ing ngx-ing --rule<span class=o>=</span><span class=s2>&#34;ngx.test/=ngx-svc:80&#34;</span> --class<span class=o>=</span>ngx-ink <span class=nv>$out</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># vim ingress.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>networking.k8s.io/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Ingress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>creationTimestamp</span><span class=p>:</span><span class=w> </span><span class=kc>null</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-ing</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ingressClassName</span><span class=p>:</span><span class=w> </span><span class=l>ngx-ink</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>rules</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>host</span><span class=p>:</span><span class=w> </span><span class=l>ngx.test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c># 路径的匹配方式</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span>- <span class=nt>backend</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>port</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                  </span><span class=nt>number</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=c># 精确匹配（Exact）或前缀匹配（Prefix）</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>pathType</span><span class=p>:</span><span class=w> </span><span class=l>Exact</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>status</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>loadBalancer</span><span class=p>:</span><span class=w> </span>{}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>networking.k8s.io/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>IngressClass</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>ngx-ink</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>controller</span><span class=p>:</span><span class=w> </span><span class=l>nginx.org/ingress-controller</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f ingress.yml
+</span></span><span class=line><span class=cl><span class=c1># NAME      CONTROLLER                     PARAMETERS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-ink   nginx.org/ingress-controller   &lt;none&gt;       15s</span>
+</span></span><span class=line><span class=cl>kubectl get ing
+</span></span><span class=line><span class=cl><span class=c1># NAME      CLASS     HOSTS      ADDRESS   PORTS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># ngx-ing   ngx-ink   ngx.test             80      84s</span>
+</span></span><span class=line><span class=cl>kubectl describe ing ngx-ing
+</span></span><span class=line><span class=cl><span class=c1># Name:             ngx-ing</span>
+</span></span><span class=line><span class=cl><span class=c1># Labels:           &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># Namespace:        default</span>
+</span></span><span class=line><span class=cl><span class=c1># Address:</span>
+</span></span><span class=line><span class=cl><span class=c1># Default backend:  default-http-backend:80 (&lt;error: endpoints &#34;default-http-backend&#34; not found&gt;)</span>
+</span></span><span class=line><span class=cl><span class=c1># Rules:</span>
+</span></span><span class=line><span class=cl><span class=c1>#   Host        Path  Backends</span>
+</span></span><span class=line><span class=cl><span class=c1>#   ----        ----  --------</span>
+</span></span><span class=line><span class=cl><span class=c1>#   ngx.test</span>
+</span></span><span class=line><span class=cl><span class=c1>#               /   ngx-svc:80 (10.10.1.14:80,10.10.1.15:80)</span>
+</span></span><span class=line><span class=cl><span class=c1># Annotations:  &lt;none&gt;</span>
+</span></span><span class=line><span class=cl><span class=c1># Events:       &lt;none&gt;</span>
+</span></span></code></pre></div><p>在 Kubernetes 里使用 Ingress Controller：</p><p><a href=https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/>https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/</a></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.0.2
+</span></span><span class=line><span class=cl><span class=nb>cd</span> kubernetes-ingress/deployments
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Configure RBAC</span>
+</span></span><span class=line><span class=cl><span class=c1># 为Ingress控制器创建一个命名空间和一个服务账户</span>
+</span></span><span class=line><span class=cl>kubectl apply -f common/ns-and-sa.yaml
+</span></span><span class=line><span class=cl><span class=c1># 为服务账户创建一个集群角色和集群角色绑定</span>
+</span></span><span class=line><span class=cl>kubectl apply -f rbac/rbac.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Create Common Resources</span>
+</span></span><span class=line><span class=cl><span class=c1># 为NGINX的默认服务器创建一个带有TLS证书和密钥的秘密</span>
+</span></span><span class=line><span class=cl>kubectl apply -f common/default-server-secret.yaml
+</span></span><span class=line><span class=cl><span class=c1># 创建一个 config map，用于定制NGINX配置。</span>
+</span></span><span class=line><span class=cl>kubectl apply -f common/nginx-config.yaml
+</span></span><span class=line><span class=cl><span class=c1># 创建一个IngressClass资源</span>
+</span></span><span class=line><span class=cl>kubectl apply -f common/ingress-class.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Create Custom Resources</span>
+</span></span><span class=line><span class=cl><span class=c1># kubectl apply -f common/crds/</span>
+</span></span><span class=line><span class=cl>vim deployment/nginx-ingress.yaml
+</span></span><span class=line><span class=cl><span class=c1># args add:</span>
+</span></span><span class=line><span class=cl><span class=c1># -enable-custom-resources=false</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Run the Ingress Controller</span>
+</span></span><span class=line><span class=cl>kubectl apply -f deployment/nginx-ingress.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># check</span>
+</span></span><span class=line><span class=cl>kubectl get pods --namespace<span class=o>=</span>nginx-ingress
+</span></span><span class=line><span class=cl><span class=c1># NAME                             READY   STATUS    RESTARTS   AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># nginx-ingress-5f98f8f5f9-nnkv7   1/1     Running   0          3m14s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Get Access to the Ingress Controller</span>
+</span></span><span class=line><span class=cl>kubectl create -f service/nodeport.yaml
+</span></span><span class=line><span class=cl>kubectl get service -n nginx-ingress
+</span></span><span class=line><span class=cl><span class=c1># NAME            TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE</span>
+</span></span><span class=line><span class=cl><span class=c1># nginx-ingress   NodePort   10.111.210.52   &lt;none&gt;        80:31754/TCP,443:30188/TCP   5s</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># debug</span>
+</span></span><span class=line><span class=cl>kubectl get IngressClass
+</span></span><span class=line><span class=cl>kubectl get ing -n nginx-ingress
+</span></span><span class=line><span class=cl>kubectl get deploy -n nginx-ingress
+</span></span><span class=line><span class=cl>kubectl get pod -n nginx-ingress -o wide
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl describe service -n nginx-ingress -o wide
+</span></span><span class=line><span class=cl>kubectl describe pod -n nginx-ingress
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 命令kubectl port-forward，它可以直接把本地的端口映射到 Kubernetes 集群的某个 Pod 里</span>
+</span></span><span class=line><span class=cl>kubectl port-forward -n nginx-ingress nginx-ingress-5f98f8f5f9-nnkv7 8080:80 <span class=p>&amp;</span>
+</span></span></code></pre></div><img width=900 alt=image src=https://user-images.githubusercontent.com/9289792/221135639-3b31c1be-f624-4abf-8851-cff396e9be45.png><h2 id=22-玩转-kubernetes-2>22 玩转 Kubernetes 2<a hidden class=anchor aria-hidden=true href=#22-玩转-kubernetes-2>#</a></h2><p>Kubernetes 部署 WordPress：</p><img width=900 alt=image src=https://user-images.githubusercontent.com/9289792/221116386-7f08aa66-941c-42ac-a0c3-bb8a111fc42d.png><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># vim wp-maria.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>ConfigMap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>maria-cm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>data</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>DATABASE</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;db&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>USER</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;wp&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>PASSWORD</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;123&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ROOT_PASSWORD</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;123&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>maria-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>maria-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>maria-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>maria-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>mariadb:10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>mariadb</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>3306</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>envFrom</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;MARIADB_&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>configMapRef</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>maria-cm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>maria-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>maria-svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>3306</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class=l>TCP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>targetPort</span><span class=p>:</span><span class=w> </span><span class=m>3306</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>maria-dep</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f wp-maria.yml
+</span></span><span class=line><span class=cl>kubectl get pod
+</span></span><span class=line><span class=cl>kubectl get deploy
+</span></span><span class=line><span class=cl>kubectl get svc
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># vim wp-app.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>ConfigMap</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-cm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>data</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># DNS HOST</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>HOST</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;maria-svc&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>USER</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;wp&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>PASSWORD</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;123&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>NAME</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;db&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>wordpress:5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wordpress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>envFrom</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>prefix</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;WORDPRESS_DB_&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>configMapRef</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-cm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>http80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class=l>TCP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>targetPort</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 指定端口</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>nodePort</span><span class=p>:</span><span class=w> </span><span class=m>30088</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># NodePort</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>NodePort</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f wp-app.yml
+</span></span><span class=line><span class=cl>kubectl get pod
+</span></span><span class=line><span class=cl>kubectl get deploy
+</span></span><span class=line><span class=cl>kubectl get svc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl port-forward service/wp-svc 80:80 --address 0.0.0.0
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># vim wp-ing.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>networking.k8s.io/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>IngressClass</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-ink</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>controller</span><span class=p>:</span><span class=w> </span><span class=l>nginx.org/ingress-controller</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># kubectl create ing wp-ing --rule=&#34;wp.test/=wp-svc:80&#34; --class=wp-ink $out</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>networking.k8s.io/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Ingress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-ing</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ingressClassName</span><span class=p>:</span><span class=w> </span><span class=l>wp-ink</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>rules</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>host</span><span class=p>:</span><span class=w> </span><span class=l>wp.test</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>http</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span>- <span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>pathType</span><span class=p>:</span><span class=w> </span><span class=l>Prefix</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>backend</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>service</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>port</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                  </span><span class=nt>number</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># vim wp-kic-dep.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>apps/v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Deployment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-kic-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class=l>nginx-ingress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>replicas</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>matchLabels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-kic-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>template</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>labels</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-kic-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># kubectl explain Deployment.spec.template.spec.serviceAccountName</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>serviceAccountName</span><span class=p>:</span><span class=w> </span><span class=l>nginx-ingress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># kubectl explain Deployment.spec.template.spec.hostNetwork</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>hostNetwork</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>containers</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>image</span><span class=p>:</span><span class=w> </span><span class=l>nginx/nginx-ingress:3.0.2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>imagePullPolicy</span><span class=p>:</span><span class=w> </span><span class=l>IfNotPresent</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>nginx-ingress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>http</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>https</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>443</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>readiness-port</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>8081</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>prometheus</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>containerPort</span><span class=p>:</span><span class=w> </span><span class=m>9113</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>readinessProbe</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>httpGet</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>/nginx-ready</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=l>readiness-port</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>periodSeconds</span><span class=p>:</span><span class=w> </span><span class=m>1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>securityContext</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>allowPrivilegeEscalation</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>runAsUser</span><span class=p>:</span><span class=w> </span><span class=m>101</span><span class=w> </span><span class=c>#nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>runAsNonRoot</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=nt>capabilities</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>drop</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span>- <span class=l>ALL</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>add</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span>- <span class=l>NET_BIND_SERVICE</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>POD_NAMESPACE</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>valueFrom</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>fieldRef</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                  </span><span class=nt>fieldPath</span><span class=p>:</span><span class=w> </span><span class=l>metadata.namespace</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>POD_NAME</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=nt>valueFrom</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=nt>fieldRef</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                  </span><span class=nt>fieldPath</span><span class=p>:</span><span class=w> </span><span class=l>metadata.name</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>args</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span><span class=c># 默认是 nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- -<span class=l>ingress-class=wp-ink</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- -<span class=l>enable-custom-resources=false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- -<span class=l>nginx-configmaps=$(POD_NAMESPACE)/nginx-config</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>            </span>- -<span class=l>default-server-tls-secret=$(POD_NAMESPACE)/default-server-secret</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class=l>v1</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class=l>Service</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>metadata</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>wp-kic-svc</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>namespace</span><span class=p>:</span><span class=w> </span><span class=l>nginx-ingress</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>spec</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ports</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>protocol</span><span class=p>:</span><span class=w> </span><span class=l>TCP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>targetPort</span><span class=p>:</span><span class=w> </span><span class=m>80</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>nodePort</span><span class=p>:</span><span class=w> </span><span class=m>30080</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>selector</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>app</span><span class=p>:</span><span class=w> </span><span class=l>wp-kic-dep</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>type</span><span class=p>:</span><span class=w> </span><span class=l>NodePort</span><span class=w>
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f wp-ing.yml -f wp-kic-dep.yml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kubectl get ing
+</span></span><span class=line><span class=cl>kubectl get ingressclass
+</span></span><span class=line><span class=cl>kubectl get pod -n<span class=o>=</span>nginx-ingress
+</span></span><span class=line><span class=cl>kubectl describe pod -n<span class=o>=</span>nginx-ingress
+</span></span><span class=line><span class=cl>kubectl get deploy -n<span class=o>=</span>nginx-ingress
+</span></span><span class=line><span class=cl>kubectl get svc -n<span class=o>=</span>nginx-ingress
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 在服务器上</span>
+</span></span><span class=line><span class=cl>kubectl get pod -n<span class=o>=</span>nginx-ingress -o<span class=o>=</span>wide
+</span></span><span class=line><span class=cl><span class=c1># NAME                          READY   STATUS    RESTARTS   AGE   IP           NODE</span>
+</span></span><span class=line><span class=cl><span class=c1># wp-kic-dep-68579bc688-d64zs   1/1     Running   0          10m   172.21.0.9   woker01</span>
+</span></span><span class=line><span class=cl>curl 172.21.0.9 -H <span class=s2>&#34;HOST: wp.test&#34;</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 在服务器外</span>
+</span></span><span class=line><span class=cl>kubectl port-forward service/wp-kic-svc -n<span class=o>=</span>nginx-ingress 80:80 --address 0.0.0.0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>vim /etc/hosts
+</span></span><span class=line><span class=cl><span class=o>[</span>master ip<span class=o>]</span> wp.test
+</span></span><span class=line><span class=cl><span class=c1># 游览器访问 wp.test</span>
+</span></span></code></pre></div><img width=900 alt=image src=https://user-images.githubusercontent.com/9289792/221134023-69087496-f390-4b6a-90ca-9e7dde86bfc1.png><h2 id=23-中级篇实操总结>23 中级篇实操总结<a hidden class=anchor aria-hidden=true href=#23-中级篇实操总结>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># DaemonSet 模板生成</span>
+</span></span><span class=line><span class=cl>kubectl create deploy redis-ds --image<span class=o>=</span>redis:5-alpine <span class=nv>$out</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  <span class=p>|</span> sed <span class=s1>&#39;s/Deployment/DaemonSet/g&#39;</span> - <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  <span class=p>|</span> sed -e <span class=s1>&#39;/replicas/d&#39;</span> -
+</span></span></code></pre></div><h2 id=references>References<a hidden class=anchor aria-hidden=true href=#references>#</a></h2><ul><li><a href=https://github.com/chronolaw/k8s_study>chronolaw/k8s_study | GitHub</a></li><li><a href=https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/>nginx-ingress-controller Installation with Manifests | nginx.com</a></li></ul><p>&ndash; EOF &ndash;</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/kubernetes/>Kubernetes</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2023/02/24/kubernetes-getting-started-part3/><span class=title>« Prev</span><br><span>Kubernetes 入门实战 Part3</span>
+</a><a class=next href=https://zyf.im/2023/02/15/kubernetes-getting-started-part1/><span class=title>Next »</span><br><span>Kubernetes 入门实战 Part1</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

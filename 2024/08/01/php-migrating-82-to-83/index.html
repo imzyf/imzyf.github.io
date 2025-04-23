@@ -1,0 +1,264 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP Migrating 8.2 to 8.3 | ZYF.IM BLOG</title>
+<meta name=keywords content="php"><meta name=description content="
+实验环境：https://onlinephp.io/
+https://www.php.net/releases/8.3/en.php
+https://www.php.net/manual/en/migration83.php
+https://php.watch/versions/8.3
+
+
+PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.
+New Features 8.3
+// Typed class constants
+// Include class, trait, interface, enum
+trait TestTrait {
+    final protected const string TEST = 'test';
+}
+interface TestInterface {
+    public const string TEST = 'test';
+}
+enum TestEnum: string {
+    public const string TEST = 'test';
+}
+
+// Similar to return types, class constant types can also be &#34;narrowed&#34;, or kept the same in a sub-class or an implementation. This follows LSP.
+class ParentClass {
+    public const string|int VALUE = 'MyValue';
+}
+class ChildClass extends ParentClass {
+    public const string VALUE = 'MyValue';
+}
+json_validate('[1, 2, 3]'); // true
+json_validate('{1, 2, 3]'); // false
+// Dynamic class constant and Enum member fetch support
+class Foo {
+    const PHP = 'PHP 8.3';
+}
+$searchableConstant = 'PHP';
+echo constant(Foo::class . &#34;::{$searchableConstant}&#34;);
+echo Foo::{$searchableConstant}; // instead of `constant()`
+// Random extension
+// public function getFloat(
+//         float $min, float $max,
+//         \Random\IntervalBoundary $boundary = \Random\IntervalBoundary::ClosedOpen
+//     ): float
+//
+// enum IntervalBoundary {
+//     case ClosedOpen;
+//     case ClosedClosed;
+//     case OpenClosed;
+//     case OpenOpen;
+// }
+$rng = new Random\Randomizer();
+echo $rng->getFloat(0, 10, \Random\IntervalBoundary::OpenOpen); // 6.7810757668383
+
+// Generate a random number in the range 0 <= and < 1:
+$rng = new Random\Randomizer();
+echo $rng->nextFloat(); // 0.21185336351144
+
+// Returns a random number sequence of a requested length ($length parameter), only containing a bytes from the requested series of bytes ($string parameter).
+$rng = new Random\Randomizer();
+$chars = 'AEIOU';
+echo $rng->getBytesFromString($chars, 1); // &#34;E&#34;
+echo $rng->getBytesFromString($chars, 5); // &#34;AIIEO&#34;
+// #[\Override] attribute
+// PHP enforces that the targeted class method must be overriding or implementing a parent/interface method.
+class ParentClass {
+    protected function demo() {}
+}
+class ChildClass extends ParentClass {
+    #[\Override]
+    protected function demo() {} // ✅ 明确覆盖
+
+    #[\Override]
+    protected function demmo() {} // ❌ Fatal error (拼写错误)
+}
+New Functions 8.3
+// Pad a multibyte string to a certain length with another multibyte string
+echo mb_str_pad('中国', 6, '爱', STR_PAD_RIGHT) . &#34;\n&#34;;
+echo mb_str_pad('中国', 6, '爱', STR_PAD_LEFT) . &#34;\n&#34;;
+echo mb_str_pad('中国人', 6, '爱', STR_PAD_BOTH) . &#34;\n&#34;;
+// 中国爱爱爱爱
+// 爱爱爱爱中国
+// 爱中国人爱爱
+Backward Incompatible Changes 8.3
+// Assigning a negative index n to an empty array will now make sure that the next index is n + 1 instead of 0.
+$arr = [];
+$arr[-5] = 'a';
+$arr[] = 'b';
+var_dump($arr);
+// PHP8.3    →  [-5 => 'a', -4 => 'b']
+// PHP <8.3  →  [-5 => 'a', 0 => 'b']
+&ndash; EOF &ndash;"><meta name=author content="Me"><link rel=canonical href=https://zyf.im/2024/08/01/php-migrating-82-to-83/><link crossorigin=anonymous href=/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF+13Dyqob6ASlTrTye8=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2024/08/01/php-migrating-82-to-83/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><meta property="og:url" content="https://zyf.im/2024/08/01/php-migrating-82-to-83/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="PHP Migrating 8.2 to 8.3"><meta property="og:description" content=" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.3/en.php https://www.php.net/manual/en/migration83.php https://php.watch/versions/8.3 PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.
+New Features 8.3 // Typed class constants // Include class, trait, interface, enum trait TestTrait { final protected const string TEST = 'test'; } interface TestInterface { public const string TEST = 'test'; } enum TestEnum: string { public const string TEST = 'test'; } // Similar to return types, class constant types can also be &#34;narrowed&#34;, or kept the same in a sub-class or an implementation. This follows LSP. class ParentClass { public const string|int VALUE = 'MyValue'; } class ChildClass extends ParentClass { public const string VALUE = 'MyValue'; } json_validate('[1, 2, 3]'); // true json_validate('{1, 2, 3]'); // false // Dynamic class constant and Enum member fetch support class Foo { const PHP = 'PHP 8.3'; } $searchableConstant = 'PHP'; echo constant(Foo::class . &#34;::{$searchableConstant}&#34;); echo Foo::{$searchableConstant}; // instead of `constant()` // Random extension // public function getFloat( // float $min, float $max, // \Random\IntervalBoundary $boundary = \Random\IntervalBoundary::ClosedOpen // ): float // // enum IntervalBoundary { // case ClosedOpen; // case ClosedClosed; // case OpenClosed; // case OpenOpen; // } $rng = new Random\Randomizer(); echo $rng->getFloat(0, 10, \Random\IntervalBoundary::OpenOpen); // 6.7810757668383 // Generate a random number in the range 0 <= and < 1: $rng = new Random\Randomizer(); echo $rng->nextFloat(); // 0.21185336351144 // Returns a random number sequence of a requested length ($length parameter), only containing a bytes from the requested series of bytes ($string parameter). $rng = new Random\Randomizer(); $chars = 'AEIOU'; echo $rng->getBytesFromString($chars, 1); // &#34;E&#34; echo $rng->getBytesFromString($chars, 5); // &#34;AIIEO&#34; // #[\Override] attribute // PHP enforces that the targeted class method must be overriding or implementing a parent/interface method. class ParentClass { protected function demo() {} } class ChildClass extends ParentClass { #[\Override] protected function demo() {} // ✅ 明确覆盖 #[\Override] protected function demmo() {} // ❌ Fatal error (拼写错误) } New Functions 8.3 // Pad a multibyte string to a certain length with another multibyte string echo mb_str_pad('中国', 6, '爱', STR_PAD_RIGHT) . &#34;\n&#34;; echo mb_str_pad('中国', 6, '爱', STR_PAD_LEFT) . &#34;\n&#34;; echo mb_str_pad('中国人', 6, '爱', STR_PAD_BOTH) . &#34;\n&#34;; // 中国爱爱爱爱 // 爱爱爱爱中国 // 爱中国人爱爱 Backward Incompatible Changes 8.3 // Assigning a negative index n to an empty array will now make sure that the next index is n + 1 instead of 0. $arr = []; $arr[-5] = 'a'; $arr[] = 'b'; var_dump($arr); // PHP8.3 → [-5 => 'a', -4 => 'b'] // PHP <8.3 → [-5 => 'a', 0 => 'b'] – EOF –"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-08-01T17:37:13+00:00"><meta property="article:modified_time" content="2024-08-01T17:37:13+00:00"><meta property="article:tag" content="Php"><meta name=twitter:card content="summary"><meta name=twitter:title content="PHP Migrating 8.2 to 8.3"><meta name=twitter:description content="
+实验环境：https://onlinephp.io/
+https://www.php.net/releases/8.3/en.php
+https://www.php.net/manual/en/migration83.php
+https://php.watch/versions/8.3
+
+
+PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.
+New Features 8.3
+// Typed class constants
+// Include class, trait, interface, enum
+trait TestTrait {
+    final protected const string TEST = 'test';
+}
+interface TestInterface {
+    public const string TEST = 'test';
+}
+enum TestEnum: string {
+    public const string TEST = 'test';
+}
+
+// Similar to return types, class constant types can also be &#34;narrowed&#34;, or kept the same in a sub-class or an implementation. This follows LSP.
+class ParentClass {
+    public const string|int VALUE = 'MyValue';
+}
+class ChildClass extends ParentClass {
+    public const string VALUE = 'MyValue';
+}
+json_validate('[1, 2, 3]'); // true
+json_validate('{1, 2, 3]'); // false
+// Dynamic class constant and Enum member fetch support
+class Foo {
+    const PHP = 'PHP 8.3';
+}
+$searchableConstant = 'PHP';
+echo constant(Foo::class . &#34;::{$searchableConstant}&#34;);
+echo Foo::{$searchableConstant}; // instead of `constant()`
+// Random extension
+// public function getFloat(
+//         float $min, float $max,
+//         \Random\IntervalBoundary $boundary = \Random\IntervalBoundary::ClosedOpen
+//     ): float
+//
+// enum IntervalBoundary {
+//     case ClosedOpen;
+//     case ClosedClosed;
+//     case OpenClosed;
+//     case OpenOpen;
+// }
+$rng = new Random\Randomizer();
+echo $rng->getFloat(0, 10, \Random\IntervalBoundary::OpenOpen); // 6.7810757668383
+
+// Generate a random number in the range 0 <= and < 1:
+$rng = new Random\Randomizer();
+echo $rng->nextFloat(); // 0.21185336351144
+
+// Returns a random number sequence of a requested length ($length parameter), only containing a bytes from the requested series of bytes ($string parameter).
+$rng = new Random\Randomizer();
+$chars = 'AEIOU';
+echo $rng->getBytesFromString($chars, 1); // &#34;E&#34;
+echo $rng->getBytesFromString($chars, 5); // &#34;AIIEO&#34;
+// #[\Override] attribute
+// PHP enforces that the targeted class method must be overriding or implementing a parent/interface method.
+class ParentClass {
+    protected function demo() {}
+}
+class ChildClass extends ParentClass {
+    #[\Override]
+    protected function demo() {} // ✅ 明确覆盖
+
+    #[\Override]
+    protected function demmo() {} // ❌ Fatal error (拼写错误)
+}
+New Functions 8.3
+// Pad a multibyte string to a certain length with another multibyte string
+echo mb_str_pad('中国', 6, '爱', STR_PAD_RIGHT) . &#34;\n&#34;;
+echo mb_str_pad('中国', 6, '爱', STR_PAD_LEFT) . &#34;\n&#34;;
+echo mb_str_pad('中国人', 6, '爱', STR_PAD_BOTH) . &#34;\n&#34;;
+// 中国爱爱爱爱
+// 爱爱爱爱中国
+// 爱中国人爱爱
+Backward Incompatible Changes 8.3
+// Assigning a negative index n to an empty array will now make sure that the next index is n + 1 instead of 0.
+$arr = [];
+$arr[-5] = 'a';
+$arr[] = 'b';
+var_dump($arr);
+// PHP8.3    →  [-5 => 'a', -4 => 'b']
+// PHP <8.3  →  [-5 => 'a', 0 => 'b']
+&ndash; EOF &ndash;"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"PHP Migrating 8.2 to 8.3","item":"https://zyf.im/2024/08/01/php-migrating-82-to-83/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"PHP Migrating 8.2 to 8.3","name":"PHP Migrating 8.2 to 8.3","description":" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.3/en.php https://www.php.net/manual/en/migration83.php https://php.watch/versions/8.3 PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.\nNew Features 8.3 // Typed class constants // Include class, trait, interface, enum trait TestTrait { final protected const string TEST = \u0026#39;test\u0026#39;; } interface TestInterface { public const string TEST = \u0026#39;test\u0026#39;; } enum TestEnum: string { public const string TEST = \u0026#39;test\u0026#39;; } // Similar to return types, class constant types can also be \u0026#34;narrowed\u0026#34;, or kept the same in a sub-class or an implementation. This follows LSP. class ParentClass { public const string|int VALUE = \u0026#39;MyValue\u0026#39;; } class ChildClass extends ParentClass { public const string VALUE = \u0026#39;MyValue\u0026#39;; } json_validate(\u0026#39;[1, 2, 3]\u0026#39;); // true json_validate(\u0026#39;{1, 2, 3]\u0026#39;); // false // Dynamic class constant and Enum member fetch support class Foo { const PHP = \u0026#39;PHP 8.3\u0026#39;; } $searchableConstant = \u0026#39;PHP\u0026#39;; echo constant(Foo::class . \u0026#34;::{$searchableConstant}\u0026#34;); echo Foo::{$searchableConstant}; // instead of `constant()` // Random extension // public function getFloat( // float $min, float $max, // \\Random\\IntervalBoundary $boundary = \\Random\\IntervalBoundary::ClosedOpen // ): float // // enum IntervalBoundary { // case ClosedOpen; // case ClosedClosed; // case OpenClosed; // case OpenOpen; // } $rng = new Random\\Randomizer(); echo $rng-\u0026gt;getFloat(0, 10, \\Random\\IntervalBoundary::OpenOpen); // 6.7810757668383 // Generate a random number in the range 0 \u0026lt;= and \u0026lt; 1: $rng = new Random\\Randomizer(); echo $rng-\u0026gt;nextFloat(); // 0.21185336351144 // Returns a random number sequence of a requested length ($length parameter), only containing a bytes from the requested series of bytes ($string parameter). $rng = new Random\\Randomizer(); $chars = \u0026#39;AEIOU\u0026#39;; echo $rng-\u0026gt;getBytesFromString($chars, 1); // \u0026#34;E\u0026#34; echo $rng-\u0026gt;getBytesFromString($chars, 5); // \u0026#34;AIIEO\u0026#34; // #[\\Override] attribute // PHP enforces that the targeted class method must be overriding or implementing a parent/interface method. class ParentClass { protected function demo() {} } class ChildClass extends ParentClass { #[\\Override] protected function demo() {} // ✅ 明确覆盖 #[\\Override] protected function demmo() {} // ❌ Fatal error (拼写错误) } New Functions 8.3 // Pad a multibyte string to a certain length with another multibyte string echo mb_str_pad(\u0026#39;中国\u0026#39;, 6, \u0026#39;爱\u0026#39;, STR_PAD_RIGHT) . \u0026#34;\\n\u0026#34;; echo mb_str_pad(\u0026#39;中国\u0026#39;, 6, \u0026#39;爱\u0026#39;, STR_PAD_LEFT) . \u0026#34;\\n\u0026#34;; echo mb_str_pad(\u0026#39;中国人\u0026#39;, 6, \u0026#39;爱\u0026#39;, STR_PAD_BOTH) . \u0026#34;\\n\u0026#34;; // 中国爱爱爱爱 // 爱爱爱爱中国 // 爱中国人爱爱 Backward Incompatible Changes 8.3 // Assigning a negative index n to an empty array will now make sure that the next index is n + 1 instead of 0. $arr = []; $arr[-5] = \u0026#39;a\u0026#39;; $arr[] = \u0026#39;b\u0026#39;; var_dump($arr); // PHP8.3 → [-5 =\u0026gt; \u0026#39;a\u0026#39;, -4 =\u0026gt; \u0026#39;b\u0026#39;] // PHP \u0026lt;8.3 → [-5 =\u0026gt; \u0026#39;a\u0026#39;, 0 =\u0026gt; \u0026#39;b\u0026#39;] \u0026ndash; EOF \u0026ndash;\n","keywords":["php"],"articleBody":" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.3/en.php https://www.php.net/manual/en/migration83.php https://php.watch/versions/8.3 PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.\nNew Features 8.3 // Typed class constants // Include class, trait, interface, enum trait TestTrait { final protected const string TEST = 'test'; } interface TestInterface { public const string TEST = 'test'; } enum TestEnum: string { public const string TEST = 'test'; } // Similar to return types, class constant types can also be \"narrowed\", or kept the same in a sub-class or an implementation. This follows LSP. class ParentClass { public const string|int VALUE = 'MyValue'; } class ChildClass extends ParentClass { public const string VALUE = 'MyValue'; } json_validate('[1, 2, 3]'); // true json_validate('{1, 2, 3]'); // false // Dynamic class constant and Enum member fetch support class Foo { const PHP = 'PHP 8.3'; } $searchableConstant = 'PHP'; echo constant(Foo::class . \"::{$searchableConstant}\"); echo Foo::{$searchableConstant}; // instead of `constant()` // Random extension // public function getFloat( // float $min, float $max, // \\Random\\IntervalBoundary $boundary = \\Random\\IntervalBoundary::ClosedOpen // ): float // // enum IntervalBoundary { // case ClosedOpen; // case ClosedClosed; // case OpenClosed; // case OpenOpen; // } $rng = new Random\\Randomizer(); echo $rng-\u003egetFloat(0, 10, \\Random\\IntervalBoundary::OpenOpen); // 6.7810757668383 // Generate a random number in the range 0 \u003c= and \u003c 1: $rng = new Random\\Randomizer(); echo $rng-\u003enextFloat(); // 0.21185336351144 // Returns a random number sequence of a requested length ($length parameter), only containing a bytes from the requested series of bytes ($string parameter). $rng = new Random\\Randomizer(); $chars = 'AEIOU'; echo $rng-\u003egetBytesFromString($chars, 1); // \"E\" echo $rng-\u003egetBytesFromString($chars, 5); // \"AIIEO\" // #[\\Override] attribute // PHP enforces that the targeted class method must be overriding or implementing a parent/interface method. class ParentClass { protected function demo() {} } class ChildClass extends ParentClass { #[\\Override] protected function demo() {} // ✅ 明确覆盖 #[\\Override] protected function demmo() {} // ❌ Fatal error (拼写错误) } New Functions 8.3 // Pad a multibyte string to a certain length with another multibyte string echo mb_str_pad('中国', 6, '爱', STR_PAD_RIGHT) . \"\\n\"; echo mb_str_pad('中国', 6, '爱', STR_PAD_LEFT) . \"\\n\"; echo mb_str_pad('中国人', 6, '爱', STR_PAD_BOTH) . \"\\n\"; // 中国爱爱爱爱 // 爱爱爱爱中国 // 爱中国人爱爱 Backward Incompatible Changes 8.3 // Assigning a negative index n to an empty array will now make sure that the next index is n + 1 instead of 0. $arr = []; $arr[-5] = 'a'; $arr[] = 'b'; var_dump($arr); // PHP8.3 → [-5 =\u003e 'a', -4 =\u003e 'b'] // PHP \u003c8.3 → [-5 =\u003e 'a', 0 =\u003e 'b'] – EOF –\n","wordCount":"426","inLanguage":"en","datePublished":"2024-08-01T17:37:13Z","dateModified":"2024-08-01T17:37:13Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2024/08/01/php-migrating-82-to-83/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body class=dark id=top><script>localStorage.getItem("pref-theme")==="light"&&document.body.classList.remove("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme"><svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">PHP Migrating 8.2 to 8.3</h1><div class=post-meta><span title='2024-08-01 17:37:13 +0000 UTC'>August 1, 2024</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;426 words&nbsp;·&nbsp;Me</div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#new-features-83>New Features 8.3</a></li><li><a href=#new-functions-83>New Functions 8.3</a></li><li><a href=#backward-incompatible-changes-83>Backward Incompatible Changes 8.3</a></li></ul></nav></div></details></div><div class=post-content><ul><li>实验环境：<a href=https://onlinephp.io/>https://onlinephp.io/</a></li><li><a href=https://www.php.net/releases/8.3/en.php>https://www.php.net/releases/8.3/en.php</a></li><li><a href=https://www.php.net/manual/en/migration83.php>https://www.php.net/manual/en/migration83.php</a></li><li><a href=https://php.watch/versions/8.3>https://php.watch/versions/8.3</a></li></ul><blockquote><p>PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.</p></blockquote><h2 id=new-features-83>New Features 8.3<a hidden class=anchor aria-hidden=true href=#new-features-83>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Typed class constants
+</span></span></span><span class=line><span class=cl><span class=c1>// Include class, trait, interface, enum
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>trait</span> <span class=nx>TestTrait</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>final</span> <span class=k>protected</span> <span class=k>const</span> <span class=no>string</span> <span class=nx>TEST</span> <span class=o>=</span> <span class=s1>&#39;test&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=k>interface</span> <span class=nx>TestInterface</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>string</span> <span class=nx>TEST</span> <span class=o>=</span> <span class=s1>&#39;test&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>enum</span> <span class=nx>TestEnum</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>string</span> <span class=nx>TEST</span> <span class=o>=</span> <span class=s1>&#39;test&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Similar to return types, class constant types can also be &#34;narrowed&#34;, or kept the same in a sub-class or an implementation. This follows LSP.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>ParentClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>string</span><span class=o>|</span><span class=nx>int</span> <span class=nx>VALUE</span> <span class=o>=</span> <span class=s1>&#39;MyValue&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ChildClass</span> <span class=k>extends</span> <span class=nx>ParentClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>string</span> <span class=nx>VALUE</span> <span class=o>=</span> <span class=s1>&#39;MyValue&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>json_validate</span><span class=p>(</span><span class=s1>&#39;[1, 2, 3]&#39;</span><span class=p>);</span> <span class=c1>// true
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>json_validate</span><span class=p>(</span><span class=s1>&#39;{1, 2, 3]&#39;</span><span class=p>);</span> <span class=c1>// false
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Dynamic class constant and Enum member fetch support
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>Foo</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>const</span> <span class=no>PHP</span> <span class=o>=</span> <span class=s1>&#39;PHP 8.3&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nv>$searchableConstant</span> <span class=o>=</span> <span class=s1>&#39;PHP&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>constant</span><span class=p>(</span><span class=nx>Foo</span><span class=o>::</span><span class=na>class</span> <span class=o>.</span> <span class=s2>&#34;::</span><span class=si>{</span><span class=nv>$searchableConstant</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>Foo</span><span class=o>::</span><span class=p>{</span><span class=nv>$searchableConstant</span><span class=p>};</span> <span class=c1>// instead of `constant()`
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Random extension
+</span></span></span><span class=line><span class=cl><span class=c1>// public function getFloat(
+</span></span></span><span class=line><span class=cl><span class=c1>//         float $min, float $max,
+</span></span></span><span class=line><span class=cl><span class=c1>//         \Random\IntervalBoundary $boundary = \Random\IntervalBoundary::ClosedOpen
+</span></span></span><span class=line><span class=cl><span class=c1>//     ): float
+</span></span></span><span class=line><span class=cl><span class=c1>//
+</span></span></span><span class=line><span class=cl><span class=c1>// enum IntervalBoundary {
+</span></span></span><span class=line><span class=cl><span class=c1>//     case ClosedOpen;
+</span></span></span><span class=line><span class=cl><span class=c1>//     case ClosedClosed;
+</span></span></span><span class=line><span class=cl><span class=c1>//     case OpenClosed;
+</span></span></span><span class=line><span class=cl><span class=c1>//     case OpenOpen;
+</span></span></span><span class=line><span class=cl><span class=c1>// }
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$rng</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Random\Randomizer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$rng</span><span class=o>-&gt;</span><span class=na>getFloat</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=nx>\Random\IntervalBoundary</span><span class=o>::</span><span class=na>OpenOpen</span><span class=p>);</span> <span class=c1>// 6.7810757668383
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// Generate a random number in the range 0 &lt;= and &lt; 1:
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$rng</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Random\Randomizer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$rng</span><span class=o>-&gt;</span><span class=na>nextFloat</span><span class=p>();</span> <span class=c1>// 0.21185336351144
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// Returns a random number sequence of a requested length ($length parameter), only containing a bytes from the requested series of bytes ($string parameter).
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$rng</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Random\Randomizer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nv>$chars</span> <span class=o>=</span> <span class=s1>&#39;AEIOU&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$rng</span><span class=o>-&gt;</span><span class=na>getBytesFromString</span><span class=p>(</span><span class=nv>$chars</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span> <span class=c1>// &#34;E&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>echo</span> <span class=nv>$rng</span><span class=o>-&gt;</span><span class=na>getBytesFromString</span><span class=p>(</span><span class=nv>$chars</span><span class=p>,</span> <span class=mi>5</span><span class=p>);</span> <span class=c1>// &#34;AIIEO&#34;
+</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// #[\Override] attribute
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP enforces that the targeted class method must be overriding or implementing a parent/interface method.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>ParentClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>protected</span> <span class=k>function</span> <span class=nf>demo</span><span class=p>()</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ChildClass</span> <span class=k>extends</span> <span class=nx>ParentClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#[\Override]
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>protected</span> <span class=k>function</span> <span class=nf>demo</span><span class=p>()</span> <span class=p>{}</span> <span class=c1>// ✅ 明确覆盖
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=c1>#[\Override]
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>protected</span> <span class=k>function</span> <span class=nf>demmo</span><span class=p>()</span> <span class=p>{}</span> <span class=c1>// ❌ Fatal error (拼写错误)
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></div><h2 id=new-functions-83>New Functions 8.3<a hidden class=anchor aria-hidden=true href=#new-functions-83>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Pad a multibyte string to a certain length with another multibyte string
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>echo</span> <span class=nx>mb_str_pad</span><span class=p>(</span><span class=s1>&#39;中国&#39;</span><span class=p>,</span> <span class=mi>6</span><span class=p>,</span> <span class=s1>&#39;爱&#39;</span><span class=p>,</span> <span class=nx>STR_PAD_RIGHT</span><span class=p>)</span> <span class=o>.</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>mb_str_pad</span><span class=p>(</span><span class=s1>&#39;中国&#39;</span><span class=p>,</span> <span class=mi>6</span><span class=p>,</span> <span class=s1>&#39;爱&#39;</span><span class=p>,</span> <span class=nx>STR_PAD_LEFT</span><span class=p>)</span> <span class=o>.</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>mb_str_pad</span><span class=p>(</span><span class=s1>&#39;中国人&#39;</span><span class=p>,</span> <span class=mi>6</span><span class=p>,</span> <span class=s1>&#39;爱&#39;</span><span class=p>,</span> <span class=nx>STR_PAD_BOTH</span><span class=p>)</span> <span class=o>.</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// 中国爱爱爱爱
+</span></span></span><span class=line><span class=cl><span class=c1>// 爱爱爱爱中国
+</span></span></span><span class=line><span class=cl><span class=c1>// 爱中国人爱爱
+</span></span></span></code></pre></div><h2 id=backward-incompatible-changes-83>Backward Incompatible Changes 8.3<a hidden class=anchor aria-hidden=true href=#backward-incompatible-changes-83>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Assigning a negative index n to an empty array will now make sure that the next index is n + 1 instead of 0.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$arr</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl><span class=nv>$arr</span><span class=p>[</span><span class=o>-</span><span class=mi>5</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;a&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nv>$arr</span><span class=p>[]</span> <span class=o>=</span> <span class=s1>&#39;b&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$arr</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// PHP8.3    →  [-5 =&gt; &#39;a&#39;, -4 =&gt; &#39;b&#39;]
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP &lt;8.3  →  [-5 =&gt; &#39;a&#39;, 0 =&gt; &#39;b&#39;]
+</span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/php/>Php</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2025/02/01/php-migrating-83-to-84/><span class=title>« Prev</span><br><span>PHP Migrating 8.3 to 8.4</span>
+</a><a class=next href=https://zyf.im/2024/07/01/php-migrating-81-to-82/><span class=title>Next »</span><br><span>PHP Migrating 8.1 to 8.2</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
