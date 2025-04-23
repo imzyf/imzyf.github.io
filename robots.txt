@@ -6,5 +6,6 @@ Disallow: /posts/*/index.html
 Disallow: /categories/
 Disallow: /tags/
 Disallow: /links/
+Disallow: /post/
 
 Sitemap: https://zyf.im/sitemap.xml

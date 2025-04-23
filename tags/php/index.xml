@@ -1164,6 +1164,51 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Laradock 学习笔记</title>
+      <link>https://zyf.im/2022/11/09/explore-laradock/</link>
+      <pubDate>Wed, 09 Nov 2022 22:24:01 +0000</pubDate>
+      <guid>https://zyf.im/2022/11/09/explore-laradock/</guid>
+      <description>&lt;h2 id=&#34;laradock-简介&#34;&gt;Laradock 简介&lt;/h2&gt;
+&lt;p&gt;Laradock 是一个基于 Docker 的完整 PHP 开发环境，专为 PHP 开发者（特别是 Laravel 开发者）设计。它提供了一套预配置的 Docker 容器，包含开发中常用的服务，如 Nginx、MySQL、Redis、PHP-FPM 等。&lt;/p&gt;
+&lt;h3 id=&#34;主要优势&#34;&gt;主要优势&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;开箱即用&lt;/strong&gt;：预配置的开发环境，无需繁琐设置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一致性&lt;/strong&gt;：确保开发、测试和生产环境的一致性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;灵活性&lt;/strong&gt;：支持多种 PHP 版本和扩展&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模块化&lt;/strong&gt;：可以根据需要启用或禁用特定服务&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;跨平台&lt;/strong&gt;：在 Windows、macOS 和 Linux 上表现一致&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基本架构&#34;&gt;基本架构&lt;/h3&gt;
+&lt;p&gt;Laradock 采用模块化设计，每个服务都运行在独立的容器中，通过 Docker 网络连接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Workspace&lt;/strong&gt;：包含开发工具的容器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PHP-FPM&lt;/strong&gt;：PHP 解释器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nginx/Apache&lt;/strong&gt;：Web 服务器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL/PostgreSQL/MongoDB&lt;/strong&gt;：数据库&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis/Memcached&lt;/strong&gt;：缓存&lt;/li&gt;
+&lt;li&gt;其他辅助服务（邮件服务器、消息队列等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;h3 id=&#34;debian_frontend&#34;&gt;DEBIAN_FRONTEND&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;noninteractive
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;DEBIAN_FRONTEND 环境变量用于告知操作系统应该从哪儿获得用户输入。&lt;/p&gt;
+&lt;p&gt;设置为 &amp;ldquo;noninteractive&amp;rdquo; 可以实现自动安装而无需用户交互，对于 CI/CD 流程和 Docker 构建特别有用。这在运行 apt-get 命令时尤为重要，因为它会自动选择默认选项并以最快速度完成构建。&lt;/p&gt;
+&lt;p&gt;最佳实践是在 RUN 命令中设置该变量，而不是使用 ENV 进行全局设置，因为全局设置会影响容器运行时的交互体验：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;noninteractive apt-get update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install -y ...&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;基于角色的用户配置&#34;&gt;基于角色的用户配置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 创建非 root 用户防止文件在宿主机上创建时具有 root 权限&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; PUID &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PUID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PGID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; PGID &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PGID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -xe&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    groupadd -g &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PGID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; laradock &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    useradd -l -u &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PUID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; -g laradock -m laradock -G docker_env &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    usermod -p &lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; laradock -s /bin/bash&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这段配置创建了一个非 root 用户 &lt;code&gt;laradock&lt;/code&gt;，解决了容器和宿主机之间文件权限问题：&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>PHP 安装 gRPC</title>
       <link>https://zyf.im/2021/10/13/php-install-grpc/</link>
       <pubDate>Wed, 13 Oct 2021 15:48:41 +0000</pubDate>

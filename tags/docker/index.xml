@@ -13,34 +13,45 @@
       <link>https://zyf.im/2022/11/09/explore-laradock/</link>
       <pubDate>Wed, 09 Nov 2022 22:24:01 +0000</pubDate>
       <guid>https://zyf.im/2022/11/09/explore-laradock/</guid>
-      <description>&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;laradock-简介&#34;&gt;Laradock 简介&lt;/h2&gt;
+&lt;p&gt;Laradock 是一个基于 Docker 的完整 PHP 开发环境，专为 PHP 开发者（特别是 Laravel 开发者）设计。它提供了一套预配置的 Docker 容器，包含开发中常用的服务，如 Nginx、MySQL、Redis、PHP-FPM 等。&lt;/p&gt;
+&lt;h3 id=&#34;主要优势&#34;&gt;主要优势&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;开箱即用&lt;/strong&gt;：预配置的开发环境，无需繁琐设置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;一致性&lt;/strong&gt;：确保开发、测试和生产环境的一致性&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;灵活性&lt;/strong&gt;：支持多种 PHP 版本和扩展&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;模块化&lt;/strong&gt;：可以根据需要启用或禁用特定服务&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;跨平台&lt;/strong&gt;：在 Windows、macOS 和 Linux 上表现一致&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;基本架构&#34;&gt;基本架构&lt;/h3&gt;
+&lt;p&gt;Laradock 采用模块化设计，每个服务都运行在独立的容器中，通过 Docker 网络连接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Workspace&lt;/strong&gt;：包含开发工具的容器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;PHP-FPM&lt;/strong&gt;：PHP 解释器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Nginx/Apache&lt;/strong&gt;：Web 服务器&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL/PostgreSQL/MongoDB&lt;/strong&gt;：数据库&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis/Memcached&lt;/strong&gt;：缓存&lt;/li&gt;
+&lt;li&gt;其他辅助服务（邮件服务器、消息队列等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
 &lt;h3 id=&#34;debian_frontend&#34;&gt;DEBIAN_FRONTEND&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;noninteractive
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;DEBIAN_FRONTEND 环境变量，告知操作系统应该从哪儿获得用户输入。&lt;/p&gt;
-&lt;p&gt;如果设置为 &amp;ldquo;noninteractive&amp;rdquo;，你就可以直接运行命令，而无需向用户请求输入（所有操作都是非交互式的）。&lt;/p&gt;
-&lt;p&gt;这在运行 apt-get 命令的时候格外有用，因为它会不停地提示用户进行到了哪步并且需要不断确认。&lt;/p&gt;
-&lt;p&gt;非交互模式会选择默认的选项并以最快的速度完成构建。请确保只在 Dockerfile 中调用的 RUN 命令中设置了该选项，而不是使用 ENV 命令进行全局的设置。&lt;/p&gt;
-&lt;p&gt;因为 ENV 命令在整个容器运行过程中都会生效，所以当你通过 BASH 和容器进行交互时，如果进行了全局设置那就会出问题。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/bollen/p/7137200.html&#34;&gt;https://www.cnblogs.com/bollen/p/7137200.html&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;h3 id=&#34;install-swoole&#34;&gt;install swoole&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://wiki.swoole.com/#/environment?id=pecl&#34;&gt;https://wiki.swoole.com/#/environment?id=pecl&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/swoole/swoole-src/blob/v4.5.11/package.xml&#34;&gt;https://github.com/swoole/swoole-src/blob/v4.5.11/package.xml&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在安装过程中它会询问是否要启用某些功能，这也可以在运行安装之前提供：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# php7.1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; pecl -q install --configureoptions &lt;span class=&#34;s1&#34;&gt;&amp;#39;enable-openssl=&amp;#34;yes&amp;#34; enable-mysqlnd=&amp;#34;yes&amp;#34; enable-swoole-curl=&amp;#34;yes&amp;#34;&amp;#39;&lt;/span&gt; swoole-4.5.11&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;enable-openssl&lt;/code&gt; 验证方法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;new swoole_server(&amp;#39;0.0.0.0&amp;#39;, 443, SWOOLE_PROCESS, SWOOLE_SOCK_TCP | SWOOLE_SSL);&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;docker-composeryml&#34;&gt;docker-composer.yml&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;extra_hosts&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;- &lt;span class=&#34;s2&#34;&gt;&amp;#34;dockerhost:${DOCKER_HOST_IP}&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;会在启动后的服务容器中 /etc/hosts 文件中添加：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-host&#34; data-lang=&#34;host&#34;&gt;10.0.75.1 dockerhost
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;php-extensions&#34;&gt;PHP Extensions&lt;/h2&gt;
-&lt;h3 id=&#34;pcov&#34;&gt;pcov&lt;/h3&gt;
-&lt;p&gt;PCOV - CodeCoverage compatible driver for PHP.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/krakjoe/pcov&#34;&gt;https://github.com/krakjoe/pcov&lt;/a&gt;&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;DEBIAN_FRONTEND 环境变量用于告知操作系统应该从哪儿获得用户输入。&lt;/p&gt;
+&lt;p&gt;设置为 &amp;ldquo;noninteractive&amp;rdquo; 可以实现自动安装而无需用户交互，对于 CI/CD 流程和 Docker 构建特别有用。这在运行 apt-get 命令时尤为重要，因为它会自动选择默认选项并以最快速度完成构建。&lt;/p&gt;
+&lt;p&gt;最佳实践是在 RUN 命令中设置该变量，而不是使用 ENV 进行全局设置，因为全局设置会影响容器运行时的交互体验：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;noninteractive apt-get update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt-get install -y ...&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;基于角色的用户配置&#34;&gt;基于角色的用户配置&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;# 创建非 root 用户防止文件在宿主机上创建时具有 root 权限&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PUID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; PUID &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PUID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PGID&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ENV&lt;/span&gt; PGID &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PGID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;RUN&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; -xe&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    groupadd -g &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PGID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; laradock &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    useradd -l -u &lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;PUID&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt; -g laradock -m laradock -G docker_env &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    usermod -p &lt;span class=&#34;s2&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt; laradock -s /bin/bash&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这段配置创建了一个非 root 用户 &lt;code&gt;laradock&lt;/code&gt;，解决了容器和宿主机之间文件权限问题：&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker UFW 失效</title>
