@@ -170,6 +170,9 @@
     <loc>https://zyf.im/2021/01/27/php-strtotime-month/</loc>
     <lastmod>2021-01-27T18:18:24+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/2021/01/19/yii2-code-snippet/</loc>
+    <lastmod>2021-01-19T12:08:13+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/2020/12/31/review-2020/</loc>
     <lastmod>2020-12-31T20:00:00+00:00</lastmod>
   </url><url>
@@ -197,6 +200,9 @@
     <loc>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</loc>
     <lastmod>2020-08-10T14:24:47+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/2020/08/07/deploy-swoft-framework/</loc>
+    <lastmod>2020-08-07T11:45:19+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/tags/linux/</loc>
     <lastmod>2020-06-29T10:24:16+00:00</lastmod>
   </url><url>
@@ -211,6 +217,12 @@
   </url><url>
     <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
     <lastmod>2020-05-09T17:32:34+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/2020/04/29/make-install-php-on-centos/</loc>
+    <lastmod>2020-04-29T11:37:51+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/2020/04/28/make-install-php-on-macos/</loc>
+    <lastmod>2020-04-28T18:09:59+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2020/04/28/vim-code-snippet/</loc>
     <lastmod>2020-04-28T10:43:39+00:00</lastmod>
@@ -271,15 +283,6 @@
   </url><url>
     <loc>https://zyf.im/2019/08/08/vue-code-snippet/</loc>
     <lastmod>2019-08-08T17:33:38+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/node-js/</loc>
-    <lastmod>2019-07-17T20:24:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/npm/</loc>
-    <lastmod>2019-07-17T20:24:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/07/17/npx-getting-started/</loc>
-    <lastmod>2019-07-17T20:24:41+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/06/11/vscode-using-experience/</loc>
     <lastmod>2019-06-11T17:01:39+00:00</lastmod>
@@ -425,6 +428,9 @@
     <loc>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</loc>
     <lastmod>2017-08-03T11:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</loc>
+    <lastmod>2017-07-20T19:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</loc>
     <lastmod>2017-07-20T11:00:00+00:00</lastmod>
   </url><url>
@@ -499,6 +505,9 @@
   </url><url>
     <loc>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</loc>
     <lastmod>2017-03-03T17:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course/</loc>
+    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/12/31/review-2016/</loc>
     <lastmod>2016-12-31T22:00:00+00:00</lastmod>

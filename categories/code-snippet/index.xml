@@ -4,7 +4,7 @@
     <title>Code-Snippet on ZYF.IM BLOG</title>
     <link>https://zyf.im/categories/code-snippet/</link>
     <description>Recent content in Code-Snippet on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.146.7</generator>
+    <generator>Hugo -- 0.147.2</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 17 Nov 2022 10:09:26 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/categories/code-snippet/index.xml" rel="self" type="application/rss+xml" />
@@ -132,23 +132,25 @@
       <link>https://zyf.im/2022/07/26/front-end-code-snippet/</link>
       <pubDate>Tue, 26 Jul 2022 11:51:46 +0000</pubDate>
       <guid>https://zyf.im/2022/07/26/front-end-code-snippet/</guid>
-      <description>&lt;!-- more --&gt;
-&lt;h2 id=&#34;库推荐&#34;&gt;库推荐&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;库推荐&#34;&gt;库推荐&lt;/h2&gt;
 &lt;h3 id=&#34;nrm&#34;&gt;nrm&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/Pana/nrm&#34;&gt;Pana/nrm&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;nrm can help you easy and fast switch between different npm registries, now include: npm, cnpm, taobao, nj(nodejitsu).&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;npm install -g nrm
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nrm ls
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nrm use tencent
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;website&#34;&gt;Website&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://w3techs.com/&#34;&gt;W3Techs - World Wide Web Technology Surveys&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/nodejs/release#release-schedule&#34;&gt;nodejs release schedule&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+&lt;h2 id=&#34;安装-nodejs-与常见问题&#34;&gt;安装 Node.js 与常见问题&lt;/h2&gt;
+&lt;p&gt;2025-02-17：推荐使用 &lt;a href=&#34;https://moonrepo.dev/docs/proto&#34;&gt;proto&lt;/a&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;nodejs-安装&#34;&gt;Node.js 安装&lt;/h3&gt;
+&lt;p&gt;推荐使用 nvm 安装管理 node.js&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;the nvm method is definitely much more flexible.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/creationix/nvm#installation&#34;&gt;creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.js versions&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>MySQL Code Snippet</title>
