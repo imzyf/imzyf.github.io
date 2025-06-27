@@ -6,8 +6,51 @@
     <description>Recent content in Nginx on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 17 Mar 2020 11:33:24 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 26 Jun 2025 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在本地环境使用 HTTPS</title>
+      <link>https://zyf.im/2025/06/26/use-https-in-local-environment/</link>
+      <pubDate>Thu, 26 Jun 2025 12:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2025/06/26/use-https-in-local-environment/</guid>
+      <description>&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/FiloSottile/mkcert&#34;&gt;mkcert&lt;/a&gt; 会在本地生成一套根 CA（包含根证书和私钥），并把根证书导入系统/浏览器的信任列表。随后，它用这套 CA 的私钥为 localhost 等域名签发服务器证书；因为根证书已被信任，浏览器访问时就会把服务器证书视为可信。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install mkcert
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert -install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert localhost
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# The certificate is at &amp;#34;./localhost.pem&amp;#34; and the key at &amp;#34;./localhost-key.pem&amp;#34; ✅&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# vi default.conf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; ssl&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    server_name localhost&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate /etc/ssl/certs/localhost.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate_key /etc/ssl/certs/localhost-key.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 只允许 TLSv1.2 和 TLSv1.3 协议，显示禁止 TLSv1.0 和 TLSv1.1 协议&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_protocols TLSv1.2 TLSv1.3&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 只保留高强度、带身份验证、且不使用 MD5 的 TLS 1.2（及以下）套件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_ciphers HIGH:!aNULL:!MD5&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 优先使用服务器端加密套件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_prefer_server_ciphers on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    location / &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        root /usr/share/nginx/html&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        index  index.html index.htm&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name nginx-ssl &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -p 8443:443 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./default.conf:/etc/nginx/conf.d/default.conf:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost.pem:/etc/ssl/certs/localhost.pem:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost-key.pem:/etc/ssl/certs/localhost-key.pem:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  nginx:alpine
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker rm -f nginx-ssl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker container restart nginx-ssl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
+&lt;h3 id=&#34;游览器&#34;&gt;游览器&lt;/h3&gt;
+&lt;p&gt;游览器访问 &lt;code&gt;https://localhost:8443/&lt;/code&gt;，如果证书是绿色的，说明成功了。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>NGINX 前后端分离配置</title>
       <link>https://zyf.im/2020/03/17/nginx-front-back-end-config/</link>
@@ -172,16 +215,52 @@ server {
       <link>https://zyf.im/2017/06/06/nginx-enable-http2/</link>
       <pubDate>Tue, 06 Jun 2017 21:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/06/06/nginx-enable-http2/</guid>
-      <description>&lt;p&gt;2015 年 5 月 14 日 HTTP/2 协议正式版的发布，越来越多的网站开始部署 HTTP/2 了。&lt;/p&gt;
-&lt;p&gt;HTTP/2 协议是从 SPDY 演变而来，SPDY 已经完成了使命并很快就会退出历史舞台（例如 Chrome 在 2016 年初结束对 SPDY 的支持；Nginx 在 15 年年底正式支持 HTTP/2 后，也不再支持 SPDY）。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://http2.akamai.com/demo&#34;&gt;HTTP/2: the Future of the Internet | Akamai&lt;/a&gt; 提供了 HTTP/1 和 HTTP/2 的加载速度对比。&lt;/p&gt;
-&lt;h2 id=&#34;http2-中的特性&#34;&gt;HTTP/2 中的特性&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;HTTP/2（RFC 7540，2015 年发布）是自 1999 年 HTTP/1.1 以来的第一次重大升级，目标是在 不改变应用语义 的前提下，改善延迟、并发和网络效率。浏览器端基本只在 TLS 上启用（h2），明文版本 h2c 仅用于内部服务间通信。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;多路复用：通过多个请求 stream 共享一个 TCP 连接的方式，解决了 HTTP1.x holb (head of line blocking) 的问题，降低了延迟同时提高了带宽的利用率。&lt;/li&gt;
-&lt;li&gt;压缩头部：HTTP/2 规定了在客户端和服务器端会使用并且维护“首部表”，来跟踪和存储之前发送的键值对，对于相同的头部，不必再通过请求发送，只需发送一次。&lt;/li&gt;
-&lt;li&gt;二进制分帧：在应用层与传输层之间增加一个二进制分帧层，以此达到：在不改动 HTTP 的语义，HTTP 方法、状态码、URI 及首部字段的情况下，突破 HTTP1.1 的性能限制，改进传输性能，实现低延迟和高吞吐量。&lt;/li&gt;
+&lt;li&gt;h2：HTTP/2 over TLS（最常见，浏览器只支持这一种）&lt;/li&gt;
+&lt;li&gt;h2c：HTTP/2 over TCP（无加密）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;以下配置是在 Ubuntu 14.04 LTS 下。Ubuntu 14.04 LTS 中 Nginx、OpenSSL 的默认版本都是比较低的所以需要升级。&lt;/p&gt;</description>
+&lt;h3 id=&#34;设计背景&#34;&gt;设计背景&lt;/h3&gt;
+&lt;p&gt;移动端和富媒体时代，请求量激增，HTTP/1.1 的队头阻塞、多个 TCP 连接并行带来的 慢启动/拥塞竞争 成为瓶颈。&lt;/p&gt;
+&lt;p&gt;谷歌的 SPDY 原型验证了“单连接、多路复用、压缩头部”等思路；IETF 在 SPDY 3.1 基础上标准化为 HTTP/2。&lt;/p&gt;
+&lt;h3 id=&#34;核心特性&#34;&gt;核心特性&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;特性&lt;/th&gt;
+          &lt;th&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;二进制分帧 (Binary Framing)&lt;/td&gt;
+          &lt;td&gt;把 HTTP 报文拆成小型 Frame；机器易解析、可并行&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多路复用 (Multiplexing)&lt;/td&gt;
+          &lt;td&gt;多个请求/响应 共享一个 TCP 连接，互不阻塞&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;流与优先级 (Stream &amp;amp; Priority)&lt;/td&gt;
+          &lt;td&gt;每个请求是双向 Stream，可指定权重与依赖&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;头部压缩 (HPACK)&lt;/td&gt;
+          &lt;td&gt;静态 Huffman + 动态表，大幅减少重复的 Header 字节&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;服务器推送 (Server Push)&lt;/td&gt;
+          &lt;td&gt;服务器可在请求外预送资源 (已被多数浏览器弱化/关闭)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;流量控制&lt;/td&gt;
+          &lt;td&gt;端到端窗口，避免单个大文件占满带宽&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;p&gt;启用 HTTP/2 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>PHP 中获取 Nginx 使用反向代理或 CDN 后的客户端真实 IP</title>
