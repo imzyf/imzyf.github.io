@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zyf.im/posts/</loc>
+    <lastmod>2025-06-27T10:12:12+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/</loc>
+    <lastmod>2025-06-27T10:12:12+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/tags/nginx/</loc>
     <lastmod>2025-06-26T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/posts/</loc>
-    <lastmod>2025-06-26T12:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/</loc>
-    <lastmod>2025-06-26T12:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/</loc>
     <lastmod>2025-06-26T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2025/06/26/use-https-in-local-environment/</loc>
