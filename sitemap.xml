@@ -53,12 +53,6 @@
     <loc>https://zyf.im/2023/03/01/regular-expression-getting-started/</loc>
     <lastmod>2023-03-01T15:31:15+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/vim/</loc>
-    <lastmod>2023-02-28T11:33:27+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/02/28/vim-practical-tips/</loc>
-    <lastmod>2023-02-28T11:33:27+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/kubernetes/</loc>
     <lastmod>2023-02-24T17:24:14+08:00</lastmod>
   </url><url>
@@ -233,6 +227,9 @@
     <loc>https://zyf.im/2020/04/28/make-install-php-on-macos/</loc>
     <lastmod>2020-04-28T18:09:59+08:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/tags/vim/</loc>
+    <lastmod>2020-04-28T10:43:39+08:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/2020/04/28/vim-code-snippet/</loc>
     <lastmod>2020-04-28T10:43:39+08:00</lastmod>
   </url><url>
@@ -244,9 +241,6 @@
   </url><url>
     <loc>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</loc>
     <lastmod>2020-04-14T17:05:01+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/03/17/nginx-front-back-end-config/</loc>
-    <lastmod>2020-03-17T11:33:24+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
     <lastmod>2020-03-13T22:25:25+08:00</lastmod>
@@ -262,12 +256,6 @@
   </url><url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2019-12-19T16:46:06+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/mac/</loc>
-    <lastmod>2019-12-09T14:45:39+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</loc>
-    <lastmod>2019-12-09T14:45:39+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/12/03/analyze-git-log/</loc>
     <lastmod>2019-12-03T14:47:28+08:00</lastmod>
@@ -304,6 +292,9 @@
   </url><url>
     <loc>https://zyf.im/2019/05/23/merge-sort/</loc>
     <lastmod>2019-05-23T14:44:40+08:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/mac/</loc>
+    <lastmod>2019-05-20T17:14:59+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/05/20/my-macbook/</loc>
     <lastmod>2019-05-20T17:14:59+08:00</lastmod>
@@ -374,9 +365,6 @@
     <loc>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</loc>
     <lastmod>2018-04-26T16:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2018/04/24/docker-ufw-not-work/</loc>
-    <lastmod>2018-04-24T14:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2018/03/31/swift-init/</loc>
     <lastmod>2018-03-31T17:00:00+08:00</lastmod>
   </url><url>
@@ -418,12 +406,6 @@
   </url><url>
     <loc>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</loc>
     <lastmod>2017-11-22T16:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</loc>
-    <lastmod>2017-10-28T15:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/10/28/simple-macbook-report/</loc>
-    <lastmod>2017-10-28T14:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</loc>
     <lastmod>2017-08-30T20:00:00+08:00</lastmod>
@@ -467,32 +449,11 @@
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
     <lastmod>2017-04-11T11:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/ubuntu/</loc>
-    <lastmod>2017-04-10T15:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</loc>
-    <lastmod>2017-04-10T15:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</loc>
-    <lastmod>2017-04-06T11:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</loc>
     <lastmod>2017-03-30T18:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/ssh/</loc>
-    <lastmod>2017-03-30T17:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</loc>
-    <lastmod>2017-03-30T17:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</loc>
-    <lastmod>2017-03-17T17:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</loc>
     <lastmod>2017-03-17T16:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/14/google-no-country-redirection/</loc>
-    <lastmod>2017-03-14T11:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
     <lastmod>2017-03-13T17:00:00+08:00</lastmod>
@@ -500,20 +461,11 @@
     <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
     <lastmod>2017-03-09T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2017/03/07/linux-crontab-content-backup/</loc>
-    <lastmod>2017-03-07T12:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</loc>
-    <lastmod>2017-03-03T17:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2017/02/23/imooc-html-css-basic-course/</loc>
     <lastmod>2017-02-23T00:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/12/31/review-2016/</loc>
     <lastmod>2016-12-31T22:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</loc>
-    <lastmod>2016-10-10T13:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</loc>
     <lastmod>2016-09-23T16:00:00+08:00</lastmod>
@@ -526,9 +478,6 @@
   </url><url>
     <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
     <lastmod>2016-09-19T16:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</loc>
-    <lastmod>2016-09-19T14:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</loc>
     <lastmod>2016-09-18T19:00:00+08:00</lastmod>
@@ -608,9 +557,6 @@
     <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
     <lastmod>2016-07-31T10:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</loc>
-    <lastmod>2016-07-29T10:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
     <lastmod>2016-07-25T10:00:00+08:00</lastmod>
   </url><url>
@@ -637,6 +583,9 @@
   </url><url>
     <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
     <lastmod>2016-06-24T18:30:00+08:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/ubuntu/</loc>
+    <lastmod>2016-06-14T13:30:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</loc>
     <lastmod>2016-06-14T13:30:00+08:00</lastmod>

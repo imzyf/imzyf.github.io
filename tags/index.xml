@@ -51,13 +51,6 @@
       <description></description>
     </item>
     <item>
-      <title>Vim</title>
-      <link>https://zyf.im/tags/vim/</link>
-      <pubDate>Tue, 28 Feb 2023 11:33:27 +0800</pubDate>
-      <guid>https://zyf.im/tags/vim/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Kubernetes</title>
       <link>https://zyf.im/tags/kubernetes/</link>
       <pubDate>Fri, 24 Feb 2023 17:24:14 +0800</pubDate>
@@ -142,17 +135,17 @@
       <description></description>
     </item>
     <item>
+      <title>Vim</title>
+      <link>https://zyf.im/tags/vim/</link>
+      <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
+      <guid>https://zyf.im/tags/vim/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Pr</title>
       <link>https://zyf.im/tags/pr/</link>
       <pubDate>Fri, 13 Mar 2020 22:25:25 +0800</pubDate>
       <guid>https://zyf.im/tags/pr/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mac</title>
-      <link>https://zyf.im/tags/mac/</link>
-      <pubDate>Mon, 09 Dec 2019 14:45:39 +0800</pubDate>
-      <guid>https://zyf.im/tags/mac/</guid>
       <description></description>
     </item>
     <item>
@@ -174,6 +167,13 @@
       <link>https://zyf.im/tags/algorithm/</link>
       <pubDate>Thu, 23 May 2019 14:44:40 +0800</pubDate>
       <guid>https://zyf.im/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mac</title>
+      <link>https://zyf.im/tags/mac/</link>
+      <pubDate>Mon, 20 May 2019 17:14:59 +0800</pubDate>
+      <guid>https://zyf.im/tags/mac/</guid>
       <description></description>
     </item>
     <item>
@@ -205,20 +205,6 @@
       <description></description>
     </item>
     <item>
-      <title>Ubuntu</title>
-      <link>https://zyf.im/tags/ubuntu/</link>
-      <pubDate>Mon, 10 Apr 2017 15:00:00 +0800</pubDate>
-      <guid>https://zyf.im/tags/ubuntu/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ssh</title>
-      <link>https://zyf.im/tags/ssh/</link>
-      <pubDate>Thu, 30 Mar 2017 17:00:00 +0800</pubDate>
-      <guid>https://zyf.im/tags/ssh/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Java</title>
       <link>https://zyf.im/tags/java/</link>
       <pubDate>Fri, 23 Sep 2016 16:00:00 +0800</pubDate>
@@ -244,6 +230,13 @@
       <link>https://zyf.im/tags/hexo/</link>
       <pubDate>Fri, 01 Jul 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/tags/hexo/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ubuntu</title>
+      <link>https://zyf.im/tags/ubuntu/</link>
+      <pubDate>Tue, 14 Jun 2016 13:30:00 +0800</pubDate>
+      <guid>https://zyf.im/tags/ubuntu/</guid>
       <description></description>
     </item>
   </channel>

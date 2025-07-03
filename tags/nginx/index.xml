@@ -15,7 +15,7 @@
       <guid>https://zyf.im/2025/06/27/nginx-enable-http3/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;HTTP/2 解决了“多路复用、头部压缩、优先级”等 HTTP/1.x 的瓶颈，但仍受 TCP 先天限制。&lt;/p&gt;
-&lt;p&gt;HTTP/3 则把同样的语义搬到 QUIC（UDP） 之上，在连接建立、丢包处理、迁移能力等方面进一步优化。&lt;/p&gt;
+&lt;p&gt;HTTP/3 则把同样的语义搬到 QUIC，Quick UDP Internet Connections 是 Google 设计的一种基于 UDP 的多路复用安全传输层协议。标准化后，HTTP/3 = HTTP over QUIC。&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -43,224 +43,61 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;Mux multiplex 多路复用&lt;/li&gt;
+&lt;li&gt;HTTP/2 浏览器要求必须跑在 TLS 之上（ALPN=“h2”）。栈变为 HTTP/2 → TLS → TCP → IP。&lt;/li&gt;
+&lt;li&gt;HTTP/3 使用 QUIC 替换 TCP，栈变为 HTTP/3 → QUIC (拥塞/重传) → UDP → IP，加密集成在 QUIC（基于 TLS 1.3）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Mux&lt;/code&gt; multiplex 多路复用&lt;/li&gt;
 &lt;li&gt;HTTP/2 必须顺序传输，而 HTTP/3 支持乱序&lt;/li&gt;
 &lt;li&gt;如果沿用 HPACK，丢一个 UDP 包就会让所有流的头部解码卡住，因此 IETF 为 HTTP/3 设计了 QPACK 来“避开队头阻塞 (Head-of-Line Blocking, HoL)”。&lt;/li&gt;
+&lt;li&gt;连接迁移。通过 Connection ID 识别会话，IP 或端口改变（如移动网络/Wi-Fi 切换）无需重新建立连接。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
-&lt;p&gt;启用 HTTP/3 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;修改 NGINX default.conf 配置文件，启用 HTTP/3：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# vi default.conf&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# for better compatibility it&amp;#39;s recommended&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# to use the same port for http/3 and https&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 浏览器首次只能走 TCP，因此必须提供一个 HTTPS 入口，再通过 `Alt-Svc` 升级到 HTTP/3&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; ssl&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Quick UDP Internet Connections&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# quic 关键字表示使用 UDP 监听，承载 QUIC/HTTP-3&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# reuseport 关键字表示复用端口，允许多个 NGINX 实例共享同一端口&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; quic reuseport&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    http2 on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 启用 HTTP/3，默认是 on&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    http3 on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    server_name localhost&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate /etc/ssl/certs/localhost.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate_key /etc/ssl/certs/localhost-key.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 启用 TLS 允许 0-RTT（Early Data），允许客户端在 TLS 1.3 的重连阶段携带早期数据&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 对 HTTP/3 非必需，但 QUIC 天生支持 0-RTT；此处保持一致&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_early_data on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 仅启用 TLSv1.3&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_protocols TLSv1.3&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_ciphers HIGH:!aNULL:!MD5&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_prefer_server_ciphers on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 添加 Alt-Svc 头，向客户端声明可升级到 HTTP/3&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Alt-Svc 头告诉浏览器“该资源在同一主机的 UDP/8443 上能用 h3 协议”，浏览器会自动重试&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 因为使用了 docker 的端口映射，所以这里需要使用 8443 端口，默认是 443&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# ma max-age 缓存时间，86400 秒 = 1 天&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# always 关键字保证即使发生 4xx/5xx 也发送 Alt-Svc，便于调试&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    add_header Alt-Svc &lt;span class=&#34;s1&#34;&gt;&amp;#39;h3=&amp;#34;:8443&amp;#34;; ma=86400&amp;#39;&lt;/span&gt; always&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    location / &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        root /usr/share/nginx/html&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        index  index.html index.htm&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker rm -f nginx-ssl&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加监听 UDP 端口&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name nginx-ssl &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -p 8443:443 &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -p 8443:443/udp &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./default.conf:/etc/nginx/conf.d/default.conf:ro &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost.pem:/etc/ssl/certs/localhost.pem:ro &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost-key.pem:/etc/ssl/certs/localhost-key.pem:ro &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./html/:/usr/share/nginx/html/:ro &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  nginx:alpine
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker container restart nginx-ssl&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
-&lt;h3 id=&#34;curl&#34;&gt;curl&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 使用支持 HTTP/3 的 curl&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -ti --rm alpine/curl-http3 curl -V&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -ti --network host --rm alpine/curl-http3 curl -I --http3 https://localhost:8443/
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP/3 &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;server: nginx/1.29.0
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;date: Fri, &lt;span class=&#34;m&#34;&gt;27&lt;/span&gt; Jun &lt;span class=&#34;m&#34;&gt;2025&lt;/span&gt; 03:26:09 GMT
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content-type: text/html
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content-length: &lt;span class=&#34;m&#34;&gt;656&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;last-modified: Fri, &lt;span class=&#34;m&#34;&gt;27&lt;/span&gt; Jun &lt;span class=&#34;m&#34;&gt;2025&lt;/span&gt; 03:17:07 GMT
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;etag: &lt;span class=&#34;s2&#34;&gt;&amp;#34;685e0d33-290&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;alt-svc: &lt;span class=&#34;nv&#34;&gt;h3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;:8443&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ma&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;86400&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;accept-ranges: bytes
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;游览器&#34;&gt;游览器&lt;/h3&gt;
-&lt;p&gt;无法验证！理论结果：&lt;/p&gt;</description>
+&lt;p&gt;使用 HTTP3 的网站：&lt;/p&gt;</description>
     </item>
     <item>
       <title>在本地环境使用 HTTPS</title>
       <link>https://zyf.im/2025/06/26/use-https-in-local-environment/</link>
       <pubDate>Thu, 26 Jun 2025 12:00:00 +0800</pubDate>
       <guid>https://zyf.im/2025/06/26/use-https-in-local-environment/</guid>
-      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+      <description>&lt;p&gt;公网环境使用 HTTPS 参考：&lt;a href=&#34;https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/&#34;&gt;使用 Certbot 获取 Let’s Encrypt 颁发的 TLS 证书 ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;HTTPS（HyperText Transfer Protocol Secure）是在 HTTP 之上通过 TLS/SSL 实现加密的安全通信协议，用来保护浏览器与服务器之间的数据机密性、完整性与身份可信性。&lt;/p&gt;
-&lt;h3 id=&#34;为什么需要-https&#34;&gt;为什么需要 HTTPS&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;信息加密。防止明文传输被窃听（如 Wi-Fi 嗅探、运营商劫持）。&lt;/li&gt;
-&lt;li&gt;身份认证。通过数字证书确保访问的是&amp;quot;真正的&amp;quot;服务器，避免中间人攻击（MITM）。&lt;/li&gt;
-&lt;li&gt;数据完整性。TLS 具有 MAC（消息验证码）机制，能检测并阻止篡改。&lt;/li&gt;
-&lt;li&gt;SEO 与浏览器政策。谷歌等搜索引擎对 HTTPS 站点给予权重提升；现代浏览器在地址栏对 HTTP 标红或弹警告。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;握手过程&#34;&gt;握手过程&lt;/h3&gt;
-&lt;p&gt;TLS 1.2 为例：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;sequenceDiagram
-  participant Client
-  participant Server
-  Client-&amp;gt;&amp;gt;Server: ClientHello&amp;lt;br/&amp;gt;– 支持的 TLS 版本、随机数、加密套件
-  Server--&amp;gt;&amp;gt;Client: ServerHello&amp;lt;br/&amp;gt;– 选定版本/套件、随机数
-  Server--&amp;gt;&amp;gt;Client: Certificate
-  Server--&amp;gt;&amp;gt;Client: ServerHelloDone
-  Client-&amp;gt;&amp;gt;Server: ClientKeyExchange&amp;lt;br/&amp;gt;– 预主密钥 (用公钥加密)
-  Client-&amp;gt;&amp;gt;Server: ChangeCipherSpec
-  Client-&amp;gt;&amp;gt;Server: Finished (用对称密钥加密)
-  Server--&amp;gt;&amp;gt;Client: ChangeCipherSpec
-  Server--&amp;gt;&amp;gt;Client: Finished
-  note over Client,Server: 之后开始对称加密的数据传输
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;双方首先协商算法与随机数；&lt;/li&gt;
-&lt;li&gt;客户端用服务器公钥加密预主密钥；&lt;/li&gt;
-&lt;li&gt;双方基于随机数与预主密钥生成会话密钥；&lt;/li&gt;
-&lt;li&gt;后续通信全部使用对称加密，提高效率。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;证书类型&#34;&gt;证书类型&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;DV（Domain Validation）证书仅验证域名所有权，通过自动化流程颁发，价格低廉甚至免费（如 Let&amp;rsquo;s Encrypt）。&lt;/li&gt;
-&lt;li&gt;OV（Organization Validation）证书需要验证组织实体信息，在浏览器证书详情中可查看公司名称。&lt;/li&gt;
-&lt;li&gt;EV（Extended Validation）证书验证最为严格，地址栏会显示公司名称，但多数现代浏览器已弱化此功能的 UI 展示。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;tls-13&#34;&gt;TLS 1.3&lt;/h3&gt;
-&lt;p&gt;TLS 1.3（RFC 8446）是在 2018 年 8 月正式发布的最新版本，相比 TLS 1.2 做了深度“瘦身+加速+强化安全”。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>NGINX 前后端分离配置</title>
-      <link>https://zyf.im/2020/03/17/nginx-front-back-end-config/</link>
-      <pubDate>Tue, 17 Mar 2020 11:33:24 +0800</pubDate>
-      <guid>https://zyf.im/2020/03/17/nginx-front-back-end-config/</guid>
-      <description>&lt;p&gt;前后端分离的开发已是主流，本文主要是记录前后端分离项目的 NGINX 配置。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;前端 Vue web 入口 &lt;code&gt;host.test&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;后端 PHP Yii service 入口 &lt;code&gt;host.test/api&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;server {
-  listen 80;
-  server_name host.test;
-  root /data/project/web/dist/;
-  index index.html index.php;
-
-  location ^~/api {
-    root           /data/project/service/web/;
-
-    access_log     logs/service-access.log;
-    error_log      logs/service-error.log;
-
-    fastcgi_pass   127.0.0.1:9000;
-    include        fastcgi.conf;
-    fastcgi_param  SCRIPT_FILENAME   /data/project/service/web/index.php;
-    fastcgi_param  SCRIPT_NAME       /api/index.php;
-  }
-
-  location /index.html {
-    add_header Cache-Control &amp;#34;no-cache, no-store&amp;#34;;
-  }
-
-  location ^~ / {
-    alias /data/project/web/dist/;
-    access_log logs/web-access.log;
-    error_log logs/web-error.log;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;负载均衡场景&#34;&gt;负载均衡场景&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;前端 Vue web 入口 &lt;code&gt;host.test&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;后端 PHP Yii service 入口 &lt;code&gt;host.test/api&lt;/code&gt; 代理到 &lt;code&gt;api.host.test&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;web&#34;&gt;WEB&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;server {
-  listen 80;
-  server_name host.test;
-  root /data/project/web/dist/;
-
-  access_log logs/web-access.log;
-  error_log logs/web-error.log;
-
-  location /index.html {
-    add_header Cache-Control &amp;#34;no-cache, no-store&amp;#34;;
-  }
-
-  location / {
-    index index.php index.html index.htm;
-    try_files $uri $uri/ /index.html;
-  }
-
-  location ^~/api/ {
-    proxy_set_header Host             api.host.test;
-    proxy_set_header X-Real-IP        $remote_addr;
-    proxy_set_header X-Forwarded-For  $proxy_add_x_forwarded_for;
-    proxy_set_header X-NginX-Proxy    true;
-    proxy_pass http://api.host.test/;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;service&#34;&gt;SERVICE&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;server {
-  listen 80;
-  server_name api.host.test;
-  root /data/project/service/web/;
-
-  location / {
-    access_log logs/service-access.log;
-    error_log logs/service-error.log;
-
-    index index.php index.html;
-    try_files $uri $uri/ /index.php$is_args$args;
-  }
-
-  location ~ \.php$ {
-    fastcgi_pass    127.0.0.1:10071;
-
-    fastcgi_index   index.php;
-    include         fastcgi_params;
-    fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name;
-    fastcgi_param   SERVER_NAME       $http_host;
-    fastcgi_ignore_client_abort       on;
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;nginx-配置转发&#34;&gt;NGINX 配置转发&lt;/h2&gt;
-&lt;p&gt;location 进行的是模糊匹配。&lt;/p&gt;</description>
+&lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/FiloSottile/mkcert&#34;&gt;mkcert&lt;/a&gt; 会在本地生成一套根 CA（包含根证书和私钥），并把根证书导入系统/浏览器的信任列表。随后，它用这套 CA 的私钥为 localhost 等域名签发服务器证书；因为根证书已被信任，浏览器访问时就会把服务器证书视为可信。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install mkcert
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert -install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert localhost
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# The certificate is at &amp;#34;./localhost.pem&amp;#34; and the key at &amp;#34;./localhost-key.pem&amp;#34; ✅&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# vi default.conf&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; ssl&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    server_name localhost&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate /etc/ssl/certs/localhost.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate_key /etc/ssl/certs/localhost-key.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 只允许 TLSv1.2 和 TLSv1.3 协议，显示禁止 TLSv1.0 和 TLSv1.1 协议&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_protocols TLSv1.2 TLSv1.3&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 只保留高强度、带身份验证、且不使用 MD5 的 TLS 1.2（及以下）套件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_ciphers HIGH:!aNULL:!MD5&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 优先使用服务器端加密套件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_prefer_server_ciphers on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    location / &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        root /usr/share/nginx/html&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        index  index.html index.htm&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name nginx-ssl &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -p 8443:443 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./default.conf:/etc/nginx/conf.d/default.conf:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost.pem:/etc/ssl/certs/localhost.pem:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost-key.pem:/etc/ssl/certs/localhost-key.pem:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  nginx:alpine
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker rm -f nginx-ssl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker container restart nginx-ssl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
+&lt;h3 id=&#34;游览器&#34;&gt;游览器&lt;/h3&gt;
+&lt;p&gt;游览器访问 &lt;code&gt;https://localhost:8443/&lt;/code&gt;，如果证书是绿色的，说明成功了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 Certbot 获取 Let’s Encrypt 颁发的 TLS 证书</title>
@@ -348,7 +185,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;launch-an-instance&#34;&gt;Launch an instance&lt;/h3&gt;
+&lt;h3 id=&#34;launch-an-aws-ec2-instance&#34;&gt;Launch an AWS EC2 instance&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;Instance type: t2.nano&lt;/li&gt;
 &lt;li&gt;Username: ec2-user&lt;/li&gt;
@@ -417,7 +254,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
 &lt;p&gt;启用 HTTP/2 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>

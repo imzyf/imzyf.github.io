@@ -6,27 +6,8 @@
     <description>Recent content in Mac on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Dec 2019 14:45:39 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 May 2019 17:14:59 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/mac/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Windows 文本文件到 Mac 中文乱码</title>
-      <link>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</link>
-      <pubDate>Mon, 09 Dec 2019 14:45:39 +0800</pubDate>
-      <guid>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</guid>
-      <description>&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;解决办法&#34;&gt;解决办法&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/Iconv&#34;&gt;iconv | wikipedia&lt;/a&gt; 它的作用是在多种国际编码格式之间进行文本内码的转换。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;OPTION...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-f ENCODING&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-t ENCODING&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;INPUTFILE...&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv -f &amp;lt;原始编码&amp;gt; -t &amp;lt;目标编码&amp;gt; &amp;lt;输入文件&amp;gt; -o &amp;lt;输出文件&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iconv -f GB18030 -t utf-8 &amp;lt;infile.txt&amp;gt; outfile.txt
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://super2bai.github.io/codec/w2m.html&#34;&gt;文本文件从 Windows 拷贝到 Mac 乱码 | super2bai&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
     <item>
       <title>My MacBook</title>
       <link>https://zyf.im/2019/05/20/my-macbook/</link>
@@ -213,57 +194,6 @@
 &lt;ul&gt;
 &lt;li&gt;触发角：&lt;code&gt;系统偏好设置 -&amp;gt; 桌面与屏幕保护程序 -&amp;gt; 屏幕保护程序 -&amp;gt; 触发角&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Linux Mac 使用代理连接 SSH</title>
-      <link>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</link>
-      <pubDate>Sat, 28 Oct 2017 15:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</guid>
-      <description>&lt;h2 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -oProxyCommand&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nc -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mac&#34;&gt;Mac&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -o &lt;span class=&#34;s2&#34;&gt;&amp;#34;ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
-&lt;h2 id=&#34;secourecrt&#34;&gt;SecoureCRT&lt;/h2&gt;
-&lt;p&gt;Session Options - Connection - SSH2 - Firewall，创建、选择代理。&lt;/p&gt;
-&lt;h2 id=&#34;参数&#34;&gt;参数&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-o ProxyCommand&lt;/code&gt;：SSH 命令选项，你可以理解成使用 “在 SSH 中使用代理”。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;nc&lt;/code&gt;：netcat 命令。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;127.0.0.1:1080&lt;/code&gt;：本地 Shadowsocks 的监听地址和监听端口。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;命令行-http-代理&#34;&gt;命令行 HTTP 代理&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;http_proxy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://127.0.0.1:1087&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;https_proxy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;http://127.0.0.1:1087&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;鉴别自己是否真的使用了代理来登陆服务器&#34;&gt;鉴别自己是否真的使用了代理来登陆服务器&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@ubuntu:~# who
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root     pts/2        2017-05-13 18:13 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;xxx.xxx.xxx.xxx&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.goodspb.net/mac-os-%E4%BD%BF%E7%94%A8-shadowsock-%E6%9D%A5%E4%BB%A3%E7%90%86-ssh-%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%E5%99%A8/&#34;&gt;Mac OS 使用 shadowsock 来代理 ssh 访问服务器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MacBook 使用小感</title>
-      <link>https://zyf.im/2017/10/28/simple-macbook-report/</link>
-      <pubDate>Sat, 28 Oct 2017 14:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/10/28/simple-macbook-report/</guid>
-      <description>&lt;p&gt;现在自己的开发主力机是：2015 版的 MacBook Pro。对于工程师来讲，MacBook 绝对是用来提高生产力的，不是装杯的。如果条件允许十分推荐，反正我是回不来了。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;一些感受&#34;&gt;一些感受&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;购买型号选择：15 寸 i7 Pro 没的说，屏大看的很爽。&lt;/li&gt;
-&lt;li&gt;F1&amp;hellip; 等键并有没有原来想象的那么重要，游览器刷新什么的都有代替的键。我感觉 F 系列的键默认为功能键挺好的。Filco 键盘开始吃灰。&lt;/li&gt;
-&lt;li&gt;续航时间是真的长，待机功耗很小，不用关机。扣上盖子装包带走，不拿充电线。&lt;/li&gt;
-&lt;li&gt;触控板真的好用。原来都是没鼠标时不得已才用触控板。(后来发现老司机们都爱触控板)&lt;/li&gt;
-&lt;li&gt;鼠标 - 滚动方向：自然，需要适应。&lt;/li&gt;
-&lt;li&gt;Chrome Tab 随便开。&lt;/li&gt;
-&lt;li&gt;很安静。&lt;/li&gt;
-&lt;li&gt;装包时边沿有些割手。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;软件推荐&#34;&gt;软件推荐&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;2020-03-25 更新：&lt;/strong&gt; &lt;a href=&#34;https://zyf.im/2019/05/20/my-macbook/&#34;&gt;My MacBook | Yifans_Z&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
   </channel>
