@@ -6,7 +6,7 @@
 Could not open a connection to your authentication agent. Try to
 eval `ssh-agent` 注意： 在重启电脑后失效，一直没有找的其他合适的解决方案，所以选择在 ~/.bashrc 或 ~/.zshrc 中添加：
 ssh-add your_publickey 2> /dev/null 2> /dev/null 是为了保持静默运行
-References ssh 连接提示 Permission denied (publickey) 怎么破？ | 吴川斌的博客</p></div><footer class=entry-footer><span title='2017-03-30 17:00:00 +0000 UTC'>March 30, 2017</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;50 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to 解决 SSH 连接提示 Permission denied publickey" href=https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Linux SSH 密钥登陆免密码</h2></header><div class=entry-content><p>最近有需求使用 SSH 进行通信，而且要需免密码，总结了 SSH 密钥登陆免密码的方法。
+References ssh 连接提示 Permission denied (publickey) 怎么破？ | 吴川斌的博客</p></div><footer class=entry-footer><span title='2017-03-30 17:00:00 +0800 CST'>March 30, 2017</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;50 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to 解决 SSH 连接提示 Permission denied publickey" href=https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Linux SSH 密钥登陆免密码</h2></header><div class=entry-content><p>最近有需求使用 SSH 进行通信，而且要需免密码，总结了 SSH 密钥登陆免密码的方法。
 快速配置 本机 ip：192.168.1.1 服务器 ip：192.168.1.2 要实现本机免密码登录服务器，执行如下命令：
 ssh-copy-id username@192.168.1.2 如果命令成功，则说明配置成功。如果执行失败，则需要参考下面的步骤进行配置。
 本地配置步骤 客户端生成公钥、私钥 ssh-keygen -t rsa -P '' -t 表示 key 的类型 -P 表示密码，-P '' 就表示空密码，也可以不用 -P 参数 运行完之后在 ~/.ssh 目录下生成私钥 id_rsa 和公钥 id_rsa.pub。
@@ -16,7 +16,7 @@ vim ~/.ssh/authorized_keys 粘贴到最后一行。如果没有这个 authorzied
 设置文件权限 服务端，非必须。
 sudo chmod 755 ~/.ssh sudo chmod 600 ~/.ssh/authorized_keys 客户端重启服务 sudo service ssh restart 此时就可以不免密码登陆服务端了。
 以证书登录后 使用 sudo 操作 设置用户以证书登录后，使用 sudo 操作。在服务端设置：
-...</p></div><footer class=entry-footer><span title='2016-07-29 10:00:00 +0000 UTC'>July 29, 2016</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;230 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to Linux SSH 密钥登陆免密码" href=https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+...</p></div><footer class=entry-footer><span title='2016-07-29 10:00:00 +0800 CST'>July 29, 2016</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;230 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to Linux SSH 密钥登陆免密码" href=https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>

@@ -6,12 +6,12 @@
     <description>Recent content in Mysql on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Sep 2022 18:55:54 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Sep 2022 18:55:54 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MySQL 实战 45 讲 Part2</title>
       <link>https://zyf.im/2022/09/14/mysql-course-45-part2/</link>
-      <pubDate>Wed, 14 Sep 2022 18:55:54 +0000</pubDate>
+      <pubDate>Wed, 14 Sep 2022 18:55:54 +0800</pubDate>
       <guid>https://zyf.im/2022/09/14/mysql-course-45-part2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
@@ -19,7 +19,7 @@
     <item>
       <title>MySQL 实战 45 讲 Part1</title>
       <link>https://zyf.im/2022/08/14/mysql-course-45-part1/</link>
-      <pubDate>Sun, 14 Aug 2022 15:53:16 +0000</pubDate>
+      <pubDate>Sun, 14 Aug 2022 15:53:16 +0800</pubDate>
       <guid>https://zyf.im/2022/08/14/mysql-course-45-part1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -54,7 +54,7 @@
     <item>
       <title>GROUP_CONCAT 截断</title>
       <link>https://zyf.im/2022/01/10/group-concat-max-len/</link>
-      <pubDate>Mon, 10 Jan 2022 15:53:16 +0000</pubDate>
+      <pubDate>Mon, 10 Jan 2022 15:53:16 +0800</pubDate>
       <guid>https://zyf.im/2022/01/10/group-concat-max-len/</guid>
       <description>&lt;p&gt;今日在生产环境发生了：因为 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 聚合的数据列发生截断导致异常，原来 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 是有大小限制的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GROUP_CONCAT_MAX_LEN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -68,7 +68,7 @@
     <item>
       <title>分组聚合 OVER PARTITION BY</title>
       <link>https://zyf.im/2021/09/14/sql-over-partition-by/</link>
-      <pubDate>Tue, 14 Sep 2021 11:58:42 +0000</pubDate>
+      <pubDate>Tue, 14 Sep 2021 11:58:42 +0800</pubDate>
       <guid>https://zyf.im/2021/09/14/sql-over-partition-by/</guid>
       <description>&lt;h2 id=&#34;在-hive-中&#34;&gt;在 HIVE 中&lt;/h2&gt;
 &lt;p&gt;最近在使用 HIVE，需要统计 &lt;code&gt;当年累计和&lt;/code&gt; 这样的指标，请教同事后发现了 &lt;code&gt;OVER(PARTITION BY)&lt;/code&gt; 开窗函数。&lt;/p&gt;
@@ -109,7 +109,7 @@
     <item>
       <title>MySQL Code Snippet</title>
       <link>https://zyf.im/2021/01/29/mysql-code-snippet/</link>
-      <pubDate>Fri, 29 Jan 2021 18:08:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jan 2021 18:08:00 +0800</pubDate>
       <guid>https://zyf.im/2021/01/29/mysql-code-snippet/</guid>
       <description>&lt;h2 id=&#34;tips-sql&#34;&gt;Tips SQL&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 追踪优化器 Trace 功能
@@ -150,7 +150,7 @@
     <item>
       <title>MySQL 空格问题</title>
       <link>https://zyf.im/2020/11/28/mysql-blank-space/</link>
-      <pubDate>Sat, 28 Nov 2020 11:11:59 +0000</pubDate>
+      <pubDate>Sat, 28 Nov 2020 11:11:59 +0800</pubDate>
       <guid>https://zyf.im/2020/11/28/mysql-blank-space/</guid>
       <description>&lt;h2 id=&#34;看现象&#34;&gt;看现象&lt;/h2&gt;
 &lt;p&gt;创建一个测试数据库表，插入测试数据：&lt;/p&gt;
@@ -197,7 +197,7 @@
     <item>
       <title>MySQL JSON 数据类型</title>
       <link>https://zyf.im/2020/08/14/mysql-json-data-type/</link>
-      <pubDate>Fri, 14 Aug 2020 19:39:55 +0000</pubDate>
+      <pubDate>Fri, 14 Aug 2020 19:39:55 +0800</pubDate>
       <guid>https://zyf.im/2020/08/14/mysql-json-data-type/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/json.html&#34;&gt;The JSON Data Type | mysql&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -212,7 +212,7 @@
     <item>
       <title>MySQL Illegal mix of collations</title>
       <link>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</link>
-      <pubDate>Tue, 14 Apr 2020 17:05:01 +0000</pubDate>
+      <pubDate>Tue, 14 Apr 2020 17:05:01 +0800</pubDate>
       <guid>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Illegal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mix&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;collations&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4_general_ci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;IMPLICIT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4_unicode_ci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;IMPLICIT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;operation&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
@@ -243,7 +243,7 @@
     <item>
       <title>最左前缀原理与相关优化</title>
       <link>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</link>
-      <pubDate>Sat, 25 May 2019 11:05:46 +0000</pubDate>
+      <pubDate>Sat, 25 May 2019 11:05:46 +0800</pubDate>
       <guid>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</guid>
       <description>&lt;p&gt;MySQL 中的索引可以以一定顺序引用多个列，这种索引叫做联合索引，一般的，一个联合索引是一个有序元组 &lt;code&gt;&amp;lt;a1, a2, …, an&amp;gt;&lt;/code&gt;，其中各个元素均为数据表的一列。另外，单列索引可以看成联合索引元素数为 1 的特例。&lt;/p&gt;
 &lt;p&gt;我们在 &lt;a href=&#34;https://dev.mysql.com/doc/employee/en/employees-installation.html&#34;&gt;Employees Sample Database&lt;/a&gt; 中实验，MySQL 版本 5.7。&lt;/p&gt;
@@ -275,7 +275,7 @@
     <item>
       <title>在 MySQL 中选择合适的日期类型</title>
       <link>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</link>
-      <pubDate>Fri, 25 May 2018 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 25 May 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</guid>
       <description>&lt;p&gt;如何在 MySQL 中选择合适的日期类型困扰了很久，&lt;code&gt;varchar&lt;/code&gt;、&lt;code&gt;int&lt;/code&gt;、&lt;code&gt;timestamp&lt;/code&gt;、&lt;code&gt;datetime&lt;/code&gt; 都有尝试过，近来有所感悟，做此总结。&lt;/p&gt;
 &lt;p&gt;注：此总结考虑了 PHP 和 Laravel 框架的特点。&lt;/p&gt;
@@ -295,7 +295,7 @@
     <item>
       <title>MySQL 5.6 5.7 组内排序的区别</title>
       <link>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</link>
-      <pubDate>Thu, 20 Apr 2017 20:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Apr 2017 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</guid>
       <description>&lt;p&gt;MySQL 5.7 对比 5.6 有很多的变化。一个常见的需求：按条件分组后，取出每组中某字段最大值的那条记录。其实就是组内排序的问题，我的做法是：子查询先进行倒序排序，外层查询分组。&lt;/p&gt;
 &lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
@@ -317,7 +317,7 @@
     <item>
       <title>MySQL 管理用户与访问授权</title>
       <link>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</link>
-      <pubDate>Tue, 11 Apr 2017 11:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 Apr 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</guid>
       <description>&lt;p&gt;MySQL 创建用户、修改密码、删除用户；查看、授予、撤销用户权限；对 MySQL 远程访问的新理解。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 创建用户 + 授权
@@ -345,7 +345,7 @@
     <item>
       <title>MySQL LIMIT 查询优化</title>
       <link>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</link>
-      <pubDate>Sun, 18 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</guid>
       <description>&lt;p&gt;最近常在 SQL 中使用到 &lt;code&gt;LIMIT ? ?&lt;/code&gt;，在执行 &lt;code&gt;LIMIT 0, 1000&lt;/code&gt; 与 &lt;code&gt;LIMIT 100000, 1000&lt;/code&gt; 时，查询速度明显有很大的区别，而且随着 LIMIT 的偏移量的增加，查询速度越来越慢。是否有办法对 SQL 中 LIMIT 查询进行优化呢？&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -381,7 +381,7 @@
     <item>
       <title>IMOOC 与MySQL的零距离接触</title>
       <link>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</link>
-      <pubDate>Sun, 31 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Sun, 31 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</guid>
       <description>&lt;p&gt;涵盖全部 MySQL 数据库的基础，MySQL 数据库的基础知识、数据表的常用操作及各种约束的使用，以及综合的运用各种命令实现记录进行 CURD 等操作。&lt;/p&gt;
 &lt;ul&gt;
@@ -463,7 +463,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>IMOOC MySQL开发技巧</title>
       <link>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</link>
-      <pubDate>Mon, 25 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</guid>
       <description>&lt;p&gt;主要涉及：JOIN 、JOIN 更新、GROUP BY HAVING 数据查重/去重。&lt;/p&gt;
 &lt;!-- more --&gt;

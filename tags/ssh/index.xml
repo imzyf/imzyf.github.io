@@ -6,12 +6,12 @@
     <description>Recent content in Ssh on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Mar 2017 17:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 30 Mar 2017 17:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>解决 SSH 连接提示 Permission denied publickey</title>
       <link>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</link>
-      <pubDate>Thu, 30 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</guid>
       <description>&lt;p&gt;服务器是使用 publickey 进行连接，当在 git push 时发生 &lt;code&gt;Permission denied (publickey)&lt;/code&gt;。同时解决 ssh-add 重启后失效。&lt;/p&gt;
 &lt;h2 id=&#34;解决&#34;&gt;解决&lt;/h2&gt;
@@ -32,7 +32,7 @@
     <item>
       <title>Linux SSH 密钥登陆免密码</title>
       <link>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</link>
-      <pubDate>Fri, 29 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</guid>
       <description>&lt;p&gt;最近有需求使用 SSH 进行通信，而且要需免密码，总结了 SSH 密钥登陆免密码的方法。&lt;/p&gt;
 &lt;h2 id=&#34;快速配置&#34;&gt;快速配置&lt;/h2&gt;

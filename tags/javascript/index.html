@@ -10,7 +10,7 @@ var a; a; // undefined JavaScript 是一种动态类型语言，也就是说，�
 var a = 1; a = "hello"; 如果使用 var 重新声明一个已经存在的变量，是无效的。
 var x = 1; var x; x; // 1 JavaScript 引擎的工作方式是，先解析代码，获取所有被声明的变量，然后再一行一行地运行。这造成的结果，就是所有的变量的声明语句，都会被提升到代码的头部，这就叫做变量提升（hoisting）。
 console.log(a); var a = 1; // 在控制台（console）显示变量a的值。这时变量a还没有声明和赋值，所以这是一种错误的做法，但是实际上不会报错。因为存在变量提升，真正运行的是下面的代码。 var a; console.log(a); a = 1; 标识符命名规则如下：
-...</p></div><footer class=entry-footer><span title='2022-06-09 14:59:09 +0000 UTC'>June 9, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1235 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to 【JavaScript 教程 | 网道】笔记" href=https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>ES6 中使用 jQuery $(this) 的问题</h2></header><div class=entry-content><p>在老项目中，我开始使用 laravel-mix 和 ES6 进行逐渐过渡。在这个过程中，发现了一个问题：当 jQuery 和 箭头函数 一起使用时，$(this) 的含义会发生变化。
+...</p></div><footer class=entry-footer><span title='2022-06-09 14:59:09 +0800 CST'>June 9, 2022</span>&nbsp;·&nbsp;6 min&nbsp;·&nbsp;1235 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to 【JavaScript 教程 | 网道】笔记" href=https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>ES6 中使用 jQuery $(this) 的问题</h2></header><div class=entry-content><p>在老项目中，我开始使用 laravel-mix 和 ES6 进行逐渐过渡。在这个过程中，发现了一个问题：当 jQuery 和 箭头函数 一起使用时，$(this) 的含义会发生变化。
 问题解释 这个问题主要是因为没有理解 箭头函数 的特性。箭头函数不会创建自己的 this 上下文，而是继承父作用域的 this。
 看下面的例子：
 // 问题代码 $('.js-bottom-btn').click(() => { let flag = $(this).data('flag'); // ... }); 在箭头函数中，this 不是指向被点击的元素，而是指向父作用域的 this（可能是 window 或 undefined）。
@@ -19,7 +19,7 @@ console.log(a); var a = 1; // 在控制台（console）显示变量a的值。这
 // 问题代码 $("jquery-selector").each(() => { $(this).click(); }); 需要修改为：
 $("jquery-selector").each((index, element) => { $(element).click(); }); 箭头函数和 this 绑定 箭头函数的一个主要特点是词法绑定（lexical binding）。这意味着：
 箭头函数不创建自己的 this 上下文 箭头函数继承定义它的外部作用域的 this 值 这种行为与传统函数不同，传统函数中的 this 是根据调用方式决定的 参考资料 Using jQuery $(this) with ES6 Arrow Functions (lexical this binding) – EOF –
-...</p></div><footer class=entry-footer><span title='2019-04-10 17:09:23 +0000 UTC'>April 10, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;113 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to ES6 中使用 jQuery $(this) 的问题" href=https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+...</p></div><footer class=entry-footer><span title='2019-04-10 17:09:23 +0800 CST'>April 10, 2019</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;113 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to ES6 中使用 jQuery $(this) 的问题" href=https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>

@@ -6,12 +6,12 @@
     <description>Recent content in Redis on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Aug 2020 19:34:29 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2020 19:34:29 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 正则批量删除 key</title>
       <link>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</link>
-      <pubDate>Mon, 17 Aug 2020 19:34:29 +0000</pubDate>
+      <pubDate>Mon, 17 Aug 2020 19:34:29 +0800</pubDate>
       <guid>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;EVAL&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;return redis.call(&amp;#39;del&amp;#39;, &amp;#39;defaultKey&amp;#39;, unpack(redis.call(&amp;#39;keys&amp;#39;, ARGV[1])))&amp;#34;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prefix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;循环删除：&lt;/p&gt;

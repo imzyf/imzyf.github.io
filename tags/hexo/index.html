@@ -10,7 +10,7 @@ Github 开发者平台的文档中对 Webhook 的所能做的事是这样描述�
 You’re only limited by your imagination.
 响应 Webhook 在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。
 自己在 GitHub 搜索下 github webhook，language 选择 Python 便找到了 Python 编写的：razius/github-webhook-handler
-...</p></div><footer class=entry-footer><span title='2016-07-01 20:00:00 +0000 UTC'>July 1, 2016</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;320 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to GitHub Webhook 自动部署 Hexo" href=https://zyf.im/2016/07/01/github-webhook-example/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>GitHub Pages 不被百度收录解决方案</h2></header><div class=entry-content><p>2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。
+...</p></div><footer class=entry-footer><span title='2016-07-01 20:00:00 +0800 CST'>July 1, 2016</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;320 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to GitHub Webhook 自动部署 Hexo" href=https://zyf.im/2016/07/01/github-webhook-example/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>GitHub Pages 不被百度收录解决方案</h2></header><div class=entry-content><p>2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。
 2017-04-22 更新：现在我的 Blog 使用的是 UFOVPS 直接部署的。
 在 使用 Hexo 和 Github 搭建个人独立博客 几天后，发现百度并不对博客进行收录。
 在天朝使用百度搜索毕竟多数，使用百度站长工具-抓取诊断，在百度 Spider 抓取结果返回 HTTP 头：HTTP/1.1 403 Forbidden，原来是 GitHub 禁止了百度爬虫的爬去。
@@ -22,14 +22,14 @@ Google 后早已有许多热心网友给出了解决方案，自己在这里总�
 但是使用 CDN 也会有一个非常大的缺点：只能对 静态资源 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。
 所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！
 国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等。
-...</p></div><footer class=entry-footer><span title='2016-06-30 20:00:00 +0000 UTC'>June 30, 2016</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;145 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to GitHub Pages 不被百度收录解决方案" href=https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>使用 GitHub 和 Hexo 搭建个人独立博客</h2></header><div class=entry-content><p>Wordpress 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 Wordpress 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。
+...</p></div><footer class=entry-footer><span title='2016-06-30 20:00:00 +0800 CST'>June 30, 2016</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;145 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to GitHub Pages 不被百度收录解决方案" href=https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>使用 GitHub 和 Hexo 搭建个人独立博客</h2></header><div class=entry-content><p>Wordpress 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 Wordpress 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。
 近来接触到一种新的博客系统 Hexo，它的不同地方就是将：在上线编写博客和页面渲染的过程在线下完成。
 在本地编写博文的 Markdown 文件，使用 Hexo 将博客网站的所有前台 HTML 等全部生成，让后将生成的文件上传的服务器就行了。
 那么原来 wp 中的评论等动态功能怎么办呢？放心第三方服务商早已为我们考虑了。例如：disqus就是一家第三方社会化评论系统，主要为网站主提供评论托管服务。
 本文的操作的系统环境是 Ubuntu 15，Windows 下的搭建可触类旁通。
 了解 Hexo A fast, simple & powerful blog framework
 Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，Hexo setup 官方文档。
-...</p></div><footer class=entry-footer><span title='2016-06-24 18:30:00 +0000 UTC'>June 24, 2016</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;196 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to 使用 GitHub 和 Hexo 搭建个人独立博客" href=https://zyf.im/2016/06/24/hexo-github-blog/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+...</p></div><footer class=entry-footer><span title='2016-06-24 18:30:00 +0800 CST'>June 24, 2016</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;196 words&nbsp;·&nbsp;Me</footer><a class=entry-link aria-label="post link to 使用 GitHub 和 Hexo 搭建个人独立博客" href=https://zyf.im/2016/06/24/hexo-github-blog/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>

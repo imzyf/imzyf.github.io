@@ -6,12 +6,12 @@
     <description>Recent content in Code-Snippet on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Nov 2022 10:09:26 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 17 Nov 2022 10:09:26 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/categories/code-snippet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Code Snippet</title>
       <link>https://zyf.im/2022/11/17/docker-code-snippet/</link>
-      <pubDate>Thu, 17 Nov 2022 10:09:26 +0000</pubDate>
+      <pubDate>Thu, 17 Nov 2022 10:09:26 +0800</pubDate>
       <guid>https://zyf.im/2022/11/17/docker-code-snippet/</guid>
       <description>&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
 &lt;h3 id=&#34;arg-构建参数&#34;&gt;ARG 构建参数&lt;/h3&gt;
@@ -40,7 +40,7 @@
     <item>
       <title>Git Code Snippet</title>
       <link>https://zyf.im/2022/10/01/git-code-snippet/</link>
-      <pubDate>Sat, 01 Oct 2022 10:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Oct 2022 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2022/10/01/git-code-snippet/</guid>
       <description>&lt;h2 id=&#34;建立独立的分支&#34;&gt;建立独立的分支&lt;/h2&gt;
 &lt;p&gt;当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：&lt;/p&gt;
@@ -85,7 +85,7 @@
     <item>
       <title>Shell Code Snippet</title>
       <link>https://zyf.im/2022/07/28/shell-code-snippet/</link>
-      <pubDate>Thu, 28 Jul 2022 11:51:46 +0000</pubDate>
+      <pubDate>Thu, 28 Jul 2022 11:51:46 +0800</pubDate>
       <guid>https://zyf.im/2022/07/28/shell-code-snippet/</guid>
       <description>&lt;h2 id=&#34;package-management&#34;&gt;Package Management&lt;/h2&gt;
 &lt;h3 id=&#34;find-packages-with-pkgsorg&#34;&gt;Find Packages with pkgs.org&lt;/h3&gt;
@@ -130,7 +130,7 @@
     <item>
       <title>Front-end Code Snippet</title>
       <link>https://zyf.im/2022/07/26/front-end-code-snippet/</link>
-      <pubDate>Tue, 26 Jul 2022 11:51:46 +0000</pubDate>
+      <pubDate>Tue, 26 Jul 2022 11:51:46 +0800</pubDate>
       <guid>https://zyf.im/2022/07/26/front-end-code-snippet/</guid>
       <description>&lt;h2 id=&#34;库推荐&#34;&gt;库推荐&lt;/h2&gt;
 &lt;h3 id=&#34;nrm&#34;&gt;nrm&lt;/h3&gt;
@@ -155,7 +155,7 @@
     <item>
       <title>MySQL Code Snippet</title>
       <link>https://zyf.im/2021/01/29/mysql-code-snippet/</link>
-      <pubDate>Fri, 29 Jan 2021 18:08:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jan 2021 18:08:00 +0800</pubDate>
       <guid>https://zyf.im/2021/01/29/mysql-code-snippet/</guid>
       <description>&lt;h2 id=&#34;tips-sql&#34;&gt;Tips SQL&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 追踪优化器 Trace 功能
@@ -196,7 +196,7 @@
     <item>
       <title>vim Code Snippet</title>
       <link>https://zyf.im/2020/04/28/vim-code-snippet/</link>
-      <pubDate>Tue, 28 Apr 2020 10:43:39 +0000</pubDate>
+      <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
       <guid>https://zyf.im/2020/04/28/vim-code-snippet/</guid>
       <description>&lt;h2 id=&#34;常用&#34;&gt;常用&lt;/h2&gt;
 &lt;ul&gt;
@@ -227,7 +227,7 @@
     <item>
       <title>PHP Code Snippet</title>
       <link>https://zyf.im/2020/04/15/php-code-snippet/</link>
-      <pubDate>Wed, 15 Apr 2020 18:03:44 +0000</pubDate>
+      <pubDate>Wed, 15 Apr 2020 18:03:44 +0800</pubDate>
       <guid>https://zyf.im/2020/04/15/php-code-snippet/</guid>
       <description>&lt;h2 id=&#34;php-sandbox&#34;&gt;PHP Sandbox&lt;/h2&gt;
 &lt;ul&gt;
@@ -291,7 +291,7 @@
     <item>
       <title>Vue Code Snippet</title>
       <link>https://zyf.im/2019/08/08/vue-code-snippet/</link>
-      <pubDate>Thu, 08 Aug 2019 17:33:38 +0000</pubDate>
+      <pubDate>Thu, 08 Aug 2019 17:33:38 +0800</pubDate>
       <guid>https://zyf.im/2019/08/08/vue-code-snippet/</guid>
       <description>&lt;h2 id=&#34;重置-data-的数据为初始状态&#34;&gt;重置 data 的数据为初始状态&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;

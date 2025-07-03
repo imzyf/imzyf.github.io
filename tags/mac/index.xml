@@ -6,12 +6,12 @@
     <description>Recent content in Mac on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 09 Dec 2019 14:45:39 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Dec 2019 14:45:39 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows 文本文件到 Mac 中文乱码</title>
       <link>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</link>
-      <pubDate>Mon, 09 Dec 2019 14:45:39 +0000</pubDate>
+      <pubDate>Mon, 09 Dec 2019 14:45:39 +0800</pubDate>
       <guid>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</guid>
       <description>&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -30,7 +30,7 @@
     <item>
       <title>My MacBook</title>
       <link>https://zyf.im/2019/05/20/my-macbook/</link>
-      <pubDate>Mon, 20 May 2019 17:14:59 +0000</pubDate>
+      <pubDate>Mon, 20 May 2019 17:14:59 +0800</pubDate>
       <guid>https://zyf.im/2019/05/20/my-macbook/</guid>
       <description>&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -218,7 +218,7 @@
     <item>
       <title>Linux Mac 使用代理连接 SSH</title>
       <link>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</link>
-      <pubDate>Sat, 28 Oct 2017 15:00:00 +0000</pubDate>
+      <pubDate>Sat, 28 Oct 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</guid>
       <description>&lt;h2 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -oProxyCommand&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nc -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
@@ -247,7 +247,7 @@
     <item>
       <title>MacBook 使用小感</title>
       <link>https://zyf.im/2017/10/28/simple-macbook-report/</link>
-      <pubDate>Sat, 28 Oct 2017 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 28 Oct 2017 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/10/28/simple-macbook-report/</guid>
       <description>&lt;p&gt;现在自己的开发主力机是：2015 版的 MacBook Pro。对于工程师来讲，MacBook 绝对是用来提高生产力的，不是装杯的。如果条件允许十分推荐，反正我是回不来了。&lt;/p&gt;
 &lt;!-- more --&gt;

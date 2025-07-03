@@ -6,12 +6,12 @@
     <description>Recent content in Design-Pattern on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Mar 2023 17:18:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Mar 2023 17:18:46 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>手把手教你落地 DDD Part1</title>
       <link>https://zyf.im/2023/03/09/hands-on-ddd-part1/</link>
-      <pubDate>Thu, 09 Mar 2023 17:18:46 +0000</pubDate>
+      <pubDate>Thu, 09 Mar 2023 17:18:46 +0800</pubDate>
       <guid>https://zyf.im/2023/03/09/hands-on-ddd-part1/</guid>
       <description>&lt;h2 id=&#34;01-小传&#34;&gt;01 小传&lt;/h2&gt;
 &lt;p&gt;Domain-Driven Design 是一种开发复杂软件的系统化的 &lt;strong&gt;方法学和思想&lt;/strong&gt;。&lt;/p&gt;
@@ -59,7 +59,7 @@
     <item>
       <title>设计模式之美 Part2</title>
       <link>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</link>
-      <pubDate>Sat, 06 Feb 2021 11:00:41 +0000</pubDate>
+      <pubDate>Sat, 06 Feb 2021 11:00:41 +0800</pubDate>
       <guid>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</guid>
       <description>&lt;h2 id=&#34;11&#34;&gt;11&lt;/h2&gt;
 &lt;p&gt;领域驱动设计（Domain Driven Design，简称 DDD）。&lt;/p&gt;
@@ -156,7 +156,7 @@
     <item>
       <title>设计模式之美 Part1</title>
       <link>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</link>
-      <pubDate>Fri, 05 Feb 2021 11:00:41 +0000</pubDate>
+      <pubDate>Fri, 05 Feb 2021 11:00:41 +0800</pubDate>
       <guid>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</guid>
       <description>&lt;h2 id=&#34;00&#34;&gt;00&lt;/h2&gt;
 &lt;p&gt;KISS 原则（Keep It Simple and Stupid），这个原则理解起来很简单，一看貌似就懂了，那我问你，怎样的代码才算是足够简单呢？怎样才算不够简单需要优化呢？&lt;/p&gt;

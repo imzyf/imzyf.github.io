@@ -6,12 +6,12 @@
     <description>Recent content in Swift on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Mar 2019 14:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 06 Mar 2019 14:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>寻找数组中轴索引</title>
       <link>https://zyf.im/2019/03/06/find-pivot-index/</link>
-      <pubDate>Wed, 06 Mar 2019 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 06 Mar 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/03/06/find-pivot-index/</guid>
       <description>&lt;p&gt;将 pivot 索引定义为：左边的数字之和等于索引右边的数字之和。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
@@ -62,7 +62,7 @@
     <item>
       <title>m 进制转 n 进制</title>
       <link>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</link>
-      <pubDate>Sat, 02 Mar 2019 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 02 Mar 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</guid>
       <description>&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
 &lt;ul&gt;
@@ -126,7 +126,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>超长阶乘的计算</title>
       <link>https://zyf.im/2019/03/01/extra-long-factorials/</link>
-      <pubDate>Fri, 01 Mar 2019 14:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Mar 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/03/01/extra-long-factorials/</guid>
       <description>&lt;p&gt;打印 &lt;code&gt;n!&lt;/code&gt; 的结果（1 &amp;lt;= n &amp;lt;= 100）。注意：当 &lt;code&gt;n &amp;gt; 20&lt;/code&gt; 时 64 位的 &lt;code&gt;Int&lt;/code&gt; 将无法直接存储结果。&lt;/p&gt;
 &lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
@@ -186,7 +186,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>【Swifter - Swift 开发者必备 Tips】笔记</title>
       <link>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</link>
-      <pubDate>Fri, 15 Feb 2019 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 15 Feb 2019 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</guid>
       <description>&lt;p&gt;再读王巍的【Swifter - Swift 开发者必备 Tips】，看看有什么新收获。&lt;/p&gt;
 &lt;h2 id=&#34;柯里化currying&#34;&gt;柯里化（Currying）&lt;/h2&gt;
@@ -239,7 +239,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>二分查找 Binary Search</title>
       <link>https://zyf.im/2018/12/10/binary-search/</link>
-      <pubDate>Mon, 10 Dec 2018 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 10 Dec 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/12/10/binary-search/</guid>
       <description>&lt;p&gt;快速从一个数组中查找一个元素。&lt;/p&gt;
 &lt;h2 id=&#34;linear-search-线性查找&#34;&gt;Linear Search 线性查找&lt;/h2&gt;
@@ -296,7 +296,7 @@ binarySearch(numbers, key: 43, range: 0 ..&amp;lt; numbers.count)  // gives 13
     <item>
       <title>插入排序 Insertion Sort</title>
       <link>https://zyf.im/2018/11/24/insertion-sort/</link>
-      <pubDate>Sat, 24 Nov 2018 16:00:00 +0000</pubDate>
+      <pubDate>Sat, 24 Nov 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/11/24/insertion-sort/</guid>
       <description>&lt;p&gt;将一个数组从高到低或者从低到高排序。&lt;/p&gt;
 &lt;p&gt;插入排序算法的工作原理：&lt;/p&gt;
@@ -332,7 +332,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>队列 Queue Data Structure</title>
       <link>https://zyf.im/2018/11/22/queue-data-structure/</link>
-      <pubDate>Thu, 22 Nov 2018 16:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Nov 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/11/22/queue-data-structure/</guid>
       <description>&lt;p&gt;实现一个 &lt;code&gt;队列&lt;/code&gt;，包括 &lt;code&gt;enqueue&lt;/code&gt;、&lt;code&gt;dequeue&lt;/code&gt;、&lt;code&gt;peek&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;queue&#34;&gt;Queue&lt;/h2&gt;
@@ -429,7 +429,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>栈 Stack Data Structure</title>
       <link>https://zyf.im/2018/11/22/stack-data-structure/</link>
-      <pubDate>Thu, 22 Nov 2018 14:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Nov 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/11/22/stack-data-structure/</guid>
       <description>&lt;p&gt;加入 &lt;a href=&#34;https://github.com/raywenderlich/swift-algorithm-club&#34;&gt;Swift Algorithm Club&lt;/a&gt; /&amp;lsquo;ælgə&amp;rsquo;rɪðəm/，回炉重新学习数据结构与算法。&lt;/p&gt;
 &lt;p&gt;自己创建的项目：&lt;a href=&#34;https://github.com/imzyf/data-structure-and-algorithm&#34;&gt;GitHub - imzyf/data-structure-and-algorithm&lt;/a&gt;。&lt;/p&gt;
@@ -458,7 +458,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>Swift 初始化</title>
       <link>https://zyf.im/2018/03/31/swift-init/</link>
-      <pubDate>Sat, 31 Mar 2018 17:00:00 +0000</pubDate>
+      <pubDate>Sat, 31 Mar 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/31/swift-init/</guid>
       <description>&lt;p&gt;因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只这样套着 Java 去理解，但也发现了不相同的地方。&lt;/p&gt;
 &lt;h2 id=&#34;初始化顺序&#34;&gt;初始化顺序&lt;/h2&gt;
@@ -501,7 +501,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>R.swift 强类型引用资源文件</title>
       <link>https://zyf.im/2018/01/17/r-swift-getting-started/</link>
-      <pubDate>Wed, 17 Jan 2018 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jan 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/17/r-swift-getting-started/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/mac-cain13/R.swift&#34;&gt;R.swift&lt;/a&gt; 获取强类型、自动编译的图片、字体、segues 等资源。&lt;/p&gt;
 &lt;p&gt;以避免无法编译时检查 &lt;code&gt;字符串&lt;/code&gt; 的形式引用资源所导致的错误。&lt;/p&gt;

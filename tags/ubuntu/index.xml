@@ -6,12 +6,12 @@
     <description>Recent content in Ubuntu on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Apr 2017 15:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Apr 2017 15:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ubuntu 命令行下免密码执行 sudo 命令</title>
       <link>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</link>
-      <pubDate>Mon, 10 Apr 2017 15:00:00 +0000</pubDate>
+      <pubDate>Mon, 10 Apr 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</guid>
       <description>&lt;p&gt;解决你的问题的方法是将你的用户加入 sudoers 文件。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo visudo
@@ -27,7 +27,7 @@
     <item>
       <title>Ubuntu 下使用 sendmail mail 发送邮件</title>
       <link>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</link>
-      <pubDate>Thu, 06 Apr 2017 11:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Apr 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</guid>
       <description>&lt;p&gt;使用邮件发送程序的执行情况、运行日志都非常方便，Ubuntu 下搭建邮件服务也不复杂。&lt;/p&gt;
 &lt;h2 id=&#34;sendmail&#34;&gt;sendmail&lt;/h2&gt;
@@ -59,7 +59,7 @@
     <item>
       <title>解决 Ubuntu Sogou 无法选词输入中文</title>
       <link>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</link>
-      <pubDate>Fri, 17 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</guid>
       <description>&lt;p&gt;sogou 输入法突然无法选词输入中文，候选词位置出现白框，多次重重装 fcitx 和 sogou 也没有解决。尝试使用 google pinyin 代替，但是感觉很不顺手。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -86,7 +86,7 @@
     <item>
       <title>解决 Ubuntu warning Setting locale failed</title>
       <link>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</link>
-      <pubDate>Fri, 03 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 03 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</guid>
       <description>&lt;p&gt;在配置新服务器时遇到 &lt;code&gt;Setting locale failed&lt;/code&gt; 的警告，要求 &lt;code&gt;Please check that your locale settings&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;perl: warning: Setting locale failed.
@@ -113,7 +113,7 @@
     <item>
       <title>Ubuntu 下使用 UFW 管理防火墙服务</title>
       <link>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</link>
-      <pubDate>Mon, 10 Oct 2016 13:00:00 +0000</pubDate>
+      <pubDate>Mon, 10 Oct 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</guid>
       <description>&lt;p&gt;UFW (Uncomplicated Firewall) 作为 &lt;code&gt;iptables&lt;/code&gt; 的前端应用，给用户提供了简单的接口界面。使用着不需要去记非常复杂的 &lt;code&gt;iptables&lt;/code&gt; 语法。UFW 也使用了 简单英语 作为它的参数。像 allow、deny、reset 就是他们当中的一部分。UFW 绝对是那些想要快速、简单的就建立自己的防火墙，而且还很安全的用户的最佳替代品之一。&lt;/p&gt;
 &lt;h2 id=&#34;检查系统上是否已经安装-ufw&#34;&gt;检查系统上是否已经安装 UFW&lt;/h2&gt;
@@ -140,7 +140,7 @@
     <item>
       <title>Ubuntu 下使用 sysv-rc-conf 管理开机启动服务</title>
       <link>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</link>
-      <pubDate>Mon, 19 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</guid>
       <description>&lt;p&gt;&lt;code&gt;sysv-rc-conf&lt;/code&gt; gives an easy to use interface for managing &amp;ldquo;/etc/rc{runlevel}.d/&amp;rdquo; symlinks. The interface comes in two different flavors, one that simply allows turning services on or off and another that allows for more fine tuned management of the symlinks.&lt;/p&gt;
 &lt;h2 id=&#34;安装-sysv-rc-conf&#34;&gt;安装 sysv-rc-conf&lt;/h2&gt;
@@ -165,7 +165,7 @@
     <item>
       <title>Ubuntu 下连接蓝牙键盘</title>
       <link>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</link>
-      <pubDate>Tue, 14 Jun 2016 13:30:00 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2016 13:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</guid>
       <description>&lt;p&gt;新买了 &lt;code&gt;Filco Majestouch Convertible 2&lt;/code&gt; 键盘。在自己的笔记本上连接没什么问题，搬到公司 Ubuntu 的 IBM 笔记本这么都连接不上，查找解决。&lt;/p&gt;
 &lt;p&gt;安装蓝牙的 &lt;code&gt;hcidump&lt;/code&gt;：&lt;/p&gt;

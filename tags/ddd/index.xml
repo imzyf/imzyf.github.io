@@ -6,12 +6,12 @@
     <description>Recent content in Ddd on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Mar 2023 17:18:46 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Mar 2023 17:18:46 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ddd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>手把手教你落地 DDD Part1</title>
       <link>https://zyf.im/2023/03/09/hands-on-ddd-part1/</link>
-      <pubDate>Thu, 09 Mar 2023 17:18:46 +0000</pubDate>
+      <pubDate>Thu, 09 Mar 2023 17:18:46 +0800</pubDate>
       <guid>https://zyf.im/2023/03/09/hands-on-ddd-part1/</guid>
       <description>&lt;h2 id=&#34;01-小传&#34;&gt;01 小传&lt;/h2&gt;
 &lt;p&gt;Domain-Driven Design 是一种开发复杂软件的系统化的 &lt;strong&gt;方法学和思想&lt;/strong&gt;。&lt;/p&gt;

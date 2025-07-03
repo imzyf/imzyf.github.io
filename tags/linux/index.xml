@@ -6,12 +6,12 @@
     <description>Recent content in Linux on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>tcpdump 入门使用</title>
       <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
-      <pubDate>Mon, 29 Jun 2020 10:24:16 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
       <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
       <description>&lt;p&gt;tcpdump 是 Unix/Linux 下的抓包工具，可以针对指定网卡、端口、协议进行抓包。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -51,7 +51,7 @@
     <item>
       <title>Linux Mac 使用代理连接 SSH</title>
       <link>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</link>
-      <pubDate>Sat, 28 Oct 2017 15:00:00 +0000</pubDate>
+      <pubDate>Sat, 28 Oct 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</guid>
       <description>&lt;h2 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -oProxyCommand&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nc -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
@@ -80,7 +80,7 @@
     <item>
       <title>解决 SSH 连接提示 Permission denied publickey</title>
       <link>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</link>
-      <pubDate>Thu, 30 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</guid>
       <description>&lt;p&gt;服务器是使用 publickey 进行连接，当在 git push 时发生 &lt;code&gt;Permission denied (publickey)&lt;/code&gt;。同时解决 ssh-add 重启后失效。&lt;/p&gt;
 &lt;h2 id=&#34;解决&#34;&gt;解决&lt;/h2&gt;
@@ -101,7 +101,7 @@
     <item>
       <title>Linux crontab 内容定时备份</title>
       <link>https://zyf.im/2017/03/07/linux-crontab-content-backup/</link>
-      <pubDate>Tue, 07 Mar 2017 12:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Mar 2017 12:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/07/linux-crontab-content-backup/</guid>
       <description>&lt;p&gt;&lt;code&gt;crontab -r&lt;/code&gt; 是一个很危险的命令，它将直接重置 crontab 中的内容；输入 &lt;code&gt;crontab&lt;/code&gt; 后，使用 &lt;code&gt;ctrl + d&lt;/code&gt; 退出也将清空 crontab 中的内容。所以 crontab 内容的定时备份也变得有必要了。&lt;/p&gt;
 &lt;h2 id=&#34;备份脚本&#34;&gt;备份脚本&lt;/h2&gt;
@@ -122,7 +122,7 @@
     <item>
       <title>Linux SSH 密钥登陆免密码</title>
       <link>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</link>
-      <pubDate>Fri, 29 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</guid>
       <description>&lt;p&gt;最近有需求使用 SSH 进行通信，而且要需免密码，总结了 SSH 密钥登陆免密码的方法。&lt;/p&gt;
 &lt;h2 id=&#34;快速配置&#34;&gt;快速配置&lt;/h2&gt;

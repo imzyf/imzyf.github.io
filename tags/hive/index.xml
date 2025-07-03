@@ -6,12 +6,12 @@
     <description>Recent content in Hive on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Sep 2021 11:58:42 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Sep 2021 11:58:42 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/hive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>分组聚合 OVER PARTITION BY</title>
       <link>https://zyf.im/2021/09/14/sql-over-partition-by/</link>
-      <pubDate>Tue, 14 Sep 2021 11:58:42 +0000</pubDate>
+      <pubDate>Tue, 14 Sep 2021 11:58:42 +0800</pubDate>
       <guid>https://zyf.im/2021/09/14/sql-over-partition-by/</guid>
       <description>&lt;h2 id=&#34;在-hive-中&#34;&gt;在 HIVE 中&lt;/h2&gt;
 &lt;p&gt;最近在使用 HIVE，需要统计 &lt;code&gt;当年累计和&lt;/code&gt; 这样的指标，请教同事后发现了 &lt;code&gt;OVER(PARTITION BY)&lt;/code&gt; 开窗函数。&lt;/p&gt;

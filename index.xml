@@ -6,56 +6,170 @@
     <description>Recent content on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Jun 2025 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>在本地环境使用 HTTPS</title>
-      <link>https://zyf.im/2025/06/26/use-https-in-local-environment/</link>
-      <pubDate>Thu, 26 Jun 2025 12:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2025/06/26/use-https-in-local-environment/</guid>
-      <description>&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/FiloSottile/mkcert&#34;&gt;mkcert&lt;/a&gt; 会在本地生成一套根 CA（包含根证书和私钥），并把根证书导入系统/浏览器的信任列表。随后，它用这套 CA 的私钥为 localhost 等域名签发服务器证书；因为根证书已被信任，浏览器访问时就会把服务器证书视为可信。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install mkcert
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert -install
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkcert localhost
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# The certificate is at &amp;#34;./localhost.pem&amp;#34; and the key at &amp;#34;./localhost-key.pem&amp;#34; ✅&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# vi default.conf&lt;/span&gt;
+      <title>NGINX 启用 HTTP/3</title>
+      <link>https://zyf.im/2025/06/27/nginx-enable-http3/</link>
+      <pubDate>Fri, 27 Jun 2025 10:12:12 +0800</pubDate>
+      <guid>https://zyf.im/2025/06/27/nginx-enable-http3/</guid>
+      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;HTTP/2 解决了“多路复用、头部压缩、优先级”等 HTTP/1.x 的瓶颈，但仍受 TCP 先天限制。&lt;/p&gt;
+&lt;p&gt;HTTP/3 则把同样的语义搬到 QUIC（UDP） 之上，在连接建立、丢包处理、迁移能力等方面进一步优化。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;层级&lt;/th&gt;
+          &lt;th&gt;HTTP/2&lt;/th&gt;
+          &lt;th&gt;HTTP/3&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;传输&lt;/td&gt;
+          &lt;td&gt;TCP (必)+ TLS1.2/1.3（多数场景）&lt;/td&gt;
+          &lt;td&gt;QUIC (UDP 之上)+ TLS1.3（强制）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;流（Stream）&lt;/td&gt;
+          &lt;td&gt;Mux 在 TCP 里的逻辑流&lt;/td&gt;
+          &lt;td&gt;Mux 在 QUIC 原生流&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;头压缩&lt;/td&gt;
+          &lt;td&gt;HPACK&lt;/td&gt;
+          &lt;td&gt;QPACK（避免队头阻塞）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;Mux multiplex 多路复用&lt;/li&gt;
+&lt;li&gt;HTTP/2 必须顺序传输，而 HTTP/3 支持乱序&lt;/li&gt;
+&lt;li&gt;如果沿用 HPACK，丢一个 UDP 包就会让所有流的头部解码卡住，因此 IETF 为 HTTP/3 设计了 QPACK 来“避开队头阻塞 (Head-of-Line Blocking, HoL)”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;p&gt;启用 HTTP/3 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;修改 NGINX default.conf 配置文件，启用 HTTP/3：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# vi default.conf&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;server &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# for better compatibility it&amp;#39;s recommended&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# to use the same port for http/3 and https&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 浏览器首次只能走 TCP，因此必须提供一个 HTTPS 入口，再通过 `Alt-Svc` 升级到 HTTP/3&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; ssl&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Quick UDP Internet Connections&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# quic 关键字表示使用 UDP 监听，承载 QUIC/HTTP-3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# reuseport 关键字表示复用端口，允许多个 NGINX 实例共享同一端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    listen &lt;span class=&#34;m&#34;&gt;443&lt;/span&gt; quic reuseport&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    http2 on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 启用 HTTP/3，默认是 on&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    http3 on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    server_name localhost&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate /etc/ssl/certs/localhost.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_certificate_key /etc/ssl/certs/localhost-key.pem&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 只允许 TLSv1.2 和 TLSv1.3 协议，显示禁止 TLSv1.0 和 TLSv1.1 协议&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_protocols TLSv1.2 TLSv1.3&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 只保留高强度、带身份验证、且不使用 MD5 的 TLS 1.2（及以下）套件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 启用 TLS 允许 0-RTT（Early Data），允许客户端在 TLS 1.3 的重连阶段携带早期数据&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 对 HTTP/3 非必需，但 QUIC 天生支持 0-RTT；此处保持一致&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_early_data on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 仅启用 TLSv1.3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_protocols TLSv1.3&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_ciphers HIGH:!aNULL:!MD5&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 优先使用服务器端加密套件&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ssl_prefer_server_ciphers on&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 添加 Alt-Svc 头，向客户端声明可升级到 HTTP/3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# Alt-Svc 头告诉浏览器“该资源在同一主机的 UDP/8443 上能用 h3 协议”，浏览器会自动重试&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# 因为使用了 docker 的端口映射，所以这里需要使用 8443 端口，默认是 443&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# ma max-age 缓存时间，86400 秒 = 1 天&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;# always 关键字保证即使发生 4xx/5xx 也发送 Alt-Svc，便于调试&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    add_header Alt-Svc &lt;span class=&#34;s1&#34;&gt;&amp;#39;h3=&amp;#34;:8443&amp;#34;; ma=86400&amp;#39;&lt;/span&gt; always&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    location / &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        root /usr/share/nginx/html&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        index  index.html index.htm&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name nginx-ssl &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker rm -f nginx-ssl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加监听 UDP 端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name nginx-ssl &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -p 8443:443 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -p 8443:443/udp &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./default.conf:/etc/nginx/conf.d/default.conf:ro &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost.pem:/etc/ssl/certs/localhost.pem:ro &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./localhost-key.pem:/etc/ssl/certs/localhost-key.pem:ro &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -v ./html/:/usr/share/nginx/html/:ro &lt;span class=&#34;se&#34;&gt;\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  nginx:alpine
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker rm -f nginx-ssl&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker container restart nginx-ssl&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
-&lt;h3 id=&#34;游览器&#34;&gt;游览器&lt;/h3&gt;
-&lt;p&gt;游览器访问 &lt;code&gt;https://localhost:8443/&lt;/code&gt;，如果证书是绿色的，说明成功了。&lt;/p&gt;</description>
+&lt;h3 id=&#34;curl&#34;&gt;curl&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 使用支持 HTTP/3 的 curl&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -ti --rm alpine/curl-http3 curl -V&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -ti --network host --rm alpine/curl-http3 curl -I --http3 https://localhost:8443/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HTTP/3 &lt;span class=&#34;m&#34;&gt;200&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;server: nginx/1.29.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;date: Fri, &lt;span class=&#34;m&#34;&gt;27&lt;/span&gt; Jun &lt;span class=&#34;m&#34;&gt;2025&lt;/span&gt; 03:26:09 GMT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content-type: text/html
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;content-length: &lt;span class=&#34;m&#34;&gt;656&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;last-modified: Fri, &lt;span class=&#34;m&#34;&gt;27&lt;/span&gt; Jun &lt;span class=&#34;m&#34;&gt;2025&lt;/span&gt; 03:17:07 GMT
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;etag: &lt;span class=&#34;s2&#34;&gt;&amp;#34;685e0d33-290&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;alt-svc: &lt;span class=&#34;nv&#34;&gt;h3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;:8443&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;ma&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;86400&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;accept-ranges: bytes
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;游览器&#34;&gt;游览器&lt;/h3&gt;
+&lt;p&gt;无法验证！理论结果：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>在本地环境使用 HTTPS</title>
+      <link>https://zyf.im/2025/06/26/use-https-in-local-environment/</link>
+      <pubDate>Thu, 26 Jun 2025 12:00:00 +0800</pubDate>
+      <guid>https://zyf.im/2025/06/26/use-https-in-local-environment/</guid>
+      <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;p&gt;HTTPS（HyperText Transfer Protocol Secure）是在 HTTP 之上通过 TLS/SSL 实现加密的安全通信协议，用来保护浏览器与服务器之间的数据机密性、完整性与身份可信性。&lt;/p&gt;
+&lt;h3 id=&#34;为什么需要-https&#34;&gt;为什么需要 HTTPS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;信息加密。防止明文传输被窃听（如 Wi-Fi 嗅探、运营商劫持）。&lt;/li&gt;
+&lt;li&gt;身份认证。通过数字证书确保访问的是&amp;quot;真正的&amp;quot;服务器，避免中间人攻击（MITM）。&lt;/li&gt;
+&lt;li&gt;数据完整性。TLS 具有 MAC（消息验证码）机制，能检测并阻止篡改。&lt;/li&gt;
+&lt;li&gt;SEO 与浏览器政策。谷歌等搜索引擎对 HTTPS 站点给予权重提升；现代浏览器在地址栏对 HTTP 标红或弹警告。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;握手过程&#34;&gt;握手过程&lt;/h3&gt;
+&lt;p&gt;TLS 1.2 为例：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;sequenceDiagram
+  participant Client
+  participant Server
+  Client-&amp;gt;&amp;gt;Server: ClientHello&amp;lt;br/&amp;gt;– 支持的 TLS 版本、随机数、加密套件
+  Server--&amp;gt;&amp;gt;Client: ServerHello&amp;lt;br/&amp;gt;– 选定版本/套件、随机数
+  Server--&amp;gt;&amp;gt;Client: Certificate
+  Server--&amp;gt;&amp;gt;Client: ServerHelloDone
+  Client-&amp;gt;&amp;gt;Server: ClientKeyExchange&amp;lt;br/&amp;gt;– 预主密钥 (用公钥加密)
+  Client-&amp;gt;&amp;gt;Server: ChangeCipherSpec
+  Client-&amp;gt;&amp;gt;Server: Finished (用对称密钥加密)
+  Server--&amp;gt;&amp;gt;Client: ChangeCipherSpec
+  Server--&amp;gt;&amp;gt;Client: Finished
+  note over Client,Server: 之后开始对称加密的数据传输
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;双方首先协商算法与随机数；&lt;/li&gt;
+&lt;li&gt;客户端用服务器公钥加密预主密钥；&lt;/li&gt;
+&lt;li&gt;双方基于随机数与预主密钥生成会话密钥；&lt;/li&gt;
+&lt;li&gt;后续通信全部使用对称加密，提高效率。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;证书类型&#34;&gt;证书类型&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;DV（Domain Validation）证书仅验证域名所有权，通过自动化流程颁发，价格低廉甚至免费（如 Let&amp;rsquo;s Encrypt）。&lt;/li&gt;
+&lt;li&gt;OV（Organization Validation）证书需要验证组织实体信息，在浏览器证书详情中可查看公司名称。&lt;/li&gt;
+&lt;li&gt;EV（Extended Validation）证书验证最为严格，地址栏会显示公司名称，但多数现代浏览器已弱化此功能的 UI 展示。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tls-13&#34;&gt;TLS 1.3&lt;/h3&gt;
+&lt;p&gt;TLS 1.3（RFC 8446）是在 2018 年 8 月正式发布的最新版本，相比 TLS 1.2 做了深度“瘦身+加速+强化安全”。&lt;/p&gt;</description>
     </item>
     <item>
       <title>PHP Migrating 8.3 to 8.4</title>
       <link>https://zyf.im/2025/02/01/php-migrating-83-to-84/</link>
-      <pubDate>Sat, 01 Feb 2025 17:42:42 +0000</pubDate>
+      <pubDate>Sat, 01 Feb 2025 17:42:42 +0800</pubDate>
       <guid>https://zyf.im/2025/02/01/php-migrating-83-to-84/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;PHP 8.4 引入了许多新特性，如属性钩子（Property Hooks）、非对称可见性（Asymmetric Visibility）以及更新的 DOM API 等。本文将介绍主要变化和如何进行迁移。&lt;/p&gt;
@@ -98,7 +212,7 @@
     <item>
       <title>PHP Migrating 8.2 to 8.3</title>
       <link>https://zyf.im/2024/08/01/php-migrating-82-to-83/</link>
-      <pubDate>Thu, 01 Aug 2024 17:37:13 +0000</pubDate>
+      <pubDate>Thu, 01 Aug 2024 17:37:13 +0800</pubDate>
       <guid>https://zyf.im/2024/08/01/php-migrating-82-to-83/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -194,7 +308,7 @@
     <item>
       <title>PHP Migrating 8.1 to 8.2</title>
       <link>https://zyf.im/2024/07/01/php-migrating-81-to-82/</link>
-      <pubDate>Mon, 01 Jul 2024 09:24:50 +0000</pubDate>
+      <pubDate>Mon, 01 Jul 2024 09:24:50 +0800</pubDate>
       <guid>https://zyf.im/2024/07/01/php-migrating-81-to-82/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -256,7 +370,7 @@
     <item>
       <title>MongoDB 高手课</title>
       <link>https://zyf.im/2023/04/19/mongodb-course/</link>
-      <pubDate>Wed, 19 Apr 2023 10:47:10 +0000</pubDate>
+      <pubDate>Wed, 19 Apr 2023 10:47:10 +0800</pubDate>
       <guid>https://zyf.im/2023/04/19/mongodb-course/</guid>
       <description>&lt;h2 id=&#34;04-特色及优势&#34;&gt;04 特色及优势&lt;/h2&gt;
 &lt;p&gt;对象模型，快速响应业务变化：&lt;/p&gt;
@@ -343,7 +457,7 @@
     <item>
       <title>手把手教你落地 DDD Part1</title>
       <link>https://zyf.im/2023/03/09/hands-on-ddd-part1/</link>
-      <pubDate>Thu, 09 Mar 2023 17:18:46 +0000</pubDate>
+      <pubDate>Thu, 09 Mar 2023 17:18:46 +0800</pubDate>
       <guid>https://zyf.im/2023/03/09/hands-on-ddd-part1/</guid>
       <description>&lt;h2 id=&#34;01-小传&#34;&gt;01 小传&lt;/h2&gt;
 &lt;p&gt;Domain-Driven Design 是一种开发复杂软件的系统化的 &lt;strong&gt;方法学和思想&lt;/strong&gt;。&lt;/p&gt;
@@ -391,7 +505,7 @@
     <item>
       <title>正则表达式</title>
       <link>https://zyf.im/2023/03/01/regular-expression-getting-started/</link>
-      <pubDate>Wed, 01 Mar 2023 15:31:15 +0000</pubDate>
+      <pubDate>Wed, 01 Mar 2023 15:31:15 +0800</pubDate>
       <guid>https://zyf.im/2023/03/01/regular-expression-getting-started/</guid>
       <description>&lt;h2 id=&#34;00&#34;&gt;00&lt;/h2&gt;
 &lt;ul&gt;
@@ -460,7 +574,7 @@
     <item>
       <title>Vim 实用技巧必知必会</title>
       <link>https://zyf.im/2023/02/28/vim-practical-tips/</link>
-      <pubDate>Tue, 28 Feb 2023 11:33:27 +0000</pubDate>
+      <pubDate>Tue, 28 Feb 2023 11:33:27 +0800</pubDate>
       <guid>https://zyf.im/2023/02/28/vim-practical-tips/</guid>
       <description>&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum list installed &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep vim
@@ -497,7 +611,7 @@
     <item>
       <title>Kubernetes 入门实战 Part3</title>
       <link>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</link>
-      <pubDate>Fri, 24 Feb 2023 17:24:14 +0000</pubDate>
+      <pubDate>Fri, 24 Feb 2023 17:24:14 +0800</pubDate>
       <guid>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</guid>
       <description>&lt;h2 id=&#34;24-persistentvolume-数据持久化&#34;&gt;24 PersistentVolume 数据持久化&lt;/h2&gt;
 &lt;p&gt;PersistentVolume 属于集群的系统资源，是和 Node 平级的一种对象，Pod 对它没有管理权，只有使用权。&lt;/p&gt;
@@ -575,7 +689,7 @@
     <item>
       <title>Kubernetes 入门实战 Part2</title>
       <link>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</link>
-      <pubDate>Wed, 22 Feb 2023 17:11:27 +0000</pubDate>
+      <pubDate>Wed, 22 Feb 2023 17:11:27 +0800</pubDate>
       <guid>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</guid>
       <description>&lt;h2 id=&#34;17-多节点的-kubernetes-集群&#34;&gt;17 多节点的 Kubernetes 集群&lt;/h2&gt;
 &lt;p&gt;在腾讯云 TencentOS Server 3.1 (TK4) 下测试：&lt;/p&gt;
@@ -616,7 +730,7 @@
     <item>
       <title>Kubernetes 入门实战 Part1</title>
       <link>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</link>
-      <pubDate>Wed, 15 Feb 2023 14:46:38 +0000</pubDate>
+      <pubDate>Wed, 15 Feb 2023 14:46:38 +0800</pubDate>
       <guid>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</guid>
       <description>&lt;h2 id=&#34;01-初识-docker&#34;&gt;01 初识 Docker&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt install -y docker.io
@@ -666,7 +780,7 @@
     <item>
       <title>Go 语言第一课</title>
       <link>https://zyf.im/2023/02/01/go-language-lesson-one/</link>
-      <pubDate>Wed, 01 Feb 2023 11:44:27 +0000</pubDate>
+      <pubDate>Wed, 01 Feb 2023 11:44:27 +0800</pubDate>
       <guid>https://zyf.im/2023/02/01/go-language-lesson-one/</guid>
       <description>&lt;h2 id=&#34;02-设计哲学&#34;&gt;02 设计哲学&lt;/h2&gt;
 &lt;p&gt;设计哲学之于编程语言，就好比一个人的价值观之于这个人的行为。&lt;/p&gt;
@@ -705,7 +819,7 @@
     <item>
       <title>回顾 2022</title>
       <link>https://zyf.im/2022/12/31/review-2022/</link>
-      <pubDate>Sat, 31 Dec 2022 20:16:41 +0000</pubDate>
+      <pubDate>Sat, 31 Dec 2022 20:16:41 +0800</pubDate>
       <guid>https://zyf.im/2022/12/31/review-2022/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;犯错的人不会沉浸在错误里，而是继续战斗。 —— 管泽元 S12 总决赛 DRX vs SKT 2:2&lt;/p&gt;&lt;/blockquote&gt;
@@ -714,7 +828,7 @@
     <item>
       <title>PHP Migrating 8.0 to 8.1</title>
       <link>https://zyf.im/2022/12/21/php-migrating-80-to-81/</link>
-      <pubDate>Wed, 21 Dec 2022 18:25:49 +0000</pubDate>
+      <pubDate>Wed, 21 Dec 2022 18:25:49 +0800</pubDate>
       <guid>https://zyf.im/2022/12/21/php-migrating-80-to-81/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -853,7 +967,7 @@
     <item>
       <title>PHP Migrating 7.4 to 8.0</title>
       <link>https://zyf.im/2022/12/14/php-migrating-74-to-80/</link>
-      <pubDate>Wed, 14 Dec 2022 16:40:03 +0000</pubDate>
+      <pubDate>Wed, 14 Dec 2022 16:40:03 +0800</pubDate>
       <guid>https://zyf.im/2022/12/14/php-migrating-74-to-80/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -1136,7 +1250,7 @@
     <item>
       <title>PHP Migrating to 7.2 7.3 7.4</title>
       <link>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</link>
-      <pubDate>Mon, 12 Dec 2022 20:51:51 +0000</pubDate>
+      <pubDate>Mon, 12 Dec 2022 20:51:51 +0800</pubDate>
       <guid>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -1329,7 +1443,7 @@
     <item>
       <title>PHP Migrating to 7.0 7.1</title>
       <link>https://zyf.im/2022/11/28/php-migrating-to-70-71/</link>
-      <pubDate>Mon, 28 Nov 2022 10:36:34 +0000</pubDate>
+      <pubDate>Mon, 28 Nov 2022 10:36:34 +0800</pubDate>
       <guid>https://zyf.im/2022/11/28/php-migrating-to-70-71/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -1668,7 +1782,7 @@
     <item>
       <title>Docker Code Snippet</title>
       <link>https://zyf.im/2022/11/17/docker-code-snippet/</link>
-      <pubDate>Thu, 17 Nov 2022 10:09:26 +0000</pubDate>
+      <pubDate>Thu, 17 Nov 2022 10:09:26 +0800</pubDate>
       <guid>https://zyf.im/2022/11/17/docker-code-snippet/</guid>
       <description>&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
 &lt;h3 id=&#34;arg-构建参数&#34;&gt;ARG 构建参数&lt;/h3&gt;
@@ -1697,7 +1811,7 @@
     <item>
       <title>Laradock 学习笔记</title>
       <link>https://zyf.im/2022/11/09/explore-laradock/</link>
-      <pubDate>Wed, 09 Nov 2022 22:24:01 +0000</pubDate>
+      <pubDate>Wed, 09 Nov 2022 22:24:01 +0800</pubDate>
       <guid>https://zyf.im/2022/11/09/explore-laradock/</guid>
       <description>&lt;h2 id=&#34;laradock-简介&#34;&gt;Laradock 简介&lt;/h2&gt;
 &lt;p&gt;Laradock 是一个基于 Docker 的完整 PHP 开发环境，专为 PHP 开发者（特别是 Laravel 开发者）设计。它提供了一套预配置的 Docker 容器，包含开发中常用的服务，如 Nginx、MySQL、Redis、PHP-FPM 等。&lt;/p&gt;
@@ -1742,7 +1856,7 @@
     <item>
       <title>Git Code Snippet</title>
       <link>https://zyf.im/2022/10/01/git-code-snippet/</link>
-      <pubDate>Sat, 01 Oct 2022 10:00:00 +0000</pubDate>
+      <pubDate>Sat, 01 Oct 2022 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2022/10/01/git-code-snippet/</guid>
       <description>&lt;h2 id=&#34;建立独立的分支&#34;&gt;建立独立的分支&lt;/h2&gt;
 &lt;p&gt;当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：&lt;/p&gt;
@@ -1787,7 +1901,7 @@
     <item>
       <title>MySQL 实战 45 讲 Part2</title>
       <link>https://zyf.im/2022/09/14/mysql-course-45-part2/</link>
-      <pubDate>Wed, 14 Sep 2022 18:55:54 +0000</pubDate>
+      <pubDate>Wed, 14 Sep 2022 18:55:54 +0800</pubDate>
       <guid>https://zyf.im/2022/09/14/mysql-course-45-part2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
@@ -1795,7 +1909,7 @@
     <item>
       <title>MySQL 实战 45 讲 Part1</title>
       <link>https://zyf.im/2022/08/14/mysql-course-45-part1/</link>
-      <pubDate>Sun, 14 Aug 2022 15:53:16 +0000</pubDate>
+      <pubDate>Sun, 14 Aug 2022 15:53:16 +0800</pubDate>
       <guid>https://zyf.im/2022/08/14/mysql-course-45-part1/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -1830,7 +1944,7 @@
     <item>
       <title>Shell Code Snippet</title>
       <link>https://zyf.im/2022/07/28/shell-code-snippet/</link>
-      <pubDate>Thu, 28 Jul 2022 11:51:46 +0000</pubDate>
+      <pubDate>Thu, 28 Jul 2022 11:51:46 +0800</pubDate>
       <guid>https://zyf.im/2022/07/28/shell-code-snippet/</guid>
       <description>&lt;h2 id=&#34;package-management&#34;&gt;Package Management&lt;/h2&gt;
 &lt;h3 id=&#34;find-packages-with-pkgsorg&#34;&gt;Find Packages with pkgs.org&lt;/h3&gt;
@@ -1875,7 +1989,7 @@
     <item>
       <title>Front-end Code Snippet</title>
       <link>https://zyf.im/2022/07/26/front-end-code-snippet/</link>
-      <pubDate>Tue, 26 Jul 2022 11:51:46 +0000</pubDate>
+      <pubDate>Tue, 26 Jul 2022 11:51:46 +0800</pubDate>
       <guid>https://zyf.im/2022/07/26/front-end-code-snippet/</guid>
       <description>&lt;h2 id=&#34;库推荐&#34;&gt;库推荐&lt;/h2&gt;
 &lt;h3 id=&#34;nrm&#34;&gt;nrm&lt;/h3&gt;
@@ -1900,7 +2014,7 @@
     <item>
       <title>【JavaScript 教程 | 网道】笔记</title>
       <link>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</link>
-      <pubDate>Thu, 09 Jun 2022 14:59:09 +0000</pubDate>
+      <pubDate>Thu, 09 Jun 2022 14:59:09 +0800</pubDate>
       <guid>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://wangdoc.com/javascript/index.html&#34;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -1933,7 +2047,7 @@
     <item>
       <title>GROUP_CONCAT 截断</title>
       <link>https://zyf.im/2022/01/10/group-concat-max-len/</link>
-      <pubDate>Mon, 10 Jan 2022 15:53:16 +0000</pubDate>
+      <pubDate>Mon, 10 Jan 2022 15:53:16 +0800</pubDate>
       <guid>https://zyf.im/2022/01/10/group-concat-max-len/</guid>
       <description>&lt;p&gt;今日在生产环境发生了：因为 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 聚合的数据列发生截断导致异常，原来 &lt;code&gt;GROUP_CONCAT&lt;/code&gt; 是有大小限制的。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GROUP_CONCAT_MAX_LEN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
@@ -1947,7 +2061,7 @@
     <item>
       <title>回顾 2021</title>
       <link>https://zyf.im/2021/12/31/review-2021/</link>
-      <pubDate>Fri, 31 Dec 2021 20:16:41 +0000</pubDate>
+      <pubDate>Fri, 31 Dec 2021 20:16:41 +0800</pubDate>
       <guid>https://zyf.im/2021/12/31/review-2021/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://music.163.com/#/song?id=25638375&#34;&gt;直到对的人来 · 追星族乐队&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1957,7 +2071,7 @@
     <item>
       <title>PHP 安装 gRPC</title>
       <link>https://zyf.im/2021/10/13/php-install-grpc/</link>
-      <pubDate>Wed, 13 Oct 2021 15:48:41 +0000</pubDate>
+      <pubDate>Wed, 13 Oct 2021 15:48:41 +0800</pubDate>
       <guid>https://zyf.im/2021/10/13/php-install-grpc/</guid>
       <description>&lt;h2 id=&#34;env&#34;&gt;ENV&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/redhat-release
@@ -2016,7 +2130,7 @@
     <item>
       <title>分组聚合 OVER PARTITION BY</title>
       <link>https://zyf.im/2021/09/14/sql-over-partition-by/</link>
-      <pubDate>Tue, 14 Sep 2021 11:58:42 +0000</pubDate>
+      <pubDate>Tue, 14 Sep 2021 11:58:42 +0800</pubDate>
       <guid>https://zyf.im/2021/09/14/sql-over-partition-by/</guid>
       <description>&lt;h2 id=&#34;在-hive-中&#34;&gt;在 HIVE 中&lt;/h2&gt;
 &lt;p&gt;最近在使用 HIVE，需要统计 &lt;code&gt;当年累计和&lt;/code&gt; 这样的指标，请教同事后发现了 &lt;code&gt;OVER(PARTITION BY)&lt;/code&gt; 开窗函数。&lt;/p&gt;
@@ -2057,7 +2171,7 @@
     <item>
       <title>PHP __invoke 使用</title>
       <link>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</link>
-      <pubDate>Tue, 20 Jul 2021 14:58:33 +0000</pubDate>
+      <pubDate>Tue, 20 Jul 2021 14:58:33 +0800</pubDate>
       <guid>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</guid>
       <description>&lt;p&gt;why they are magic? Because they are magically called by PHP when specific actions happen.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;__invoke()&lt;/code&gt; method is called when a script tries to call an object as a function.&lt;/p&gt;
@@ -2101,7 +2215,7 @@
     <item>
       <title>PHP strict_types 严格模式</title>
       <link>https://zyf.im/2021/07/19/php-strict-types/</link>
-      <pubDate>Mon, 19 Jul 2021 19:58:26 +0000</pubDate>
+      <pubDate>Mon, 19 Jul 2021 19:58:26 +0800</pubDate>
       <guid>https://zyf.im/2021/07/19/php-strict-types/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;严格模式的声明 &lt;em&gt;必须&lt;/em&gt; 放在文件的顶部。&lt;/li&gt;
@@ -2122,7 +2236,7 @@
     <item>
       <title>Git and GitHub Secrets</title>
       <link>https://zyf.im/2021/07/12/git-and-github-secrets/</link>
-      <pubDate>Mon, 12 Jul 2021 10:40:15 +0000</pubDate>
+      <pubDate>Mon, 12 Jul 2021 10:40:15 +0800</pubDate>
       <guid>https://zyf.im/2021/07/12/git-and-github-secrets/</guid>
       <description>&lt;h2 id=&#34;记住密码&#34;&gt;记住密码&lt;/h2&gt;
 &lt;p&gt;Git 记住密码配置后，不用每次 pull、push 都需要输入密码：&lt;/p&gt;
@@ -2156,7 +2270,7 @@
     <item>
       <title>如何做好技术协同及管理</title>
       <link>https://zyf.im/2021/07/08/how-to-do-technical-management/</link>
-      <pubDate>Thu, 08 Jul 2021 21:08:08 +0000</pubDate>
+      <pubDate>Thu, 08 Jul 2021 21:08:08 +0800</pubDate>
       <guid>https://zyf.im/2021/07/08/how-to-do-technical-management/</guid>
       <description>&lt;p&gt;《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。&lt;/p&gt;
 &lt;h2 id=&#34;招人&#34;&gt;招人&lt;/h2&gt;
@@ -2191,7 +2305,7 @@
     <item>
       <title>设计模式之美 Part2</title>
       <link>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</link>
-      <pubDate>Sat, 06 Feb 2021 11:00:41 +0000</pubDate>
+      <pubDate>Sat, 06 Feb 2021 11:00:41 +0800</pubDate>
       <guid>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</guid>
       <description>&lt;h2 id=&#34;11&#34;&gt;11&lt;/h2&gt;
 &lt;p&gt;领域驱动设计（Domain Driven Design，简称 DDD）。&lt;/p&gt;
@@ -2288,7 +2402,7 @@
     <item>
       <title>设计模式之美 Part1</title>
       <link>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</link>
-      <pubDate>Fri, 05 Feb 2021 11:00:41 +0000</pubDate>
+      <pubDate>Fri, 05 Feb 2021 11:00:41 +0800</pubDate>
       <guid>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</guid>
       <description>&lt;h2 id=&#34;00&#34;&gt;00&lt;/h2&gt;
 &lt;p&gt;KISS 原则（Keep It Simple and Stupid），这个原则理解起来很简单，一看貌似就懂了，那我问你，怎样的代码才算是足够简单呢？怎样才算不够简单需要优化呢？&lt;/p&gt;
@@ -2344,7 +2458,7 @@
     <item>
       <title>MySQL Code Snippet</title>
       <link>https://zyf.im/2021/01/29/mysql-code-snippet/</link>
-      <pubDate>Fri, 29 Jan 2021 18:08:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jan 2021 18:08:00 +0800</pubDate>
       <guid>https://zyf.im/2021/01/29/mysql-code-snippet/</guid>
       <description>&lt;h2 id=&#34;tips-sql&#34;&gt;Tips SQL&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 追踪优化器 Trace 功能
@@ -2385,7 +2499,7 @@
     <item>
       <title>PHP 月份加减问题</title>
       <link>https://zyf.im/2021/01/27/php-strtotime-month/</link>
-      <pubDate>Wed, 27 Jan 2021 18:18:24 +0000</pubDate>
+      <pubDate>Wed, 27 Jan 2021 18:18:24 +0800</pubDate>
       <guid>https://zyf.im/2021/01/27/php-strtotime-month/</guid>
       <description>&lt;h2 id=&#34;看现象&#34;&gt;看现象&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;date&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Y-m-d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strtotime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1 month&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strtotime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2020-07-31&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))));&lt;/span&gt;
@@ -2443,7 +2557,7 @@
     <item>
       <title>Yii2 Code Snippet</title>
       <link>https://zyf.im/2021/01/19/yii2-code-snippet/</link>
-      <pubDate>Tue, 19 Jan 2021 12:08:13 +0000</pubDate>
+      <pubDate>Tue, 19 Jan 2021 12:08:13 +0800</pubDate>
       <guid>https://zyf.im/2021/01/19/yii2-code-snippet/</guid>
       <description>&lt;p&gt;2025-02-15：已告别 Yii2，文章内容不再维护。&lt;/p&gt;
 &lt;hr&gt;
@@ -2481,7 +2595,7 @@
     <item>
       <title>回顾 2020</title>
       <link>https://zyf.im/2020/12/31/review-2020/</link>
-      <pubDate>Thu, 31 Dec 2020 20:00:00 +0000</pubDate>
+      <pubDate>Thu, 31 Dec 2020 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2020/12/31/review-2020/</guid>
       <description>&lt;h2 id=&#34;过年就在石家庄&#34;&gt;过年就在石家庄&lt;/h2&gt;
 &lt;h2 id=&#34;lwl-走学&#34;&gt;lwl 走学&lt;/h2&gt;
@@ -2494,7 +2608,7 @@
     <item>
       <title>MySQL 空格问题</title>
       <link>https://zyf.im/2020/11/28/mysql-blank-space/</link>
-      <pubDate>Sat, 28 Nov 2020 11:11:59 +0000</pubDate>
+      <pubDate>Sat, 28 Nov 2020 11:11:59 +0800</pubDate>
       <guid>https://zyf.im/2020/11/28/mysql-blank-space/</guid>
       <description>&lt;h2 id=&#34;看现象&#34;&gt;看现象&lt;/h2&gt;
 &lt;p&gt;创建一个测试数据库表，插入测试数据：&lt;/p&gt;
@@ -2541,7 +2655,7 @@
     <item>
       <title>Composer 文档笔记</title>
       <link>https://zyf.im/2020/10/28/composer-document-note/</link>
-      <pubDate>Wed, 28 Oct 2020 11:36:27 +0000</pubDate>
+      <pubDate>Wed, 28 Oct 2020 11:36:27 +0800</pubDate>
       <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
       <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic usage&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -2567,7 +2681,7 @@
     <item>
       <title>在 Laravel 之外使用 illuminate 组件</title>
       <link>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</link>
-      <pubDate>Fri, 11 Sep 2020 15:00:39 +0000</pubDate>
+      <pubDate>Fri, 11 Sep 2020 15:00:39 +0800</pubDate>
       <guid>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</guid>
       <description>&lt;p&gt;当代框架基本都是有组件构成，这使得框架变得更加灵活。&lt;a href=&#34;https://github.com/illuminate&#34;&gt;The Laravel Components | github&lt;/a&gt; Laravel 中有不少优质组件，那如何在 Laravel 之外使用 illuminate 组件呢？&lt;/p&gt;
 &lt;h2 id=&#34;illuminatevalidation&#34;&gt;illuminate/validation&lt;/h2&gt;
@@ -2626,7 +2740,7 @@
     <item>
       <title>Redis 正则批量删除 key</title>
       <link>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</link>
-      <pubDate>Mon, 17 Aug 2020 19:34:29 +0000</pubDate>
+      <pubDate>Mon, 17 Aug 2020 19:34:29 +0800</pubDate>
       <guid>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;EVAL&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;return redis.call(&amp;#39;del&amp;#39;, &amp;#39;defaultKey&amp;#39;, unpack(redis.call(&amp;#39;keys&amp;#39;, ARGV[1])))&amp;#34;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prefix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;循环删除：&lt;/p&gt;
@@ -2640,7 +2754,7 @@
     <item>
       <title>MySQL JSON 数据类型</title>
       <link>https://zyf.im/2020/08/14/mysql-json-data-type/</link>
-      <pubDate>Fri, 14 Aug 2020 19:39:55 +0000</pubDate>
+      <pubDate>Fri, 14 Aug 2020 19:39:55 +0800</pubDate>
       <guid>https://zyf.im/2020/08/14/mysql-json-data-type/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/json.html&#34;&gt;The JSON Data Type | mysql&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -2655,7 +2769,7 @@
     <item>
       <title>Composer vendor 提交至 Git</title>
       <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
-      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
+      <pubDate>Mon, 10 Aug 2020 14:24:47 +0800</pubDate>
       <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
       <description>&lt;h2 id=&#34;应该将-vendor-提交到-git-吗&#34;&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;
 &lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
@@ -2680,7 +2794,7 @@
     <item>
       <title>PHP Swoft 框架环境配置</title>
       <link>https://zyf.im/2020/08/07/deploy-swoft-framework/</link>
-      <pubDate>Fri, 07 Aug 2020 11:45:19 +0000</pubDate>
+      <pubDate>Fri, 07 Aug 2020 11:45:19 +0800</pubDate>
       <guid>https://zyf.im/2020/08/07/deploy-swoft-framework/</guid>
       <description>&lt;p&gt;2023-12-22：内容不再维护，推荐使用 Docker。&lt;/p&gt;
 &lt;hr&gt;
@@ -2717,7 +2831,7 @@
     <item>
       <title>tcpdump 入门使用</title>
       <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
-      <pubDate>Mon, 29 Jun 2020 10:24:16 +0000</pubDate>
+      <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
       <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
       <description>&lt;p&gt;tcpdump 是 Unix/Linux 下的抓包工具，可以针对指定网卡、端口、协议进行抓包。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -2757,7 +2871,7 @@
     <item>
       <title>配置 Laradock PhpStorm Xdubug</title>
       <link>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</link>
-      <pubDate>Tue, 26 May 2020 09:45:15 +0000</pubDate>
+      <pubDate>Tue, 26 May 2020 09:45:15 +0800</pubDate>
       <guid>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</guid>
       <description>&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
 &lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
@@ -2787,7 +2901,7 @@
     <item>
       <title>PHP float 精度</title>
       <link>https://zyf.im/2020/05/09/php-float-precision/</link>
-      <pubDate>Sat, 09 May 2020 17:32:34 +0000</pubDate>
+      <pubDate>Sat, 09 May 2020 17:32:34 +0800</pubDate>
       <guid>https://zyf.im/2020/05/09/php-float-precision/</guid>
       <description>&lt;h2 id=&#34;实例-1&#34;&gt;实例 1&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -2854,7 +2968,7 @@
     <item>
       <title>在 CentOS 编译安装 PHP</title>
       <link>https://zyf.im/2020/04/29/make-install-php-on-centos/</link>
-      <pubDate>Wed, 29 Apr 2020 11:37:51 +0000</pubDate>
+      <pubDate>Wed, 29 Apr 2020 11:37:51 +0800</pubDate>
       <guid>https://zyf.im/2020/04/29/make-install-php-on-centos/</guid>
       <description>&lt;p&gt;2023-12-22：内容不再维护，推荐使用 Docker。&lt;/p&gt;
 &lt;hr&gt;
@@ -2891,7 +3005,7 @@
     <item>
       <title>在 macOS 编译安装 PHP</title>
       <link>https://zyf.im/2020/04/28/make-install-php-on-macos/</link>
-      <pubDate>Tue, 28 Apr 2020 18:09:59 +0000</pubDate>
+      <pubDate>Tue, 28 Apr 2020 18:09:59 +0800</pubDate>
       <guid>https://zyf.im/2020/04/28/make-install-php-on-macos/</guid>
       <description>&lt;p&gt;2023-12-22：内容不再维护，推荐使用 Docker。&lt;/p&gt;
 &lt;hr&gt;
@@ -2960,7 +3074,7 @@
     <item>
       <title>vim Code Snippet</title>
       <link>https://zyf.im/2020/04/28/vim-code-snippet/</link>
-      <pubDate>Tue, 28 Apr 2020 10:43:39 +0000</pubDate>
+      <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
       <guid>https://zyf.im/2020/04/28/vim-code-snippet/</guid>
       <description>&lt;h2 id=&#34;常用&#34;&gt;常用&lt;/h2&gt;
 &lt;ul&gt;
@@ -2991,7 +3105,7 @@
     <item>
       <title>PHP GD 入门使用</title>
       <link>https://zyf.im/2020/04/16/php-gd-getting-started/</link>
-      <pubDate>Thu, 16 Apr 2020 17:24:37 +0000</pubDate>
+      <pubDate>Thu, 16 Apr 2020 17:24:37 +0800</pubDate>
       <guid>https://zyf.im/2020/04/16/php-gd-getting-started/</guid>
       <description>&lt;h2 id=&#34;gd-安装配置&#34;&gt;GD 安装、配置&lt;/h2&gt;
 &lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
@@ -3036,7 +3150,7 @@
     <item>
       <title>PHP Code Snippet</title>
       <link>https://zyf.im/2020/04/15/php-code-snippet/</link>
-      <pubDate>Wed, 15 Apr 2020 18:03:44 +0000</pubDate>
+      <pubDate>Wed, 15 Apr 2020 18:03:44 +0800</pubDate>
       <guid>https://zyf.im/2020/04/15/php-code-snippet/</guid>
       <description>&lt;h2 id=&#34;php-sandbox&#34;&gt;PHP Sandbox&lt;/h2&gt;
 &lt;ul&gt;
@@ -3100,7 +3214,7 @@
     <item>
       <title>MySQL Illegal mix of collations</title>
       <link>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</link>
-      <pubDate>Tue, 14 Apr 2020 17:05:01 +0000</pubDate>
+      <pubDate>Tue, 14 Apr 2020 17:05:01 +0800</pubDate>
       <guid>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Illegal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mix&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;collations&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4_general_ci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;IMPLICIT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;and&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4_unicode_ci&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;IMPLICIT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;operation&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
@@ -3131,10 +3245,9 @@
     <item>
       <title>NGINX 前后端分离配置</title>
       <link>https://zyf.im/2020/03/17/nginx-front-back-end-config/</link>
-      <pubDate>Tue, 17 Mar 2020 11:33:24 +0000</pubDate>
+      <pubDate>Tue, 17 Mar 2020 11:33:24 +0800</pubDate>
       <guid>https://zyf.im/2020/03/17/nginx-front-back-end-config/</guid>
       <description>&lt;p&gt;前后端分离的开发已是主流，本文主要是记录前后端分离项目的 NGINX 配置。&lt;/p&gt;
-&lt;!-- more --&gt;
 &lt;ul&gt;
 &lt;li&gt;前端 Vue web 入口 &lt;code&gt;host.test&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;后端 PHP Yii service 入口 &lt;code&gt;host.test/api&lt;/code&gt;&lt;/li&gt;
@@ -3228,7 +3341,7 @@
     <item>
       <title>【PRCC2019 全套入门教程】笔记</title>
       <link>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</link>
-      <pubDate>Fri, 13 Mar 2020 22:25:25 +0000</pubDate>
+      <pubDate>Fri, 13 Mar 2020 22:25:25 +0800</pubDate>
       <guid>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;&lt;/blockquote&gt;
@@ -3261,7 +3374,7 @@
     <item>
       <title>PHP FTP 间歇性无法上传文件</title>
       <link>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</link>
-      <pubDate>Thu, 27 Feb 2020 20:23:45 +0000</pubDate>
+      <pubDate>Thu, 27 Feb 2020 20:23:45 +0800</pubDate>
       <guid>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</guid>
       <description>&lt;p&gt;2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。&lt;/p&gt;
 &lt;hr&gt;
@@ -3303,7 +3416,7 @@
     <item>
       <title>回顾 2019</title>
       <link>https://zyf.im/2019/12/31/review-2019/</link>
-      <pubDate>Tue, 31 Dec 2019 23:00:00 +0000</pubDate>
+      <pubDate>Tue, 31 Dec 2019 23:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/12/31/review-2019/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://y.qq.com/n/ryqq/songDetail/235474091&#34;&gt;新裤子 · 夏日终曲&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;2019 年的第一天从三亚开始，在 &lt;em&gt;第一市场海鲜市场&lt;/em&gt; 买了海味，然后直接到旁边的 &lt;em&gt;林姐香味海鲜&lt;/em&gt; 加工，迟到了超级好吃的香辣蟹。飞回北京就是滑雪团建，年后双双得到了最佳合作奖，感谢我们每周的火锅，让大家多了些感情。&lt;/p&gt;
@@ -3317,14 +3430,14 @@
     <item>
       <title>Lonicera Framework</title>
       <link>https://zyf.im/2019/12/19/lonicera-framework/</link>
-      <pubDate>Thu, 19 Dec 2019 16:46:06 +0000</pubDate>
+      <pubDate>Thu, 19 Dec 2019 16:46:06 +0800</pubDate>
       <guid>https://zyf.im/2019/12/19/lonicera-framework/</guid>
       <description>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</description>
     </item>
     <item>
       <title>Windows 文本文件到 Mac 中文乱码</title>
       <link>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</link>
-      <pubDate>Mon, 09 Dec 2019 14:45:39 +0000</pubDate>
+      <pubDate>Mon, 09 Dec 2019 14:45:39 +0800</pubDate>
       <guid>https://zyf.im/2019/12/09/windows-text-file-to-mac-chinese-messy-code/</guid>
       <description>&lt;p&gt;文本文件从 Windows 系统复制到 Mac 系统中文发生乱码，原因肯定是编码问题。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -3343,7 +3456,7 @@
     <item>
       <title>Git log 统计分析</title>
       <link>https://zyf.im/2019/12/03/analyze-git-log/</link>
-      <pubDate>Tue, 03 Dec 2019 14:47:28 +0000</pubDate>
+      <pubDate>Tue, 03 Dec 2019 14:47:28 +0800</pubDate>
       <guid>https://zyf.im/2019/12/03/analyze-git-log/</guid>
       <description>&lt;h2 id=&#34;统计个人增删行数&#34;&gt;统计个人增删行数&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config user.name
@@ -3375,7 +3488,7 @@
     <item>
       <title>Git 批量修改历史 commit 中 user.email</title>
       <link>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</link>
-      <pubDate>Mon, 02 Dec 2019 14:47:28 +0000</pubDate>
+      <pubDate>Mon, 02 Dec 2019 14:47:28 +0800</pubDate>
       <guid>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</guid>
       <description>&lt;p&gt;注意：&lt;strong&gt;此操作会修改 Git 历史记录&lt;/strong&gt;，正式工作环境不允许。&lt;/p&gt;
 &lt;p&gt;查询都有什么：&lt;/p&gt;
@@ -3411,7 +3524,7 @@
     <item>
       <title>CentOS yum 升级 git 版本</title>
       <link>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</link>
-      <pubDate>Mon, 25 Nov 2019 15:36:16 +0000</pubDate>
+      <pubDate>Mon, 25 Nov 2019 15:36:16 +0800</pubDate>
       <guid>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</guid>
       <description>&lt;p&gt;先去官网看看 &lt;a href=&#34;https://git-scm.com/download/linux&#34;&gt;Download for Linux and Unix&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.
@@ -3431,7 +3544,7 @@
     <item>
       <title>CRLF will be replaced by LF</title>
       <link>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</link>
-      <pubDate>Fri, 22 Nov 2019 17:30:37 +0000</pubDate>
+      <pubDate>Fri, 22 Nov 2019 17:30:37 +0800</pubDate>
       <guid>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -3464,7 +3577,7 @@
     <item>
       <title>Vue Code Snippet</title>
       <link>https://zyf.im/2019/08/08/vue-code-snippet/</link>
-      <pubDate>Thu, 08 Aug 2019 17:33:38 +0000</pubDate>
+      <pubDate>Thu, 08 Aug 2019 17:33:38 +0800</pubDate>
       <guid>https://zyf.im/2019/08/08/vue-code-snippet/</guid>
       <description>&lt;h2 id=&#34;重置-data-的数据为初始状态&#34;&gt;重置 data 的数据为初始状态&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
@@ -3526,7 +3639,7 @@
     <item>
       <title>VSCode 使用经验</title>
       <link>https://zyf.im/2019/06/11/vscode-using-experience/</link>
-      <pubDate>Tue, 11 Jun 2019 17:01:39 +0000</pubDate>
+      <pubDate>Tue, 11 Jun 2019 17:01:39 +0800</pubDate>
       <guid>https://zyf.im/2019/06/11/vscode-using-experience/</guid>
       <description>&lt;h2 id=&#34;编辑-settingsjson&#34;&gt;编辑 settings.json&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;command + ,&lt;/code&gt; 右上角点击 &lt;code&gt;打开设置&lt;/code&gt;。&lt;/p&gt;
@@ -3563,7 +3676,7 @@
     <item>
       <title>Git 提交 message 规范</title>
       <link>https://zyf.im/2019/06/04/git-commit-message-style-guide/</link>
-      <pubDate>Tue, 04 Jun 2019 14:07:46 +0000</pubDate>
+      <pubDate>Tue, 04 Jun 2019 14:07:46 +0800</pubDate>
       <guid>https://zyf.im/2019/06/04/git-commit-message-style-guide/</guid>
       <description>&lt;p&gt;commit message 应该清晰明了，说明本次提交的目的。基本公式：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;type&amp;gt;(&amp;lt;scope&amp;gt;): &amp;lt;subject&amp;gt;
@@ -3602,7 +3715,7 @@
     <item>
       <title>最左前缀原理与相关优化</title>
       <link>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</link>
-      <pubDate>Sat, 25 May 2019 11:05:46 +0000</pubDate>
+      <pubDate>Sat, 25 May 2019 11:05:46 +0800</pubDate>
       <guid>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</guid>
       <description>&lt;p&gt;MySQL 中的索引可以以一定顺序引用多个列，这种索引叫做联合索引，一般的，一个联合索引是一个有序元组 &lt;code&gt;&amp;lt;a1, a2, …, an&amp;gt;&lt;/code&gt;，其中各个元素均为数据表的一列。另外，单列索引可以看成联合索引元素数为 1 的特例。&lt;/p&gt;
 &lt;p&gt;我们在 &lt;a href=&#34;https://dev.mysql.com/doc/employee/en/employees-installation.html&#34;&gt;Employees Sample Database&lt;/a&gt; 中实验，MySQL 版本 5.7。&lt;/p&gt;
@@ -3634,7 +3747,7 @@
     <item>
       <title>归并排序</title>
       <link>https://zyf.im/2019/05/23/merge-sort/</link>
-      <pubDate>Thu, 23 May 2019 14:44:40 +0000</pubDate>
+      <pubDate>Thu, 23 May 2019 14:44:40 +0800</pubDate>
       <guid>https://zyf.im/2019/05/23/merge-sort/</guid>
       <description>&lt;p&gt;归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 &lt;code&gt;O(nlogn)&lt;/code&gt;。1945 年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -3691,7 +3804,7 @@
     <item>
       <title>My MacBook</title>
       <link>https://zyf.im/2019/05/20/my-macbook/</link>
-      <pubDate>Mon, 20 May 2019 17:14:59 +0000</pubDate>
+      <pubDate>Mon, 20 May 2019 17:14:59 +0800</pubDate>
       <guid>https://zyf.im/2019/05/20/my-macbook/</guid>
       <description>&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -3879,7 +3992,7 @@
     <item>
       <title>Laravel 中 composer 加载流程</title>
       <link>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</link>
-      <pubDate>Sun, 28 Apr 2019 19:21:12 +0000</pubDate>
+      <pubDate>Sun, 28 Apr 2019 19:21:12 +0800</pubDate>
       <guid>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</guid>
       <description>&lt;h2 id=&#34;启动&#34;&gt;启动&lt;/h2&gt;
 &lt;ul&gt;
@@ -3963,7 +4076,7 @@
     <item>
       <title>PHP 请小心判断 strpos</title>
       <link>https://zyf.im/2019/04/10/php-strpos-warning/</link>
-      <pubDate>Wed, 10 Apr 2019 20:27:21 +0000</pubDate>
+      <pubDate>Wed, 10 Apr 2019 20:27:21 +0800</pubDate>
       <guid>https://zyf.im/2019/04/10/php-strpos-warning/</guid>
       <description>&lt;p&gt;又开始写世界上最后的语言 PHP 了（狗头保命）。一个很简单的字符串是否包含判断就掉坑了。&lt;/p&gt;
 &lt;p&gt;方法签名：&lt;/p&gt;
@@ -3990,7 +4103,7 @@
     <item>
       <title>ES6 中使用 jQuery $(this) 的问题</title>
       <link>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</link>
-      <pubDate>Wed, 10 Apr 2019 17:09:23 +0000</pubDate>
+      <pubDate>Wed, 10 Apr 2019 17:09:23 +0800</pubDate>
       <guid>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</guid>
       <description>&lt;p&gt;在老项目中，我开始使用 &lt;code&gt;laravel-mix&lt;/code&gt; 和 &lt;code&gt;ES6&lt;/code&gt; 进行逐渐过渡。在这个过程中，发现了一个问题：当 &lt;code&gt;jQuery&lt;/code&gt; 和 &lt;code&gt;箭头函数&lt;/code&gt; 一起使用时，&lt;code&gt;$(this)&lt;/code&gt; 的含义会发生变化。&lt;/p&gt;
 &lt;h2 id=&#34;问题解释&#34;&gt;问题解释&lt;/h2&gt;
@@ -4040,7 +4153,7 @@
     <item>
       <title>寻找数组中轴索引</title>
       <link>https://zyf.im/2019/03/06/find-pivot-index/</link>
-      <pubDate>Wed, 06 Mar 2019 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 06 Mar 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/03/06/find-pivot-index/</guid>
       <description>&lt;p&gt;将 pivot 索引定义为：左边的数字之和等于索引右边的数字之和。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
@@ -4091,7 +4204,7 @@
     <item>
       <title>m 进制转 n 进制</title>
       <link>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</link>
-      <pubDate>Sat, 02 Mar 2019 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 02 Mar 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</guid>
       <description>&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
 &lt;ul&gt;
@@ -4155,7 +4268,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>超长阶乘的计算</title>
       <link>https://zyf.im/2019/03/01/extra-long-factorials/</link>
-      <pubDate>Fri, 01 Mar 2019 14:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Mar 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/03/01/extra-long-factorials/</guid>
       <description>&lt;p&gt;打印 &lt;code&gt;n!&lt;/code&gt; 的结果（1 &amp;lt;= n &amp;lt;= 100）。注意：当 &lt;code&gt;n &amp;gt; 20&lt;/code&gt; 时 64 位的 &lt;code&gt;Int&lt;/code&gt; 将无法直接存储结果。&lt;/p&gt;
 &lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
@@ -4215,7 +4328,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>fastlane 入门使用</title>
       <link>https://zyf.im/2019/02/28/fastlane-getting-started/</link>
-      <pubDate>Thu, 28 Feb 2019 10:00:00 +0000</pubDate>
+      <pubDate>Thu, 28 Feb 2019 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/02/28/fastlane-getting-started/</guid>
       <description>&lt;p&gt;这次以 &lt;a href=&#34;https://fastlane.tools/&#34;&gt;fastlane&lt;/a&gt; 为例，尝试项目中有什么事情可以被自动完成。&lt;/p&gt;
 &lt;p&gt;fastlane 是 Ruby scripts 的集合，安装方法不多说了见 &lt;a href=&#34;https://docs.fastlane.tools/&#34;&gt;官网文档&lt;/a&gt;。&lt;/p&gt;
@@ -4242,7 +4355,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>【Swifter - Swift 开发者必备 Tips】笔记</title>
       <link>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</link>
-      <pubDate>Fri, 15 Feb 2019 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 15 Feb 2019 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</guid>
       <description>&lt;p&gt;再读王巍的【Swifter - Swift 开发者必备 Tips】，看看有什么新收获。&lt;/p&gt;
 &lt;h2 id=&#34;柯里化currying&#34;&gt;柯里化（Currying）&lt;/h2&gt;
@@ -4295,7 +4408,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>PromiseKit 入门使用</title>
       <link>https://zyf.im/2019/01/19/promisekit-getting-started/</link>
-      <pubDate>Sat, 19 Jan 2019 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 19 Jan 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/01/19/promisekit-getting-started/</guid>
       <description>&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -4325,7 +4438,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>回顾 2018</title>
       <link>https://zyf.im/2018/12/31/review-2018/</link>
-      <pubDate>Mon, 31 Dec 2018 21:00:00 +0000</pubDate>
+      <pubDate>Mon, 31 Dec 2018 21:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/12/31/review-2018/</guid>
       <description>&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=298 height=52 src=&#34;//music.163.com/outchain/player?type=2&amp;id=476618833&amp;auto=0&amp;height=32&#34;&gt;&lt;/iframe&gt;
 &lt;p&gt;重新翻阅的自己工作邮件的发件箱，回顾一年工作。新年伊始自己还是在开发 P 项目的 iOS App，开始写 Q&amp;amp;A 功能。一些不算太难的 tableView 布局的需求，对我来说，都是头大的问题。&lt;/p&gt;
@@ -4349,7 +4462,7 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
     <item>
       <title>二分查找 Binary Search</title>
       <link>https://zyf.im/2018/12/10/binary-search/</link>
-      <pubDate>Mon, 10 Dec 2018 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 10 Dec 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/12/10/binary-search/</guid>
       <description>&lt;p&gt;快速从一个数组中查找一个元素。&lt;/p&gt;
 &lt;h2 id=&#34;linear-search-线性查找&#34;&gt;Linear Search 线性查找&lt;/h2&gt;
@@ -4406,7 +4519,7 @@ binarySearch(numbers, key: 43, range: 0 ..&amp;lt; numbers.count)  // gives 13
     <item>
       <title>插入排序 Insertion Sort</title>
       <link>https://zyf.im/2018/11/24/insertion-sort/</link>
-      <pubDate>Sat, 24 Nov 2018 16:00:00 +0000</pubDate>
+      <pubDate>Sat, 24 Nov 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/11/24/insertion-sort/</guid>
       <description>&lt;p&gt;将一个数组从高到低或者从低到高排序。&lt;/p&gt;
 &lt;p&gt;插入排序算法的工作原理：&lt;/p&gt;
@@ -4442,7 +4555,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>队列 Queue Data Structure</title>
       <link>https://zyf.im/2018/11/22/queue-data-structure/</link>
-      <pubDate>Thu, 22 Nov 2018 16:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Nov 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/11/22/queue-data-structure/</guid>
       <description>&lt;p&gt;实现一个 &lt;code&gt;队列&lt;/code&gt;，包括 &lt;code&gt;enqueue&lt;/code&gt;、&lt;code&gt;dequeue&lt;/code&gt;、&lt;code&gt;peek&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;queue&#34;&gt;Queue&lt;/h2&gt;
@@ -4539,7 +4652,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>栈 Stack Data Structure</title>
       <link>https://zyf.im/2018/11/22/stack-data-structure/</link>
-      <pubDate>Thu, 22 Nov 2018 14:00:00 +0000</pubDate>
+      <pubDate>Thu, 22 Nov 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/11/22/stack-data-structure/</guid>
       <description>&lt;p&gt;加入 &lt;a href=&#34;https://github.com/raywenderlich/swift-algorithm-club&#34;&gt;Swift Algorithm Club&lt;/a&gt; /&amp;lsquo;ælgə&amp;rsquo;rɪðəm/，回炉重新学习数据结构与算法。&lt;/p&gt;
 &lt;p&gt;自己创建的项目：&lt;a href=&#34;https://github.com/imzyf/data-structure-and-algorithm&#34;&gt;GitHub - imzyf/data-structure-and-algorithm&lt;/a&gt;。&lt;/p&gt;
@@ -4568,7 +4681,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>解决 Too many symbol files</title>
       <link>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</link>
-      <pubDate>Tue, 30 Oct 2018 14:00:00 +0000</pubDate>
+      <pubDate>Tue, 30 Oct 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</guid>
       <description>&lt;p&gt;在上传 App 到 App Store 后收到邮件，有 issues &lt;strong&gt;Too many symbol files&lt;/strong&gt;。在之前看到 &lt;em&gt;Your delivery was successful&lt;/em&gt;，此 issues 不影响发布，所以一直搁置了。&lt;/p&gt;
 &lt;p&gt;今天决定彻底处理下。&lt;/p&gt;
@@ -4590,7 +4703,7 @@ for (k, v) in array.enumerated() {
     <item>
       <title>在 MySQL 中选择合适的日期类型</title>
       <link>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</link>
-      <pubDate>Fri, 25 May 2018 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 25 May 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</guid>
       <description>&lt;p&gt;如何在 MySQL 中选择合适的日期类型困扰了很久，&lt;code&gt;varchar&lt;/code&gt;、&lt;code&gt;int&lt;/code&gt;、&lt;code&gt;timestamp&lt;/code&gt;、&lt;code&gt;datetime&lt;/code&gt; 都有尝试过，近来有所感悟，做此总结。&lt;/p&gt;
 &lt;p&gt;注：此总结考虑了 PHP 和 Laravel 框架的特点。&lt;/p&gt;
@@ -4608,44 +4721,9 @@ for (k, v) in array.enumerated() {
 &lt;p&gt;这个测试说明了：&lt;/p&gt;</description>
     </item>
     <item>
-      <title>NGINX 禁止 IP 访问</title>
-      <link>https://zyf.im/2018/05/20/nginx-ip-forbidden/</link>
-      <pubDate>Sun, 20 May 2018 21:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2018/05/20/nginx-ip-forbidden/</guid>
-      <description>&lt;p&gt;禁止 IP 访问，其他域名跳转到 &lt;code&gt;www.xxx.com&lt;/code&gt;：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;server {
-    listen 80;
-    server_name 55.66.77.88;
-    deny all;
-}
-
-server {
-    listen 80;
-    server_name www.xxx.com xxx.com;
-
-    return 301 https://www.xxx.com$request_uri;
-}
-
-server {
-    listen 443 ssl http2;
-
-    #...
-
-    if ($host = 55.66.77.88) {
-        return 403;
-    }
-    if ($host != &amp;#39;www.xxx.com&amp;#39;){
-        rewrite ^/(.*)$ https://www.xxx.com/$1 permanent;
-    }
-
-    #...
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>L01 Web 开发实战入门</title>
       <link>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</link>
-      <pubDate>Wed, 09 May 2018 17:00:00 +0000</pubDate>
+      <pubDate>Wed, 09 May 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://laravel-china.org/courses?rf=10678&#34;&gt;Laravel 教程 - Web 开发实战入门&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -4707,7 +4785,7 @@ server {
     <item>
       <title>【Modern PHP】笔记</title>
       <link>https://zyf.im/2018/05/08/modern-php-reading-notes/</link>
-      <pubDate>Tue, 08 May 2018 17:00:00 +0000</pubDate>
+      <pubDate>Tue, 08 May 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/08/modern-php-reading-notes/</guid>
       <description>&lt;p&gt;又回到 PHP Web 开发，使用 Laravel 框架，重读《Modern PHP》。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -4748,7 +4826,7 @@ server {
     <item>
       <title>PhpStorm 使用经验</title>
       <link>https://zyf.im/2018/05/05/phpstorm-using-experience/</link>
-      <pubDate>Sat, 05 May 2018 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 05 May 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/05/phpstorm-using-experience/</guid>
       <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/phpstorm/getting-started/episode-1/&#34;&gt;Two shortcuts to get started&lt;/a&gt;&lt;/p&gt;
@@ -4763,36 +4841,115 @@ server {
 &lt;p&gt;&lt;code&gt;Preferences &amp;gt; Editor &amp;gt; Font&lt;/code&gt; 下，右侧配置：&lt;code&gt;Font: Menlo&lt;/code&gt; &lt;code&gt;Size: 18&lt;/code&gt; &lt;code&gt;Line spacing: 1.2&lt;/code&gt;。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>使用 Let&#39;s Encrypt 通配符证书</title>
+      <title>使用 Certbot 获取 Let’s Encrypt 颁发的 TLS 证书</title>
       <link>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</link>
-      <pubDate>Thu, 26 Apr 2018 16:00:00 +0000</pubDate>
+      <pubDate>Thu, 26 Apr 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</guid>
-      <description>&lt;p&gt;一直在使用 &lt;a href=&#34;https://letsencrypt.org/&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/a&gt; 的免费 SSL 证书，但是一直没做笔记。今天看到 Let&amp;rsquo;s Encrypt 支持了通配符证书（Wildcard Certificates），也就是说二级子域名和主域名可以共用一个证书。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;申请证书&#34;&gt;申请证书&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载证书申请客户端&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /opt
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/certbot/certbot
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /opt/certbot
+      <description>&lt;h2 id=&#34;certbot-和-lets-encrypt-的关系&#34;&gt;Certbot 和 Let’s Encrypt 的关系&lt;/h2&gt;
+&lt;h3 id=&#34;lets-encrypt&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个免费、自动化、开放的公共证书颁发机构（CA）。&lt;/li&gt;
+&lt;li&gt;通过 ACME（Automatic Certificate Management Environment）协议向域名所有者颁发 DV（Domain Validation）TLS/SSL 证书。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;certbot&#34;&gt;Certbot&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;由 Electronic Frontier Foundation (EFF) 维护的开源 ACME 客户端。&lt;/li&gt;
+&lt;li&gt;主要目标是简化与 Let&amp;rsquo;s Encrypt 之间的交互：
+&lt;ul&gt;
+&lt;li&gt;自动化域名验证（HTTP-01、DNS-01、TLS-ALPN-01 等）&lt;/li&gt;
+&lt;li&gt;安装并续期证书&lt;/li&gt;
+&lt;li&gt;更新 Web 服务器配置（Apache、Nginx、Lighttpd 等）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Certbot 也能与任何兼容 ACME 的 CA 通信，不限于 Let&amp;rsquo;s Encrypt。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;典型工作流程&#34;&gt;典型工作流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;解析参数并检测服务器类型。&lt;/li&gt;
+&lt;li&gt;选择并执行挑战（例如在 /.well-known/acme-challenge/ 下写入 token）。&lt;/li&gt;
+&lt;li&gt;Let’s Encrypt 回访验证域名归属。&lt;/li&gt;
+&lt;li&gt;验证通过后签发证书；Certbot 下载并安装到本地。&lt;/li&gt;
+&lt;li&gt;创建定时任务 certbot renew 自动续期。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实验环境：Amazon Linux 2023 (AL2023)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;知识补充&#34;&gt;知识补充&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dnf（Dandified YUM）&lt;/code&gt; 是 RPM-系 Linux 发行版的下一代包管理器。它在功能上取代了传统的 &lt;code&gt;yum&lt;/code&gt;，两者命令参数几乎保持兼容。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RPM&lt;/code&gt; 一开始叫 Red Hat Package Manager，后来改名为递归含义的 RPM Package Manager。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RPM-系发行版&lt;/code&gt; 是把 RPM 作为原生软件包格式与核心包管理工具链的那一族 Linux 发行版。常听到的 Fedora / RHEL / CentOS / AlmaLinux / Rocky Linux / openSUSE / SUSE Linux Enterprise / Amazon Linux 2023 等。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dnf&lt;/code&gt; 不是对 &lt;code&gt;rpm&lt;/code&gt; CLI 的简单封装，而是调用 &lt;code&gt;librpm&lt;/code&gt; 完成最终操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;包管理器&lt;/th&gt;
+          &lt;th&gt;代表发行版&lt;/th&gt;
+          &lt;th&gt;归属&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;dnf / yum&lt;/td&gt;
+          &lt;td&gt;Fedora, RHEL, CentOS&lt;/td&gt;
+          &lt;td&gt;RPM&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;zypper&lt;/td&gt;
+          &lt;td&gt;openSUSE, SLE&lt;/td&gt;
+          &lt;td&gt;RPM&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;apt / apt-get&lt;/td&gt;
+          &lt;td&gt;Debian, Ubuntu&lt;/td&gt;
+          &lt;td&gt;DEB&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;pacman&lt;/td&gt;
+          &lt;td&gt;Arch Linux&lt;/td&gt;
+          &lt;td&gt;tar.xz&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;apk&lt;/td&gt;
+          &lt;td&gt;Alpine&lt;/td&gt;
+          &lt;td&gt;.apk&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;snap&lt;/code&gt; 是一种由 Canonical（Ubuntu 的开发公司）推出的跨发行版应用打包和分发格式，也指围绕它的一整套生态系统。
+&lt;ul&gt;
+&lt;li&gt;跨发行版。同一个 snap 包可以在几十种发行版上直接安装运行，不依赖各自的 RPM/Deb 系统仓库。&lt;/li&gt;
+&lt;li&gt;自包含（bundled）依赖。snap 包内部包含所有依赖，无需外部安装。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://snapcraft.io/&#34;&gt;https://snapcraft.io/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;launch-an-instance&#34;&gt;Launch an instance&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Instance type: t2.nano&lt;/li&gt;
+&lt;li&gt;Username: ec2-user&lt;/li&gt;
+&lt;li&gt;Security Groups: Allow HTTP and HTTPS&lt;/li&gt;
+&lt;li&gt;Public IPv4: 35.86.90.4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;配置-nginx&#34;&gt;配置 nginx&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dnf update -y
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 注意通配符并不包含主域名，所以要配置两个&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./certbot-auto certonly -d *.zyf.im -d zyf.im --manual --preferred-challenges dns --server &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://acme-v02.api.letsencrypt.org/directory&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;-preferred-challenges dns&lt;/code&gt; 使用 DNS 方式校验域名所有权，所以会遇到：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-------------------------------------------------------------------------------
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Please deploy a DNS TXT record under the name
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;_acme-challenge.zyf.im with the following value:
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo dnf install -y nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nginx -v
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# nginx version: nginx/1.28.0&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;YZ2unEViXH8nYZ2unEViIbW52LhIEViIbW52Lh
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Before continuing, verify the record is deployed.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-------------------------------------------------------------------------------
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Press Enter to Continue
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;要在域名服务商那里将 &lt;code&gt;_acme-challenge.zyf.im&lt;/code&gt; 配置 DNS TXT 记录，从而校验域名所有权。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl start nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Started nginx.service - The nginx HTTP and reverse proxy server.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;直接通过 &lt;a href=&#34;http://35.86.90.4&#34;&gt;http://35.86.90.4&lt;/a&gt;，会看到默认的 nginx 欢迎页面。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Docker UFW 失效</title>
       <link>https://zyf.im/2018/04/24/docker-ufw-not-work/</link>
-      <pubDate>Tue, 24 Apr 2018 14:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Apr 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/04/24/docker-ufw-not-work/</guid>
       <description>&lt;p&gt;今日遇到 Docker 中的项目绕过了宿主机 UFW 的配置，可以被任意 IP 访问，甚是奇怪。查找资料发现：&lt;/p&gt;
 &lt;p&gt;如果你在 Linux 使用 Docker，很可能你的系统防火墙降级为 Uncomplicated Firewall (UFW)。如果是这样的话，你有一点可能不知道，Docker 和 UFW 的组合带来了一些安全问题。为什么呢？因为 Docker 实际上绕过了 UFW 并直接修改了 iptables，所以一个容器可以绑定一个端口。这就意味着，所有你设置的 UFW 规则都将在 Docker 容器中失效。&lt;/p&gt;
@@ -4814,7 +4971,7 @@ server {
     <item>
       <title>Swift 初始化</title>
       <link>https://zyf.im/2018/03/31/swift-init/</link>
-      <pubDate>Sat, 31 Mar 2018 17:00:00 +0000</pubDate>
+      <pubDate>Sat, 31 Mar 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/31/swift-init/</guid>
       <description>&lt;p&gt;因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只这样套着 Java 去理解，但也发现了不相同的地方。&lt;/p&gt;
 &lt;h2 id=&#34;初始化顺序&#34;&gt;初始化顺序&lt;/h2&gt;
@@ -4857,7 +5014,7 @@ server {
     <item>
       <title>iOS Safe Area 我所知道的全部</title>
       <link>https://zyf.im/2018/03/29/ios-safe-area/</link>
-      <pubDate>Thu, 29 Mar 2018 11:00:00 +0000</pubDate>
+      <pubDate>Thu, 29 Mar 2018 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/29/ios-safe-area/</guid>
       <description>&lt;p&gt;在 iOS 7 Apple 在 UIViewController 中引入了 &lt;code&gt;topLayoutGuide&lt;/code&gt; 和 &lt;code&gt;bottomLayoutGuide&lt;/code&gt; 属性来描述没有被覆盖(status bar, navigation bar, toolbar, tab bar, etc.)屏幕的区域。在 iOS 11 中，Apple 已经弃用了这些属性，并引入了 safe area。Apple 建议我们不要在 safe area 操作，在 iOS 11 中，当在 iOS App 中定位视图时，你必须使用新的 safe area API。&lt;/p&gt;
 &lt;h2 id=&#34;uiview&#34;&gt;UIView&lt;/h2&gt;
@@ -4874,7 +5031,7 @@ server {
     <item>
       <title>UITableViewCell 自适应 UITextView 高度</title>
       <link>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</link>
-      <pubDate>Tue, 27 Mar 2018 16:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Mar 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</guid>
       <description>&lt;p&gt;使用 Auto Layout 让 UITableViewCell 自适应 UITextView 高度，效果演示：&lt;/p&gt;
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/37953137-931860e0-31d4-11e8-8809-c871b09f9519.gif&#34; alt=&#34;Self-sizing UITextView in cell&#34; width=&#34;200&#34; /&gt;
@@ -4909,7 +5066,7 @@ server {
     <item>
       <title>【译】iOS 单元测试和 UI 测试入门教程</title>
       <link>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</link>
-      <pubDate>Thu, 15 Mar 2018 19:00:00 +0000</pubDate>
+      <pubDate>Thu, 15 Mar 2018 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -4949,7 +5106,7 @@ server {
     <item>
       <title>【Git 权威指南】读书笔记 - 协同模型</title>
       <link>https://zyf.im/2018/01/19/got-git-reading-notes-model/</link>
-      <pubDate>Fri, 19 Jan 2018 14:00:00 +0000</pubDate>
+      <pubDate>Fri, 19 Jan 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/19/got-git-reading-notes-model/</guid>
       <description>&lt;p&gt;主要内容：【Git 协同模型】&lt;/p&gt;
 &lt;h2 id=&#34;经典-git-协同模型&#34;&gt;经典 Git 协同模型&lt;/h2&gt;
@@ -5003,7 +5160,7 @@ server {
     <item>
       <title>【Git 权威指南】读书笔记 - 和声</title>
       <link>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</link>
-      <pubDate>Wed, 17 Jan 2018 19:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jan 2018 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</guid>
       <description>&lt;p&gt;主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】&lt;/p&gt;
 &lt;h2 id=&#34;git-协议与工作协同&#34;&gt;Git 协议与工作协同&lt;/h2&gt;
@@ -5038,7 +5195,7 @@ server {
     <item>
       <title>R.swift 强类型引用资源文件</title>
       <link>https://zyf.im/2018/01/17/r-swift-getting-started/</link>
-      <pubDate>Wed, 17 Jan 2018 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jan 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/17/r-swift-getting-started/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/mac-cain13/R.swift&#34;&gt;R.swift&lt;/a&gt; 获取强类型、自动编译的图片、字体、segues 等资源。&lt;/p&gt;
 &lt;p&gt;以避免无法编译时检查 &lt;code&gt;字符串&lt;/code&gt; 的形式引用资源所导致的错误。&lt;/p&gt;
@@ -5076,7 +5233,7 @@ server {
     <item>
       <title>Xcode 不知名的实用技巧</title>
       <link>https://zyf.im/2018/01/12/xcode-tips/</link>
-      <pubDate>Fri, 12 Jan 2018 13:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Jan 2018 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/12/xcode-tips/</guid>
       <description>&lt;h2 id=&#34;状态栏&#34;&gt;状态栏&lt;/h2&gt;
 &lt;h3 id=&#34;help&#34;&gt;Help&lt;/h3&gt;
@@ -5102,7 +5259,7 @@ server {
     <item>
       <title>回顾 2017</title>
       <link>https://zyf.im/2017/12/31/review-2017/</link>
-      <pubDate>Sun, 31 Dec 2017 22:00:00 +0000</pubDate>
+      <pubDate>Sun, 31 Dec 2017 22:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/12/31/review-2017/</guid>
       <description>&lt;p&gt;2017 关键词：Birds、离职、狼人杀、白洋淀、iOS、自如。&lt;/p&gt;
 &lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=298 height=52 src=&#34;//music.163.com/outchain/player?type=2&amp;id=423314746&amp;auto=0&amp;height=32&#34;&gt;&lt;/iframe&gt;
@@ -5133,7 +5290,7 @@ server {
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 4</title>
       <link>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</link>
-      <pubDate>Mon, 25 Dec 2017 16:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Dec 2017 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</guid>
       <description>&lt;p&gt;主要内容：【历史穿梭】、【改变历史】、【Git 克隆】&lt;/p&gt;
 &lt;h2 id=&#34;历史穿梭&#34;&gt;历史穿梭&lt;/h2&gt;
@@ -5181,7 +5338,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>iOS 招聘总结</title>
       <link>https://zyf.im/2017/11/25/ios-recruitment-summary/</link>
-      <pubDate>Sat, 25 Nov 2017 01:00:00 +0000</pubDate>
+      <pubDate>Sat, 25 Nov 2017 01:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/11/25/ios-recruitment-summary/</guid>
       <description>&lt;p&gt;自己也做了一次面试官。简历看到了很多，内容总结如下：&lt;/p&gt;
 &lt;h2 id=&#34;一些感受&#34;&gt;一些感受&lt;/h2&gt;
@@ -5251,7 +5408,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>Photoshop 编辑 GIF</title>
       <link>https://zyf.im/2017/11/23/photoshop-edit-gif/</link>
-      <pubDate>Thu, 23 Nov 2017 09:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Nov 2017 09:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/11/23/photoshop-edit-gif/</guid>
       <description>&lt;h2 id=&#34;录制-gif&#34;&gt;录制 GIF&lt;/h2&gt;
 &lt;p&gt;推荐使用 &lt;a href=&#34;https://www.cockos.com/licecap/&#34;&gt;LICEcap&lt;/a&gt; 小巧好用。&lt;/p&gt;
@@ -5270,7 +5427,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>关于 GitHub README.md 中图片加载失败</title>
       <link>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</link>
-      <pubDate>Wed, 22 Nov 2017 16:00:00 +0000</pubDate>
+      <pubDate>Wed, 22 Nov 2017 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</guid>
       <description>&lt;h2 id=&#34;遇到的问题&#34;&gt;遇到的问题&lt;/h2&gt;
 &lt;p&gt;在编写 GitHub 的 README.md 后，其中引用的网络图片无法正常显示，点击 &lt;code&gt;alt&lt;/code&gt; 的文字提示：&lt;code&gt;Content length exceeded&lt;/code&gt;。&lt;/p&gt;
@@ -5289,7 +5446,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>Linux Mac 使用代理连接 SSH</title>
       <link>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</link>
-      <pubDate>Sat, 28 Oct 2017 15:00:00 +0000</pubDate>
+      <pubDate>Sat, 28 Oct 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/10/28/linux-or-mac-ssh-by-proxy/</guid>
       <description>&lt;h2 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh -oProxyCommand&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;nc -x 127.0.0.1:1080 %h %p&amp;#34;&lt;/span&gt; ubuntu@111.111.1.1
@@ -5318,7 +5475,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>MacBook 使用小感</title>
       <link>https://zyf.im/2017/10/28/simple-macbook-report/</link>
-      <pubDate>Sat, 28 Oct 2017 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 28 Oct 2017 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/10/28/simple-macbook-report/</guid>
       <description>&lt;p&gt;现在自己的开发主力机是：2015 版的 MacBook Pro。对于工程师来讲，MacBook 绝对是用来提高生产力的，不是装杯的。如果条件允许十分推荐，反正我是回不来了。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -5340,7 +5497,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>Git checkout --theirs --ours 解决冲突文件</title>
       <link>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</link>
-      <pubDate>Wed, 30 Aug 2017 20:00:00 +0000</pubDate>
+      <pubDate>Wed, 30 Aug 2017 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</guid>
       <description>&lt;p&gt;在代码合并时遇到 &lt;code&gt;conflict&lt;/code&gt; 是常有的事情，有些内容是自动生成的资源文件，手工处理起来很麻烦，某一文件如何全部以某一分支的内容为准？&lt;/p&gt;
 &lt;p&gt;使用 &lt;code&gt;checkout --theirs .&lt;/code&gt; &lt;code&gt;checkout --ours .&lt;/code&gt;。&lt;/p&gt;
@@ -5369,7 +5526,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 3</title>
       <link>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</link>
-      <pubDate>Thu, 03 Aug 2017 11:00:00 +0000</pubDate>
+      <pubDate>Thu, 03 Aug 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</guid>
       <description>&lt;p&gt;主要内容：【Git 基本操作】&lt;/p&gt;
 &lt;h2 id=&#34;git-基本操作&#34;&gt;Git 基本操作&lt;/h2&gt;
@@ -5395,7 +5552,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>IMOOC React 入门</title>
       <link>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</link>
-      <pubDate>Thu, 20 Jul 2017 19:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Jul 2017 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/07/20/imooc-react-getting-started-tutorial/</guid>
       <description>&lt;p&gt;【注意】内容不再维护。&lt;/p&gt;
 &lt;hr&gt;
@@ -5479,7 +5636,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 2</title>
       <link>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</link>
-      <pubDate>Thu, 20 Jul 2017 11:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Jul 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</guid>
       <description>&lt;p&gt;主要内容：【Git 重置】、【Git 检出】、【恢复进度】&lt;/p&gt;
 &lt;h2 id=&#34;git-重置&#34;&gt;Git 重置&lt;/h2&gt;
@@ -5504,7 +5661,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 1</title>
       <link>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</link>
-      <pubDate>Wed, 19 Jul 2017 16:00:00 +0000</pubDate>
+      <pubDate>Wed, 19 Jul 2017 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</guid>
       <description>&lt;p&gt;主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】&lt;/p&gt;
 &lt;h2 id=&#34;git-初始化&#34;&gt;Git 初始化&lt;/h2&gt;
@@ -5534,7 +5691,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>【Git 权威指南】读书笔记 - 初识 Git</title>
       <link>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</link>
-      <pubDate>Wed, 12 Jul 2017 15:00:00 +0000</pubDate>
+      <pubDate>Wed, 12 Jul 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</guid>
       <description>&lt;p&gt;Git 是一款分布式版本控制系统，有别于 CVS 和 SVN 等集中式版本控制系统，Git 可以让研发团队更加高效地协同工作、提高生产率。使用 Git，开发人员的工作不会因为频繁地遭遇提交冲突而中断，管理人员也无须为数据的备份而担心。经过 Linux 这样庞大的项目的考验之后，Git 被证明可以胜任任何规模的团队，即便这个团队的成员分布于世界各地。&lt;/p&gt;
 &lt;p&gt;Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人的知识积累、保护好自己的数据，而且还能与他人分享自己的成果。&lt;/p&gt;
@@ -5583,7 +5740,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>NGINX 启用 HTTP/2</title>
       <link>https://zyf.im/2017/06/06/nginx-enable-http2/</link>
-      <pubDate>Tue, 06 Jun 2017 21:00:00 +0000</pubDate>
+      <pubDate>Tue, 06 Jun 2017 21:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/06/06/nginx-enable-http2/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;HTTP/2（RFC 7540，2015 年发布）是自 1999 年 HTTP/1.1 以来的第一次重大升级，目标是在 不改变应用语义 的前提下，改善延迟、并发和网络效率。浏览器端基本只在 TLS 上启用（h2），明文版本 h2c 仅用于内部服务间通信。&lt;/p&gt;
@@ -5635,7 +5792,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     <item>
       <title>PHP 中获取 Nginx 使用反向代理或 CDN 后的客户端真实 IP</title>
       <link>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</link>
-      <pubDate>Fri, 02 Jun 2017 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 02 Jun 2017 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</guid>
       <description>&lt;p&gt;获取 Nginx 反向代理后的客户端 IP，基本是按一定顺序检测以下参数中的信息：&lt;/p&gt;
 &lt;ul&gt;
@@ -5663,7 +5820,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>PHP 中 this self parent 用法</title>
       <link>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</link>
-      <pubDate>Thu, 25 May 2017 15:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 May 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;self::&lt;/code&gt; 调用本类属性、方法；可以抑制方法多态性。&lt;/li&gt;
@@ -5720,7 +5877,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>【摔跤吧，爸爸】随笔</title>
       <link>https://zyf.im/2017/05/14/i-am-proud-of-you/</link>
-      <pubDate>Sun, 14 May 2017 13:00:00 +0000</pubDate>
+      <pubDate>Sun, 14 May 2017 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/05/14/i-am-proud-of-you/</guid>
       <description>&lt;p&gt;周末看了《摔跤吧，爸爸》，也是第一次独自电影院看电影，试写一篇影评纪念下。&lt;/p&gt;
 &lt;p&gt;注意：&lt;strong&gt;严重剧透预警。&lt;/strong&gt;&lt;/p&gt;
@@ -5744,50 +5901,9 @@ proxy_set_header X-NginX-Proxy true;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>区分 NGINX 中 fastcgi_params fastcgi fastcgi-php</title>
-      <link>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</link>
-      <pubDate>Sat, 22 Apr 2017 12:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</guid>
-      <description>&lt;p&gt;NGNIX 有两份 fastcgi 配置文件，分别是 &lt;code&gt;fastcgi_params&lt;/code&gt; 和 &lt;code&gt;fastcgi.conf&lt;/code&gt;，其区别只有一点点。到目前为止，由于 package managers，他们仍然引起新用户的混淆。&lt;/p&gt;
-&lt;p&gt;在自己系统中还有份 &lt;code&gt;snippets/fastcgi-php.conf&lt;/code&gt;，这个又是啥？&lt;/p&gt;
-&lt;h2 id=&#34;fastcgi_params-vs-fastcgiconf&#34;&gt;fastcgi_params vs fastcgi.conf&lt;/h2&gt;
-&lt;p&gt;它们都是用于配置 NGINX 与 FastCGI 应用程序通信的参数文件。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;fastcgi_params: 包含了FastCGI应用程序所需的最基本参数，如SCRIPT_FILENAME、QUERY_STRING等。这些参数通常不需要修改。&lt;/li&gt;
-&lt;li&gt;fastcgi.conf: 包含了更高级的FastCGI参数，可以用于优化FastCGI应用程序的性能，如设置连接超时时间、缓冲区大小等。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;fastcgi.conf&lt;/code&gt; 比 &lt;code&gt;fastcgi_params&lt;/code&gt; 多了一行 &lt;code&gt;SCRIPT_FILENAME&lt;/code&gt; 的定义&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意：&lt;code&gt;$document_root&lt;/code&gt; 和 &lt;code&gt;$fastcgi_script_name&lt;/code&gt; 之间没有 &lt;code&gt;/&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;原本 NGNIX 只有 &lt;code&gt;fastcgi_params&lt;/code&gt;，后来发现很多人在定义 &lt;code&gt;SCRIPT_FILENAME&lt;/code&gt; 时使用了硬编码的方式，于是为了规范用法便引入了 &lt;code&gt;fastcgi.conf&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;不过这样的话就产生一个疑问：为什么一定要引入一个新的配置文件，而不是修改旧的配置文件？&lt;/p&gt;
-&lt;p&gt;这是因为&lt;code&gt;fastcgi_param&lt;/code&gt; 指令是数组型的，和普通指令相同的是：内层替换外层；和普通指令不同的是：当在同级多次使用的时候，是新增而不是替换。&lt;/p&gt;
-&lt;p&gt;换句话说，如果在同级定义两次 &lt;code&gt;SCRIPT_FILENAME&lt;/code&gt;，那么它们都会被发送到后端，这可能会导致一些潜在的问题，为了避免此类情况，便引入了一个新的配置文件。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;server {
-    listen 80;
-    server_name foo.com;
-
-    root /path;
-    index index.html index.htm index.php;
-
-    location / {
-        try_files $uri $uri/ /index.php$is_args$args;
-    }
-
-    location ~ \.php$ {
-        try_files $uri =404;
-
-        include fastcgi.conf;
-        fastcgi_pass 127.0.0.1:9000;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;fastcgi-phpconf&#34;&gt;fastcgi-php.conf&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;fastcgi-php.conf&lt;/code&gt; 是一个 Nginx 配置文件片段，用于配置 Nginx 服务器与 PHP FastCGI 进程之间的通信。它定义了 FastCGI 连接的参数和选项，以及如何处理 PHP 脚本。通常，这个文件是在 Nginx 的主配置文件中包含的，以确保 Nginx 能够正确地将请求发送到 PHP FastCGI 进程。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>区分 CGI FastCGI PHP-CGI PHP-FPM</title>
       <link>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</link>
-      <pubDate>Fri, 21 Apr 2017 11:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Apr 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</guid>
       <description>&lt;p&gt;更新 2023-03-20 提问 ChatGPT 3.5&lt;/p&gt;
 &lt;ul&gt;
@@ -5813,7 +5929,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>MySQL 5.6 5.7 组内排序的区别</title>
       <link>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</link>
-      <pubDate>Thu, 20 Apr 2017 20:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Apr 2017 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</guid>
       <description>&lt;p&gt;MySQL 5.7 对比 5.6 有很多的变化。一个常见的需求：按条件分组后，取出每组中某字段最大值的那条记录。其实就是组内排序的问题，我的做法是：子查询先进行倒序排序，外层查询分组。&lt;/p&gt;
 &lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
@@ -5835,7 +5951,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>MySQL 管理用户与访问授权</title>
       <link>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</link>
-      <pubDate>Tue, 11 Apr 2017 11:00:00 +0000</pubDate>
+      <pubDate>Tue, 11 Apr 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</guid>
       <description>&lt;p&gt;MySQL 创建用户、修改密码、删除用户；查看、授予、撤销用户权限；对 MySQL 远程访问的新理解。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 创建用户 + 授权
@@ -5863,7 +5979,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Ubuntu 命令行下免密码执行 sudo 命令</title>
       <link>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</link>
-      <pubDate>Mon, 10 Apr 2017 15:00:00 +0000</pubDate>
+      <pubDate>Mon, 10 Apr 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/10/execute-sudo-without-password-in-ubuntu-terminal/</guid>
       <description>&lt;p&gt;解决你的问题的方法是将你的用户加入 sudoers 文件。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo visudo
@@ -5879,7 +5995,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Ubuntu 下使用 sendmail mail 发送邮件</title>
       <link>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</link>
-      <pubDate>Thu, 06 Apr 2017 11:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Apr 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/06/using-sendmail-mail-in-ubuntu/</guid>
       <description>&lt;p&gt;使用邮件发送程序的执行情况、运行日志都非常方便，Ubuntu 下搭建邮件服务也不复杂。&lt;/p&gt;
 &lt;h2 id=&#34;sendmail&#34;&gt;sendmail&lt;/h2&gt;
@@ -5911,7 +6027,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Git 在工作目录之间使用 push 进行同步</title>
       <link>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</link>
-      <pubDate>Thu, 30 Mar 2017 18:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Mar 2017 18:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</guid>
       <description>&lt;p&gt;&lt;em&gt;Pushing to a non-bare repo is now possible (Git 2.3.0 February 2015).&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;And it is possible when you are pushing the branch currently checked out at the remote repo!&lt;/p&gt;
@@ -5926,7 +6042,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>解决 SSH 连接提示 Permission denied publickey</title>
       <link>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</link>
-      <pubDate>Thu, 30 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/30/resolving-ssh-permission-denied-publickey/</guid>
       <description>&lt;p&gt;服务器是使用 publickey 进行连接，当在 git push 时发生 &lt;code&gt;Permission denied (publickey)&lt;/code&gt;。同时解决 ssh-add 重启后失效。&lt;/p&gt;
 &lt;h2 id=&#34;解决&#34;&gt;解决&lt;/h2&gt;
@@ -5947,7 +6063,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>解决 Ubuntu Sogou 无法选词输入中文</title>
       <link>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</link>
-      <pubDate>Fri, 17 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/17/resolving-ubuntu-sogou-can-not-select-word/</guid>
       <description>&lt;p&gt;sogou 输入法突然无法选词输入中文，候选词位置出现白框，多次重重装 fcitx 和 sogou 也没有解决。尝试使用 google pinyin 代替，但是感觉很不顺手。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -5974,7 +6090,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Git pull rebase 和 merge no-ff 保持提交线图整洁</title>
       <link>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</link>
-      <pubDate>Fri, 17 Mar 2017 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Mar 2017 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</guid>
       <description>&lt;p&gt;git log 中的一个清晰的提交线图是很方便进行 code review 和代码回退
 &lt;code&gt;git pull --rebase&lt;/code&gt; 主要是为是将提交约线图平坦化，而 &lt;code&gt;git merge --no-ff&lt;/code&gt; 则是刻意制造分叉&lt;/p&gt;
@@ -5996,7 +6112,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>禁止 Google 根据区域重定向跳转</title>
       <link>https://zyf.im/2017/03/14/google-no-country-redirection/</link>
-      <pubDate>Tue, 14 Mar 2017 11:00:00 +0000</pubDate>
+      <pubDate>Tue, 14 Mar 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/14/google-no-country-redirection/</guid>
       <description>&lt;p&gt;使用代理上 Google 时，Google 常会根据网络代理的区域进行重定向跳转。例如：使用韩国代理时，&lt;code&gt;google.com&lt;/code&gt; 会跳转到 &lt;code&gt;https://www.google.co.kr/&lt;/code&gt;，搜索结果也多为韩语，很是不方便。&lt;/p&gt;
 &lt;p&gt;解决的办法其实也很简单：访问 &lt;code&gt;https://www.google.com/ncr&lt;/code&gt; 就可以了。&lt;/p&gt;
@@ -6007,7 +6123,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Git 修改提交历史</title>
       <link>https://zyf.im/2017/03/13/git-modify-commits-history/</link>
-      <pubDate>Mon, 13 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Mon, 13 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/13/git-modify-commits-history/</guid>
       <description>&lt;p&gt;在使用 Git 时，我们经常会遇到修改本地提交记录的情况。比如：修改最近一次提交记，还比如：将多次小的 &lt;code&gt;commit&lt;/code&gt; 合并成一个大的 &lt;code&gt;commit&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;这种做发有利也有弊，利在：review 代码时，可以按功能看，可以省去 review 一些前期写的无效的代码；弊是：一次提交修改过多，如果有问题，不利于调试。&lt;/p&gt;
@@ -6037,7 +6153,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>PHP empty 方法判断 0.0</title>
       <link>https://zyf.im/2017/03/09/php-empty-method-judge-0/</link>
-      <pubDate>Thu, 09 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Thu, 09 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/09/php-empty-method-judge-0/</guid>
       <description>&lt;p&gt;在使用 &lt;code&gt;empty(mixed $var)&lt;/code&gt; 时要考虑 &lt;code&gt;$var&lt;/code&gt; 的 &lt;strong&gt;类型&lt;/strong&gt;，尤其是在判断数据库查询后的字段。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -6073,7 +6189,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Linux crontab 内容定时备份</title>
       <link>https://zyf.im/2017/03/07/linux-crontab-content-backup/</link>
-      <pubDate>Tue, 07 Mar 2017 12:00:00 +0000</pubDate>
+      <pubDate>Tue, 07 Mar 2017 12:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/07/linux-crontab-content-backup/</guid>
       <description>&lt;p&gt;&lt;code&gt;crontab -r&lt;/code&gt; 是一个很危险的命令，它将直接重置 crontab 中的内容；输入 &lt;code&gt;crontab&lt;/code&gt; 后，使用 &lt;code&gt;ctrl + d&lt;/code&gt; 退出也将清空 crontab 中的内容。所以 crontab 内容的定时备份也变得有必要了。&lt;/p&gt;
 &lt;h2 id=&#34;备份脚本&#34;&gt;备份脚本&lt;/h2&gt;
@@ -6094,7 +6210,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>解决 Ubuntu warning Setting locale failed</title>
       <link>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</link>
-      <pubDate>Fri, 03 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 03 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/03/resolving-ubuntu-warning-setting-locale-failed/</guid>
       <description>&lt;p&gt;在配置新服务器时遇到 &lt;code&gt;Setting locale failed&lt;/code&gt; 的警告，要求 &lt;code&gt;Please check that your locale settings&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;perl: warning: Setting locale failed.
@@ -6121,7 +6237,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>IMOOC HTML&#43;CSS 基础课程笔记</title>
       <link>https://zyf.im/2017/02/23/imooc-html-css-basic-course/</link>
-      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/02/23/imooc-html-css-basic-course/</guid>
       <description>&lt;p&gt;【注意】内容不再维护。&lt;/p&gt;
 &lt;hr&gt;
@@ -6159,7 +6275,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>回顾 2016</title>
       <link>https://zyf.im/2016/12/31/review-2016/</link>
-      <pubDate>Sat, 31 Dec 2016 22:00:00 +0000</pubDate>
+      <pubDate>Sat, 31 Dec 2016 22:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/12/31/review-2016/</guid>
       <description>&lt;p&gt;2016 肯定是很特别的一年。年初离开了老师的队伍，来北京找实习。年中和 318 告别，大学毕业了。年末换房学做饭，开始另种生活。对于 2017 更多了对自己的期待。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -6180,7 +6296,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>Ubuntu 下使用 UFW 管理防火墙服务</title>
       <link>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</link>
-      <pubDate>Mon, 10 Oct 2016 13:00:00 +0000</pubDate>
+      <pubDate>Mon, 10 Oct 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/10/10/manage-iptables-using-ufw-in-ubuntu/</guid>
       <description>&lt;p&gt;UFW (Uncomplicated Firewall) 作为 &lt;code&gt;iptables&lt;/code&gt; 的前端应用，给用户提供了简单的接口界面。使用着不需要去记非常复杂的 &lt;code&gt;iptables&lt;/code&gt; 语法。UFW 也使用了 简单英语 作为它的参数。像 allow、deny、reset 就是他们当中的一部分。UFW 绝对是那些想要快速、简单的就建立自己的防火墙，而且还很安全的用户的最佳替代品之一。&lt;/p&gt;
 &lt;h2 id=&#34;检查系统上是否已经安装-ufw&#34;&gt;检查系统上是否已经安装 UFW&lt;/h2&gt;
@@ -6207,7 +6323,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>【Core Java】读书笔记 Part 2</title>
       <link>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</link>
-      <pubDate>Fri, 23 Sep 2016 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 23 Sep 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</guid>
       <description>&lt;p&gt;本文总结的是书中的：第 5 章 继承&lt;/p&gt;
 &lt;p&gt;前几章的总结在：&lt;a href=&#34;https://zyf.im/2016/05/06/core-java-reading-notes/&#34;&gt;ZYF.IM-【Core Java】读书笔记 Part1&lt;/a&gt;&lt;/p&gt;
@@ -6238,7 +6354,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>LeetCode Shell 解题集合</title>
       <link>https://zyf.im/2016/09/19/leetcode-shell-solutions/</link>
-      <pubDate>Mon, 19 Sep 2016 16:00:00 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/19/leetcode-shell-solutions/</guid>
       <description>&lt;p&gt;LeetCode Shell 的试题多为文本操作，&lt;a href=&#34;https://leetcode.com/problems/tenth-line/&#34;&gt;195. Tenth Line&lt;/a&gt;、&lt;a href=&#34;https://leetcode.com/problems/valid-phone-numbers/&#34;&gt;193. Valid Phone Numbers&lt;/a&gt;、&lt;a href=&#34;https://leetcode.com/problems/word-frequency/&#34;&gt;192. Word Frequency&lt;/a&gt;、&lt;a href=&#34;https://leetcode.com/problems/transpose-file/&#34;&gt;194. Transpose File&lt;/a&gt; 暂时只有 4 道题，就整合在这一起了&lt;/p&gt;
 &lt;p&gt;Shell 中文本处理的事情基本 &lt;code&gt;awk&lt;/code&gt; &lt;code&gt;sed&lt;/code&gt; &lt;code&gt;grep&lt;/code&gt; &lt;code&gt;sort&lt;/code&gt; &lt;code&gt;uniq&lt;/code&gt; &lt;code&gt;tail&lt;/code&gt; &lt;code&gt;head&lt;/code&gt; 几个命令组合组合就搞定了&lt;/p&gt;
@@ -6262,7 +6378,7 @@ Line 10
     <item>
       <title>Ubuntu 下使用 sysv-rc-conf 管理开机启动服务</title>
       <link>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</link>
-      <pubDate>Mon, 19 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/19/manage-startup-program-using-sysv-rc-conf-in-ubuntu/</guid>
       <description>&lt;p&gt;&lt;code&gt;sysv-rc-conf&lt;/code&gt; gives an easy to use interface for managing &amp;ldquo;/etc/rc{runlevel}.d/&amp;rdquo; symlinks. The interface comes in two different flavors, one that simply allows turning services on or off and another that allows for more fine tuned management of the symlinks.&lt;/p&gt;
 &lt;h2 id=&#34;安装-sysv-rc-conf&#34;&gt;安装 sysv-rc-conf&lt;/h2&gt;
@@ -6287,7 +6403,7 @@ Line 10
     <item>
       <title>Eclipse Java 注释模板</title>
       <link>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</link>
-      <pubDate>Sun, 18 Sep 2016 19:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</guid>
       <description>&lt;p&gt;自己总结的比较规范的 Eclipse Java 注释模板&lt;/p&gt;
 &lt;h2 id=&#34;eclipse-java-注释模板设置&#34;&gt;Eclipse Java 注释模板设置&lt;/h2&gt;
@@ -6350,7 +6466,7 @@ Line 10
     <item>
       <title>MySQL LIMIT 查询优化</title>
       <link>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</link>
-      <pubDate>Sun, 18 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</guid>
       <description>&lt;p&gt;最近常在 SQL 中使用到 &lt;code&gt;LIMIT ? ?&lt;/code&gt;，在执行 &lt;code&gt;LIMIT 0, 1000&lt;/code&gt; 与 &lt;code&gt;LIMIT 100000, 1000&lt;/code&gt; 时，查询速度明显有很大的区别，而且随着 LIMIT 的偏移量的增加，查询速度越来越慢。是否有办法对 SQL 中 LIMIT 查询进行优化呢？&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -6386,7 +6502,7 @@ Line 10
     <item>
       <title>Eclipse Maven 配置使用国内镜像库</title>
       <link>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</link>
-      <pubDate>Wed, 14 Sep 2016 15:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Sep 2016 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</guid>
       <description>&lt;p&gt;Windows 下因为 Eclipse 自带了 Maven 插件，还算够用就懒得安装 Maven 了。在不使用代理的情况下，用 Maven 的下载库不是一般的慢。Eclipse Maven 的插件怎么配置国内的镜像库呢？其实很简单。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -6487,7 +6603,7 @@ Line 10
     <item>
       <title>LeetCode Database Trips and Users 262</title>
       <link>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</link>
-      <pubDate>Wed, 14 Sep 2016 13:45:00 +0000</pubDate>
+      <pubDate>Wed, 14 Sep 2016 13:45:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/trips-and-users/&#34;&gt;262. Trips and Users&lt;/a&gt;
   The &lt;code&gt;Trips&lt;/code&gt; table holds all taxi trips. Each trip has a unique Id, while Client_Id and Driver_Id are both foreign keys to the Users_Id at the &lt;code&gt;Users&lt;/code&gt; table. Status is an ENUM type of (‘completed’, ‘cancelled_by_driver’, ‘cancelled_by_client’).&lt;/p&gt;
@@ -6510,7 +6626,7 @@ Line 10
     <item>
       <title>LeetCode Database Department Highest Salary 184</title>
       <link>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</link>
-      <pubDate>Mon, 12 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/department-highest-salary/&#34;&gt;184. Department Highest Salary&lt;/a&gt;
   The &lt;code&gt;Employee&lt;/code&gt; table holds all employees. Every employee has an Id, a salary, and there is also a column for the department Id.&lt;/p&gt;
@@ -6527,7 +6643,7 @@ Line 10
     <item>
       <title>LeetCode Database Consecutive Numbers 180</title>
       <link>https://zyf.im/2016/09/11/leetcode-database-consecutive-numbers-180/</link>
-      <pubDate>Sun, 11 Sep 2016 20:45:00 +0000</pubDate>
+      <pubDate>Sun, 11 Sep 2016 20:45:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/11/leetcode-database-consecutive-numbers-180/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/consecutive-numbers/&#34;&gt;180. Consecutive Numbers&lt;/a&gt;
   Write a SQL query to find all numbers that appear at least three times consecutively.&lt;/p&gt;
@@ -6547,7 +6663,7 @@ Line 10
     <item>
       <title>LeetCode Database Second Highest Salary 176</title>
       <link>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</link>
-      <pubDate>Sun, 11 Sep 2016 19:45:00 +0000</pubDate>
+      <pubDate>Sun, 11 Sep 2016 19:45:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/second-highest-salary/&#34;&gt;176. Second Highest Salary&lt;/a&gt;
   Write a SQL query to get the second highest salary from the &lt;code&gt;Employee&lt;/code&gt; table.&lt;/p&gt;
@@ -6566,7 +6682,7 @@ Line 10
     <item>
       <title>LeetCode Database Rising Temperature 197</title>
       <link>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</link>
-      <pubDate>Sun, 11 Sep 2016 19:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/rising-temperature/&#34;&gt;197. Rising Temperature&lt;/a&gt;
   Given a &lt;code&gt;Weather&lt;/code&gt; table, write a SQL query to find all dates&amp;rsquo; Ids with higher temperature compared to its previous (yesterday&amp;rsquo;s) dates.&lt;/p&gt;
@@ -6584,7 +6700,7 @@ Line 10
     <item>
       <title>Mybatis Generator 使用配置</title>
       <link>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</link>
-      <pubDate>Sat, 10 Sep 2016 19:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</guid>
       <description>&lt;p&gt;MyBatis Generator (MBG) 是一个 Mybatis 的代码生成器。MBG 可以内省数据库的表（或多个表）然后生成可以用来访问（多个）表的基础对象。 这样和数据库表进行交互时不需要创建对象和配置文件。MBG 的解决了对数据库操作有最大影响的一些简单的 CRUD（插入、查询、更新、删除）操作。&lt;/p&gt;
 &lt;h2 id=&#34;mybatis-generator-文档&#34;&gt;Mybatis Generator 文档&lt;/h2&gt;
@@ -6632,7 +6748,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>SpringMVC 入门使用</title>
       <link>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</link>
-      <pubDate>Wed, 07 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 07 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</guid>
       <description>&lt;p&gt;本文主要参考了 &lt;a href=&#34;http://www.imooc.com/video/7237&#34;&gt;imooc-SpringMVC 起步&lt;/a&gt; 视频教程和 &lt;a href=&#34;http://www.imooc.com/article/3804&#34;&gt;SpringMVC 从入门到精通 系列 - HansonQ&lt;/a&gt; ，还有自己的一些总结。&lt;/p&gt;
 &lt;p&gt;主要内容：MVC 简介、前端控制器模式、SpringMVC 基本概念、SpringMVC 配置、SpringMVC 中的注解、SpringMVC 数据绑定。&lt;/p&gt;
@@ -6681,7 +6797,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>刚刚毕业的两个月小结</title>
       <link>https://zyf.im/2016/08/31/2016-08-report/</link>
-      <pubDate>Wed, 31 Aug 2016 23:00:00 +0000</pubDate>
+      <pubDate>Wed, 31 Aug 2016 23:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/31/2016-08-report/</guid>
       <description>&lt;p&gt;走出校园已经两个月了，因为之前的暑期也没怎么在家待过，大一在中康、大二在腾骏、大三在大为，大四毕业也就是现在，所以也没有什么特别的感觉。可以说，这两个月也做了些事情，学了些东西的。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -6718,7 +6834,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>LeetCode Number of 1 Bits 191</title>
       <link>https://zyf.im/2016/08/31/leetcode-number-of-1-bits-191/</link>
-      <pubDate>Wed, 31 Aug 2016 13:00:00 +0000</pubDate>
+      <pubDate>Wed, 31 Aug 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/31/leetcode-number-of-1-bits-191/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/number-of-1-bits/&#34;&gt;191. Number of 1 Bits&lt;/a&gt;
   Write a function that takes an unsigned integer and returns the number of ’1&amp;rsquo; bits it has (also known as the Hamming weight).
@@ -6744,7 +6860,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>LeetCode Happy Number 202</title>
       <link>https://zyf.im/2016/08/29/leetcode-happy-number-202/</link>
-      <pubDate>Mon, 29 Aug 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Aug 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/29/leetcode-happy-number-202/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/happy-number/&#34;&gt;202. Happy Number&lt;/a&gt;
   Write an algorithm to determine if a number is &amp;ldquo;happy&amp;rdquo;.
@@ -6753,7 +6869,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>LeetCode Roman to Integer 13</title>
       <link>https://zyf.im/2016/08/25/leetcode-roman-to-integer-13/</link>
-      <pubDate>Thu, 25 Aug 2016 10:30:00 +0000</pubDate>
+      <pubDate>Thu, 25 Aug 2016 10:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/25/leetcode-roman-to-integer-13/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/roman-to-integer/&#34;&gt;13. Roman to Integer&lt;/a&gt;
   Given a roman numeral, convert it to an integer.
@@ -6788,7 +6904,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>LeetCode Majority Element 169</title>
       <link>https://zyf.im/2016/08/24/leetcode-majority-element-169/</link>
-      <pubDate>Wed, 24 Aug 2016 09:30:00 +0000</pubDate>
+      <pubDate>Wed, 24 Aug 2016 09:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/24/leetcode-majority-element-169/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/majority-element/&#34;&gt;169. Majority Element&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Given an array of size n, find the majority element. The majority element is the element that appears more than [ n/2 ] times.&lt;/p&gt;
@@ -6809,7 +6925,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>LeetCode First Unique Character in a String 387</title>
       <link>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</link>
-      <pubDate>Tue, 23 Aug 2016 14:30:00 +0000</pubDate>
+      <pubDate>Tue, 23 Aug 2016 14:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/first-unique-character-in-a-string/&#34;&gt;387. First Unique Character in a String&lt;/a&gt;
   Given a string, find the first non-repeating character in it and return it&amp;rsquo;s index. If it doesn&amp;rsquo;t exist, return -1.
@@ -6837,7 +6953,7 @@ return 2.
     <item>
       <title>LeetCode Maximum Depth of Binary Tree 104</title>
       <link>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</link>
-      <pubDate>Tue, 23 Aug 2016 11:30:00 +0000</pubDate>
+      <pubDate>Tue, 23 Aug 2016 11:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-depth-of-binary-tree/&#34;&gt;104. Maximum Depth of Binary Tree&lt;/a&gt;
   Given a binary tree, find its maximum depth.
@@ -6857,7 +6973,7 @@ return 2.
     <item>
       <title>【此生为完成】随笔</title>
       <link>https://zyf.im/2016/08/22/being-alive-is-a-gift-reading-notes/</link>
-      <pubDate>Mon, 22 Aug 2016 23:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 23:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/being-alive-is-a-gift-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;我们要用多大的代价，才能认清活着的意义？
@@ -6909,7 +7025,7 @@ return 2.
     <item>
       <title>LeetCode Intersection of Two Arrays 349</title>
       <link>https://zyf.im/2016/08/22/leetcode-intersection-of-two-arrays-349/</link>
-      <pubDate>Mon, 22 Aug 2016 18:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 18:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-intersection-of-two-arrays-349/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/intersection-of-two-arrays/&#34;&gt;349. Intersection of Two Arrays&lt;/a&gt;
   Given two arrays, write a function to compute their intersection.
@@ -6946,7 +7062,7 @@ return 2.
     <item>
       <title>LeetCode Same Tree 100</title>
       <link>https://zyf.im/2016/08/22/leetcode-same-tree-100/</link>
-      <pubDate>Mon, 22 Aug 2016 16:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-same-tree-100/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/same-tree/&#34;&gt;100. Same Tree&lt;/a&gt;
   Given two binary trees, write a function to check if they are equal or not.
@@ -6982,7 +7098,7 @@ return 2.
     <item>
       <title>LeetCode Excel Sheet Column Title 168</title>
       <link>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</link>
-      <pubDate>Mon, 22 Aug 2016 13:40:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 13:40:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/excel-sheet-column-title/&#34;&gt;168. Excel Sheet Column Title&lt;/a&gt;
   Given a positive integer, return its corresponding column title as appear in an Excel sheet.&lt;/p&gt;
@@ -7036,7 +7152,7 @@ return 2.
     <item>
       <title>LeetCode Excel Sheet Column Number 171</title>
       <link>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</link>
-      <pubDate>Mon, 22 Aug 2016 13:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/excel-sheet-column-number/&#34;&gt;171. Excel Sheet Column Number&lt;/a&gt;
   Given a column title as appear in an Excel sheet, return its corresponding column number.&lt;/p&gt;
@@ -7067,7 +7183,7 @@ return 2.
     <item>
       <title>【蛤蟆的油】随笔</title>
       <link>https://zyf.im/2016/08/17/something-like-an-autobiography-reading-notes/</link>
-      <pubDate>Wed, 17 Aug 2016 23:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Aug 2016 23:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/17/something-like-an-autobiography-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;日本民间流传着这样一个故事：在深山里，有一种特别的蛤蟆，它和同类相比不仅外表更丑，而且还多长了几条腿。人们转到它后，将其放在镜前或者玻璃箱内，蛤蟆一看到自己丑陋不堪的真面目，不禁吓出一身油。这种油，也是民间用来治疗烧伤烫伤的珍贵药材。&lt;/p&gt;&lt;/blockquote&gt;
@@ -7141,7 +7257,7 @@ return 2.
     <item>
       <title>LeetCode Move Zeroes 283</title>
       <link>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</link>
-      <pubDate>Tue, 16 Aug 2016 19:00:00 +0000</pubDate>
+      <pubDate>Tue, 16 Aug 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/move-zeroes/&#34;&gt;283. Move Zeroes&lt;/a&gt;
   Given an array nums, write a function to move all 0&amp;rsquo;s to the end of it while maintaining the relative order of the non-zero elements. For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].&lt;/p&gt;
@@ -7158,7 +7274,7 @@ return 2.
     <item>
       <title>LeetCode Ransom Note 383</title>
       <link>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</link>
-      <pubDate>Thu, 11 Aug 2016 13:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Aug 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/ransom-note/&#34;&gt;383. Ransom Note&lt;/a&gt;
   Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.
@@ -7170,7 +7286,7 @@ You may assume that both strings contain only lowercase letters.&lt;/p&gt;</desc
     <item>
       <title>IMOOC 与MySQL的零距离接触</title>
       <link>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</link>
-      <pubDate>Sun, 31 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Sun, 31 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</guid>
       <description>&lt;p&gt;涵盖全部 MySQL 数据库的基础，MySQL 数据库的基础知识、数据表的常用操作及各种约束的使用，以及综合的运用各种命令实现记录进行 CURD 等操作。&lt;/p&gt;
 &lt;ul&gt;
@@ -7252,7 +7368,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>Linux SSH 密钥登陆免密码</title>
       <link>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</link>
-      <pubDate>Fri, 29 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/29/linux-ssh-key-login-without-password/</guid>
       <description>&lt;p&gt;最近有需求使用 SSH 进行通信，而且要需免密码，总结了 SSH 密钥登陆免密码的方法。&lt;/p&gt;
 &lt;h2 id=&#34;快速配置&#34;&gt;快速配置&lt;/h2&gt;
@@ -7290,7 +7406,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>IMOOC MySQL开发技巧</title>
       <link>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</link>
-      <pubDate>Mon, 25 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</guid>
       <description>&lt;p&gt;主要涉及：JOIN 、JOIN 更新、GROUP BY HAVING 数据查重/去重。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -7327,7 +7443,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>写一些人文的日志</title>
       <link>https://zyf.im/2016/07/11/write-some-humanities-diary/</link>
-      <pubDate>Mon, 11 Jul 2016 09:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Jul 2016 09:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/11/write-some-humanities-diary/</guid>
       <description>&lt;p&gt;还是越来越觉的思想重要。每周给自己博客的计划是写三篇，稍稍改动下：其中一篇要是关于思想上的。&lt;/p&gt;
 &lt;p&gt;周末的时候和北京的朋友们：龙、梦、思，小聚了下。问起毕业一个月感觉有啥变化，都说没啥。是，刚刚才一个月。可我心里却有些小慌张，总想搞个大新闻，让自己不那么平凡。是眼高手低吗？&lt;/p&gt;
@@ -7356,7 +7472,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>Ubuntu JDK Nginx WildFly MySQL 环境配置</title>
       <link>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</link>
-      <pubDate>Thu, 07 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Thu, 07 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</guid>
       <description>&lt;p&gt;新项目部署上线，主要参考 &lt;a href=&#34;http://blog.csdn.net/hanshileiai&#34;&gt;世雷博客&lt;/a&gt; 的内容，自己也总结了下。从 JDK 安装、Web 容器、数据库，都有涉及比较全面。&lt;/p&gt;
 &lt;h2 id=&#34;jdk8&#34;&gt;JDK8&lt;/h2&gt;
@@ -7386,7 +7502,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>GitHub Webhook 自动部署 Hexo</title>
       <link>https://zyf.im/2016/07/01/github-webhook-example/</link>
-      <pubDate>Fri, 01 Jul 2016 20:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Jul 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/01/github-webhook-example/</guid>
       <description>&lt;p&gt;在 &lt;a href=&#34;https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/&#34;&gt;GitHub Pages 不被百度收录解决方案&lt;/a&gt; 中，思路二是通过 Dnspod 的智能 DNS 服务。简而言之就是搭建一个 Server，做一个 Blog 的镜像站，专为百度收录使用。&lt;/p&gt;
 &lt;p&gt;但是每次将新建的博客文章 &lt;code&gt;PUSH&lt;/code&gt; 到 GitHub 后，还要再登陆 Server &lt;code&gt;PULL&lt;/code&gt; 一下，简直是太蠢了。那有什么解决办法吗？答：GitHub Webhook。&lt;/p&gt;
@@ -7405,7 +7521,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>GitHub Pages 不被百度收录解决方案</title>
       <link>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</link>
-      <pubDate>Thu, 30 Jun 2016 20:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Jun 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</guid>
       <description>&lt;p&gt;2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。&lt;/p&gt;
 &lt;p&gt;2017-04-22 更新：现在我的 Blog 使用的是 &lt;a href=&#34;https://www.ufovps.com/&#34;&gt;UFOVPS&lt;/a&gt; 直接部署的。&lt;/p&gt;
@@ -7427,7 +7543,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
     <item>
       <title>Eclipse Maven Spring SpringMVC Mybatis 整合</title>
       <link>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</link>
-      <pubDate>Mon, 27 Jun 2016 07:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Jun 2016 07:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</guid>
       <description>&lt;p&gt;新项目自己撘框架，想着用点新的。看慕课网 &lt;a href=&#34;http://www.imooc.com/index/search?words=%E7%A7%92%E6%9D%80&#34;&gt;Java 高并发秒杀 API&lt;/a&gt; 的系列课程时很受益。所以想着仿着来使用：Mavan-Spring-SpringMVC-Mybatis 的架构。框架整合的代码我已上传到我的 Github：&lt;a href=&#34;https://github.com/imzyf/maven-mybatis-spring-springmvc&#34;&gt;maven-mybatis-spring-springmvc&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;本示例是在：Ubuntu15 上实现的；Windows 上安装 Maven 将不太相同。&lt;/p&gt;
@@ -7468,7 +7584,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>使用 GitHub 和 Hexo 搭建个人独立博客</title>
       <link>https://zyf.im/2016/06/24/hexo-github-blog/</link>
-      <pubDate>Fri, 24 Jun 2016 18:30:00 +0000</pubDate>
+      <pubDate>Fri, 24 Jun 2016 18:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/24/hexo-github-blog/</guid>
       <description>&lt;p&gt;&lt;code&gt;Wordpress&lt;/code&gt; 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 &lt;code&gt;Wordpress&lt;/code&gt; 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。&lt;/p&gt;
 &lt;p&gt;近来接触到一种新的博客系统 Hexo，它的不同地方就是将：&lt;strong&gt;在上线编写博客和页面渲染的过程在线下完成&lt;/strong&gt;。&lt;/p&gt;
@@ -7483,7 +7599,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>Ubuntu 下连接蓝牙键盘</title>
       <link>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</link>
-      <pubDate>Tue, 14 Jun 2016 13:30:00 +0000</pubDate>
+      <pubDate>Tue, 14 Jun 2016 13:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</guid>
       <description>&lt;p&gt;新买了 &lt;code&gt;Filco Majestouch Convertible 2&lt;/code&gt; 键盘。在自己的笔记本上连接没什么问题，搬到公司 Ubuntu 的 IBM 笔记本这么都连接不上，查找解决。&lt;/p&gt;
 &lt;p&gt;安装蓝牙的 &lt;code&gt;hcidump&lt;/code&gt;：&lt;/p&gt;
@@ -7496,7 +7612,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>Java final 修饰符</title>
       <link>https://zyf.im/2016/06/13/java-modifier-final/</link>
-      <pubDate>Mon, 13 Jun 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 13 Jun 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/13/java-modifier-final/</guid>
       <description>&lt;h2 id=&#34;final-修饰符&#34;&gt;final 修饰符&lt;/h2&gt;
 &lt;p&gt;final 修饰符表示不可变。类似 C 中的 constant。用于修饰变量表示不可变的变量。用于修饰方法表示不可被重写。用于修饰类表示不可被继承。&lt;/p&gt;
@@ -7536,7 +7652,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>【Core Java】读书笔记</title>
       <link>https://zyf.im/2016/05/06/core-java-reading-notes/</link>
-      <pubDate>Fri, 06 May 2016 11:00:00 +0000</pubDate>
+      <pubDate>Fri, 06 May 2016 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/05/06/core-java-reading-notes/</guid>
       <description>&lt;p&gt;自己是第一次把一本厚厚的的技术类书读一遍。不过 7、8、9、10 章讲的是关于图形的就是翻了翻，没怎么看。第 4 章 对象与类，里面有很多非常基础，可以补充一些知识细节。第 14 章 多线程，是自己最陌生的，慕课网上有节课 &lt;a href=&#34;http://www.imooc.com/view/202&#34;&gt;深入浅出 Java 多线程&lt;/a&gt; 讲到的例子就是书上例子的变形，可以对照理解。第二遍阅读做做笔记。&lt;/p&gt;
 &lt;p&gt;本文总结的是书中的：第 3 章 Java 的基本程序设计结构、第 4 章 对象与类。&lt;/p&gt;
@@ -7693,7 +7809,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>【Core Java】对象与类-方法参数传递</title>
       <link>https://zyf.im/2016/04/19/core-java-method-parameter/</link>
-      <pubDate>Tue, 19 Apr 2016 20:00:00 +0000</pubDate>
+      <pubDate>Tue, 19 Apr 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/04/19/core-java-method-parameter/</guid>
       <description>&lt;p&gt;提问：Java 对象采用的是值传递还是引用传递？&lt;/p&gt;
 &lt;p&gt;有些程序员认为 Java 对象采用的是引用调用，实际上，这种理解是不对的。下面给出一个反例来详细的阐述一下这一问题。&lt;/p&gt;
@@ -7723,7 +7839,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>【Core Java】彩票选取中奖数字-数组例子</title>
       <link>https://zyf.im/2016/03/23/core-java-array-dome/</link>
-      <pubDate>Wed, 23 Mar 2016 20:00:00 +0000</pubDate>
+      <pubDate>Wed, 23 Mar 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/03/23/core-java-array-dome/</guid>
       <description>&lt;p&gt;从 1,2,3&amp;hellip;h 中随机取 k 个中奖号码。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -7766,7 +7882,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>试着写东西</title>
       <link>https://zyf.im/2016/03/18/try-to-write-something/</link>
-      <pubDate>Fri, 18 Mar 2016 17:41:00 +0000</pubDate>
+      <pubDate>Fri, 18 Mar 2016 17:41:00 +0800</pubDate>
       <guid>https://zyf.im/2016/03/18/try-to-write-something/</guid>
       <description>&lt;p&gt;现在是大四下从学校出来实习。在面试一家公司时，面试官看到我的邮箱（168#yifans.com）是自己的域名后说：&lt;/p&gt;
 &lt;blockquote&gt;

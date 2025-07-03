@@ -6,12 +6,12 @@
     <description>Recent content in Phpstorm on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 26 May 2020 09:45:15 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 May 2020 09:45:15 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/phpstorm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>配置 Laradock PhpStorm Xdubug</title>
       <link>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</link>
-      <pubDate>Tue, 26 May 2020 09:45:15 +0000</pubDate>
+      <pubDate>Tue, 26 May 2020 09:45:15 +0800</pubDate>
       <guid>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</guid>
       <description>&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
 &lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
@@ -41,7 +41,7 @@
     <item>
       <title>PhpStorm 使用经验</title>
       <link>https://zyf.im/2018/05/05/phpstorm-using-experience/</link>
-      <pubDate>Sat, 05 May 2018 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 05 May 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/05/phpstorm-using-experience/</guid>
       <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/phpstorm/getting-started/episode-1/&#34;&gt;Two shortcuts to get started&lt;/a&gt;&lt;/p&gt;

@@ -6,12 +6,12 @@
     <description>Recent content in Ios on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 Feb 2019 10:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 28 Feb 2019 10:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>fastlane 入门使用</title>
       <link>https://zyf.im/2019/02/28/fastlane-getting-started/</link>
-      <pubDate>Thu, 28 Feb 2019 10:00:00 +0000</pubDate>
+      <pubDate>Thu, 28 Feb 2019 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/02/28/fastlane-getting-started/</guid>
       <description>&lt;p&gt;这次以 &lt;a href=&#34;https://fastlane.tools/&#34;&gt;fastlane&lt;/a&gt; 为例，尝试项目中有什么事情可以被自动完成。&lt;/p&gt;
 &lt;p&gt;fastlane 是 Ruby scripts 的集合，安装方法不多说了见 &lt;a href=&#34;https://docs.fastlane.tools/&#34;&gt;官网文档&lt;/a&gt;。&lt;/p&gt;
@@ -38,7 +38,7 @@
     <item>
       <title>【Swifter - Swift 开发者必备 Tips】笔记</title>
       <link>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</link>
-      <pubDate>Fri, 15 Feb 2019 17:00:00 +0000</pubDate>
+      <pubDate>Fri, 15 Feb 2019 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</guid>
       <description>&lt;p&gt;再读王巍的【Swifter - Swift 开发者必备 Tips】，看看有什么新收获。&lt;/p&gt;
 &lt;h2 id=&#34;柯里化currying&#34;&gt;柯里化（Currying）&lt;/h2&gt;
@@ -91,7 +91,7 @@
     <item>
       <title>PromiseKit 入门使用</title>
       <link>https://zyf.im/2019/01/19/promisekit-getting-started/</link>
-      <pubDate>Sat, 19 Jan 2019 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 19 Jan 2019 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/01/19/promisekit-getting-started/</guid>
       <description>&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -121,7 +121,7 @@
     <item>
       <title>解决 Too many symbol files</title>
       <link>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</link>
-      <pubDate>Tue, 30 Oct 2018 14:00:00 +0000</pubDate>
+      <pubDate>Tue, 30 Oct 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</guid>
       <description>&lt;p&gt;在上传 App 到 App Store 后收到邮件，有 issues &lt;strong&gt;Too many symbol files&lt;/strong&gt;。在之前看到 &lt;em&gt;Your delivery was successful&lt;/em&gt;，此 issues 不影响发布，所以一直搁置了。&lt;/p&gt;
 &lt;p&gt;今天决定彻底处理下。&lt;/p&gt;
@@ -143,7 +143,7 @@
     <item>
       <title>Swift 初始化</title>
       <link>https://zyf.im/2018/03/31/swift-init/</link>
-      <pubDate>Sat, 31 Mar 2018 17:00:00 +0000</pubDate>
+      <pubDate>Sat, 31 Mar 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/31/swift-init/</guid>
       <description>&lt;p&gt;因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只这样套着 Java 去理解，但也发现了不相同的地方。&lt;/p&gt;
 &lt;h2 id=&#34;初始化顺序&#34;&gt;初始化顺序&lt;/h2&gt;
@@ -186,7 +186,7 @@
     <item>
       <title>iOS Safe Area 我所知道的全部</title>
       <link>https://zyf.im/2018/03/29/ios-safe-area/</link>
-      <pubDate>Thu, 29 Mar 2018 11:00:00 +0000</pubDate>
+      <pubDate>Thu, 29 Mar 2018 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/29/ios-safe-area/</guid>
       <description>&lt;p&gt;在 iOS 7 Apple 在 UIViewController 中引入了 &lt;code&gt;topLayoutGuide&lt;/code&gt; 和 &lt;code&gt;bottomLayoutGuide&lt;/code&gt; 属性来描述没有被覆盖(status bar, navigation bar, toolbar, tab bar, etc.)屏幕的区域。在 iOS 11 中，Apple 已经弃用了这些属性，并引入了 safe area。Apple 建议我们不要在 safe area 操作，在 iOS 11 中，当在 iOS App 中定位视图时，你必须使用新的 safe area API。&lt;/p&gt;
 &lt;h2 id=&#34;uiview&#34;&gt;UIView&lt;/h2&gt;
@@ -203,7 +203,7 @@
     <item>
       <title>UITableViewCell 自适应 UITextView 高度</title>
       <link>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</link>
-      <pubDate>Tue, 27 Mar 2018 16:00:00 +0000</pubDate>
+      <pubDate>Tue, 27 Mar 2018 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</guid>
       <description>&lt;p&gt;使用 Auto Layout 让 UITableViewCell 自适应 UITextView 高度，效果演示：&lt;/p&gt;
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/37953137-931860e0-31d4-11e8-8809-c871b09f9519.gif&#34; alt=&#34;Self-sizing UITextView in cell&#34; width=&#34;200&#34; /&gt;
@@ -238,7 +238,7 @@
     <item>
       <title>【译】iOS 单元测试和 UI 测试入门教程</title>
       <link>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</link>
-      <pubDate>Thu, 15 Mar 2018 19:00:00 +0000</pubDate>
+      <pubDate>Thu, 15 Mar 2018 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -278,7 +278,7 @@
     <item>
       <title>R.swift 强类型引用资源文件</title>
       <link>https://zyf.im/2018/01/17/r-swift-getting-started/</link>
-      <pubDate>Wed, 17 Jan 2018 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 17 Jan 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/17/r-swift-getting-started/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/mac-cain13/R.swift&#34;&gt;R.swift&lt;/a&gt; 获取强类型、自动编译的图片、字体、segues 等资源。&lt;/p&gt;
 &lt;p&gt;以避免无法编译时检查 &lt;code&gt;字符串&lt;/code&gt; 的形式引用资源所导致的错误。&lt;/p&gt;
@@ -316,7 +316,7 @@
     <item>
       <title>Xcode 不知名的实用技巧</title>
       <link>https://zyf.im/2018/01/12/xcode-tips/</link>
-      <pubDate>Fri, 12 Jan 2018 13:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Jan 2018 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/01/12/xcode-tips/</guid>
       <description>&lt;h2 id=&#34;状态栏&#34;&gt;状态栏&lt;/h2&gt;
 &lt;h3 id=&#34;help&#34;&gt;Help&lt;/h3&gt;
@@ -342,7 +342,7 @@
     <item>
       <title>iOS 招聘总结</title>
       <link>https://zyf.im/2017/11/25/ios-recruitment-summary/</link>
-      <pubDate>Sat, 25 Nov 2017 01:00:00 +0000</pubDate>
+      <pubDate>Sat, 25 Nov 2017 01:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/11/25/ios-recruitment-summary/</guid>
       <description>&lt;p&gt;自己也做了一次面试官。简历看到了很多，内容总结如下：&lt;/p&gt;
 &lt;h2 id=&#34;一些感受&#34;&gt;一些感受&lt;/h2&gt;

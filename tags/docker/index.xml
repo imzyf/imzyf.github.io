@@ -6,12 +6,12 @@
     <description>Recent content in Docker on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Nov 2022 22:24:01 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 09 Nov 2022 22:24:01 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Laradock 学习笔记</title>
       <link>https://zyf.im/2022/11/09/explore-laradock/</link>
-      <pubDate>Wed, 09 Nov 2022 22:24:01 +0000</pubDate>
+      <pubDate>Wed, 09 Nov 2022 22:24:01 +0800</pubDate>
       <guid>https://zyf.im/2022/11/09/explore-laradock/</guid>
       <description>&lt;h2 id=&#34;laradock-简介&#34;&gt;Laradock 简介&lt;/h2&gt;
 &lt;p&gt;Laradock 是一个基于 Docker 的完整 PHP 开发环境，专为 PHP 开发者（特别是 Laravel 开发者）设计。它提供了一套预配置的 Docker 容器，包含开发中常用的服务，如 Nginx、MySQL、Redis、PHP-FPM 等。&lt;/p&gt;
@@ -56,7 +56,7 @@
     <item>
       <title>Docker UFW 失效</title>
       <link>https://zyf.im/2018/04/24/docker-ufw-not-work/</link>
-      <pubDate>Tue, 24 Apr 2018 14:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Apr 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/04/24/docker-ufw-not-work/</guid>
       <description>&lt;p&gt;今日遇到 Docker 中的项目绕过了宿主机 UFW 的配置，可以被任意 IP 访问，甚是奇怪。查找资料发现：&lt;/p&gt;
 &lt;p&gt;如果你在 Linux 使用 Docker，很可能你的系统防火墙降级为 Uncomplicated Firewall (UFW)。如果是这样的话，你有一点可能不知道，Docker 和 UFW 的组合带来了一些安全问题。为什么呢？因为 Docker 实际上绕过了 UFW 并直接修改了 iptables，所以一个容器可以绑定一个端口。这就意味着，所有你设置的 UFW 规则都将在 Docker 容器中失效。&lt;/p&gt;

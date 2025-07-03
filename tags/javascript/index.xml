@@ -6,12 +6,12 @@
     <description>Recent content in Javascript on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jun 2022 14:59:09 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jun 2022 14:59:09 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【JavaScript 教程 | 网道】笔记</title>
       <link>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</link>
-      <pubDate>Thu, 09 Jun 2022 14:59:09 +0000</pubDate>
+      <pubDate>Thu, 09 Jun 2022 14:59:09 +0800</pubDate>
       <guid>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://wangdoc.com/javascript/index.html&#34;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -44,7 +44,7 @@
     <item>
       <title>ES6 中使用 jQuery $(this) 的问题</title>
       <link>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</link>
-      <pubDate>Wed, 10 Apr 2019 17:09:23 +0000</pubDate>
+      <pubDate>Wed, 10 Apr 2019 17:09:23 +0800</pubDate>
       <guid>https://zyf.im/2019/04/10/es6-jquery-this-arrow-function/</guid>
       <description>&lt;p&gt;在老项目中，我开始使用 &lt;code&gt;laravel-mix&lt;/code&gt; 和 &lt;code&gt;ES6&lt;/code&gt; 进行逐渐过渡。在这个过程中，发现了一个问题：当 &lt;code&gt;jQuery&lt;/code&gt; 和 &lt;code&gt;箭头函数&lt;/code&gt; 一起使用时，&lt;code&gt;$(this)&lt;/code&gt; 的含义会发生变化。&lt;/p&gt;
 &lt;h2 id=&#34;问题解释&#34;&gt;问题解释&lt;/h2&gt;

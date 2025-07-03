@@ -6,12 +6,12 @@
     <description>Recent content in Hexo on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Jul 2016 20:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jul 2016 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GitHub Webhook 自动部署 Hexo</title>
       <link>https://zyf.im/2016/07/01/github-webhook-example/</link>
-      <pubDate>Fri, 01 Jul 2016 20:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Jul 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/01/github-webhook-example/</guid>
       <description>&lt;p&gt;在 &lt;a href=&#34;https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/&#34;&gt;GitHub Pages 不被百度收录解决方案&lt;/a&gt; 中，思路二是通过 Dnspod 的智能 DNS 服务。简而言之就是搭建一个 Server，做一个 Blog 的镜像站，专为百度收录使用。&lt;/p&gt;
 &lt;p&gt;但是每次将新建的博客文章 &lt;code&gt;PUSH&lt;/code&gt; 到 GitHub 后，还要再登陆 Server &lt;code&gt;PULL&lt;/code&gt; 一下，简直是太蠢了。那有什么解决办法吗？答：GitHub Webhook。&lt;/p&gt;
@@ -30,7 +30,7 @@
     <item>
       <title>GitHub Pages 不被百度收录解决方案</title>
       <link>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</link>
-      <pubDate>Thu, 30 Jun 2016 20:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Jun 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</guid>
       <description>&lt;p&gt;2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。&lt;/p&gt;
 &lt;p&gt;2017-04-22 更新：现在我的 Blog 使用的是 &lt;a href=&#34;https://www.ufovps.com/&#34;&gt;UFOVPS&lt;/a&gt; 直接部署的。&lt;/p&gt;
@@ -52,7 +52,7 @@
     <item>
       <title>使用 GitHub 和 Hexo 搭建个人独立博客</title>
       <link>https://zyf.im/2016/06/24/hexo-github-blog/</link>
-      <pubDate>Fri, 24 Jun 2016 18:30:00 +0000</pubDate>
+      <pubDate>Fri, 24 Jun 2016 18:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/24/hexo-github-blog/</guid>
       <description>&lt;p&gt;&lt;code&gt;Wordpress&lt;/code&gt; 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 &lt;code&gt;Wordpress&lt;/code&gt; 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。&lt;/p&gt;
 &lt;p&gt;近来接触到一种新的博客系统 Hexo，它的不同地方就是将：&lt;strong&gt;在上线编写博客和页面渲染的过程在线下完成&lt;/strong&gt;。&lt;/p&gt;

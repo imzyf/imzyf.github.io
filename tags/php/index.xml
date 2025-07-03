@@ -6,12 +6,12 @@
     <description>Recent content in Php on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2025 17:42:42 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Feb 2025 17:42:42 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/php/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PHP Migrating 8.3 to 8.4</title>
       <link>https://zyf.im/2025/02/01/php-migrating-83-to-84/</link>
-      <pubDate>Sat, 01 Feb 2025 17:42:42 +0000</pubDate>
+      <pubDate>Sat, 01 Feb 2025 17:42:42 +0800</pubDate>
       <guid>https://zyf.im/2025/02/01/php-migrating-83-to-84/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;PHP 8.4 引入了许多新特性，如属性钩子（Property Hooks）、非对称可见性（Asymmetric Visibility）以及更新的 DOM API 等。本文将介绍主要变化和如何进行迁移。&lt;/p&gt;
@@ -54,7 +54,7 @@
     <item>
       <title>PHP Migrating 8.2 to 8.3</title>
       <link>https://zyf.im/2024/08/01/php-migrating-82-to-83/</link>
-      <pubDate>Thu, 01 Aug 2024 17:37:13 +0000</pubDate>
+      <pubDate>Thu, 01 Aug 2024 17:37:13 +0800</pubDate>
       <guid>https://zyf.im/2024/08/01/php-migrating-82-to-83/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -150,7 +150,7 @@
     <item>
       <title>PHP Migrating 8.1 to 8.2</title>
       <link>https://zyf.im/2024/07/01/php-migrating-81-to-82/</link>
-      <pubDate>Mon, 01 Jul 2024 09:24:50 +0000</pubDate>
+      <pubDate>Mon, 01 Jul 2024 09:24:50 +0800</pubDate>
       <guid>https://zyf.im/2024/07/01/php-migrating-81-to-82/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -212,7 +212,7 @@
     <item>
       <title>PHP Migrating 8.0 to 8.1</title>
       <link>https://zyf.im/2022/12/21/php-migrating-80-to-81/</link>
-      <pubDate>Wed, 21 Dec 2022 18:25:49 +0000</pubDate>
+      <pubDate>Wed, 21 Dec 2022 18:25:49 +0800</pubDate>
       <guid>https://zyf.im/2022/12/21/php-migrating-80-to-81/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -351,7 +351,7 @@
     <item>
       <title>PHP Migrating 7.4 to 8.0</title>
       <link>https://zyf.im/2022/12/14/php-migrating-74-to-80/</link>
-      <pubDate>Wed, 14 Dec 2022 16:40:03 +0000</pubDate>
+      <pubDate>Wed, 14 Dec 2022 16:40:03 +0800</pubDate>
       <guid>https://zyf.im/2022/12/14/php-migrating-74-to-80/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -634,7 +634,7 @@
     <item>
       <title>PHP Migrating to 7.2 7.3 7.4</title>
       <link>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</link>
-      <pubDate>Mon, 12 Dec 2022 20:51:51 +0000</pubDate>
+      <pubDate>Mon, 12 Dec 2022 20:51:51 +0800</pubDate>
       <guid>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -827,7 +827,7 @@
     <item>
       <title>PHP Migrating to 7.0 7.1</title>
       <link>https://zyf.im/2022/11/28/php-migrating-to-70-71/</link>
-      <pubDate>Mon, 28 Nov 2022 10:36:34 +0000</pubDate>
+      <pubDate>Mon, 28 Nov 2022 10:36:34 +0800</pubDate>
       <guid>https://zyf.im/2022/11/28/php-migrating-to-70-71/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;实验环境：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
@@ -1166,7 +1166,7 @@
     <item>
       <title>Laradock 学习笔记</title>
       <link>https://zyf.im/2022/11/09/explore-laradock/</link>
-      <pubDate>Wed, 09 Nov 2022 22:24:01 +0000</pubDate>
+      <pubDate>Wed, 09 Nov 2022 22:24:01 +0800</pubDate>
       <guid>https://zyf.im/2022/11/09/explore-laradock/</guid>
       <description>&lt;h2 id=&#34;laradock-简介&#34;&gt;Laradock 简介&lt;/h2&gt;
 &lt;p&gt;Laradock 是一个基于 Docker 的完整 PHP 开发环境，专为 PHP 开发者（特别是 Laravel 开发者）设计。它提供了一套预配置的 Docker 容器，包含开发中常用的服务，如 Nginx、MySQL、Redis、PHP-FPM 等。&lt;/p&gt;
@@ -1211,7 +1211,7 @@
     <item>
       <title>PHP 安装 gRPC</title>
       <link>https://zyf.im/2021/10/13/php-install-grpc/</link>
-      <pubDate>Wed, 13 Oct 2021 15:48:41 +0000</pubDate>
+      <pubDate>Wed, 13 Oct 2021 15:48:41 +0800</pubDate>
       <guid>https://zyf.im/2021/10/13/php-install-grpc/</guid>
       <description>&lt;h2 id=&#34;env&#34;&gt;ENV&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/redhat-release
@@ -1270,7 +1270,7 @@
     <item>
       <title>PHP __invoke 使用</title>
       <link>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</link>
-      <pubDate>Tue, 20 Jul 2021 14:58:33 +0000</pubDate>
+      <pubDate>Tue, 20 Jul 2021 14:58:33 +0800</pubDate>
       <guid>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</guid>
       <description>&lt;p&gt;why they are magic? Because they are magically called by PHP when specific actions happen.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;__invoke()&lt;/code&gt; method is called when a script tries to call an object as a function.&lt;/p&gt;
@@ -1314,7 +1314,7 @@
     <item>
       <title>PHP strict_types 严格模式</title>
       <link>https://zyf.im/2021/07/19/php-strict-types/</link>
-      <pubDate>Mon, 19 Jul 2021 19:58:26 +0000</pubDate>
+      <pubDate>Mon, 19 Jul 2021 19:58:26 +0800</pubDate>
       <guid>https://zyf.im/2021/07/19/php-strict-types/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;严格模式的声明 &lt;em&gt;必须&lt;/em&gt; 放在文件的顶部。&lt;/li&gt;
@@ -1335,7 +1335,7 @@
     <item>
       <title>PHP 月份加减问题</title>
       <link>https://zyf.im/2021/01/27/php-strtotime-month/</link>
-      <pubDate>Wed, 27 Jan 2021 18:18:24 +0000</pubDate>
+      <pubDate>Wed, 27 Jan 2021 18:18:24 +0800</pubDate>
       <guid>https://zyf.im/2021/01/27/php-strtotime-month/</guid>
       <description>&lt;h2 id=&#34;看现象&#34;&gt;看现象&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;date&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Y-m-d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strtotime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;+1 month&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;strtotime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;2020-07-31&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))));&lt;/span&gt;
@@ -1393,7 +1393,7 @@
     <item>
       <title>Composer 文档笔记</title>
       <link>https://zyf.im/2020/10/28/composer-document-note/</link>
-      <pubDate>Wed, 28 Oct 2020 11:36:27 +0000</pubDate>
+      <pubDate>Wed, 28 Oct 2020 11:36:27 +0800</pubDate>
       <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
       <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic usage&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -1419,7 +1419,7 @@
     <item>
       <title>在 Laravel 之外使用 illuminate 组件</title>
       <link>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</link>
-      <pubDate>Fri, 11 Sep 2020 15:00:39 +0000</pubDate>
+      <pubDate>Fri, 11 Sep 2020 15:00:39 +0800</pubDate>
       <guid>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</guid>
       <description>&lt;p&gt;当代框架基本都是有组件构成，这使得框架变得更加灵活。&lt;a href=&#34;https://github.com/illuminate&#34;&gt;The Laravel Components | github&lt;/a&gt; Laravel 中有不少优质组件，那如何在 Laravel 之外使用 illuminate 组件呢？&lt;/p&gt;
 &lt;h2 id=&#34;illuminatevalidation&#34;&gt;illuminate/validation&lt;/h2&gt;
@@ -1478,7 +1478,7 @@
     <item>
       <title>Composer vendor 提交至 Git</title>
       <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
-      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
+      <pubDate>Mon, 10 Aug 2020 14:24:47 +0800</pubDate>
       <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
       <description>&lt;h2 id=&#34;应该将-vendor-提交到-git-吗&#34;&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;
 &lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
@@ -1503,7 +1503,7 @@
     <item>
       <title>配置 Laradock PhpStorm Xdubug</title>
       <link>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</link>
-      <pubDate>Tue, 26 May 2020 09:45:15 +0000</pubDate>
+      <pubDate>Tue, 26 May 2020 09:45:15 +0800</pubDate>
       <guid>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</guid>
       <description>&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
 &lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
@@ -1533,7 +1533,7 @@
     <item>
       <title>PHP float 精度</title>
       <link>https://zyf.im/2020/05/09/php-float-precision/</link>
-      <pubDate>Sat, 09 May 2020 17:32:34 +0000</pubDate>
+      <pubDate>Sat, 09 May 2020 17:32:34 +0800</pubDate>
       <guid>https://zyf.im/2020/05/09/php-float-precision/</guid>
       <description>&lt;h2 id=&#34;实例-1&#34;&gt;实例 1&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -1600,7 +1600,7 @@
     <item>
       <title>PHP GD 入门使用</title>
       <link>https://zyf.im/2020/04/16/php-gd-getting-started/</link>
-      <pubDate>Thu, 16 Apr 2020 17:24:37 +0000</pubDate>
+      <pubDate>Thu, 16 Apr 2020 17:24:37 +0800</pubDate>
       <guid>https://zyf.im/2020/04/16/php-gd-getting-started/</guid>
       <description>&lt;h2 id=&#34;gd-安装配置&#34;&gt;GD 安装、配置&lt;/h2&gt;
 &lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
@@ -1645,7 +1645,7 @@
     <item>
       <title>PHP Code Snippet</title>
       <link>https://zyf.im/2020/04/15/php-code-snippet/</link>
-      <pubDate>Wed, 15 Apr 2020 18:03:44 +0000</pubDate>
+      <pubDate>Wed, 15 Apr 2020 18:03:44 +0800</pubDate>
       <guid>https://zyf.im/2020/04/15/php-code-snippet/</guid>
       <description>&lt;h2 id=&#34;php-sandbox&#34;&gt;PHP Sandbox&lt;/h2&gt;
 &lt;ul&gt;
@@ -1709,7 +1709,7 @@
     <item>
       <title>PHP FTP 间歇性无法上传文件</title>
       <link>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</link>
-      <pubDate>Thu, 27 Feb 2020 20:23:45 +0000</pubDate>
+      <pubDate>Thu, 27 Feb 2020 20:23:45 +0800</pubDate>
       <guid>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</guid>
       <description>&lt;p&gt;2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。&lt;/p&gt;
 &lt;hr&gt;
@@ -1751,14 +1751,14 @@
     <item>
       <title>Lonicera Framework</title>
       <link>https://zyf.im/2019/12/19/lonicera-framework/</link>
-      <pubDate>Thu, 19 Dec 2019 16:46:06 +0000</pubDate>
+      <pubDate>Thu, 19 Dec 2019 16:46:06 +0800</pubDate>
       <guid>https://zyf.im/2019/12/19/lonicera-framework/</guid>
       <description>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</description>
     </item>
     <item>
       <title>归并排序</title>
       <link>https://zyf.im/2019/05/23/merge-sort/</link>
-      <pubDate>Thu, 23 May 2019 14:44:40 +0000</pubDate>
+      <pubDate>Thu, 23 May 2019 14:44:40 +0800</pubDate>
       <guid>https://zyf.im/2019/05/23/merge-sort/</guid>
       <description>&lt;p&gt;归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 &lt;code&gt;O(nlogn)&lt;/code&gt;。1945 年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -1815,7 +1815,7 @@
     <item>
       <title>Laravel 中 composer 加载流程</title>
       <link>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</link>
-      <pubDate>Sun, 28 Apr 2019 19:21:12 +0000</pubDate>
+      <pubDate>Sun, 28 Apr 2019 19:21:12 +0800</pubDate>
       <guid>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</guid>
       <description>&lt;h2 id=&#34;启动&#34;&gt;启动&lt;/h2&gt;
 &lt;ul&gt;
@@ -1899,7 +1899,7 @@
     <item>
       <title>PHP 请小心判断 strpos</title>
       <link>https://zyf.im/2019/04/10/php-strpos-warning/</link>
-      <pubDate>Wed, 10 Apr 2019 20:27:21 +0000</pubDate>
+      <pubDate>Wed, 10 Apr 2019 20:27:21 +0800</pubDate>
       <guid>https://zyf.im/2019/04/10/php-strpos-warning/</guid>
       <description>&lt;p&gt;又开始写世界上最后的语言 PHP 了（狗头保命）。一个很简单的字符串是否包含判断就掉坑了。&lt;/p&gt;
 &lt;p&gt;方法签名：&lt;/p&gt;
@@ -1926,7 +1926,7 @@
     <item>
       <title>L01 Web 开发实战入门</title>
       <link>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</link>
-      <pubDate>Wed, 09 May 2018 17:00:00 +0000</pubDate>
+      <pubDate>Wed, 09 May 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://laravel-china.org/courses?rf=10678&#34;&gt;Laravel 教程 - Web 开发实战入门&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
@@ -1988,7 +1988,7 @@
     <item>
       <title>【Modern PHP】笔记</title>
       <link>https://zyf.im/2018/05/08/modern-php-reading-notes/</link>
-      <pubDate>Tue, 08 May 2018 17:00:00 +0000</pubDate>
+      <pubDate>Tue, 08 May 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/08/modern-php-reading-notes/</guid>
       <description>&lt;p&gt;又回到 PHP Web 开发，使用 Laravel 框架，重读《Modern PHP》。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -2029,7 +2029,7 @@
     <item>
       <title>PhpStorm 使用经验</title>
       <link>https://zyf.im/2018/05/05/phpstorm-using-experience/</link>
-      <pubDate>Sat, 05 May 2018 14:00:00 +0000</pubDate>
+      <pubDate>Sat, 05 May 2018 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/05/phpstorm-using-experience/</guid>
       <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/phpstorm/getting-started/episode-1/&#34;&gt;Two shortcuts to get started&lt;/a&gt;&lt;/p&gt;
@@ -2046,7 +2046,7 @@
     <item>
       <title>PHP 中获取 Nginx 使用反向代理或 CDN 后的客户端真实 IP</title>
       <link>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</link>
-      <pubDate>Fri, 02 Jun 2017 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 02 Jun 2017 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</guid>
       <description>&lt;p&gt;获取 Nginx 反向代理后的客户端 IP，基本是按一定顺序检测以下参数中的信息：&lt;/p&gt;
 &lt;ul&gt;
@@ -2074,7 +2074,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>PHP 中 this self parent 用法</title>
       <link>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</link>
-      <pubDate>Thu, 25 May 2017 15:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 May 2017 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;self::&lt;/code&gt; 调用本类属性、方法；可以抑制方法多态性。&lt;/li&gt;
@@ -2129,50 +2129,9 @@ proxy_set_header X-NginX-Proxy true;
 &lt;/ul&gt;</description>
     </item>
     <item>
-      <title>区分 NGINX 中 fastcgi_params fastcgi fastcgi-php</title>
-      <link>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</link>
-      <pubDate>Sat, 22 Apr 2017 12:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2017/04/22/nginx-fastcgi-params-fastcgi-fastcgi-php/</guid>
-      <description>&lt;p&gt;NGNIX 有两份 fastcgi 配置文件，分别是 &lt;code&gt;fastcgi_params&lt;/code&gt; 和 &lt;code&gt;fastcgi.conf&lt;/code&gt;，其区别只有一点点。到目前为止，由于 package managers，他们仍然引起新用户的混淆。&lt;/p&gt;
-&lt;p&gt;在自己系统中还有份 &lt;code&gt;snippets/fastcgi-php.conf&lt;/code&gt;，这个又是啥？&lt;/p&gt;
-&lt;h2 id=&#34;fastcgi_params-vs-fastcgiconf&#34;&gt;fastcgi_params vs fastcgi.conf&lt;/h2&gt;
-&lt;p&gt;它们都是用于配置 NGINX 与 FastCGI 应用程序通信的参数文件。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;fastcgi_params: 包含了FastCGI应用程序所需的最基本参数，如SCRIPT_FILENAME、QUERY_STRING等。这些参数通常不需要修改。&lt;/li&gt;
-&lt;li&gt;fastcgi.conf: 包含了更高级的FastCGI参数，可以用于优化FastCGI应用程序的性能，如设置连接超时时间、缓冲区大小等。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;code&gt;fastcgi.conf&lt;/code&gt; 比 &lt;code&gt;fastcgi_params&lt;/code&gt; 多了一行 &lt;code&gt;SCRIPT_FILENAME&lt;/code&gt; 的定义&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;注意：&lt;code&gt;$document_root&lt;/code&gt; 和 &lt;code&gt;$fastcgi_script_name&lt;/code&gt; 之间没有 &lt;code&gt;/&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;原本 NGNIX 只有 &lt;code&gt;fastcgi_params&lt;/code&gt;，后来发现很多人在定义 &lt;code&gt;SCRIPT_FILENAME&lt;/code&gt; 时使用了硬编码的方式，于是为了规范用法便引入了 &lt;code&gt;fastcgi.conf&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;不过这样的话就产生一个疑问：为什么一定要引入一个新的配置文件，而不是修改旧的配置文件？&lt;/p&gt;
-&lt;p&gt;这是因为&lt;code&gt;fastcgi_param&lt;/code&gt; 指令是数组型的，和普通指令相同的是：内层替换外层；和普通指令不同的是：当在同级多次使用的时候，是新增而不是替换。&lt;/p&gt;
-&lt;p&gt;换句话说，如果在同级定义两次 &lt;code&gt;SCRIPT_FILENAME&lt;/code&gt;，那么它们都会被发送到后端，这可能会导致一些潜在的问题，为了避免此类情况，便引入了一个新的配置文件。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;server {
-    listen 80;
-    server_name foo.com;
-
-    root /path;
-    index index.html index.htm index.php;
-
-    location / {
-        try_files $uri $uri/ /index.php$is_args$args;
-    }
-
-    location ~ \.php$ {
-        try_files $uri =404;
-
-        include fastcgi.conf;
-        fastcgi_pass 127.0.0.1:9000;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;fastcgi-phpconf&#34;&gt;fastcgi-php.conf&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;fastcgi-php.conf&lt;/code&gt; 是一个 Nginx 配置文件片段，用于配置 Nginx 服务器与 PHP FastCGI 进程之间的通信。它定义了 FastCGI 连接的参数和选项，以及如何处理 PHP 脚本。通常，这个文件是在 Nginx 的主配置文件中包含的，以确保 Nginx 能够正确地将请求发送到 PHP FastCGI 进程。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>区分 CGI FastCGI PHP-CGI PHP-FPM</title>
       <link>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</link>
-      <pubDate>Fri, 21 Apr 2017 11:00:00 +0000</pubDate>
+      <pubDate>Fri, 21 Apr 2017 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</guid>
       <description>&lt;p&gt;更新 2023-03-20 提问 ChatGPT 3.5&lt;/p&gt;
 &lt;ul&gt;
@@ -2198,7 +2157,7 @@ proxy_set_header X-NginX-Proxy true;
     <item>
       <title>PHP empty 方法判断 0.0</title>
       <link>https://zyf.im/2017/03/09/php-empty-method-judge-0/</link>
-      <pubDate>Thu, 09 Mar 2017 17:00:00 +0000</pubDate>
+      <pubDate>Thu, 09 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/09/php-empty-method-judge-0/</guid>
       <description>&lt;p&gt;在使用 &lt;code&gt;empty(mixed $var)&lt;/code&gt; 时要考虑 &lt;code&gt;$var&lt;/code&gt; 的 &lt;strong&gt;类型&lt;/strong&gt;，尤其是在判断数据库查询后的字段。&lt;/p&gt;
 &lt;!-- more --&gt;

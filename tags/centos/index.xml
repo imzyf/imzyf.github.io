@@ -6,12 +6,12 @@
     <description>Recent content in Centos on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Nov 2019 15:36:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Nov 2019 15:36:16 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/centos/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CentOS yum 升级 git 版本</title>
       <link>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</link>
-      <pubDate>Mon, 25 Nov 2019 15:36:16 +0000</pubDate>
+      <pubDate>Mon, 25 Nov 2019 15:36:16 +0800</pubDate>
       <guid>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</guid>
       <description>&lt;p&gt;先去官网看看 &lt;a href=&#34;https://git-scm.com/download/linux&#34;&gt;Download for Linux and Unix&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.

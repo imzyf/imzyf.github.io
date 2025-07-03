@@ -6,12 +6,12 @@
     <description>Recent content in Leetcode on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Sep 2016 16:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Sep 2016 16:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LeetCode Shell 解题集合</title>
       <link>https://zyf.im/2016/09/19/leetcode-shell-solutions/</link>
-      <pubDate>Mon, 19 Sep 2016 16:00:00 +0000</pubDate>
+      <pubDate>Mon, 19 Sep 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/19/leetcode-shell-solutions/</guid>
       <description>&lt;p&gt;LeetCode Shell 的试题多为文本操作，&lt;a href=&#34;https://leetcode.com/problems/tenth-line/&#34;&gt;195. Tenth Line&lt;/a&gt;、&lt;a href=&#34;https://leetcode.com/problems/valid-phone-numbers/&#34;&gt;193. Valid Phone Numbers&lt;/a&gt;、&lt;a href=&#34;https://leetcode.com/problems/word-frequency/&#34;&gt;192. Word Frequency&lt;/a&gt;、&lt;a href=&#34;https://leetcode.com/problems/transpose-file/&#34;&gt;194. Transpose File&lt;/a&gt; 暂时只有 4 道题，就整合在这一起了&lt;/p&gt;
 &lt;p&gt;Shell 中文本处理的事情基本 &lt;code&gt;awk&lt;/code&gt; &lt;code&gt;sed&lt;/code&gt; &lt;code&gt;grep&lt;/code&gt; &lt;code&gt;sort&lt;/code&gt; &lt;code&gt;uniq&lt;/code&gt; &lt;code&gt;tail&lt;/code&gt; &lt;code&gt;head&lt;/code&gt; 几个命令组合组合就搞定了&lt;/p&gt;
@@ -35,7 +35,7 @@ Line 10
     <item>
       <title>LeetCode Database Trips and Users 262</title>
       <link>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</link>
-      <pubDate>Wed, 14 Sep 2016 13:45:00 +0000</pubDate>
+      <pubDate>Wed, 14 Sep 2016 13:45:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/trips-and-users/&#34;&gt;262. Trips and Users&lt;/a&gt;
   The &lt;code&gt;Trips&lt;/code&gt; table holds all taxi trips. Each trip has a unique Id, while Client_Id and Driver_Id are both foreign keys to the Users_Id at the &lt;code&gt;Users&lt;/code&gt; table. Status is an ENUM type of (‘completed’, ‘cancelled_by_driver’, ‘cancelled_by_client’).&lt;/p&gt;
@@ -58,7 +58,7 @@ Line 10
     <item>
       <title>LeetCode Database Department Highest Salary 184</title>
       <link>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</link>
-      <pubDate>Mon, 12 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 12 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/department-highest-salary/&#34;&gt;184. Department Highest Salary&lt;/a&gt;
   The &lt;code&gt;Employee&lt;/code&gt; table holds all employees. Every employee has an Id, a salary, and there is also a column for the department Id.&lt;/p&gt;
@@ -75,7 +75,7 @@ Line 10
     <item>
       <title>LeetCode Database Consecutive Numbers 180</title>
       <link>https://zyf.im/2016/09/11/leetcode-database-consecutive-numbers-180/</link>
-      <pubDate>Sun, 11 Sep 2016 20:45:00 +0000</pubDate>
+      <pubDate>Sun, 11 Sep 2016 20:45:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/11/leetcode-database-consecutive-numbers-180/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/consecutive-numbers/&#34;&gt;180. Consecutive Numbers&lt;/a&gt;
   Write a SQL query to find all numbers that appear at least three times consecutively.&lt;/p&gt;
@@ -95,7 +95,7 @@ Line 10
     <item>
       <title>LeetCode Database Second Highest Salary 176</title>
       <link>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</link>
-      <pubDate>Sun, 11 Sep 2016 19:45:00 +0000</pubDate>
+      <pubDate>Sun, 11 Sep 2016 19:45:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/second-highest-salary/&#34;&gt;176. Second Highest Salary&lt;/a&gt;
   Write a SQL query to get the second highest salary from the &lt;code&gt;Employee&lt;/code&gt; table.&lt;/p&gt;
@@ -114,7 +114,7 @@ Line 10
     <item>
       <title>LeetCode Database Rising Temperature 197</title>
       <link>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</link>
-      <pubDate>Sun, 11 Sep 2016 19:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/rising-temperature/&#34;&gt;197. Rising Temperature&lt;/a&gt;
   Given a &lt;code&gt;Weather&lt;/code&gt; table, write a SQL query to find all dates&amp;rsquo; Ids with higher temperature compared to its previous (yesterday&amp;rsquo;s) dates.&lt;/p&gt;
@@ -132,7 +132,7 @@ Line 10
     <item>
       <title>LeetCode Number of 1 Bits 191</title>
       <link>https://zyf.im/2016/08/31/leetcode-number-of-1-bits-191/</link>
-      <pubDate>Wed, 31 Aug 2016 13:00:00 +0000</pubDate>
+      <pubDate>Wed, 31 Aug 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/31/leetcode-number-of-1-bits-191/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/number-of-1-bits/&#34;&gt;191. Number of 1 Bits&lt;/a&gt;
   Write a function that takes an unsigned integer and returns the number of ’1&amp;rsquo; bits it has (also known as the Hamming weight).
@@ -158,7 +158,7 @@ Line 10
     <item>
       <title>LeetCode Happy Number 202</title>
       <link>https://zyf.im/2016/08/29/leetcode-happy-number-202/</link>
-      <pubDate>Mon, 29 Aug 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 29 Aug 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/29/leetcode-happy-number-202/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/happy-number/&#34;&gt;202. Happy Number&lt;/a&gt;
   Write an algorithm to determine if a number is &amp;ldquo;happy&amp;rdquo;.
@@ -167,7 +167,7 @@ Line 10
     <item>
       <title>LeetCode Roman to Integer 13</title>
       <link>https://zyf.im/2016/08/25/leetcode-roman-to-integer-13/</link>
-      <pubDate>Thu, 25 Aug 2016 10:30:00 +0000</pubDate>
+      <pubDate>Thu, 25 Aug 2016 10:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/25/leetcode-roman-to-integer-13/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/roman-to-integer/&#34;&gt;13. Roman to Integer&lt;/a&gt;
   Given a roman numeral, convert it to an integer.
@@ -202,7 +202,7 @@ Line 10
     <item>
       <title>LeetCode Majority Element 169</title>
       <link>https://zyf.im/2016/08/24/leetcode-majority-element-169/</link>
-      <pubDate>Wed, 24 Aug 2016 09:30:00 +0000</pubDate>
+      <pubDate>Wed, 24 Aug 2016 09:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/24/leetcode-majority-element-169/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/majority-element/&#34;&gt;169. Majority Element&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Given an array of size n, find the majority element. The majority element is the element that appears more than [ n/2 ] times.&lt;/p&gt;
@@ -223,7 +223,7 @@ Line 10
     <item>
       <title>LeetCode First Unique Character in a String 387</title>
       <link>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</link>
-      <pubDate>Tue, 23 Aug 2016 14:30:00 +0000</pubDate>
+      <pubDate>Tue, 23 Aug 2016 14:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/first-unique-character-in-a-string/&#34;&gt;387. First Unique Character in a String&lt;/a&gt;
   Given a string, find the first non-repeating character in it and return it&amp;rsquo;s index. If it doesn&amp;rsquo;t exist, return -1.
@@ -251,7 +251,7 @@ return 2.
     <item>
       <title>LeetCode Maximum Depth of Binary Tree 104</title>
       <link>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</link>
-      <pubDate>Tue, 23 Aug 2016 11:30:00 +0000</pubDate>
+      <pubDate>Tue, 23 Aug 2016 11:30:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/maximum-depth-of-binary-tree/&#34;&gt;104. Maximum Depth of Binary Tree&lt;/a&gt;
   Given a binary tree, find its maximum depth.
@@ -271,7 +271,7 @@ return 2.
     <item>
       <title>LeetCode Intersection of Two Arrays 349</title>
       <link>https://zyf.im/2016/08/22/leetcode-intersection-of-two-arrays-349/</link>
-      <pubDate>Mon, 22 Aug 2016 18:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 18:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-intersection-of-two-arrays-349/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/intersection-of-two-arrays/&#34;&gt;349. Intersection of Two Arrays&lt;/a&gt;
   Given two arrays, write a function to compute their intersection.
@@ -308,7 +308,7 @@ return 2.
     <item>
       <title>LeetCode Same Tree 100</title>
       <link>https://zyf.im/2016/08/22/leetcode-same-tree-100/</link>
-      <pubDate>Mon, 22 Aug 2016 16:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-same-tree-100/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/same-tree/&#34;&gt;100. Same Tree&lt;/a&gt;
   Given two binary trees, write a function to check if they are equal or not.
@@ -344,7 +344,7 @@ return 2.
     <item>
       <title>LeetCode Excel Sheet Column Title 168</title>
       <link>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</link>
-      <pubDate>Mon, 22 Aug 2016 13:40:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 13:40:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/excel-sheet-column-title/&#34;&gt;168. Excel Sheet Column Title&lt;/a&gt;
   Given a positive integer, return its corresponding column title as appear in an Excel sheet.&lt;/p&gt;
@@ -398,7 +398,7 @@ return 2.
     <item>
       <title>LeetCode Excel Sheet Column Number 171</title>
       <link>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</link>
-      <pubDate>Mon, 22 Aug 2016 13:00:00 +0000</pubDate>
+      <pubDate>Mon, 22 Aug 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/excel-sheet-column-number/&#34;&gt;171. Excel Sheet Column Number&lt;/a&gt;
   Given a column title as appear in an Excel sheet, return its corresponding column number.&lt;/p&gt;
@@ -429,7 +429,7 @@ return 2.
     <item>
       <title>LeetCode Move Zeroes 283</title>
       <link>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</link>
-      <pubDate>Tue, 16 Aug 2016 19:00:00 +0000</pubDate>
+      <pubDate>Tue, 16 Aug 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/move-zeroes/&#34;&gt;283. Move Zeroes&lt;/a&gt;
   Given an array nums, write a function to move all 0&amp;rsquo;s to the end of it while maintaining the relative order of the non-zero elements. For example, given nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].&lt;/p&gt;
@@ -446,7 +446,7 @@ return 2.
     <item>
       <title>LeetCode Ransom Note 383</title>
       <link>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</link>
-      <pubDate>Thu, 11 Aug 2016 13:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Aug 2016 13:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://leetcode.com/problems/ransom-note/&#34;&gt;383. Ransom Note&lt;/a&gt;
   Given an arbitrary ransom note string and another string containing letters from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines ; otherwise, it will return false.

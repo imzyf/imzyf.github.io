@@ -6,12 +6,12 @@
     <description>Recent content in Java on ZYF.IM BLOG</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Sep 2016 16:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 23 Sep 2016 16:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Core Java】读书笔记 Part 2</title>
       <link>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</link>
-      <pubDate>Fri, 23 Sep 2016 16:00:00 +0000</pubDate>
+      <pubDate>Fri, 23 Sep 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</guid>
       <description>&lt;p&gt;本文总结的是书中的：第 5 章 继承&lt;/p&gt;
 &lt;p&gt;前几章的总结在：&lt;a href=&#34;https://zyf.im/2016/05/06/core-java-reading-notes/&#34;&gt;ZYF.IM-【Core Java】读书笔记 Part1&lt;/a&gt;&lt;/p&gt;
@@ -42,7 +42,7 @@
     <item>
       <title>Eclipse Java 注释模板</title>
       <link>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</link>
-      <pubDate>Sun, 18 Sep 2016 19:00:00 +0000</pubDate>
+      <pubDate>Sun, 18 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</guid>
       <description>&lt;p&gt;自己总结的比较规范的 Eclipse Java 注释模板&lt;/p&gt;
 &lt;h2 id=&#34;eclipse-java-注释模板设置&#34;&gt;Eclipse Java 注释模板设置&lt;/h2&gt;
@@ -105,7 +105,7 @@
     <item>
       <title>Eclipse Maven 配置使用国内镜像库</title>
       <link>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</link>
-      <pubDate>Wed, 14 Sep 2016 15:00:00 +0000</pubDate>
+      <pubDate>Wed, 14 Sep 2016 15:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</guid>
       <description>&lt;p&gt;Windows 下因为 Eclipse 自带了 Maven 插件，还算够用就懒得安装 Maven 了。在不使用代理的情况下，用 Maven 的下载库不是一般的慢。Eclipse Maven 的插件怎么配置国内的镜像库呢？其实很简单。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -206,7 +206,7 @@
     <item>
       <title>Mybatis Generator 使用配置</title>
       <link>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</link>
-      <pubDate>Sat, 10 Sep 2016 19:00:00 +0000</pubDate>
+      <pubDate>Sat, 10 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</guid>
       <description>&lt;p&gt;MyBatis Generator (MBG) 是一个 Mybatis 的代码生成器。MBG 可以内省数据库的表（或多个表）然后生成可以用来访问（多个）表的基础对象。 这样和数据库表进行交互时不需要创建对象和配置文件。MBG 的解决了对数据库操作有最大影响的一些简单的 CRUD（插入、查询、更新、删除）操作。&lt;/p&gt;
 &lt;h2 id=&#34;mybatis-generator-文档&#34;&gt;Mybatis Generator 文档&lt;/h2&gt;
@@ -254,7 +254,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>SpringMVC 入门使用</title>
       <link>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</link>
-      <pubDate>Wed, 07 Sep 2016 14:00:00 +0000</pubDate>
+      <pubDate>Wed, 07 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</guid>
       <description>&lt;p&gt;本文主要参考了 &lt;a href=&#34;http://www.imooc.com/video/7237&#34;&gt;imooc-SpringMVC 起步&lt;/a&gt; 视频教程和 &lt;a href=&#34;http://www.imooc.com/article/3804&#34;&gt;SpringMVC 从入门到精通 系列 - HansonQ&lt;/a&gt; ，还有自己的一些总结。&lt;/p&gt;
 &lt;p&gt;主要内容：MVC 简介、前端控制器模式、SpringMVC 基本概念、SpringMVC 配置、SpringMVC 中的注解、SpringMVC 数据绑定。&lt;/p&gt;
@@ -303,7 +303,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>Ubuntu JDK Nginx WildFly MySQL 环境配置</title>
       <link>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</link>
-      <pubDate>Thu, 07 Jul 2016 10:00:00 +0000</pubDate>
+      <pubDate>Thu, 07 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</guid>
       <description>&lt;p&gt;新项目部署上线，主要参考 &lt;a href=&#34;http://blog.csdn.net/hanshileiai&#34;&gt;世雷博客&lt;/a&gt; 的内容，自己也总结了下。从 JDK 安装、Web 容器、数据库，都有涉及比较全面。&lt;/p&gt;
 &lt;h2 id=&#34;jdk8&#34;&gt;JDK8&lt;/h2&gt;
@@ -333,7 +333,7 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
     <item>
       <title>Eclipse Maven Spring SpringMVC Mybatis 整合</title>
       <link>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</link>
-      <pubDate>Mon, 27 Jun 2016 07:00:00 +0000</pubDate>
+      <pubDate>Mon, 27 Jun 2016 07:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</guid>
       <description>&lt;p&gt;新项目自己撘框架，想着用点新的。看慕课网 &lt;a href=&#34;http://www.imooc.com/index/search?words=%E7%A7%92%E6%9D%80&#34;&gt;Java 高并发秒杀 API&lt;/a&gt; 的系列课程时很受益。所以想着仿着来使用：Mavan-Spring-SpringMVC-Mybatis 的架构。框架整合的代码我已上传到我的 Github：&lt;a href=&#34;https://github.com/imzyf/maven-mybatis-spring-springmvc&#34;&gt;maven-mybatis-spring-springmvc&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;本示例是在：Ubuntu15 上实现的；Windows 上安装 Maven 将不太相同。&lt;/p&gt;
@@ -374,7 +374,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>Java final 修饰符</title>
       <link>https://zyf.im/2016/06/13/java-modifier-final/</link>
-      <pubDate>Mon, 13 Jun 2016 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 13 Jun 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/13/java-modifier-final/</guid>
       <description>&lt;h2 id=&#34;final-修饰符&#34;&gt;final 修饰符&lt;/h2&gt;
 &lt;p&gt;final 修饰符表示不可变。类似 C 中的 constant。用于修饰变量表示不可变的变量。用于修饰方法表示不可被重写。用于修饰类表示不可被继承。&lt;/p&gt;
@@ -414,7 +414,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>【Core Java】读书笔记</title>
       <link>https://zyf.im/2016/05/06/core-java-reading-notes/</link>
-      <pubDate>Fri, 06 May 2016 11:00:00 +0000</pubDate>
+      <pubDate>Fri, 06 May 2016 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/05/06/core-java-reading-notes/</guid>
       <description>&lt;p&gt;自己是第一次把一本厚厚的的技术类书读一遍。不过 7、8、9、10 章讲的是关于图形的就是翻了翻，没怎么看。第 4 章 对象与类，里面有很多非常基础，可以补充一些知识细节。第 14 章 多线程，是自己最陌生的，慕课网上有节课 &lt;a href=&#34;http://www.imooc.com/view/202&#34;&gt;深入浅出 Java 多线程&lt;/a&gt; 讲到的例子就是书上例子的变形，可以对照理解。第二遍阅读做做笔记。&lt;/p&gt;
 &lt;p&gt;本文总结的是书中的：第 3 章 Java 的基本程序设计结构、第 4 章 对象与类。&lt;/p&gt;
@@ -571,7 +571,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>【Core Java】对象与类-方法参数传递</title>
       <link>https://zyf.im/2016/04/19/core-java-method-parameter/</link>
-      <pubDate>Tue, 19 Apr 2016 20:00:00 +0000</pubDate>
+      <pubDate>Tue, 19 Apr 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/04/19/core-java-method-parameter/</guid>
       <description>&lt;p&gt;提问：Java 对象采用的是值传递还是引用传递？&lt;/p&gt;
 &lt;p&gt;有些程序员认为 Java 对象采用的是引用调用，实际上，这种理解是不对的。下面给出一个反例来详细的阐述一下这一问题。&lt;/p&gt;
@@ -601,7 +601,7 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
     <item>
       <title>【Core Java】彩票选取中奖数字-数组例子</title>
       <link>https://zyf.im/2016/03/23/core-java-array-dome/</link>
-      <pubDate>Wed, 23 Mar 2016 20:00:00 +0000</pubDate>
+      <pubDate>Wed, 23 Mar 2016 20:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/03/23/core-java-array-dome/</guid>
       <description>&lt;p&gt;从 1,2,3&amp;hellip;h 中随机取 k 个中奖号码。&lt;/p&gt;
 &lt;!-- more --&gt;
