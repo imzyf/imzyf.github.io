@@ -1,5 +1,4 @@
 <!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP empty 方法判断 0.0 | ZYF.IM BLOG</title><meta name=keywords content="php"><meta name=description content='在使用 empty(mixed $var) 时要考虑 $var 的 类型，尤其是在判断数据库查询后的字段。
-
 bool empty(mixed $var)
 以下的东西被认为是空 true 的：
 
@@ -32,7 +31,6 @@ bool empty(mixed $var) 以下的东西被认为是空 true 的：
 ""（空字符串） 0 （作为整数的 0） 0.0 （作为浮点数的 0） "0" （作为字符串的 0） NULL FALSE array() 一个空数组 $var 未初始化的变量 new stdClass() 不包含任何属性的对象 注意： string 的判断要非常注意，数据库查询后的字段常常为 string，应该进行正确的类型转换。
 以下的东西被认为是非空 false 的：
 $var = true; $var = 1; $var = -1; $var = “0.0”; $var = “foo”; $var = array(0); $var = new stdClass(); $var->property = null; $str = &#39;0.0&#39;; echo empty($str); // false 很可能和预期是相反的 echo empty((float)$str); // true – EOF –'><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-03-09T17:00:00+08:00"><meta property="article:modified_time" content="2017-03-09T17:00:00+08:00"><meta property="article:tag" content="Php"><meta name=twitter:card content="summary"><meta name=twitter:title content="PHP empty 方法判断 0.0"><meta name=twitter:description content='在使用 empty(mixed $var) 时要考虑 $var 的 类型，尤其是在判断数据库查询后的字段。
-
 bool empty(mixed $var)
 以下的东西被认为是空 true 的：
 

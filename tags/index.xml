@@ -4,7 +4,7 @@
     <title>Tags on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/</link>
     <description>Recent content in Tags on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.148.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -20,6 +20,13 @@
       <link>https://zyf.im/tags/php/</link>
       <pubDate>Sat, 01 Feb 2025 17:42:42 +0800</pubDate>
       <guid>https://zyf.im/tags/php/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Php-Migrating</title>
+      <link>https://zyf.im/tags/php-migrating/</link>
+      <pubDate>Sat, 01 Feb 2025 17:42:42 +0800</pubDate>
+      <guid>https://zyf.im/tags/php-migrating/</guid>
       <description></description>
     </item>
     <item>
@@ -121,10 +128,10 @@
       <description></description>
     </item>
     <item>
-      <title>Linux</title>
-      <link>https://zyf.im/tags/linux/</link>
+      <title>Devops</title>
+      <link>https://zyf.im/tags/devops/</link>
       <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
-      <guid>https://zyf.im/tags/linux/</guid>
+      <guid>https://zyf.im/tags/devops/</guid>
       <description></description>
     </item>
     <item>
@@ -135,10 +142,10 @@
       <description></description>
     </item>
     <item>
-      <title>Vim</title>
-      <link>https://zyf.im/tags/vim/</link>
+      <title>Ide</title>
+      <link>https://zyf.im/tags/ide/</link>
       <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
-      <guid>https://zyf.im/tags/vim/</guid>
+      <guid>https://zyf.im/tags/ide/</guid>
       <description></description>
     </item>
     <item>

@@ -4,7 +4,7 @@
     <title>ZYF.IM BLOG</title>
     <link>https://zyf.im/</link>
     <description>Recent content on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.148.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/index.xml" rel="self" type="application/rss+xml" />
@@ -2729,40 +2729,61 @@
       <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
       <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
       <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
-      <description>&lt;p&gt;tcpdump 是 Unix/Linux 下的抓包工具，可以针对指定网卡、端口、协议进行抓包。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;字太多不看&#34;&gt;字太多不看&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump host api.test and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A -nn
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump dst api.test and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A
+      <description>&lt;p&gt;tcpdump 是类 Unix 系统上最常用、最轻量的网络抓包与分析工具。它直接调用 libpcap 库，在内核层抓取链路层的数据包，然后解析输出文本格式的“数据包头部摘要”，也可将原始数据保存为 pcap 文件供 Wireshark 等 GUI 工具进一步分析。&lt;/p&gt;
+&lt;h2 id=&#34;字多不看&#34;&gt;字多不看&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump host httpforever.com and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A -nn
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;一举成名天下知&#34;&gt;一举成名天下知&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;man tcpdump
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;获取适配器列表&#34;&gt;获取适配器列表&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tcpdump -D
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tcpdump --list-interfaces
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1.en0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2.p2p0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3.awdl0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4.llw0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;5.utun0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;6.utun1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;7.utun2 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8.en5 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;9.lo0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running, Loopback&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;10.bridge0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;11.en1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;12.en2 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;13.en3 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;14.en4 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Up, Running&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;15.gif0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;16.stf0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;17.XHC0 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;18.XHC1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;19.ap1 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;20.XHC20 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;21.VHC128 &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;none&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;监听适配器&#34;&gt;监听适配器&lt;/h2&gt;
-&lt;p&gt;Listen on interface.&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;常用参数速查&#34;&gt;常用参数速查&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;参数&lt;/th&gt;
+          &lt;th&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-i &lt;iface&gt;&lt;/td&gt;
+          &lt;td&gt;指定接口（不指定默认第一个可用接口）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-nn&lt;/td&gt;
+          &lt;td&gt;不解析主机名和端口名（仅显示数字）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-v/-vv/-vvv&lt;/td&gt;
+          &lt;td&gt;详细级别（-v/-vv/-vvv）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-c &lt;num&gt;&lt;/td&gt;
+          &lt;td&gt;捕获指定数量后退出&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-s &lt;len&gt;&lt;/td&gt;
+          &lt;td&gt;抓取长度（0 = 全包；新版默认 262144 bytes）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-w &lt;file&gt;&lt;/td&gt;
+          &lt;td&gt;将原始数据写入 pcap 文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-r &lt;file&gt;&lt;/td&gt;
+          &lt;td&gt;读取 pcap 文件离线解析&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-A / -X&lt;/td&gt;
+          &lt;td&gt;以 ASCII / 十六进制+ASCII 方式打印负载&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;-i any 监听所有的网卡&lt;/li&gt;
+&lt;li&gt;-A 只使用 ascii 打印报文的全部数据，不要和 -X 一起使用。截取 http 请求的时候可以用 &lt;code&gt;sudo tcpdump -nSA port 80&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;-S 显示绝对的序列号（sequence number），而不是相对编号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;过滤语法&#34;&gt;过滤语法&lt;/h3&gt;
+&lt;p&gt;tcpdump 采用 BPF 过滤语法（Berkeley Packet Filter&lt;/p&gt;</description>
     </item>
     <item>
       <title>配置 Laradock PhpStorm Xdubug</title>
@@ -2968,35 +2989,43 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装常用库：&lt;/p&gt;</description>
     </item>
     <item>
-      <title>vim Code Snippet</title>
-      <link>https://zyf.im/2020/04/28/vim-code-snippet/</link>
+      <title>IDE Snippet</title>
+      <link>https://zyf.im/2020/04/28/ide-snippet/</link>
       <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
-      <guid>https://zyf.im/2020/04/28/vim-code-snippet/</guid>
-      <description>&lt;h2 id=&#34;常用&#34;&gt;常用&lt;/h2&gt;
+      <guid>https://zyf.im/2020/04/28/ide-snippet/</guid>
+      <description>&lt;h2 id=&#34;cursor&#34;&gt;Cursor&lt;/h2&gt;
+&lt;h3 id=&#34;备份扩展&#34;&gt;备份扩展&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cursor --list-extensions &amp;gt; cursor_extensions.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xargs -L &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; cursor --install-extension &amp;lt; cursor_extensions.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;vscode&#34;&gt;VSCode&lt;/h2&gt;
+&lt;h3 id=&#34;配置文件&#34;&gt;配置文件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~/Library/Application\ Support/Cursor/User/settings.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~/Library/Application\ Support/Cursor/User/keybindings.json&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;编辑-settingsjson&#34;&gt;编辑 settings.json&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;command + ,&lt;/code&gt; 右上角点击 &lt;code&gt;Open Settings(JSON)&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;terminal.integrated.fontSize&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;window.zoomLevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;editor.fontSize&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;editor.wordWrapColumn&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;editor.renderWhitespace&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;all&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;vim&#34;&gt;VIM&lt;/h2&gt;
+&lt;h3 id=&#34;常用&#34;&gt;常用&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;全选（高亮显示）：按 esc 后，然后 &lt;code&gt;ggvG&lt;/code&gt; 或者 &lt;code&gt;ggVG&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;全部复制：按 esc 后，然后 &lt;code&gt;ggyG&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;全部删除：按 esc 后，然后 &lt;code&gt;dG&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;粘贴到终端-vim-缩进错乱&#34;&gt;粘贴到终端 vim 缩进错乱&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;粘贴到终端-vim-缩进错乱&#34;&gt;粘贴到终端 vim 缩进错乱&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;在 vim 中粘贴前先输入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:set paste
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;
-&lt;p&gt;问题就是出在这：当上一行结束，光标进入下一行时 vim 会自动以上一行的的缩进为初始位置。这样就会破坏原始文件的缩进。&lt;/p&gt;
-&lt;h2 id=&#34;基础命令&#34;&gt;基础命令&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;gg&lt;/code&gt; 是让光标移到首行，在 vim 才有效，vi 中无效&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;G&lt;/code&gt; 光标移到最后一行&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;d&lt;/code&gt; 删除选中内容&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;y&lt;/code&gt; 复制选中内容到 0 号寄存器&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/yangzailu/p/11531972.html&#34;&gt;vim 全选，全部复制，全部删除 | cnblogs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.zhihu.com/question/22363620&#34;&gt;用 vim 打开后中文乱码怎么办？ | zhihu&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+&lt;p&gt;问题就是出在这：当上一行结束，光标进入下一行时 vim 会自动以上一行的的缩进为初始位置。这样就会破坏原始文件的缩进。&lt;/p&gt;</description>
     </item>
     <item>
       <title>PHP GD 入门使用</title>
@@ -3179,8 +3208,7 @@
       <description>&lt;p&gt;2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。&lt;/p&gt;
 &lt;hr&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PHP Warning:  ftp_put&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;: php_connect_nonb&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt; failed: Operation now in progress &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;115&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; in ...
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
-&lt;p&gt;环境 &lt;code&gt;PHP 5.6.40&lt;/code&gt;。在开发过程中遇到了一个很诡异的情况，在使用 FTP 函数上传文件时，会间歇性无法上传文件。找了几圈有说是 PHP bug、有说是防火墙，都不解决问题。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;环境 &lt;code&gt;PHP 5.6.40&lt;/code&gt;。在开发过程中遇到了一个很诡异的情况，在使用 FTP 函数上传文件时，会间歇性无法上传文件。找了几圈有说是 PHP bug、有说是防火墙，都不解决问题。&lt;/p&gt;
 &lt;p&gt;最后找到了一篇 &lt;a href=&#34;https://stackoverflow.com/questions/42439316/why-is-my-php-script-intermittently-unable-to-upload-a-file-via-ftp&#34;&gt;Why is my PHP script intermittently unable to upload a file via FTP? | stackoverflow&lt;/a&gt; 解了大急。（当搜索结果没有找到答案时，可以考虑换几个相近的词再试试）&lt;/p&gt;
 &lt;p&gt;解决方法：进行循环调用尝试。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// 尝试 5 次
@@ -3418,43 +3446,6 @@
 &lt;p&gt;1、利用 &lt;code&gt;jQuery&lt;/code&gt; 的 &lt;code&gt;isEmptyObject&lt;/code&gt;：&lt;/p&gt;</description>
     </item>
     <item>
-      <title>VSCode 使用经验</title>
-      <link>https://zyf.im/2019/06/11/vscode-using-experience/</link>
-      <pubDate>Tue, 11 Jun 2019 17:01:39 +0800</pubDate>
-      <guid>https://zyf.im/2019/06/11/vscode-using-experience/</guid>
-      <description>&lt;h2 id=&#34;编辑-settingsjson&#34;&gt;编辑 settings.json&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;command + ,&lt;/code&gt; 右上角点击 &lt;code&gt;打开设置&lt;/code&gt;。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// 通过整体放大窗口比例
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;window.zoomLevel&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;1.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// 字体
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;editor.fontSize&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c1&#34;&gt;// 软换行
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;editor.wordWrap&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;on&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;显示空格和-tab-符号&#34;&gt;显示空格和 tab 符号&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Editor: Render Whitespace
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;控制编辑器在空白字符上显示符号的方式。
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;all
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;settings-同步&#34;&gt;Settings 同步&lt;/h2&gt;
-&lt;p&gt;只需从左下角的设置齿轮启用内置同步。&lt;/p&gt;
-&lt;h2 id=&#34;扩展推荐&#34;&gt;扩展推荐&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Community Material Theme&lt;/li&gt;
-&lt;li&gt;EditerConfig For VS Code&lt;/li&gt;
-&lt;li&gt;ESLint&lt;/li&gt;
-&lt;li&gt;Git History&lt;/li&gt;
-&lt;li&gt;GitLens — Git supercharged&lt;/li&gt;
-&lt;li&gt;markdownlint&lt;/li&gt;
-&lt;li&gt;Material Icon Theme&lt;/li&gt;
-&lt;li&gt;Material Theme&lt;/li&gt;
-&lt;li&gt;Prettier - Code formatter&lt;/li&gt;
-&lt;li&gt;Terminal&lt;/li&gt;
-&lt;li&gt;Vetur&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Git 提交 message 规范</title>
       <link>https://zyf.im/2019/06/04/git-commit-message-style-guide/</link>
       <pubDate>Tue, 04 Jun 2019 14:07:46 +0800</pubDate>
@@ -3587,7 +3578,8 @@
       <link>https://zyf.im/2019/05/20/my-macbook/</link>
       <pubDate>Mon, 20 May 2019 17:14:59 +0800</pubDate>
       <guid>https://zyf.im/2019/05/20/my-macbook/</guid>
-      <description>&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
+      <description>&lt;p&gt;！！需要整理！！&lt;/p&gt;
+&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;软件下载&#34;&gt;软件下载&lt;/h2&gt;
 &lt;p&gt;使用 &lt;code&gt;brew cask&lt;/code&gt; 安装软件，非常方便。&lt;/p&gt;
@@ -4502,74 +4494,11 @@ for (k, v) in array.enumerated() {
 &lt;p&gt;这个测试说明了：&lt;/p&gt;</description>
     </item>
     <item>
-      <title>L01 Web 开发实战入门</title>
-      <link>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</link>
-      <pubDate>Wed, 09 May 2018 17:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/05/09/laravel-essential-training-reading-notes/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://laravel-china.org/courses?rf=10678&#34;&gt;Laravel 教程 - Web 开发实战入门&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;h2 id=&#34;基础信息&#34;&gt;基础信息&lt;/h2&gt;
-&lt;h3 id=&#34;laravel-与-php&#34;&gt;Laravel 与 PHP&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Ruby on Rails&lt;/code&gt; 有以下原则：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;强调与注重敏捷开发；&lt;/li&gt;
-&lt;li&gt;约定高于配置（Convention over configuration）；&lt;/li&gt;
-&lt;li&gt;DRY（Don&amp;rsquo;t repeat yourself）不要重复自己，提倡代码重用；&lt;/li&gt;
-&lt;li&gt;重视「编码愉悦性」。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;如何正确阅读本书&#34;&gt;如何正确阅读本书&lt;/h3&gt;
-&lt;p&gt;随后你会有很多机会来学习它们。现在最重要的是保持『训练』的连贯性。&lt;/p&gt;
-&lt;p&gt;编程是技能，不是知识，技能只有在不断刻意练习下才会有进步。&lt;/p&gt;
-&lt;h2 id=&#34;开发环境布置&#34;&gt;开发环境布置&lt;/h2&gt;
-&lt;h3 id=&#34;第一个应用&#34;&gt;第一个应用&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer create-project laravel/laravel Laravel --prefer-dist &lt;span class=&#34;s2&#34;&gt;&amp;#34;5.5.*&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;git-与-github&#34;&gt;Git 与 GitHub&lt;/h3&gt;
-&lt;p&gt;设置 push 的默认模式为 simple&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global push.default simple
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;部署上线&#34;&gt;部署上线&lt;/h3&gt;
-&lt;p&gt;注册 Heroku 后：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku login
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加 SSH Key 到 Heroku 上&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku keys:add
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建配置文件来告诉 Heroku 应当使用什么命令来启动 Web 服务器&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; web: vendor/bin/heroku-php-apache2 public/ &amp;gt; Procfile
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add -A
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;Procfile for Heroku&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建一个新应用&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku create
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 对应用名称进行更改，保证未被其它人占用&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku rename imzyf-laravel-essential
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 声明应用是用 PHP 写的&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku buildpacks:set heroku/php
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 设置 APP key&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php artisan key:generate
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku config:set &lt;span class=&#34;nv&#34;&gt;APP_KEY&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;base64:wuWj8Kicza6I9YxgWczviNVcueVN2RroqiUILreyNmA&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 部署上线&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push heroku master
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 快速打开线上应用&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku open
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 输出生产环境上的日志&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;heroku logs
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;构建页面&#34;&gt;构建页面&lt;/h2&gt;
-&lt;h3 id=&#34;静态页面&#34;&gt;静态页面&lt;/h3&gt;
-&lt;p&gt;生成静态页面控制器：&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>【Modern PHP】笔记</title>
       <link>https://zyf.im/2018/05/08/modern-php-reading-notes/</link>
       <pubDate>Tue, 08 May 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/05/08/modern-php-reading-notes/</guid>
       <description>&lt;p&gt;又回到 PHP Web 开发，使用 Laravel 框架，重读《Modern PHP》。&lt;/p&gt;
-&lt;!-- more --&gt;
 &lt;blockquote&gt;
 &lt;p&gt;PHP 正在重生。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;h2 id=&#34;特性&#34;&gt;特性&lt;/h2&gt;
@@ -4602,7 +4531,21 @@ for (k, v) in array.enumerated() {
 &lt;p&gt;Generator 是 PHP 5.5.0 引入的功能。生成器是简单的迭代器，仅此而已。&lt;/p&gt;
 &lt;p&gt;PHP 生成器不要求类实现 Iterator 接口，从而减轻了类的负担。生成器会根据需求计算并产生要迭代的值。这对应该的性能有重大影响。假如标准的 PHP 迭代器经常在内存中执行迭代操作，这要预先计算出数据集，性能低；此时我们可以使用生成器，即时计算并产出后续值，不占用宝贵的内存资源。&lt;/p&gt;
 &lt;p&gt;PHP 生成器不能满足所有迭代操作的需求，因为如果不查询，生成器永远不知道下一个要迭代的值是什么，在生成器中无法后退和快进。生成器还是一次性，无法多次迭代同一个生成器。不过，如果需要，可以重建或克隆生成器。&lt;/p&gt;
-&lt;p&gt;PHP 生成器是 PHP 函数，只不过要在函数中一次或者多次使用 yield 关键字。生成器从不返回值，值产出值。&lt;/p&gt;</description>
+&lt;p&gt;PHP 生成器是 PHP 函数，只不过要在函数中一次或者多次使用 yield 关键字。生成器从不返回值，值产出值。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;myGenerator&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;value1&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;value2&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;value3&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;foreach&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;myGenerator&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;  &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$yieldedValue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$yieldedValue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;PHP_EOL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;value1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;value2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;value3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用生成器处理 CSV：&lt;/p&gt;</description>
     </item>
     <item>
       <title>PhpStorm 使用经验</title>
@@ -5498,34 +5441,6 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;启用 HTTP/2 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>PHP 中获取 Nginx 使用反向代理或 CDN 后的客户端真实 IP</title>
-      <link>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</link>
-      <pubDate>Fri, 02 Jun 2017 16:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</guid>
-      <description>&lt;p&gt;获取 Nginx 反向代理后的客户端 IP，基本是按一定顺序检测以下参数中的信息：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HTTP_CLIENT_IP&lt;/li&gt;
-&lt;li&gt;HTTP_X_REAL_FORWARDED_FOR&lt;/li&gt;
-&lt;li&gt;HTTP_X_FORWARDED_FOR&lt;/li&gt;
-&lt;li&gt;REMOTE_ADDR&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;在未使用-cdn-和反向代理情况下&#34;&gt;在未使用 CDN 和反向代理情况下&lt;/h2&gt;
-&lt;p&gt;当业务服务器直接暴露在公网上，并且未使用 CDN 和反向代理服务器时，可以直接使用 &lt;code&gt;remote_addr&lt;/code&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$_SERVER&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;REMOTE_ADDR&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这时候 &lt;code&gt;HTTP_X_FORWARDED_FOR&lt;/code&gt; 和 &lt;code&gt;HTTP_X_REAL_IP&lt;/code&gt; 都是可以被伪造的，但 &lt;code&gt;REMOTE_ADDR&lt;/code&gt; 是客户端和服务器的握手 IP，即 client 的出口 IP，伪造不了。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;在使用-cdn-和反向代理情况下&#34;&gt;在使用 CDN 和反向代理情况下&lt;/h2&gt;
-&lt;h3 id=&#34;铁律&#34;&gt;铁律&lt;/h3&gt;
-&lt;p&gt;当多层代理或使用 CDN 时，如果代理服务器不把用户的真实 IP 传递下去，那么业务服务器将永远不可能获取到用户的真实 IP。&lt;/p&gt;
-&lt;p&gt;如果 WEB 服务器上层也是使用 Nginx 做代理或负载均衡，则需要在代理层的 Nginx 配置中明确 XFF 参数，累加传递上一个请求方的 IP 到 header 请求中。以下是代理层的 Nginx 配置参数。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header Host $http_host;
-proxy_set_header X-NginX-Proxy true;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;只有一层代理的情况&#34;&gt;只有一层代理的情况&lt;/h3&gt;
-&lt;p&gt;我们按上面的配置发起一个伪造请求，10.100.11.25 是我电脑的 IP，链路为：&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>PHP 中 this self parent 用法</title>
       <link>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</link>
       <pubDate>Thu, 25 May 2017 15:00:00 +0800</pubDate>
@@ -5757,7 +5672,6 @@ proxy_set_header X-NginX-Proxy true;
       <pubDate>Thu, 09 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/09/php-empty-method-judge-0/</guid>
       <description>&lt;p&gt;在使用 &lt;code&gt;empty(mixed $var)&lt;/code&gt; 时要考虑 &lt;code&gt;$var&lt;/code&gt; 的 &lt;strong&gt;类型&lt;/strong&gt;，尤其是在判断数据库查询后的字段。&lt;/p&gt;
-&lt;!-- more --&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bool empty(mixed $var)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;以下的东西被认为是空 &lt;code&gt;true&lt;/code&gt; 的：&lt;/p&gt;
 &lt;ul&gt;
@@ -7449,7 +7363,11 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;/ul&gt;
 &lt;h2 id=&#34;friends&#34;&gt;Friends&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://penmodeyu.com&#34;&gt;我盒鸡王又回来啦&lt;/a&gt; 喷墨的鱼直播间（域名低价出售）。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://penmodeyu.com&#34;&gt;我盒鸡王又回来啦&lt;/a&gt; penmodeyu 直播间（域名低价出售）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;domains&#34;&gt;Domains&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://allhistory.net&#34;&gt;allhistory.net&lt;/a&gt; &lt;a href=&#34;https://www.allhistory.com/&#34;&gt;完美世界·全历史&lt;/a&gt; .net 域名（在阿里云市场低价出售）。&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
   </channel>

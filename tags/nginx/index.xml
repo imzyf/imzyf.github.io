@@ -4,7 +4,7 @@
     <title>Nginx on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/nginx/</link>
     <description>Recent content in Nginx on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.148.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
@@ -256,34 +256,6 @@
 &lt;/table&gt;
 &lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
 &lt;p&gt;启用 HTTP/2 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PHP 中获取 Nginx 使用反向代理或 CDN 后的客户端真实 IP</title>
-      <link>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</link>
-      <pubDate>Fri, 02 Jun 2017 16:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/06/02/php-get-real-ip-after-nginx-using-reverse-proxy-or-cdn/</guid>
-      <description>&lt;p&gt;获取 Nginx 反向代理后的客户端 IP，基本是按一定顺序检测以下参数中的信息：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HTTP_CLIENT_IP&lt;/li&gt;
-&lt;li&gt;HTTP_X_REAL_FORWARDED_FOR&lt;/li&gt;
-&lt;li&gt;HTTP_X_FORWARDED_FOR&lt;/li&gt;
-&lt;li&gt;REMOTE_ADDR&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;在未使用-cdn-和反向代理情况下&#34;&gt;在未使用 CDN 和反向代理情况下&lt;/h2&gt;
-&lt;p&gt;当业务服务器直接暴露在公网上，并且未使用 CDN 和反向代理服务器时，可以直接使用 &lt;code&gt;remote_addr&lt;/code&gt;：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$_SERVER&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;REMOTE_ADDR&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这时候 &lt;code&gt;HTTP_X_FORWARDED_FOR&lt;/code&gt; 和 &lt;code&gt;HTTP_X_REAL_IP&lt;/code&gt; 都是可以被伪造的，但 &lt;code&gt;REMOTE_ADDR&lt;/code&gt; 是客户端和服务器的握手 IP，即 client 的出口 IP，伪造不了。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;在使用-cdn-和反向代理情况下&#34;&gt;在使用 CDN 和反向代理情况下&lt;/h2&gt;
-&lt;h3 id=&#34;铁律&#34;&gt;铁律&lt;/h3&gt;
-&lt;p&gt;当多层代理或使用 CDN 时，如果代理服务器不把用户的真实 IP 传递下去，那么业务服务器将永远不可能获取到用户的真实 IP。&lt;/p&gt;
-&lt;p&gt;如果 WEB 服务器上层也是使用 Nginx 做代理或负载均衡，则需要在代理层的 Nginx 配置中明确 XFF 参数，累加传递上一个请求方的 IP 到 header 请求中。以下是代理层的 Nginx 配置参数。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header Host $http_host;
-proxy_set_header X-NginX-Proxy true;
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;只有一层代理的情况&#34;&gt;只有一层代理的情况&lt;/h3&gt;
-&lt;p&gt;我们按上面的配置发起一个伪造请求，10.100.11.25 是我电脑的 IP，链路为：&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

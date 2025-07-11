@@ -1,7 +1,6 @@
 <!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP FTP 间歇性无法上传文件 | ZYF.IM BLOG</title><meta name=keywords content="php"><meta name=description content="2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。
 
 PHP Warning:  ftp_put(): php_connect_nonb() failed: Operation now in progress (115) in ...
-
 环境 PHP 5.6.40。在开发过程中遇到了一个很诡异的情况，在使用 FTP 函数上传文件时，会间歇性无法上传文件。找了几圈有说是 PHP bug、有说是防火墙，都不解决问题。
 最后找到了一篇 Why is my PHP script intermittently unable to upload a file via FTP? | stackoverflow 解了大急。（当搜索结果没有找到答案时，可以考虑换几个相近的词再试试）
 解决方法：进行循环调用尝试。
@@ -40,7 +39,6 @@ PHP Warning: ftp_put(): php_connect_nonb() failed: Operation now in progress (11
 // 尝试 5 次 $uploaded = false; $tries = 0; while (!$uploaded && $tries <= 5) { ++$tries; $conn = ftp_ssl_connect($host, $port, 10) or die('FTP服务器连接失败'); //登陆（通过用户名或者匿名登陆） $result = ftp_login($conn, $user, $password); if (!$result) { ftp_close($conn); die('ftp_login 失败'); } ftp_set_option($conn, FTP_USEPASVADDRESS, false); // turn passive mode on ftp_pasv($conn, true); $success = ftp_put($conn, $remoteFile, $localFile, FTP_BINARY); if ($success) { $uploaded = true; dump(&#34;ftp upload: $success, $remoteFile, $localFile&#34;); } else { dump(&#34;ftp upload failed, tries: $tries&#34;); } ftp_close($conn); } 循环 try 第二次就成功了，不知为啥。PHP の FTP(S)通信で php_connect_nonb() failed: Operation now in progress (115) | qiita 这篇文章有分析，读后还是不太清楚，望有缘人来指导。"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-02-27T20:23:45+08:00"><meta property="article:modified_time" content="2020-02-27T20:23:45+08:00"><meta property="article:tag" content="Php"><meta property="og:image" content="https://images.unsplash.com/photo-1541362036326-097742faf412?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=960&amp;q=80"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://images.unsplash.com/photo-1541362036326-097742faf412?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=960&amp;q=80"><meta name=twitter:title content="PHP FTP 间歇性无法上传文件"><meta name=twitter:description content="2020-04-23 后记：疑似是前置的负载均衡服务器有问题，改为直接使用真实 IP 后问题消失。
 
 PHP Warning:  ftp_put(): php_connect_nonb() failed: Operation now in progress (115) in ...
-
 环境 PHP 5.6.40。在开发过程中遇到了一个很诡异的情况，在使用 FTP 函数上传文件时，会间歇性无法上传文件。找了几圈有说是 PHP bug、有说是防火墙，都不解决问题。
 最后找到了一篇 Why is my PHP script intermittently unable to upload a file via FTP? | stackoverflow 解了大急。（当搜索结果没有找到答案时，可以考虑换几个相近的词再试试）
 解决方法：进行循环调用尝试。

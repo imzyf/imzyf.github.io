@@ -4,7 +4,7 @@
     <title>Mac on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/mac/</link>
     <description>Recent content in Mac on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.148.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 May 2019 17:14:59 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/mac/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,8 @@
       <link>https://zyf.im/2019/05/20/my-macbook/</link>
       <pubDate>Mon, 20 May 2019 17:14:59 +0800</pubDate>
       <guid>https://zyf.im/2019/05/20/my-macbook/</guid>
-      <description>&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
+      <description>&lt;p&gt;！！需要整理！！&lt;/p&gt;
+&lt;p&gt;个人 MacBook 食用说明。推荐自动化环境配置脚本项目 &lt;a href=&#34;https://github.com/imzyf/dotfiles&#34;&gt;imzyf/dotfiles&lt;/a&gt;。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;软件下载&#34;&gt;软件下载&lt;/h2&gt;
 &lt;p&gt;使用 &lt;code&gt;brew cask&lt;/code&gt; 安装软件，非常方便。&lt;/p&gt;

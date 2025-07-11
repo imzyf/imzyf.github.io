@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Devops on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/devops/</link>
+    <description>Recent content in Devops on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.148.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0800</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>tcpdump 入门使用</title>
+      <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
+      <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
+      <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
+      <description>&lt;p&gt;tcpdump 是类 Unix 系统上最常用、最轻量的网络抓包与分析工具。它直接调用 libpcap 库，在内核层抓取链路层的数据包，然后解析输出文本格式的“数据包头部摘要”，也可将原始数据保存为 pcap 文件供 Wireshark 等 GUI 工具进一步分析。&lt;/p&gt;
+&lt;h2 id=&#34;字多不看&#34;&gt;字多不看&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump host httpforever.com and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A -nn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;一举成名天下知&#34;&gt;一举成名天下知&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;man tcpdump
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;常用参数速查&#34;&gt;常用参数速查&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;参数&lt;/th&gt;
+          &lt;th&gt;作用&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-i &lt;iface&gt;&lt;/td&gt;
+          &lt;td&gt;指定接口（不指定默认第一个可用接口）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-nn&lt;/td&gt;
+          &lt;td&gt;不解析主机名和端口名（仅显示数字）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-v/-vv/-vvv&lt;/td&gt;
+          &lt;td&gt;详细级别（-v/-vv/-vvv）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-c &lt;num&gt;&lt;/td&gt;
+          &lt;td&gt;捕获指定数量后退出&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-s &lt;len&gt;&lt;/td&gt;
+          &lt;td&gt;抓取长度（0 = 全包；新版默认 262144 bytes）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-w &lt;file&gt;&lt;/td&gt;
+          &lt;td&gt;将原始数据写入 pcap 文件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-r &lt;file&gt;&lt;/td&gt;
+          &lt;td&gt;读取 pcap 文件离线解析&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;-A / -X&lt;/td&gt;
+          &lt;td&gt;以 ASCII / 十六进制+ASCII 方式打印负载&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ul&gt;
+&lt;li&gt;-i any 监听所有的网卡&lt;/li&gt;
+&lt;li&gt;-A 只使用 ascii 打印报文的全部数据，不要和 -X 一起使用。截取 http 请求的时候可以用 &lt;code&gt;sudo tcpdump -nSA port 80&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;-S 显示绝对的序列号（sequence number），而不是相对编号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;过滤语法&#34;&gt;过滤语法&lt;/h3&gt;
+&lt;p&gt;tcpdump 采用 BPF 过滤语法（Berkeley Packet Filter&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
