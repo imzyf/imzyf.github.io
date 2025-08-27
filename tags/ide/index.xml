@@ -4,7 +4,7 @@
     <title>Ide on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/ide/</link>
     <description>Recent content in Ide on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.0</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 28 Apr 2020 10:43:39 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ide/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,9 @@
       <link>https://zyf.im/2020/04/28/ide-snippet/</link>
       <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
       <guid>https://zyf.im/2020/04/28/ide-snippet/</guid>
-      <description>&lt;h2 id=&#34;cursor&#34;&gt;Cursor&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;phpstorm&#34;&gt;PhpStorm&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://zyf.im/2018/05/05/phpstorm-using-experience/&#34;&gt;PhpStorm 使用经验 | ZYF.IM&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cursor&#34;&gt;Cursor&lt;/h2&gt;
 &lt;h3 id=&#34;备份扩展&#34;&gt;备份扩展&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cursor --list-extensions &amp;gt; cursor_extensions.txt
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xargs -L &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; cursor --install-extension &amp;lt; cursor_extensions.txt
@@ -44,8 +46,7 @@
 &lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;在 vim 中粘贴前先输入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:set paste
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;
-&lt;p&gt;问题就是出在这：当上一行结束，光标进入下一行时 vim 会自动以上一行的的缩进为初始位置。这样就会破坏原始文件的缩进。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

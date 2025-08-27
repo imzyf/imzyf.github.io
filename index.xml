@@ -4,7 +4,7 @@
     <title>ZYF.IM BLOG</title>
     <link>https://zyf.im/</link>
     <description>Recent content on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.0</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/index.xml" rel="self" type="application/rss+xml" />
@@ -386,54 +386,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dbs&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;08-聚合查询&#34;&gt;08 聚合查询&lt;/h2&gt;
 &lt;p&gt;Aggregation Framework&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>手把手教你落地 DDD Part1</title>
-      <link>https://zyf.im/2023/03/09/hands-on-ddd-part1/</link>
-      <pubDate>Thu, 09 Mar 2023 17:18:46 +0800</pubDate>
-      <guid>https://zyf.im/2023/03/09/hands-on-ddd-part1/</guid>
-      <description>&lt;h2 id=&#34;01-小传&#34;&gt;01 小传&lt;/h2&gt;
-&lt;p&gt;Domain-Driven Design 是一种开发复杂软件的系统化的 &lt;strong&gt;方法学和思想&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;面向对象方法学还不能很好地应用于企业应用原因：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;很多开发人员走了一条只重技术不重业务的弯路。&lt;/li&gt;
-&lt;li&gt;围绕业务进行开发的方法本身就不好学。&lt;/li&gt;
-&lt;li&gt;早期面向对象方法学主要考虑的是建模技术，很少考虑协作问题。&lt;/li&gt;
-&lt;li&gt;难以适应变化。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从业务出发进行系统的设计。&lt;/p&gt;
-&lt;p&gt;DDD 从面向对象和敏捷中提炼出了一套原则、模式和实践，使面向对象方法学在企业应用中更加容易学习和掌握。&lt;/p&gt;
-&lt;p&gt;如果没有迭代开发、持续重构、测试驱动、持续集成等敏捷实践的支持，构建良好的领域模型并在代码上落地是很困难的。&lt;/p&gt;
-&lt;p&gt;微服务是一种架构风格（或者说架构模式）。&lt;/p&gt;
-&lt;h2 id=&#34;02-迭代一&#34;&gt;02 迭代一&lt;/h2&gt;
-&lt;p&gt;领域专家需要对业务有总体性和本质性的把握，同时对业务发展也要有一定前瞻性，心里要有一盘棋。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;捕获行为需求（事件风暴）-&amp;gt; 领域建模 -&amp;gt; 结构设计 -&amp;gt; 数据库设计 -&amp;gt; 代码实现
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;-------   模型的建立   --------&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;---------   模型的实现   ------&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;03-事件风暴-上&#34;&gt;03 事件风暴 上&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;识别领域事件；在业务流程中发生了什么？&lt;/li&gt;
-&lt;li&gt;识别命令；谁，做了什么事，导致领域事件的发生？&lt;/li&gt;
-&lt;li&gt;识别领域名词；命令、事件和那些名词性概念有关？&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;领域事件表示的是，业务流程中每个步骤引发的结果。一般是完成时 + 被动语态。例：订单已被提交。&lt;/p&gt;
-&lt;p&gt;在 DDD 中的各种命名，一般都优先使用约定俗成的 &lt;strong&gt;业务术语&lt;/strong&gt;。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;不要把技术事件当成领域事件。&lt;/li&gt;
-&lt;li&gt;查询功能不算领域事件。领域事件应该是对某样事物产生了影响，并被记录的事情。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;参加的人，各自写出领域事件 -&amp;gt; 一起讨论，统一理解。这种先发散，后收敛，反复迭代的过程实际上就是一种头脑风暴。“协作”才是事件风暴的精髓。&lt;/p&gt;
-&lt;h2 id=&#34;04-事件风暴-下&#34;&gt;04 事件风暴 下&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;首先我们看看领域事件的作用。从代码实现的角度来看，领域事件一般会对应一段代码逻辑，这段逻辑可能会最终改变数据库中的数据。另外，在事件驱动的架构中，一个领域事件可能会表现为一个向外部发送的异步消息。&lt;/li&gt;
-&lt;li&gt;那命令的作用体现在哪儿呢？领域建模时，我们可以通过对命令的走查（walkthrough），细化和验证领域模型。在实现层面，一个命令可能对应前端的一个操作，例如按下按钮；对于后端而言，一个命令可能对应一个 API。&lt;/li&gt;
-&lt;li&gt;再来说命令的执行者。在领域建模时，执行者可能本身就是一个领域对象，也可能是领域对象充当的角色，或者是权限管理中的一个角色。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果要体现严格的时间顺序，我们可以用流程图、用顺序图等方法，但事件风暴不必关注这一点。&lt;/p&gt;
-&lt;p&gt;我们是把每个小步骤都当作独立的一个事务来看待，还是把它们合起来作为同一个事务。另外，可以设想，如果每个小步骤都向外界发出一个领域事件，对系统后续的功能是不是有意义。原则上宜粗不宜细。&lt;/p&gt;
-&lt;p&gt;抓住协作、统一语言、识别领域名词等要点。&lt;/p&gt;
-&lt;p&gt;事件风暴是一种通过协作的方式捕获行为需求的方法，在这个过程里，业务人员和技术人员一起消化领域知识、形成统一语言、并为领域建模奠定基础。&lt;/p&gt;
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;p&gt;&amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
       <title>正则表达式</title>
@@ -1693,16 +1645,27 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# ARG 指令有生效范围，如果在 FROM 指令之前指定，那么只能用于 FROM 指令中。&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# 在 FROM 之后须再次指定 ARG&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; LARADOCK_PHP_VERSION&lt;span class=&#34;err&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;config-setting&#34;&gt;Config Setting&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;#34;registry-mirrors&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://mirror.ccs.tencentyun.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://reg-mirror.qiniu.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://hub-mirror.c.163.com&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://mirror.baidubce.com&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;copy-vs-add&#34;&gt;COPY vs. ADD&lt;/h3&gt;
+&lt;p&gt;能用 COPY 就用 COPY，只有在 ADD 独有功能确实需要时才使用 ADD。&lt;/p&gt;
+&lt;p&gt;只有在确实需要 ADD 的额外功能（自动解压本地归档文件、从远程 URL 获取资源）时才使用 ADD。&lt;/p&gt;
+&lt;h3 id=&#34;run-vs-cmd-vs-entrypoint&#34;&gt;RUN vs. CMD vs. ENTRYPOINT&lt;/h3&gt;
+&lt;p&gt;RUN 在 镜像构建时执行 并生成新层；CMD/ENTRYPOINT 在 容器启动时执行。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RUN 安装依赖、编译源码。&lt;/li&gt;
+&lt;li&gt;ENTRYPOINT 用来定义 &lt;strong&gt;始终要执行&lt;/strong&gt; 的主命令。&lt;/li&gt;
+&lt;li&gt;CMD 用来提供 &lt;strong&gt;默认参数&lt;/strong&gt;，也可在缺少 ENTRYPOINT 时充当默认命令。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ENTRYPOINT&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/scripts/app/entrypoint.sh&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CMD&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;/scripts/fpm/start-php-fpm.sh&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;ENTRYPOINT 以 &lt;em&gt;exec 形式 (JSON 数组)&lt;/em&gt; 指定：容器启动时一定会先执行 &lt;code&gt;/scripts/app/entrypoint.sh&lt;/code&gt;，它就是 PID 1。可被 docker run 的 &amp;ndash;entrypoint 覆盖。&lt;/li&gt;
+&lt;li&gt;CMD 以 &lt;em&gt;shell 形式 (单字符串)&lt;/em&gt; 指定默认命令：缺省情况下，Docker 会把它当作 &lt;code&gt;/bin/sh -c &amp;quot;/scripts/fpm/start-php-fpm.sh&amp;quot;&lt;/code&gt; 并把这一整串 &lt;strong&gt;作为参数&lt;/strong&gt; 传给 ENTRYPOINT。可被 docker run 后面参数覆盖。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/scripts/app/entrypoint.sh /bin/sh -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;/scripts/fpm/start-php-fpm.sh&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;label-vs-arg-vs-env&#34;&gt;LABEL vs. ARG vs. ENV&lt;/h3&gt;
+&lt;p&gt;LABEL 写入镜像 &lt;strong&gt;元数据&lt;/strong&gt;。ARG 仅在 &lt;strong&gt;构建阶段&lt;/strong&gt; 可用；ENV 在 &lt;strong&gt;构建后续层&lt;/strong&gt; 和 &lt;strong&gt;运行时&lt;/strong&gt; 都可用，并会出现在最终镜像中。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Laradock 学习笔记</title>
@@ -2993,7 +2956,9 @@
       <link>https://zyf.im/2020/04/28/ide-snippet/</link>
       <pubDate>Tue, 28 Apr 2020 10:43:39 +0800</pubDate>
       <guid>https://zyf.im/2020/04/28/ide-snippet/</guid>
-      <description>&lt;h2 id=&#34;cursor&#34;&gt;Cursor&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;phpstorm&#34;&gt;PhpStorm&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://zyf.im/2018/05/05/phpstorm-using-experience/&#34;&gt;PhpStorm 使用经验 | ZYF.IM&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cursor&#34;&gt;Cursor&lt;/h2&gt;
 &lt;h3 id=&#34;备份扩展&#34;&gt;备份扩展&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cursor --list-extensions &amp;gt; cursor_extensions.txt
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xargs -L &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; cursor --install-extension &amp;lt; cursor_extensions.txt
@@ -3024,8 +2989,7 @@
 &lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;在 vim 中粘贴前先输入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:set paste
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;
-&lt;p&gt;问题就是出在这：当上一行结束，光标进入下一行时 vim 会自动以上一行的的缩进为初始位置。这样就会破坏原始文件的缩进。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;</description>
     </item>
     <item>
       <title>PHP GD 入门使用</title>
@@ -3090,20 +3054,10 @@
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://php.watch/&#34;&gt;PHP News, Articles, Upcoming Changes, and more | PHP.Watch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/shivammathur/homebrew-php&#34;&gt;brew tap shivammathur/php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/shivammathur/homebrew-extensions&#34;&gt;brew tap shivammathur/extensions&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;laravel-illuminate&#34;&gt;Laravel illuminate&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# https://github.com/illuminate/database/blob/master/README.md
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$capsule&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Capsule&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$capsule&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;addConnection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;dbConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$capsule&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setAsGlobal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Setup the Eloquent ORM... (optional; unless you&amp;#39;ve used setEventDispatcher())
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$capsule&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;bootEloquent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$capsule&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getDatabaseManager&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;mongodb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;\Jenssegers\Mongodb\Connection&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;参数查看&#34;&gt;参数查看&lt;/h2&gt;
+&lt;h2 id=&#34;php-cli&#34;&gt;PHP CLI&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 PHP 编译时的参数&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;phpinfo();&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep configure
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -3114,6 +3068,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 Modules&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -m
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 显示 PHP 信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -i &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep -E &lt;span class=&#34;s2&#34;&gt;&amp;#34;Loaded Configuration|Scan this dir&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;echo ini_get(&amp;#39;memory_limit&amp;#39;);&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;phpinfo();&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep memory
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 显示扩展配置&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php --ri gd
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -3123,18 +3084,17 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 交互式运行模式。具有函数、常量、类名、变量、静态方法调用和类常量的 `tab` 补全功能&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# http://php.net/manual/en/features.commandline.interactive.php&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -a
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;查看修改内存限制&#34;&gt;查看、修改内存限制&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;echo ini_get(&amp;#39;memory_limit&amp;#39;);&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -r &lt;span class=&#34;s2&#34;&gt;&amp;#34;phpinfo();&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep memory
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-ini&#34; data-lang=&#34;ini&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;na&#34;&gt;memory_limit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;1024M;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 临时设置最大内存占用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 检查 PHP-FPM 配置文件语法&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php-fpm -tt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;snippets&#34;&gt;Snippets&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 临时设置最大内存占用
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ini_set&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;memory_limit&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;1024M&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 设置脚本最大执行时间为 0 永不过期
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;set_time_limit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;too-many-open-files&#34;&gt;Too Many Open Files&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PHP-FPM Too Many Open Files 24 Error (set open file descriptor limit)&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;composer&#34;&gt;Composer&lt;/h2&gt;
+&lt;h3 id=&#34;aliyun-repo&#34;&gt;aliyun repo&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.aliyun.com/composer&#34;&gt;阿里云 Composer 全量镜像&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>MySQL Illegal mix of collations</title>
@@ -6699,7 +6659,7 @@ return 2.
 You may assume that both strings contain only lowercase letters.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>IMOOC 与MySQL的零距离接触</title>
+      <title>IMOOC 与 MySQL 的零距离接触</title>
       <link>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</link>
       <pubDate>Sun, 31 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</guid>
@@ -6781,7 +6741,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;p&gt;&lt;img alt=&#34;160731-imooc-mysql-tutorials-notes-int&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199388-d5776280-8653-11ea-9182-29a23e53ba50.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>IMOOC MySQL开发技巧</title>
+      <title>IMOOC MySQL 开发技巧</title>
       <link>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</link>
       <pubDate>Mon, 25 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</guid>

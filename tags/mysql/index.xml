@@ -4,7 +4,7 @@
     <title>Mysql on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/mysql/</link>
     <description>Recent content in Mysql on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.0</generator>
+    <generator>Hugo -- 0.148.2</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Sep 2022 18:55:54 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
@@ -379,7 +379,7 @@
 3、发现了一个 ubuntu 中监控 MySQL 的 &lt;code&gt;mytop&lt;/code&gt; 命令，刚刚安装还没细研究&lt;/p&gt;</description>
     </item>
     <item>
-      <title>IMOOC 与MySQL的零距离接触</title>
+      <title>IMOOC 与 MySQL 的零距离接触</title>
       <link>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</link>
       <pubDate>Sun, 31 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</guid>
@@ -461,7 +461,7 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;p&gt;&lt;img alt=&#34;160731-imooc-mysql-tutorials-notes-int&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199388-d5776280-8653-11ea-9182-29a23e53ba50.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>IMOOC MySQL开发技巧</title>
+      <title>IMOOC MySQL 开发技巧</title>
       <link>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</link>
       <pubDate>Mon, 25 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</guid>
