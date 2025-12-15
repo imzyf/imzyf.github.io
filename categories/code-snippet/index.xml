@@ -4,7 +4,7 @@
     <title>Code-Snippet on ZYF.IM BLOG</title>
     <link>https://zyf.im/categories/code-snippet/</link>
     <description>Recent content in Code-Snippet on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 17 Nov 2022 10:09:26 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/categories/code-snippet/index.xml" rel="self" type="application/rss+xml" />
@@ -19,7 +19,7 @@
 &lt;p&gt;该默认值可以在构建命令 docker build 中用 &amp;ndash;build-arg &amp;lt;参数名&amp;gt;=&amp;lt;值&amp;gt; 来覆盖。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; LARADOCK_PHP_VERSION&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;BASE_IMAGE_TAG_PREFIX&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;latest
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; laradock/workspace:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;laradock/workspace:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LABEL&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;maintainer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Mahmoud Zalt &amp;lt;mahmoud@zalt.me&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
@@ -73,7 +73,8 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global core.quotepath &lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当 &lt;code&gt;core.quotepath&lt;/code&gt; 设置为 &lt;code&gt;false&lt;/code&gt; 时，Git 将不会对路径名进行 quoting，这意味着路径名中的特殊字符将不被转义。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;工作区中删除未跟踪的文件&#34;&gt;工作区中删除未跟踪的文件&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看文档&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; clean
@@ -160,7 +161,8 @@
 &lt;h3 id=&#34;nodejs-安装&#34;&gt;Node.js 安装&lt;/h3&gt;
 &lt;p&gt;推荐使用 nvm 安装管理 node.js&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;the nvm method is definitely much more flexible.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;the nvm method is definitely much more flexible.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/creationix/nvm#installation&#34;&gt;creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.js versions&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -239,7 +241,8 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;粘贴到终端-vim-缩进错乱&#34;&gt;粘贴到终端 vim 缩进错乱&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在 vim 中粘贴前先输入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:set paste
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;</description>

@@ -4,7 +4,7 @@
     <title>Pr on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/pr/</link>
     <description>Recent content in Pr on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 13 Mar 2020 22:25:25 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/pr/index.xml" rel="self" type="application/rss+xml" />
@@ -14,7 +14,8 @@
       <pubDate>Fri, 13 Mar 2020 22:25:25 +0800</pubDate>
       <guid>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;用视频记录生活越来越普及，年初旅行也拍了些素材，想着自己也当个 up 主。先来学学 PR。&lt;a href=&#34;https://www.bilibili.com/video/av37550078&#34;&gt;【PR】Premiere Pro CC 2019 全套入门教程 | bilibili&lt;/a&gt; 是我在 B 站看的第一套教学视频，坦白说内容不多，有不少重复的东西，但是这样适合完全零基础的同学。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;课代表来收我的课后作业：&lt;a href=&#34;https://www.bilibili.com/video/bv17E41157Pz&#34;&gt;【交作业】PR CC 2019 全套入门教程 课后作业 | 菲菲与帆&lt;/a&gt; 。&lt;/p&gt;
@@ -39,7 +40,14 @@
 4、【编辑-首选项-时间轴】可以修改：静止图片默认持续时间等，
 已经导入的素材无效
 5、【时序窗口】计时器可以点击编辑，输入 500 会跳到第 5 秒的位置
-6、音频过渡，结尾声音淡出&lt;/p&gt;</description>
+6、音频过渡，结尾声音淡出&lt;/p&gt;
+&lt;h2 id=&#34;0506-视频剪辑音画对应&#34;&gt;05&amp;amp;06-视频剪辑&amp;amp;音画对应&lt;/h2&gt;
+&lt;p&gt;1、【左上窗口】点击 &lt;code&gt;i&lt;/code&gt; 标记入点，点击 &lt;code&gt;o&lt;/code&gt; 标记出点
+2、【左上窗口】窗口右下角的 + 是按钮编辑器
+3、【左上窗口】标记完成后可以点击 插入 或者 覆盖
+4、【节目窗口】点击 &lt;code&gt;m&lt;/code&gt; 可以标记
+5、【节目窗口】窗口右下角的 +，添加转到下一个标记
+6、转到下一个标记配合在时序上的标，踩点视频&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

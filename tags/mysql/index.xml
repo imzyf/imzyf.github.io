@@ -4,7 +4,7 @@
     <title>Mysql on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/mysql/</link>
     <description>Recent content in Mysql on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Sep 2022 18:55:54 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
@@ -14,7 +14,8 @@
       <pubDate>Wed, 14 Sep 2022 18:55:54 +0800</pubDate>
       <guid>https://zyf.im/2022/09/14/mysql-course-45-part2/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>MySQL 实战 45 讲 Part1</title>
@@ -22,7 +23,8 @@
       <pubDate>Sun, 14 Aug 2022 15:53:16 +0800</pubDate>
       <guid>https://zyf.im/2022/08/14/mysql-course-45-part1/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;01--基础架构一条-sql-查询语句是如何执行的&#34;&gt;01 | 基础架构：一条 SQL 查询语句是如何执行的？&lt;/h2&gt;
 &lt;img alt=&#34;image&#34; src=&#34;https://user-images.githubusercontent.com/9289792/184530380-826038a0-335a-45f7-a56e-cff7b336b4a4.png&#34; style=&#34;width: 480px&#34; /&gt;
 &lt;p&gt;连接器：跟客户端建立连接、获取权限、维持和管理连接。&lt;/p&gt;
@@ -62,7 +64,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;-- 1024 bytes
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_group_concat_max_len&#34;&gt;group_concat_max_len | mysql&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_group_concat_max_len&#34;&gt;group_concat_max_len | mysql&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
@@ -201,7 +204,8 @@
       <guid>https://zyf.im/2020/08/14/mysql-json-data-type/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/json.html&#34;&gt;The JSON Data Type | mysql&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;As of MySQL 5.7.8, MySQL supports a native JSON data type&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;As of MySQL 5.7.8, MySQL supports a native JSON data type&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/json-function-reference.html&#34;&gt;JSON Function Reference | mysql&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A JSON column cannot have a non-NULL default value.&lt;/p&gt;
 &lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
@@ -415,7 +419,8 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过环境变量配置。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;export&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MYSQL_PS1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;(\u@\h) [\d]&amp;gt; &amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;a href=&#34;http://renial.iteye.com/blog/773675&#34;&gt;http://renial.iteye.com/blog/773675&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;参考：&lt;a href=&#34;http://renial.iteye.com/blog/773675&#34;&gt;http://renial.iteye.com/blog/773675&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;mysql-语法规范&#34;&gt;MySQL 语法规范&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;关键字和函数名称全部 &lt;strong&gt;大写&lt;/strong&gt;&lt;/li&gt;
@@ -471,7 +476,8 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;p&gt;INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN(MySQL 不支持)、CROSS JOIN&lt;/p&gt;
 &lt;p&gt;这是在网上找到的非常好的一篇博文，图解 JOIN 语句：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/&#34;&gt;CODING HORROR-A Visual Explanation of SQL Joins&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/&#34;&gt;CODING HORROR-A Visual Explanation of SQL Joins&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;下图可以很清楚的明白，JOIN 的数据选取范围：&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;160725-imooc-mysql-development-skills-notes-001&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199172-9d701f80-8653-11ea-8d20-498f54e41708.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;160725-imooc-mysql-development-skills-notes-002&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199188-9fd27980-8653-11ea-9386-e76dca7b4d0c.jpeg&#34;&gt;&lt;/p&gt;

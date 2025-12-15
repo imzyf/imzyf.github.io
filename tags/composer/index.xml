@@ -4,7 +4,7 @@
     <title>Composer on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/composer/</link>
     <description>Recent content in Composer on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 28 Oct 2020 11:36:27 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/composer/index.xml" rel="self" type="application/rss+xml" />
@@ -15,13 +15,15 @@
       <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
       <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic usage&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/01-basic-usage.md&#34;&gt;https://getcomposer.org/doc/01-basic-usage.md&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/01-basic-usage.md&#34;&gt;https://getcomposer.org/doc/01-basic-usage.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# get a list of your locally available platform packages.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# php | ext-&amp;lt;name&amp;gt; | lib-&amp;lt;name&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer show --platform
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;libraries&#34;&gt;Libraries&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/02-libraries.md&#34;&gt;https://getcomposer.org/doc/02-libraries.md&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/02-libraries.md&#34;&gt;https://getcomposer.org/doc/02-libraries.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Light-weight distribution packages 轻量级分发包。使用 &lt;code&gt;.gitattributes&lt;/code&gt; 来防止不需要的文件使 zip 分发包膨胀。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;// .gitattributes
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/demo export-ignore
@@ -31,8 +33,13 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git archive branchName --format zip -o file.zip
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;command-line-interface--commands&#34;&gt;Command-line interface / Commands&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/03-cli.md&#34;&gt;https://getcomposer.org/doc/03-cli.md&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;As Composer uses symfony/console you can call commands by short name if it&amp;rsquo;s not ambiguous.&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/03-cli.md&#34;&gt;https://getcomposer.org/doc/03-cli.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As Composer uses symfony/console you can call commands by short name if it&amp;rsquo;s not ambiguous.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# calls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump-autoload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Bash Completions&lt;/p&gt;</description>
     </item>
     <item>
       <title>Composer vendor 提交至 Git</title>

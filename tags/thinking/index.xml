@@ -4,7 +4,7 @@
     <title>Thinking on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/thinking/</link>
     <description>Recent content in Thinking on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Jul 2021 21:08:08 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/thinking/index.xml" rel="self" type="application/rss+xml" />
@@ -74,7 +74,8 @@
 &lt;p&gt;在此基础上，我比较推荐程序员采用内外两条线来培养自己。在公司内的项目上采取相对保守的策略，尽力把稳定性做到最好，培养出自己卓越的工程能力；然后在公司外的开源项目和自己的独立项目上，采用一些新的技术、实践一些新的想法、充分发挥自己的创造力，梦想还是要有的，对吧。&lt;/p&gt;
 &lt;p&gt;这样做最明显的好处是，你可以了解到新技术和激进方案的优缺点，从而在进行方案选型时，有更多的依据；还有一个职业发展上的好处：如果不是主负责人，公司的项目往往不能代表你的能力；但独立项目却可以作为一个非常好的能力证明出现在你的简历里边。&lt;/p&gt;
 &lt;p&gt;你可以是一个身怀绝技的手艺人，在自己家里你尝试各种手法各种风格的个人作品；但当你参与颐和园这种级别的工程时，好好的把自己负责的石头雕成总设计师要求的样子就好 —— 毕竟这个时代一个人已经很难负责整个项目了。这就是我所理解的程序员的工匠精神。&lt;/p&gt;
-&lt;p&gt;摘自：&lt;a href=&#34;http://mp.weixin.qq.com/s?__biz=MzI5OTI5Njg2Mg==&amp;amp;mid=2247483667&amp;amp;idx=1&amp;amp;sn=d6e5953c7a7835148e3822b919b82416#rd&#34;&gt;程序员到底是一个什么职业？&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;摘自：&lt;a href=&#34;http://mp.weixin.qq.com/s?__biz=MzI5OTI5Njg2Mg==&amp;amp;mid=2247483667&amp;amp;idx=1&amp;amp;sn=d6e5953c7a7835148e3822b919b82416#rd&#34;&gt;程序员到底是一个什么职业？&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;（尾）&lt;/p&gt;
 &lt;p&gt;现在自己能听见进去一些原来听不去的话了。我不认为自己是被同化了，也许是心中少了些恶意。&lt;/p&gt;
 &lt;p&gt;状态不错，继续前进。&lt;/p&gt;
@@ -105,7 +106,8 @@
 越能干，越努力；越有钱，越上进
 而造成这一切的差异，最主要的来自人的精神内核。
  
-你要用牛人的标准要求自己，不断的走到牛人当中去，拉近和牛人之间的距离。当你觉得自己能够成为他们中的一员的时候，你才能成为了真正的牛人。&lt;/p&gt;&lt;/blockquote&gt;
+你要用牛人的标准要求自己，不断的走到牛人当中去，拉近和牛人之间的距离。当你觉得自己能够成为他们中的一员的时候，你才能成为了真正的牛人。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;成功？我才刚上路呢。&lt;/p&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
@@ -119,7 +121,8 @@
 &lt;p&gt;问：“有自己的网站吗？”
 “没有。”
 问：“域名都买了不自己搭个网站?”
-“……”&lt;/p&gt;&lt;/blockquote&gt;
+“……”&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;其实这也不是自己要搭博客的根本原因。&lt;/p&gt;
 &lt;p&gt;在大学里，学了些做了些东西，可思考的不多。现在越发觉的一个人的强大在于思想。看书写些东西我想是提高一个人思想的方法吧。文字写下来了也方便交流。&lt;/p&gt;
 &lt;p&gt;出来了换了一个环境，遇到新的人，新的事，可以换个角度看人看事。原来我理解的一些技术博客，就是解决问题后的笔记本，有问题从中找，而且觉得很多网上的技术博客里的内容都是来回的转来转去，很多解决方案都是过时的，没什么的。可最近在浏览博客园、csdn 发现了很多精华的前人分享自己所理解的知识、技术中走的弯路，阅读后很受益。&lt;/p&gt;
@@ -128,7 +131,8 @@
 &lt;blockquote&gt;
 &lt;p&gt;我不能保证写的每个地方都是对的，但是至少能保证不复制、不黏贴，保证每一句话、每一行代码都经过了认真的推敲、仔细的斟酌。每一篇文章的背后，希望都能看到自己对于技术、对于生活的态度。
 我相信乔布斯说的，只有那些疯狂到认为自己可以改变世界的人才能真正地改变世界。面对压力，我可以挑灯夜战、不眠不休；面对困难，我愿意迎难而上、永不退缩。
-其实我想说的是，我只是一个程序员，这就是我现在纯粹人生的全部。&lt;/p&gt;&lt;/blockquote&gt;
+其实我想说的是，我只是一个程序员，这就是我现在纯粹人生的全部。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;再认同不过了。&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ul&gt;

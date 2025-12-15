@@ -4,7 +4,7 @@
     <title>Ios on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/ios/</link>
     <description>Recent content in Ios on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 28 Feb 2019 10:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ios/index.xml" rel="self" type="application/rss+xml" />
@@ -95,7 +95,8 @@
       <guid>https://zyf.im/2019/01/19/promisekit-getting-started/</guid>
       <description>&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;环境：Swift 4.2、PromiseKit 6&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;环境：Swift 4.2、PromiseKit 6&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;then-and-done&#34;&gt;then and done&lt;/h2&gt;
 &lt;p&gt;下面是一个典型的 promise 链式（chain）调用：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;firstly {
@@ -241,7 +242,8 @@
       <pubDate>Thu, 15 Mar 2018 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;编写测试并不迷人 (glamorous)，但是既然测试能让你闪闪发光 (sparkling) 的应用程序避免变成 (from turning into) 一堆乱七八糟的垃圾，那么说明测试是必要的。如果你正在阅读这篇教程，那么你已经知道你 &lt;em&gt;应该&lt;/em&gt; 为代码和 UI 编写测试，但是你可能不知道如何做。&lt;/p&gt;
 &lt;p&gt;也许你已经有一个 &amp;ldquo;可以运行&amp;rdquo; 的应用，但想测试你正在进行的扩展应用的更改。也许你已经编写了一些测试，但不确定它们是否是 &lt;em&gt;正确&lt;/em&gt; 的测试。或者，你已经开始开发一个新应用，想要边开发边测试。&lt;/p&gt;
 &lt;p&gt;这篇教程将告诉你如何:&lt;/p&gt;

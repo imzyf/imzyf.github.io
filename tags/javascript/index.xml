@@ -4,7 +4,7 @@
     <title>Javascript on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/javascript/</link>
     <description>Recent content in Javascript on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 09 Jun 2022 14:59:09 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
@@ -14,7 +14,8 @@
       <pubDate>Thu, 09 Jun 2022 14:59:09 +0800</pubDate>
       <guid>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://wangdoc.com/javascript/index.html&#34;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://wangdoc.com/javascript/index.html&#34;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;javascript-语言的历史&#34;&gt;JavaScript 语言的历史&lt;/h2&gt;
 &lt;p&gt;ECMAScript 只用来标准化 JavaScript 这种语言的基本语法结构，与部署环境相关的标准都由其他标准规定，比如 DOM 的标准就是由 W3C 组织（World Wide Web Consortium）制定的。&lt;/p&gt;
 &lt;p&gt;2011 年 6 月，ECMAScript 5.1 版发布，并且成为 ISO 国际标准（ISO/IEC 16262:2011）。到了 2012 年底，所有主要浏览器都支持 ECMAScript 5.1 版的全部功能。&lt;/p&gt;

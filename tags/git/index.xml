@@ -4,7 +4,7 @@
     <title>Git on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/git/</link>
     <description>Recent content in Git on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Oct 2022 10:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/git/index.xml" rel="self" type="application/rss+xml" />
@@ -33,7 +33,8 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global core.quotepath &lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当 &lt;code&gt;core.quotepath&lt;/code&gt; 设置为 &lt;code&gt;false&lt;/code&gt; 时，Git 将不会对路径名进行 quoting，这意味着路径名中的特殊字符将不被转义。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;工作区中删除未跟踪的文件&#34;&gt;工作区中删除未跟踪的文件&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看文档&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; clean
@@ -287,7 +288,8 @@
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;topgit-协同模型&#34;&gt;Topgit 协同模型&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;笔者注：Topgit 是否已经过时？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;笔者注：Topgit 是否已经过时？&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;卖主分支 Vendor Branch&lt;/code&gt; 是在版本库中专门创建一个和上游同步的分支，一旦有上游代码发布就捡入到卖主分支中。&lt;/p&gt;
 &lt;h2 id=&#34;子模组协同模型&#34;&gt;子模组协同模型&lt;/h2&gt;
 &lt;h3 id=&#34;创建子模组&#34;&gt;创建子模组&lt;/h3&gt;
@@ -354,7 +356,8 @@
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git pull = git fetch + git merge
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;合并策略&#34;&gt;合并策略&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://git-scm.com/docs/git-merge#_merge_strategies&#34;&gt;Merge Strategis&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/docs/git-merge#_merge_strategies&#34;&gt;Merge Strategis&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git merge [-s &amp;lt;strategy&amp;gt;] [-X &amp;lt;strategy-option&amp;gt;] [&amp;lt;commit&amp;gt;...]
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.&lt;/p&gt;
@@ -611,7 +614,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;code&gt;git pull --rebase&lt;/code&gt; 主要是为是将提交约线图平坦化，而 &lt;code&gt;git merge --no-ff&lt;/code&gt; 则是刻意制造分叉&lt;/p&gt;
 &lt;h2 id=&#34;pull-rebase&#34;&gt;pull rebase&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;perform a rebase after fetching&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;perform a rebase after fetching&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;状况&#34;&gt;状况&lt;/h3&gt;
 &lt;p&gt;Git 作为分布式版本控制系统，所有修改操作都是基于本地的，在团队协作过程中，假设你和你的同伴在本地中分别有各自的新提交，而你的同伴先于你 push 了代码到远程分支上，所以你必须先执行 &lt;code&gt;git pull&lt;/code&gt; 来获取同伴的提交，然后才能 push 自己的提交到远程分支。&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-01&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80202129-c1cdfb00-8657-11ea-814e-49f8618f301c.jpg&#34;&gt;&lt;/p&gt;
@@ -668,7 +672,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;如此一来，你就可以通过这种方式去自动完成一些重复性工作；比如，你可以用 Webhook 来自动触发一些持续集成（CI）工具的运作，比如 Travis CI；又或者是通过 Webhook 去部署你的线上服务器。&lt;/p&gt;
 &lt;p&gt;Github 开发者平台的文档中对 Webhook 的所能做的事是这样描述的：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;响应-webhook&#34;&gt;响应 Webhook&lt;/h2&gt;
 &lt;p&gt;在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。&lt;/p&gt;
 &lt;p&gt;自己在 GitHub 搜索下 &lt;code&gt;github webhook&lt;/code&gt;，&lt;code&gt;language&lt;/code&gt; 选择 &lt;code&gt;Python&lt;/code&gt; 便找到了 Python 编写的：&lt;a href=&#34;https://github.com/razius/github-webhook-handler&#34;&gt;razius/github-webhook-handler&lt;/a&gt;&lt;/p&gt;</description>
@@ -707,7 +712,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;本文的操作的系统环境是 Ubuntu 15，Windows 下的搭建可触类旁通。&lt;/p&gt;
 &lt;h2 id=&#34;了解-hexo&#34;&gt;了解 Hexo&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，&lt;a href=&#34;https://hexo.io/zh-cn/docs/setup.html&#34;&gt;Hexo setup 官方文档&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
   </channel>

@@ -4,7 +4,7 @@
     <title>Nginx on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/nginx/</link>
     <description>Recent content in Nginx on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
@@ -132,7 +132,8 @@
 &lt;/ol&gt;
 &lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;实验环境：Amazon Linux 2023 (AL2023)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;实验环境：Amazon Linux 2023 (AL2023)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;知识补充&#34;&gt;知识补充&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;dnf（Dandified YUM）&lt;/code&gt; 是 RPM-系 Linux 发行版的下一代包管理器。它在功能上取代了传统的 &lt;code&gt;yum&lt;/code&gt;，两者命令参数几乎保持兼容。&lt;/li&gt;

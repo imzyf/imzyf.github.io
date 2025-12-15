@@ -4,7 +4,7 @@
     <title>ZYF.IM BLOG</title>
     <link>https://zyf.im/</link>
     <description>Recent content on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/index.xml" rel="self" type="application/rss+xml" />
@@ -154,7 +154,8 @@
 &lt;li&gt;&lt;a href=&#34;https://php.watch/versions/8.3&#34;&gt;https://php.watch/versions/8.3&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PHP 8.3 contains many new features, such as explicit typing of class constants, deep-cloning of readonly properties and additions to the randomness functionality.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;new-features-83&#34;&gt;New Features 8.3&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Typed class constants
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Include class, trait, interface, enum
@@ -251,7 +252,8 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/symfony/polyfill/tree/1.x/src/Php82&#34;&gt;https://github.com/symfony/polyfill/tree/1.x/src/Php82&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;new-features-82&#34;&gt;New Features 8.2&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Readonly Classes
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Complete class properties become immutable when declared readonly
@@ -670,7 +672,8 @@
       <pubDate>Sat, 31 Dec 2022 20:16:41 +0800</pubDate>
       <guid>https://zyf.im/2022/12/31/review-2022/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;犯错的人不会沉浸在错误里，而是继续战斗。 —— 管泽元 S12 总决赛 DRX vs SKT 2:2&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;犯错的人不会沉浸在错误里，而是继续战斗。 —— 管泽元 S12 总决赛 DRX vs SKT 2:2&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
@@ -686,7 +689,8 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/symfony/polyfill/tree/1.x/src/Php81&#34;&gt;https://github.com/symfony/polyfill/tree/1.x/src/Php81&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;new-features-81&#34;&gt;New Features 8.1&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Add native support for enumerations using enum keyword
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// https://www.php.net/manual/en/language.enumerations.examples.php
@@ -825,7 +829,8 @@
 &lt;li&gt;&lt;a href=&#34;https://github.com/symfony/polyfill/tree/1.x/src/Php80&#34;&gt;https://github.com/symfony/polyfill/tree/1.x/src/Php80&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PHP 8.0 contains many new features and optimizations including named arguments, union types, attributes, constructor property promotion, match expression, nullsafe operator, JIT, and improvements in the type system, error handling, and consistency.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PHP 8.0 contains many new features and optimizations including named arguments, union types, attributes, constructor property promotion, match expression, nullsafe operator, JIT, and improvements in the type system, error handling, and consistency.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;new-features-80&#34;&gt;New Features 8.0&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Named Parameters 命名参数
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// https://www.php.net/manual/zh/functions.arguments.php#functions.named-arguments
@@ -1109,7 +1114,8 @@
 &lt;li&gt;&lt;a href=&#34;https://php.watch/versions/7.2&#34;&gt;https://php.watch/versions/7.2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Argon2 password hashing support, class constant visibility, object type, and many more.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Argon2 password hashing support, class constant visibility, object type, and many more.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;new-features-72&#34;&gt;New Features 7.2&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 新的 object 类型
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 可用于逆变（contravariant）参数输入和协变（covariant）返回任何对象类型
@@ -1299,7 +1305,8 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;php70-to-php71&#34;&gt;PHP7.0 to PHP7.1&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.php.net/manual/en/migration71.php&#34;&gt;https://www.php.net/manual/en/migration71.php&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.php.net/manual/en/migration71.php&#34;&gt;https://www.php.net/manual/en/migration71.php&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;71-new-features&#34;&gt;7.1 New Features&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Nullable types 可为空类型
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt;
@@ -1638,7 +1645,7 @@
 &lt;p&gt;该默认值可以在构建命令 docker build 中用 &amp;ndash;build-arg &amp;lt;参数名&amp;gt;=&amp;lt;值&amp;gt; 来覆盖。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-dockerfile&#34; data-lang=&#34;dockerfile&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; LARADOCK_PHP_VERSION&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ARG&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;BASE_IMAGE_TAG_PREFIX&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;latest
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;s&#34;&gt; laradock/workspace:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;laradock/workspace:${BASE_IMAGE_TAG_PREFIX}-${LARADOCK_PHP_VERSION&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LABEL&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;maintainer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Mahmoud Zalt &amp;lt;mahmoud@zalt.me&amp;gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;
@@ -1737,7 +1744,8 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config --global core.quotepath &lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;当 &lt;code&gt;core.quotepath&lt;/code&gt; 设置为 &lt;code&gt;false&lt;/code&gt; 时，Git 将不会对路径名进行 quoting，这意味着路径名中的特殊字符将不被转义。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://xstarcd.github.io/wiki/shell/git_chinese.html&#34;&gt;Git 中文显示问题解决&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;工作区中删除未跟踪的文件&#34;&gt;工作区中删除未跟踪的文件&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看文档&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; clean
@@ -1763,7 +1771,8 @@
       <pubDate>Wed, 14 Sep 2022 18:55:54 +0800</pubDate>
       <guid>https://zyf.im/2022/09/14/mysql-course-45-part2/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;</description>
+&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>MySQL 实战 45 讲 Part1</title>
@@ -1771,7 +1780,8 @@
       <pubDate>Sun, 14 Aug 2022 15:53:16 +0800</pubDate>
       <guid>https://zyf.im/2022/08/14/mysql-course-45-part1/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://gk.link/a/11AmM&#34;&gt;MySQL 实战 45 讲 | 林晓斌&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;01--基础架构一条-sql-查询语句是如何执行的&#34;&gt;01 | 基础架构：一条 SQL 查询语句是如何执行的？&lt;/h2&gt;
 &lt;img alt=&#34;image&#34; src=&#34;https://user-images.githubusercontent.com/9289792/184530380-826038a0-335a-45f7-a56e-cff7b336b4a4.png&#34; style=&#34;width: 480px&#34; /&gt;
 &lt;p&gt;连接器：跟客户端建立连接、获取权限、维持和管理连接。&lt;/p&gt;
@@ -1867,7 +1877,8 @@
 &lt;h3 id=&#34;nodejs-安装&#34;&gt;Node.js 安装&lt;/h3&gt;
 &lt;p&gt;推荐使用 nvm 安装管理 node.js&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;the nvm method is definitely much more flexible.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;the nvm method is definitely much more flexible.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/creationix/nvm#installation&#34;&gt;creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.js versions&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
@@ -1876,7 +1887,8 @@
       <pubDate>Thu, 09 Jun 2022 14:59:09 +0800</pubDate>
       <guid>https://zyf.im/2022/06/09/javascript-wangdoc-reading-notes/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://wangdoc.com/javascript/index.html&#34;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://wangdoc.com/javascript/index.html&#34;&gt;JavaScript 教程 | 网道（WangDoc.com）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;javascript-语言的历史&#34;&gt;JavaScript 语言的历史&lt;/h2&gt;
 &lt;p&gt;ECMAScript 只用来标准化 JavaScript 这种语言的基本语法结构，与部署环境相关的标准都由其他标准规定，比如 DOM 的标准就是由 W3C 组织（World Wide Web Consortium）制定的。&lt;/p&gt;
 &lt;p&gt;2011 年 6 月，ECMAScript 5.1 版发布，并且成为 ISO 国际标准（ISO/IEC 16262:2011）。到了 2012 年底，所有主要浏览器都支持 ECMAScript 5.1 版的全部功能。&lt;/p&gt;
@@ -1914,7 +1926,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;-- 1024 bytes
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_group_concat_max_len&#34;&gt;group_concat_max_len | mysql&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_group_concat_max_len&#34;&gt;group_concat_max_len | mysql&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
@@ -1924,7 +1937,8 @@
       <guid>https://zyf.im/2021/12/31/review-2021/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://music.163.com/#/song?id=25638375&#34;&gt;直到对的人来 · 追星族乐队&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;我想跟他说：那家餐厅太美了，我一定要和你去一次。但是那个菜其实很一般的，那个老板娘戴的耳环特别漂亮。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;我想跟他说：那家餐厅太美了，我一定要和你去一次。但是那个菜其实很一般的，那个老板娘戴的耳环特别漂亮。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
@@ -1949,7 +1963,8 @@
 &lt;h3 id=&#34;通用手动安装-pecl-扩展&#34;&gt;通用手动安装 PECL 扩展&lt;/h3&gt;
 &lt;p&gt;For this to work, you’ll need to have root access to your server, and you’ll most probably need developer tools installed as well.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://pecl.php.net/&#34;&gt;https://pecl.php.net/&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://pecl.php.net/&#34;&gt;https://pecl.php.net/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建临时目录&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /tmp/download/ &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp/download/
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载&lt;/span&gt;
@@ -2445,7 +2460,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;activerecord-one&#34;&gt;ActiveRecord one&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;yii\db\ActiveRecord::findOne()&lt;/code&gt; 和 &lt;code&gt;yii\db\ActiveQuery::one()&lt;/code&gt; 都不会添加 LIMIT 1 到 生成的 SQL 语句中。如果你的查询会返回很多行的数据， 你明确的应该加上 &lt;code&gt;limit(1)&lt;/code&gt; 来提高性能，比如 &lt;code&gt;Customer::find()-&amp;gt;limit(1)-&amp;gt;one()&lt;/code&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;yii\db\ActiveRecord::findOne()&lt;/code&gt; 和 &lt;code&gt;yii\db\ActiveQuery::one()&lt;/code&gt; 都不会添加 LIMIT 1 到 生成的 SQL 语句中。如果你的查询会返回很多行的数据， 你明确的应该加上 &lt;code&gt;limit(1)&lt;/code&gt; 来提高性能，比如 &lt;code&gt;Customer::find()-&amp;gt;limit(1)-&amp;gt;one()&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;db-where&#34;&gt;DB where&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.yiiframework.com/doc/guide/2.0/zh-cn/db-query-builder&#34;&gt;查询构建器 | yiiframework&lt;/a&gt;
@@ -2518,13 +2534,15 @@
       <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
       <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic usage&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/01-basic-usage.md&#34;&gt;https://getcomposer.org/doc/01-basic-usage.md&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/01-basic-usage.md&#34;&gt;https://getcomposer.org/doc/01-basic-usage.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# get a list of your locally available platform packages.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# php | ext-&amp;lt;name&amp;gt; | lib-&amp;lt;name&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer show --platform
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;libraries&#34;&gt;Libraries&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/02-libraries.md&#34;&gt;https://getcomposer.org/doc/02-libraries.md&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/02-libraries.md&#34;&gt;https://getcomposer.org/doc/02-libraries.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Light-weight distribution packages 轻量级分发包。使用 &lt;code&gt;.gitattributes&lt;/code&gt; 来防止不需要的文件使 zip 分发包膨胀。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;// .gitattributes
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/demo export-ignore
@@ -2534,8 +2552,13 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git archive branchName --format zip -o file.zip
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;command-line-interface--commands&#34;&gt;Command-line interface / Commands&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/03-cli.md&#34;&gt;https://getcomposer.org/doc/03-cli.md&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;As Composer uses symfony/console you can call commands by short name if it&amp;rsquo;s not ambiguous.&lt;/p&gt;</description>
+&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/03-cli.md&#34;&gt;https://getcomposer.org/doc/03-cli.md&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As Composer uses symfony/console you can call commands by short name if it&amp;rsquo;s not ambiguous.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# calls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump-autoload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Bash Completions&lt;/p&gt;</description>
     </item>
     <item>
       <title>在 Laravel 之外使用 illuminate 组件</title>
@@ -2617,7 +2640,8 @@
       <guid>https://zyf.im/2020/08/14/mysql-json-data-type/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/json.html&#34;&gt;The JSON Data Type | mysql&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;As of MySQL 5.7.8, MySQL supports a native JSON data type&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;As of MySQL 5.7.8, MySQL supports a native JSON data type&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://dev.mysql.com/doc/refman/5.7/en/json-function-reference.html&#34;&gt;JSON Function Reference | mysql&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;A JSON column cannot have a non-NULL default value.&lt;/p&gt;
 &lt;h2 id=&#34;索引&#34;&gt;索引&lt;/h2&gt;
@@ -2866,7 +2890,8 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum groupinstall &lt;span class=&#34;s2&#34;&gt;&amp;#34;Development tools&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.php.net/manual/zh/configure.about.php&#34;&gt;核心配置选项列表 | php.net&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.php.net/manual/zh/configure.about.php&#34;&gt;核心配置选项列表 | php.net&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看配置参数&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --help
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --help &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep openssl
@@ -2911,7 +2936,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew install zlib
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置编译安装&#34;&gt;配置编译安装&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.php.net/manual/zh/configure.about.php&#34;&gt;核心配置选项列表 | php.net&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.php.net/manual/zh/configure.about.php&#34;&gt;核心配置选项列表 | php.net&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看配置参数&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --help
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --help &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep openssl
@@ -2986,7 +3012,8 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;粘贴到终端-vim-缩进错乱&#34;&gt;粘贴到终端 vim 缩进错乱&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/2514445/turning-off-auto-indent-when-pasting-text-into-vim/38258720#38258720&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在 vim 中粘贴前先输入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;:set paste
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;原因：在终端的 vim 中没有相应的程序来处理这个从其他应用复制粘贴的过程，所以 vim 通过插入键盘输入的 buffer 来模拟这个粘贴的过程，这个时候 vim 会以为这是用户输入的。&lt;/p&gt;</description>
@@ -3133,7 +3160,8 @@
       <pubDate>Fri, 13 Mar 2020 22:25:25 +0800</pubDate>
       <guid>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;u1s1 本教程质量一般，推荐看看 李兴兴 老师的教程。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;用视频记录生活越来越普及，年初旅行也拍了些素材，想着自己也当个 up 主。先来学学 PR。&lt;a href=&#34;https://www.bilibili.com/video/av37550078&#34;&gt;【PR】Premiere Pro CC 2019 全套入门教程 | bilibili&lt;/a&gt; 是我在 B 站看的第一套教学视频，坦白说内容不多，有不少重复的东西，但是这样适合完全零基础的同学。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;课代表来收我的课后作业：&lt;a href=&#34;https://www.bilibili.com/video/bv17E41157Pz&#34;&gt;【交作业】PR CC 2019 全套入门教程 课后作业 | 菲菲与帆&lt;/a&gt; 。&lt;/p&gt;
@@ -3158,7 +3186,14 @@
 4、【编辑-首选项-时间轴】可以修改：静止图片默认持续时间等，
 已经导入的素材无效
 5、【时序窗口】计时器可以点击编辑，输入 500 会跳到第 5 秒的位置
-6、音频过渡，结尾声音淡出&lt;/p&gt;</description>
+6、音频过渡，结尾声音淡出&lt;/p&gt;
+&lt;h2 id=&#34;0506-视频剪辑音画对应&#34;&gt;05&amp;amp;06-视频剪辑&amp;amp;音画对应&lt;/h2&gt;
+&lt;p&gt;1、【左上窗口】点击 &lt;code&gt;i&lt;/code&gt; 标记入点，点击 &lt;code&gt;o&lt;/code&gt; 标记出点
+2、【左上窗口】窗口右下角的 + 是按钮编辑器
+3、【左上窗口】标记完成后可以点击 插入 或者 覆盖
+4、【节目窗口】点击 &lt;code&gt;m&lt;/code&gt; 可以标记
+5、【节目窗口】窗口右下角的 +，添加转到下一个标记
+6、转到下一个标记配合在时序上的标，踩点视频&lt;/p&gt;</description>
     </item>
     <item>
       <title>PHP FTP 间歇性无法上传文件</title>
@@ -3354,7 +3389,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;assign&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({},&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改-elementui-默认样式&#34;&gt;修改 ElementUI 默认样式&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/7011016159545786376&#34;&gt;vue 中令人头疼的 element-ui 组件默认 css 样式修改 | juejin&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://juejin.cn/post/7011016159545786376&#34;&gt;vue 中令人头疼的 element-ui 组件默认 css 样式修改 | juejin&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;my-class&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;el-table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;el-table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -3821,7 +3857,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意这时是不会输出 &lt;code&gt;yes&lt;/code&gt;，因为 &lt;code&gt;strpos($mystring, $findme)&lt;/code&gt; 返回的是 &lt;code&gt;0&lt;/code&gt;。就想官方文档说的：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Warning 此函数可能返回布尔值 FALSE，但也可能返回等同于 FALSE 的非布尔值。应使用 === 运算符来测试此函数的返回值。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;Warning 此函数可能返回布尔值 FALSE，但也可能返回等同于 FALSE 的非布尔值。应使用 === 运算符来测试此函数的返回值。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;正解：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;strpos&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$mystring&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$findme&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!==&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;yes&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -4145,7 +4182,8 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
       <guid>https://zyf.im/2019/01/19/promisekit-getting-started/</guid>
       <description>&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;环境：Swift 4.2、PromiseKit 6&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;环境：Swift 4.2、PromiseKit 6&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;then-and-done&#34;&gt;then and done&lt;/h2&gt;
 &lt;p&gt;下面是一个典型的 promise 链式（chain）调用：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;firstly {
@@ -4460,7 +4498,8 @@ for (k, v) in array.enumerated() {
       <guid>https://zyf.im/2018/05/08/modern-php-reading-notes/</guid>
       <description>&lt;p&gt;又回到 PHP Web 开发，使用 Laravel 框架，重读《Modern PHP》。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;PHP 正在重生。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;PHP 正在重生。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;特性&#34;&gt;特性&lt;/h2&gt;
 &lt;h3 id=&#34;命名空间&#34;&gt;命名空间&lt;/h3&gt;
 &lt;p&gt;声明命名空间：&lt;/p&gt;
@@ -4557,7 +4596,8 @@ for (k, v) in array.enumerated() {
 &lt;/ol&gt;
 &lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;实验环境：Amazon Linux 2023 (AL2023)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;实验环境：Amazon Linux 2023 (AL2023)&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;知识补充&#34;&gt;知识补充&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;dnf（Dandified YUM）&lt;/code&gt; 是 RPM-系 Linux 发行版的下一代包管理器。它在功能上取代了传统的 &lt;code&gt;yum&lt;/code&gt;，两者命令参数几乎保持兼容。&lt;/li&gt;
@@ -4731,7 +4771,8 @@ for (k, v) in array.enumerated() {
       <pubDate>Thu, 15 Mar 2018 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;编写测试并不迷人 (glamorous)，但是既然测试能让你闪闪发光 (sparkling) 的应用程序避免变成 (from turning into) 一堆乱七八糟的垃圾，那么说明测试是必要的。如果你正在阅读这篇教程，那么你已经知道你 &lt;em&gt;应该&lt;/em&gt; 为代码和 UI 编写测试，但是你可能不知道如何做。&lt;/p&gt;
 &lt;p&gt;也许你已经有一个 &amp;ldquo;可以运行&amp;rdquo; 的应用，但想测试你正在进行的扩展应用的更改。也许你已经编写了一些测试，但不确定它们是否是 &lt;em&gt;正确&lt;/em&gt; 的测试。或者，你已经开始开发一个新应用，想要边开发边测试。&lt;/p&gt;
 &lt;p&gt;这篇教程将告诉你如何:&lt;/p&gt;
@@ -4780,7 +4821,8 @@ for (k, v) in array.enumerated() {
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;topgit-协同模型&#34;&gt;Topgit 协同模型&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;笔者注：Topgit 是否已经过时？&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;笔者注：Topgit 是否已经过时？&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;卖主分支 Vendor Branch&lt;/code&gt; 是在版本库中专门创建一个和上游同步的分支，一旦有上游代码发布就捡入到卖主分支中。&lt;/p&gt;
 &lt;h2 id=&#34;子模组协同模型&#34;&gt;子模组协同模型&lt;/h2&gt;
 &lt;h3 id=&#34;创建子模组&#34;&gt;创建子模组&lt;/h3&gt;
@@ -4847,7 +4889,8 @@ for (k, v) in array.enumerated() {
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git pull = git fetch + git merge
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;合并策略&#34;&gt;合并策略&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://git-scm.com/docs/git-merge#_merge_strategies&#34;&gt;Merge Strategis&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://git-scm.com/docs/git-merge#_merge_strategies&#34;&gt;Merge Strategis&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git merge [-s &amp;lt;strategy&amp;gt;] [-X &amp;lt;strategy-option&amp;gt;] [&amp;lt;commit&amp;gt;...]
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.&lt;/p&gt;
@@ -4939,7 +4982,8 @@ for (k, v) in array.enumerated() {
 &lt;h2 id=&#34;白洋淀&#34;&gt;白洋淀&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;我想 你说
-你不要在孤单 让我做你的伴&lt;/p&gt;&lt;/blockquote&gt;
+你不要在孤单 让我做你的伴&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;白洋淀去过四次，那里的温泉过去两次，年中 Team Building 再喜加一，而这一次让这里有了美丽故事。喷泉、沙发，出现了对的人。&lt;/p&gt;
 &lt;h2 id=&#34;ios&#34;&gt;iOS&lt;/h2&gt;
 &lt;p&gt;React Native 的一波尝试后，走上了移动开发的道。Swift 让上 iOS 车的门槛降低不少，Swift API 趋向稳定，可以说这是最好的时候。GitHub 应该是再也放不下了，外文的书籍、文档确实靠谱啊，推荐一个教程网站 &lt;a href=&#34;https://www.raywenderlich.com/category/ios&#34;&gt;iOS Tutorials - Ray Wenderlich&lt;/a&gt; 真的零基础入门。&lt;/p&gt;
@@ -5182,7 +5226,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;li&gt;“懒”，少做无用功&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
-&lt;p&gt;你总是这样轻言放弃的话，无论过多久都只会原地踏步。 —— 多啦 a 梦&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;你总是这样轻言放弃的话，无论过多久都只会原地踏步。 —— 多啦 a 梦&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;前置知识&#34;&gt;前置知识&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;JS CSS&lt;/li&gt;
@@ -5200,7 +5245,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;h2 id=&#34;react-的-jsx-与-style&#34;&gt;React 的 JSX 与 Style&lt;/h2&gt;
 &lt;p&gt;官网：&lt;a href=&#34;https://facebook.github.io/react/&#34;&gt;React - A JavaScript library for building user interfaces&lt;/a&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;罐头是 1810 发明出来的，可是开罐器呢，却在 1858 年才发明出来。有时就是这样，重要的东西可能迟来一步，但却一定会到。生活和爱情，都是如此。程序，当然也不例外。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;罐头是 1810 发明出来的，可是开罐器呢，却在 1858 年才发明出来。有时就是这样，重要的东西可能迟来一步，但却一定会到。生活和爱情，都是如此。程序，当然也不例外。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;html&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -5583,7 +5629,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;code&gt;git pull --rebase&lt;/code&gt; 主要是为是将提交约线图平坦化，而 &lt;code&gt;git merge --no-ff&lt;/code&gt; 则是刻意制造分叉&lt;/p&gt;
 &lt;h2 id=&#34;pull-rebase&#34;&gt;pull rebase&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;perform a rebase after fetching&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;perform a rebase after fetching&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;状况&#34;&gt;状况&lt;/h3&gt;
 &lt;p&gt;Git 作为分布式版本控制系统，所有修改操作都是基于本地的，在团队协作过程中，假设你和你的同伴在本地中分别有各自的新提交，而你的同伴先于你 push 了代码到远程分支上，所以你必须先执行 &lt;code&gt;git pull&lt;/code&gt; 来获取同伴的提交，然后才能 push 自己的提交到远程分支。&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-01&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80202129-c1cdfb00-8657-11ea-814e-49f8618f301c.jpg&#34;&gt;&lt;/p&gt;
@@ -5669,7 +5716,8 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
       <description>&lt;p&gt;【注意】内容不再维护。&lt;/p&gt;
 &lt;hr&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.imooc.com/learn/9&#34;&gt;HTML+CSS 基础课程-慕课网&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;http://www.imooc.com/learn/9&#34;&gt;HTML+CSS 基础课程-慕课网&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;2017 年一个心愿，认真学习前端，成为公司里最厉害前端工程师。Flag 立的还是很大的。&lt;/p&gt;
 &lt;h2 id=&#34;第-1-章-html-介绍&#34;&gt;第 1 章 HTML 介绍&lt;/h2&gt;
 &lt;ol&gt;
@@ -5697,7 +5745,9 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;文本&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;6、想引用某个作家的一句诗，这样会使你的文章更加出彩，那么 &lt;code&gt;&amp;lt;q&amp;gt;&lt;/code&gt; 标签是你所需要的：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;引用文本&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;7、&lt;code&gt;&amp;lt;blockquote&amp;gt;&lt;/code&gt; 的作用也是引用别人的文本。但它是对长文本的引用，如在文章中引入大段某知名作家的文字，这时需要这个标签。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;7、&lt;code&gt;&amp;lt;blockquote&amp;gt;&lt;/code&gt; 的作用也是引用别人的文本。但它是对长文本的引用，如在文章中引入大段某知名作家的文字，这时需要这个标签。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;blockquote&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;引用文本&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;blockquote&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;8、使用 &lt;code&gt;&amp;lt;br&amp;gt;&lt;/code&gt; 标签分行显示文本&lt;/p&gt;</description>
     </item>
     <item>
       <title>回顾 2016</title>
@@ -5719,37 +5769,6 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;最后，还是怀揣着 2014 末的敬请期待，让一切皆有可能，开始 2017。&lt;/p&gt;
 &lt;p&gt;—— 送给 木林木丶&lt;/p&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>【Core Java】读书笔记 Part 2</title>
-      <link>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</link>
-      <pubDate>Fri, 23 Sep 2016 16:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2016/09/23/core-java-reading-notes-part2/</guid>
-      <description>&lt;p&gt;本文总结的是书中的：第 5 章 继承&lt;/p&gt;
-&lt;p&gt;前几章的总结在：&lt;a href=&#34;https://zyf.im/2016/05/06/core-java-reading-notes/&#34;&gt;ZYF.IM-【Core Java】读书笔记 Part1&lt;/a&gt;&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;5-继承&#34;&gt;5 继承&lt;/h2&gt;
-&lt;h3 id=&#34;51-类超类和子类&#34;&gt;5.1 类、超类和子类&lt;/h3&gt;
-&lt;p&gt;1、有些人认为 &lt;code&gt;super&lt;/code&gt; 与 &lt;code&gt;this&lt;/code&gt; 引用是类似的概念，实际上，这样比较并不太恰当。这是因为 &lt;code&gt;super&lt;/code&gt; 不是一个对象的引用，不能将 &lt;code&gt;super&lt;/code&gt; 赋予另一个对象变量，它只是一个指示编译器调用超类方法的特殊关键字。
-2、使用 &lt;code&gt;super&lt;/code&gt; 或 &lt;code&gt;this&lt;/code&gt; 调用构造器的语句必须时子类构造器的第一条语句。也就是说 &lt;code&gt;super&lt;/code&gt; 和 &lt;code&gt;this&lt;/code&gt; 不能同时出现在一个构造器中。
-3、&lt;code&gt;this&lt;/code&gt; 关键字。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;引用隐式参数&lt;/li&gt;
-&lt;li&gt;调用该类其他的构造器&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;4、&lt;code&gt;super&lt;/code&gt; 关键字&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;调用超类的方法&lt;/li&gt;
-&lt;li&gt;调用超类的构造器&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;5、调用构造器的语句只能作为另一个构造器的第一条语句出现。
-6、一个对象变量可以指示多种实际类型的现象被称为多态。在运行时能够自动的选择则调用哪个方法的现象称为动态绑定。
-7、&lt;code&gt;Manager[] managers = new Manager[10];&lt;/code&gt; 将它转换成 &lt;code&gt;Employee[]&lt;/code&gt; 数组是完全合法的：
-&lt;code&gt;Employee[] staff = managers;// OK&lt;/code&gt;
-毕竟如果&lt;code&gt;manager[i]&lt;/code&gt;是一个 Manager，也一定是一个 Employee，然而，实际上，将会发生一些令人惊讶的事情。要切记 managers 和 staff 引用的时同一个数组。现在请看：
-&lt;code&gt;staff[0] = new Employee(&amp;quot;Harry Hacker&amp;quot;, ..);&lt;/code&gt;
-编译器竟然接纳了这个赋值操作。&lt;code&gt;staff[0]&lt;/code&gt;与&lt;code&gt;manager[0]&lt;/code&gt;引用的是同一个对象，似乎我们把一个普通雇员擅自归入了经理行列中了。这时一个种很忌讳发生的情形，当调用&lt;code&gt;managers[0].setBonus(1000)&lt;/code&gt;的时候，将会导致调用一个不存在的实例域，今儿搅乱相邻存储空间的内容。
-为了确保不发生这类错误，所有数组都要牢记创建它们的元素类型，并负责监督仅将类型兼容的引用存储到数组中。&lt;/p&gt;</description>
     </item>
     <item>
       <title>LeetCode Shell 解题集合</title>
@@ -5774,69 +5793,6 @@ Line 8
 Line 9
 Line 10
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Your script should output the tenth line, which is:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Eclipse Java 注释模板</title>
-      <link>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</link>
-      <pubDate>Sun, 18 Sep 2016 19:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2016/09/18/eclipse-java-comments-templates/</guid>
-      <description>&lt;p&gt;自己总结的比较规范的 Eclipse Java 注释模板&lt;/p&gt;
-&lt;h2 id=&#34;eclipse-java-注释模板设置&#34;&gt;Eclipse Java 注释模板设置&lt;/h2&gt;
-&lt;p&gt;Window -&amp;gt; Preference -&amp;gt; Java -&amp;gt; CodeStyle -&amp;gt; Code Template 然后展开 Comments 节点就是所有需设置注释的元素&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;各项注释模板&#34;&gt;各项注释模板&lt;/h2&gt;
-&lt;h3 id=&#34;files&#34;&gt;Files&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/**
- * Copyright © ${year}. All rights reserved.
- *
- * @Title: ${file_name}
- * @Prject: ${project_name}
- * @Package: ${package_name}
- * @Description: ${todo}
- * @author: ${user}
- * @date: ${date} ${time}
- */
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;types&#34;&gt;Types&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/**
- *
- *
- * @ClassName: ${type_name}
- * @Description: ${todo}
- * @author: ${user}
- * @date: ${date} ${time}
- * ${tags}
- */
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;fields&#34;&gt;Fields&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/**
- * @fieldName: ${field}
- * @fieldType: ${field_type}
- * @Description: ${todo}
- */
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;constructors&#34;&gt;Constructors&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/**
- * @Title:${enclosing_type}
- * @Description:${todo}
- * ${tags}
- */
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/**
- *
- *
- * @Title: ${enclosing_method}
- * @Description: ${todo}
- * @author: ${user}
- * ${tags}
- * @return: ${return_type}
- */
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;overriding-methods&#34;&gt;Overriding methods&lt;/h3&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/* (no Javadoc)
- * &amp;lt;p&amp;gt;Title: ${enclosing_method}&amp;lt;/p&amp;gt;
- * &amp;lt;p&amp;gt;Description: &amp;lt;/p&amp;gt;
- * ${tags}
- * ${see_to_overridden}
- */
-&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;定制-user-显示内容&#34;&gt;定制 ${user} 显示内容&lt;/h2&gt;
-&lt;p&gt;找到你的 Eclipse 安装路径，打开 &lt;code&gt;eclipse.ini&lt;/code&gt; 文件，在 -vmargs 下面添加&lt;/p&gt;</description>
     </item>
     <item>
       <title>MySQL LIMIT 查询优化</title>
@@ -5873,107 +5829,6 @@ Line 10
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;1、要学着使用 &lt;code&gt;EXPLAIN&lt;/code&gt; 对 SQL 进行优化调整
 2、推荐使用 INNER 优化 SQL
 3、发现了一个 ubuntu 中监控 MySQL 的 &lt;code&gt;mytop&lt;/code&gt; 命令，刚刚安装还没细研究&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Eclipse Maven 配置使用国内镜像库</title>
-      <link>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</link>
-      <pubDate>Wed, 14 Sep 2016 15:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2016/09/14/eclipse-maven-settings-mirror-in-china/</guid>
-      <description>&lt;p&gt;Windows 下因为 Eclipse 自带了 Maven 插件，还算够用就懒得安装 Maven 了。在不使用代理的情况下，用 Maven 的下载库不是一般的慢。Eclipse Maven 的插件怎么配置国内的镜像库呢？其实很简单。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;创建-settingsxml-文件&#34;&gt;创建 settings.xml 文件&lt;/h2&gt;
-&lt;p&gt;注意两个地方：
-1、&lt;code&gt;&amp;lt;localRepository&amp;gt;C:\Users\Lenovo\.m2\repository&amp;lt;/localRepository&amp;gt;&lt;/code&gt; 本地仓库位置
-2、镜像配置，选取的是 aliyun 的&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;mirrors&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;alimaven&lt;span class=&#34;nt&#34;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;aliyun maven&lt;span class=&#34;nt&#34;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;span class=&#34;nt&#34;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&#34;nt&#34;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/mirrors&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;完整的 settings.xml 文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;&amp;lt;!--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; | This is the configuration file for Maven. It can be specified at two levels:
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |  1. User Level. This settings.xml file provides configuration for a single user,
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 and is normally provided in ${user.home}/.m2/settings.xml.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 NOTE: This location can be overridden with the CLI option:
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 -s /path/to/user/settings.xml
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |  2. Global Level. This settings.xml file provides configuration for all Maven
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 users on a machine (assuming they&amp;#39;re all using the same Maven
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 installation). It&amp;#39;s normally provided in
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 ${maven.home}/conf/settings.xml.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 NOTE: This location can be overridden with the CLI option:
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |                 -gs /path/to/global/settings.xml
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; | |
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; |--&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;settings&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;xmlns=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://maven.apache.org/SETTINGS/1.0.0&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;na&#34;&gt;xmlns:xsi=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;na&#34;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c&#34;&gt;&amp;lt;!--  Change in below line  --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;localRepository&amp;gt;&lt;/span&gt;C:\Users\Lenovo\.m2\repository&lt;span class=&#34;nt&#34;&gt;&amp;lt;/localRepository&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;interactiveMode&amp;gt;&lt;/span&gt;true&lt;span class=&#34;nt&#34;&gt;&amp;lt;/interactiveMode&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;offline&amp;gt;&lt;/span&gt;false&lt;span class=&#34;nt&#34;&gt;&amp;lt;/offline&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;pluginGroups&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- pluginGroup
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;     | Specifies a further group identifier to use for plugin lookup.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    &amp;lt;pluginGroup&amp;gt;com.your.plugins&amp;lt;/pluginGroup&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/pluginGroups&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;proxies&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    &amp;lt;proxy&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;id&amp;gt;optional&amp;lt;/id&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;active&amp;gt;true&amp;lt;/active&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;protocol&amp;gt;http&amp;lt;/protocol&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;username&amp;gt;proxyuser&amp;lt;/username&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;password&amp;gt;proxypass&amp;lt;/password&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;host&amp;gt;proxy.host.net&amp;lt;/host&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;port&amp;gt;80&amp;lt;/port&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;nonProxyHosts&amp;gt;local.net|some.host.com&amp;lt;/nonProxyHosts&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    &amp;lt;/proxy&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/proxies&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;servers&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!--
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    &amp;lt;server&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;id&amp;gt;deploymentRepo&amp;lt;/id&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;username&amp;gt;crunchify&amp;lt;/username&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;      &amp;lt;password&amp;gt;crunchify&amp;lt;/password&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;    &amp;lt;/server&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt; 	--&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/servers&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;mirrors&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;mirror&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;id&amp;gt;&lt;/span&gt;alimaven&lt;span class=&#34;nt&#34;&gt;&amp;lt;/id&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;aliyun maven&lt;span class=&#34;nt&#34;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nt&#34;&gt;&amp;lt;url&amp;gt;&lt;/span&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;span class=&#34;nt&#34;&gt;&amp;lt;/url&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nt&#34;&gt;&amp;lt;mirrorOf&amp;gt;&lt;/span&gt;central&lt;span class=&#34;nt&#34;&gt;&amp;lt;/mirrorOf&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;nt&#34;&gt;&amp;lt;/mirror&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/mirrors&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;profiles&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/profiles&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/settings&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置-eclipse-maven-plugin&#34;&gt;设置 Eclipse Maven Plugin&lt;/h2&gt;
-&lt;p&gt;Window -&amp;gt; Preferences -&amp;gt; Maven -&amp;gt; User Settings -&amp;gt; User settings Browse 选择上面创建的 &lt;code&gt;setting.xml&lt;/code&gt; -&amp;gt; ok&lt;/p&gt;</description>
     </item>
     <item>
       <title>LeetCode Database Trips and Users 262</title>
@@ -6125,49 +5980,31 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
       <link>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</link>
       <pubDate>Wed, 07 Sep 2016 14:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</guid>
-      <description>&lt;p&gt;本文主要参考了 &lt;a href=&#34;http://www.imooc.com/video/7237&#34;&gt;imooc-SpringMVC 起步&lt;/a&gt; 视频教程和 &lt;a href=&#34;http://www.imooc.com/article/3804&#34;&gt;SpringMVC 从入门到精通 系列 - HansonQ&lt;/a&gt; ，还有自己的一些总结。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ 内容声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本文写于 &lt;strong&gt;2016 年&lt;/strong&gt;，部分内容已过时，仅供历史参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XML 配置方式的 SpringMVC 已不再推荐&lt;/li&gt;
+&lt;li&gt;web.xml 配置前端控制器的方式已过时&lt;/li&gt;
+&lt;li&gt;JSP 视图技术已较少使用&lt;/li&gt;
+&lt;li&gt;文中提及的 Struts2 框架已基本淘汰&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;当前最佳实践（2024+）：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;项目创建&lt;/strong&gt;：使用 &lt;a href=&#34;https://start.spring.io/&#34;&gt;Spring Initializr&lt;/a&gt; 生成 Spring Boot 项目，自动配置 DispatcherServlet&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;控制器&lt;/strong&gt;：使用 &lt;code&gt;@RestController&lt;/code&gt; 直接返回 JSON，无需 &lt;code&gt;@ResponseBody&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;路由注解&lt;/strong&gt;：使用 &lt;code&gt;@GetMapping&lt;/code&gt;、&lt;code&gt;@PostMapping&lt;/code&gt; 等简化注解替代 &lt;code&gt;@RequestMapping&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;参数绑定&lt;/strong&gt;：MVC 基础概念仍适用，但推荐结合 Bean Validation（&lt;code&gt;@Valid&lt;/code&gt;）进行校验&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;视图层&lt;/strong&gt;：前后端分离（REST API + Vue/React），或使用 Thymeleaf 模板&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置方式&lt;/strong&gt;：Java Config + &lt;code&gt;application.yml&lt;/code&gt;，无需 XML 配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;本文主要参考了 &lt;a href=&#34;http://www.imooc.com/video/7237&#34;&gt;imooc-SpringMVC 起步&lt;/a&gt; 视频教程和 &lt;a href=&#34;http://www.imooc.com/article/3804&#34;&gt;SpringMVC 从入门到精通 系列 - HansonQ&lt;/a&gt; ，还有自己的一些总结。&lt;/p&gt;
 &lt;p&gt;主要内容：MVC 简介、前端控制器模式、SpringMVC 基本概念、SpringMVC 配置、SpringMVC 中的注解、SpringMVC 数据绑定。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;mvc-简介&#34;&gt;MVC 简介&lt;/h2&gt;
-&lt;p&gt;1、MVC 是一种架构模式&lt;/p&gt;
-&lt;p&gt;程序分层，分工合作，既相互独立，又协同工作，分为三层：模型层、视图层和控制层&lt;/p&gt;
-&lt;p&gt;2、MVC 是一种思考方式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;View：视图层，为用户提供 UI，重点关注数据的呈现，为用户提供界面&lt;/li&gt;
-&lt;li&gt;Model：模型层，业务数据的信息表示，关注支撑业务的信息构成，通常是多个业务实体的组合&lt;/li&gt;
-&lt;li&gt;Controller：控制层，调用业务逻辑产生合适的数据（Model），传递数据给视图用于呈现&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;MVC 设计模式在 B/S 下的应用：&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;160907-springmvc-getting-started-tutorial-mvc&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199601-1cfdee80-8654-11ea-8328-9d74c174b2bc.gif&#34;&gt;&lt;/p&gt;
-&lt;p&gt;①：浏览器发送请求到控制器(这里要知道控制器的作用)
-②：控制器不能处理请求必须交给模型层来处理接着去访问数据库
-③：模型层将处理好的结果返回给控制层
-④：控制层将逻辑视图响应给浏览器(浏览器显示的是渲染过的视图)&lt;/p&gt;
-&lt;p&gt;MVC 本质：&lt;strong&gt;MVC 的核心思想是业务数据抽取同业务数据呈现相分离；分离有利于程序简化，方便编程&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&#34;前端控制器模式&#34;&gt;前端控制器模式&lt;/h2&gt;
-&lt;p&gt;前端控制器模式（Front Controller Pattern）是用来提供一个集中的请求处理机制，所有的请求都将由一个单一的处理程序处理。该处理程序可以做认证/授权/记录日志，或者跟踪请求，然后把请求传给相应的处理程序。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;前端控制器（Front Controller）- 处理应用程序所有类型请求的单个处理程序，应用程序可以是基于 web 的应用程序，也可以是基于桌面的应用程序。&lt;/li&gt;
-&lt;li&gt;调度器（Dispatcher） - 前端控制器可能使用一个调度器对象来调度请求到相应的具体处理程序。&lt;/li&gt;
-&lt;li&gt;视图（View） - 视图是为请求而创建的对象。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;前端控制器的主要作用：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;指前端控制器将我们的请求分发给我们的控制器去生成业务数据&lt;/li&gt;
-&lt;li&gt;将生成的业务数据分发给恰当的视图模版来生成最终的视图界面&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img alt=&#34;160907-springmvc-getting-started-tutorial-front-controller&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80201864-63a11800-8657-11ea-91cb-2b2a2f55f6a6.jpg&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;springmvc-基本概念&#34;&gt;SpringMVC 基本概念&lt;/h2&gt;
-&lt;p&gt;&lt;img alt=&#34;160907-springmvc-getting-started-tutorial-springmvc01&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199605-1d968500-8654-11ea-8f05-57d4685934bb.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;对组件说明：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;DispatherServlet：前端控制器 用户请求到达前端控制器，相当于 MVC 中的 C，而 DispatherServlet 是整个流程的核心，它来调用其他组件来处理用户的请求，前端控制器的存在降低了其他组件之间的耦合度。&lt;/li&gt;
-&lt;li&gt;HandlerMapping：处理器映射器 它的作用就好比去看电影要拿着电影票根据电影票上面的座位号找到座位其中座位就是 Handler，电影票以及上面的座位号就是 URL HandlerMapping 负责根据用户请求找到 Handler 即处理器，SpringMVC 提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。&lt;/li&gt;
-&lt;li&gt;Handler：处理器 Handler 是后端控制器，在前端控制器的控制下后端控制器对具体的用户请求进行处理，Handler 涉及到具体的用户业务请求，所以一般情况下需要程序员根据业务需求开发。&lt;/li&gt;
-&lt;li&gt;HandlerAdapter：处理器适配器 通过 HandlerAdapter 对处理器进行执行，这是适配器模式的应用，通过适配器可以对更多类型的处理器进行执行。播放的电影是 3D 的你看不清楚，因此电影院跟你说你要想看清电影就必须戴 3D 眼镜。也就是说 Handler 满足一定的要求才可以被执行。&lt;/li&gt;
-&lt;li&gt;ViewResolver：视图解析器 ViewResolver 负责将处理结果生成 View 视图，ViewResolver 首先根据逻辑视图名解析成物理视图名即具体的页面地址，再生成 View 视图对象，最后对 View 进行渲染将处理结果通过页面展示给用户。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img alt=&#34;160907-springmvc-getting-started-tutorial-springmvc02&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199609-1d968500-8654-11ea-997b-67a5862bfd25.jpg&#34;&gt;&lt;/p&gt;</description>
+&lt;p&gt;1、MVC 是一种架构模式&lt;/p&gt;</description>
     </item>
     <item>
       <title>刚刚毕业的两个月小结</title>
@@ -6200,7 +6037,8 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
 &lt;p&gt;在此基础上，我比较推荐程序员采用内外两条线来培养自己。在公司内的项目上采取相对保守的策略，尽力把稳定性做到最好，培养出自己卓越的工程能力；然后在公司外的开源项目和自己的独立项目上，采用一些新的技术、实践一些新的想法、充分发挥自己的创造力，梦想还是要有的，对吧。&lt;/p&gt;
 &lt;p&gt;这样做最明显的好处是，你可以了解到新技术和激进方案的优缺点，从而在进行方案选型时，有更多的依据；还有一个职业发展上的好处：如果不是主负责人，公司的项目往往不能代表你的能力；但独立项目却可以作为一个非常好的能力证明出现在你的简历里边。&lt;/p&gt;
 &lt;p&gt;你可以是一个身怀绝技的手艺人，在自己家里你尝试各种手法各种风格的个人作品；但当你参与颐和园这种级别的工程时，好好的把自己负责的石头雕成总设计师要求的样子就好 —— 毕竟这个时代一个人已经很难负责整个项目了。这就是我所理解的程序员的工匠精神。&lt;/p&gt;
-&lt;p&gt;摘自：&lt;a href=&#34;http://mp.weixin.qq.com/s?__biz=MzI5OTI5Njg2Mg==&amp;amp;mid=2247483667&amp;amp;idx=1&amp;amp;sn=d6e5953c7a7835148e3822b919b82416#rd&#34;&gt;程序员到底是一个什么职业？&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;摘自：&lt;a href=&#34;http://mp.weixin.qq.com/s?__biz=MzI5OTI5Njg2Mg==&amp;amp;mid=2247483667&amp;amp;idx=1&amp;amp;sn=d6e5953c7a7835148e3822b919b82416#rd&#34;&gt;程序员到底是一个什么职业？&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;（尾）&lt;/p&gt;
 &lt;p&gt;现在自己能听见进去一些原来听不去的话了。我不认为自己是被同化了，也许是心中少了些恶意。&lt;/p&gt;
 &lt;p&gt;状态不错，继续前进。&lt;/p&gt;
@@ -6251,7 +6089,8 @@ generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</des
   Input is guaranteed to be within the range from 1 to 3999.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97&#34;&gt;wikipedia-罗马数字&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97&#34;&gt;wikipedia-罗马数字&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;罗马数字共有 7 个，即 I（1）、V（5）、X（10）、L（50）、C（100）、D（500）和 M（1000）。按照下述的规则可以表示任意正整数。需要注意的是罗马数字中没有“0”，与进位制无关。一般认为罗马数字只用来记数，而不作演算。&lt;/p&gt;
 &lt;p&gt;重复数次：一个罗马数字重复几次，就表示这个数的几倍。&lt;/p&gt;
 &lt;p&gt;右加左减：&lt;/p&gt;
@@ -6352,49 +6191,60 @@ return 2.
       <guid>https://zyf.im/2016/08/22/being-alive-is-a-gift-reading-notes/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;我们要用多大的代价，才能认清活着的意义？
-于娟，这个风华正茂的女子，拥有留洋经历和博士学位的复旦大学青年教师，在与晚期癌症抗争一年又四个月后，终于撒手人寰。她带走的家人的思念和不舍，给我们留下坚强的力量。&lt;/p&gt;&lt;/blockquote&gt;
+于娟，这个风华正茂的女子，拥有留洋经历和博士学位的复旦大学青年教师，在与晚期癌症抗争一年又四个月后，终于撒手人寰。她带走的家人的思念和不舍，给我们留下坚强的力量。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;《此生未完成》这本书是上周末聚会时 Zhen 提到的，上周京东买书就带上了。书里前半探讨作者在生死临界时对生活、工作、名利、家人、朋友的一些看法和思考。这对于刚刚毕业的我来说，确实有些是无法真切体会到的，毕竟经历少。但是在书的字里行间中，仍然可以看到一个（不知道用什么词）的女子。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;一&#34;&gt;（一）&lt;/h2&gt;
 &lt;p&gt;疾病能让人有怎样的疼痛？&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;我还是没有哭，不是因为坚强，而是因为痛的想不起来哭，那个时候，只要能用尽全力顶着。如果稍微分神，我就会痛的晕厥。我不想家人看到我的痛苦。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;我还是没有哭，不是因为坚强，而是因为痛的想不起来哭，那个时候，只要能用尽全力顶着。如果稍微分神，我就会痛的晕厥。我不想家人看到我的痛苦。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;说来惭愧的一个对比，自己在喝多时有过这样的经历：自己抱着垃圾桶使劲顶着一股劲，要是有人来给自己说话，就会分神似的使劲的呕吐。可这蚀骨之痛要比这疼痛多少倍呢？&lt;/p&gt;
 &lt;h2 id=&#34;二&#34;&gt;（二）&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;重要的是当他得知我生病消息后的第一反应，眼神表情乃至电话语气网络留言里端倪尽出，你会觉得世间很多人情世故是那么的让你淡然一笑。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;重要的是当他得知我生病消息后的第一反应，眼神表情乃至电话语气网络留言里端倪尽出，你会觉得世间很多人情世故是那么的让你淡然一笑。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在遇到大事的时候方显出真正的朋友和所谓的朋友，扬尘散土，洗沙留金。能遇到“大事”的机会不多，遇到的“大事”还能全身而退的机会就更少了。所以觉的自己应该及时去明辨所有的朋友，将真心给最真的，对于其他的就随他去吧。我不可能讨所有人喜欢，也用不着。&lt;/p&gt;
 &lt;h2 id=&#34;三&#34;&gt;（三）&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;三十岁之前的努力更多是因为自己有着太多的欲望和执著，从没有“只要活着就好”的简单。名利权情，没有一样是不辛苦的，却没有一样可以带走。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;三十岁之前的努力更多是因为自己有着太多的欲望和执著，从没有“只要活着就好”的简单。名利权情，没有一样是不辛苦的，却没有一样可以带走。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这是一个作者很重要的一个观点。在现在的我看来，“只要活着就好”的活着，是一种精神上富有的活着，是充满智慧的活着。
 就说现在的自己，什么都不曾拥有，或许不用拥有过的名、利，但是其他方面什么都没有，自己一切都是空的，看到好就会有强烈的“欲望”，如果再强烈一点就会有“执著”。在文字中我感受到了作者在精神方面的强大与富有，或许在这之后才能感受到在名、利之外更重要的东西。其实，自己真的很难想通，到底拥有什么自己就可以“苟”了，自己到底想要什么。了解自己真正想要什么真是一幸事。
 作者提到的有时间，多多陪陪家人父母、有机会就尽孝，自己是很赞同的。&lt;/p&gt;
 &lt;h2 id=&#34;四&#34;&gt;（四）&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;外公反映土豆每次经过，都趴在玻璃上看玻璃窗里的圣诞树、圣诞彩球和姜饼屋。土豆眼神里有点想，但却乖乖看着，并不讨。外公回想说：“那个眼神我想起了卖火柴的小女孩，有时候孩子听话，你却反而会心酸。”&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;外公反映土豆每次经过，都趴在玻璃上看玻璃窗里的圣诞树、圣诞彩球和姜饼屋。土豆眼神里有点想，但却乖乖看着，并不讨。外公回想说：“那个眼神我想起了卖火柴的小女孩，有时候孩子听话，你却反而会心酸。”&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这文字碰触心灵最柔软的地方。&lt;/p&gt;
 &lt;h2 id=&#34;五&#34;&gt;（五）&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;你的妈妈不是懦夫，所以你的人生里，遇到珍贵的人与关键的事，都要积极争取，可以失败，但是不能放弃。我想做一个让儿子骄傲的妈妈，只此一点，无论任何地步，我都不会选择自己走，哪怕，万劫不复的痛。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;你的妈妈不是懦夫，所以你的人生里，遇到珍贵的人与关键的事，都要积极争取，可以失败，但是不能放弃。我想做一个让儿子骄傲的妈妈，只此一点，无论任何地步，我都不会选择自己走，哪怕，万劫不复的痛。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;六&#34;&gt;（六）&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;更多人不会明白，我们两个的谈笑深处埋藏着多少不能言表的无声叹息。上一次见面，我和梅两个事多么风华正茂，像展翅云霄的鹰隼，挥着翅膀相约下次的冲天。这次的相逢，是灰头土脸被命运按在尘土里依然微笑的土鸡之间的问候。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;更多人不会明白，我们两个的谈笑深处埋藏着多少不能言表的无声叹息。上一次见面，我和梅两个事多么风华正茂，像展翅云霄的鹰隼，挥着翅膀相约下次的冲天。这次的相逢，是灰头土脸被命运按在尘土里依然微笑的土鸡之间的问候。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;七&#34;&gt;（七）&lt;/h2&gt;
 &lt;p&gt;“为啥是我得癌症” 的非学术报告，是书的精华文章。从饮食习惯、睡眠习惯、突击作业、环境问题，分析了对身体不利的因素。突击作业其实就是工作习惯。&lt;/p&gt;
 &lt;p&gt;在饮食上常吃不寻常的动物、暴饮暴食、嗜荤如命。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;我们要相信聪明的祖先，几千年的智慧沉淀，才最终锁定了我们现在的食材，并在远古对他们进行豢养。如果孔雀比鸡好吃，那么现在的就是孔雀，孔雀就是鸡。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;我们要相信聪明的祖先，几千年的智慧沉淀，才最终锁定了我们现在的食材，并在远古对他们进行豢养。如果孔雀比鸡好吃，那么现在的就是孔雀，孔雀就是鸡。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;在睡眠习惯上：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;二十三时至次日三时，是肝脏活动能力最强的时段，也是肝脏最佳的排毒时期，如果肝脏功能得不到休息，会引起肝脏血流相对不足，已受损的肝细胞难以修复并加剧恶化。所以“长期熬夜等于慢性自杀”的说法并不夸张。因此医生建议人们从二十三时左右开始上床睡觉，次日一至三时进入深睡眠状态，好好地养足肝血。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;二十三时至次日三时，是肝脏活动能力最强的时段，也是肝脏最佳的排毒时期，如果肝脏功能得不到休息，会引起肝脏血流相对不足，已受损的肝细胞难以修复并加剧恶化。所以“长期熬夜等于慢性自杀”的说法并不夸张。因此医生建议人们从二十三时左右开始上床睡觉，次日一至三时进入深睡眠状态，好好地养足肝血。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;突击作业：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;一辆平时就跌跌撞撞一直不维修的破车，一踩油门就彻夜地疯跑疯开半个月。一年搞个五六次，就是钢筋铁打的汽车，开个二十几年也到报废了。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;一辆平时就跌跌撞撞一直不维修的破车，一踩油门就彻夜地疯跑疯开半个月。一年搞个五六次，就是钢筋铁打的汽车，开个二十几年也到报废了。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;环境问题，空气污染、水污染和食品安全危机还有那可怕的甲醛家具。&lt;/p&gt;
 &lt;h2 id=&#34;八&#34;&gt;（八）&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;不去想控制大局小局，不想去多管闲事淡事，我不在有对手，不再有敌人，我也不在关心谁比谁强，课题也好，任务也罢，暂且放着。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;不去想控制大局小局，不想去多管闲事淡事，我不在有对手，不再有敌人，我也不在关心谁比谁强，课题也好，任务也罢，暂且放着。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;也许只有正在想明白的人，才懂的世间的一切，隔岸看花、风淡云轻。&lt;/p&gt;</description>
     </item>
     <item>
@@ -6561,7 +6411,8 @@ return 2.
       <pubDate>Wed, 17 Aug 2016 23:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/08/17/something-like-an-autobiography-reading-notes/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;日本民间流传着这样一个故事：在深山里，有一种特别的蛤蟆，它和同类相比不仅外表更丑，而且还多长了几条腿。人们转到它后，将其放在镜前或者玻璃箱内，蛤蟆一看到自己丑陋不堪的真面目，不禁吓出一身油。这种油，也是民间用来治疗烧伤烫伤的珍贵药材。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;日本民间流传着这样一个故事：在深山里，有一种特别的蛤蟆，它和同类相比不仅外表更丑，而且还多长了几条腿。人们转到它后，将其放在镜前或者玻璃箱内，蛤蟆一看到自己丑陋不堪的真面目，不禁吓出一身油。这种油，也是民间用来治疗烧伤烫伤的珍贵药材。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;第一次写人文类书籍的笔记。&lt;/p&gt;
 &lt;p&gt;故事是从黑泽明一岁多光着身子洗澡开始回忆的，然后按时间，一个个小故事讲述自己。&lt;/p&gt;
 &lt;p&gt;（一）&lt;/p&gt;
@@ -6627,7 +6478,8 @@ return 2.
 &lt;p&gt;（二十一）&lt;/p&gt;
 &lt;p&gt;他们以为一部卖座影片的续集也必然会成功，于是不想再开拓新的领域，总想旧梦重温。重拍的影片绝不如前作，这虽然是已经证明的事实，但他们还要重蹈覆辙，这才是地地道道的愚蠢之举。&lt;/p&gt;
 &lt;p&gt;学习新东西，找新路子。&lt;/p&gt;
-&lt;p&gt;（二十二）&lt;/p&gt;</description>
+&lt;p&gt;（二十二）&lt;/p&gt;
+&lt;p&gt;我为了抵抗人的苦恼，戴上一幅强者的面具；而植草却为了沉溺与人的苦恼，戴上了一幅弱者的面具。事实不过如此。但这只是表面的不同，就本质来说。我们都是弱者。我不是特别的人。我既不是特别强的人，也不是得天独厚的有特殊才能的人。我不过是个不愿示弱于人，不愿输给别人，因而不懈努力的人。&lt;/p&gt;</description>
     </item>
     <item>
       <title>LeetCode Move Zeroes 283</title>
@@ -6695,7 +6547,8 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过环境变量配置。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;export&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MYSQL_PS1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;(\u@\h) [\d]&amp;gt; &amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;a href=&#34;http://renial.iteye.com/blog/773675&#34;&gt;http://renial.iteye.com/blog/773675&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;参考：&lt;a href=&#34;http://renial.iteye.com/blog/773675&#34;&gt;http://renial.iteye.com/blog/773675&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;mysql-语法规范&#34;&gt;MySQL 语法规范&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;关键字和函数名称全部 &lt;strong&gt;大写&lt;/strong&gt;&lt;/li&gt;
@@ -6751,7 +6604,8 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;p&gt;INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN(MySQL 不支持)、CROSS JOIN&lt;/p&gt;
 &lt;p&gt;这是在网上找到的非常好的一篇博文，图解 JOIN 语句：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/&#34;&gt;CODING HORROR-A Visual Explanation of SQL Joins&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/&#34;&gt;CODING HORROR-A Visual Explanation of SQL Joins&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;下图可以很清楚的明白，JOIN 的数据选取范围：&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;160725-imooc-mysql-development-skills-notes-001&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199172-9d701f80-8653-11ea-8d20-498f54e41708.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;160725-imooc-mysql-development-skills-notes-002&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199188-9fd27980-8653-11ea-9386-e76dca7b4d0c.jpeg&#34;&gt;&lt;/p&gt;
@@ -6802,7 +6656,8 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 越能干，越努力；越有钱，越上进
 而造成这一切的差异，最主要的来自人的精神内核。
  
-你要用牛人的标准要求自己，不断的走到牛人当中去，拉近和牛人之间的距离。当你觉得自己能够成为他们中的一员的时候，你才能成为了真正的牛人。&lt;/p&gt;&lt;/blockquote&gt;
+你要用牛人的标准要求自己，不断的走到牛人当中去，拉近和牛人之间的距离。当你觉得自己能够成为他们中的一员的时候，你才能成为了真正的牛人。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;成功？我才刚上路呢。&lt;/p&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
@@ -6811,30 +6666,32 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
       <link>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</link>
       <pubDate>Thu, 07 Jul 2016 10:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</guid>
-      <description>&lt;p&gt;新项目部署上线，主要参考 &lt;a href=&#34;http://blog.csdn.net/hanshileiai&#34;&gt;世雷博客&lt;/a&gt; 的内容，自己也总结了下。从 JDK 安装、Web 容器、数据库，都有涉及比较全面。&lt;/p&gt;
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ 内容声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本文写于 &lt;strong&gt;2016 年&lt;/strong&gt;，部分内容已过时，仅供历史参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ppa:webupd8team/java&lt;/code&gt; 已于 2019 年停止维护&lt;/li&gt;
+&lt;li&gt;WildFly 10、MySQL 5.6 均已停止支持&lt;/li&gt;
+&lt;li&gt;Ubuntu 14.04 已于 2019 年 EOL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;当前最佳实践（2024+）：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;JDK 安装&lt;/strong&gt;：使用 &lt;code&gt;apt install openjdk-21-jdk&lt;/code&gt; 或通过 &lt;a href=&#34;https://sdkman.io/&#34;&gt;SDKMAN&lt;/a&gt; 管理多版本&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java 应用部署&lt;/strong&gt;：优先考虑 Spring Boot 内嵌容器 + systemd 服务，或直接容器化部署&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;环境编排&lt;/strong&gt;：使用 Docker Compose 统一管理 Nginx + 应用 + 数据库&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL&lt;/strong&gt;：使用 MySQL 8.x 或考虑 PostgreSQL&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;反向代理&lt;/strong&gt;：Nginx 配置思路仍可参考，但建议结合 Let&amp;rsquo;s Encrypt 配置 HTTPS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;新项目部署上线，主要参考 &lt;a href=&#34;http://blog.csdn.net/hanshileiai&#34;&gt;世雷博客&lt;/a&gt; 的内容，自己也总结了下。从 JDK 安装、Web 容器、数据库，都有涉及比较全面。&lt;/p&gt;
 &lt;h2 id=&#34;jdk8&#34;&gt;JDK8&lt;/h2&gt;
 &lt;h3 id=&#34;安装-jdk8&#34;&gt;安装 JDK8&lt;/h3&gt;
 &lt;p&gt;1、添加软件源&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo add-apt-repository ppa:webupd8team/java
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2、更新软件源&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get update
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;3、安装 jdk1.8&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install oracle-java8-installer
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;查看-java-安装路径&#34;&gt;查看 Java 安装路径&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo update-alternatives --config java
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo update-alternatives --config javac
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;查看-java-安装后的版本&#34;&gt;查看 Java 安装后的版本&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;java -version
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;扩展增加多版本-jdk-和切换方法&#34;&gt;（扩展）增加多版本 JDK 和切换方法&lt;/h3&gt;
-&lt;p&gt;1、安装 JDK 6 和 JDK 7&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install oracle-java6-installer
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt-get install oracle-java7-installer
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;2、查看所有 JDK 安装版本&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo update-java-alternatives -l
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;java-6-oracle &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; /usr/lib/jvm/java-6-oracle
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;java-7-oracle &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; /usr/lib/jvm/java-7-oracle
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;java-8-oracle &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; /usr/lib/jvm/java-8-oracle
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;3、通过 &lt;code&gt;-s&lt;/code&gt; 参数可以方便的切换到其它的 JDK 版本&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;3、安装 jdk1.8&lt;/p&gt;</description>
     </item>
     <item>
       <title>GitHub Webhook 自动部署 Hexo</title>
@@ -6850,7 +6707,8 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
 &lt;p&gt;如此一来，你就可以通过这种方式去自动完成一些重复性工作；比如，你可以用 Webhook 来自动触发一些持续集成（CI）工具的运作，比如 Travis CI；又或者是通过 Webhook 去部署你的线上服务器。&lt;/p&gt;
 &lt;p&gt;Github 开发者平台的文档中对 Webhook 的所能做的事是这样描述的：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;响应-webhook&#34;&gt;响应 Webhook&lt;/h2&gt;
 &lt;p&gt;在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。&lt;/p&gt;
 &lt;p&gt;自己在 GitHub 搜索下 &lt;code&gt;github webhook&lt;/code&gt;，&lt;code&gt;language&lt;/code&gt; 选择 &lt;code&gt;Python&lt;/code&gt; 便找到了 Python 编写的：&lt;a href=&#34;https://github.com/razius/github-webhook-handler&#34;&gt;razius/github-webhook-handler&lt;/a&gt;&lt;/p&gt;</description>
@@ -6882,41 +6740,30 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
       <link>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</link>
       <pubDate>Mon, 27 Jun 2016 07:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</guid>
-      <description>&lt;p&gt;新项目自己撘框架，想着用点新的。看慕课网 &lt;a href=&#34;http://www.imooc.com/index/search?words=%E7%A7%92%E6%9D%80&#34;&gt;Java 高并发秒杀 API&lt;/a&gt; 的系列课程时很受益。所以想着仿着来使用：Mavan-Spring-SpringMVC-Mybatis 的架构。框架整合的代码我已上传到我的 Github：&lt;a href=&#34;https://github.com/imzyf/maven-mybatis-spring-springmvc&#34;&gt;maven-mybatis-spring-springmvc&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;本示例是在：Ubuntu15 上实现的；Windows 上安装 Maven 将不太相同。&lt;/p&gt;
-&lt;h2 id=&#34;maven-install&#34;&gt;Maven Install&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2016-09-10 更新：较新版 Eclipse 都有集成 Maven，所以并不需要安装&lt;/p&gt;&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;Run command &lt;code&gt;sudo apt-get install maven&lt;/code&gt;, to install the latest Apache Maven.&lt;/li&gt;
-&lt;li&gt;Run command &lt;code&gt;mvn -version to verify&lt;/code&gt; your installation.&lt;/li&gt;
-&lt;li&gt;Where is Maven installed?
-The command &lt;code&gt;apt-get&lt;/code&gt; install the Maven in &lt;code&gt;/usr/share/maven&lt;/code&gt;
-The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;eclipse-maven-plugin---m2e&#34;&gt;Eclipse Maven Plugin - m2e&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2016-09-10 更新：较新版 Eclipse 都有集成 Maven，所以并不需要安装&lt;/p&gt;&lt;/blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;open Eclipse -&amp;gt; Help -&amp;gt; click &amp;ldquo;Install New Software&amp;rdquo; -&amp;gt; click &amp;ldquo;add&amp;rdquo;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Name:m2e
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Location:http://download.eclipse.org/technology/m2e/releases
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;click &amp;ldquo;ok&amp;rdquo; -&amp;gt; click &amp;ldquo;Maven Integration for Eclipse&amp;rdquo; -&amp;gt; click &amp;ldquo;Next&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;restrat Eclipse&lt;/li&gt;
-&lt;li&gt;config m2e -&amp;gt; Window -&amp;gt; Preferences -&amp;gt; Maven -&amp;gt; Installations -&amp;gt; click &amp;ldquo;Add…&amp;rdquo; -&amp;gt; select Maven&lt;/li&gt;
-&lt;/ol&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;create-a-maven-project&#34;&gt;Create a Maven Project&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;File -&amp;gt; New -&amp;gt; New Maven project&lt;/li&gt;
-&lt;li&gt;select &amp;ldquo;Use default Workspace location&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;select &amp;ldquo;maven-archetype-j2ee-simple&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;input info -&amp;gt; Finish&lt;/li&gt;
-&lt;li&gt;选中项目右键菜单中选择 Properties -&amp;gt; Project Facets -&amp;gt; select &amp;ldquo;Dynamic Web Module&amp;rdquo; Version &amp;ldquo;3.1&amp;rdquo;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Tips:&lt;/p&gt;</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ 内容声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本文写于 &lt;strong&gt;2016 年&lt;/strong&gt;，部分内容已过时，仅供历史参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XML 配置方式的 Spring/SpringMVC 已不再推荐&lt;/li&gt;
+&lt;li&gt;C3P0 连接池已被 HikariCP 取代&lt;/li&gt;
+&lt;li&gt;JSP 视图技术已较少使用&lt;/li&gt;
+&lt;li&gt;JUnit 4 已升级至 JUnit 5&lt;/li&gt;
+&lt;li&gt;Eclipse 手动配置 Maven 项目的方式已过时&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;当前最佳实践（2024+）：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;项目初始化&lt;/strong&gt;：使用 &lt;a href=&#34;https://start.spring.io/&#34;&gt;Spring Initializr&lt;/a&gt; 生成 Spring Boot 项目&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IDE&lt;/strong&gt;：IntelliJ IDEA 或 VS Code，内置 Maven/Gradle 支持&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;框架整合&lt;/strong&gt;：Spring Boot 自动配置，无需手动整合 Spring + SpringMVC + MyBatis&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置方式&lt;/strong&gt;：Java Config + 注解，或 &lt;code&gt;application.yml&lt;/code&gt; 配置&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据访问&lt;/strong&gt;：MyBatis-Plus 或 Spring Data JPA，简化 CRUD 操作&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;视图层&lt;/strong&gt;：前后端分离（REST API + Vue/React），或 Thymeleaf 模板&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;连接池&lt;/strong&gt;：Spring Boot 默认使用 HikariCP&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;测试&lt;/strong&gt;：JUnit 5 + &lt;code&gt;@SpringBootTest&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;新项目自己撘框架，想着用点新的。看慕课网 &lt;a href=&#34;http://www.imooc.com/index/search?words=%E7%A7%92%E6%9D%80&#34;&gt;Java 高并发秒杀 API&lt;/a&gt; 的系列课程时很受益。所以想着仿着来使用：Mavan-Spring-SpringMVC-Mybatis 的架构。框架整合的代码我已上传到我的 Github：&lt;a href=&#34;https://github.com/imzyf/maven-mybatis-spring-springmvc&#34;&gt;maven-mybatis-spring-springmvc&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>
       <title>使用 GitHub 和 Hexo 搭建个人独立博客</title>
@@ -6930,7 +6777,8 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;p&gt;本文的操作的系统环境是 Ubuntu 15，Windows 下的搭建可触类旁通。&lt;/p&gt;
 &lt;h2 id=&#34;了解-hexo&#34;&gt;了解 Hexo&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，&lt;a href=&#34;https://hexo.io/zh-cn/docs/setup.html&#34;&gt;Hexo setup 官方文档&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
     <item>
@@ -6947,274 +6795,39 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Java final 修饰符</title>
-      <link>https://zyf.im/2016/06/13/java-modifier-final/</link>
-      <pubDate>Mon, 13 Jun 2016 14:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2016/06/13/java-modifier-final/</guid>
-      <description>&lt;h2 id=&#34;final-修饰符&#34;&gt;final 修饰符&lt;/h2&gt;
-&lt;p&gt;final 修饰符表示不可变。类似 C 中的 constant。用于修饰变量表示不可变的变量。用于修饰方法表示不可被重写。用于修饰类表示不可被继承。&lt;/p&gt;
-&lt;h2 id=&#34;final-的成员变量&#34;&gt;final 的成员变量&lt;/h2&gt;
-&lt;p&gt;成员变量随着类或者实例的初始化而初始化。在类初始化时，静态变量就会被分配内存并初始化。对于实例变量，系统会在实例初始化的时候初始化这些变量。&lt;/p&gt;
-&lt;p&gt;由于成员变量会被系统隐式的初始化。如果程序员不显式的初始化它们，那他们会变成 0，false，null 这样的值。失去了意义。&lt;/p&gt;
-&lt;p&gt;所以 &lt;strong&gt;final 修饰的成员变量必须显式的初始化。&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;类变量：必须在静态初始化块，或者在声明的时候初始化&lt;/li&gt;
-&lt;li&gt;实例变量：必须在非静态初始化块，声明时，或者构造函数中初始化。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;final-的局部变量&#34;&gt;final 的局部变量&lt;/h2&gt;
-&lt;p&gt;对于形参：在方法内部无法对其进行赋值。
-方法体内的 final 局部变量：只能赋值一次。&lt;/p&gt;
-&lt;h2 id=&#34;final-的基本类型变量和引用类型变量&#34;&gt;final 的基本类型变量和引用类型变量&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;基本类型变量：值不可变。&lt;/li&gt;
-&lt;li&gt;引用类型变量：指针不可变，但是指向的内存区域可变。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;FinalVariableTest&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;agrs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;23&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//Console&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//[1, 23, 4, 5]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//[1, 23, 20, 5]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;final-的宏替换&#34;&gt;final 的宏替换&lt;/h2&gt;
-&lt;p&gt;对于 final 的变量来说，不管是类变量，实例变量还是局部变量。只要在编译的时候可以确定，那么编译器就会把它看成一个直接量而不是变量。
-比如:&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>【Core Java】读书笔记</title>
       <link>https://zyf.im/2016/05/06/core-java-reading-notes/</link>
       <pubDate>Fri, 06 May 2016 11:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/05/06/core-java-reading-notes/</guid>
-      <description>&lt;p&gt;自己是第一次把一本厚厚的的技术类书读一遍。不过 7、8、9、10 章讲的是关于图形的就是翻了翻，没怎么看。第 4 章 对象与类，里面有很多非常基础，可以补充一些知识细节。第 14 章 多线程，是自己最陌生的，慕课网上有节课 &lt;a href=&#34;http://www.imooc.com/view/202&#34;&gt;深入浅出 Java 多线程&lt;/a&gt; 讲到的例子就是书上例子的变形，可以对照理解。第二遍阅读做做笔记。&lt;/p&gt;
-&lt;p&gt;本文总结的是书中的：第 3 章 Java 的基本程序设计结构、第 4 章 对象与类。&lt;/p&gt;
+      <description>&lt;p&gt;本文总结 Core Java 书中的：第 3 章 Java 的基本程序设计结构、第 4 章 对象与类、第 5 章 继承。&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;h2 id=&#34;3-java-的基础程序设计结构&#34;&gt;3 Java 的基础程序设计结构&lt;/h2&gt;
+&lt;h2 id=&#34;3-java-的基本程序设计结构&#34;&gt;3 Java 的基本程序设计结构&lt;/h2&gt;
 &lt;h3 id=&#34;33-数据类型&#34;&gt;3.3 数据类型&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;Java 是一种强类型语音。在 Java 中，一共有 8 中基本类型（primitive type），其中有 4 种整型、2 种浮点类型、1 种用于表示 Unicode 编码的字符单元的字符类型 char 和 1 种用于表示真值的 boolean 类型。&lt;/li&gt;
-&lt;li&gt;Java7 开始，还可以为数字字面量加下划线，如用 1_000_000 表示一百万。这些下划线只是为了让人更易读。Java 编译器会去除这些下划线。&lt;/li&gt;
-&lt;li&gt;浮点数值不适用于出现舍入误差的金融计算中。其主要原因时浮点数值采用二进制系统表示，而在二进制系统中无法精确的表示分数 1/10。这就好像十进制无法精确地表示 1/3 一样。如果需要在数值计算中不含有任何舍入误差，就应该使用 BigDecimal 类。&lt;/li&gt;
+&lt;li&gt;Java 有 8 种基本类型（primitive type）：4 种整型、2 种浮点类型、char、boolean&lt;/li&gt;
+&lt;li&gt;Java 7 起可用下划线增强数字可读性：&lt;code&gt;1_000_000&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;浮点数不适用于金融计算（二进制无法精确表示 1/10），应使用 &lt;code&gt;BigDecimal&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;34-变量&#34;&gt;3.4 变量&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;尽管$是一个合法的 Java 字符，但不要在自己的代码中使用这个字符。它只用在 Java 编译器或其他工具生成的名字中。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$&lt;/code&gt; 是合法字符，但仅用于编译器生成的名字，不要在代码中使用&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;36-字符串&#34;&gt;3.6 字符串&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;由于不能修改 Java 字符串中的字符，所以在 Java 文档中将 String 类对象称为不可变字符串。&lt;/li&gt;
-&lt;li&gt;如果虚拟机始终将相同的字符串共享，就可以使用 == 运算符检测是否相等。但实际上只有字符串常量是共享的，而 + 或者 substring 等操作产生的结果并不是共享的。因此，千万不要使用 == 运算符测试字符串的相等性，以免在程序中出现糟糕的 bug。从表面上看，这种 bug 很像随机产生的间歇性错误。&lt;/li&gt;
+&lt;li&gt;String 是不可变的（immutable）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不要用 &lt;code&gt;==&lt;/code&gt; 比较字符串&lt;/strong&gt;：只有字符串常量是共享的，&lt;code&gt;+&lt;/code&gt; 或 &lt;code&gt;substring&lt;/code&gt; 产生的结果不共享&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;310-数组&#34;&gt;3.10 数组&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;在 Java 中，允许将一个数组变量拷贝给另一个数组变量。这时，两个变量将引用同一个数组：&lt;/li&gt;
+&lt;li&gt;数组赋值是引用拷贝，两个变量指向同一数组：&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckyNumbers&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;smallPrimes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckNumbers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// now smallPrimes[5] is also 12&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckyNumbers&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// smallPrimes[5] 也变成 12&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;如果希望将一个数组的所用值拷贝到一个新的数组中去，就要使用 Arrays 类的 copyOf 方法：&lt;/li&gt;
+&lt;li&gt;值拷贝使用 &lt;code&gt;Arrays.copyOf&lt;/code&gt;：&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;copiedLuckyNumbers&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;copyOf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckyNumbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckyNumbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;4-对象与类&#34;&gt;4 对象与类&lt;/h2&gt;
-&lt;h3 id=&#34;41-面向对象程序设计概述&#34;&gt;4.1 面向对象程序设计概述&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;类之间的关系
-依赖（uses-a）
-聚合（has-a）
-继承（is-a）&lt;/li&gt;
-&lt;li&gt;依赖（dependence），即 uses-a 关系。例如，Order 类使用 Account 类是因为 Order 对象需要访问 Account 对象查看信用状态。因此，如果一个类的方法操纵另一个类的对象，我们就说一个类依赖于另一个类。
-应该尽可能的将相互依赖的类减至最少。我们如果 A 不知道 B 的存在，他就不会关心 B 的任何改变（这意味着 B 的改变不会导致 A 产生任何 bug）。用软件工程的术语来说，就是让类之间的耦合度最小。&lt;/li&gt;
-&lt;li&gt;聚合（aggressive），即 has-a 关系。例如，一个 Order 对象包含一些 Item 对象。聚合关系意味着类 A 的对象包含类 B 的对象。&lt;/li&gt;
-&lt;li&gt;继承（inheritance），即 is-a 关系。例如，RushOrder 类由 Order 类继承而来。在具有特殊性的 RushOrder 类中包含了一些用于优先处理的特殊方法，以及一个计算运费的不同方法；而其他的方法从 Order 类继承了来的。一般而言，如果类 A 扩展类 B，类 A 不但包含从类 B 继承的方法，还会拥有一些额外的功能。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;42-使用预定义类&#34;&gt;4.2 使用预定义类&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;在对象与对象变量之间存在着一个重要的区别。例如：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;deadline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// deadline doesn&amp;#39;t refer to any object&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;定义了一个对象变量 deadline，它可以引用 Date 类型的对象。但是，一定要认识到：变量 deading 不是一个对象，实际上也没有引用对象。此时，不能将任何 Date 方法应用与这个变量上。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;deadline&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// not yet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;必须首先初始化变量 deadline，可以用新构造的对象初始化这个变量，也可以让这个变量引用一个已存在的对象。&lt;/li&gt;
-&lt;li&gt;一定要认识到：一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。&lt;/li&gt;
-&lt;li&gt;在 Java 中，任何对象变量的值都时对存储在另一个地方的一个对象的引用。new 操作符的返回值也是一个引用。&lt;/li&gt;
-&lt;li&gt;可显示地将对象变量设置为 null，表明这个对象变量目前没有引用任何对象。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;43-用户自定义类&#34;&gt;4.3 用户自定义类&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;类文件必须与 public 类的名字相匹配。在一个原文件中，只能有一个共有类，但可以有任意数目的非共有类。&lt;/li&gt;
-&lt;li&gt;可以用 public 标记实例域，但这是一种极为不提倡的做法。public 数据域允许程序中的任何方法对其进行读取和修改。这就完全破坏了封装。这里强烈建议将实例域标记为 private。&lt;/li&gt;
-&lt;li&gt;构造器：
-构造器与类同名
-每个类可以有一个以上的构造器
-构造器可以有 0 个、1 个或多个参数
-构造器没有返回值
-构造器总是伴随着 new 操作一起调用&lt;/li&gt;
-&lt;li&gt;类：
-私有的数据域
-公有的域服务器方法
-公有的域改变方法&lt;/li&gt;
-&lt;li&gt;不要编写返回引用可变对象的访问器方法。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hireDay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;getHireDay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hireDay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;这样会破坏封装性！代码：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harry&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harry&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getHireDay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;doule&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tenYearsInMilliSeconds&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;365&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;60&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;60&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setTime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getTime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;long&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tenYearsInMilliSeconds&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// let&amp;#39;s give Harry ten years of added seniority&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;出错的原因很微妙。d 和 harry.hireDay 引用同一个对象。对 d 调用更改器方法就可以自动地改变这个雇员的私有状态！&lt;/li&gt;
-&lt;li&gt;如果需要返回一个可变对象的引用，应该首先对它进行克隆（clone）。对象 clone 是指存放在另一个位置上的对象副本。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;getHireDay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hireDay&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;clone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;Employee 类的方法可以访问 Emloyee 类的任何一个对象的&lt;strong&gt;私有域&lt;/strong&gt; 。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;boolen&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;other&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;equals&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;other&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;final 修饰符大都应用于基本（primitive）类型域，或不可变（immutable）类的域（如果类中的每个方法都是不会改变其对象，这中类就是不可变的类。例如，String 类就是一个不可变的类）。对于可变的类，使用 final 修饰符可能会对读者造成混乱。代码&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;final&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Date&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hiredate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;仅仅意味着存储子 hiredate 变量中的对象引用在对象构造之后不能被改变，而并不意味着 hiredate 对象是一个常量。任何方法都可以对 hiredate 引用的对象调用 setTime 更改器。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;44-静态域与静态方法&#34;&gt;4.4 静态域与静态方法&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;每一个雇员对象都有一个自己的 id 域，但这个类的所有实例将共享一个 nextId 域。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nextId&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;换句话说，如果有 1000 个 Employee 类的对象，则有 1000 个实例域 id。但是，这有一个静态域 nextId。即使没有一个雇员对象，静态域 nextId 也是存在。它属于类，而不属于任何独立的对象。&lt;/li&gt;
-&lt;li&gt;可以使用对象调用静态方法。例如，如果 harry 是一个 Employee 对象，可以用 harry.getNextId() 代替 Employee.getNextId()。不过这中方式很容易造成混淆，其原因是 getNextId 方法计算的结果与 harry 毫无关系。我们建议使用类名来调用静态方法。&lt;/li&gt;
-&lt;li&gt;每一个类可以有一个 main 方法。这是一个常用于对类进行单元测试的技巧。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;45-参数方法&#34;&gt;4.5 参数方法&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Java 程序设计语言总是采用按值调用。也就是说，方法得到的是所有参数值的一个拷贝。&lt;/li&gt;
-&lt;li&gt;Java 程序设计语言中方法参数的使用情况：
-一个方法不能修改一个基本数据类型的参数。
-一个方法可以改变一个对象参数的状态。
-一个方法不能让对象参数引用一个新的状态。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;46-对象构造&#34;&gt;4.6 对象构造&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;要完整的描述一个方法需要指出方法以及参数类型，这叫做方法的签名（signature）。&lt;/li&gt;
-&lt;li&gt;返回类型不是方法签名的一部分。也就是说，不能有两个名字相同、参数类型也相同却返回不同类型值的方法。&lt;/li&gt;
-&lt;li&gt;如果在编写一个类时没有编写构造器，那么系统就会提供一个无参数构造器。这个构造器将所有的实例域设置为默认值。实例域中的数值类型数据设置为 0、布尔型数值设置为 false、所有对象变量将设置为 null。&lt;/li&gt;
-&lt;li&gt;如果类中提供了至少一个构造器，但是没有提供无参数的构造器，则在构造对象时如果没有提供参数就会被视为不合法。&lt;/li&gt;
-&lt;li&gt;对每一个实例域都可以被设置为一个有意义的初值，这是一种很好的设计习惯。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;410-类设计技巧&#34;&gt;4.10 类设计技巧&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;一定要保证数据私有。绝对不要破坏封装性。&lt;/li&gt;
-&lt;li&gt;一定要对数据初始化。&lt;/li&gt;
-&lt;li&gt;不要在类中使用过多的基本类型。就是说，用其他的类代替多个相关的基本类型的使用。&lt;/li&gt;
-&lt;li&gt;不是所有的域都需要独立的域访问器和域更改器。&lt;/li&gt;
-&lt;li&gt;将职责过多的类进行分解。&lt;/li&gt;
-&lt;li&gt;类名和方法名要能够体现它们的职责。&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>【Core Java】对象与类-方法参数传递</title>
-      <link>https://zyf.im/2016/04/19/core-java-method-parameter/</link>
-      <pubDate>Tue, 19 Apr 2016 20:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2016/04/19/core-java-method-parameter/</guid>
-      <description>&lt;p&gt;提问：Java 对象采用的是值传递还是引用传递？&lt;/p&gt;
-&lt;p&gt;有些程序员认为 Java 对象采用的是引用调用，实际上，这种理解是不对的。下面给出一个反例来详细的阐述一下这一问题。&lt;/p&gt;
-&lt;p&gt;首先，编写一个交换两个雇员对象的方法：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;   &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;temp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
-&lt;p&gt;如果 Java 程序时引用调用，那么这个方法就应该能都实现交换实际的效果。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;\nTesting swap:&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Alice&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;70000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Employee&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Bob&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;60000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Before: a=&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Before: b=&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;swap&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;After: a=&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;After: b=&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是结果 a 仍然时 Alice，b 是 Bob。对象引用进行的是值传递。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>【Core Java】彩票选取中奖数字-数组例子</title>
-      <link>https://zyf.im/2016/03/23/core-java-array-dome/</link>
-      <pubDate>Wed, 23 Mar 2016 20:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2016/03/23/core-java-array-dome/</guid>
-      <description>&lt;p&gt;从 1,2,3&amp;hellip;h 中随机取 k 个中奖号码。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;im.zyf.javacore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.util.Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nn&#34;&gt;java.util.Scanner&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;LotteryDrawing&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Scanner&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Scanner&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;how many numbers do you need?&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;nextInt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;what is the highest number?&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;in&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;nextInt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harr&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;karr&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;random&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Math&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;random&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;karr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;random&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//将数组最后的值，代替掉被取走的值&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;random&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;harr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//数组长度减1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;            &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;karr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;toString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;karr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Console:&lt;/p&gt;</description>
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;copiedNumbers&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;copyOf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckyNumbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;luckyNumbers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;彩票抽奖示例（从 1~n 中随机取 k 个不重复数字）：&lt;/p&gt;</description>
     </item>
     <item>
       <title>试着写东西</title>
@@ -7226,7 +6839,8 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;p&gt;问：“有自己的网站吗？”
 “没有。”
 问：“域名都买了不自己搭个网站?”
-“……”&lt;/p&gt;&lt;/blockquote&gt;
+“……”&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;其实这也不是自己要搭博客的根本原因。&lt;/p&gt;
 &lt;p&gt;在大学里，学了些做了些东西，可思考的不多。现在越发觉的一个人的强大在于思想。看书写些东西我想是提高一个人思想的方法吧。文字写下来了也方便交流。&lt;/p&gt;
 &lt;p&gt;出来了换了一个环境，遇到新的人，新的事，可以换个角度看人看事。原来我理解的一些技术博客，就是解决问题后的笔记本，有问题从中找，而且觉得很多网上的技术博客里的内容都是来回的转来转去，很多解决方案都是过时的，没什么的。可最近在浏览博客园、csdn 发现了很多精华的前人分享自己所理解的知识、技术中走的弯路，阅读后很受益。&lt;/p&gt;
@@ -7235,7 +6849,8 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;blockquote&gt;
 &lt;p&gt;我不能保证写的每个地方都是对的，但是至少能保证不复制、不黏贴，保证每一句话、每一行代码都经过了认真的推敲、仔细的斟酌。每一篇文章的背后，希望都能看到自己对于技术、对于生活的态度。
 我相信乔布斯说的，只有那些疯狂到认为自己可以改变世界的人才能真正地改变世界。面对压力，我可以挑灯夜战、不眠不休；面对困难，我愿意迎难而上、永不退缩。
-其实我想说的是，我只是一个程序员，这就是我现在纯粹人生的全部。&lt;/p&gt;&lt;/blockquote&gt;
+其实我想说的是，我只是一个程序员，这就是我现在纯粹人生的全部。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;再认同不过了。&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
@@ -7252,7 +6867,8 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;p&gt;如若我从未成功，我想我会顺其自然，&lt;/br&gt;
 如若我只听从别人的建议过日，我的心会死去。&lt;/br&gt;
 我是太固执，管制精神的手段对我奈何不得，&lt;/br&gt;
-有的人必会成为明日之星，我想该轮到我了。&lt;/p&gt;&lt;/blockquote&gt;
+有的人必会成为明日之星，我想该轮到我了。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;我是 Yifan，一名在帝都的开发工程师，现在专注于财经领域。这里记录了我开发过程中的一些经验或是人生感悟，希望对你有帮助。&lt;/p&gt;
 &lt;p&gt;下面是我个人微信二维码，欢迎添加。:)&lt;/p&gt;
 &lt;img alt=&#34;yifanszhao_wechat_qrcode&#34; style=&#34;width:240px;&#34; src=&#34;https://user-images.githubusercontent.com/9289792/126154429-3143f154-9eb4-4218-9755-8dc087eea27b.jpg&#34; /&gt;
@@ -7309,7 +6925,8 @@ The Maven configuration files are stored in &lt;code&gt;/etc/maven&lt;/code&gt;&
 &lt;li&gt;03/18：&lt;a href=&#34;https://zyf.im/2016/03/18/try-to-write-something/&#34;&gt;试着写东西&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;真实地活着。&lt;/p&gt;&lt;/blockquote&gt;</description>
+&lt;p&gt;真实地活着。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Links</title>

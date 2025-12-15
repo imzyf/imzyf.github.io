@@ -4,7 +4,7 @@
     <title>Tags on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/</link>
     <description>Recent content in Tags on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -205,17 +205,17 @@
       <description></description>
     </item>
     <item>
-      <title>Java</title>
-      <link>https://zyf.im/tags/java/</link>
-      <pubDate>Fri, 23 Sep 2016 16:00:00 +0800</pubDate>
-      <guid>https://zyf.im/tags/java/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Leetcode</title>
       <link>https://zyf.im/tags/leetcode/</link>
       <pubDate>Mon, 19 Sep 2016 16:00:00 +0800</pubDate>
       <guid>https://zyf.im/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java</title>
+      <link>https://zyf.im/tags/java/</link>
+      <pubDate>Sat, 10 Sep 2016 19:00:00 +0800</pubDate>
+      <guid>https://zyf.im/tags/java/</guid>
       <description></description>
     </item>
     <item>

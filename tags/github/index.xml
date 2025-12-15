@@ -4,7 +4,7 @@
     <title>Github on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/github/</link>
     <description>Recent content in Github on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Jul 2016 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/github/index.xml" rel="self" type="application/rss+xml" />
@@ -22,7 +22,8 @@
 &lt;p&gt;如此一来，你就可以通过这种方式去自动完成一些重复性工作；比如，你可以用 Webhook 来自动触发一些持续集成（CI）工具的运作，比如 Travis CI；又或者是通过 Webhook 去部署你的线上服务器。&lt;/p&gt;
 &lt;p&gt;Github 开发者平台的文档中对 Webhook 的所能做的事是这样描述的：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;You’re only limited by your imagination.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;响应-webhook&#34;&gt;响应 Webhook&lt;/h2&gt;
 &lt;p&gt;在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。&lt;/p&gt;
 &lt;p&gt;自己在 GitHub 搜索下 &lt;code&gt;github webhook&lt;/code&gt;，&lt;code&gt;language&lt;/code&gt; 选择 &lt;code&gt;Python&lt;/code&gt; 便找到了 Python 编写的：&lt;a href=&#34;https://github.com/razius/github-webhook-handler&#34;&gt;razius/github-webhook-handler&lt;/a&gt;&lt;/p&gt;</description>
@@ -61,7 +62,8 @@
 &lt;p&gt;本文的操作的系统环境是 Ubuntu 15，Windows 下的搭建可触类旁通。&lt;/p&gt;
 &lt;h2 id=&#34;了解-hexo&#34;&gt;了解 Hexo&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，&lt;a href=&#34;https://hexo.io/zh-cn/docs/setup.html&#34;&gt;Hexo setup 官方文档&lt;/a&gt;。&lt;/p&gt;</description>
     </item>
   </channel>

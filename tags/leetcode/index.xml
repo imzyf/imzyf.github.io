@@ -4,7 +4,7 @@
     <title>Leetcode on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/leetcode/</link>
     <description>Recent content in Leetcode on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.148.2</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Sep 2016 16:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
@@ -174,7 +174,8 @@ Line 10
   Input is guaranteed to be within the range from 1 to 3999.&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97&#34;&gt;wikipedia-罗马数字&lt;/a&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97&#34;&gt;wikipedia-罗马数字&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;罗马数字共有 7 个，即 I（1）、V（5）、X（10）、L（50）、C（100）、D（500）和 M（1000）。按照下述的规则可以表示任意正整数。需要注意的是罗马数字中没有“0”，与进位制无关。一般认为罗马数字只用来记数，而不作演算。&lt;/p&gt;
 &lt;p&gt;重复数次：一个罗马数字重复几次，就表示这个数的几倍。&lt;/p&gt;
 &lt;p&gt;右加左减：&lt;/p&gt;
