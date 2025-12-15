@@ -156,14 +156,15 @@
 &lt;li&gt;&lt;a href=&#34;https://w3techs.com/&#34;&gt;W3Techs - World Wide Web Technology Surveys&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/nodejs/release#release-schedule&#34;&gt;nodejs release schedule&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;安装-nodejs-与常见问题&#34;&gt;安装 Node.js 与常见问题&lt;/h2&gt;
-&lt;p&gt;2025-02-17：推荐使用 &lt;a href=&#34;https://moonrepo.dev/docs/proto&#34;&gt;proto&lt;/a&gt;。&lt;/p&gt;
-&lt;h3 id=&#34;nodejs-安装&#34;&gt;Node.js 安装&lt;/h3&gt;
-&lt;p&gt;推荐使用 nvm 安装管理 node.js&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;the nvm method is definitely much more flexible.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/creationix/nvm#installation&#34;&gt;creationix/nvm: Node Version Manager - Simple bash script to manage multiple active node.js versions&lt;/a&gt;&lt;/p&gt;</description>
+&lt;h2 id=&#34;安装-nodejs&#34;&gt;安装 Node.js&lt;/h2&gt;
+&lt;p&gt;推荐使用 &lt;a href=&#34;https://moonrepo.dev/docs/proto&#34;&gt;proto&lt;/a&gt; 安装管理 Node.js。proto 是一个现代化的多语言版本管理工具，支持 Node.js、Bun、Deno、Go、Rust 等多种语言运行时。&lt;/p&gt;
+&lt;h3 id=&#34;安装-proto&#34;&gt;安装 proto&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# macOS / Linux&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -fsSL https://moonrepo.dev/install/proto.sh &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; bash
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;irm https://moonrepo.dev/install/proto.ps1 &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; iex
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后重启终端或执行 &lt;code&gt;source ~/.bashrc&lt;/code&gt;（或对应的 shell 配置文件）。&lt;/p&gt;</description>
     </item>
     <item>
       <title>MySQL Code Snippet</title>
