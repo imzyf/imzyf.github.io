@@ -314,17 +314,11 @@
     <loc>https://zyf.im/2019/03/01/extra-long-factorials/</loc>
     <lastmod>2019-03-01T14:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2019/02/28/fastlane-getting-started/</loc>
-    <lastmod>2019-02-28T10:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/ios/</loc>
-    <lastmod>2019-02-28T10:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</loc>
     <lastmod>2019-02-15T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2019/01/19/promisekit-getting-started/</loc>
-    <lastmod>2019-01-19T14:00:00+08:00</lastmod>
+    <loc>https://zyf.im/tags/ios/</loc>
+    <lastmod>2019-02-15T17:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2018/12/31/review-2018/</loc>
     <lastmod>2018-12-31T21:00:00+08:00</lastmod>
@@ -341,9 +335,6 @@
     <loc>https://zyf.im/2018/11/22/stack-data-structure/</loc>
     <lastmod>2018-11-22T14:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</loc>
-    <lastmod>2018-10-30T14:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</loc>
     <lastmod>2018-05-25T16:00:00+08:00</lastmod>
   </url><url>
@@ -359,25 +350,13 @@
     <loc>https://zyf.im/2018/03/31/swift-init/</loc>
     <lastmod>2018-03-31T17:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2018/03/29/ios-safe-area/</loc>
-    <lastmod>2018-03-29T11:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</loc>
-    <lastmod>2018-03-27T16:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</loc>
-    <lastmod>2018-03-15T19:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2018/01/19/got-git-reading-notes-model/</loc>
     <lastmod>2018-01-19T14:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</loc>
     <lastmod>2018-01-17T19:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2018/01/17/r-swift-getting-started/</loc>
-    <lastmod>2018-01-17T14:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/01/12/xcode-tips/</loc>
+    <loc>https://zyf.im/2018/01/12/ios-dev-tips-and-tools/</loc>
     <lastmod>2018-01-12T13:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/12/31/review-2017/</loc>

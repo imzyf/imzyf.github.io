@@ -4096,41 +4096,14 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>fastlane 入门使用</title>
-      <link>https://zyf.im/2019/02/28/fastlane-getting-started/</link>
-      <pubDate>Thu, 28 Feb 2019 10:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2019/02/28/fastlane-getting-started/</guid>
-      <description>&lt;p&gt;这次以 &lt;a href=&#34;https://fastlane.tools/&#34;&gt;fastlane&lt;/a&gt; 为例，尝试项目中有什么事情可以被自动完成。&lt;/p&gt;
-&lt;p&gt;fastlane 是 Ruby scripts 的集合，安装方法不多说了见 &lt;a href=&#34;https://docs.fastlane.tools/&#34;&gt;官网文档&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;fastlane 中有但不限于以下工具集：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/produce/&#34;&gt;produce&lt;/a&gt; 同时在 Apple Developer Portal 和 App Store Connect 中创建新的 iOS apps。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/cert/&#34;&gt;cert&lt;/a&gt; 自动创建和维护 iOS 签名证书。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/sigh/&#34;&gt;sigh&lt;/a&gt; 创建，更新，下载和修复配置文件。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/snapshot/&#34;&gt;snapshot&lt;/a&gt; 自动在每台设备上获取 iOS 应用的本地化屏幕截图。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/frameit/&#34;&gt;frameit&lt;/a&gt; 将您的屏幕截图放入正确的设备框架中。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/gym/&#34;&gt;gym&lt;/a&gt; 构建和打包您的 iOS apps。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/deliver/&#34;&gt;deliver&lt;/a&gt; 将截图，元数据和您的应用上传到 App Store。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/pem/&#34;&gt;pem&lt;/a&gt; 自动生成并更新推送通知配置文件。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/fastlane/tree/master/spaceship&#34;&gt;spaceship&lt;/a&gt; 一个 Ruby 库能够访问苹果开发者中心和应用商店连接 api。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/pilot/&#34;&gt;pilot&lt;/a&gt; 自动化 TestFlight 部署并管理测试用户。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/fastlane/boarding&#34;&gt;boarding&lt;/a&gt; 邀请 beta 测试人员。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/match/&#34;&gt;match&lt;/a&gt; 使用 Git 同步整个团队的证书和配置文件。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.fastlane.tools/actions/scan/&#34;&gt;scan&lt;/a&gt; 运行 app 测试。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- more --&gt;
-&lt;blockquote&gt;
-&lt;p&gt;实验环境：Xcode 10.1、Swift 4.2、fastlane 2.116.1、$99 开发者账户&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>【Swifter - Swift 开发者必备 Tips】笔记</title>
       <link>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</link>
       <pubDate>Fri, 15 Feb 2019 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</guid>
-      <description>&lt;p&gt;再读王巍的【Swifter - Swift 开发者必备 Tips】，看看有什么新收获。&lt;/p&gt;
+      <description>&lt;p&gt;再读王巍的《Swifter - Swift 开发者必备 Tips》，看看有什么新收获。&lt;/p&gt;
 &lt;h2 id=&#34;柯里化currying&#34;&gt;柯里化（Currying）&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96%5D&#34;&gt;柯里化&lt;/a&gt; 是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术，这个词自己是第一次见到。&lt;/p&gt;
-&lt;p&gt;自己的理解就是：把接受多个参数的函数变换为，先接受一个参数，然后返回一个函数，这个函数再接受其他参数。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96&#34;&gt;柯里化&lt;/a&gt;是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。这个词自己是第一次见到。&lt;/p&gt;
+&lt;p&gt;自己的理解是：把接受多个参数的函数变换为先接受一个参数，然后返回一个函数，这个函数再接受其他参数。&lt;/p&gt;
 &lt;p&gt;两个细节：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;只有一个参数，并且这个参数是该函数的第一个参数。必须按照参数的定义顺序来调用柯里化函数。&lt;/li&gt;
@@ -4149,15 +4122,15 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;addTen&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;addTo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;addTen&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 16&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;柯里化是一种量产相似方法的好办法，可以通过柯里化一个方法模板来避免写出很多重复代码，也方便了今后维护。&lt;/p&gt;
-&lt;p&gt;书中还提到了一个封装 &lt;a href=&#34;https://oleb.net/blog/2014/07/swift-instance-methods-curried-functions/?utm_campaign=iOS_Dev_Weekly_Issue_157&amp;amp;utm_medium=email&amp;amp;utm_source=iOS%252BDev%252BWeekly&#34;&gt;Selector&lt;/a&gt; 的例子，但是没懂，欢迎指教。&lt;/p&gt;
+&lt;p&gt;书中还提到了一个封装 &lt;a href=&#34;https://oleb.net/blog/2014/07/swift-instance-methods-curried-functions/&#34;&gt;Selector&lt;/a&gt; 的例子，但是没懂，欢迎指教。&lt;/p&gt;
 &lt;p&gt;Reference:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.jianshu.com/p/5b27fec8c616&#34;&gt;Swift 函数柯里化介绍及使用场景&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;将-protocol-的方法声明为-mutating&#34;&gt;将 protocol 的方法声明为 mutating&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;protocol&lt;/code&gt; 不仅可以被 &lt;code&gt;class&lt;/code&gt; 类型实现，也适用于 &lt;code&gt;struct&lt;/code&gt; 和 &lt;code&gt;enum&lt;/code&gt;。因为这个原因就要考虑定义的方法是否应该使用 &lt;code&gt;mutating&lt;/code&gt; 来修饰。在 &lt;code&gt;protocl&lt;/code&gt; 中使用 &lt;code&gt;mutating&lt;/code&gt; 修饰的方法，对于 &lt;code&gt;class&lt;/code&gt; 的实现是完全透明的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;protocol&lt;/code&gt; 不仅可以被 &lt;code&gt;class&lt;/code&gt; 类型实现，也适用于 &lt;code&gt;struct&lt;/code&gt; 和 &lt;code&gt;enum&lt;/code&gt;。因为这个原因，就要考虑定义的方法是否应该使用 &lt;code&gt;mutating&lt;/code&gt; 来修饰。在 &lt;code&gt;protocol&lt;/code&gt; 中使用 &lt;code&gt;mutating&lt;/code&gt; 修饰的方法，对于 &lt;code&gt;class&lt;/code&gt; 的实现是完全透明的。&lt;/p&gt;
 &lt;h2 id=&#34;多元组tuple&#34;&gt;多元组（Tuple）&lt;/h2&gt;
-&lt;p&gt;python 中有见过类似。&lt;/p&gt;
+&lt;p&gt;Python 中有见过类似用法。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;/// 交互数据&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;swapMe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;inout&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;inout&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -4174,37 +4147,6 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// remainder {x 0 y 20 w 100 h 80}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;autoclosure-和-&#34;&gt;&lt;code&gt;@autoclosure&lt;/code&gt; 和 &lt;code&gt;??&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;@autoclosure&lt;/code&gt; 做的事情就是把一句表达式自动的封装成一个闭包（closure）。这样有时候在语法上看起来就会非常漂亮。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>PromiseKit 入门使用</title>
-      <link>https://zyf.im/2019/01/19/promisekit-getting-started/</link>
-      <pubDate>Sat, 19 Jan 2019 14:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2019/01/19/promisekit-getting-started/</guid>
-      <description>&lt;p&gt;在 GitHub Trending 中总是看到 &lt;a href=&#34;https://github.com/mxcl/PromiseKit&#34;&gt;mxcl/PromiseKit&lt;/a&gt; 它是主要解决的是 “回调地狱” 的问题，决定尝试用一下。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;环境：Swift 4.2、PromiseKit 6&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;then-and-done&#34;&gt;then and done&lt;/h2&gt;
-&lt;p&gt;下面是一个典型的 promise 链式（chain）调用：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;firstly {
-    login()
-}.then { creds in
-    fetch(avatar: creds.user)
-}.done { image in
-    self.imageView = image
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;!-- more --&gt;
-&lt;p&gt;如果这段代码使用完成回调（&lt;code&gt;completion handler&lt;/code&gt;）实现，他将是：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;login { creds, error in
-    if let creds = creds {
-        fetch(avatar: creds.user) { image, error in
-            if let image = image {
-                self.imageView = image
-            }
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;then&lt;/code&gt; 是完成回调的另一种方式，但是它更丰富。在处级阶段的理解，它更具有可读性。上面的 promise chain 更容易阅读和理解：一个异步操作接着另一个，一行接一行。它与程序代码非常接近，因为我们很容易得到 Swift 的当前状态。&lt;/p&gt;</description>
     </item>
     <item>
       <title>回顾 2018</title>
@@ -4450,28 +4392,6 @@ for (k, v) in array.enumerated() {
 &lt;p&gt;想从一个空栈中弹出最后一个元素将返回 &lt;code&gt;nil&lt;/code&gt;。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>解决 Too many symbol files</title>
-      <link>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</link>
-      <pubDate>Tue, 30 Oct 2018 14:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/10/30/correct-too-many-symbol-files-issues/</guid>
-      <description>&lt;p&gt;在上传 App 到 App Store 后收到邮件，有 issues &lt;strong&gt;Too many symbol files&lt;/strong&gt;。在之前看到 &lt;em&gt;Your delivery was successful&lt;/em&gt;，此 issues 不影响发布，所以一直搁置了。&lt;/p&gt;
-&lt;p&gt;今天决定彻底处理下。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-&lt;p&gt;先说 &lt;code&gt;*.symbols&lt;/code&gt; 这文件是干嘛的，我现在（2018-10）对此的理解：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;symbols 为符号表文件&lt;/li&gt;
-&lt;li&gt;符号表是内存地址与函数名、文件名、行号的映射表 &lt;code&gt;&amp;lt;起始地址&amp;gt; &amp;lt;结束地址&amp;gt; &amp;lt;函数&amp;gt; [&amp;lt;文件名:行号&amp;gt;]&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;为什么要配置符号表？&lt;/p&gt;
-&lt;p&gt;为了能快速并准确地定位用户 App 发生 &lt;strong&gt;Crash 的代码位置&lt;/strong&gt;，使用符号表对 App 发生 Crash 的程序 &lt;em&gt;堆栈&lt;/em&gt; 进行 &lt;em&gt;解析&lt;/em&gt; 和 &lt;em&gt;还原&lt;/em&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;006tNbRwly1fwq98vcjeoj30i00383yh&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80204521-9ea54a80-865b-11ea-9420-7d8a2d32e910.jpg&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;项目情况&#34;&gt;项目情况&lt;/h2&gt;
-&lt;p&gt;再说下项目情况，因为数字都是用了的是 Int，为防止 32 位设备发生越界情况（理由好像有点扯），所以项目端设置了设备限制 &lt;code&gt;arm64&lt;/code&gt;，也就是 5s 之前的设备不可以安装。&lt;/p&gt;
-&lt;p&gt;因为使用了三方库，但是三方库是支持 32 位设备的，所以生成了冗余的 symbols 文件。&lt;/p&gt;
-&lt;p&gt;查询 symbols 文件的生成情况：Xcode Window -&amp;gt; Organizer 选择有问题的 archive，右击选择 Show in finder，命令行进入 *.app 中的 dSYMs 文件夹，执行 &lt;code&gt;dwarfdump --uuid *&lt;/code&gt; 可以查询到是否生成了多余的文件。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>在 MySQL 中选择合适的日期类型</title>
       <link>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</link>
       <pubDate>Fri, 25 May 2018 16:00:00 +0800</pubDate>
@@ -4675,7 +4595,7 @@ for (k, v) in array.enumerated() {
       <link>https://zyf.im/2018/03/31/swift-init/</link>
       <pubDate>Sat, 31 Mar 2018 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2018/03/31/swift-init/</guid>
-      <description>&lt;p&gt;因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只这样套着 Java 去理解，但也发现了不相同的地方。&lt;/p&gt;
+      <description>&lt;p&gt;因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只是这样套着 Java 去理解，但也发现了不相同的地方。&lt;/p&gt;
 &lt;h2 id=&#34;初始化顺序&#34;&gt;初始化顺序&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Blog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSObject&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;
@@ -4683,8 +4603,8 @@ for (k, v) in array.enumerated() {
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kr&#34;&gt;override&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里有条错误 &lt;code&gt;error: property &#39;self.param&#39; not initialized at implicitly generated super.init call&lt;/code&gt; 说明：&lt;code&gt;param&lt;/code&gt; 参数没有在隐式生成 &lt;code&gt;super.init&lt;/code&gt; 调用之前完成初始化。&lt;/p&gt;
-&lt;p&gt;Swift 中并不是不调用 &lt;code&gt;super.init&lt;/code&gt; 而是为了方便开发者由编译器完成了这一步，但是要求调用 &lt;code&gt;super.init&lt;/code&gt; 之前要完成成员变量的初始化。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里有一条错误 &lt;code&gt;error: property &#39;self.param&#39; not initialized at implicitly generated super.init call&lt;/code&gt;，说明 &lt;code&gt;param&lt;/code&gt; 参数没有在隐式生成 &lt;code&gt;super.init&lt;/code&gt; 调用之前完成初始化。&lt;/p&gt;
+&lt;p&gt;Swift 中并不是不调用 &lt;code&gt;super.init&lt;/code&gt;，而是为了方便开发者，由编译器完成了这一步。但要求在调用 &lt;code&gt;super.init&lt;/code&gt; 之前完成成员变量的初始化。&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Blog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSObject&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;param&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;
@@ -4693,7 +4613,7 @@ for (k, v) in array.enumerated() {
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;param&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;swift init&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;对于需要修改父类中成员变量值，我们需要在调用 &lt;code&gt;super.init&lt;/code&gt; 之后再进行修改：&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;对于需要修改父类中成员变量值的情况，我们需要在调用 &lt;code&gt;super.init&lt;/code&gt; 之后再进行修改：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Cat&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -4712,99 +4632,6 @@ for (k, v) in array.enumerated() {
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Swift 中类的初始化顺序：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>iOS Safe Area 我所知道的全部</title>
-      <link>https://zyf.im/2018/03/29/ios-safe-area/</link>
-      <pubDate>Thu, 29 Mar 2018 11:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/03/29/ios-safe-area/</guid>
-      <description>&lt;p&gt;在 iOS 7 Apple 在 UIViewController 中引入了 &lt;code&gt;topLayoutGuide&lt;/code&gt; 和 &lt;code&gt;bottomLayoutGuide&lt;/code&gt; 属性来描述没有被覆盖(status bar, navigation bar, toolbar, tab bar, etc.)屏幕的区域。在 iOS 11 中，Apple 已经弃用了这些属性，并引入了 safe area。Apple 建议我们不要在 safe area 操作，在 iOS 11 中，当在 iOS App 中定位视图时，你必须使用新的 safe area API。&lt;/p&gt;
-&lt;h2 id=&#34;uiview&#34;&gt;UIView&lt;/h2&gt;
-&lt;p&gt;在 iOS 11 UIViewController &lt;code&gt;topLayoutGuide&lt;/code&gt; 和 &lt;code&gt;bottomLayoutGuide&lt;/code&gt; 属性已经被替换成了新的 UIView 中的 safe area：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;available&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iOS&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;11.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;safeAreaInsets&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UIEdgeInsets&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;available&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iOS&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;11.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;safeAreaLayoutGuide&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UILayoutGuide&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;get&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;safeAreaInsets&lt;/code&gt; 属性意味着屏幕可以覆盖从四个方向，而不仅仅是顶部和底部。当被 iPhone X 呈现时，我们就明白了为什么我们需要左右 insets。&lt;/p&gt;
-&lt;img src=&#34;https://tva1.sinaimg.cn/large/006tNbRwly1fptmugww5wj30zs0x0jw8.jpg&#34; alt=&#34;ios-safe-area&#34; width=&#34;400&#34; /&gt;
-&lt;p&gt;&lt;em&gt;iPhone 8 vs iPhone X safe area (portrait orientation)&lt;/em&gt;&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>UITableViewCell 自适应 UITextView 高度</title>
-      <link>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</link>
-      <pubDate>Tue, 27 Mar 2018 16:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/03/27/self-sizing-uitextview-in-a-uitableviewcell/</guid>
-      <description>&lt;p&gt;使用 Auto Layout 让 UITableViewCell 自适应 UITextView 高度，效果演示：&lt;/p&gt;
-&lt;img src=&#34;https://user-images.githubusercontent.com/9289792/37953137-931860e0-31d4-11e8-8809-c871b09f9519.gif&#34; alt=&#34;Self-sizing UITextView in cell&#34; width=&#34;200&#34; /&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/imzyf/99-projects-of-swift/tree/master/029-tableviewcell-self-adaption&#34;&gt;99-projects-of-swift/029-tableviewcell-self-adaption&lt;/a&gt;&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;预备步骤&#34;&gt;预备步骤&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;给 textView 上下左右建立相对于 cell 的约束&lt;/li&gt;
-&lt;li&gt;取消 textView 的 &lt;code&gt;Scrolling Enabled&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;设置 tableView 估算高度 &lt;code&gt;tableView.estimatedRowHeight = 70&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;设置 &lt;code&gt;textView.delegate = self&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;关键点&#34;&gt;关键点&lt;/h2&gt;
-&lt;p&gt;如果在 &lt;code&gt;textViewDidChange(textView:)&lt;/code&gt; 调用 &lt;code&gt;tableView.reloadData()&lt;/code&gt; 会造成 textView 失去焦点，键盘隐藏。&lt;/p&gt;
-&lt;p&gt;解决方法：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func textViewDidChange(textView: UITextView) {
-    tableView.beginUpdates()
-    tableView.endUpdates()
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里带来了一个问题，当 textView 长度超过一屏或者过长时，在输入时 tableView 会跳动滚动 jumping and stuttering。&lt;/p&gt;
-&lt;p&gt;更好的解决方法：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func textViewDidChange(textView: UITextView) {
-    let currentOffset = tableView.contentOffset
-    UIView.setAnimationsEnabled(false)
-    tableView.beginUpdates()
-    tableView.endUpdates()
-    UIView.setAnimationsEnabled(true)
-    tableView.setContentOffset(currentOffset, animated: false)
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;禁用动画和重建表视图的内容偏移修正抖动。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>【译】iOS 单元测试和 UI 测试入门教程</title>
-      <link>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</link>
-      <pubDate>Thu, 15 Mar 2018 19:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/03/15/ios-unit-testing-and-ui-testing-tutorial/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.kodeco.com/21020457-ios-unit-testing-and-ui-testing-tutorial&#34;&gt;iOS Unit Testing and UI Testing Tutorial&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;编写测试并不迷人 (glamorous)，但是既然测试能让你闪闪发光 (sparkling) 的应用程序避免变成 (from turning into) 一堆乱七八糟的垃圾，那么说明测试是必要的。如果你正在阅读这篇教程，那么你已经知道你 &lt;em&gt;应该&lt;/em&gt; 为代码和 UI 编写测试，但是你可能不知道如何做。&lt;/p&gt;
-&lt;p&gt;也许你已经有一个 &amp;ldquo;可以运行&amp;rdquo; 的应用，但想测试你正在进行的扩展应用的更改。也许你已经编写了一些测试，但不确定它们是否是 &lt;em&gt;正确&lt;/em&gt; 的测试。或者，你已经开始开发一个新应用，想要边开发边测试。&lt;/p&gt;
-&lt;p&gt;这篇教程将告诉你如何:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;使用 Xcode 的测试导航器来测试应用的模型和异步方法&lt;/li&gt;
-&lt;li&gt;通过使用存根 (stubs) 和模拟对象 (mocks) 模拟与库或系统对象的交互&lt;/li&gt;
-&lt;li&gt;测试 UI 和性能&lt;/li&gt;
-&lt;li&gt;使用代码覆盖率工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在此过程中，你将学到一些测试高手常用的专业术语。&lt;/p&gt;
-&lt;h2 id=&#34;开始&#34;&gt;开始&lt;/h2&gt;
-&lt;p&gt;首先，下载教程素材。它包含一个基于 UIKit Apprentice 中的示例应用的 BullsEye 项目。这是一个简单的运气和机会游戏。游戏逻辑在 &lt;code&gt;BullsEyeGame&lt;/code&gt; 类中，你将在本教程中对其进行测试。&lt;/p&gt;
-&lt;h2 id=&#34;测试什么&#34;&gt;测试什么&lt;/h2&gt;
-&lt;p&gt;在编写任何测试之前，重要的是了解基础知识。你需要测试什么？&lt;/p&gt;
-&lt;p&gt;如果你的目标是扩展现有应用，你应该首先为计划更改的任何组件编写测试。&lt;/p&gt;
-&lt;p&gt;一般来说，测试应该覆盖：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;核心功能：模型类和方法及其与控制器的交互&lt;/li&gt;
-&lt;li&gt;最常见的 UI 工作流&lt;/li&gt;
-&lt;li&gt;边界条件&lt;/li&gt;
-&lt;li&gt;Bug 修复&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;测试的最佳实践&#34;&gt;测试的最佳实践&lt;/h3&gt;
-&lt;p&gt;首字母缩写 &lt;em&gt;FIRST&lt;/em&gt; 描述了有效单元测试的一套简明标准。这些标准是：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Fast&lt;/em&gt;：测试应该快速运行。&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Independent/Isolated&lt;/em&gt;：测试之间不应共享状态。&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Repeatable&lt;/em&gt;：每次运行测试时，都应获得相同的结果。外部数据提供者或并发问题可能导致间歇性失败。&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Self-validating&lt;/em&gt;：测试应完全自动化。输出应该是&amp;quot;通过&amp;quot;或&amp;quot;失败&amp;quot;，而不是依赖程序员对日志文件的解释。&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Timely&lt;/em&gt;：理想情况下，你应该在编写生产代码之前编写测试它们的测试。这被称为测试驱动开发。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;遵循 FIRST 原则将使你的测试保持清晰有用，而不会成为应用开发的障碍。&lt;/p&gt;</description>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 协同模型</title>
@@ -4898,68 +4725,30 @@ for (k, v) in array.enumerated() {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Merge branch obsolete into the current branch, using ours merge strategy:&lt;/p&gt;</description>
     </item>
     <item>
-      <title>R.swift 强类型引用资源文件</title>
-      <link>https://zyf.im/2018/01/17/r-swift-getting-started/</link>
-      <pubDate>Wed, 17 Jan 2018 14:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/01/17/r-swift-getting-started/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/mac-cain13/R.swift&#34;&gt;R.swift&lt;/a&gt; 获取强类型、自动编译的图片、字体、segues 等资源。&lt;/p&gt;
-&lt;p&gt;以避免无法编译时检查 &lt;code&gt;字符串&lt;/code&gt; 的形式引用资源所导致的错误。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;icon&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UIImage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;named&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;settings-icon&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;font&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UIFont&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;San Francisco&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;42&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;color&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;UIColor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;named&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;indictator highlight&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;viewController&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CustomViewController&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nibName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;CustomView&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;bundle&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSLocalizedString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;welcome.withName&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;comment&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;locale&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSLocale&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;current&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Arthur Dent&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;With R.swift&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;icon&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;image&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;settingsIcon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;font&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;font&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sanFrancisco&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;42&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;color&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;indicatorHighlight&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;viewController&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CustomViewController&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nib&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nib&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;customView&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;localizable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;welcomeWithName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Arthur Dent&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
-&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
-&lt;p&gt;其中 GitHub 上有的就不再累述了，主要注意：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;添加 &lt;code&gt;R.generated.swift&lt;/code&gt; 不要勾选 &lt;code&gt;Copy items if needed&lt;/code&gt;，软引用就好。&lt;/li&gt;
-&lt;li&gt;要在 &lt;code&gt;.gitignore&lt;/code&gt; 添加 &lt;code&gt;*.generated.swift&lt;/code&gt; 以避免不必要的冲突。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;添加新的资源文件后需要 &lt;code&gt;command + b&lt;/code&gt; 编译下，才可以使用。&lt;/p&gt;
-&lt;h2 id=&#34;clr-颜色文件的创建和使用&#34;&gt;.clr 颜色文件的创建和使用&lt;/h2&gt;
-&lt;p&gt;使用 Xcode 创建 .clr 文件：&lt;/p&gt;
-&lt;img src=&#34;https://user-images.githubusercontent.com/9289792/80204310-36566900-865b-11ea-864b-89a8e5cc8e75.jpg&#34; alt=&#34;Create a Color Palette&#34; width=&#34;300px&#34; /&gt;
-&lt;p&gt;之后可以在其中添加颜色，选择颜色回车可以对颜色从新命名。&lt;/p&gt;
-&lt;p&gt;生成的 &lt;code&gt;.clr&lt;/code&gt; 文件保存在 &lt;code&gt;~/library/Colors&lt;/code&gt; 下，可以导入到项目后再通过 &lt;code&gt;R.color&lt;/code&gt; 使用。&lt;/p&gt;
-&lt;p&gt;Tips 打开、关闭隐藏文件：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; + &lt;span class=&#34;nb&#34;&gt;shift&lt;/span&gt; + .
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.natashatherobot.com/xcode-color-palette/&#34;&gt;XCode Tip: Color Palette&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title>Xcode 不知名的实用技巧</title>
-      <link>https://zyf.im/2018/01/12/xcode-tips/</link>
+      <title>iOS 开发技巧与工具推荐</title>
+      <link>https://zyf.im/2018/01/12/ios-dev-tips-and-tools/</link>
       <pubDate>Fri, 12 Jan 2018 13:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2018/01/12/xcode-tips/</guid>
+      <guid>https://zyf.im/2018/01/12/ios-dev-tips-and-tools/</guid>
       <description>&lt;h2 id=&#34;状态栏&#34;&gt;状态栏&lt;/h2&gt;
 &lt;h3 id=&#34;help&#34;&gt;Help&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Search&lt;/code&gt; 框可以很方便的检索到相关的设置项。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Search&lt;/code&gt; 框可以方便地检索相关设置项。&lt;/p&gt;
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/80204076-c811a680-865a-11ea-8c0b-5e3b70ae22bd.jpg&#34; alt=&#34;xcode-unknown-tips-Search&#34; width=&#34;960px&#34; /&gt;
 &lt;!-- more --&gt;
 &lt;h2 id=&#34;navigator&#34;&gt;Navigator&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;⌘ 1&lt;/code&gt; .. &lt;code&gt;⌘ 7&lt;/code&gt; 可以切换窗口。&lt;/p&gt;
 &lt;h3 id=&#34;show-the-symbol-navigator&#34;&gt;Show the Symbol navigator&lt;/h3&gt;
-&lt;p&gt;在类不多时，可以方便看所有类的结构，类多时时使用下面的 filter 功能。&lt;/p&gt;
+&lt;p&gt;在类不多时，可以方便查看所有类的结构；类多时可使用下方的 filter 功能过滤。&lt;/p&gt;
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/80204084-ca740080-865a-11ea-8fb0-e102827a3123.jpg&#34; alt=&#34;xcode-unknown-tips-Show the Symbol navigator&#34; width=&#34;260px&#34; /&gt;
 &lt;h3 id=&#34;show-the-breakpoint-navigator&#34;&gt;Show the Breakpoint navigator&lt;/h3&gt;
-&lt;p&gt;点击右下角 &lt;code&gt;+&lt;/code&gt; 选择 &lt;code&gt;Exception Breakpoint..&lt;/code&gt;，可以在添加更明确的报错点，可以选择语言是 obj-c 还是 Swfit。&lt;/p&gt;
+&lt;p&gt;点击右下角 &lt;code&gt;+&lt;/code&gt; 选择 &lt;code&gt;Exception Breakpoint..&lt;/code&gt;，可以添加更明确的报错断点，支持选择 Objective-C 或 Swift 语言。&lt;/p&gt;
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/80204086-cb0c9700-865a-11ea-93b5-7fc0edd67daf.jpg&#34; alt=&#34;xcode-unknown-tips-Show the Breakpoint navigator&#34; width=&#34;260px&#34; /&gt;
 &lt;h2 id=&#34;utilities&#34;&gt;Utilities&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;⌘ ⌥ 1&lt;/code&gt; .. &lt;code&gt;⌘ ⌥ 7&lt;/code&gt; 可以切换窗口。&lt;/p&gt;
 &lt;h3 id=&#34;show-the-code-snippet-library&#34;&gt;Show the Code Snippet Library&lt;/h3&gt;
-&lt;p&gt;代码片段模板，也可以将自己的写好的片段拖入。&lt;/p&gt;
+&lt;p&gt;代码片段模板，也可以将自己写好的代码片段拖入。&lt;/p&gt;
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/80204090-cba52d80-865a-11ea-9d1f-d6f772fc7e1c.jpg&#34; alt=&#34;xcode-unknown-tips-Show the Code Snippet Labrary&#34; width=&#34;260px&#34; /&gt;
 &lt;h3 id=&#34;show-the-media-library&#34;&gt;Show the Media Library&lt;/h3&gt;
-&lt;p&gt;可以直接从中拖拽图片成 UIImageView 放入 xib 中。&lt;/p&gt;</description>
+&lt;p&gt;可以直接拖拽图片到 xib 中，自动创建 UIImageView。&lt;/p&gt;</description>
     </item>
     <item>
       <title>回顾 2017</title>
@@ -5046,69 +4835,69 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
       <link>https://zyf.im/2017/11/25/ios-recruitment-summary/</link>
       <pubDate>Sat, 25 Nov 2017 01:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/11/25/ios-recruitment-summary/</guid>
-      <description>&lt;p&gt;自己也做了一次面试官。简历看到了很多，内容总结如下：&lt;/p&gt;
+      <description>&lt;p&gt;自己也做了一次面试官，简历看了很多，内容总结如下。&lt;/p&gt;
 &lt;h2 id=&#34;一些感受&#34;&gt;一些感受&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;一些基本的技能感觉不用写，不会吸引什么注意力。所以要精懂一些特别的技能，技术点。&lt;/li&gt;
-&lt;li&gt;一些 “与产品沟通” “安排工作”，我觉的也不用写，也没什么吸引力。&lt;/li&gt;
-&lt;li&gt;简历要体出自己擅长的地方，特别的地方，其他的一笔带过就可以。&lt;/li&gt;
-&lt;li&gt;简历上的字词的细节我比较在意，iOS &amp;amp; IOS，Xcode &amp;amp; XCode。&lt;/li&gt;
-&lt;li&gt;有 GitHub Blog 绝对的好评，但要有内容。&lt;/li&gt;
-&lt;li&gt;基础知识、业务能力、性格、气场。&lt;/li&gt;
+&lt;li&gt;基本技能不用特别强调，不会吸引太多注意力，因此需要精通一些特别的技能或技术点&lt;/li&gt;
+&lt;li&gt;「与产品沟通」「安排工作」这类描述，我觉得也不用写，没什么吸引力&lt;/li&gt;
+&lt;li&gt;简历要体现自己擅长和独特的地方，其他内容一笔带过即可&lt;/li&gt;
+&lt;li&gt;简历上的字词细节我比较在意，如 iOS vs IOS，Xcode vs XCode&lt;/li&gt;
+&lt;li&gt;有 GitHub、Blog 绝对好评，但要有实质内容&lt;/li&gt;
+&lt;li&gt;综合考察：基础知识、业务能力、性格、气场&lt;/li&gt;
 &lt;/ul&gt;
-&lt;!-- more --&gt;
 &lt;h2 id=&#34;技能&#34;&gt;技能&lt;/h2&gt;
 &lt;h3 id=&#34;基础&#34;&gt;基础&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;Objective-C Swift&lt;/li&gt;
-&lt;li&gt;内存管理机制，MRC &amp;amp; ARC&lt;/li&gt;
-&lt;li&gt;代理、通知、Block 回调机制 闭包&lt;/li&gt;
-&lt;li&gt;KVC，KVO 机制&lt;/li&gt;
-&lt;li&gt;CoreData FMBD 归档存储 SQLite NSUserDefaults&lt;/li&gt;
-&lt;li&gt;runtime 运行机制，runloop 运行机制&lt;/li&gt;
-&lt;li&gt;GCD NSOperation NSThread 多线程编程&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;Objective-C、Swift&lt;/li&gt;
+&lt;li&gt;内存管理机制：MRC、ARC&lt;/li&gt;
+&lt;li&gt;代理、通知、Block 回调机制、闭包&lt;/li&gt;
+&lt;li&gt;KVC、KVO 机制&lt;/li&gt;
+&lt;li&gt;CoreData、FMDB、归档存储、SQLite、NSUserDefaults&lt;/li&gt;
+&lt;li&gt;Runtime 运行机制、Runloop 运行机制&lt;/li&gt;
+&lt;li&gt;GCD、NSOperation、NSThread 多线程编程&lt;/li&gt;
 &lt;li&gt;Socket 通信&lt;/li&gt;
-&lt;li&gt;单例 观察者&lt;/li&gt;
+&lt;li&gt;单例、观察者模式&lt;/li&gt;
 &lt;li&gt;MVVM&lt;/li&gt;
 &lt;li&gt;RESTful&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;业务&#34;&gt;业务&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;瀑布流 抽屉&lt;/li&gt;
-&lt;li&gt;断点续传 媒体流 瀑布流&lt;/li&gt;
-&lt;li&gt;SSO 单点登陆&lt;/li&gt;
-&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;瀑布流、抽屉效果&lt;/li&gt;
+&lt;li&gt;断点续传、媒体流&lt;/li&gt;
+&lt;li&gt;SSO 单点登录&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;framework&#34;&gt;Framework&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;Cocoapods&lt;/li&gt;
-&lt;li&gt;支付宝 高德 二维码扫描 友盟 极光推送 短信验证&lt;/li&gt;
-&lt;li&gt;微信 微博登陆 支付 in-app purchase&lt;/li&gt;
-&lt;li&gt;SDWebImage AFNetworking Alamofire SnapKit MBProgressHUD&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;CocoaPods&lt;/li&gt;
+&lt;li&gt;支付宝、高德、二维码扫描、友盟、极光推送、短信验证&lt;/li&gt;
+&lt;li&gt;微信、微博登录、支付、In-App Purchase&lt;/li&gt;
+&lt;li&gt;SDWebImage、AFNetworking、Alamofire、SnapKit、MBProgressHUD&lt;/li&gt;
 &lt;li&gt;IM 环信&lt;/li&gt;
 &lt;li&gt;Spring 动画&lt;/li&gt;
 &lt;li&gt;ICSDrawer 侧滑菜单&lt;/li&gt;
 &lt;li&gt;AVOS Cloud SDK&lt;/li&gt;
-&lt;li&gt;ZXing ZBar 二维码&lt;/li&gt;
+&lt;li&gt;ZXing、ZBar 二维码&lt;/li&gt;
 &lt;li&gt;XMPP&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;
-&lt;ol&gt;
+&lt;ul&gt;
 &lt;li&gt;Axure&lt;/li&gt;
-&lt;li&gt;良好英文文档阅读能力&lt;/li&gt;
-&lt;/ol&gt;
+&lt;li&gt;良好的英文文档阅读能力&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;职责&#34;&gt;职责&lt;/h2&gt;
-&lt;ol&gt;
+&lt;ul&gt;
 &lt;li&gt;模块封装&lt;/li&gt;
 &lt;li&gt;上架&lt;/li&gt;
 &lt;li&gt;迭代&lt;/li&gt;
 &lt;li&gt;沟通&lt;/li&gt;
-&lt;li&gt;整体框架&lt;/li&gt;
-&lt;li&gt;KVO 监听实现自定义下拉刷新&lt;/li&gt;
-&lt;li&gt;针对不同的网络状态 设置不同的缓存策略&lt;/li&gt;
+&lt;li&gt;整体框架设计&lt;/li&gt;
+&lt;li&gt;使用 KVO 监听实现自定义下拉刷新&lt;/li&gt;
+&lt;li&gt;针对不同的网络状态设置不同的缓存策略&lt;/li&gt;
 &lt;li&gt;各种 SDK 集成&lt;/li&gt;
-&lt;li&gt;HTML5 Native 相互调用&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;奇巧淫技&#34;&gt;奇巧淫技&lt;/h2&gt;
+&lt;li&gt;HTML5 与 Native 相互调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;面试技巧&#34;&gt;面试技巧&lt;/h2&gt;
+&lt;blockquote&gt;
 &lt;p&gt;自己对 iOS 的理解还并不深，如何面试更有经验的人？&lt;/p&gt;</description>
     </item>
     <item>
@@ -5928,52 +5717,34 @@ Line 10
 &lt;p&gt;For example, return the following Ids for the above Weather table:&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Mybatis Generator 使用配置</title>
+      <title>MyBatis Generator 使用配置</title>
       <link>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</link>
       <pubDate>Sat, 10 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</guid>
-      <description>&lt;p&gt;MyBatis Generator (MBG) 是一个 Mybatis 的代码生成器。MBG 可以内省数据库的表（或多个表）然后生成可以用来访问（多个）表的基础对象。 这样和数据库表进行交互时不需要创建对象和配置文件。MBG 的解决了对数据库操作有最大影响的一些简单的 CRUD（插入、查询、更新、删除）操作。&lt;/p&gt;
-&lt;h2 id=&#34;mybatis-generator-文档&#34;&gt;Mybatis Generator 文档&lt;/h2&gt;
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;⚠️ 内容声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本文写于 2016 年，内容已不再维护更新。文章中的部分内容已过时：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.mybatis.org/generator/index.html&#34;&gt;Mybatis Generator 官方原版&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mbg.cndocs.tk/index.html&#34;&gt;Mybatis Generator 中文版&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MyBatis Generator 版本&lt;/strong&gt;：文中使用的是 1.3.5 版本，当前最新版本已更新至 1.4.x，提供了更多功能和改进&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL 驱动&lt;/strong&gt;：文中使用的 &lt;code&gt;com.mysql.jdbc.Driver&lt;/code&gt; 已被弃用，应使用 &lt;code&gt;com.mysql.cj.jdbc.Driver&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Eclipse IDE&lt;/strong&gt;：现代 Java 开发更多使用 IntelliJ IDEA，且 IDE 对 MyBatis 的支持已有专门的插件（如 MyBatisX）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;当前最佳实践&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用 MyBatis Generator 最新版本（1.4.x）&lt;/li&gt;
+&lt;li&gt;配合现代构建工具（Maven/Gradle）和 IDE 插件使用&lt;/li&gt;
+&lt;li&gt;考虑使用 MyBatis-Plus 等增强框架，提供更便捷的代码生成和 CRUD 操作&lt;/li&gt;
+&lt;li&gt;对于新项目，建议评估是否需要代码生成器，或考虑使用 JPA/Spring Data JPA 等现代 ORM 方案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;MyBatis Generator (MBG) 是一个 MyBatis 的代码生成器。MBG 可以内省数据库的表（或多个表），然后生成可以用来访问（多个）表的基础对象。这样在与数据库表进行交互时，不需要手动创建对象和配置文件。MBG 解决了对数据库操作影响最大的一些简单 CRUD（插入、查询、更新、删除）操作。&lt;/p&gt;
+&lt;h2 id=&#34;mybatis-generator-文档&#34;&gt;MyBatis Generator 文档&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.mybatis.org/generator/index.html&#34;&gt;MyBatis Generator 官方文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mbg.cndocs.tk/index.html&#34;&gt;MyBatis Generator 中文文档&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;通过-maven-运行-mbg&#34;&gt;通过 Maven 运行 MBG&lt;/h2&gt;
-&lt;p&gt;MyBatis Generator (MBG) 包含了一个可以集成到 Maven 构建的 Maven 插件，按照 Maven 的配置惯例，将 MBG 集成到 Maven 很容易。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h3 id=&#34;pomxml-配置&#34;&gt;&lt;code&gt;pom.xml&lt;/code&gt; 配置&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;properties&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- 设置一些变量 --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- plugin versions --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugin.mybatis.generator&amp;gt;&lt;/span&gt;1.3.5&lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugin.mybatis.generator&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- plugin setting --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;mybatis.generator.generatorConfig.xml&amp;gt;&lt;/span&gt;${basedir}/src/test/resources/generatorConfig.xml&lt;span class=&#34;nt&#34;&gt;&amp;lt;/mybatis.generator.generatorConfig.xml&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;mybatis.generator.generatorConfig.properties&amp;gt;&lt;/span&gt;file:///${basedir}/src/test/resources/generatorConfig.properties&lt;span class=&#34;nt&#34;&gt;&amp;lt;/mybatis.generator.generatorConfig.properties&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/properties&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;build&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  ...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugins&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!-- Mybatis generator代码生成插件 配置 --&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.mybatis.generator&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;mybatis-generator-maven-plugin&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;${plugin.mybatis.generator}&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;configurationFile&amp;gt;&lt;/span&gt;${mybatis.generator.generatorConfig.xml}&lt;span class=&#34;nt&#34;&gt;&amp;lt;/configurationFile&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;overwrite&amp;gt;&lt;/span&gt;true&lt;span class=&#34;nt&#34;&gt;&amp;lt;/overwrite&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;lt;verbose&amp;gt;&lt;/span&gt;true&lt;span class=&#34;nt&#34;&gt;&amp;lt;/verbose&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      &lt;span class=&#34;nt&#34;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/build&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;generatorconfigxml-核心配置&#34;&gt;&lt;code&gt;generatorConfig.xml&lt;/code&gt; 核心配置&lt;/h3&gt;
-&lt;p&gt;非常完整的 MBG 核心配置文件，配合文档效果更佳。因为有大量的注释篇幅长，建议复制到 xml 文件中查看
-generatorConfig.xml 的文件位置要对应在 pom.xml 中的：&lt;/p&gt;</description>
+&lt;p&gt;MyBatis Generator (MBG) 包含了一个可以集成到 Maven 构建的 Maven 插件，按照 Maven 的配置惯例，将 MBG 集成到 Maven 很容易。&lt;/p&gt;</description>
     </item>
     <item>
       <title>SpringMVC 入门使用</title>
