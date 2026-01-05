@@ -4,7 +4,7 @@
     <title>Git on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/git/</link>
     <description>Recent content in Git on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.154.2</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Oct 2022 10:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/git/index.xml" rel="self" type="application/rss+xml" />
@@ -192,8 +192,8 @@
 &lt;h2 id=&#34;使用-ius&#34;&gt;使用 IUS&lt;/h2&gt;
 &lt;p&gt;RHEL/CentOS 7&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;https://repo.ius.io/ius-release-el7.rpm &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://repo.ius.io/ius-release-el7.rpm &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装新版 git：&lt;/p&gt;
 &lt;p&gt;ius 通常会在高版本的软件名后面 + u&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum list git

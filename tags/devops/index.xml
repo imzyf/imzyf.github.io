@@ -4,7 +4,7 @@
     <title>Devops on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/devops/</link>
     <description>Recent content in Devops on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.154.2</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/devops/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
       <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
       <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
-      <description>&lt;p&gt;tcpdump 是类 Unix 系统上最常用、最轻量的网络抓包与分析工具。它直接调用 libpcap 库，在内核层抓取链路层的数据包，然后解析输出文本格式的“数据包头部摘要”，也可将原始数据保存为 pcap 文件供 Wireshark 等 GUI 工具进一步分析。&lt;/p&gt;
+      <description>&lt;p&gt;tcpdump 是类 Unix 系统上最常用、最轻量的网络抓包与分析工具。它直接调用 libpcap 库，在内核层抓取链路层的数据包，然后解析输出文本格式的&amp;quot;数据包头部摘要&amp;quot;，也可将原始数据保存为 pcap 文件供 Wireshark 等 GUI 工具进一步分析。&lt;/p&gt;
 &lt;h2 id=&#34;字多不看&#34;&gt;字多不看&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo tcpdump host httpforever.com and tcp port &lt;span class=&#34;m&#34;&gt;80&lt;/span&gt; -A -nn
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;一举成名天下知&#34;&gt;一举成名天下知&lt;/h2&gt;
@@ -62,12 +62,12 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;-i any 监听所有的网卡&lt;/li&gt;
-&lt;li&gt;-A 只使用 ascii 打印报文的全部数据，不要和 -X 一起使用。截取 http 请求的时候可以用 &lt;code&gt;sudo tcpdump -nSA port 80&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;-S 显示绝对的序列号（sequence number），而不是相对编号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-i any&lt;/code&gt; 监听所有的网卡&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-A&lt;/code&gt; 只使用 ASCII 打印报文的全部数据，不要和 &lt;code&gt;-X&lt;/code&gt; 一起使用。截取 HTTP 请求的时候可以用 &lt;code&gt;sudo tcpdump -nSA port 80&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-S&lt;/code&gt; 显示绝对的序列号（sequence number），而不是相对编号&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;过滤语法&#34;&gt;过滤语法&lt;/h3&gt;
-&lt;p&gt;tcpdump 采用 BPF 过滤语法（Berkeley Packet Filter&lt;/p&gt;</description>
+&lt;p&gt;tcpdump 采用 BPF 过滤语法（Berkeley Packet Filter）：&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

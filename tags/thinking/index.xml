@@ -4,7 +4,7 @@
     <title>Thinking on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/thinking/</link>
     <description>Recent content in Thinking on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.154.2</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 08 Jul 2021 21:08:08 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/thinking/index.xml" rel="self" type="application/rss+xml" />
@@ -88,7 +88,6 @@
       <guid>https://zyf.im/2016/07/11/write-some-humanities-diary/</guid>
       <description>&lt;p&gt;还是越来越觉的思想重要。每周给自己博客的计划是写三篇，稍稍改动下：其中一篇要是关于思想上的。&lt;/p&gt;
 &lt;p&gt;周末的时候和北京的朋友们：龙、梦、思，小聚了下。问起毕业一个月感觉有啥变化，都说没啥。是，刚刚才一个月。可我心里却有些小慌张，总想搞个大新闻，让自己不那么平凡。是眼高手低吗？&lt;/p&gt;
-&lt;!-- more --&gt;
 &lt;p&gt;现在每天都会跑跑步，已经坚持了 6 天了也习惯了，挺赞的。也总是去了解新鲜的东西技术，并且尝试运用它们，才有点原来学长们不喜欢用用过的东西做事情的劲。关于英语的学习，现在找到一个法：阅读英文的技术教程或者技术文档。这些东西肯定和计算机有关，也写的比较通俗，感觉挺有收获的。&lt;/p&gt;
 &lt;p&gt;最近状态还不错，就是晚上想看会书，可眼睛挺累的。职业生涯的第一个月，经济有些困难。想参与个开源项目。现在手头项目就自己一个人在编，有点孤独，也不知道自己设计的和写的哪里好哪里不好。还有就是在 GitHub 或者 StackOverflow 有人给自己点赞，感觉挺激动的。&lt;/p&gt;
 &lt;p&gt;因为公司都是 Google 的服务，出门很方便，GitHub 也用的越来越多。时不时总能搜到、看到很多工程师写的博客，有教程、有分享，还有我最喜欢看的：他们的思想。我觉的他们现在都是比我棒的，我想知道他们是怎么想的、怎么解决问题、怎么看待问题、看待工作生活。&lt;/p&gt;
@@ -116,17 +115,17 @@
       <link>https://zyf.im/2016/03/18/try-to-write-something/</link>
       <pubDate>Fri, 18 Mar 2016 17:41:00 +0800</pubDate>
       <guid>https://zyf.im/2016/03/18/try-to-write-something/</guid>
-      <description>&lt;p&gt;现在是大四下从学校出来实习。在面试一家公司时，面试官看到我的邮箱（168#yifans.com）是自己的域名后说：&lt;/p&gt;
+      <description>&lt;p&gt;现在是大四下学期，从学校出来实习。在面试一家公司时，面试官看到我的邮箱（168#yifans.com）是自己的域名后说：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;问：“有自己的网站吗？”
-“没有。”
-问：“域名都买了不自己搭个网站?”
-“……”&lt;/p&gt;
+&lt;p&gt;问：&amp;ldquo;有自己的网站吗？&amp;rdquo;
+&amp;ldquo;没有。&amp;rdquo;
+问：&amp;ldquo;域名都买了不自己搭个网站？&amp;rdquo;
+&amp;ldquo;……&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;其实这也不是自己要搭博客的根本原因。&lt;/p&gt;
-&lt;p&gt;在大学里，学了些做了些东西，可思考的不多。现在越发觉的一个人的强大在于思想。看书写些东西我想是提高一个人思想的方法吧。文字写下来了也方便交流。&lt;/p&gt;
-&lt;p&gt;出来了换了一个环境，遇到新的人，新的事，可以换个角度看人看事。原来我理解的一些技术博客，就是解决问题后的笔记本，有问题从中找，而且觉得很多网上的技术博客里的内容都是来回的转来转去，很多解决方案都是过时的，没什么的。可最近在浏览博客园、csdn 发现了很多精华的前人分享自己所理解的知识、技术中走的弯路，阅读后很受益。&lt;/p&gt;
-&lt;p&gt;想想自己，很多事、很多情况下就是这样：没见多少就下结论，管中窥豹，too young.&lt;/p&gt;
+&lt;p&gt;在大学里，学了些、做了些东西，可思考的不多。现在越发觉得一个人的强大在于思想。看书、写些东西，我想是提高一个人思想的方法吧。文字写下来了也方便交流。&lt;/p&gt;
+&lt;p&gt;出来了换了一个环境，遇到新的人、新的事，可以换个角度看人看事。原来我理解的技术博客，就是解决问题后的笔记本，有问题从中找，而且觉得很多网上的技术博客里的内容都是来回转来转去，很多解决方案都是过时的，没什么价值。可最近在浏览博客园、CSDN 时发现了很多精华——前人分享自己所理解的知识、技术中走的弯路，阅读后很受益。&lt;/p&gt;
+&lt;p&gt;想想自己，很多事、很多情况下就是这样：没见多少就下结论，管中窥豹，too young。&lt;/p&gt;
 &lt;p&gt;其中有这样的一个签名:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;我不能保证写的每个地方都是对的，但是至少能保证不复制、不黏贴，保证每一句话、每一行代码都经过了认真的推敲、仔细的斟酌。每一篇文章的背后，希望都能看到自己对于技术、对于生活的态度。
@@ -137,6 +136,7 @@
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/19743861&#34;&gt;为什么你要写博客？ - 知乎&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/xrq730/p/8446246.html&#34;&gt;详解MySQL数据类型 | 五月的仓颉&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>

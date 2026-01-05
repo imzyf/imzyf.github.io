@@ -1,163 +1,388 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP Migrating 8.1 to 8.2 | ZYF.IM BLOG</title><meta name=keywords content="php,php-migrating"><meta name=description content="
-实验环境：https://onlinephp.io/
-https://www.php.net/releases/8.2/en.php
-https://www.php.net/manual/en/migration82.php
-https://php.watch/versions/8.2
-https://github.com/symfony/polyfill/tree/1.x/src/Php82
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP Migrating 8.1 to 8.2 | ZYF.IM BLOG</title><meta name=keywords content="php,php-migrating"><meta name=description content="简介
+PHP 8.2 引入了许多类型系统改进，包括只读类（Readonly Classes）、析取范式类型（DNF Types）、独立的 null、true、false 类型、敏感参数隐藏、新的 Random 扩展等。本文将介绍主要变化和如何从 PHP 8.1 迁移到 PHP 8.2。
+参考资源
 
+在线测试环境：https://onlinephp.io/
+官方发布说明：https://www.php.net/releases/8.2/en.php
+迁移指南：https://www.php.net/manual/en/migration82.php
+更新详情：https://php.watch/versions/8.2
 
-PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.
-
-New Features 8.2
-// Readonly Classes
-// Complete class properties become immutable when declared readonly
+PHP 8.2 新特性
+只读类（Readonly Classes）
+PHP 8.2 允许将整个类声明为只读，类中的所有属性自动成为只读属性：
 readonly class User {
-    public function __construct(public string $username, public string $email) {
-    }
+    public function __construct(
+        public string $username,
+        public string $email,
+    ) {}
 }
 
-// All properties automatically become readonly
 $user = new User('john_doe', 'john@example.com');
+echo $user->username; // john_doe
+
 $user->email = 'new@example.com';
-// Fatal error: Uncaught Error: Cannot modify readonly property User::$email
-// Combine union and intersection types using Disjunctive Normal Form
-// 析取范式，允许通过 |（联合）和 &（交叉）运算符组合类型
-function process((Countable&amp;Iterator)|null $item) {
-    return $item;
-}
-// Use null, true, false as independent types
-function alwaysFalse(): false {}
-function alwaysNull(): null {}
-function alwaysTrue(): true {}
-// Define constants directly in traits
-trait NetworkTrait {
-    public const TIMEOUT = 60;
-}
-// Hide sensitive data in stack traces
-function hashPassword(#[\SensitiveParameter] string $password) {
-    debug_print_backtrace();
-}
-hashPassword('secret123');
-// Before #0 /home/user/scripts/code.php(7): hashPassword('secret123')
-// PHP8.2 #0 /home/user/scripts/code.php(7): hashPassword(Object(SensitiveParameterValue))
-// Consolidated RNG functions with OOP interface
-$randomizer = new \Random\Randomizer();
-echo $randomizer->getInt(1, 100); // Random integer
-New Functions 8.2
-// Parses any data size recognized by PHP INI values
-ini_parse_quantity('256M'); // 268435456
-Deprecated Features 8.2
-// ${var} String Interpolation Deprecated
-$name = 'Li';
-echo &#34;Hello ${name}&#34;; // should be `{$name}`
-// Deprecated: Using ${var} in strings is deprecated, use {$var} instead
-$var = 'name';
-echo &#34;Hello ${$var}&#34;; // should be `{$$var}`
-// Deprecated: Using ${expr} (variable variables) in strings is deprecated, use {${expr}}
-&ndash; EOF &ndash;"><meta name=author content="Me"><link rel=canonical href=https://zyf.im/2024/07/01/php-migrating-81-to-82/><link crossorigin=anonymous href=/assets/css/stylesheet.88888b1f97bcb20b824590bc7c6603a852913a2540638b3b3e2663e642691da3.css integrity="sha256-iIiLH5e8sguCRZC8fGYDqFKROiVAY4s7PiZj5kJpHaM=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2024/07/01/php-migrating-81-to-82/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2024/07/01/php-migrating-81-to-82/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="PHP Migrating 8.1 to 8.2"><meta property="og:description" content=" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.2/en.php https://www.php.net/manual/en/migration82.php https://php.watch/versions/8.2 https://github.com/symfony/polyfill/tree/1.x/src/Php82 PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.
-New Features 8.2 // Readonly Classes // Complete class properties become immutable when declared readonly readonly class User { public function __construct(public string $username, public string $email) { } } // All properties automatically become readonly $user = new User('john_doe', 'john@example.com'); $user->email = 'new@example.com'; // Fatal error: Uncaught Error: Cannot modify readonly property User::$email // Combine union and intersection types using Disjunctive Normal Form // 析取范式，允许通过 |（联合）和 &（交叉）运算符组合类型 function process((Countable&amp;Iterator)|null $item) { return $item; } // Use null, true, false as independent types function alwaysFalse(): false {} function alwaysNull(): null {} function alwaysTrue(): true {} // Define constants directly in traits trait NetworkTrait { public const TIMEOUT = 60; } // Hide sensitive data in stack traces function hashPassword(#[\SensitiveParameter] string $password) { debug_print_backtrace(); } hashPassword('secret123'); // Before #0 /home/user/scripts/code.php(7): hashPassword('secret123') // PHP8.2 #0 /home/user/scripts/code.php(7): hashPassword(Object(SensitiveParameterValue)) // Consolidated RNG functions with OOP interface $randomizer = new \Random\Randomizer(); echo $randomizer->getInt(1, 100); // Random integer New Functions 8.2 // Parses any data size recognized by PHP INI values ini_parse_quantity('256M'); // 268435456 Deprecated Features 8.2 // ${var} String Interpolation Deprecated $name = 'Li'; echo &#34;Hello ${name}&#34;; // should be `{$name}` // Deprecated: Using ${var} in strings is deprecated, use {$var} instead $var = 'name'; echo &#34;Hello ${$var}&#34;; // should be `{$$var}` // Deprecated: Using ${expr} (variable variables) in strings is deprecated, use {${expr}} – EOF –"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-07-01T09:24:50+08:00"><meta property="article:modified_time" content="2024-07-01T09:24:50+08:00"><meta property="article:tag" content="Php"><meta property="article:tag" content="Php-Migrating"><meta property="og:image" content="https://images.unsplash.com/photo-1576949223021-1dd056a929c7?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://images.unsplash.com/photo-1576949223021-1dd056a929c7?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:title content="PHP Migrating 8.1 to 8.2"><meta name=twitter:description content="
-实验环境：https://onlinephp.io/
-https://www.php.net/releases/8.2/en.php
-https://www.php.net/manual/en/migration82.php
-https://php.watch/versions/8.2
-https://github.com/symfony/polyfill/tree/1.x/src/Php82
+// Fatal error: Cannot modify readonly property User::$email
+只读类的特性：
 
+所有属性自动成为只读
+不能有动态属性
+所有属性必须有类型声明
+子类也必须是只读的
 
-PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.
+析取范式类型（DNF Types）
+析取范式（Disjunctive Normal Form）允许组合联合类型和交叉类型，交叉类型必须用括号分组：
+// 接受同时实现 Countable 和 Iterator 的对象，或者 null
+function process((Countable&amp;Iterator)|null $item): int {
+    return $item ? count($item) : 0;
+}
 
-New Features 8.2
-// Readonly Classes
-// Complete class properties become immutable when declared readonly
+// 更复杂的 DNF 类型示例
+function handle(
+    (HTMLRequest&amp;RequestInterface)|APIRequest|null $request
+): Response {
+    // 处理请求
+}
+DNF 类型必须遵循特定格式：交叉类型用括号包裹，再与其他类型用 | 连接。"><meta name=author content="Me, LLM"><link rel=canonical href=https://zyf.im/2024/07/01/php-migrating-81-to-82/><link crossorigin=anonymous href=/assets/css/stylesheet.88888b1f97bcb20b824590bc7c6603a852913a2540638b3b3e2663e642691da3.css integrity="sha256-iIiLH5e8sguCRZC8fGYDqFKROiVAY4s7PiZj5kJpHaM=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2024/07/01/php-migrating-81-to-82/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2024/07/01/php-migrating-81-to-82/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="PHP Migrating 8.1 to 8.2"><meta property="og:description" content="简介 PHP 8.2 引入了许多类型系统改进，包括只读类（Readonly Classes）、析取范式类型（DNF Types）、独立的 null、true、false 类型、敏感参数隐藏、新的 Random 扩展等。本文将介绍主要变化和如何从 PHP 8.1 迁移到 PHP 8.2。
+参考资源 在线测试环境：https://onlinephp.io/ 官方发布说明：https://www.php.net/releases/8.2/en.php 迁移指南：https://www.php.net/manual/en/migration82.php 更新详情：https://php.watch/versions/8.2 PHP 8.2 新特性 只读类（Readonly Classes） PHP 8.2 允许将整个类声明为只读，类中的所有属性自动成为只读属性：
+readonly class User { public function __construct( public string $username, public string $email, ) {} } $user = new User('john_doe', 'john@example.com'); echo $user->username; // john_doe $user->email = 'new@example.com'; // Fatal error: Cannot modify readonly property User::$email 只读类的特性：
+所有属性自动成为只读 不能有动态属性 所有属性必须有类型声明 子类也必须是只读的 析取范式类型（DNF Types） 析取范式（Disjunctive Normal Form）允许组合联合类型和交叉类型，交叉类型必须用括号分组：
+// 接受同时实现 Countable 和 Iterator 的对象，或者 null function process((Countable&amp;Iterator)|null $item): int { return $item ? count($item) : 0; } // 更复杂的 DNF 类型示例 function handle( (HTMLRequest&amp;RequestInterface)|APIRequest|null $request ): Response { // 处理请求 } DNF 类型必须遵循特定格式：交叉类型用括号包裹，再与其他类型用 | 连接。"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-07-01T09:24:50+08:00"><meta property="article:modified_time" content="2024-07-01T09:24:50+08:00"><meta property="article:tag" content="Php"><meta property="article:tag" content="Php-Migrating"><meta property="og:image" content="https://images.unsplash.com/photo-1576949223021-1dd056a929c7?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://images.unsplash.com/photo-1576949223021-1dd056a929c7?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:title content="PHP Migrating 8.1 to 8.2"><meta name=twitter:description content="简介
+PHP 8.2 引入了许多类型系统改进，包括只读类（Readonly Classes）、析取范式类型（DNF Types）、独立的 null、true、false 类型、敏感参数隐藏、新的 Random 扩展等。本文将介绍主要变化和如何从 PHP 8.1 迁移到 PHP 8.2。
+参考资源
+
+在线测试环境：https://onlinephp.io/
+官方发布说明：https://www.php.net/releases/8.2/en.php
+迁移指南：https://www.php.net/manual/en/migration82.php
+更新详情：https://php.watch/versions/8.2
+
+PHP 8.2 新特性
+只读类（Readonly Classes）
+PHP 8.2 允许将整个类声明为只读，类中的所有属性自动成为只读属性：
 readonly class User {
-    public function __construct(public string $username, public string $email) {
-    }
+    public function __construct(
+        public string $username,
+        public string $email,
+    ) {}
 }
 
-// All properties automatically become readonly
 $user = new User('john_doe', 'john@example.com');
+echo $user->username; // john_doe
+
 $user->email = 'new@example.com';
-// Fatal error: Uncaught Error: Cannot modify readonly property User::$email
-// Combine union and intersection types using Disjunctive Normal Form
-// 析取范式，允许通过 |（联合）和 &（交叉）运算符组合类型
-function process((Countable&amp;Iterator)|null $item) {
-    return $item;
+// Fatal error: Cannot modify readonly property User::$email
+只读类的特性：
+
+所有属性自动成为只读
+不能有动态属性
+所有属性必须有类型声明
+子类也必须是只读的
+
+析取范式类型（DNF Types）
+析取范式（Disjunctive Normal Form）允许组合联合类型和交叉类型，交叉类型必须用括号分组：
+// 接受同时实现 Countable 和 Iterator 的对象，或者 null
+function process((Countable&amp;Iterator)|null $item): int {
+    return $item ? count($item) : 0;
 }
-// Use null, true, false as independent types
-function alwaysFalse(): false {}
-function alwaysNull(): null {}
-function alwaysTrue(): true {}
-// Define constants directly in traits
-trait NetworkTrait {
-    public const TIMEOUT = 60;
+
+// 更复杂的 DNF 类型示例
+function handle(
+    (HTMLRequest&amp;RequestInterface)|APIRequest|null $request
+): Response {
+    // 处理请求
 }
-// Hide sensitive data in stack traces
-function hashPassword(#[\SensitiveParameter] string $password) {
-    debug_print_backtrace();
-}
-hashPassword('secret123');
-// Before #0 /home/user/scripts/code.php(7): hashPassword('secret123')
-// PHP8.2 #0 /home/user/scripts/code.php(7): hashPassword(Object(SensitiveParameterValue))
-// Consolidated RNG functions with OOP interface
-$randomizer = new \Random\Randomizer();
-echo $randomizer->getInt(1, 100); // Random integer
-New Functions 8.2
-// Parses any data size recognized by PHP INI values
-ini_parse_quantity('256M'); // 268435456
-Deprecated Features 8.2
-// ${var} String Interpolation Deprecated
-$name = 'Li';
-echo &#34;Hello ${name}&#34;; // should be `{$name}`
-// Deprecated: Using ${var} in strings is deprecated, use {$var} instead
-$var = 'name';
-echo &#34;Hello ${$var}&#34;; // should be `{$$var}`
-// Deprecated: Using ${expr} (variable variables) in strings is deprecated, use {${expr}}
-&ndash; EOF &ndash;"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"PHP Migrating 8.1 to 8.2","item":"https://zyf.im/2024/07/01/php-migrating-81-to-82/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"PHP Migrating 8.1 to 8.2","name":"PHP Migrating 8.1 to 8.2","description":" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.2/en.php https://www.php.net/manual/en/migration82.php https://php.watch/versions/8.2 https://github.com/symfony/polyfill/tree/1.x/src/Php82 PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.\nNew Features 8.2 // Readonly Classes // Complete class properties become immutable when declared readonly readonly class User { public function __construct(public string $username, public string $email) { } } // All properties automatically become readonly $user = new User(\u0026#39;john_doe\u0026#39;, \u0026#39;john@example.com\u0026#39;); $user-\u0026gt;email = \u0026#39;new@example.com\u0026#39;; // Fatal error: Uncaught Error: Cannot modify readonly property User::$email // Combine union and intersection types using Disjunctive Normal Form // 析取范式，允许通过 |（联合）和 \u0026amp;（交叉）运算符组合类型 function process((Countable\u0026amp;Iterator)|null $item) { return $item; } // Use null, true, false as independent types function alwaysFalse(): false {} function alwaysNull(): null {} function alwaysTrue(): true {} // Define constants directly in traits trait NetworkTrait { public const TIMEOUT = 60; } // Hide sensitive data in stack traces function hashPassword(#[\\SensitiveParameter] string $password) { debug_print_backtrace(); } hashPassword(\u0026#39;secret123\u0026#39;); // Before #0 /home/user/scripts/code.php(7): hashPassword(\u0026#39;secret123\u0026#39;) // PHP8.2 #0 /home/user/scripts/code.php(7): hashPassword(Object(SensitiveParameterValue)) // Consolidated RNG functions with OOP interface $randomizer = new \\Random\\Randomizer(); echo $randomizer-\u0026gt;getInt(1, 100); // Random integer New Functions 8.2 // Parses any data size recognized by PHP INI values ini_parse_quantity(\u0026#39;256M\u0026#39;); // 268435456 Deprecated Features 8.2 // ${var} String Interpolation Deprecated $name = \u0026#39;Li\u0026#39;; echo \u0026#34;Hello ${name}\u0026#34;; // should be `{$name}` // Deprecated: Using ${var} in strings is deprecated, use {$var} instead $var = \u0026#39;name\u0026#39;; echo \u0026#34;Hello ${$var}\u0026#34;; // should be `{$$var}` // Deprecated: Using ${expr} (variable variables) in strings is deprecated, use {${expr}} \u0026ndash; EOF \u0026ndash;\n","keywords":["php","php-migrating"],"articleBody":" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.2/en.php https://www.php.net/manual/en/migration82.php https://php.watch/versions/8.2 https://github.com/symfony/polyfill/tree/1.x/src/Php82 PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.\nNew Features 8.2 // Readonly Classes // Complete class properties become immutable when declared readonly readonly class User { public function __construct(public string $username, public string $email) { } } // All properties automatically become readonly $user = new User('john_doe', 'john@example.com'); $user-\u003eemail = 'new@example.com'; // Fatal error: Uncaught Error: Cannot modify readonly property User::$email // Combine union and intersection types using Disjunctive Normal Form // 析取范式，允许通过 |（联合）和 \u0026（交叉）运算符组合类型 function process((Countable\u0026Iterator)|null $item) { return $item; } // Use null, true, false as independent types function alwaysFalse(): false {} function alwaysNull(): null {} function alwaysTrue(): true {} // Define constants directly in traits trait NetworkTrait { public const TIMEOUT = 60; } // Hide sensitive data in stack traces function hashPassword(#[\\SensitiveParameter] string $password) { debug_print_backtrace(); } hashPassword('secret123'); // Before #0 /home/user/scripts/code.php(7): hashPassword('secret123') // PHP8.2 #0 /home/user/scripts/code.php(7): hashPassword(Object(SensitiveParameterValue)) // Consolidated RNG functions with OOP interface $randomizer = new \\Random\\Randomizer(); echo $randomizer-\u003egetInt(1, 100); // Random integer New Functions 8.2 // Parses any data size recognized by PHP INI values ini_parse_quantity('256M'); // 268435456 Deprecated Features 8.2 // ${var} String Interpolation Deprecated $name = 'Li'; echo \"Hello ${name}\"; // should be `{$name}` // Deprecated: Using ${var} in strings is deprecated, use {$var} instead $var = 'name'; echo \"Hello ${$var}\"; // should be `{$$var}` // Deprecated: Using ${expr} (variable variables) in strings is deprecated, use {${expr}} – EOF –\n","wordCount":"260","inLanguage":"en","image":"https://images.unsplash.com/photo-1576949223021-1dd056a929c7?q=80\u0026w=960\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.0.3","datePublished":"2024-07-01T09:24:50+08:00","dateModified":"2024-07-01T09:24:50+08:00","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2024/07/01/php-migrating-81-to-82/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+DNF 类型必须遵循特定格式：交叉类型用括号包裹，再与其他类型用 | 连接。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"PHP Migrating 8.1 to 8.2","item":"https://zyf.im/2024/07/01/php-migrating-81-to-82/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"PHP Migrating 8.1 to 8.2","name":"PHP Migrating 8.1 to 8.2","description":"简介 PHP 8.2 引入了许多类型系统改进，包括只读类（Readonly Classes）、析取范式类型（DNF Types）、独立的 null、true、false 类型、敏感参数隐藏、新的 Random 扩展等。本文将介绍主要变化和如何从 PHP 8.1 迁移到 PHP 8.2。\n参考资源 在线测试环境：https://onlinephp.io/ 官方发布说明：https://www.php.net/releases/8.2/en.php 迁移指南：https://www.php.net/manual/en/migration82.php 更新详情：https://php.watch/versions/8.2 PHP 8.2 新特性 只读类（Readonly Classes） PHP 8.2 允许将整个类声明为只读，类中的所有属性自动成为只读属性：\nreadonly class User { public function __construct( public string $username, public string $email, ) {} } $user = new User(\u0026#39;john_doe\u0026#39;, \u0026#39;john@example.com\u0026#39;); echo $user-\u0026gt;username; // john_doe $user-\u0026gt;email = \u0026#39;new@example.com\u0026#39;; // Fatal error: Cannot modify readonly property User::$email 只读类的特性：\n所有属性自动成为只读 不能有动态属性 所有属性必须有类型声明 子类也必须是只读的 析取范式类型（DNF Types） 析取范式（Disjunctive Normal Form）允许组合联合类型和交叉类型，交叉类型必须用括号分组：\n// 接受同时实现 Countable 和 Iterator 的对象，或者 null function process((Countable\u0026amp;Iterator)|null $item): int { return $item ? count($item) : 0; } // 更复杂的 DNF 类型示例 function handle( (HTMLRequest\u0026amp;RequestInterface)|APIRequest|null $request ): Response { // 处理请求 } DNF 类型必须遵循特定格式：交叉类型用括号包裹，再与其他类型用 | 连接。\n","keywords":["php","php-migrating"],"articleBody":"简介 PHP 8.2 引入了许多类型系统改进，包括只读类（Readonly Classes）、析取范式类型（DNF Types）、独立的 null、true、false 类型、敏感参数隐藏、新的 Random 扩展等。本文将介绍主要变化和如何从 PHP 8.1 迁移到 PHP 8.2。\n参考资源 在线测试环境：https://onlinephp.io/ 官方发布说明：https://www.php.net/releases/8.2/en.php 迁移指南：https://www.php.net/manual/en/migration82.php 更新详情：https://php.watch/versions/8.2 PHP 8.2 新特性 只读类（Readonly Classes） PHP 8.2 允许将整个类声明为只读，类中的所有属性自动成为只读属性：\nreadonly class User { public function __construct( public string $username, public string $email, ) {} } $user = new User('john_doe', 'john@example.com'); echo $user-\u003eusername; // john_doe $user-\u003eemail = 'new@example.com'; // Fatal error: Cannot modify readonly property User::$email 只读类的特性：\n所有属性自动成为只读 不能有动态属性 所有属性必须有类型声明 子类也必须是只读的 析取范式类型（DNF Types） 析取范式（Disjunctive Normal Form）允许组合联合类型和交叉类型，交叉类型必须用括号分组：\n// 接受同时实现 Countable 和 Iterator 的对象，或者 null function process((Countable\u0026Iterator)|null $item): int { return $item ? count($item) : 0; } // 更复杂的 DNF 类型示例 function handle( (HTMLRequest\u0026RequestInterface)|APIRequest|null $request ): Response { // 处理请求 } DNF 类型必须遵循特定格式：交叉类型用括号包裹，再与其他类型用 | 连接。\n独立的 null、true、false 类型 PHP 8.2 允许将 null、true、false 作为独立的类型使用：\n// 函数总是返回 false function alwaysFalse(): false { return false; } // 函数总是返回 true function alwaysTrue(): true { return true; } // 函数总是返回 null function alwaysNull(): null { return null; } // 实际应用示例：失败时返回 false function findUser(int $id): User|false { $user = // 查询数据库... return $user ?? false; } 这比使用 bool 或 ?type 提供了更精确的类型信息。\nTrait 中的常量 PHP 8.2 允许在 Trait 中定义常量：\ntrait NetworkTrait { public const TIMEOUT = 60; private const MAX_RETRIES = 3; public function getTimeout(): int { return self::TIMEOUT; } } class HttpClient { use NetworkTrait; public function connect(): void { echo \"Timeout: \" . self::TIMEOUT; // 60 } } // 通过使用 Trait 的类访问常量 echo HttpClient::TIMEOUT; // 60 敏感参数隐藏（#[\\SensitiveParameter]） 新的 #[\\SensitiveParameter] 属性可以在堆栈跟踪中隐藏敏感数据：\nfunction hashPassword( #[\\SensitiveParameter] string $password ): string { debug_print_backtrace(); return password_hash($password, PASSWORD_DEFAULT); } hashPassword('my_secret_password'); // PHP 8.1: #0 example.php(8): hashPassword('my_secret_password') // PHP 8.2: #0 example.php(8): hashPassword(Object(SensitiveParameterValue)) 这对于防止密码、API 密钥等敏感信息在错误日志中泄露非常有用。\n新的 Random 扩展 PHP 8.2 重构了随机数生成，提供了面向对象的 API：\n// 使用默认引擎 $randomizer = new \\Random\\Randomizer(); // 生成随机整数 echo $randomizer-\u003egetInt(1, 100); // 生成随机字节 echo bin2hex($randomizer-\u003egetBytes(16)); // 随机打乱数组 $array = [1, 2, 3, 4, 5]; $shuffled = $randomizer-\u003eshuffleArray($array); // 随机打乱字符串 $string = \"Hello\"; echo $randomizer-\u003eshuffleBytes($string); // 使用特定引擎 $secure = new \\Random\\Randomizer(new \\Random\\Engine\\Secure()); $mt = new \\Random\\Randomizer(new \\Random\\Engine\\Mt19937(seed: 1234)); 可用的引擎：\n\\Random\\Engine\\Secure - 加密安全的随机数 \\Random\\Engine\\Mt19937 - Mersenne Twister 算法 \\Random\\Engine\\PcgOneseq128XslRr64 - PCG 算法 \\Random\\Engine\\Xoshiro256StarStar - Xoshiro256** 算法 #[\\AllowDynamicProperties] 属性 由于动态属性已被弃用，如果仍需使用，可以用此属性标记类：\n#[\\AllowDynamicProperties] class LegacyClass { public string $declared = 'value'; } $obj = new LegacyClass(); $obj-\u003eundeclared = 'dynamic'; // 不会产生弃用警告 枚举中获取常量 PHP 8.2 允许在枚举表达式中获取常量：\nenum Status: string { case Active = 'active'; case Inactive = 'inactive'; const DEFAULT = self::Active; } echo Status::DEFAULT-\u003evalue; // active PHP 8.2 新增函数 ini_parse_quantity() 解析 PHP INI 格式的数据大小值：\n// 解析 INI 格式的容量值 echo ini_parse_quantity('256M'); // 268435456 (256 * 1024 * 1024) echo ini_parse_quantity('1G'); // 1073741824 echo ini_parse_quantity('512K'); // 524288 memory_reset_peak_usage() 重置峰值内存使用量跟踪：\n// 初始峰值 echo memory_get_peak_usage(); // 例如: 2097152 // 进行一些内存密集操作 $data = str_repeat('x', 1000000); echo memory_get_peak_usage(); // 例如: 3145728 // 重置峰值 memory_reset_peak_usage(); unset($data); echo memory_get_peak_usage(); // 重置后的新峰值 mysqli_execute_query() 简化 MySQLi 预处理语句的执行：\n// PHP 8.2 之前 $stmt = $mysqli-\u003eprepare('SELECT * FROM users WHERE id = ?'); $stmt-\u003ebind_param('i', $id); $stmt-\u003eexecute(); $result = $stmt-\u003eget_result(); // PHP 8.2 - 使用 mysqli_execute_query() $result = mysqli_execute_query( $mysqli, 'SELECT * FROM users WHERE id = ?', [$id] ); // 面向对象写法 $result = $mysqli-\u003eexecute_query( 'SELECT * FROM users WHERE id = ?', [$id] ); curl_upkeep() 保持持久 HTTP 连接活跃：\n$ch = curl_init('https://example.com'); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); curl_exec($ch); // 保持连接活跃 curl_upkeep($ch); openssl_cipher_key_length() 获取 OpenSSL 加密算法所需的密钥长度：\necho openssl_cipher_key_length('aes-256-cbc'); // 32 echo openssl_cipher_key_length('aes-128-gcm'); // 16 echo openssl_cipher_key_length('des-ede3-cbc'); // 24 sodium_crypto_stream_xchacha20_xor_ic() XChaCha20 加密函数，支持初始计数器：\n$key = sodium_crypto_stream_xchacha20_keygen(); $nonce = random_bytes(SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES); $message = 'Hello, World!'; // 使用初始计数器加密 $encrypted = sodium_crypto_stream_xchacha20_xor_ic( $message, $nonce, 1, // 初始计数器 $key ); 弃用特性 动态属性弃用 在未声明的类属性上进行读写操作已被弃用：\nclass User { public string $name; } $user = new User(); $user-\u003ename = 'John'; // ✅ 正常 $user-\u003eage = 25; // ⚠️ Deprecated: Creation of dynamic property // 解决方案 1：声明属性 class User { public string $name; public int $age; } // 解决方案 2：使用 #[AllowDynamicProperties] #[\\AllowDynamicProperties] class User { public string $name; } // 解决方案 3：使用 __get/__set 魔术方法 class User { private array $data = []; public function __get(string $name): mixed { return $this-\u003edata[$name] ?? null; } public function __set(string $name, mixed $value): void { $this-\u003edata[$name] = $value; } } stdClass 和从 __get()/__set() 继承的类不受影响。\n${var} 字符串插值弃用 旧的 ${var} 字符串插值语法已被弃用：\n$name = 'PHP'; // ❌ 已弃用 echo \"Hello ${name}\"; // Deprecated: Using ${var} in strings is deprecated, use {$var} instead // ❌ 变量变量也已弃用 $var = 'name'; echo \"Hello ${$var}\"; // Deprecated: Using ${expr} in strings is deprecated, use {${expr}} instead // ✅ 推荐写法 echo \"Hello {$name}\"; echo \"Hello {$$var}\"; utf8_encode() 和 utf8_decode() 弃用 这两个函数已被弃用，因为它们只支持 Latin-1 编码：\n// ❌ 已弃用 $encoded = utf8_encode($string); $decoded = utf8_decode($string); // ✅ 使用 mbstring $encoded = mb_convert_encoding($string, 'UTF-8', 'ISO-8859-1'); $decoded = mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8'); // ✅ 或使用 iconv $encoded = iconv('ISO-8859-1', 'UTF-8', $string); $decoded = iconv('UTF-8', 'ISO-8859-1', $string); 部分可调用模式弃用 一些可调用模式已被弃用：\n// ❌ 已弃用的可调用模式 \"self::method\" \"parent::method\" \"static::method\" [\"self\", \"method\"] [\"parent\", \"method\"] [\"static\", \"method\"] [\"Foo\", \"Bar::method\"] [new Foo, \"Bar::method\"] // ✅ 使用一等可调用语法 $callable = $this-\u003emethod(...); $callable = self::method(...); $callable = Foo::method(...); Mbstring 编码弃用 以下 Mbstring 编码已被弃用：\nBASE64 UUENCODE HTML-ENTITIES Quoted-Printable // ❌ 已弃用 $encoded = mb_convert_encoding($data, 'BASE64'); // ✅ 使用专门的函数 $encoded = base64_encode($data); $decoded = base64_decode($encoded); // ✅ HTML 实体使用 $encoded = htmlentities($string, ENT_QUOTES, 'UTF-8'); $decoded = html_entity_decode($encoded, ENT_QUOTES, 'UTF-8'); 兼容性变化 strtolower() 和 strtoupper() 不再受区域设置影响 setlocale(LC_ALL, 'tr_TR'); // PHP 8.1: 受区域设置影响 // PHP 8.2: 始终按 ASCII 规则处理 echo strtolower('I'); // 'i'（不再是土耳其语的 'ı'） echo strtoupper('i'); // 'I'（不再是土耳其语的 'İ'） // 需要区域敏感转换时使用 mbstring echo mb_strtolower('I', 'tr_TR'); // 'ı' str_split() 空字符串行为变化 // PHP 8.1: 返回 [''] // PHP 8.2: 返回 [] $result = str_split(''); var_dump($result); // array(0) {} ksort() SORT_REGULAR 行为变化 $arr = ['b' =\u003e 1, 'a' =\u003e 2, 10 =\u003e 3, 2 =\u003e 4]; ksort($arr, SORT_REGULAR); // PHP 8.2 中排序更加一致 // 数字键和字符串键的比较规则更加明确 日期时间扩展变化 // DateTimeImmutable 和 DateTime 的行为更加一致 // DatePeriod 现在是可迭代的 $period = new DatePeriod( new DateTime('2024-01-01'), new DateInterval('P1D'), 5 ); // 可以使用 foreach 遍历 foreach ($period as $date) { echo $date-\u003eformat('Y-m-d'); } 其他改进 ReflectionMethod 和 ReflectionProperty 改进 // 检查方法是否可以作为静态方法调用 $reflection = new ReflectionMethod(MyClass::class, 'myMethod'); var_dump($reflection-\u003eisStatic()); // 检查属性是否是只读 $reflection = new ReflectionProperty(User::class, 'name'); var_dump($reflection-\u003eisReadOnly()); ZipArchive 新方法 $zip = new ZipArchive(); $zip-\u003eopen('archive.zip', ZipArchive::CREATE); // 获取文件流 $stream = $zip-\u003egetStreamIndex(0); $stream = $zip-\u003egetStreamName('file.txt'); // 清除错误状态 $zip-\u003eclearError(); ODBC 和 PDO_ODBC 改进 连接字符串和凭证检查得到改进，支持更多的 ODBC 功能。\n总结 PHP 8.2 带来了许多实用的新特性和改进：\n主要新特性：\n只读类 析取范式类型（DNF Types） 独立的 null、true、false 类型 Trait 中的常量 敏感参数隐藏 新的 Random 扩展 需要注意的变化：\n动态属性已弃用 ${var} 字符串插值已弃用 utf8_encode() 和 utf8_decode() 已弃用 strtolower() 和 strtoupper() 不再受区域设置影响 部分可调用模式已弃用 通过了解这些变化并遵循迁移建议，可以顺利地从 PHP 8.1 迁移到 PHP 8.2。\n","wordCount":"1005","inLanguage":"en","image":"https://images.unsplash.com/photo-1576949223021-1dd056a929c7?q=80\u0026w=960\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.0.3","datePublished":"2024-07-01T09:24:50+08:00","dateModified":"2024-07-01T09:24:50+08:00","author":[{"@type":"Person","name":"Me"},{"@type":"Person","name":"LLM"}],"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2024/07/01/php-migrating-81-to-82/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">PHP Migrating 8.1 to 8.2</h1><div class=post-meta><span title='2024-07-01 09:24:50 +0800 CST'>July 1, 2024</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>260 words</span>&nbsp;·&nbsp;<span>Me</span></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#new-features-82>New Features 8.2</a></li><li><a href=#new-functions-82>New Functions 8.2</a></li><li><a href=#deprecated-features-82>Deprecated Features 8.2</a></li></ul></nav></div></details></div><div class=post-content><ul><li>实验环境：<a href=https://onlinephp.io/>https://onlinephp.io/</a></li><li><a href=https://www.php.net/releases/8.2/en.php>https://www.php.net/releases/8.2/en.php</a></li><li><a href=https://www.php.net/manual/en/migration82.php>https://www.php.net/manual/en/migration82.php</a></li><li><a href=https://php.watch/versions/8.2>https://php.watch/versions/8.2</a></li><li><a href=https://github.com/symfony/polyfill/tree/1.x/src/Php82>https://github.com/symfony/polyfill/tree/1.x/src/Php82</a></li></ul><blockquote><p>PHP 8.2 brings type-system improvements for expressive and fine-grained type-safety, readonly classes, sensitive parameter redaction support, new random extension, and many new features along with several changes to streamline and modernize PHP language.</p></blockquote><h2 id=new-features-82>New Features 8.2<a hidden class=anchor aria-hidden=true href=#new-features-82>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Readonly Classes
-</span></span></span><span class=line><span class=cl><span class=c1>// Complete class properties become immutable when declared readonly
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>readonly</span> <span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span><span class=k>public</span> <span class=nx>string</span> <span class=nv>$username</span><span class=p>,</span> <span class=k>public</span> <span class=nx>string</span> <span class=nv>$email</span><span class=p>)</span> <span class=p>{</span>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">PHP Migrating 8.1 to 8.2</h1><div class=post-meta><span title='2024-07-01 09:24:50 +0800 CST'>July 1, 2024</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>1005 words</span>&nbsp;·&nbsp;<span>Me, LLM</span></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#简介>简介</a><ul><li><a href=#参考资源>参考资源</a></li></ul></li><li><a href=#php-82-新特性>PHP 8.2 新特性</a><ul><li><a href=#只读类readonly-classes>只读类（Readonly Classes）</a></li><li><a href=#析取范式类型dnf-types>析取范式类型（DNF Types）</a></li><li><a href=#独立的-nulltruefalse-类型>独立的 null、true、false 类型</a></li><li><a href=#trait-中的常量>Trait 中的常量</a></li><li><a href=#敏感参数隐藏sensitiveparameter>敏感参数隐藏（#[\SensitiveParameter]）</a></li><li><a href=#新的-random-扩展>新的 Random 扩展</a></li><li><a href=#allowdynamicproperties-属性>#[\AllowDynamicProperties] 属性</a></li><li><a href=#枚举中获取常量>枚举中获取常量</a></li></ul></li><li><a href=#php-82-新增函数>PHP 8.2 新增函数</a><ul><li><a href=#ini_parse_quantity>ini_parse_quantity()</a></li><li><a href=#memory_reset_peak_usage>memory_reset_peak_usage()</a></li><li><a href=#mysqli_execute_query>mysqli_execute_query()</a></li><li><a href=#curl_upkeep>curl_upkeep()</a></li><li><a href=#openssl_cipher_key_length>openssl_cipher_key_length()</a></li><li><a href=#sodium_crypto_stream_xchacha20_xor_ic>sodium_crypto_stream_xchacha20_xor_ic()</a></li></ul></li><li><a href=#弃用特性>弃用特性</a><ul><li><a href=#动态属性弃用>动态属性弃用</a></li><li><a href=#var-字符串插值弃用>${var} 字符串插值弃用</a></li><li><a href=#utf8_encode-和-utf8_decode-弃用>utf8_encode() 和 utf8_decode() 弃用</a></li><li><a href=#部分可调用模式弃用>部分可调用模式弃用</a></li><li><a href=#mbstring-编码弃用>Mbstring 编码弃用</a></li></ul></li><li><a href=#兼容性变化>兼容性变化</a><ul><li><a href=#strtolower-和-strtoupper-不再受区域设置影响>strtolower() 和 strtoupper() 不再受区域设置影响</a></li><li><a href=#str_split-空字符串行为变化>str_split() 空字符串行为变化</a></li><li><a href=#ksort-sort_regular-行为变化>ksort() SORT_REGULAR 行为变化</a></li><li><a href=#日期时间扩展变化>日期时间扩展变化</a></li></ul></li><li><a href=#其他改进>其他改进</a><ul><li><a href=#reflectionmethod-和-reflectionproperty-改进>ReflectionMethod 和 ReflectionProperty 改进</a></li><li><a href=#ziparchive-新方法>ZipArchive 新方法</a></li><li><a href=#odbc-和-pdo_odbc-改进>ODBC 和 PDO_ODBC 改进</a></li></ul></li><li><a href=#总结>总结</a></li></ul></nav></div></details></div><div class=post-content><h2 id=简介>简介<a hidden class=anchor aria-hidden=true href=#简介>#</a></h2><p>PHP 8.2 引入了许多类型系统改进，包括只读类（Readonly Classes）、析取范式类型（DNF Types）、独立的 <code>null</code>、<code>true</code>、<code>false</code> 类型、敏感参数隐藏、新的 Random 扩展等。本文将介绍主要变化和如何从 PHP 8.1 迁移到 PHP 8.2。</p><h3 id=参考资源>参考资源<a hidden class=anchor aria-hidden=true href=#参考资源>#</a></h3><ul><li>在线测试环境：<a href=https://onlinephp.io/>https://onlinephp.io/</a></li><li>官方发布说明：<a href=https://www.php.net/releases/8.2/en.php>https://www.php.net/releases/8.2/en.php</a></li><li>迁移指南：<a href=https://www.php.net/manual/en/migration82.php>https://www.php.net/manual/en/migration82.php</a></li><li>更新详情：<a href=https://php.watch/versions/8.2>https://php.watch/versions/8.2</a></li></ul><h2 id=php-82-新特性>PHP 8.2 新特性<a hidden class=anchor aria-hidden=true href=#php-82-新特性>#</a></h2><h3 id=只读类readonly-classes>只读类（Readonly Classes）<a hidden class=anchor aria-hidden=true href=#只读类readonly-classes>#</a></h3><p>PHP 8.2 允许将整个类声明为只读，类中的所有属性自动成为只读属性：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>readonly</span> <span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=nx>string</span> <span class=nv>$username</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=nx>string</span> <span class=nv>$email</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$user</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>User</span><span class=p>(</span><span class=s1>&#39;john_doe&#39;</span><span class=p>,</span> <span class=s1>&#39;john@example.com&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$user</span><span class=o>-&gt;</span><span class=na>username</span><span class=p>;</span> <span class=c1>// john_doe
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$user</span><span class=o>-&gt;</span><span class=na>email</span> <span class=o>=</span> <span class=s1>&#39;new@example.com&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// Fatal error: Cannot modify readonly property User::$email
+</span></span></span></code></pre></div><p>只读类的特性：</p><ul><li>所有属性自动成为只读</li><li>不能有动态属性</li><li>所有属性必须有类型声明</li><li>子类也必须是只读的</li></ul><h3 id=析取范式类型dnf-types>析取范式类型（DNF Types）<a hidden class=anchor aria-hidden=true href=#析取范式类型dnf-types>#</a></h3><p>析取范式（Disjunctive Normal Form）允许组合联合类型和交叉类型，交叉类型必须用括号分组：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 接受同时实现 Countable 和 Iterator 的对象，或者 null
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>process</span><span class=p>((</span><span class=nx>Countable</span><span class=o>&amp;</span><span class=nx>Iterator</span><span class=p>)</span><span class=o>|</span><span class=k>null</span> <span class=nv>$item</span><span class=p>)</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nv>$item</span> <span class=o>?</span> <span class=nx>count</span><span class=p>(</span><span class=nv>$item</span><span class=p>)</span> <span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 更复杂的 DNF 类型示例
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>handle</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=p>(</span><span class=nx>HTMLRequest</span><span class=o>&amp;</span><span class=nx>RequestInterface</span><span class=p>)</span><span class=o>|</span><span class=nx>APIRequest</span><span class=o>|</span><span class=k>null</span> <span class=nv>$request</span>
+</span></span><span class=line><span class=cl><span class=p>)</span><span class=o>:</span> <span class=nx>Response</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 处理请求
+</span></span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>DNF 类型必须遵循特定格式：交叉类型用括号包裹，再与其他类型用 <code>|</code> 连接。</p><h3 id=独立的-nulltruefalse-类型>独立的 null、true、false 类型<a hidden class=anchor aria-hidden=true href=#独立的-nulltruefalse-类型>#</a></h3><p>PHP 8.2 允许将 <code>null</code>、<code>true</code>、<code>false</code> 作为独立的类型使用：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 函数总是返回 false
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>alwaysFalse</span><span class=p>()</span><span class=o>:</span> <span class=k>false</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>false</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 函数总是返回 true
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>alwaysTrue</span><span class=p>()</span><span class=o>:</span> <span class=k>true</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 函数总是返回 null
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>alwaysNull</span><span class=p>()</span><span class=o>:</span> <span class=k>null</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 实际应用示例：失败时返回 false
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>findUser</span><span class=p>(</span><span class=nx>int</span> <span class=nv>$id</span><span class=p>)</span><span class=o>:</span> <span class=nx>User</span><span class=o>|</span><span class=k>false</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$user</span> <span class=o>=</span> <span class=c1>// 查询数据库...
+</span></span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nv>$user</span> <span class=o>??</span> <span class=k>false</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>这比使用 <code>bool</code> 或 <code>?type</code> 提供了更精确的类型信息。</p><h3 id=trait-中的常量>Trait 中的常量<a hidden class=anchor aria-hidden=true href=#trait-中的常量>#</a></h3><p>PHP 8.2 允许在 Trait 中定义常量：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>trait</span> <span class=nx>NetworkTrait</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>TIMEOUT</span> <span class=o>=</span> <span class=mi>60</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>private</span> <span class=k>const</span> <span class=no>MAX_RETRIES</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>getTimeout</span><span class=p>()</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nx>self</span><span class=o>::</span><span class=na>TIMEOUT</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=c1>// All properties automatically become readonly
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$user</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>User</span><span class=p>(</span><span class=s1>&#39;john_doe&#39;</span><span class=p>,</span> <span class=s1>&#39;john@example.com&#39;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=nv>$user</span><span class=o>-&gt;</span><span class=na>email</span> <span class=o>=</span> <span class=s1>&#39;new@example.com&#39;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=c1>// Fatal error: Uncaught Error: Cannot modify readonly property User::$email
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Combine union and intersection types using Disjunctive Normal Form
-</span></span></span><span class=line><span class=cl><span class=c1>// 析取范式，允许通过 |（联合）和 &amp;（交叉）运算符组合类型
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>function</span> <span class=nf>process</span><span class=p>((</span><span class=nx>Countable</span><span class=o>&amp;</span><span class=nx>Iterator</span><span class=p>)</span><span class=o>|</span><span class=k>null</span> <span class=nv>$item</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nv>$item</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>HttpClient</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>use</span> <span class=nx>NetworkTrait</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>connect</span><span class=p>()</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>echo</span> <span class=s2>&#34;Timeout: &#34;</span> <span class=o>.</span> <span class=nx>self</span><span class=o>::</span><span class=na>TIMEOUT</span><span class=p>;</span> <span class=c1>// 60
+</span></span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Use null, true, false as independent types
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>function</span> <span class=nf>alwaysFalse</span><span class=p>()</span><span class=o>:</span> <span class=k>false</span> <span class=p>{}</span>
-</span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>alwaysNull</span><span class=p>()</span><span class=o>:</span> <span class=k>null</span> <span class=p>{}</span>
-</span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>alwaysTrue</span><span class=p>()</span><span class=o>:</span> <span class=k>true</span> <span class=p>{}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Define constants directly in traits
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>trait</span> <span class=nx>NetworkTrait</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>TIMEOUT</span> <span class=o>=</span> <span class=mi>60</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 通过使用 Trait 的类访问常量
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>HttpClient</span><span class=o>::</span><span class=na>TIMEOUT</span><span class=p>;</span> <span class=c1>// 60
+</span></span></span></code></pre></div><h3 id=敏感参数隐藏sensitiveparameter>敏感参数隐藏（#[\SensitiveParameter]）<a hidden class=anchor aria-hidden=true href=#敏感参数隐藏sensitiveparameter>#</a></h3><p>新的 <code>#[\SensitiveParameter]</code> 属性可以在堆栈跟踪中隐藏敏感数据：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>function</span> <span class=nf>hashPassword</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#[\SensitiveParameter] string $password
+</span></span></span><span class=line><span class=cl><span class=p>)</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>debug_print_backtrace</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>password_hash</span><span class=p>(</span><span class=nv>$password</span><span class=p>,</span> <span class=nx>PASSWORD_DEFAULT</span><span class=p>);</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Hide sensitive data in stack traces
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>function</span> <span class=nf>hashPassword</span><span class=p>(</span><span class=c1>#[\SensitiveParameter] string $password) {
-</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>debug_print_backtrace</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>hashPassword</span><span class=p>(</span><span class=s1>&#39;my_secret_password&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.1: #0 example.php(8): hashPassword(&#39;my_secret_password&#39;)
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.2: #0 example.php(8): hashPassword(Object(SensitiveParameterValue))
+</span></span></span></code></pre></div><p>这对于防止密码、API 密钥等敏感信息在错误日志中泄露非常有用。</p><h3 id=新的-random-扩展>新的 Random 扩展<a hidden class=anchor aria-hidden=true href=#新的-random-扩展>#</a></h3><p>PHP 8.2 重构了随机数生成，提供了面向对象的 API：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 使用默认引擎
+</span></span></span><span class=line><span class=cl><span class=nv>$randomizer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>\Random\Randomizer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 生成随机整数
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$randomizer</span><span class=o>-&gt;</span><span class=na>getInt</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>100</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 生成随机字节
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>bin2hex</span><span class=p>(</span><span class=nv>$randomizer</span><span class=o>-&gt;</span><span class=na>getBytes</span><span class=p>(</span><span class=mi>16</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 随机打乱数组
+</span></span></span><span class=line><span class=cl><span class=nv>$array</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>5</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nv>$shuffled</span> <span class=o>=</span> <span class=nv>$randomizer</span><span class=o>-&gt;</span><span class=na>shuffleArray</span><span class=p>(</span><span class=nv>$array</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 随机打乱字符串
+</span></span></span><span class=line><span class=cl><span class=nv>$string</span> <span class=o>=</span> <span class=s2>&#34;Hello&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$randomizer</span><span class=o>-&gt;</span><span class=na>shuffleBytes</span><span class=p>(</span><span class=nv>$string</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 使用特定引擎
+</span></span></span><span class=line><span class=cl><span class=nv>$secure</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>\Random\Randomizer</span><span class=p>(</span><span class=k>new</span> <span class=nx>\Random\Engine\Secure</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=nv>$mt</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>\Random\Randomizer</span><span class=p>(</span><span class=k>new</span> <span class=nx>\Random\Engine\Mt19937</span><span class=p>(</span><span class=nx>seed</span><span class=o>:</span> <span class=mi>1234</span><span class=p>));</span>
+</span></span></code></pre></div><p>可用的引擎：</p><ul><li><code>\Random\Engine\Secure</code> - 加密安全的随机数</li><li><code>\Random\Engine\Mt19937</code> - Mersenne Twister 算法</li><li><code>\Random\Engine\PcgOneseq128XslRr64</code> - PCG 算法</li><li><code>\Random\Engine\Xoshiro256StarStar</code> - Xoshiro256** 算法</li></ul><h3 id=allowdynamicproperties-属性>#[\AllowDynamicProperties] 属性<a hidden class=anchor aria-hidden=true href=#allowdynamicproperties-属性>#</a></h3><p>由于动态属性已被弃用，如果仍需使用，可以用此属性标记类：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>#[\AllowDynamicProperties]
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>LegacyClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>string</span> <span class=nv>$declared</span> <span class=o>=</span> <span class=s1>&#39;value&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=nx>hashPassword</span><span class=p>(</span><span class=s1>&#39;secret123&#39;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=c1>// Before #0 /home/user/scripts/code.php(7): hashPassword(&#39;secret123&#39;)
-</span></span></span><span class=line><span class=cl><span class=c1>// PHP8.2 #0 /home/user/scripts/code.php(7): hashPassword(Object(SensitiveParameterValue))
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Consolidated RNG functions with OOP interface
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$randomizer</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>\Random\Randomizer</span><span class=p>();</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$randomizer</span><span class=o>-&gt;</span><span class=na>getInt</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>100</span><span class=p>);</span> <span class=c1>// Random integer
-</span></span></span></code></pre></div><h2 id=new-functions-82>New Functions 8.2<a hidden class=anchor aria-hidden=true href=#new-functions-82>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Parses any data size recognized by PHP INI values
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>ini_parse_quantity</span><span class=p>(</span><span class=s1>&#39;256M&#39;</span><span class=p>);</span> <span class=c1>// 268435456
-</span></span></span></code></pre></div><h2 id=deprecated-features-82>Deprecated Features 8.2<a hidden class=anchor aria-hidden=true href=#deprecated-features-82>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ${var} String Interpolation Deprecated
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$name</span> <span class=o>=</span> <span class=s1>&#39;Li&#39;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;Hello </span><span class=si>${</span><span class=nv>name</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=c1>// should be `{$name}`
-</span></span></span><span class=line><span class=cl><span class=c1>// Deprecated: Using ${var} in strings is deprecated, use {$var} instead
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$var</span> <span class=o>=</span> <span class=s1>&#39;name&#39;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;Hello </span><span class=si>${</span><span class=nv>$var</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=c1>// should be `{$$var}`
-</span></span></span><span class=line><span class=cl><span class=c1>// Deprecated: Using ${expr} (variable variables) in strings is deprecated, use {${expr}}
-</span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/php/>Php</a></li><li><a href=https://zyf.im/tags/php-migrating/>Php-Migrating</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2024/08/01/php-migrating-82-to-83/><span class=title>« Prev</span><br><span>PHP Migrating 8.2 to 8.3</span>
-</a><a class=next href=https://zyf.im/2023/04/19/mongodb-course/><span class=title>Next »</span><br><span>MongoDB 高手课</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$obj</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>LegacyClass</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nv>$obj</span><span class=o>-&gt;</span><span class=na>undeclared</span> <span class=o>=</span> <span class=s1>&#39;dynamic&#39;</span><span class=p>;</span> <span class=c1>// 不会产生弃用警告
+</span></span></span></code></pre></div><h3 id=枚举中获取常量>枚举中获取常量<a hidden class=anchor aria-hidden=true href=#枚举中获取常量>#</a></h3><p>PHP 8.2 允许在枚举表达式中获取常量：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>enum</span> <span class=nx>Status</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Active</span> <span class=o>=</span> <span class=s1>&#39;active&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Inactive</span> <span class=o>=</span> <span class=s1>&#39;inactive&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>const</span> <span class=no>DEFAULT</span> <span class=o>=</span> <span class=nx>self</span><span class=o>::</span><span class=na>Active</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>Status</span><span class=o>::</span><span class=na>DEFAULT</span><span class=o>-&gt;</span><span class=na>value</span><span class=p>;</span> <span class=c1>// active
+</span></span></span></code></pre></div><h2 id=php-82-新增函数>PHP 8.2 新增函数<a hidden class=anchor aria-hidden=true href=#php-82-新增函数>#</a></h2><h3 id=ini_parse_quantity>ini_parse_quantity()<a hidden class=anchor aria-hidden=true href=#ini_parse_quantity>#</a></h3><p>解析 PHP INI 格式的数据大小值：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 解析 INI 格式的容量值
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>ini_parse_quantity</span><span class=p>(</span><span class=s1>&#39;256M&#39;</span><span class=p>);</span>  <span class=c1>// 268435456 (256 * 1024 * 1024)
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>ini_parse_quantity</span><span class=p>(</span><span class=s1>&#39;1G&#39;</span><span class=p>);</span>    <span class=c1>// 1073741824
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>ini_parse_quantity</span><span class=p>(</span><span class=s1>&#39;512K&#39;</span><span class=p>);</span>  <span class=c1>// 524288
+</span></span></span></code></pre></div><h3 id=memory_reset_peak_usage>memory_reset_peak_usage()<a hidden class=anchor aria-hidden=true href=#memory_reset_peak_usage>#</a></h3><p>重置峰值内存使用量跟踪：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 初始峰值
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>memory_get_peak_usage</span><span class=p>();</span> <span class=c1>// 例如: 2097152
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 进行一些内存密集操作
+</span></span></span><span class=line><span class=cl><span class=nv>$data</span> <span class=o>=</span> <span class=nx>str_repeat</span><span class=p>(</span><span class=s1>&#39;x&#39;</span><span class=p>,</span> <span class=mi>1000000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>memory_get_peak_usage</span><span class=p>();</span> <span class=c1>// 例如: 3145728
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 重置峰值
+</span></span></span><span class=line><span class=cl><span class=nx>memory_reset_peak_usage</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>unset</span><span class=p>(</span><span class=nv>$data</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>memory_get_peak_usage</span><span class=p>();</span> <span class=c1>// 重置后的新峰值
+</span></span></span></code></pre></div><h3 id=mysqli_execute_query>mysqli_execute_query()<a hidden class=anchor aria-hidden=true href=#mysqli_execute_query>#</a></h3><p>简化 MySQLi 预处理语句的执行：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// PHP 8.2 之前
+</span></span></span><span class=line><span class=cl><span class=nv>$stmt</span> <span class=o>=</span> <span class=nv>$mysqli</span><span class=o>-&gt;</span><span class=na>prepare</span><span class=p>(</span><span class=s1>&#39;SELECT * FROM users WHERE id = ?&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$stmt</span><span class=o>-&gt;</span><span class=na>bind_param</span><span class=p>(</span><span class=s1>&#39;i&#39;</span><span class=p>,</span> <span class=nv>$id</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$stmt</span><span class=o>-&gt;</span><span class=na>execute</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nv>$result</span> <span class=o>=</span> <span class=nv>$stmt</span><span class=o>-&gt;</span><span class=na>get_result</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.2 - 使用 mysqli_execute_query()
+</span></span></span><span class=line><span class=cl><span class=nv>$result</span> <span class=o>=</span> <span class=nx>mysqli_execute_query</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$mysqli</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;SELECT * FROM users WHERE id = ?&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=nv>$id</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 面向对象写法
+</span></span></span><span class=line><span class=cl><span class=nv>$result</span> <span class=o>=</span> <span class=nv>$mysqli</span><span class=o>-&gt;</span><span class=na>execute_query</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;SELECT * FROM users WHERE id = ?&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=nv>$id</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span></code></pre></div><h3 id=curl_upkeep>curl_upkeep()<a hidden class=anchor aria-hidden=true href=#curl_upkeep>#</a></h3><p>保持持久 HTTP 连接活跃：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$ch</span> <span class=o>=</span> <span class=nx>curl_init</span><span class=p>(</span><span class=s1>&#39;https://example.com&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>curl_setopt</span><span class=p>(</span><span class=nv>$ch</span><span class=p>,</span> <span class=nx>CURLOPT_RETURNTRANSFER</span><span class=p>,</span> <span class=k>true</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>curl_exec</span><span class=p>(</span><span class=nv>$ch</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 保持连接活跃
+</span></span></span><span class=line><span class=cl><span class=nx>curl_upkeep</span><span class=p>(</span><span class=nv>$ch</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=openssl_cipher_key_length>openssl_cipher_key_length()<a hidden class=anchor aria-hidden=true href=#openssl_cipher_key_length>#</a></h3><p>获取 OpenSSL 加密算法所需的密钥长度：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>echo</span> <span class=nx>openssl_cipher_key_length</span><span class=p>(</span><span class=s1>&#39;aes-256-cbc&#39;</span><span class=p>);</span> <span class=c1>// 32
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>openssl_cipher_key_length</span><span class=p>(</span><span class=s1>&#39;aes-128-gcm&#39;</span><span class=p>);</span> <span class=c1>// 16
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>openssl_cipher_key_length</span><span class=p>(</span><span class=s1>&#39;des-ede3-cbc&#39;</span><span class=p>);</span> <span class=c1>// 24
+</span></span></span></code></pre></div><h3 id=sodium_crypto_stream_xchacha20_xor_ic>sodium_crypto_stream_xchacha20_xor_ic()<a hidden class=anchor aria-hidden=true href=#sodium_crypto_stream_xchacha20_xor_ic>#</a></h3><p>XChaCha20 加密函数，支持初始计数器：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$key</span> <span class=o>=</span> <span class=nx>sodium_crypto_stream_xchacha20_keygen</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nv>$nonce</span> <span class=o>=</span> <span class=nx>random_bytes</span><span class=p>(</span><span class=nx>SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$message</span> <span class=o>=</span> <span class=s1>&#39;Hello, World!&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 使用初始计数器加密
+</span></span></span><span class=line><span class=cl><span class=nv>$encrypted</span> <span class=o>=</span> <span class=nx>sodium_crypto_stream_xchacha20_xor_ic</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$message</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$nonce</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=mi>1</span><span class=p>,</span>  <span class=c1>// 初始计数器
+</span></span></span><span class=line><span class=cl>    <span class=nv>$key</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span></code></pre></div><h2 id=弃用特性>弃用特性<a hidden class=anchor aria-hidden=true href=#弃用特性>#</a></h2><h3 id=动态属性弃用>动态属性弃用<a hidden class=anchor aria-hidden=true href=#动态属性弃用>#</a></h3><p>在未声明的类属性上进行读写操作已被弃用：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>string</span> <span class=nv>$name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$user</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>User</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nv>$user</span><span class=o>-&gt;</span><span class=na>name</span> <span class=o>=</span> <span class=s1>&#39;John&#39;</span><span class=p>;</span>        <span class=c1>// ✅ 正常
+</span></span></span><span class=line><span class=cl><span class=nv>$user</span><span class=o>-&gt;</span><span class=na>age</span> <span class=o>=</span> <span class=mi>25</span><span class=p>;</span>             <span class=c1>// ⚠️ Deprecated: Creation of dynamic property
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 解决方案 1：声明属性
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>string</span> <span class=nv>$name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>int</span> <span class=nv>$age</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 解决方案 2：使用 #[AllowDynamicProperties]
+</span></span></span><span class=line><span class=cl><span class=c1>#[\AllowDynamicProperties]
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>string</span> <span class=nv>$name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 解决方案 3：使用 __get/__set 魔术方法
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>private</span> <span class=k>array</span> <span class=nv>$data</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__get</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$name</span><span class=p>)</span><span class=o>:</span> <span class=nx>mixed</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>data</span><span class=p>[</span><span class=nv>$name</span><span class=p>]</span> <span class=o>??</span> <span class=k>null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__set</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$name</span><span class=p>,</span> <span class=nx>mixed</span> <span class=nv>$value</span><span class=p>)</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>data</span><span class=p>[</span><span class=nv>$name</span><span class=p>]</span> <span class=o>=</span> <span class=nv>$value</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p><code>stdClass</code> 和从 <code>__get()/__set()</code> 继承的类不受影响。</p><h3 id=var-字符串插值弃用>${var} 字符串插值弃用<a hidden class=anchor aria-hidden=true href=#var-字符串插值弃用>#</a></h3><p>旧的 <code>${var}</code> 字符串插值语法已被弃用：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$name</span> <span class=o>=</span> <span class=s1>&#39;PHP&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;Hello </span><span class=si>${</span><span class=nv>name</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// Deprecated: Using ${var} in strings is deprecated, use {$var} instead
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ❌ 变量变量也已弃用
+</span></span></span><span class=line><span class=cl><span class=nv>$var</span> <span class=o>=</span> <span class=s1>&#39;name&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;Hello </span><span class=si>${</span><span class=nv>$var</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// Deprecated: Using ${expr} in strings is deprecated, use {${expr}} instead
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 推荐写法
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;Hello </span><span class=si>{</span><span class=nv>$name</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;Hello </span><span class=si>{</span><span class=nv>$$var</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span></code></pre></div><h3 id=utf8_encode-和-utf8_decode-弃用>utf8_encode() 和 utf8_decode() 弃用<a hidden class=anchor aria-hidden=true href=#utf8_encode-和-utf8_decode-弃用>#</a></h3><p>这两个函数已被弃用，因为它们只支持 Latin-1 编码：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=nv>$encoded</span> <span class=o>=</span> <span class=nx>utf8_encode</span><span class=p>(</span><span class=nv>$string</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$decoded</span> <span class=o>=</span> <span class=nx>utf8_decode</span><span class=p>(</span><span class=nv>$string</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 使用 mbstring
+</span></span></span><span class=line><span class=cl><span class=nv>$encoded</span> <span class=o>=</span> <span class=nx>mb_convert_encoding</span><span class=p>(</span><span class=nv>$string</span><span class=p>,</span> <span class=s1>&#39;UTF-8&#39;</span><span class=p>,</span> <span class=s1>&#39;ISO-8859-1&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$decoded</span> <span class=o>=</span> <span class=nx>mb_convert_encoding</span><span class=p>(</span><span class=nv>$string</span><span class=p>,</span> <span class=s1>&#39;ISO-8859-1&#39;</span><span class=p>,</span> <span class=s1>&#39;UTF-8&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 或使用 iconv
+</span></span></span><span class=line><span class=cl><span class=nv>$encoded</span> <span class=o>=</span> <span class=nx>iconv</span><span class=p>(</span><span class=s1>&#39;ISO-8859-1&#39;</span><span class=p>,</span> <span class=s1>&#39;UTF-8&#39;</span><span class=p>,</span> <span class=nv>$string</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$decoded</span> <span class=o>=</span> <span class=nx>iconv</span><span class=p>(</span><span class=s1>&#39;UTF-8&#39;</span><span class=p>,</span> <span class=s1>&#39;ISO-8859-1&#39;</span><span class=p>,</span> <span class=nv>$string</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=部分可调用模式弃用>部分可调用模式弃用<a hidden class=anchor aria-hidden=true href=#部分可调用模式弃用>#</a></h3><p>一些可调用模式已被弃用：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用的可调用模式
+</span></span></span><span class=line><span class=cl><span class=s2>&#34;self::method&#34;</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;parent::method&#34;</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;static::method&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=s2>&#34;self&#34;</span><span class=p>,</span> <span class=s2>&#34;method&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=s2>&#34;parent&#34;</span><span class=p>,</span> <span class=s2>&#34;method&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=s2>&#34;static&#34;</span><span class=p>,</span> <span class=s2>&#34;method&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=s2>&#34;Foo&#34;</span><span class=p>,</span> <span class=s2>&#34;Bar::method&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=k>new</span> <span class=nx>Foo</span><span class=p>,</span> <span class=s2>&#34;Bar::method&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 使用一等可调用语法
+</span></span></span><span class=line><span class=cl><span class=nv>$callable</span> <span class=o>=</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>method</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$callable</span> <span class=o>=</span> <span class=nx>self</span><span class=o>::</span><span class=na>method</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$callable</span> <span class=o>=</span> <span class=nx>Foo</span><span class=o>::</span><span class=na>method</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=mbstring-编码弃用>Mbstring 编码弃用<a hidden class=anchor aria-hidden=true href=#mbstring-编码弃用>#</a></h3><p>以下 Mbstring 编码已被弃用：</p><ul><li><code>BASE64</code></li><li><code>UUENCODE</code></li><li><code>HTML-ENTITIES</code></li><li><code>Quoted-Printable</code></li></ul><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=nv>$encoded</span> <span class=o>=</span> <span class=nx>mb_convert_encoding</span><span class=p>(</span><span class=nv>$data</span><span class=p>,</span> <span class=s1>&#39;BASE64&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 使用专门的函数
+</span></span></span><span class=line><span class=cl><span class=nv>$encoded</span> <span class=o>=</span> <span class=nx>base64_encode</span><span class=p>(</span><span class=nv>$data</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$decoded</span> <span class=o>=</span> <span class=nx>base64_decode</span><span class=p>(</span><span class=nv>$encoded</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ HTML 实体使用
+</span></span></span><span class=line><span class=cl><span class=nv>$encoded</span> <span class=o>=</span> <span class=nx>htmlentities</span><span class=p>(</span><span class=nv>$string</span><span class=p>,</span> <span class=nx>ENT_QUOTES</span><span class=p>,</span> <span class=s1>&#39;UTF-8&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$decoded</span> <span class=o>=</span> <span class=nx>html_entity_decode</span><span class=p>(</span><span class=nv>$encoded</span><span class=p>,</span> <span class=nx>ENT_QUOTES</span><span class=p>,</span> <span class=s1>&#39;UTF-8&#39;</span><span class=p>);</span>
+</span></span></code></pre></div><h2 id=兼容性变化>兼容性变化<a hidden class=anchor aria-hidden=true href=#兼容性变化>#</a></h2><h3 id=strtolower-和-strtoupper-不再受区域设置影响>strtolower() 和 strtoupper() 不再受区域设置影响<a hidden class=anchor aria-hidden=true href=#strtolower-和-strtoupper-不再受区域设置影响>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>setlocale</span><span class=p>(</span><span class=nx>LC_ALL</span><span class=p>,</span> <span class=s1>&#39;tr_TR&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.1: 受区域设置影响
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.2: 始终按 ASCII 规则处理
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>strtolower</span><span class=p>(</span><span class=s1>&#39;I&#39;</span><span class=p>);</span> <span class=c1>// &#39;i&#39;（不再是土耳其语的 &#39;ı&#39;）
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>strtoupper</span><span class=p>(</span><span class=s1>&#39;i&#39;</span><span class=p>);</span> <span class=c1>// &#39;I&#39;（不再是土耳其语的 &#39;İ&#39;）
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 需要区域敏感转换时使用 mbstring
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>mb_strtolower</span><span class=p>(</span><span class=s1>&#39;I&#39;</span><span class=p>,</span> <span class=s1>&#39;tr_TR&#39;</span><span class=p>);</span> <span class=c1>// &#39;ı&#39;
+</span></span></span></code></pre></div><h3 id=str_split-空字符串行为变化>str_split() 空字符串行为变化<a hidden class=anchor aria-hidden=true href=#str_split-空字符串行为变化>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// PHP 8.1: 返回 [&#39;&#39;]
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.2: 返回 []
+</span></span></span><span class=line><span class=cl><span class=nv>$result</span> <span class=o>=</span> <span class=nx>str_split</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$result</span><span class=p>);</span> <span class=c1>// array(0) {}
+</span></span></span></code></pre></div><h3 id=ksort-sort_regular-行为变化>ksort() SORT_REGULAR 行为变化<a hidden class=anchor aria-hidden=true href=#ksort-sort_regular-行为变化>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$arr</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;b&#39;</span> <span class=o>=&gt;</span> <span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;a&#39;</span> <span class=o>=&gt;</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>10</span> <span class=o>=&gt;</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>2</span> <span class=o>=&gt;</span> <span class=mi>4</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nx>ksort</span><span class=p>(</span><span class=nv>$arr</span><span class=p>,</span> <span class=nx>SORT_REGULAR</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.2 中排序更加一致
+</span></span></span><span class=line><span class=cl><span class=c1>// 数字键和字符串键的比较规则更加明确
+</span></span></span></code></pre></div><h3 id=日期时间扩展变化>日期时间扩展变化<a hidden class=anchor aria-hidden=true href=#日期时间扩展变化>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// DateTimeImmutable 和 DateTime 的行为更加一致
+</span></span></span><span class=line><span class=cl><span class=c1>// DatePeriod 现在是可迭代的
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$period</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>DatePeriod</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=k>new</span> <span class=nx>DateTime</span><span class=p>(</span><span class=s1>&#39;2024-01-01&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=k>new</span> <span class=nx>DateInterval</span><span class=p>(</span><span class=s1>&#39;P1D&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=mi>5</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 可以使用 foreach 遍历
+</span></span></span><span class=line><span class=cl><span class=k>foreach</span> <span class=p>(</span><span class=nv>$period</span> <span class=k>as</span> <span class=nv>$date</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>echo</span> <span class=nv>$date</span><span class=o>-&gt;</span><span class=na>format</span><span class=p>(</span><span class=s1>&#39;Y-m-d&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=其他改进>其他改进<a hidden class=anchor aria-hidden=true href=#其他改进>#</a></h2><h3 id=reflectionmethod-和-reflectionproperty-改进>ReflectionMethod 和 ReflectionProperty 改进<a hidden class=anchor aria-hidden=true href=#reflectionmethod-和-reflectionproperty-改进>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 检查方法是否可以作为静态方法调用
+</span></span></span><span class=line><span class=cl><span class=nv>$reflection</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ReflectionMethod</span><span class=p>(</span><span class=nx>MyClass</span><span class=o>::</span><span class=na>class</span><span class=p>,</span> <span class=s1>&#39;myMethod&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$reflection</span><span class=o>-&gt;</span><span class=na>isStatic</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 检查属性是否是只读
+</span></span></span><span class=line><span class=cl><span class=nv>$reflection</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ReflectionProperty</span><span class=p>(</span><span class=nx>User</span><span class=o>::</span><span class=na>class</span><span class=p>,</span> <span class=s1>&#39;name&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$reflection</span><span class=o>-&gt;</span><span class=na>isReadOnly</span><span class=p>());</span>
+</span></span></code></pre></div><h3 id=ziparchive-新方法>ZipArchive 新方法<a hidden class=anchor aria-hidden=true href=#ziparchive-新方法>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$zip</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ZipArchive</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nv>$zip</span><span class=o>-&gt;</span><span class=na>open</span><span class=p>(</span><span class=s1>&#39;archive.zip&#39;</span><span class=p>,</span> <span class=nx>ZipArchive</span><span class=o>::</span><span class=na>CREATE</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 获取文件流
+</span></span></span><span class=line><span class=cl><span class=nv>$stream</span> <span class=o>=</span> <span class=nv>$zip</span><span class=o>-&gt;</span><span class=na>getStreamIndex</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$stream</span> <span class=o>=</span> <span class=nv>$zip</span><span class=o>-&gt;</span><span class=na>getStreamName</span><span class=p>(</span><span class=s1>&#39;file.txt&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 清除错误状态
+</span></span></span><span class=line><span class=cl><span class=nv>$zip</span><span class=o>-&gt;</span><span class=na>clearError</span><span class=p>();</span>
+</span></span></code></pre></div><h3 id=odbc-和-pdo_odbc-改进>ODBC 和 PDO_ODBC 改进<a hidden class=anchor aria-hidden=true href=#odbc-和-pdo_odbc-改进>#</a></h3><p>连接字符串和凭证检查得到改进，支持更多的 ODBC 功能。</p><h2 id=总结>总结<a hidden class=anchor aria-hidden=true href=#总结>#</a></h2><p>PHP 8.2 带来了许多实用的新特性和改进：</p><p><strong>主要新特性：</strong></p><ul><li>只读类</li><li>析取范式类型（DNF Types）</li><li>独立的 null、true、false 类型</li><li>Trait 中的常量</li><li>敏感参数隐藏</li><li>新的 Random 扩展</li></ul><p><strong>需要注意的变化：</strong></p><ul><li>动态属性已弃用</li><li><code>${var}</code> 字符串插值已弃用</li><li><code>utf8_encode()</code> 和 <code>utf8_decode()</code> 已弃用</li><li><code>strtolower()</code> 和 <code>strtoupper()</code> 不再受区域设置影响</li><li>部分可调用模式已弃用</li></ul><p>通过了解这些变化并遵循迁移建议，可以顺利地从 PHP 8.1 迁移到 PHP 8.2。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/php/>Php</a></li><li><a href=https://zyf.im/tags/php-migrating/>Php-Migrating</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2024/08/01/php-migrating-82-to-83/><span class=title>« Prev</span><br><span>PHP Migrating 8.2 to 8.3</span>
+</a><a class=next href=https://zyf.im/2023/04/19/mongodb-course/><span class=title>Next »</span><br><span>MongoDB 高手课</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>

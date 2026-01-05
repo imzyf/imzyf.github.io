@@ -4,29 +4,29 @@
     <title>Tags on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/</link>
     <description>Recent content in Tags on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.152.2</generator>
+    <generator>Hugo -- 0.154.2</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 05 Jan 2026 21:33:57 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Nginx</title>
-      <link>https://zyf.im/tags/nginx/</link>
-      <pubDate>Fri, 27 Jun 2025 10:12:12 +0800</pubDate>
-      <guid>https://zyf.im/tags/nginx/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Php</title>
       <link>https://zyf.im/tags/php/</link>
-      <pubDate>Sat, 01 Feb 2025 17:42:42 +0800</pubDate>
+      <pubDate>Mon, 05 Jan 2026 21:33:57 +0800</pubDate>
       <guid>https://zyf.im/tags/php/</guid>
       <description></description>
     </item>
     <item>
       <title>Php-Migrating</title>
       <link>https://zyf.im/tags/php-migrating/</link>
-      <pubDate>Sat, 01 Feb 2025 17:42:42 +0800</pubDate>
+      <pubDate>Mon, 05 Jan 2026 21:33:57 +0800</pubDate>
       <guid>https://zyf.im/tags/php-migrating/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nginx</title>
+      <link>https://zyf.im/tags/nginx/</link>
+      <pubDate>Fri, 27 Jun 2025 10:12:12 +0800</pubDate>
+      <guid>https://zyf.im/tags/nginx/</guid>
       <description></description>
     </item>
     <item>
@@ -160,13 +160,6 @@
       <link>https://zyf.im/tags/algorithm/</link>
       <pubDate>Thu, 23 May 2019 14:44:40 +0800</pubDate>
       <guid>https://zyf.im/tags/algorithm/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mac</title>
-      <link>https://zyf.im/tags/mac/</link>
-      <pubDate>Mon, 20 May 2019 17:14:59 +0800</pubDate>
-      <guid>https://zyf.im/tags/mac/</guid>
       <description></description>
     </item>
     <item>

@@ -1,393 +1,497 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP Migrating 8.0 to 8.1 | ZYF.IM BLOG</title><meta name=keywords content="php,php-migrating"><meta name=description content="
-实验环境：https://onlinephp.io/
-https://www.php.net/releases/8.1/en.php
-https://www.php.net/manual/en/migration81.php
-https://php.watch/versions/8.1
-https://github.com/symfony/polyfill/tree/1.x/src/Php81
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>PHP Migrating 8.0 to 8.1 | ZYF.IM BLOG</title><meta name=keywords content="php,php-migrating"><meta name=description content="简介
+PHP 8.1 引入了许多重要的新特性，包括枚举（Enums）、只读属性（Readonly Properties）、一等可调用语法（First-class Callable Syntax）、Fibers、交叉类型（Intersection Types）等。本文将介绍主要变化和如何从 PHP 8.0 迁移到 PHP 8.1。
+参考资源
 
+在线测试环境：https://onlinephp.io/
+官方发布说明：https://www.php.net/releases/8.1/en.php
+迁移指南：https://www.php.net/manual/en/migration81.php
+更新详情：https://php.watch/versions/8.1
 
-PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.
+PHP 8.1 新特性
+枚举（Enums）
+PHP 8.1 原生支持枚举类型，取代了之前使用类常量的方式：
+// 纯枚举（Pure Enum）
+enum Status {
+    case Draft;
+    case Published;
+    case Archived;
+}
 
-New Features 8.1
-// Add native support for enumerations using enum keyword
-// https://www.php.net/manual/en/language.enumerations.examples.php
+// 回退枚举（Backed Enum）- 带有标量值
 enum Status: string {
     case Draft = 'draft';
     case Published = 'published';
     case Archived = 'archived';
 }
+
+// 使用枚举作为类型提示
 class BlogPost {
     public function __construct(
         public Status $status = Status::Draft
     ) {}
 }
-// Readonly properties
-// Properties can be marked as immutable after initialization
-class User {
-    public readonly string $uuid;
-    public function __construct(string $uuid) {
-        $this->uuid = $uuid;
+
+$post = new BlogPost();
+echo $post->status->value; // 'draft'
+
+// 枚举可以有方法
+enum Color: string {
+    case Red = '#FF0000';
+    case Green = '#00FF00';
+    case Blue = '#0000FF';
+
+    public function label(): string {
+        return match($this) {
+            self::Red => '红色',
+            self::Green => '绿色',
+            self::Blue => '蓝色',
+        };
     }
 }
-// Fibers, new concurrency primitive for managing green threads
-// https://www.php.net/manual/en/language.fibers.php
-$fiber = new Fiber(function(): void {
-    echo &#34;Starting fiber\n&#34;;
-    Fiber::suspend();
-    echo &#34;Resuming fiber\n&#34;;
-});
-$fiber->start();
-echo &#34;...\n&#34;;
-$fiber->resume();
-// Starting fiber
-// ...
-// Resuming fiber
-// Intersection Types, combine multiple type constraints
-// 交叉类型
-function countItems(Iterator&amp;Countable $items): int {
-    return count($items);
+
+echo Color::Red->label(); // '红色'
+
+// 从值获取枚举
+$status = Status::from('draft');     // Status::Draft
+$status = Status::tryFrom('invalid'); // null（不会抛出异常）
+枚举的特性："><meta name=author content="Me, LLM"><link rel=canonical href=https://zyf.im/2022/12/21/php-migrating-80-to-81/><link crossorigin=anonymous href=/assets/css/stylesheet.88888b1f97bcb20b824590bc7c6603a852913a2540638b3b3e2663e642691da3.css integrity="sha256-iIiLH5e8sguCRZC8fGYDqFKROiVAY4s7PiZj5kJpHaM=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2022/12/21/php-migrating-80-to-81/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2022/12/21/php-migrating-80-to-81/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="PHP Migrating 8.0 to 8.1"><meta property="og:description" content="简介 PHP 8.1 引入了许多重要的新特性，包括枚举（Enums）、只读属性（Readonly Properties）、一等可调用语法（First-class Callable Syntax）、Fibers、交叉类型（Intersection Types）等。本文将介绍主要变化和如何从 PHP 8.0 迁移到 PHP 8.1。
+参考资源 在线测试环境：https://onlinephp.io/ 官方发布说明：https://www.php.net/releases/8.1/en.php 迁移指南：https://www.php.net/manual/en/migration81.php 更新详情：https://php.watch/versions/8.1 PHP 8.1 新特性 枚举（Enums） PHP 8.1 原生支持枚举类型，取代了之前使用类常量的方式：
+// 纯枚举（Pure Enum） enum Status { case Draft; case Published; case Archived; } // 回退枚举（Backed Enum）- 带有标量值 enum Status: string { case Draft = 'draft'; case Published = 'published'; case Archived = 'archived'; } // 使用枚举作为类型提示 class BlogPost { public function __construct( public Status $status = Status::Draft ) {} } $post = new BlogPost(); echo $post->status->value; // 'draft' // 枚举可以有方法 enum Color: string { case Red = '#FF0000'; case Green = '#00FF00'; case Blue = '#0000FF'; public function label(): string { return match($this) { self::Red => '红色', self::Green => '绿色', self::Blue => '蓝色', }; } } echo Color::Red->label(); // '红色' // 从值获取枚举 $status = Status::from('draft'); // Status::Draft $status = Status::tryFrom('invalid'); // null（不会抛出异常） 枚举的特性："><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-12-21T18:25:49+08:00"><meta property="article:modified_time" content="2022-12-21T18:25:49+08:00"><meta property="article:tag" content="Php"><meta property="article:tag" content="Php-Migrating"><meta property="og:image" content="https://images.unsplash.com/photo-1507755087694-bab770fa0114?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://images.unsplash.com/photo-1507755087694-bab770fa0114?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:title content="PHP Migrating 8.0 to 8.1"><meta name=twitter:description content="简介
+PHP 8.1 引入了许多重要的新特性，包括枚举（Enums）、只读属性（Readonly Properties）、一等可调用语法（First-class Callable Syntax）、Fibers、交叉类型（Intersection Types）等。本文将介绍主要变化和如何从 PHP 8.0 迁移到 PHP 8.1。
+参考资源
+
+在线测试环境：https://onlinephp.io/
+官方发布说明：https://www.php.net/releases/8.1/en.php
+迁移指南：https://www.php.net/manual/en/migration81.php
+更新详情：https://php.watch/versions/8.1
+
+PHP 8.1 新特性
+枚举（Enums）
+PHP 8.1 原生支持枚举类型，取代了之前使用类常量的方式：
+// 纯枚举（Pure Enum）
+enum Status {
+    case Draft;
+    case Published;
+    case Archived;
 }
-// Never Return Type
-// Indicates function never returns
-function redirect(string $url): never {
-    header(&#34;Location: $url&#34;);
-    exit();
-}
-// First-Class Callable Syntax
-// Replaces Closure::fromCallable() with cleaner syntax
-$strlen = strlen(...);
-echo $strlen('hello'); // 5
-// same as
-$fn = Closure::fromCallable('strlen');
-echo $fn('hello'); // 5
 
-$words = ['apple', 'banana'];
-var_dump(array_map(strlen(...), $words)); // [5, 6]
-
-class Calculator {
-    public function add(int $a, int $b): int {
-        return $a + $b;
-    }
-    public function __invoke(int $x) {
-        return $x * 2;
-    }
-}
-$calc = new Calculator();
-$addCallable = $calc->add(...);
-echo $addCallable(3, 5); // 8
-$invocable = $calc(...);
-echo $invocable(10); // 20
-// New Array Features
-// String key unpacking
-$arr1 = [1, 'a' => 'b'];
-var_dump([...$arr1, 'c' => 'd']);
-// [1,'a' => 'b', 'c' => 'd']
-
-// 参数解包后的命名参数
-function foo($a, $b, $c) {
-    var_dump($a, $b, $c);
-}
-foo(...[1,2], c: 3);
-// File System Improvements
-$file = fopen('data.txt', 'w');
-fwrite($file, 'content');
-fsync($file); // Force write to disk
-fclose($file);
-// Objects in default parameters
-// 现在可以使用 new ClassName() 表达式作为参数、静态变量、全局常量初始值设定项和属性参数的默认值
-// 现在也可以将对象传递给 define()
-class Logger {
-    public function __construct(
-        private Formatter $fmt = new DefaultFormatter()
-    ) {}
-}
-// 八进制
-var_dump(0o14);
-// int(12)
-New Functions 8.1
-// 如果数组的键由从 0 到 count($array)-1 的连续数字组成，则数组被认为是 list
-array_is_list([]); // true
-array_is_list(['apple', 2, 3]); // true
-array_is_list([0 => 'apple', 'orange']); // true
-
-// The array does not start at 0
-array_is_list([1 => 'apple', 'orange']); // false
-Backward Incompatible Changes 8.1
-// Usage of static Variables in Inherited Methods ¶
-class A {
-    public static function counter() {
-        static $i = 0;
-        return ++$i;
-    }
-}
-class B extends A {}
-var_dump(A::counter()); // int(1)
-var_dump(A::counter()); // int(2)
-var_dump(B::counter());
-// PHP 8.0 int(1)
-// PHP 8.1+ int(3)
-Deprecated 8.1
-// Implicit incompatible float to int conversions
-$arr = [];
-$arr[3.14] = 'value'; // Deprecated（键值3.14转为3）
-$arr[(int)3.14] = 'value'; // 显式转换避免警告
-&ndash; EOF &ndash;"><meta name=author content="Me"><link rel=canonical href=https://zyf.im/2022/12/21/php-migrating-80-to-81/><link crossorigin=anonymous href=/assets/css/stylesheet.88888b1f97bcb20b824590bc7c6603a852913a2540638b3b3e2663e642691da3.css integrity="sha256-iIiLH5e8sguCRZC8fGYDqFKROiVAY4s7PiZj5kJpHaM=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2022/12/21/php-migrating-80-to-81/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var dnt,doNotTrack=!1;if(!1&&(dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes"),!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2022/12/21/php-migrating-80-to-81/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="PHP Migrating 8.0 to 8.1"><meta property="og:description" content=" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.1/en.php https://www.php.net/manual/en/migration81.php https://php.watch/versions/8.1 https://github.com/symfony/polyfill/tree/1.x/src/Php81 PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.
-New Features 8.1 // Add native support for enumerations using enum keyword // https://www.php.net/manual/en/language.enumerations.examples.php enum Status: string { case Draft = 'draft'; case Published = 'published'; case Archived = 'archived'; } class BlogPost { public function __construct( public Status $status = Status::Draft ) {} } // Readonly properties // Properties can be marked as immutable after initialization class User { public readonly string $uuid; public function __construct(string $uuid) { $this->uuid = $uuid; } } // Fibers, new concurrency primitive for managing green threads // https://www.php.net/manual/en/language.fibers.php $fiber = new Fiber(function(): void { echo &#34;Starting fiber\n&#34;; Fiber::suspend(); echo &#34;Resuming fiber\n&#34;; }); $fiber->start(); echo &#34;...\n&#34;; $fiber->resume(); // Starting fiber // ... // Resuming fiber // Intersection Types, combine multiple type constraints // 交叉类型 function countItems(Iterator&amp;Countable $items): int { return count($items); } // Never Return Type // Indicates function never returns function redirect(string $url): never { header(&#34;Location: $url&#34;); exit(); } // First-Class Callable Syntax // Replaces Closure::fromCallable() with cleaner syntax $strlen = strlen(...); echo $strlen('hello'); // 5 // same as $fn = Closure::fromCallable('strlen'); echo $fn('hello'); // 5 $words = ['apple', 'banana']; var_dump(array_map(strlen(...), $words)); // [5, 6] class Calculator { public function add(int $a, int $b): int { return $a + $b; } public function __invoke(int $x) { return $x * 2; } } $calc = new Calculator(); $addCallable = $calc->add(...); echo $addCallable(3, 5); // 8 $invocable = $calc(...); echo $invocable(10); // 20 // New Array Features // String key unpacking $arr1 = [1, 'a' => 'b']; var_dump([...$arr1, 'c' => 'd']); // [1,'a' => 'b', 'c' => 'd'] // 参数解包后的命名参数 function foo($a, $b, $c) { var_dump($a, $b, $c); } foo(...[1,2], c: 3); // File System Improvements $file = fopen('data.txt', 'w'); fwrite($file, 'content'); fsync($file); // Force write to disk fclose($file); // Objects in default parameters // 现在可以使用 new ClassName() 表达式作为参数、静态变量、全局常量初始值设定项和属性参数的默认值 // 现在也可以将对象传递给 define() class Logger { public function __construct( private Formatter $fmt = new DefaultFormatter() ) {} } // 八进制 var_dump(0o14); // int(12) New Functions 8.1 // 如果数组的键由从 0 到 count($array)-1 的连续数字组成，则数组被认为是 list array_is_list([]); // true array_is_list(['apple', 2, 3]); // true array_is_list([0 => 'apple', 'orange']); // true // The array does not start at 0 array_is_list([1 => 'apple', 'orange']); // false Backward Incompatible Changes 8.1 // Usage of static Variables in Inherited Methods ¶ class A { public static function counter() { static $i = 0; return ++$i; } } class B extends A {} var_dump(A::counter()); // int(1) var_dump(A::counter()); // int(2) var_dump(B::counter()); // PHP 8.0 int(1) // PHP 8.1+ int(3) Deprecated 8.1 // Implicit incompatible float to int conversions $arr = []; $arr[3.14] = 'value'; // Deprecated（键值3.14转为3） $arr[(int)3.14] = 'value'; // 显式转换避免警告 – EOF –"><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-12-21T18:25:49+08:00"><meta property="article:modified_time" content="2022-12-21T18:25:49+08:00"><meta property="article:tag" content="Php"><meta property="article:tag" content="Php-Migrating"><meta property="og:image" content="https://images.unsplash.com/photo-1507755087694-bab770fa0114?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://images.unsplash.com/photo-1507755087694-bab770fa0114?q=80&amp;w=960&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3"><meta name=twitter:title content="PHP Migrating 8.0 to 8.1"><meta name=twitter:description content="
-实验环境：https://onlinephp.io/
-https://www.php.net/releases/8.1/en.php
-https://www.php.net/manual/en/migration81.php
-https://php.watch/versions/8.1
-https://github.com/symfony/polyfill/tree/1.x/src/Php81
-
-
-PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.
-
-New Features 8.1
-// Add native support for enumerations using enum keyword
-// https://www.php.net/manual/en/language.enumerations.examples.php
+// 回退枚举（Backed Enum）- 带有标量值
 enum Status: string {
     case Draft = 'draft';
     case Published = 'published';
     case Archived = 'archived';
 }
+
+// 使用枚举作为类型提示
 class BlogPost {
     public function __construct(
         public Status $status = Status::Draft
     ) {}
 }
-// Readonly properties
-// Properties can be marked as immutable after initialization
-class User {
-    public readonly string $uuid;
-    public function __construct(string $uuid) {
-        $this->uuid = $uuid;
+
+$post = new BlogPost();
+echo $post->status->value; // 'draft'
+
+// 枚举可以有方法
+enum Color: string {
+    case Red = '#FF0000';
+    case Green = '#00FF00';
+    case Blue = '#0000FF';
+
+    public function label(): string {
+        return match($this) {
+            self::Red => '红色',
+            self::Green => '绿色',
+            self::Blue => '蓝色',
+        };
     }
 }
-// Fibers, new concurrency primitive for managing green threads
-// https://www.php.net/manual/en/language.fibers.php
-$fiber = new Fiber(function(): void {
-    echo &#34;Starting fiber\n&#34;;
-    Fiber::suspend();
-    echo &#34;Resuming fiber\n&#34;;
-});
-$fiber->start();
-echo &#34;...\n&#34;;
-$fiber->resume();
-// Starting fiber
-// ...
-// Resuming fiber
-// Intersection Types, combine multiple type constraints
-// 交叉类型
-function countItems(Iterator&amp;Countable $items): int {
-    return count($items);
-}
-// Never Return Type
-// Indicates function never returns
-function redirect(string $url): never {
-    header(&#34;Location: $url&#34;);
-    exit();
-}
-// First-Class Callable Syntax
-// Replaces Closure::fromCallable() with cleaner syntax
-$strlen = strlen(...);
-echo $strlen('hello'); // 5
-// same as
-$fn = Closure::fromCallable('strlen');
-echo $fn('hello'); // 5
 
-$words = ['apple', 'banana'];
-var_dump(array_map(strlen(...), $words)); // [5, 6]
+echo Color::Red->label(); // '红色'
 
-class Calculator {
-    public function add(int $a, int $b): int {
-        return $a + $b;
-    }
-    public function __invoke(int $x) {
-        return $x * 2;
-    }
-}
-$calc = new Calculator();
-$addCallable = $calc->add(...);
-echo $addCallable(3, 5); // 8
-$invocable = $calc(...);
-echo $invocable(10); // 20
-// New Array Features
-// String key unpacking
-$arr1 = [1, 'a' => 'b'];
-var_dump([...$arr1, 'c' => 'd']);
-// [1,'a' => 'b', 'c' => 'd']
-
-// 参数解包后的命名参数
-function foo($a, $b, $c) {
-    var_dump($a, $b, $c);
-}
-foo(...[1,2], c: 3);
-// File System Improvements
-$file = fopen('data.txt', 'w');
-fwrite($file, 'content');
-fsync($file); // Force write to disk
-fclose($file);
-// Objects in default parameters
-// 现在可以使用 new ClassName() 表达式作为参数、静态变量、全局常量初始值设定项和属性参数的默认值
-// 现在也可以将对象传递给 define()
-class Logger {
-    public function __construct(
-        private Formatter $fmt = new DefaultFormatter()
-    ) {}
-}
-// 八进制
-var_dump(0o14);
-// int(12)
-New Functions 8.1
-// 如果数组的键由从 0 到 count($array)-1 的连续数字组成，则数组被认为是 list
-array_is_list([]); // true
-array_is_list(['apple', 2, 3]); // true
-array_is_list([0 => 'apple', 'orange']); // true
-
-// The array does not start at 0
-array_is_list([1 => 'apple', 'orange']); // false
-Backward Incompatible Changes 8.1
-// Usage of static Variables in Inherited Methods ¶
-class A {
-    public static function counter() {
-        static $i = 0;
-        return ++$i;
-    }
-}
-class B extends A {}
-var_dump(A::counter()); // int(1)
-var_dump(A::counter()); // int(2)
-var_dump(B::counter());
-// PHP 8.0 int(1)
-// PHP 8.1+ int(3)
-Deprecated 8.1
-// Implicit incompatible float to int conversions
-$arr = [];
-$arr[3.14] = 'value'; // Deprecated（键值3.14转为3）
-$arr[(int)3.14] = 'value'; // 显式转换避免警告
-&ndash; EOF &ndash;"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"PHP Migrating 8.0 to 8.1","item":"https://zyf.im/2022/12/21/php-migrating-80-to-81/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"PHP Migrating 8.0 to 8.1","name":"PHP Migrating 8.0 to 8.1","description":" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.1/en.php https://www.php.net/manual/en/migration81.php https://php.watch/versions/8.1 https://github.com/symfony/polyfill/tree/1.x/src/Php81 PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.\nNew Features 8.1 // Add native support for enumerations using enum keyword // https://www.php.net/manual/en/language.enumerations.examples.php enum Status: string { case Draft = \u0026#39;draft\u0026#39;; case Published = \u0026#39;published\u0026#39;; case Archived = \u0026#39;archived\u0026#39;; } class BlogPost { public function __construct( public Status $status = Status::Draft ) {} } // Readonly properties // Properties can be marked as immutable after initialization class User { public readonly string $uuid; public function __construct(string $uuid) { $this-\u0026gt;uuid = $uuid; } } // Fibers, new concurrency primitive for managing green threads // https://www.php.net/manual/en/language.fibers.php $fiber = new Fiber(function(): void { echo \u0026#34;Starting fiber\\n\u0026#34;; Fiber::suspend(); echo \u0026#34;Resuming fiber\\n\u0026#34;; }); $fiber-\u0026gt;start(); echo \u0026#34;...\\n\u0026#34;; $fiber-\u0026gt;resume(); // Starting fiber // ... // Resuming fiber // Intersection Types, combine multiple type constraints // 交叉类型 function countItems(Iterator\u0026amp;Countable $items): int { return count($items); } // Never Return Type // Indicates function never returns function redirect(string $url): never { header(\u0026#34;Location: $url\u0026#34;); exit(); } // First-Class Callable Syntax // Replaces Closure::fromCallable() with cleaner syntax $strlen = strlen(...); echo $strlen(\u0026#39;hello\u0026#39;); // 5 // same as $fn = Closure::fromCallable(\u0026#39;strlen\u0026#39;); echo $fn(\u0026#39;hello\u0026#39;); // 5 $words = [\u0026#39;apple\u0026#39;, \u0026#39;banana\u0026#39;]; var_dump(array_map(strlen(...), $words)); // [5, 6] class Calculator { public function add(int $a, int $b): int { return $a + $b; } public function __invoke(int $x) { return $x * 2; } } $calc = new Calculator(); $addCallable = $calc-\u0026gt;add(...); echo $addCallable(3, 5); // 8 $invocable = $calc(...); echo $invocable(10); // 20 // New Array Features // String key unpacking $arr1 = [1, \u0026#39;a\u0026#39; =\u0026gt; \u0026#39;b\u0026#39;]; var_dump([...$arr1, \u0026#39;c\u0026#39; =\u0026gt; \u0026#39;d\u0026#39;]); // [1,\u0026#39;a\u0026#39; =\u0026gt; \u0026#39;b\u0026#39;, \u0026#39;c\u0026#39; =\u0026gt; \u0026#39;d\u0026#39;] // 参数解包后的命名参数 function foo($a, $b, $c) { var_dump($a, $b, $c); } foo(...[1,2], c: 3); // File System Improvements $file = fopen(\u0026#39;data.txt\u0026#39;, \u0026#39;w\u0026#39;); fwrite($file, \u0026#39;content\u0026#39;); fsync($file); // Force write to disk fclose($file); // Objects in default parameters // 现在可以使用 new ClassName() 表达式作为参数、静态变量、全局常量初始值设定项和属性参数的默认值 // 现在也可以将对象传递给 define() class Logger { public function __construct( private Formatter $fmt = new DefaultFormatter() ) {} } // 八进制 var_dump(0o14); // int(12) New Functions 8.1 // 如果数组的键由从 0 到 count($array)-1 的连续数字组成，则数组被认为是 list array_is_list([]); // true array_is_list([\u0026#39;apple\u0026#39;, 2, 3]); // true array_is_list([0 =\u0026gt; \u0026#39;apple\u0026#39;, \u0026#39;orange\u0026#39;]); // true // The array does not start at 0 array_is_list([1 =\u0026gt; \u0026#39;apple\u0026#39;, \u0026#39;orange\u0026#39;]); // false Backward Incompatible Changes 8.1 // Usage of static Variables in Inherited Methods ¶ class A { public static function counter() { static $i = 0; return ++$i; } } class B extends A {} var_dump(A::counter()); // int(1) var_dump(A::counter()); // int(2) var_dump(B::counter()); // PHP 8.0 int(1) // PHP 8.1+ int(3) Deprecated 8.1 // Implicit incompatible float to int conversions $arr = []; $arr[3.14] = \u0026#39;value\u0026#39;; // Deprecated（键值3.14转为3） $arr[(int)3.14] = \u0026#39;value\u0026#39;; // 显式转换避免警告 \u0026ndash; EOF \u0026ndash;\n","keywords":["php","php-migrating"],"articleBody":" 实验环境：https://onlinephp.io/ https://www.php.net/releases/8.1/en.php https://www.php.net/manual/en/migration81.php https://php.watch/versions/8.1 https://github.com/symfony/polyfill/tree/1.x/src/Php81 PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.\nNew Features 8.1 // Add native support for enumerations using enum keyword // https://www.php.net/manual/en/language.enumerations.examples.php enum Status: string { case Draft = 'draft'; case Published = 'published'; case Archived = 'archived'; } class BlogPost { public function __construct( public Status $status = Status::Draft ) {} } // Readonly properties // Properties can be marked as immutable after initialization class User { public readonly string $uuid; public function __construct(string $uuid) { $this-\u003euuid = $uuid; } } // Fibers, new concurrency primitive for managing green threads // https://www.php.net/manual/en/language.fibers.php $fiber = new Fiber(function(): void { echo \"Starting fiber\\n\"; Fiber::suspend(); echo \"Resuming fiber\\n\"; }); $fiber-\u003estart(); echo \"...\\n\"; $fiber-\u003eresume(); // Starting fiber // ... // Resuming fiber // Intersection Types, combine multiple type constraints // 交叉类型 function countItems(Iterator\u0026Countable $items): int { return count($items); } // Never Return Type // Indicates function never returns function redirect(string $url): never { header(\"Location: $url\"); exit(); } // First-Class Callable Syntax // Replaces Closure::fromCallable() with cleaner syntax $strlen = strlen(...); echo $strlen('hello'); // 5 // same as $fn = Closure::fromCallable('strlen'); echo $fn('hello'); // 5 $words = ['apple', 'banana']; var_dump(array_map(strlen(...), $words)); // [5, 6] class Calculator { public function add(int $a, int $b): int { return $a + $b; } public function __invoke(int $x) { return $x * 2; } } $calc = new Calculator(); $addCallable = $calc-\u003eadd(...); echo $addCallable(3, 5); // 8 $invocable = $calc(...); echo $invocable(10); // 20 // New Array Features // String key unpacking $arr1 = [1, 'a' =\u003e 'b']; var_dump([...$arr1, 'c' =\u003e 'd']); // [1,'a' =\u003e 'b', 'c' =\u003e 'd'] // 参数解包后的命名参数 function foo($a, $b, $c) { var_dump($a, $b, $c); } foo(...[1,2], c: 3); // File System Improvements $file = fopen('data.txt', 'w'); fwrite($file, 'content'); fsync($file); // Force write to disk fclose($file); // Objects in default parameters // 现在可以使用 new ClassName() 表达式作为参数、静态变量、全局常量初始值设定项和属性参数的默认值 // 现在也可以将对象传递给 define() class Logger { public function __construct( private Formatter $fmt = new DefaultFormatter() ) {} } // 八进制 var_dump(0o14); // int(12) New Functions 8.1 // 如果数组的键由从 0 到 count($array)-1 的连续数字组成，则数组被认为是 list array_is_list([]); // true array_is_list(['apple', 2, 3]); // true array_is_list([0 =\u003e 'apple', 'orange']); // true // The array does not start at 0 array_is_list([1 =\u003e 'apple', 'orange']); // false Backward Incompatible Changes 8.1 // Usage of static Variables in Inherited Methods ¶ class A { public static function counter() { static $i = 0; return ++$i; } } class B extends A {} var_dump(A::counter()); // int(1) var_dump(A::counter()); // int(2) var_dump(B::counter()); // PHP 8.0 int(1) // PHP 8.1+ int(3) Deprecated 8.1 // Implicit incompatible float to int conversions $arr = []; $arr[3.14] = 'value'; // Deprecated（键值3.14转为3） $arr[(int)3.14] = 'value'; // 显式转换避免警告 – EOF –\n","wordCount":"454","inLanguage":"en","image":"https://images.unsplash.com/photo-1507755087694-bab770fa0114?q=80\u0026w=960\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.0.3","datePublished":"2022-12-21T18:25:49+08:00","dateModified":"2022-12-21T18:25:49+08:00","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2022/12/21/php-migrating-80-to-81/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+// 从值获取枚举
+$status = Status::from('draft');     // Status::Draft
+$status = Status::tryFrom('invalid'); // null（不会抛出异常）
+枚举的特性："><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"PHP Migrating 8.0 to 8.1","item":"https://zyf.im/2022/12/21/php-migrating-80-to-81/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"PHP Migrating 8.0 to 8.1","name":"PHP Migrating 8.0 to 8.1","description":"简介 PHP 8.1 引入了许多重要的新特性，包括枚举（Enums）、只读属性（Readonly Properties）、一等可调用语法（First-class Callable Syntax）、Fibers、交叉类型（Intersection Types）等。本文将介绍主要变化和如何从 PHP 8.0 迁移到 PHP 8.1。\n参考资源 在线测试环境：https://onlinephp.io/ 官方发布说明：https://www.php.net/releases/8.1/en.php 迁移指南：https://www.php.net/manual/en/migration81.php 更新详情：https://php.watch/versions/8.1 PHP 8.1 新特性 枚举（Enums） PHP 8.1 原生支持枚举类型，取代了之前使用类常量的方式：\n// 纯枚举（Pure Enum） enum Status { case Draft; case Published; case Archived; } // 回退枚举（Backed Enum）- 带有标量值 enum Status: string { case Draft = \u0026#39;draft\u0026#39;; case Published = \u0026#39;published\u0026#39;; case Archived = \u0026#39;archived\u0026#39;; } // 使用枚举作为类型提示 class BlogPost { public function __construct( public Status $status = Status::Draft ) {} } $post = new BlogPost(); echo $post-\u0026gt;status-\u0026gt;value; // \u0026#39;draft\u0026#39; // 枚举可以有方法 enum Color: string { case Red = \u0026#39;#FF0000\u0026#39;; case Green = \u0026#39;#00FF00\u0026#39;; case Blue = \u0026#39;#0000FF\u0026#39;; public function label(): string { return match($this) { self::Red =\u0026gt; \u0026#39;红色\u0026#39;, self::Green =\u0026gt; \u0026#39;绿色\u0026#39;, self::Blue =\u0026gt; \u0026#39;蓝色\u0026#39;, }; } } echo Color::Red-\u0026gt;label(); // \u0026#39;红色\u0026#39; // 从值获取枚举 $status = Status::from(\u0026#39;draft\u0026#39;); // Status::Draft $status = Status::tryFrom(\u0026#39;invalid\u0026#39;); // null（不会抛出异常） 枚举的特性：\n","keywords":["php","php-migrating"],"articleBody":"简介 PHP 8.1 引入了许多重要的新特性，包括枚举（Enums）、只读属性（Readonly Properties）、一等可调用语法（First-class Callable Syntax）、Fibers、交叉类型（Intersection Types）等。本文将介绍主要变化和如何从 PHP 8.0 迁移到 PHP 8.1。\n参考资源 在线测试环境：https://onlinephp.io/ 官方发布说明：https://www.php.net/releases/8.1/en.php 迁移指南：https://www.php.net/manual/en/migration81.php 更新详情：https://php.watch/versions/8.1 PHP 8.1 新特性 枚举（Enums） PHP 8.1 原生支持枚举类型，取代了之前使用类常量的方式：\n// 纯枚举（Pure Enum） enum Status { case Draft; case Published; case Archived; } // 回退枚举（Backed Enum）- 带有标量值 enum Status: string { case Draft = 'draft'; case Published = 'published'; case Archived = 'archived'; } // 使用枚举作为类型提示 class BlogPost { public function __construct( public Status $status = Status::Draft ) {} } $post = new BlogPost(); echo $post-\u003estatus-\u003evalue; // 'draft' // 枚举可以有方法 enum Color: string { case Red = '#FF0000'; case Green = '#00FF00'; case Blue = '#0000FF'; public function label(): string { return match($this) { self::Red =\u003e '红色', self::Green =\u003e '绿色', self::Blue =\u003e '蓝色', }; } } echo Color::Red-\u003elabel(); // '红色' // 从值获取枚举 $status = Status::from('draft'); // Status::Draft $status = Status::tryFrom('invalid'); // null（不会抛出异常） 枚举的特性：\n枚举可以实现接口 枚举可以使用 trait 枚举不能被实例化（new Status() 是非法的） 枚举 case 是单例 只读属性（Readonly Properties） 属性可以标记为 readonly，只能初始化一次：\nclass User { public readonly string $id; public readonly string $name; public function __construct(string $id, string $name) { $this-\u003eid = $id; $this-\u003ename = $name; } } $user = new User('123', 'John'); echo $user-\u003eid; // '123' $user-\u003eid = '456'; // Fatal error: Cannot modify readonly property User::$id // 结合构造函数提升使用 class Product { public function __construct( public readonly string $sku, public readonly float $price, ) {} } 只读属性的特性：\n只能初始化一次，初始化后不可修改 必须有类型声明 不能有默认值（除非在构造函数中设置） 可以在构造函数或声明时初始化 一等可调用语法（First-class Callable Syntax） 使用 ... 语法创建闭包，替代 Closure::fromCallable()：\n// 函数转闭包 $strlen = strlen(...); echo $strlen('hello'); // 5 // 等同于 $strlen = Closure::fromCallable('strlen'); // 方法转闭包 class Calculator { public function add(int $a, int $b): int { return $a + $b; } public static function multiply(int $a, int $b): int { return $a * $b; } public function __invoke(int $x): int { return $x * 2; } } $calc = new Calculator(); // 实例方法 $addFn = $calc-\u003eadd(...); echo $addFn(3, 5); // 8 // 静态方法 $multiplyFn = Calculator::multiply(...); echo $multiplyFn(3, 4); // 12 // __invoke 方法 $invokeFn = $calc(...); echo $invokeFn(10); // 20 // 在数组函数中使用 $words = ['apple', 'banana', 'cherry']; $lengths = array_map(strlen(...), $words); // [5, 6, 6] Fibers（纤程） Fibers 是轻量级的协程，允许暂停和恢复代码执行：\n$fiber = new Fiber(function(): void { echo \"1. Fiber 开始\\n\"; $value = Fiber::suspend('暂停值'); echo \"3. Fiber 恢复，收到: $value\\n\"; }); echo \"0. 主程序开始\\n\"; $suspended = $fiber-\u003estart(); // 启动 Fiber echo \"2. 主程序收到: $suspended\\n\"; $fiber-\u003eresume('恢复值'); // 恢复 Fiber echo \"4. 主程序结束\\n\"; // 输出: // 0. 主程序开始 // 1. Fiber 开始 // 2. 主程序收到: 暂停值 // 3. Fiber 恢复，收到: 恢复值 // 4. 主程序结束 Fibers 主要用于异步框架（如 ReactPHP、Amp），普通应用开发较少直接使用。\n交叉类型（Intersection Types） 使用 \u0026 运算符要求参数同时满足多个类型：\n// 参数必须同时实现 Iterator 和 Countable function processItems(Iterator\u0026Countable $items): int { foreach ($items as $item) { // 处理项目 } return count($items); } // ArrayIterator 同时实现了这两个接口 $items = new ArrayIterator([1, 2, 3]); echo processItems($items); // 3 // 更复杂的示例 interface Loggable { public function log(): void; } interface Serializable { public function serialize(): string; } function store(Loggable\u0026Serializable $object): void { $object-\u003elog(); $data = $object-\u003eserialize(); // 存储数据 } never 返回类型 表示函数永远不会返回（总是抛出异常或终止程序）：\nfunction redirect(string $url): never { header(\"Location: $url\"); exit(); } function throwError(string $message): never { throw new RuntimeException($message); } // 静态分析工具可以检测 never 之后的死代码 redirect('/home'); echo \"这行代码永远不会执行\"; // IDE 会标记为死代码 final 类常量 类常量可以标记为 final，防止子类覆盖：\nclass ParentClass { final public const VERSION = '1.0'; public const NAME = 'Parent'; } class ChildClass extends ParentClass { // ❌ Fatal error: Cannot override final constant public const VERSION = '2.0'; // ✅ 可以覆盖非 final 常量 public const NAME = 'Child'; } 初始化器中的 new 表达式 可以在默认参数、属性默认值和常量中使用 new 表达式：\n// 默认参数 class Logger { public function __construct( private Formatter $formatter = new DefaultFormatter(), ) {} } // 属性默认值 class Config { public DateTimeImmutable $createdAt = new DateTimeImmutable(); } // 属性（PHP 8.0 的属性也支持） #[Attribute] class Route { public function __construct( public string $path, public array $methods = ['GET'], ) {} } class Controller { #[Route('/users', methods: ['GET', 'POST'])] public function users() {} } 字符串键数组解包 现在可以对字符串键数组使用扩展运算符：\n$array1 = ['a' =\u003e 1, 'b' =\u003e 2]; $array2 = ['c' =\u003e 3, 'd' =\u003e 4]; // PHP 8.1 之前：只能用于数字键数组 // PHP 8.1：支持字符串键 $merged = [...$array1, ...$array2]; // ['a' =\u003e 1, 'b' =\u003e 2, 'c' =\u003e 3, 'd' =\u003e 4] // 后面的值会覆盖前面的 $array3 = ['a' =\u003e 'override']; $result = [...$array1, ...$array3]; // ['a' =\u003e 'override', 'b' =\u003e 2] 显式八进制表示法 新增 0o 前缀表示八进制数：\n// 传统八进制表示法（仍然有效） $permissions = 0755; // PHP 8.1 新的显式表示法 $permissions = 0o755; // 两者等价 var_dump(0o16); // int(14) var_dump(016); // int(14) // 0o 更清晰，避免与数字 0 开头的误解 PHP 8.1 新增函数 array_is_list() 检查数组是否为列表（连续的从 0 开始的整数键）：\n// 是列表 array_is_list([]); // true array_is_list(['a', 'b', 'c']); // true array_is_list([0 =\u003e 'a', 1 =\u003e 'b']); // true // 不是列表 array_is_list([1 =\u003e 'a', 2 =\u003e 'b']); // false（不从 0 开始） array_is_list(['a' =\u003e 1, 'b' =\u003e 2]); // false（字符串键） array_is_list([0 =\u003e 'a', 2 =\u003e 'b']); // false（不连续） fsync() 和 fdatasync() 强制将文件数据写入磁盘：\n$file = fopen('data.txt', 'w'); fwrite($file, 'important data'); // fsync: 同步文件数据和元数据 fsync($file); // fdatasync: 只同步文件数据（更快，不包括元数据） fdatasync($file); fclose($file); Sodium XChaCha20 函数 新增 XChaCha20 加密函数：\n// 生成密钥 $key = sodium_crypto_stream_xchacha20_keygen(); // XChaCha20 加密 $nonce = random_bytes(SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES); $encrypted = sodium_crypto_stream_xchacha20_xor($message, $nonce, $key); 新的哈希算法 支持 xxHash 和 MurmurHash3：\n// xxHash（非常快的非加密哈希） echo hash('xxh3', 'data'); echo hash('xxh64', 'data'); echo hash('xxh128', 'data'); // MurmurHash3 echo hash('murmur3a', 'data'); echo hash('murmur3c', 'data'); echo hash('murmur3f', 'data'); 枚举相关函数 enum Status: string { case Active = 'active'; case Inactive = 'inactive'; } // 获取所有 case $cases = Status::cases(); // [Status::Active, Status::Inactive] // 回退枚举的额外方法 $status = Status::from('active'); // Status::Active $status = Status::tryFrom('unknown'); // null 弃用特性 向非可空参数传递 null 向内置函数的非可空参数传递 null 已被弃用：\n// ❌ PHP 8.1 弃用警告 strlen(null); str_contains(null, 'test'); trim(null); // ✅ 修复方法 strlen($value ?? ''); str_contains($value ?? '', 'test'); trim($value ?? ''); Serializable 接口弃用 Serializable 接口已被弃用，使用 __serialize() 和 __unserialize() 替代：\n// ❌ 已弃用 class OldWay implements Serializable { public function serialize(): string { return serialize($this-\u003edata); } public function unserialize(string $data): void { $this-\u003edata = unserialize($data); } } // ✅ 推荐方式 class NewWay { public function __serialize(): array { return ['data' =\u003e $this-\u003edata]; } public function __unserialize(array $data): void { $this-\u003edata = $data['data']; } } 隐式浮点数转整数弃用 非整数浮点数隐式转换为整数时会产生弃用警告：\n// ❌ 弃用警告 $arr = []; $arr[3.14] = 'value'; // 3.14 会被转为 3 // ✅ 显式转换 $arr[(int)3.14] = 'value'; 日期函数弃用 // ❌ 已弃用 strftime('%Y-%m-%d', time()); gmstrftime('%Y-%m-%d', time()); strptime('2024-01-01', '%Y-%m-%d'); date_sunrise($timestamp); date_sunset($timestamp); // ✅ 替代方案 // 使用 IntlDateFormatter $formatter = new IntlDateFormatter( 'zh_CN', IntlDateFormatter::FULL, IntlDateFormatter::NONE ); echo $formatter-\u003eformat(time()); // 或使用 DateTime $date = new DateTime(); echo $date-\u003eformat('Y-m-d'); mhash*() 函数弃用 // ❌ 已弃用 mhash(MHASH_MD5, 'data'); mhash_keygen_s2k(MHASH_SHA1, 'password', 'salt', 16); // ✅ 使用 hash() 函数 hash('md5', 'data'); hash_pbkdf2('sha1', 'password', 'salt', 1000, 16); PDO::FETCH_SERIALIZE 弃用 // ❌ 已弃用 $stmt-\u003esetFetchMode(PDO::FETCH_CLASS | PDO::FETCH_SERIALIZE, MyClass::class); // ✅ 使用 __serialize()/__unserialize() 魔术方法 auto_detect_line_endings INI 弃用 // ❌ 已弃用 ini_set('auto_detect_line_endings', true); // ✅ 手动处理行结束符 $content = str_replace([\"\\r\\n\", \"\\r\"], \"\\n\", $content); 兼容性变化 资源类型迁移为对象 多个扩展的资源类型被迁移为对象：\n// finfo $finfo = finfo_open(FILEINFO_MIME); var_dump($finfo); // PHP 8.0: resource, PHP 8.1: finfo object // FTP $ftp = ftp_connect('ftp.example.com'); var_dump($ftp); // FTP\\Connection object // IMAP $imap = imap_open('{imap.example.com:993/imap/ssl}', 'user', 'pass'); var_dump($imap); // IMAP\\Connection object // LDAP $ldap = ldap_connect('ldap.example.com'); var_dump($ldap); // LDAP\\Connection object // PostgreSQL $pg = pg_connect('host=localhost dbname=test'); var_dump($pg); // PgSql\\Connection object 继承方法中的静态变量 继承方法中的静态变量现在与父类共享：\nclass A { public static function counter() { static $i = 0; return ++$i; } } class B extends A {} var_dump(A::counter()); // int(1) var_dump(A::counter()); // int(2) var_dump(B::counter()); // PHP 8.0: int(1)（B 有自己的计数器） // PHP 8.1: int(3)（B 共享 A 的计数器） HTML 实体函数默认处理单引号 // PHP 8.0: 默认 ENT_COMPAT，不转义单引号 // PHP 8.1: 默认 ENT_QUOTES | ENT_SUBSTITUTE $str = \"It's a \\\"test\\\"\"; echo htmlspecialchars($str); // PHP 8.0: It's a \u0026quot;test\u0026quot; // PHP 8.1: It\u0026#039;s a \u0026quot;test\u0026quot; 性能改进 PHP 8.1 带来了显著的性能提升：\nSymfony Demo: 提升约 23% WordPress: 提升约 3.5% 继承缓存优化 快速类名解析 内置函数优化 ARM64 JIT 后端支持 总结 PHP 8.1 带来了许多实用的新特性和改进：\n主要新特性：\n枚举（Enums） 只读属性（Readonly Properties） 一等可调用语法 Fibers（纤程） 交叉类型（Intersection Types） never 返回类型 final 类常量 初始化器中的 new 表达式 字符串键数组解包 需要注意的变化：\n向非可空参数传递 null 已弃用 Serializable 接口已弃用 隐式浮点数转整数已弃用 多个资源类型迁移为对象 继承方法中的静态变量行为变化 日期相关函数弃用 通过了解这些变化并遵循迁移建议，可以顺利地从 PHP 8.0 迁移到 PHP 8.1。\n","wordCount":"1250","inLanguage":"en","image":"https://images.unsplash.com/photo-1507755087694-bab770fa0114?q=80\u0026w=960\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.0.3","datePublished":"2022-12-21T18:25:49+08:00","dateModified":"2022-12-21T18:25:49+08:00","author":[{"@type":"Person","name":"Me"},{"@type":"Person","name":"LLM"}],"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2022/12/21/php-migrating-80-to-81/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)"><img src=https://zyf.im/apple-touch-icon.png alt aria-label=logo height=35>ZYF.IM</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
 <svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">PHP Migrating 8.0 to 8.1</h1><div class=post-meta><span title='2022-12-21 18:25:49 +0800 CST'>December 21, 2022</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>454 words</span>&nbsp;·&nbsp;<span>Me</span></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#new-features-81>New Features 8.1</a></li><li><a href=#new-functions-81>New Functions 8.1</a></li><li><a href=#backward-incompatible-changes-81>Backward Incompatible Changes 8.1</a></li><li><a href=#deprecated-81>Deprecated 8.1</a></li></ul></nav></div></details></div><div class=post-content><ul><li>实验环境：<a href=https://onlinephp.io/>https://onlinephp.io/</a></li><li><a href=https://www.php.net/releases/8.1/en.php>https://www.php.net/releases/8.1/en.php</a></li><li><a href=https://www.php.net/manual/en/migration81.php>https://www.php.net/manual/en/migration81.php</a></li><li><a href=https://php.watch/versions/8.1>https://php.watch/versions/8.1</a></li><li><a href=https://github.com/symfony/polyfill/tree/1.x/src/Php81>https://github.com/symfony/polyfill/tree/1.x/src/Php81</a></li></ul><blockquote><p>PHP 8.1 contains many new features, including enums, readonly properties, first-class callable syntax, fibers, intersection types, performance improvements and more.</p></blockquote><h2 id=new-features-81>New Features 8.1<a hidden class=anchor aria-hidden=true href=#new-features-81>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Add native support for enumerations using enum keyword
-</span></span></span><span class=line><span class=cl><span class=c1>// https://www.php.net/manual/en/language.enumerations.examples.php
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>enum</span> <span class=nx>Status</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://zyf.im/search/ title="Search (Alt + /)" accesskey=/><span>Search</span></a></li><li><a href=https://zyf.im/tags/ title=Tags><span>Tags</span></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://zyf.im/>Home</a>&nbsp;»&nbsp;<a href=https://zyf.im/posts/>Posts</a></div><h1 class="post-title entry-hint-parent">PHP Migrating 8.0 to 8.1</h1><div class=post-meta><span title='2022-12-21 18:25:49 +0800 CST'>December 21, 2022</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>1250 words</span>&nbsp;·&nbsp;<span>Me, LLM</span></div></header><div class=toc><details open><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#简介>简介</a><ul><li><a href=#参考资源>参考资源</a></li></ul></li><li><a href=#php-81-新特性>PHP 8.1 新特性</a><ul><li><a href=#枚举enums>枚举（Enums）</a></li><li><a href=#只读属性readonly-properties>只读属性（Readonly Properties）</a></li><li><a href=#一等可调用语法first-class-callable-syntax>一等可调用语法（First-class Callable Syntax）</a></li><li><a href=#fibers纤程>Fibers（纤程）</a></li><li><a href=#交叉类型intersection-types>交叉类型（Intersection Types）</a></li><li><a href=#never-返回类型>never 返回类型</a></li><li><a href=#final-类常量>final 类常量</a></li><li><a href=#初始化器中的-new-表达式>初始化器中的 new 表达式</a></li><li><a href=#字符串键数组解包>字符串键数组解包</a></li><li><a href=#显式八进制表示法>显式八进制表示法</a></li></ul></li><li><a href=#php-81-新增函数>PHP 8.1 新增函数</a><ul><li><a href=#array_is_list>array_is_list()</a></li><li><a href=#fsync-和-fdatasync>fsync() 和 fdatasync()</a></li><li><a href=#sodium-xchacha20-函数>Sodium XChaCha20 函数</a></li><li><a href=#新的哈希算法>新的哈希算法</a></li><li><a href=#枚举相关函数>枚举相关函数</a></li></ul></li><li><a href=#弃用特性>弃用特性</a><ul><li><a href=#向非可空参数传递-null>向非可空参数传递 null</a></li><li><a href=#serializable-接口弃用>Serializable 接口弃用</a></li><li><a href=#隐式浮点数转整数弃用>隐式浮点数转整数弃用</a></li><li><a href=#日期函数弃用>日期函数弃用</a></li><li><a href=#mhash-函数弃用>mhash*() 函数弃用</a></li><li><a href=#pdofetch_serialize-弃用>PDO::FETCH_SERIALIZE 弃用</a></li><li><a href=#auto_detect_line_endings-ini-弃用>auto_detect_line_endings INI 弃用</a></li></ul></li><li><a href=#兼容性变化>兼容性变化</a><ul><li><a href=#资源类型迁移为对象>资源类型迁移为对象</a></li><li><a href=#继承方法中的静态变量>继承方法中的静态变量</a></li><li><a href=#html-实体函数默认处理单引号>HTML 实体函数默认处理单引号</a></li></ul></li><li><a href=#性能改进>性能改进</a></li><li><a href=#总结>总结</a></li></ul></nav></div></details></div><div class=post-content><h2 id=简介>简介<a hidden class=anchor aria-hidden=true href=#简介>#</a></h2><p>PHP 8.1 引入了许多重要的新特性，包括枚举（Enums）、只读属性（Readonly Properties）、一等可调用语法（First-class Callable Syntax）、Fibers、交叉类型（Intersection Types）等。本文将介绍主要变化和如何从 PHP 8.0 迁移到 PHP 8.1。</p><h3 id=参考资源>参考资源<a hidden class=anchor aria-hidden=true href=#参考资源>#</a></h3><ul><li>在线测试环境：<a href=https://onlinephp.io/>https://onlinephp.io/</a></li><li>官方发布说明：<a href=https://www.php.net/releases/8.1/en.php>https://www.php.net/releases/8.1/en.php</a></li><li>迁移指南：<a href=https://www.php.net/manual/en/migration81.php>https://www.php.net/manual/en/migration81.php</a></li><li>更新详情：<a href=https://php.watch/versions/8.1>https://php.watch/versions/8.1</a></li></ul><h2 id=php-81-新特性>PHP 8.1 新特性<a hidden class=anchor aria-hidden=true href=#php-81-新特性>#</a></h2><h3 id=枚举enums>枚举（Enums）<a hidden class=anchor aria-hidden=true href=#枚举enums>#</a></h3><p>PHP 8.1 原生支持枚举类型，取代了之前使用类常量的方式：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 纯枚举（Pure Enum）
+</span></span></span><span class=line><span class=cl><span class=nx>enum</span> <span class=nx>Status</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Draft</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Published</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Archived</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 回退枚举（Backed Enum）- 带有标量值
+</span></span></span><span class=line><span class=cl><span class=nx>enum</span> <span class=nx>Status</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Draft</span> <span class=o>=</span> <span class=s1>&#39;draft&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Published</span> <span class=o>=</span> <span class=s1>&#39;published&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Archived</span> <span class=o>=</span> <span class=s1>&#39;archived&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>BlogPost</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 使用枚举作为类型提示
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>BlogPost</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=nx>Status</span> <span class=nv>$status</span> <span class=o>=</span> <span class=nx>Status</span><span class=o>::</span><span class=na>Draft</span>
 </span></span><span class=line><span class=cl>    <span class=p>)</span> <span class=p>{}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Readonly properties
-</span></span></span><span class=line><span class=cl><span class=c1>// Properties can be marked as immutable after initialization
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>readonly</span> <span class=nx>string</span> <span class=nv>$uuid</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$uuid</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>uuid</span> <span class=o>=</span> <span class=nv>$uuid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$post</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>BlogPost</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$post</span><span class=o>-&gt;</span><span class=na>status</span><span class=o>-&gt;</span><span class=na>value</span><span class=p>;</span> <span class=c1>// &#39;draft&#39;
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 枚举可以有方法
+</span></span></span><span class=line><span class=cl><span class=nx>enum</span> <span class=nx>Color</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Red</span> <span class=o>=</span> <span class=s1>&#39;#FF0000&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Green</span> <span class=o>=</span> <span class=s1>&#39;#00FF00&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Blue</span> <span class=o>=</span> <span class=s1>&#39;#0000FF&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>label</span><span class=p>()</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nx>match</span><span class=p>(</span><span class=nv>$this</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>self</span><span class=o>::</span><span class=na>Red</span> <span class=o>=&gt;</span> <span class=s1>&#39;红色&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>self</span><span class=o>::</span><span class=na>Green</span> <span class=o>=&gt;</span> <span class=s1>&#39;绿色&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>self</span><span class=o>::</span><span class=na>Blue</span> <span class=o>=&gt;</span> <span class=s1>&#39;蓝色&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>};</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Fibers, new concurrency primitive for managing green threads
-</span></span></span><span class=line><span class=cl><span class=c1>// https://www.php.net/manual/en/language.fibers.php
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$fiber</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Fiber</span><span class=p>(</span><span class=k>function</span><span class=p>()</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>echo</span> <span class=s2>&#34;Starting fiber</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=nx>Fiber</span><span class=o>::</span><span class=na>suspend</span><span class=p>();</span>
-</span></span><span class=line><span class=cl>    <span class=k>echo</span> <span class=s2>&#34;Resuming fiber</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>});</span>
-</span></span><span class=line><span class=cl><span class=nv>$fiber</span><span class=o>-&gt;</span><span class=na>start</span><span class=p>();</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;...</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=nv>$fiber</span><span class=o>-&gt;</span><span class=na>resume</span><span class=p>();</span>
-</span></span><span class=line><span class=cl><span class=c1>// Starting fiber
-</span></span></span><span class=line><span class=cl><span class=c1>// ...
-</span></span></span><span class=line><span class=cl><span class=c1>// Resuming fiber
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Intersection Types, combine multiple type constraints
-</span></span></span><span class=line><span class=cl><span class=c1>// 交叉类型
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>function</span> <span class=nf>countItems</span><span class=p>(</span><span class=nx>Iterator</span><span class=o>&amp;</span><span class=nx>Countable</span> <span class=nv>$items</span><span class=p>)</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>count</span><span class=p>(</span><span class=nv>$items</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>Color</span><span class=o>::</span><span class=na>Red</span><span class=o>-&gt;</span><span class=na>label</span><span class=p>();</span> <span class=c1>// &#39;红色&#39;
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 从值获取枚举
+</span></span></span><span class=line><span class=cl><span class=nv>$status</span> <span class=o>=</span> <span class=nx>Status</span><span class=o>::</span><span class=na>from</span><span class=p>(</span><span class=s1>&#39;draft&#39;</span><span class=p>);</span>     <span class=c1>// Status::Draft
+</span></span></span><span class=line><span class=cl><span class=nv>$status</span> <span class=o>=</span> <span class=nx>Status</span><span class=o>::</span><span class=na>tryFrom</span><span class=p>(</span><span class=s1>&#39;invalid&#39;</span><span class=p>);</span> <span class=c1>// null（不会抛出异常）
+</span></span></span></code></pre></div><p>枚举的特性：</p><ul><li>枚举可以实现接口</li><li>枚举可以使用 trait</li><li>枚举不能被实例化（<code>new Status()</code> 是非法的）</li><li>枚举 case 是单例</li></ul><h3 id=只读属性readonly-properties>只读属性（Readonly Properties）<a hidden class=anchor aria-hidden=true href=#只读属性readonly-properties>#</a></h3><p>属性可以标记为 <code>readonly</code>，只能初始化一次：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>class</span> <span class=nc>User</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>readonly</span> <span class=nx>string</span> <span class=nv>$id</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>readonly</span> <span class=nx>string</span> <span class=nv>$name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$id</span><span class=p>,</span> <span class=nx>string</span> <span class=nv>$name</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>id</span> <span class=o>=</span> <span class=nv>$id</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>name</span> <span class=o>=</span> <span class=nv>$name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Never Return Type
-</span></span></span><span class=line><span class=cl><span class=c1>// Indicates function never returns
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>function</span> <span class=nf>redirect</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$url</span><span class=p>)</span><span class=o>:</span> <span class=nx>never</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>header</span><span class=p>(</span><span class=s2>&#34;Location: </span><span class=si>$url</span><span class=s2>&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>    <span class=k>exit</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$user</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>User</span><span class=p>(</span><span class=s1>&#39;123&#39;</span><span class=p>,</span> <span class=s1>&#39;John&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$user</span><span class=o>-&gt;</span><span class=na>id</span><span class=p>;</span> <span class=c1>// &#39;123&#39;
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$user</span><span class=o>-&gt;</span><span class=na>id</span> <span class=o>=</span> <span class=s1>&#39;456&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// Fatal error: Cannot modify readonly property User::$id
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 结合构造函数提升使用
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Product</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=nx>readonly</span> <span class=nx>string</span> <span class=nv>$sku</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=nx>readonly</span> <span class=nx>float</span> <span class=nv>$price</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span> <span class=p>{}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// First-Class Callable Syntax
-</span></span></span><span class=line><span class=cl><span class=c1>// Replaces Closure::fromCallable() with cleaner syntax
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$strlen</span> <span class=o>=</span> <span class=nx>strlen</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span></code></pre></div><p>只读属性的特性：</p><ul><li>只能初始化一次，初始化后不可修改</li><li>必须有类型声明</li><li>不能有默认值（除非在构造函数中设置）</li><li>可以在构造函数或声明时初始化</li></ul><h3 id=一等可调用语法first-class-callable-syntax>一等可调用语法（First-class Callable Syntax）<a hidden class=anchor aria-hidden=true href=#一等可调用语法first-class-callable-syntax>#</a></h3><p>使用 <code>...</code> 语法创建闭包，替代 <code>Closure::fromCallable()</code>：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 函数转闭包
+</span></span></span><span class=line><span class=cl><span class=nv>$strlen</span> <span class=o>=</span> <span class=nx>strlen</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
 </span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$strlen</span><span class=p>(</span><span class=s1>&#39;hello&#39;</span><span class=p>);</span> <span class=c1>// 5
-</span></span></span><span class=line><span class=cl><span class=c1>// same as
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$fn</span> <span class=o>=</span> <span class=nx>Closure</span><span class=o>::</span><span class=na>fromCallable</span><span class=p>(</span><span class=s1>&#39;strlen&#39;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$fn</span><span class=p>(</span><span class=s1>&#39;hello&#39;</span><span class=p>);</span> <span class=c1>// 5
-</span></span></span><span class=line><span class=cl><span class=c1></span>
-</span></span><span class=line><span class=cl><span class=nv>$words</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;apple&#39;</span><span class=p>,</span> <span class=s1>&#39;banana&#39;</span><span class=p>];</span>
-</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nx>array_map</span><span class=p>(</span><span class=nx>strlen</span><span class=p>(</span><span class=o>...</span><span class=p>),</span> <span class=nv>$words</span><span class=p>));</span> <span class=c1>// [5, 6]
-</span></span></span><span class=line><span class=cl><span class=c1></span>
-</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Calculator</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 等同于
+</span></span></span><span class=line><span class=cl><span class=nv>$strlen</span> <span class=o>=</span> <span class=nx>Closure</span><span class=o>::</span><span class=na>fromCallable</span><span class=p>(</span><span class=s1>&#39;strlen&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 方法转闭包
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Calculator</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>add</span><span class=p>(</span><span class=nx>int</span> <span class=nv>$a</span><span class=p>,</span> <span class=nx>int</span> <span class=nv>$b</span><span class=p>)</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nv>$a</span> <span class=o>+</span> <span class=nv>$b</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__invoke</span><span class=p>(</span><span class=nx>int</span> <span class=nv>$x</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>static</span> <span class=k>function</span> <span class=nf>multiply</span><span class=p>(</span><span class=nx>int</span> <span class=nv>$a</span><span class=p>,</span> <span class=nx>int</span> <span class=nv>$b</span><span class=p>)</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nv>$a</span> <span class=o>*</span> <span class=nv>$b</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__invoke</span><span class=p>(</span><span class=nx>int</span> <span class=nv>$x</span><span class=p>)</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nv>$x</span> <span class=o>*</span> <span class=mi>2</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=nv>$calc</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Calculator</span><span class=p>();</span>
-</span></span><span class=line><span class=cl><span class=nv>$addCallable</span> <span class=o>=</span> <span class=nv>$calc</span><span class=o>-&gt;</span><span class=na>add</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$addCallable</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>);</span> <span class=c1>// 8
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$invocable</span> <span class=o>=</span> <span class=nv>$calc</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$invocable</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span> <span class=c1>// 20
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// New Array Features
-</span></span></span><span class=line><span class=cl><span class=c1>// String key unpacking
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$arr1</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;a&#39;</span> <span class=o>=&gt;</span> <span class=s1>&#39;b&#39;</span><span class=p>];</span>
-</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>([</span><span class=o>...</span><span class=nv>$arr1</span><span class=p>,</span> <span class=s1>&#39;c&#39;</span> <span class=o>=&gt;</span> <span class=s1>&#39;d&#39;</span><span class=p>]);</span>
-</span></span><span class=line><span class=cl><span class=c1>// [1,&#39;a&#39; =&gt; &#39;b&#39;, &#39;c&#39; =&gt; &#39;d&#39;]
-</span></span></span><span class=line><span class=cl><span class=c1></span>
-</span></span><span class=line><span class=cl><span class=c1>// 参数解包后的命名参数
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>function</span> <span class=nf>foo</span><span class=p>(</span><span class=nv>$a</span><span class=p>,</span> <span class=nv>$b</span><span class=p>,</span> <span class=nv>$c</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>var_dump</span><span class=p>(</span><span class=nv>$a</span><span class=p>,</span> <span class=nv>$b</span><span class=p>,</span> <span class=nv>$c</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 实例方法
+</span></span></span><span class=line><span class=cl><span class=nv>$addFn</span> <span class=o>=</span> <span class=nv>$calc</span><span class=o>-&gt;</span><span class=na>add</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$addFn</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>);</span> <span class=c1>// 8
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 静态方法
+</span></span></span><span class=line><span class=cl><span class=nv>$multiplyFn</span> <span class=o>=</span> <span class=nx>Calculator</span><span class=o>::</span><span class=na>multiply</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$multiplyFn</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>);</span> <span class=c1>// 12
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// __invoke 方法
+</span></span></span><span class=line><span class=cl><span class=nv>$invokeFn</span> <span class=o>=</span> <span class=nv>$calc</span><span class=p>(</span><span class=o>...</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$invokeFn</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span> <span class=c1>// 20
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 在数组函数中使用
+</span></span></span><span class=line><span class=cl><span class=nv>$words</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;apple&#39;</span><span class=p>,</span> <span class=s1>&#39;banana&#39;</span><span class=p>,</span> <span class=s1>&#39;cherry&#39;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nv>$lengths</span> <span class=o>=</span> <span class=nx>array_map</span><span class=p>(</span><span class=nx>strlen</span><span class=p>(</span><span class=o>...</span><span class=p>),</span> <span class=nv>$words</span><span class=p>);</span> <span class=c1>// [5, 6, 6]
+</span></span></span></code></pre></div><h3 id=fibers纤程>Fibers（纤程）<a hidden class=anchor aria-hidden=true href=#fibers纤程>#</a></h3><p>Fibers 是轻量级的协程，允许暂停和恢复代码执行：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$fiber</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Fiber</span><span class=p>(</span><span class=k>function</span><span class=p>()</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>echo</span> <span class=s2>&#34;1. Fiber 开始</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$value</span> <span class=o>=</span> <span class=nx>Fiber</span><span class=o>::</span><span class=na>suspend</span><span class=p>(</span><span class=s1>&#39;暂停值&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>echo</span> <span class=s2>&#34;3. Fiber 恢复，收到: </span><span class=si>$value\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;0. 主程序开始</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nv>$suspended</span> <span class=o>=</span> <span class=nv>$fiber</span><span class=o>-&gt;</span><span class=na>start</span><span class=p>();</span>  <span class=c1>// 启动 Fiber
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;2. 主程序收到: </span><span class=si>$suspended\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nv>$fiber</span><span class=o>-&gt;</span><span class=na>resume</span><span class=p>(</span><span class=s1>&#39;恢复值&#39;</span><span class=p>);</span>      <span class=c1>// 恢复 Fiber
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;4. 主程序结束</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出:
+</span></span></span><span class=line><span class=cl><span class=c1>// 0. 主程序开始
+</span></span></span><span class=line><span class=cl><span class=c1>// 1. Fiber 开始
+</span></span></span><span class=line><span class=cl><span class=c1>// 2. 主程序收到: 暂停值
+</span></span></span><span class=line><span class=cl><span class=c1>// 3. Fiber 恢复，收到: 恢复值
+</span></span></span><span class=line><span class=cl><span class=c1>// 4. 主程序结束
+</span></span></span></code></pre></div><p>Fibers 主要用于异步框架（如 ReactPHP、Amp），普通应用开发较少直接使用。</p><h3 id=交叉类型intersection-types>交叉类型（Intersection Types）<a hidden class=anchor aria-hidden=true href=#交叉类型intersection-types>#</a></h3><p>使用 <code>&</code> 运算符要求参数同时满足多个类型：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 参数必须同时实现 Iterator 和 Countable
+</span></span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>processItems</span><span class=p>(</span><span class=nx>Iterator</span><span class=o>&amp;</span><span class=nx>Countable</span> <span class=nv>$items</span><span class=p>)</span><span class=o>:</span> <span class=nx>int</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>foreach</span> <span class=p>(</span><span class=nv>$items</span> <span class=k>as</span> <span class=nv>$item</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 处理项目
+</span></span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>count</span><span class=p>(</span><span class=nv>$items</span><span class=p>);</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=nx>foo</span><span class=p>(</span><span class=o>...</span><span class=p>[</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>],</span> <span class=nx>c</span><span class=o>:</span> <span class=mi>3</span><span class=p>);</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// File System Improvements
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$file</span> <span class=o>=</span> <span class=nx>fopen</span><span class=p>(</span><span class=s1>&#39;data.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=nx>fwrite</span><span class=p>(</span><span class=nv>$file</span><span class=p>,</span> <span class=s1>&#39;content&#39;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=nx>fsync</span><span class=p>(</span><span class=nv>$file</span><span class=p>);</span> <span class=c1>// Force write to disk
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>fclose</span><span class=p>(</span><span class=nv>$file</span><span class=p>);</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Objects in default parameters
-</span></span></span><span class=line><span class=cl><span class=c1>// 现在可以使用 new ClassName() 表达式作为参数、静态变量、全局常量初始值设定项和属性参数的默认值
-</span></span></span><span class=line><span class=cl><span class=c1>// 现在也可以将对象传递给 define()
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>Logger</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ArrayIterator 同时实现了这两个接口
+</span></span></span><span class=line><span class=cl><span class=nv>$items</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ArrayIterator</span><span class=p>([</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>processItems</span><span class=p>(</span><span class=nv>$items</span><span class=p>);</span> <span class=c1>// 3
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 更复杂的示例
+</span></span></span><span class=line><span class=cl><span class=k>interface</span> <span class=nx>Loggable</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>log</span><span class=p>()</span><span class=o>:</span> <span class=nx>void</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>interface</span> <span class=nx>Serializable</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>serialize</span><span class=p>()</span><span class=o>:</span> <span class=nx>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>store</span><span class=p>(</span><span class=nx>Loggable</span><span class=o>&amp;</span><span class=nx>Serializable</span> <span class=nv>$object</span><span class=p>)</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$object</span><span class=o>-&gt;</span><span class=na>log</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$data</span> <span class=o>=</span> <span class=nv>$object</span><span class=o>-&gt;</span><span class=na>serialize</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 存储数据
+</span></span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=never-返回类型>never 返回类型<a hidden class=anchor aria-hidden=true href=#never-返回类型>#</a></h3><p>表示函数永远不会返回（总是抛出异常或终止程序）：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>function</span> <span class=nf>redirect</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$url</span><span class=p>)</span><span class=o>:</span> <span class=nx>never</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>header</span><span class=p>(</span><span class=s2>&#34;Location: </span><span class=si>$url</span><span class=s2>&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>exit</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>function</span> <span class=nf>throwError</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$message</span><span class=p>)</span><span class=o>:</span> <span class=nx>never</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>throw</span> <span class=k>new</span> <span class=nx>RuntimeException</span><span class=p>(</span><span class=nv>$message</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 静态分析工具可以检测 never 之后的死代码
+</span></span></span><span class=line><span class=cl><span class=nx>redirect</span><span class=p>(</span><span class=s1>&#39;/home&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=s2>&#34;这行代码永远不会执行&#34;</span><span class=p>;</span> <span class=c1>// IDE 会标记为死代码
+</span></span></span></code></pre></div><h3 id=final-类常量>final 类常量<a hidden class=anchor aria-hidden=true href=#final-类常量>#</a></h3><p>类常量可以标记为 <code>final</code>，防止子类覆盖：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>class</span> <span class=nc>ParentClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>final</span> <span class=k>public</span> <span class=k>const</span> <span class=no>VERSION</span> <span class=o>=</span> <span class=s1>&#39;1.0&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>NAME</span> <span class=o>=</span> <span class=s1>&#39;Parent&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ChildClass</span> <span class=k>extends</span> <span class=nx>ParentClass</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ❌ Fatal error: Cannot override final constant
+</span></span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>VERSION</span> <span class=o>=</span> <span class=s1>&#39;2.0&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// ✅ 可以覆盖非 final 常量
+</span></span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>const</span> <span class=no>NAME</span> <span class=o>=</span> <span class=s1>&#39;Child&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=初始化器中的-new-表达式>初始化器中的 new 表达式<a hidden class=anchor aria-hidden=true href=#初始化器中的-new-表达式>#</a></h3><p>可以在默认参数、属性默认值和常量中使用 <code>new</code> 表达式：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 默认参数
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Logger</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span>
-</span></span><span class=line><span class=cl>        <span class=k>private</span> <span class=nx>Formatter</span> <span class=nv>$fmt</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>DefaultFormatter</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>private</span> <span class=nx>Formatter</span> <span class=nv>$formatter</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>DefaultFormatter</span><span class=p>(),</span>
 </span></span><span class=line><span class=cl>    <span class=p>)</span> <span class=p>{}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 八进制
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>var_dump</span><span class=p>(</span><span class=mi>0</span><span class=nx>o14</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=c1>// int(12)
-</span></span></span></code></pre></div><h2 id=new-functions-81>New Functions 8.1<a hidden class=anchor aria-hidden=true href=#new-functions-81>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 如果数组的键由从 0 到 count($array)-1 的连续数字组成，则数组被认为是 list
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>array_is_list</span><span class=p>([]);</span> <span class=c1>// true
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>array_is_list</span><span class=p>([</span><span class=s1>&#39;apple&#39;</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]);</span> <span class=c1>// true
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>array_is_list</span><span class=p>([</span><span class=mi>0</span> <span class=o>=&gt;</span> <span class=s1>&#39;apple&#39;</span><span class=p>,</span> <span class=s1>&#39;orange&#39;</span><span class=p>]);</span> <span class=c1>// true
-</span></span></span><span class=line><span class=cl><span class=c1></span>
-</span></span><span class=line><span class=cl><span class=c1>// The array does not start at 0
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>array_is_list</span><span class=p>([</span><span class=mi>1</span> <span class=o>=&gt;</span> <span class=s1>&#39;apple&#39;</span><span class=p>,</span> <span class=s1>&#39;orange&#39;</span><span class=p>]);</span> <span class=c1>// false
-</span></span></span></code></pre></div><h2 id=backward-incompatible-changes-81>Backward Incompatible Changes 8.1<a hidden class=anchor aria-hidden=true href=#backward-incompatible-changes-81>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Usage of static Variables in Inherited Methods ¶
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>A</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 属性默认值
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Config</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=nx>DateTimeImmutable</span> <span class=nv>$createdAt</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>DateTimeImmutable</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 属性（PHP 8.0 的属性也支持）
+</span></span></span><span class=line><span class=cl><span class=c1>#[Attribute]
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Route</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=nx>string</span> <span class=nv>$path</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=k>public</span> <span class=k>array</span> <span class=nv>$methods</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;GET&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Controller</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#[Route(&#39;/users&#39;, methods: [&#39;GET&#39;, &#39;POST&#39;])]
+</span></span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>users</span><span class=p>()</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=字符串键数组解包>字符串键数组解包<a hidden class=anchor aria-hidden=true href=#字符串键数组解包>#</a></h3><p>现在可以对字符串键数组使用扩展运算符：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$array1</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;a&#39;</span> <span class=o>=&gt;</span> <span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;b&#39;</span> <span class=o>=&gt;</span> <span class=mi>2</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nv>$array2</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;c&#39;</span> <span class=o>=&gt;</span> <span class=mi>3</span><span class=p>,</span> <span class=s1>&#39;d&#39;</span> <span class=o>=&gt;</span> <span class=mi>4</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.1 之前：只能用于数字键数组
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.1：支持字符串键
+</span></span></span><span class=line><span class=cl><span class=nv>$merged</span> <span class=o>=</span> <span class=p>[</span><span class=o>...</span><span class=nv>$array1</span><span class=p>,</span> <span class=o>...</span><span class=nv>$array2</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=c1>// [&#39;a&#39; =&gt; 1, &#39;b&#39; =&gt; 2, &#39;c&#39; =&gt; 3, &#39;d&#39; =&gt; 4]
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 后面的值会覆盖前面的
+</span></span></span><span class=line><span class=cl><span class=nv>$array3</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;a&#39;</span> <span class=o>=&gt;</span> <span class=s1>&#39;override&#39;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nv>$result</span> <span class=o>=</span> <span class=p>[</span><span class=o>...</span><span class=nv>$array1</span><span class=p>,</span> <span class=o>...</span><span class=nv>$array3</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=c1>// [&#39;a&#39; =&gt; &#39;override&#39;, &#39;b&#39; =&gt; 2]
+</span></span></span></code></pre></div><h3 id=显式八进制表示法>显式八进制表示法<a hidden class=anchor aria-hidden=true href=#显式八进制表示法>#</a></h3><p>新增 <code>0o</code> 前缀表示八进制数：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 传统八进制表示法（仍然有效）
+</span></span></span><span class=line><span class=cl><span class=nv>$permissions</span> <span class=o>=</span> <span class=mo>0755</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.1 新的显式表示法
+</span></span></span><span class=line><span class=cl><span class=nv>$permissions</span> <span class=o>=</span> <span class=mi>0</span><span class=nx>o755</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 两者等价
+</span></span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=mi>0</span><span class=nx>o16</span><span class=p>);</span>  <span class=c1>// int(14)
+</span></span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=mo>016</span><span class=p>);</span>   <span class=c1>// int(14)
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 0o 更清晰，避免与数字 0 开头的误解
+</span></span></span></code></pre></div><h2 id=php-81-新增函数>PHP 8.1 新增函数<a hidden class=anchor aria-hidden=true href=#php-81-新增函数>#</a></h2><h3 id=array_is_list>array_is_list()<a hidden class=anchor aria-hidden=true href=#array_is_list>#</a></h3><p>检查数组是否为列表（连续的从 0 开始的整数键）：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 是列表
+</span></span></span><span class=line><span class=cl><span class=nx>array_is_list</span><span class=p>([]);</span>                    <span class=c1>// true
+</span></span></span><span class=line><span class=cl><span class=nx>array_is_list</span><span class=p>([</span><span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=s1>&#39;b&#39;</span><span class=p>,</span> <span class=s1>&#39;c&#39;</span><span class=p>]);</span>       <span class=c1>// true
+</span></span></span><span class=line><span class=cl><span class=nx>array_is_list</span><span class=p>([</span><span class=mi>0</span> <span class=o>=&gt;</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=mi>1</span> <span class=o>=&gt;</span> <span class=s1>&#39;b&#39;</span><span class=p>]);</span>  <span class=c1>// true
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 不是列表
+</span></span></span><span class=line><span class=cl><span class=nx>array_is_list</span><span class=p>([</span><span class=mi>1</span> <span class=o>=&gt;</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=mi>2</span> <span class=o>=&gt;</span> <span class=s1>&#39;b&#39;</span><span class=p>]);</span>  <span class=c1>// false（不从 0 开始）
+</span></span></span><span class=line><span class=cl><span class=nx>array_is_list</span><span class=p>([</span><span class=s1>&#39;a&#39;</span> <span class=o>=&gt;</span> <span class=mi>1</span><span class=p>,</span> <span class=s1>&#39;b&#39;</span> <span class=o>=&gt;</span> <span class=mi>2</span><span class=p>]);</span>  <span class=c1>// false（字符串键）
+</span></span></span><span class=line><span class=cl><span class=nx>array_is_list</span><span class=p>([</span><span class=mi>0</span> <span class=o>=&gt;</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=mi>2</span> <span class=o>=&gt;</span> <span class=s1>&#39;b&#39;</span><span class=p>]);</span>  <span class=c1>// false（不连续）
+</span></span></span></code></pre></div><h3 id=fsync-和-fdatasync>fsync() 和 fdatasync()<a hidden class=anchor aria-hidden=true href=#fsync-和-fdatasync>#</a></h3><p>强制将文件数据写入磁盘：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nv>$file</span> <span class=o>=</span> <span class=nx>fopen</span><span class=p>(</span><span class=s1>&#39;data.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>fwrite</span><span class=p>(</span><span class=nv>$file</span><span class=p>,</span> <span class=s1>&#39;important data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// fsync: 同步文件数据和元数据
+</span></span></span><span class=line><span class=cl><span class=nx>fsync</span><span class=p>(</span><span class=nv>$file</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// fdatasync: 只同步文件数据（更快，不包括元数据）
+</span></span></span><span class=line><span class=cl><span class=nx>fdatasync</span><span class=p>(</span><span class=nv>$file</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>fclose</span><span class=p>(</span><span class=nv>$file</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=sodium-xchacha20-函数>Sodium XChaCha20 函数<a hidden class=anchor aria-hidden=true href=#sodium-xchacha20-函数>#</a></h3><p>新增 XChaCha20 加密函数：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// 生成密钥
+</span></span></span><span class=line><span class=cl><span class=nv>$key</span> <span class=o>=</span> <span class=nx>sodium_crypto_stream_xchacha20_keygen</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// XChaCha20 加密
+</span></span></span><span class=line><span class=cl><span class=nv>$nonce</span> <span class=o>=</span> <span class=nx>random_bytes</span><span class=p>(</span><span class=nx>SODIUM_CRYPTO_STREAM_XCHACHA20_NONCEBYTES</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nv>$encrypted</span> <span class=o>=</span> <span class=nx>sodium_crypto_stream_xchacha20_xor</span><span class=p>(</span><span class=nv>$message</span><span class=p>,</span> <span class=nv>$nonce</span><span class=p>,</span> <span class=nv>$key</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=新的哈希算法>新的哈希算法<a hidden class=anchor aria-hidden=true href=#新的哈希算法>#</a></h3><p>支持 xxHash 和 MurmurHash3：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// xxHash（非常快的非加密哈希）
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;xxh3&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;xxh64&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;xxh128&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// MurmurHash3
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;murmur3a&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;murmur3c&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;murmur3f&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=枚举相关函数>枚举相关函数<a hidden class=anchor aria-hidden=true href=#枚举相关函数>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=nx>enum</span> <span class=nx>Status</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Active</span> <span class=o>=</span> <span class=s1>&#39;active&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nx>Inactive</span> <span class=o>=</span> <span class=s1>&#39;inactive&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 获取所有 case
+</span></span></span><span class=line><span class=cl><span class=nv>$cases</span> <span class=o>=</span> <span class=nx>Status</span><span class=o>::</span><span class=na>cases</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=c1>// [Status::Active, Status::Inactive]
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 回退枚举的额外方法
+</span></span></span><span class=line><span class=cl><span class=nv>$status</span> <span class=o>=</span> <span class=nx>Status</span><span class=o>::</span><span class=na>from</span><span class=p>(</span><span class=s1>&#39;active&#39;</span><span class=p>);</span>      <span class=c1>// Status::Active
+</span></span></span><span class=line><span class=cl><span class=nv>$status</span> <span class=o>=</span> <span class=nx>Status</span><span class=o>::</span><span class=na>tryFrom</span><span class=p>(</span><span class=s1>&#39;unknown&#39;</span><span class=p>);</span>  <span class=c1>// null
+</span></span></span></code></pre></div><h2 id=弃用特性>弃用特性<a hidden class=anchor aria-hidden=true href=#弃用特性>#</a></h2><h3 id=向非可空参数传递-null>向非可空参数传递 null<a hidden class=anchor aria-hidden=true href=#向非可空参数传递-null>#</a></h3><p>向内置函数的非可空参数传递 null 已被弃用：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ PHP 8.1 弃用警告
+</span></span></span><span class=line><span class=cl><span class=nx>strlen</span><span class=p>(</span><span class=k>null</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>str_contains</span><span class=p>(</span><span class=k>null</span><span class=p>,</span> <span class=s1>&#39;test&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>trim</span><span class=p>(</span><span class=k>null</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 修复方法
+</span></span></span><span class=line><span class=cl><span class=nx>strlen</span><span class=p>(</span><span class=nv>$value</span> <span class=o>??</span> <span class=s1>&#39;&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>str_contains</span><span class=p>(</span><span class=nv>$value</span> <span class=o>??</span> <span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=s1>&#39;test&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>trim</span><span class=p>(</span><span class=nv>$value</span> <span class=o>??</span> <span class=s1>&#39;&#39;</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=serializable-接口弃用>Serializable 接口弃用<a hidden class=anchor aria-hidden=true href=#serializable-接口弃用>#</a></h3><p><code>Serializable</code> 接口已被弃用，使用 <code>__serialize()</code> 和 <code>__unserialize()</code> 替代：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>OldWay</span> <span class=k>implements</span> <span class=nx>Serializable</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>serialize</span><span class=p>()</span><span class=o>:</span> <span class=nx>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nx>serialize</span><span class=p>(</span><span class=nv>$this</span><span class=o>-&gt;</span><span class=na>data</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>unserialize</span><span class=p>(</span><span class=nx>string</span> <span class=nv>$data</span><span class=p>)</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>data</span> <span class=o>=</span> <span class=nx>unserialize</span><span class=p>(</span><span class=nv>$data</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 推荐方式
+</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>NewWay</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>__serialize</span><span class=p>()</span><span class=o>:</span> <span class=k>array</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>[</span><span class=s1>&#39;data&#39;</span> <span class=o>=&gt;</span> <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>data</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=nf>__unserialize</span><span class=p>(</span><span class=k>array</span> <span class=nv>$data</span><span class=p>)</span><span class=o>:</span> <span class=nx>void</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$this</span><span class=o>-&gt;</span><span class=na>data</span> <span class=o>=</span> <span class=nv>$data</span><span class=p>[</span><span class=s1>&#39;data&#39;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=隐式浮点数转整数弃用>隐式浮点数转整数弃用<a hidden class=anchor aria-hidden=true href=#隐式浮点数转整数弃用>#</a></h3><p>非整数浮点数隐式转换为整数时会产生弃用警告：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 弃用警告
+</span></span></span><span class=line><span class=cl><span class=nv>$arr</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl><span class=nv>$arr</span><span class=p>[</span><span class=mf>3.14</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;value&#39;</span><span class=p>;</span> <span class=c1>// 3.14 会被转为 3
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 显式转换
+</span></span></span><span class=line><span class=cl><span class=nv>$arr</span><span class=p>[(</span><span class=nx>int</span><span class=p>)</span><span class=mf>3.14</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;value&#39;</span><span class=p>;</span>
+</span></span></code></pre></div><h3 id=日期函数弃用>日期函数弃用<a hidden class=anchor aria-hidden=true href=#日期函数弃用>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=nx>strftime</span><span class=p>(</span><span class=s1>&#39;%Y-%m-%d&#39;</span><span class=p>,</span> <span class=nx>time</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=nx>gmstrftime</span><span class=p>(</span><span class=s1>&#39;%Y-%m-%d&#39;</span><span class=p>,</span> <span class=nx>time</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=nx>strptime</span><span class=p>(</span><span class=s1>&#39;2024-01-01&#39;</span><span class=p>,</span> <span class=s1>&#39;%Y-%m-%d&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>date_sunrise</span><span class=p>(</span><span class=nv>$timestamp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>date_sunset</span><span class=p>(</span><span class=nv>$timestamp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 替代方案
+</span></span></span><span class=line><span class=cl><span class=c1>// 使用 IntlDateFormatter
+</span></span></span><span class=line><span class=cl><span class=nv>$formatter</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>IntlDateFormatter</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;zh_CN&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>IntlDateFormatter</span><span class=o>::</span><span class=na>FULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>IntlDateFormatter</span><span class=o>::</span><span class=na>NONE</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$formatter</span><span class=o>-&gt;</span><span class=na>format</span><span class=p>(</span><span class=nx>time</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 或使用 DateTime
+</span></span></span><span class=line><span class=cl><span class=nv>$date</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>DateTime</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nv>$date</span><span class=o>-&gt;</span><span class=na>format</span><span class=p>(</span><span class=s1>&#39;Y-m-d&#39;</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=mhash-函数弃用>mhash*() 函数弃用<a hidden class=anchor aria-hidden=true href=#mhash-函数弃用>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=nx>mhash</span><span class=p>(</span><span class=nx>MHASH_MD5</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>mhash_keygen_s2k</span><span class=p>(</span><span class=nx>MHASH_SHA1</span><span class=p>,</span> <span class=s1>&#39;password&#39;</span><span class=p>,</span> <span class=s1>&#39;salt&#39;</span><span class=p>,</span> <span class=mi>16</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 使用 hash() 函数
+</span></span></span><span class=line><span class=cl><span class=nx>hash</span><span class=p>(</span><span class=s1>&#39;md5&#39;</span><span class=p>,</span> <span class=s1>&#39;data&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>hash_pbkdf2</span><span class=p>(</span><span class=s1>&#39;sha1&#39;</span><span class=p>,</span> <span class=s1>&#39;password&#39;</span><span class=p>,</span> <span class=s1>&#39;salt&#39;</span><span class=p>,</span> <span class=mi>1000</span><span class=p>,</span> <span class=mi>16</span><span class=p>);</span>
+</span></span></code></pre></div><h3 id=pdofetch_serialize-弃用>PDO::FETCH_SERIALIZE 弃用<a hidden class=anchor aria-hidden=true href=#pdofetch_serialize-弃用>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=nv>$stmt</span><span class=o>-&gt;</span><span class=na>setFetchMode</span><span class=p>(</span><span class=nx>PDO</span><span class=o>::</span><span class=na>FETCH_CLASS</span> <span class=o>|</span> <span class=nx>PDO</span><span class=o>::</span><span class=na>FETCH_SERIALIZE</span><span class=p>,</span> <span class=nx>MyClass</span><span class=o>::</span><span class=na>class</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 使用 __serialize()/__unserialize() 魔术方法
+</span></span></span></code></pre></div><h3 id=auto_detect_line_endings-ini-弃用>auto_detect_line_endings INI 弃用<a hidden class=anchor aria-hidden=true href=#auto_detect_line_endings-ini-弃用>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// ❌ 已弃用
+</span></span></span><span class=line><span class=cl><span class=nx>ini_set</span><span class=p>(</span><span class=s1>&#39;auto_detect_line_endings&#39;</span><span class=p>,</span> <span class=k>true</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// ✅ 手动处理行结束符
+</span></span></span><span class=line><span class=cl><span class=nv>$content</span> <span class=o>=</span> <span class=nx>str_replace</span><span class=p>([</span><span class=s2>&#34;</span><span class=se>\r\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=s2>&#34;</span><span class=se>\r</span><span class=s2>&#34;</span><span class=p>],</span> <span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=nv>$content</span><span class=p>);</span>
+</span></span></code></pre></div><h2 id=兼容性变化>兼容性变化<a hidden class=anchor aria-hidden=true href=#兼容性变化>#</a></h2><h3 id=资源类型迁移为对象>资源类型迁移为对象<a hidden class=anchor aria-hidden=true href=#资源类型迁移为对象>#</a></h3><p>多个扩展的资源类型被迁移为对象：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// finfo
+</span></span></span><span class=line><span class=cl><span class=nv>$finfo</span> <span class=o>=</span> <span class=nx>finfo_open</span><span class=p>(</span><span class=nx>FILEINFO_MIME</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$finfo</span><span class=p>);</span> <span class=c1>// PHP 8.0: resource, PHP 8.1: finfo object
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// FTP
+</span></span></span><span class=line><span class=cl><span class=nv>$ftp</span> <span class=o>=</span> <span class=nx>ftp_connect</span><span class=p>(</span><span class=s1>&#39;ftp.example.com&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$ftp</span><span class=p>);</span> <span class=c1>// FTP\Connection object
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// IMAP
+</span></span></span><span class=line><span class=cl><span class=nv>$imap</span> <span class=o>=</span> <span class=nx>imap_open</span><span class=p>(</span><span class=s1>&#39;{imap.example.com:993/imap/ssl}&#39;</span><span class=p>,</span> <span class=s1>&#39;user&#39;</span><span class=p>,</span> <span class=s1>&#39;pass&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$imap</span><span class=p>);</span> <span class=c1>// IMAP\Connection object
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// LDAP
+</span></span></span><span class=line><span class=cl><span class=nv>$ldap</span> <span class=o>=</span> <span class=nx>ldap_connect</span><span class=p>(</span><span class=s1>&#39;ldap.example.com&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$ldap</span><span class=p>);</span> <span class=c1>// LDAP\Connection object
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// PostgreSQL
+</span></span></span><span class=line><span class=cl><span class=nv>$pg</span> <span class=o>=</span> <span class=nx>pg_connect</span><span class=p>(</span><span class=s1>&#39;host=localhost dbname=test&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nv>$pg</span><span class=p>);</span> <span class=c1>// PgSql\Connection object
+</span></span></span></code></pre></div><h3 id=继承方法中的静态变量>继承方法中的静态变量<a hidden class=anchor aria-hidden=true href=#继承方法中的静态变量>#</a></h3><p>继承方法中的静态变量现在与父类共享：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=k>class</span> <span class=nc>A</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>static</span> <span class=k>function</span> <span class=nf>counter</span><span class=p>()</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=k>static</span> <span class=nv>$i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=o>++</span><span class=nv>$i</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>B</span> <span class=k>extends</span> <span class=nx>A</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nx>A</span><span class=o>::</span><span class=na>counter</span><span class=p>());</span> <span class=c1>// int(1)
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>var_dump</span><span class=p>(</span><span class=nx>A</span><span class=o>::</span><span class=na>counter</span><span class=p>());</span> <span class=c1>// int(2)
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>var_dump</span><span class=p>(</span><span class=nx>B</span><span class=o>::</span><span class=na>counter</span><span class=p>());</span>
-</span></span><span class=line><span class=cl><span class=c1>// PHP 8.0 int(1)
-</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.1+ int(3)
-</span></span></span></code></pre></div><h2 id=deprecated-81>Deprecated 8.1<a hidden class=anchor aria-hidden=true href=#deprecated-81>#</a></h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// Implicit incompatible float to int conversions
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$arr</span> <span class=o>=</span> <span class=p>[];</span>
-</span></span><span class=line><span class=cl><span class=nv>$arr</span><span class=p>[</span><span class=mf>3.14</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;value&#39;</span><span class=p>;</span> <span class=c1>// Deprecated（键值3.14转为3）
-</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nv>$arr</span><span class=p>[(</span><span class=nx>int</span><span class=p>)</span><span class=mf>3.14</span><span class=p>]</span> <span class=o>=</span> <span class=s1>&#39;value&#39;</span><span class=p>;</span> <span class=c1>// 显式转换避免警告
-</span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/php/>Php</a></li><li><a href=https://zyf.im/tags/php-migrating/>Php-Migrating</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2022/12/31/review-2022/><span class=title>« Prev</span><br><span>回顾 2022</span>
-</a><a class=next href=https://zyf.im/2022/12/14/php-migrating-74-to-80/><span class=title>Next »</span><br><span>PHP Migrating 7.4 to 8.0</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
+</span></span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nx>A</span><span class=o>::</span><span class=na>counter</span><span class=p>());</span> <span class=c1>// int(2)
+</span></span></span><span class=line><span class=cl><span class=nx>var_dump</span><span class=p>(</span><span class=nx>B</span><span class=o>::</span><span class=na>counter</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.0: int(1)（B 有自己的计数器）
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.1: int(3)（B 共享 A 的计数器）
+</span></span></span></code></pre></div><h3 id=html-实体函数默认处理单引号>HTML 实体函数默认处理单引号<a hidden class=anchor aria-hidden=true href=#html-实体函数默认处理单引号>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// PHP 8.0: 默认 ENT_COMPAT，不转义单引号
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.1: 默认 ENT_QUOTES | ENT_SUBSTITUTE
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>$str</span> <span class=o>=</span> <span class=s2>&#34;It&#39;s a </span><span class=se>\&#34;</span><span class=s2>test</span><span class=se>\&#34;</span><span class=s2>&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>htmlspecialchars</span><span class=p>(</span><span class=nv>$str</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// PHP 8.0: It&#39;s a &amp;quot;test&amp;quot;
+</span></span></span><span class=line><span class=cl><span class=c1>// PHP 8.1: It&amp;#039;s a &amp;quot;test&amp;quot;
+</span></span></span></code></pre></div><h2 id=性能改进>性能改进<a hidden class=anchor aria-hidden=true href=#性能改进>#</a></h2><p>PHP 8.1 带来了显著的性能提升：</p><ul><li><strong>Symfony Demo</strong>: 提升约 23%</li><li><strong>WordPress</strong>: 提升约 3.5%</li><li>继承缓存优化</li><li>快速类名解析</li><li>内置函数优化</li><li>ARM64 JIT 后端支持</li></ul><h2 id=总结>总结<a hidden class=anchor aria-hidden=true href=#总结>#</a></h2><p>PHP 8.1 带来了许多实用的新特性和改进：</p><p><strong>主要新特性：</strong></p><ul><li>枚举（Enums）</li><li>只读属性（Readonly Properties）</li><li>一等可调用语法</li><li>Fibers（纤程）</li><li>交叉类型（Intersection Types）</li><li>never 返回类型</li><li>final 类常量</li><li>初始化器中的 new 表达式</li><li>字符串键数组解包</li></ul><p><strong>需要注意的变化：</strong></p><ul><li>向非可空参数传递 null 已弃用</li><li>Serializable 接口已弃用</li><li>隐式浮点数转整数已弃用</li><li>多个资源类型迁移为对象</li><li>继承方法中的静态变量行为变化</li><li>日期相关函数弃用</li></ul><p>通过了解这些变化并遵循迁移建议，可以顺利地从 PHP 8.0 迁移到 PHP 8.1。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/php/>Php</a></li><li><a href=https://zyf.im/tags/php-migrating/>Php-Migrating</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2022/12/31/review-2022/><span class=title>« Prev</span><br><span>回顾 2022</span>
+</a><a class=next href=https://zyf.im/2022/12/14/php-migrating-74-to-80/><span class=title>Next »</span><br><span>PHP Migrating 7.4 to 8.0</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
