@@ -4,7 +4,7 @@
     <title>Tags on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/</link>
     <description>Recent content in Tags on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.154.2</generator>
+    <generator>Hugo -- 0.154.3</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Jan 2026 21:33:57 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -34,6 +34,20 @@
       <link>https://zyf.im/tags/mongodb/</link>
       <pubDate>Wed, 19 Apr 2023 10:47:10 +0800</pubDate>
       <guid>https://zyf.im/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ddd</title>
+      <link>https://zyf.im/tags/ddd/</link>
+      <pubDate>Wed, 01 Mar 2023 17:00:00 +0800</pubDate>
+      <guid>https://zyf.im/tags/ddd/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Design-Pattern</title>
+      <link>https://zyf.im/tags/design-pattern/</link>
+      <pubDate>Wed, 01 Mar 2023 17:00:00 +0800</pubDate>
+      <guid>https://zyf.im/tags/design-pattern/</guid>
       <description></description>
     </item>
     <item>
@@ -90,13 +104,6 @@
       <link>https://zyf.im/tags/thinking/</link>
       <pubDate>Thu, 08 Jul 2021 21:08:08 +0800</pubDate>
       <guid>https://zyf.im/tags/thinking/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Design-Pattern</title>
-      <link>https://zyf.im/tags/design-pattern/</link>
-      <pubDate>Sat, 06 Feb 2021 11:00:41 +0800</pubDate>
-      <guid>https://zyf.im/tags/design-pattern/</guid>
       <description></description>
     </item>
     <item>

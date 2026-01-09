@@ -4,7 +4,7 @@
     <title>Posts on ZYF.IM BLOG</title>
     <link>https://zyf.im/posts/</link>
     <description>Recent content in Posts on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.154.2</generator>
+    <generator>Hugo -- 0.154.3</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Jan 2026 21:33:57 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -372,6 +372,71 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dbs&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;08-聚合查询&#34;&gt;08 聚合查询&lt;/h2&gt;
 &lt;p&gt;Aggregation Framework&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>手把手教你落地 DDD</title>
+      <link>https://zyf.im/2023/03/01/hands-on-ddd/</link>
+      <pubDate>Wed, 01 Mar 2023 17:00:00 +0800</pubDate>
+      <guid>https://zyf.im/2023/03/01/hands-on-ddd/</guid>
+      <description>&lt;h2 id=&#34;01-ddd-小传&#34;&gt;01 DDD 小传&lt;/h2&gt;
+&lt;p&gt;DDD（Domain-Driven Design）由 Eric Evans 于 2003 年提出，本质是一套用于开发复杂软件的系统化方法学与思想，核心关注“领域建模”。它源于面向对象方法学与敏捷开发，可理解为“把面向对象做对”（OO Done right），并将建模、设计与落地实践更体系化。&lt;/p&gt;
+&lt;p&gt;传统面向对象在企业应用中常见问题是重技术轻业务、领域建模难以掌握、协作与沟通不足、难以适应频繁变化。DDD 通过模式、原则与实践（如通用语言、限界上下文、模型驱动设计等）促进业务与技术协作沉淀知识，并用“柔性设计/演进”避免过度设计、支持持续重构。&lt;/p&gt;
+&lt;p&gt;近年因数字化带来更高复杂度与变化，以及敏捷/DevOps 与 Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，DDD 才从“屠龙术”变成广泛可用的方法。&lt;/p&gt;
+&lt;h2 id=&#34;02-迭代一-企业管理系统&#34;&gt;02 迭代一 企业管理系统&lt;/h2&gt;
+&lt;p&gt;企业为了满足管理诉求，希望员工每周在系统中填报自己在哪些项目上花了多少时间，也就是所谓的报工时。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;需求&lt;/th&gt;
+          &lt;th&gt;核心对象/范围&lt;/th&gt;
+          &lt;th&gt;主要功能（CRUD/流程）&lt;/th&gt;
+          &lt;th&gt;关键规则/约束&lt;/th&gt;
+          &lt;th&gt;关键字段/记录&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;多租户&lt;/td&gt;
+          &lt;td&gt;租户（企业）&lt;/td&gt;
+          &lt;td&gt;管理多个租户（企业）&lt;/td&gt;
+          &lt;td&gt;每个租户代表一个使用 SaaS 的企业&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;人员与组织管理&lt;/td&gt;
+          &lt;td&gt;部门、员工&lt;/td&gt;
+          &lt;td&gt;部门：增删改查；员工：增删改查；员工分配部门&lt;/td&gt;
+          &lt;td&gt;员工只能从属于一个部门&lt;/td&gt;
+          &lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事/财务等）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;项目管理&lt;/td&gt;
+          &lt;td&gt;客户、合同、项目&lt;/td&gt;
+          &lt;td&gt;客户：增删改查；合同：增删改查 + 开始/结束；项目：增删改查 + 开始/结束&lt;/td&gt;
+          &lt;td&gt;客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目&lt;/td&gt;
+          &lt;td&gt;合同/项目开始时间、结束时间等&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;人员分配&lt;/td&gt;
+          &lt;td&gt;项目成员关系&lt;/td&gt;
+          &lt;td&gt;为项目分配人员；人员退出项目&lt;/td&gt;
+          &lt;td&gt;项目可多人；员工可同时参与多个项目；需记录投入比例&lt;/td&gt;
+          &lt;td&gt;投入百分比（人-项目）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;工时登记&lt;/td&gt;
+          &lt;td&gt;工时（周报/日记录）&lt;/td&gt;
+          &lt;td&gt;员工每周填报工时；查询；修改；填写备注&lt;/td&gt;
+          &lt;td&gt;仅当员工已分配到项目后，才可在该项目报工时&lt;/td&gt;
+          &lt;td&gt;日期、项目、投入时长、备注&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;03-事件风暴-识别领域事件&#34;&gt;03 事件风暴 识别领域事件&lt;/h2&gt;
+&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/a7cef40f-519f-4be2-b514-b577546ca51e&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;领域事件是什么&#34;&gt;领域事件是什么&lt;/h3&gt;
+&lt;p&gt;**领域事件（Domain Event）**用来表达：在业务流程的某一步完成后，所引发并被业务关心的“结果”。&lt;/p&gt;</description>
     </item>
     <item>
       <title>正则表达式</title>
