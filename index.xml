@@ -3004,62 +3004,6 @@
 &lt;p&gt;&lt;a href=&#34;https://github.com/AlDanial/cloc&#34;&gt;AlDanial/cloc - cloc counts blank lines, comment lines, and physical lines of source code in many programming languages.&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Git 批量修改历史 commit 中 user.email</title>
-      <link>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</link>
-      <pubDate>Mon, 02 Dec 2019 14:47:28 +0800</pubDate>
-      <guid>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</guid>
-      <description>&lt;p&gt;注意：&lt;strong&gt;此操作会修改 Git 历史记录&lt;/strong&gt;，正式工作环境不允许。&lt;/p&gt;
-&lt;p&gt;查询都有什么：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log --format&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%aN %aE&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sort -u
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注：一个特殊情况如果 email 没被设置过 OLD_EMAIL 可以填 &lt;code&gt;user.name&lt;/code&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;OLD_EMAIL 原来的邮箱&lt;/li&gt;
-&lt;li&gt;CORRECT_NAME 更正的名字&lt;/li&gt;
-&lt;li&gt;CORRECT_EMAIL 更正的邮箱&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git filter-branch -f --env-filter &lt;span class=&#34;s1&#34;&gt;&amp;#39;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;OLD_EMAIL=&amp;#34;old@qq.com&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;CORRECT_NAME=&amp;#34;new_name&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;CORRECT_EMAIL=&amp;#34;new@gmail.com&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;if [ &amp;#34;$GIT_COMMITTER_EMAIL&amp;#34; = &amp;#34;$OLD_EMAIL&amp;#34; ]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;then
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_COMMITTER_NAME=&amp;#34;$CORRECT_NAME&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_COMMITTER_EMAIL=&amp;#34;$CORRECT_EMAIL&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;fi
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;if [ &amp;#34;$GIT_AUTHOR_EMAIL&amp;#34; = &amp;#34;$OLD_EMAIL&amp;#34; ]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;then
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_NAME=&amp;#34;$CORRECT_NAME&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_EMAIL=&amp;#34;$CORRECT_EMAIL&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;fi
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;if [ &amp;#34;$GIT_AUTHOR_NAME&amp;#34; != &amp;#34;$CORRECT_NAME&amp;#34; ]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;then
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_NAME=&amp;#34;$CORRECT_NAME&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;    export GIT_AUTHOR_EMAIL=&amp;#34;$CORRECT_EMAIL&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;fi
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt; --tag-name-filter cat -- --branches --tags
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;因为修改了 Git 历史所有要使用强制推送：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CentOS yum 升级 git 版本</title>
-      <link>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</link>
-      <pubDate>Mon, 25 Nov 2019 15:36:16 +0800</pubDate>
-      <guid>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</guid>
-      <description>&lt;p&gt;先去官网看看 &lt;a href=&#34;https://git-scm.com/download/linux&#34;&gt;Download for Linux and Unix&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;RHEL and derivatives typically ship older versions of git. You can download a tarball and build from source, or use a 3rd-party repository such as the [IUS Community Project](https://ius.io/) to obtain a more recent version of git.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;RHEL 和衍生通常提供较老版本的 git。您可以下载 tarball 并从源代码构建，或者使用第三方存储库，如 &lt;a href=&#34;https://ius.io/&#34;&gt;IUS Community Project&lt;/a&gt; 来获得最新版本的 git。&lt;/p&gt;
-&lt;h2 id=&#34;使用-ius&#34;&gt;使用 IUS&lt;/h2&gt;
-&lt;p&gt;RHEL/CentOS 7&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://repo.ius.io/ius-release-el7.rpm &lt;span class=&#34;se&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装新版 git：&lt;/p&gt;
-&lt;p&gt;ius 通常会在高版本的软件名后面 + u&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum list git
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果你已经装有低版本的 git，你需要先 remove（否则安装的时候会报错）&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum remove git
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装 2.0 以上版本的 git&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>CRLF will be replaced by LF</title>
       <link>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</link>
       <pubDate>Fri, 22 Nov 2019 17:30:37 +0800</pubDate>
@@ -4310,76 +4254,6 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;&lt;code&gt;git rev-list&lt;/code&gt; 可以帮助研究 Git 的各种版本范围语法。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>iOS 招聘总结</title>
-      <link>https://zyf.im/2017/11/25/ios-recruitment-summary/</link>
-      <pubDate>Sat, 25 Nov 2017 01:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/11/25/ios-recruitment-summary/</guid>
-      <description>&lt;p&gt;自己也做了一次面试官，简历看了很多，内容总结如下。&lt;/p&gt;
-&lt;h2 id=&#34;一些感受&#34;&gt;一些感受&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;基本技能不用特别强调，不会吸引太多注意力，因此需要精通一些特别的技能或技术点&lt;/li&gt;
-&lt;li&gt;「与产品沟通」「安排工作」这类描述，我觉得也不用写，没什么吸引力&lt;/li&gt;
-&lt;li&gt;简历要体现自己擅长和独特的地方，其他内容一笔带过即可&lt;/li&gt;
-&lt;li&gt;简历上的字词细节我比较在意，如 iOS vs IOS，Xcode vs XCode&lt;/li&gt;
-&lt;li&gt;有 GitHub、Blog 绝对好评，但要有实质内容&lt;/li&gt;
-&lt;li&gt;综合考察：基础知识、业务能力、性格、气场&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;技能&#34;&gt;技能&lt;/h2&gt;
-&lt;h3 id=&#34;基础&#34;&gt;基础&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Objective-C、Swift&lt;/li&gt;
-&lt;li&gt;内存管理机制：MRC、ARC&lt;/li&gt;
-&lt;li&gt;代理、通知、Block 回调机制、闭包&lt;/li&gt;
-&lt;li&gt;KVC、KVO 机制&lt;/li&gt;
-&lt;li&gt;CoreData、FMDB、归档存储、SQLite、NSUserDefaults&lt;/li&gt;
-&lt;li&gt;Runtime 运行机制、Runloop 运行机制&lt;/li&gt;
-&lt;li&gt;GCD、NSOperation、NSThread 多线程编程&lt;/li&gt;
-&lt;li&gt;Socket 通信&lt;/li&gt;
-&lt;li&gt;单例、观察者模式&lt;/li&gt;
-&lt;li&gt;MVVM&lt;/li&gt;
-&lt;li&gt;RESTful&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;业务&#34;&gt;业务&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;瀑布流、抽屉效果&lt;/li&gt;
-&lt;li&gt;断点续传、媒体流&lt;/li&gt;
-&lt;li&gt;SSO 单点登录&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;framework&#34;&gt;Framework&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;CocoaPods&lt;/li&gt;
-&lt;li&gt;支付宝、高德、二维码扫描、友盟、极光推送、短信验证&lt;/li&gt;
-&lt;li&gt;微信、微博登录、支付、In-App Purchase&lt;/li&gt;
-&lt;li&gt;SDWebImage、AFNetworking、Alamofire、SnapKit、MBProgressHUD&lt;/li&gt;
-&lt;li&gt;IM 环信&lt;/li&gt;
-&lt;li&gt;Spring 动画&lt;/li&gt;
-&lt;li&gt;ICSDrawer 侧滑菜单&lt;/li&gt;
-&lt;li&gt;AVOS Cloud SDK&lt;/li&gt;
-&lt;li&gt;ZXing、ZBar 二维码&lt;/li&gt;
-&lt;li&gt;XMPP&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;Axure&lt;/li&gt;
-&lt;li&gt;良好的英文文档阅读能力&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;职责&#34;&gt;职责&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;模块封装&lt;/li&gt;
-&lt;li&gt;上架&lt;/li&gt;
-&lt;li&gt;迭代&lt;/li&gt;
-&lt;li&gt;沟通&lt;/li&gt;
-&lt;li&gt;整体框架设计&lt;/li&gt;
-&lt;li&gt;使用 KVO 监听实现自定义下拉刷新&lt;/li&gt;
-&lt;li&gt;针对不同的网络状态设置不同的缓存策略&lt;/li&gt;
-&lt;li&gt;各种 SDK 集成&lt;/li&gt;
-&lt;li&gt;HTML5 与 Native 相互调用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;面试技巧&#34;&gt;面试技巧&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;自己对 iOS 的理解还并不深，如何面试更有经验的人？&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Photoshop 编辑 GIF</title>
       <link>https://zyf.im/2017/11/23/photoshop-edit-gif/</link>
       <pubDate>Thu, 23 Nov 2017 09:00:00 +0800</pubDate>
@@ -4419,13 +4293,24 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
     </item>
     <item>
       <title>Git checkout --theirs --ours 解决冲突文件</title>
-      <link>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</link>
+      <link>https://zyf.im/2017/08/30/git-checkout-theirs-ours-resolve-conflict/</link>
       <pubDate>Wed, 30 Aug 2017 20:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</guid>
-      <description>&lt;p&gt;在代码合并时遇到 &lt;code&gt;conflict&lt;/code&gt; 是常有的事情，有些内容是自动生成的资源文件，手工处理起来很麻烦，某一文件如何全部以某一分支的内容为准？&lt;/p&gt;
-&lt;p&gt;使用 &lt;code&gt;checkout --theirs .&lt;/code&gt; &lt;code&gt;checkout --ours .&lt;/code&gt;。&lt;/p&gt;
+      <guid>https://zyf.im/2017/08/30/git-checkout-theirs-ours-resolve-conflict/</guid>
+      <description>&lt;p&gt;在 Git 合并冲突时，&lt;code&gt;git checkout --ours&lt;/code&gt; 和 &lt;code&gt;git checkout --theirs&lt;/code&gt; 用于选择保留哪一方的文件版本，特别适合处理自动生成的资源文件等不需要手动逐行解决的冲突。&lt;/p&gt;
 &lt;!-- more --&gt;
-&lt;h2 id=&#34;场景实例&#34;&gt;场景实例&lt;/h2&gt;
+&lt;h2 id=&#34;基本用法&#34;&gt;基本用法&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 保留当前分支的版本（丢弃对方的修改）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout --ours &amp;lt;file&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 保留传入分支的版本（丢弃当前分支的修改）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout --theirs &amp;lt;file&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 解决冲突后需要 add&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add &amp;lt;file&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;批量处理所有冲突文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout --theirs .
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;场景实例&#34;&gt;场景实例&lt;/h2&gt;
 &lt;p&gt;Engineer A、B 同时从 master checkout 自己的功能分支：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Engineer A&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -b feature-a
@@ -4438,13 +4323,7 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout master
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git merge feature-a
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Engineer B 再 push 前需要拉最新的 master，因为改到了同一行代码，出现代码冲突。&lt;/p&gt;
-&lt;h3 id=&#34;merge-合并代码&#34;&gt;merge 合并代码&lt;/h3&gt;
-&lt;p&gt;使用 merge 命令导致的代码冲突。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout master
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git pull
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git merge feature-a
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在处理冲突的过程中：&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Engineer B 在 push 前需要拉最新的 master，因为改到了同一行代码，出现代码冲突。以下两种方式 Engineer B 都在 feature-b 分支上操作：&lt;/p&gt;</description>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 3</title>
@@ -4788,21 +4667,6 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;例子：&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Git 在工作目录之间使用 push 进行同步</title>
-      <link>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</link>
-      <pubDate>Thu, 30 Mar 2017 18:00:00 +0800</pubDate>
-      <guid>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Pushing to a non-bare repo is now possible (Git 2.3.0 February 2015).&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;And it is possible when you are pushing the branch currently checked out at the remote repo!&lt;/p&gt;
-&lt;p&gt;现在已经是可以在俩个 non-bare 的仓库之间推送代码。&lt;/p&gt;
-&lt;p&gt;只需要再远程仓库配置：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config receive.denyCurrentBranch updateInstead
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;就可以直接 &lt;code&gt;push&lt;/code&gt; 分支到远程，并更新工作区。此方法可以用于项目部署。&lt;/p&gt;
-&lt;!--more --&gt;
-&lt;p&gt;&lt;strong&gt;receive-pack: add another option for &lt;code&gt;receive.denyCurrentBranch&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;When synchronizing between working directories, it can be handy to update the current branch via &amp;lsquo;push&amp;rsquo; rather than &amp;lsquo;pull&amp;rsquo;, e.g. when pushing a fix from inside a VM, or when pushing a fix made on a user&amp;rsquo;s machine (where the developer is not at liberty to install an ssh daemon let alone know the user&amp;rsquo;s password).&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Git pull rebase 和 merge no-ff 保持提交线图整洁</title>
       <link>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</link>
       <pubDate>Fri, 17 Mar 2017 16:00:00 +0800</pubDate>
@@ -4830,30 +4694,42 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
       <link>https://zyf.im/2017/03/13/git-modify-commits-history/</link>
       <pubDate>Mon, 13 Mar 2017 17:00:00 +0800</pubDate>
       <guid>https://zyf.im/2017/03/13/git-modify-commits-history/</guid>
-      <description>&lt;p&gt;在使用 Git 时，我们经常会遇到修改本地提交记录的情况。比如：修改最近一次提交记，还比如：将多次小的 &lt;code&gt;commit&lt;/code&gt; 合并成一个大的 &lt;code&gt;commit&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;这种做发有利也有弊，利在：review 代码时，可以按功能看，可以省去 review 一些前期写的无效的代码；弊是：一次提交修改过多，如果有问题，不利于调试。&lt;/p&gt;
-&lt;p&gt;具体情况具体分析，是解决问题的金句。&lt;/p&gt;
-&lt;h2 id=&#34;修改最近一次提交记录&#34;&gt;修改最近一次提交记录&lt;/h2&gt;
+      <description>&lt;p&gt;在使用 Git 时，我们经常需要修改本地提交记录，比如：修改最近一次提交、将多次小的 commit 合并成一个、或者批量修改提交者信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;以下操作会修改 Git 历史记录（SHA 值会变化），请确保不要对已推送到共享仓库的提交执行这些操作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;修改最近一次提交&#34;&gt;修改最近一次提交&lt;/h2&gt;
 &lt;h3 id=&#34;修改提交说明&#34;&gt;修改提交说明&lt;/h3&gt;
-&lt;p&gt;如果只想更改最近一次的提交说明，只需输入：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后你就会进入文本编辑器，输入你想要的内容，保存并退出即可&lt;/p&gt;
-&lt;h3 id=&#34;改被提交的快照&#34;&gt;改被提交的快照&lt;/h3&gt;
-&lt;p&gt;如果你完成 &lt;code&gt;commit&lt;/code&gt; 后又想修改被提交的快照，增加或者修改其中的文件。&lt;/p&gt;
-&lt;p&gt;先执行 &lt;code&gt;git add&lt;/code&gt; 命令，将修改的文件添加到缓存区，然后运行 &lt;code&gt;git commit -amend&lt;/code&gt; 命令，该命令会获取你当前的暂存区的内容一并提交到最后一次 &lt;code&gt;commit&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;例如：新加了一个文件 &lt;code&gt;new_file.cpp&lt;/code&gt; ，想要合并到最后一次提交，过程如下：&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入编辑器修改提交说明，保存退出即可。&lt;/p&gt;
+&lt;h3 id=&#34;追加文件到最近一次提交&#34;&gt;追加文件到最近一次提交&lt;/h3&gt;
+&lt;p&gt;先将修改的文件添加到暂存区，再运行 &lt;code&gt;--amend&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add new_file.cpp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -amend
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以直接运行下面的命令，不过要小心，不要提交了多余的文件&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -a -amend
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit --amend
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;也可以用 &lt;code&gt;-a&lt;/code&gt; 自动暂存所有已跟踪文件的修改，但要注意不要提交多余文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -a --amend
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;将文件从本次提交中移除&#34;&gt;将文件从本次提交中移除&lt;/h3&gt;
-&lt;p&gt;如果想把已经 &lt;code&gt;commit&lt;/code&gt; 的文件从这次 &lt;code&gt;commit&lt;/code&gt; 移除的话，运行命令：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-soft&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; HEAD~1 &lt;span class=&#34;c1&#34;&gt;# -soft可加可不加，默认就是soft选项&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -filename &lt;span class=&#34;c1&#34;&gt;# 要从本次提交移除的文件名&lt;/span&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git reset HEAD~1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -- filename  &lt;span class=&#34;c1&#34;&gt;# 要从本次提交移除的文件&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;new commit&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;!-- more --&gt;
-&lt;h2 id=&#34;修改多个提交记录&#34;&gt;修改多个提交记录&lt;/h2&gt;
-&lt;p&gt;要修改历史中更早的提交，你必须采用更复杂的工具。Git 没有一个修改历史的工具，但是你可以使用 rebase 工具来衍合一系列的提交到它们原来所在的 HEAD 上。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修改多个提交记录交互式-rebase&#34;&gt;修改多个提交记录（交互式 Rebase）&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;git rebase -i&lt;/code&gt; 可以对历史提交进行修改、重排、合并、拆分等操作。&lt;/p&gt;
+&lt;p&gt;例如修改最近 3 次提交：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git rebase -i HEAD~3
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入交互界面后，会看到提交列表（注意顺序与 &lt;code&gt;git log&lt;/code&gt; 相反，最早的在上面）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pick fecb551 Init the view model
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pick bb199a0 Update the version
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pick bc5cd9d Add new method
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Commands:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  p, pick = use commit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  r, reword = use commit, but edit the commit message&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  e, edit = use commit, but stop for amending&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  s, squash = use commit, but meld into previous commit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  f, fixup = like &amp;#34;squash&amp;#34;, but discard this commit&amp;#39;s log message&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  x, exec = run command (the rest of the line) using shell&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改指定提交说明&#34;&gt;修改指定提交说明&lt;/h3&gt;
+&lt;p&gt;将 &lt;code&gt;pick&lt;/code&gt; 改为 &lt;code&gt;reword&lt;/code&gt;：&lt;/p&gt;</description>
     </item>
     <item>
       <title>PHP empty 方法判断 0.0</title>

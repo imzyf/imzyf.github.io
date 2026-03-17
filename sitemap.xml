@@ -248,15 +248,6 @@
     <loc>https://zyf.im/2019/12/03/analyze-git-log/</loc>
     <lastmod>2019-12-03T14:47:28+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2019/12/02/git-modify-history-commont-user-email/</loc>
-    <lastmod>2019-12-02T14:47:28+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/centos/</loc>
-    <lastmod>2019-11-25T15:36:16+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/</loc>
-    <lastmod>2019-11-25T15:36:16+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</loc>
     <lastmod>2019-11-22T17:30:37+08:00</lastmod>
   </url><url>
@@ -347,9 +338,6 @@
     <loc>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</loc>
     <lastmod>2017-12-25T16:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2017/11/25/ios-recruitment-summary/</loc>
-    <lastmod>2017-11-25T01:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/photoshop/</loc>
     <lastmod>2017-11-23T09:00:00+08:00</lastmod>
   </url><url>
@@ -359,7 +347,7 @@
     <loc>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</loc>
     <lastmod>2017-11-22T16:00:00+08:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2017/08/30/git-checkout-theirs-resolve-conflict/</loc>
+    <loc>https://zyf.im/2017/08/30/git-checkout-theirs-ours-resolve-conflict/</loc>
     <lastmod>2017-08-30T20:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</loc>
@@ -394,9 +382,6 @@
   </url><url>
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
     <lastmod>2017-04-11T11:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/30/git-synchronizing-between-working-directories-by-push/</loc>
-    <lastmod>2017-03-30T18:00:00+08:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</loc>
     <lastmod>2017-03-17T16:00:00+08:00</lastmod>
