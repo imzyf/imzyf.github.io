@@ -4,45 +4,10 @@
     <title>Thinking on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/thinking/</link>
     <description>Recent content in Thinking on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.156.0</generator>
+    <generator>Hugo -- 0.158.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 08 Jul 2021 21:08:08 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Aug 2016 23:00:00 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/thinking/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>如何做好技术协同及管理</title>
-      <link>https://zyf.im/2021/07/08/how-to-do-technical-management/</link>
-      <pubDate>Thu, 08 Jul 2021 21:08:08 +0800</pubDate>
-      <guid>https://zyf.im/2021/07/08/how-to-do-technical-management/</guid>
-      <description>&lt;p&gt;《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。&lt;/p&gt;
-&lt;h2 id=&#34;招人&#34;&gt;招人&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;注重招人环节；在这一步要卡严，因为入职后再折腾就更费时费力了。&lt;/li&gt;
-&lt;li&gt;要关注的点：基础水平（工程能力）、离职原因（是否能长久）、个人性格（气场是否相合）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;入职&#34;&gt;入职&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;主动沟通是重要的特质。还有责任心、可塑性、执行力。&lt;/li&gt;
-&lt;li&gt;前紧后松；前期要做 code review，养成好习惯。&lt;/li&gt;
-&lt;li&gt;关注测试同学以及其他同学对其的反馈。了解工作状态、质量。&lt;/li&gt;
-&lt;li&gt;在突破底线后应该当机立断，无需心存幻想。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;心态&#34;&gt;心态&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;没有归宿感；owner 意识。&lt;/li&gt;
-&lt;li&gt;每一位都是组内的一员。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;管理&#34;&gt;管理&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;早会；任务安排，跟踪进度。不能不闻不问，最后容易抓瞎。&lt;/li&gt;
-&lt;li&gt;超过 30min 解决不了的问题，直接沟通，避免团队时间的浪费。&lt;/li&gt;
-&lt;li&gt;读书会，组内分享；打造一个好的技术氛围，这里不只是工作，还能成长。&lt;/li&gt;
-&lt;li&gt;要对任务的工作量有判断；并且明确开发规模，并且进行核对，防止 “大事小做，小题大做”。&lt;/li&gt;
-&lt;li&gt;通过先编写好单元测试、框架结构、interface，控制需求实现、代码质量。&lt;/li&gt;
-&lt;li&gt;在无法进行横向对比的情况下，可以对比加入前后是否释放自身生产力来进行判断。&lt;/li&gt;
-&lt;li&gt;三个卡点：需求评审、技术实现评审、测试用例评审，把关质量。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
-    </item>
     <item>
       <title>刚刚毕业的两个月小结</title>
       <link>https://zyf.im/2016/08/31/2016-08-report/</link>

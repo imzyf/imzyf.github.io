@@ -4,7 +4,7 @@
     <title>ZYF.IM BLOG</title>
     <link>https://zyf.im/</link>
     <description>Recent content on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.156.0</generator>
+    <generator>Hugo -- 0.158.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Jan 2026 21:33:57 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/index.xml" rel="self" type="application/rss+xml" />
@@ -39,6 +39,16 @@
 &lt;p&gt;PHP 8.5 新增了内置的 URI 扩展，遵循 RFC 3986 和 WHATWG URL 标准来解析和处理 URL。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;URI 与 URL 的关系&lt;/strong&gt;：URI（统一资源标识符）用于标识资源，URL（统一资源定位符）用于定位资源。所有 URL 都是 URI，但不是所有 URI 都是 URL。该扩展命名为 URI 是因为它能处理更广泛的标识符格式。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tech Stack</title>
+      <link>https://zyf.im/2025/12/01/tech-stack/</link>
+      <pubDate>Mon, 01 Dec 2025 12:00:00 +0800</pubDate>
+      <guid>https://zyf.im/2025/12/01/tech-stack/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://spatie.be/uses&#34;&gt;Our technology stack | spatie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://survey.stackoverflow.co/2025/technology&#34;&gt;2025 Stack Overflow Developer Survey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     <item>
       <title>NGINX 启用 HTTP/3</title>
@@ -2063,41 +2073,6 @@
 &lt;p&gt;显示所有已经合并到你当前分支的分支列表：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch --merged
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;相反地：&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>如何做好技术协同及管理</title>
-      <link>https://zyf.im/2021/07/08/how-to-do-technical-management/</link>
-      <pubDate>Thu, 08 Jul 2021 21:08:08 +0800</pubDate>
-      <guid>https://zyf.im/2021/07/08/how-to-do-technical-management/</guid>
-      <description>&lt;p&gt;《如何做好技术协同及管理 —— 合作伙伴篇》一次沙龙后的笔记。&lt;/p&gt;
-&lt;h2 id=&#34;招人&#34;&gt;招人&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;注重招人环节；在这一步要卡严，因为入职后再折腾就更费时费力了。&lt;/li&gt;
-&lt;li&gt;要关注的点：基础水平（工程能力）、离职原因（是否能长久）、个人性格（气场是否相合）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;入职&#34;&gt;入职&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;主动沟通是重要的特质。还有责任心、可塑性、执行力。&lt;/li&gt;
-&lt;li&gt;前紧后松；前期要做 code review，养成好习惯。&lt;/li&gt;
-&lt;li&gt;关注测试同学以及其他同学对其的反馈。了解工作状态、质量。&lt;/li&gt;
-&lt;li&gt;在突破底线后应该当机立断，无需心存幻想。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;心态&#34;&gt;心态&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;没有归宿感；owner 意识。&lt;/li&gt;
-&lt;li&gt;每一位都是组内的一员。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;管理&#34;&gt;管理&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;早会；任务安排，跟踪进度。不能不闻不问，最后容易抓瞎。&lt;/li&gt;
-&lt;li&gt;超过 30min 解决不了的问题，直接沟通，避免团队时间的浪费。&lt;/li&gt;
-&lt;li&gt;读书会，组内分享；打造一个好的技术氛围，这里不只是工作，还能成长。&lt;/li&gt;
-&lt;li&gt;要对任务的工作量有判断；并且明确开发规模，并且进行核对，防止 “大事小做，小题大做”。&lt;/li&gt;
-&lt;li&gt;通过先编写好单元测试、框架结构、interface，控制需求实现、代码质量。&lt;/li&gt;
-&lt;li&gt;在无法进行横向对比的情况下，可以对比加入前后是否释放自身生产力来进行判断。&lt;/li&gt;
-&lt;li&gt;三个卡点：需求评审、技术实现评审、测试用例评审，把关质量。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
     </item>
     <item>
       <title>设计模式之美 Part2</title>
@@ -6085,14 +6060,10 @@ prompt=mysql(\\u@\\h:\\d)&amp;gt;
       <link>https://zyf.im/links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://zyf.im/links/</guid>
-      <description>&lt;h2 id=&#34;engineers&#34;&gt;Engineers&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;friends&#34;&gt;Friends&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.jiejiss.com/&#34;&gt;JieJiSS&amp;rsquo; Blog&lt;/a&gt; Student, Studying in Beijing, China.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.gplane.win/&#34;&gt;Pig Fang Blog&lt;/a&gt; Metro Fan / Minecraft&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;friends&#34;&gt;Friends&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://penmodeyu.com&#34;&gt;我盒鸡王又回来啦&lt;/a&gt; penmodeyu 直播间（域名低价出售）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;domains&#34;&gt;Domains&lt;/h2&gt;
 &lt;ul&gt;

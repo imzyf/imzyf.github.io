@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tech-Stack on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/tech-stack/</link>
+    <description>Recent content in Tech-Stack on ZYF.IM BLOG</description>
+    <generator>Hugo -- 0.158.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Dec 2025 12:00:00 +0800</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/tech-stack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tech Stack</title>
+      <link>https://zyf.im/2025/12/01/tech-stack/</link>
+      <pubDate>Mon, 01 Dec 2025 12:00:00 +0800</pubDate>
+      <guid>https://zyf.im/2025/12/01/tech-stack/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://spatie.be/uses&#34;&gt;Our technology stack | spatie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://survey.stackoverflow.co/2025/technology&#34;&gt;2025 Stack Overflow Developer Survey&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

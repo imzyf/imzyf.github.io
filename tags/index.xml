@@ -4,7 +4,7 @@
     <title>Tags on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/</link>
     <description>Recent content in Tags on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.156.0</generator>
+    <generator>Hugo -- 0.158.0</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 05 Jan 2026 21:33:57 +0800</lastBuildDate>
     <atom:link href="https://zyf.im/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -20,6 +20,13 @@
       <link>https://zyf.im/tags/php-migrating/</link>
       <pubDate>Mon, 05 Jan 2026 21:33:57 +0800</pubDate>
       <guid>https://zyf.im/tags/php-migrating/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tech-Stack</title>
+      <link>https://zyf.im/tags/tech-stack/</link>
+      <pubDate>Mon, 01 Dec 2025 12:00:00 +0800</pubDate>
+      <guid>https://zyf.im/tags/tech-stack/</guid>
       <description></description>
     </item>
     <item>
@@ -97,13 +104,6 @@
       <link>https://zyf.im/tags/hive/</link>
       <pubDate>Tue, 14 Sep 2021 11:58:42 +0800</pubDate>
       <guid>https://zyf.im/tags/hive/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Thinking</title>
-      <link>https://zyf.im/tags/thinking/</link>
-      <pubDate>Thu, 08 Jul 2021 21:08:08 +0800</pubDate>
-      <guid>https://zyf.im/tags/thinking/</guid>
       <description></description>
     </item>
     <item>
@@ -209,6 +209,13 @@
       <link>https://zyf.im/tags/java/</link>
       <pubDate>Sat, 10 Sep 2016 19:00:00 +0800</pubDate>
       <guid>https://zyf.im/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Thinking</title>
+      <link>https://zyf.im/tags/thinking/</link>
+      <pubDate>Wed, 31 Aug 2016 23:00:00 +0800</pubDate>
+      <guid>https://zyf.im/tags/thinking/</guid>
       <description></description>
     </item>
     <item>
