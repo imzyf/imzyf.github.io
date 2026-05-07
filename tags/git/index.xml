@@ -4,14 +4,14 @@
     <title>Git on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/git/</link>
     <description>Recent content in Git on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 01 Oct 2022 10:00:00 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sat, 01 Oct 2022 10:00:00 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git Code Snippet</title>
       <link>https://zyf.im/2022/10/01/git-code-snippet/</link>
-      <pubDate>Sat, 01 Oct 2022 10:00:00 +0800</pubDate>
+      <pubDate>Sat, 01 Oct 2022 10:00:00 +0000</pubDate>
       <guid>https://zyf.im/2022/10/01/git-code-snippet/</guid>
       <description>&lt;h2 id=&#34;建立独立的分支&#34;&gt;建立独立的分支&lt;/h2&gt;
 &lt;p&gt;当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：&lt;/p&gt;
@@ -53,11 +53,76 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果想执行删除 -n 替换为 -f，注意风险。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;http://glgjing.github.io/blog/2015/01/09/git-qing-chu-wei-gen-zong-wen-jian/&#34;&gt;Git 清除未跟踪文件 | github.io&lt;/a&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="建立独立的分支">建立独立的分支</h2>
+<p>当想在项目中使用一个独立分支进行项目文档的管理时，或者当我们想要发布一个软件的开源版本但又不希望将软件的版本历史暴露给外界时，都可以使用以下的方法建立一个独立分支：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git <span class="nb">help</span> checkout
+</span></span><span class="line"><span class="cl"><span class="c1"># git checkout --orphan &lt;new-branch&gt; &lt;start-point&gt;</span>
+</span></span></code></pre></div><h2 id="修改提交时间">修改提交时间</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 指定本次提交时间</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;fix...&#34;</span> --date<span class="o">=</span><span class="sb">`</span>date -R<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;fix...&#34;</span> --date<span class="o">=</span><span class="s2">&#34;</span><span class="k">$(</span>date -R<span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;fix...&#34;</span> --date<span class="o">=</span><span class="s2">&#34;Tue, 11 Jun 2019 17:50:50 +0800&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改上次提交时间</span>
+</span></span><span class="line"><span class="cl">git commit --amend --date<span class="o">=</span><span class="sb">`</span>date -R<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 风险操作。会修改 history hash.</span>
+</span></span></code></pre></div><h2 id="忽略文件权限修改">忽略文件权限修改</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Git 默认会记录文件权限的修改，可关闭</span>
+</span></span><span class="line"><span class="cl">git config core.filemode <span class="nb">false</span>
+</span></span></code></pre></div><h2 id="git-status-中文文件名乱码">git status 中文文件名乱码</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global core.quotepath <span class="nb">false</span>
+</span></span></code></pre></div><p>当 <code>core.quotepath</code> 设置为 <code>false</code> 时，Git 将不会对路径名进行 quoting，这意味着路径名中的特殊字符将不被转义。</p>
+<blockquote>
+<p><a href="http://xstarcd.github.io/wiki/shell/git_chinese.html">Git 中文显示问题解决</a></p>
+</blockquote>
+<h2 id="工作区中删除未跟踪的文件">工作区中删除未跟踪的文件</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看文档</span>
+</span></span><span class="line"><span class="cl">git <span class="nb">help</span> clean
+</span></span><span class="line"><span class="cl">git clean -h
+</span></span><span class="line"><span class="cl"><span class="c1"># git clean [-d] [-f] [-i] [-n] [-q] [-e &lt;pattern&gt;] [-x | -X] [--] [&lt;pathspec&gt;...]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 【查看】有哪些文件将被删除</span>
+</span></span><span class="line"><span class="cl">git clean -n
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 【查看】删除 Git【忽略】的文件与文件夹</span>
+</span></span><span class="line"><span class="cl">git clean -Xn
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 【查看】删除【src 路径下】下的【未跟踪】文件以及文件夹</span>
+</span></span><span class="line"><span class="cl">git clean -d -- src
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果想执行删除 -n 替换为 -f，注意风险。</span>
+</span></span></code></pre></div><blockquote>
+<p><a href="http://glgjing.github.io/blog/2015/01/09/git-qing-chu-wei-gen-zong-wen-jian/">Git 清除未跟踪文件 | github.io</a></p>
+</blockquote>
+<h2 id="rebase">rebase</h2>
+<ul>
+<li><a href="https://git-rebase.io/">git rebase in depth</a></li>
+</ul>
+<h2 id="gitflow-workflow">Gitflow workflow</h2>
+<ul>
+<li><a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow workflow</a></li>
+<li><a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></li>
+</ul>
+<h2 id="相关站点">相关站点</h2>
+<ul>
+<li><a href="https://www.liaoxuefeng.com/wiki/896043488029600">Git教程 | 廖雪峰的官方网站</a></li>
+<li><a href="https://rogerdudler.github.io/git-guide/index.zh.html">git - 简明指南</a></li>
+<li><a href="https://semver.org/lang/zh-CN/">语义化版本 2.0.0 | semver.org</a></li>
+<li><a href="https://jwiegley.github.io/git-from-the-bottom-up/">Git from the Bottom Up</a></li>
+<li><a href="https://www.git-tower.com/learn/">Tower&rsquo;s Learning Resources</a></li>
+<li><a href="https://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://graphicalgit.blogspot.com/2012/07/git-cola-git-gui-1.html">圖解 Git 版本控制: Cola Git GUI (1)</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Git and GitHub Secrets</title>
       <link>https://zyf.im/2021/07/12/git-and-github-secrets/</link>
-      <pubDate>Mon, 12 Jul 2021 10:40:15 +0800</pubDate>
+      <pubDate>Mon, 12 Jul 2021 10:40:15 +0000</pubDate>
       <guid>https://zyf.im/2021/07/12/git-and-github-secrets/</guid>
       <description>&lt;h2 id=&#34;记住密码&#34;&gt;记住密码&lt;/h2&gt;
 &lt;p&gt;Git 记住密码配置后，不用每次 pull、push 都需要输入密码：&lt;/p&gt;
@@ -87,11 +152,64 @@
 &lt;p&gt;显示所有已经合并到你当前分支的分支列表：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git branch --merged
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;相反地：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="记住密码">记住密码</h2>
+<p>Git 记住密码配置后，不用每次 pull、push 都需要输入密码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global credential.helper store
+</span></span></code></pre></div><p>会在 <code>cat ~/.gitconfig</code> 看到：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>credential<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">helper</span> <span class="o">=</span> store
+</span></span></code></pre></div><h2 id="快速检出上一个分支">快速检出上一个分支</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout -
+</span></span></code></pre></div><h2 id="提交空改动">提交空改动</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit -m <span class="s2">&#34;empty commit&#34;</span> --allow-empty
+</span></span></code></pre></div><p>在如下几种情况下是有意义：</p>
+<ul>
+<li>标记一批工作或一个新功能的开始。</li>
+<li>记录你对项目进行了跟代码无关的改动。</li>
+<li>跟使用你仓库的其他人交流。</li>
+<li>作为仓库的第一次提交，因为第一次提交日后是不能被 rebase 的：<code>git commit -m &quot;init repo&quot; --allow-empty</code>。</li>
+</ul>
+<h2 id="更直观的-status">更直观的 status</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status -sb
+</span></span></code></pre></div><h2 id="更直观的-log">更直观的 log</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --all --graph --pretty<span class="o">=</span>format:<span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an %ae&gt;%Creset&#39;</span> --abbrev-commit --date<span class="o">=</span>relative
+</span></span></code></pre></div><h2 id="提交信息查询">提交信息查询</h2>
+<p>找到其中和搜索条件相匹配的最近的一条。query （区别大小写）是你想要搜索的词语。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git show :/query
+</span></span></code></pre></div><h2 id="分支合并">分支合并</h2>
+<p>显示所有已经合并到你当前分支的分支列表：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch --merged
+</span></span></code></pre></div><p>相反地：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git branch --no-merged
+</span></span></code></pre></div><h2 id="gitconfig">.gitconfig</h2>
+<p>打开编辑：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim ~/.gitconfig
+</span></span></code></pre></div><p>命令修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.co <span class="s1">&#39;checkout&#39;</span>
+</span></span><span class="line"><span class="cl">git config --global alias.ac <span class="s1">&#39;add -A . &amp;&amp; commit&#39;</span>
+</span></span><span class="line"><span class="cl">git config --global alias.lg <span class="s2">&#34;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an %ae&gt;%Creset&#39; --abbrev-commit&#34;</span>
+</span></span></code></pre></div><h2 id="github">GitHub</h2>
+<h3 id="整行高亮">整行高亮</h3>
+<p>多行高亮也可以，比如用 #L53-L60 选择范围，或者按住 shift 键，然后再点击选择的两行。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://github.com/rails/rails/blob/master/activemodel/lib/active_model.rb#L53-L60
+</span></span></code></pre></div><h3 id="用-commit-信息关闭-issue">用 commit 信息关闭 issue</h3>
+<p>如果某个提交修复了一个 Issue，当提交到 master 分支时，提交信息里可以使用 fix/fixes/fixed , close/closes/closed 或者 resolve/resolves/resolved 等关键词，后面再跟上 Issue 号，这样就会关闭这个 Issue。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit -m <span class="s2">&#34;Fix screwup, fixes #12&#34;</span>
+</span></span></code></pre></div><h3 id="链接其他仓库的-issue">链接其他仓库的 Issue</h3>
+<p>如果你想引用到同一个仓库中的一个 Issue，只需使用井号 # 加上 Issue 号，这样就会自动创建到此 Issue 的链接。</p>
+<p>要链接到其他仓库的 Issue，就使用 <code>user_name/repo_name#ISSUE_NUMBER</code> 的方式，例如 <code>tiimgreen/toc#12</code>。</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://speakerdeck.com/holman/git-and-github-secrets">Git and GitHub Secrets | speakerdeck</a></li>
+<li><a href="https://speakerdeck.com/holman/more-git-and-github-secrets">More Git and GitHub Secrets | speakerdeck</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Composer vendor 提交至 Git</title>
       <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
-      <pubDate>Mon, 10 Aug 2020 14:24:47 +0800</pubDate>
+      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
       <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
       <description>&lt;h2 id=&#34;应该将-vendor-提交到-git-吗&#34;&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;
 &lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
@@ -112,11 +230,42 @@
 &lt;h2 id=&#34;我的做法&#34;&gt;我的做法&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;问题解决了，但是不确信做法是否正确。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="应该将-vendor-提交到-git-吗">应该将 vendor 提交到 Git 吗</h2>
+<p>一般建议是 <strong>不</strong>。<code>vendor</code> 目录应添加到 <code>.gitignore</code>。</p>
+<p>最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行 Composer。</p>
+<p>虽然在某些环境下这样做很诱人，但也会导致一些问题：</p>
+<ul>
+<li>大型 VCS 存储库的大小和更新代码时的差异。</li>
+<li>在你自己的 VCS 复制你所有依赖的历史。</li>
+<li>将通过 git 安装的依赖项添加到 git repo 中将显示为 <code>submodules</code>。这是有问题的，因为它们不是真正的 <code>submodules</code>，您将会遇到问题。</li>
+</ul>
+<p>如果你真的觉得你必须这样做，你有几个选择：</p>
+<ul>
+<li>限制自己安装带标记的版本（没有 dev 版本），这样就只能安装压缩版，并避免与 git <code>submodules</code> 有关的问题。</li>
+<li>Use <code>--prefer-dist</code> or set <code>preferred-install</code> to <code>dist</code> in your config.</li>
+<li>Remove the <code>.git</code> directory of every dependency after the installation, then you can add them to your git repo. You can do that with <code>rm -rf vendor/\*\*/.git</code> in ZSH or <code>find vendor/ -type d -name &quot;.git&quot; -exec rm -rf {} \;</code> in Bash. 但这意味着您必须在运行 composer 更新之前从磁盘中删除这些依赖项。</li>
+<li>Add a <code>.gitignore</code> rule <code>/vendor/**/.git</code> to ignore all the vendor <code>.git</code> folders. 这种方法不需要在运行编写器更新之前从磁盘删除依赖项。</li>
+</ul>
+<h2 id="我的做法">我的做法</h2>
+<blockquote>
+<p>问题解决了，但是不确信做法是否正确。</p>
+</blockquote>
+<p>因为网络环境与部署的原因，在生产环境下是将 <code>vendor</code> 目录提交到 <code>git</code> 中的。使用过程中确实出现了，部分类库成为了 <code>submodules</code>，无法把真实的代码提交进 git。</p>
+<p>可尝试执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rm rf --cache vendor
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;add vendor&#34;</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md">Should I commit the dependencies in my vendor directory? | getcomposer</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Git log 统计分析</title>
       <link>https://zyf.im/2019/12/03/analyze-git-log/</link>
-      <pubDate>Tue, 03 Dec 2019 14:47:28 +0800</pubDate>
+      <pubDate>Tue, 03 Dec 2019 14:47:28 +0000</pubDate>
       <guid>https://zyf.im/2019/12/03/analyze-git-log/</guid>
       <description>&lt;h2 id=&#34;统计个人增删行数&#34;&gt;统计个人增删行数&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git config user.name
@@ -144,11 +293,107 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git log -- . &lt;span class=&#34;s2&#34;&gt;&amp;#34;:!sub&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;cloc&#34;&gt;cloc&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/AlDanial/cloc&#34;&gt;AlDanial/cloc - cloc counts blank lines, comment lines, and physical lines of source code in many programming languages.&lt;/a&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="统计个人增删行数">统计个人增删行数</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config user.name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git log --author<span class="o">=</span><span class="s2">&#34;zhaoyifan&#34;</span> --pretty<span class="o">=</span>tformat: --numstat <span class="p">|</span> awk <span class="s1">&#39;{ add += $1; subs += $2; loc += $1 - $2 } END { printf &#34;added lines: %s, removed lines: %s, total lines: %s\n&#34;, add, subs, loc }&#39;</span> -
+</span></span></code></pre></div><!-- more -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">added lines: 82813, removed lines: 53707, total lines: 29106
+</span></span></code></pre></div><h2 id="统计每个人增删行数">统计每个人增删行数</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --shortstat <span class="p">|</span> grep -E <span class="s2">&#34;(Author: )(\s*(\w+)){2}|fil(e|es) changed&#34;</span> <span class="p">|</span> awk <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="cl"><span class="s1"> if($1 ~ /Author/) {
+</span></span></span><span class="line"><span class="cl"><span class="s1">  author = $2&#34; &#34;$3
+</span></span></span><span class="line"><span class="cl"><span class="s1"> } else {
+</span></span></span><span class="line"><span class="cl"><span class="s1">  files[author]+=$1
+</span></span></span><span class="line"><span class="cl"><span class="s1">  inserted[author]+=$4
+</span></span></span><span class="line"><span class="cl"><span class="s1">  deleted[author]+=$6
+</span></span></span><span class="line"><span class="cl"><span class="s1"> }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}
+</span></span></span><span class="line"><span class="cl"><span class="s1">END { for (key in files) { print &#34;Author: &#34; key &#34;\n\tfiles changed: &#34;, files[key], &#34;\n\tlines inserted: &#34;, inserted[key], &#34;\n\tlines deleted: &#34;, deleted[key] } }
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;</span>
+</span></span></code></pre></div><h2 id="统计每个人提交次数">统计每个人提交次数</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git shortlog -sn --no-merges
+</span></span></code></pre></div><h2 id="忽略某些路径的更改">忽略某些路径的更改</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log -- . <span class="s2">&#34;:(exclude)sub&#34;</span>
+</span></span><span class="line"><span class="cl">git log -- . <span class="s2">&#34;:!sub&#34;</span>
+</span></span></code></pre></div><h2 id="cloc">cloc</h2>
+<p><a href="https://github.com/AlDanial/cloc">AlDanial/cloc - cloc counts blank lines, comment lines, and physical lines of source code in many programming languages.</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cloc source/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     <span class="m">186</span> text files.
+</span></span><span class="line"><span class="cl">     <span class="m">186</span> unique files.
+</span></span><span class="line"><span class="cl">       <span class="m">3</span> files ignored.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">github.com/AlDanial/cloc v 1.84  <span class="nv">T</span><span class="o">=</span>0.16 s <span class="o">(</span>1112.3 files/s, 138678.8 lines/s<span class="o">)</span>
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Language                     files          blank        comment           code
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Markdown                       <span class="m">183</span>           <span class="m">6028</span>              <span class="m">0</span>          <span class="m">16788</span>
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------------------------
+</span></span><span class="line"><span class="cl">SUM:                           <span class="m">183</span>           <span class="m">6028</span>              <span class="m">0</span>          <span class="m">16788</span>
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------------------------
+</span></span></code></pre></div><h2 id="git-fame">Git Fame</h2>
+<p><a href="http://oleander.io/git-fame-rb/">Git Fame - A command-line tool that helps you summarize and pretty-print git collaborators based on contributions</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">gem install git_fame
+</span></span><span class="line"><span class="cl">cd /path/to/gitdir &amp;&amp; git fame
+</span></span><span class="line"><span class="cl">Total number of files: 2,053
+</span></span><span class="line"><span class="cl">Total number of lines: 63,132
+</span></span><span class="line"><span class="cl">Total number of commits: 4,330
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+------------------------+--------+---------+-------+--------------------+
+</span></span><span class="line"><span class="cl">| name                   | loc    | commits | files | percent            |
+</span></span><span class="line"><span class="cl">+------------------------+--------+---------+-------+--------------------+
+</span></span><span class="line"><span class="cl">| Johan Sørensen         | 22,272 | 1,814   | 414   | 35.3 / 41.9 / 20.2 |
+</span></span><span class="line"><span class="cl">| Marius Mathiesen       | 10,387 | 502     | 229   | 16.5 / 11.6 / 11.2 |
+</span></span><span class="line"><span class="cl">| Jesper Josefsson       | 9,689  | 519     | 191   | 15.3 / 12.0 / 9.3  |
+</span></span><span class="line"><span class="cl">| Ole Martin Kristiansen | 6,632  | 24      | 60    | 10.5 / 0.6 / 2.9   |
+</span></span><span class="line"><span class="cl">| Linus Oleander         | 5,769  | 705     | 277   | 9.1 / 16.3 / 13.5  |
+</span></span><span class="line"><span class="cl">| Fabio Akita            | 2,122  | 24      | 60    | 3.4 / 0.6 / 2.9    |
+</span></span><span class="line"><span class="cl">| August Lilleaas        | 1,572  | 123     | 63    | 2.5 / 2.8 / 3.1    |
+</span></span><span class="line"><span class="cl">| David A. Cuadrado      | 731    | 111     | 35    | 1.2 / 2.6 / 1.7    |
+</span></span><span class="line"><span class="cl">| Jonas Ängeslevä        | 705    | 148     | 51    | 1.1 / 3.4 / 2.5    |
+</span></span><span class="line"><span class="cl">| Diego Algorta          | 650    | 6       | 5     | 1.0 / 0.1 / 0.2    |
+</span></span><span class="line"><span class="cl">| Arash Rouhani          | 629    | 95      | 31    | 1.0 / 2.2 / 1.5    |
+</span></span><span class="line"><span class="cl">| Sofia Larsson          | 595    | 70      | 77    | 0.9 / 1.6 / 3.8    |
+</span></span><span class="line"><span class="cl">| Tor Arne Vestbø        | 527    | 51      | 97    | 0.8 / 1.2 / 4.7    |
+</span></span><span class="line"><span class="cl">| spontus                | 339    | 18      | 42    | 0.5 / 0.4 / 2.0    |
+</span></span><span class="line"><span class="cl">| Pontus                 | 225    | 49      | 34    | 0.4 / 1.1 / 1.7    |
+</span></span><span class="line"><span class="cl">+------------------------+--------+---------+-------+--------------------+
+</span></span></code></pre></div><h2 id="让-git-log-的输出漂亮简洁">让 git log 的输出漂亮简洁</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.lg <span class="s2">&#34;log --color --graph --pretty=format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an %ae&gt;%Creset&#39; --abbrev-commit&#34;</span>
+</span></span></code></pre></div><blockquote>
+<p><a href="https://gist.github.com/johanmeiring/3002458">https://gist.github.com/johanmeiring/3002458</a></p>
+</blockquote>
+<p>在 <code>~/.gitconfig</code> 看到：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>alias<span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">lg</span> <span class="o">=</span> log --color --graph --pretty<span class="o">=</span>format:<span class="s1">&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an %ae&gt;%Creset&#39;</span> --abbrev-commit
+</span></span></code></pre></div><p>这其中的占位符的解释：</p>
+<ul>
+<li>%Cred：将颜色设置为红色</li>
+<li>%Creset：重置颜色</li>
+<li>%C(yellow)：将颜色设置为黄色</li>
+<li>%h：缩略的提交哈希值</li>
+<li>%d：ref names（不知道该怎么解释 😆）</li>
+<li>%s：提交时的 message</li>
+<li>%cr：相对的提交时间。可以换成%ci，展示的是年月日时分秒。</li>
+<li>%an：提交人的 name</li>
+<li>%ae：提交人的邮箱</li>
+</ul>
+<p>更多占位符，可以参考官方文档：<a href="https://git-scm.com/docs/pretty-formats">https://git-scm.com/docs/pretty-formats</a></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://gist.github.com/ezamelczyk/78b9c0dd095f8706a3f6a41e8eae0afd">Git count lines by author | gist ezamelczyk</a></li>
+<li><a href="https://stackoverflow.com/questions/5685007/making-git-log-ignore-changes-for-certain-paths">Making &lsquo;git log&rsquo; ignore changes for certain paths | stackoverflow</a></li>
+<li><a href="https://www.letianbiji.com/git/git-log.html">让 git log 的输出漂亮简洁 | letianbiji</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>CRLF will be replaced by LF</title>
       <link>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</link>
-      <pubDate>Fri, 22 Nov 2019 17:30:37 +0800</pubDate>
+      <pubDate>Fri, 22 Nov 2019 17:30:37 +0000</pubDate>
       <guid>https://zyf.im/2019/11/22/crlf-will-be-replaced-by-lf/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git add .
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
@@ -177,11 +422,73 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;*.jpg binary
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;gitattributes&#34;&gt;.gitattributes&lt;/h2&gt;
 &lt;p&gt;公式：&lt;code&gt;要匹配的文件模式 属性1 属性2 ...&lt;/code&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">warning: CRLF will be replaced by LF in X.
+</span></span></code></pre></div><ul>
+<li>CRLF：windows 环境下的换行符</li>
+<li>LF：linux 环境下的换行符</li>
+</ul>
+<p>这个错误的意思，就是文件中存在两种环境的换行符，git 会自动替换 CRLF 为 LF ，所以提示警告。</p>
+<!-- more -->
+<p>首先推荐扩展阅读：<a href="https://help.github.com/cn/github/using-git/configuring-git-to-handle-line-endings">配置 Git 处理行结束符 | GitHub</a></p>
+<p>我项目中是配置了 <code>.gitattributes</code> 的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl"># Set the default behavior, in case people don&#39;t have core.autocrlf set.
+</span></span><span class="line"><span class="cl">* text=auto
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Explicitly declare text files you want to always be normalized and converted
+</span></span><span class="line"><span class="cl"># to native line endings on checkout.
+</span></span><span class="line"><span class="cl">*.c text
+</span></span><span class="line"><span class="cl">*.h text
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Declare files that will always have CRLF line endings on checkout.
+</span></span><span class="line"><span class="cl">*.sln text eol=crlf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Denote all files that are truly binary and should not be modified.
+</span></span><span class="line"><span class="cl">*.png binary
+</span></span><span class="line"><span class="cl">*.jpg binary
+</span></span></code></pre></div><h2 id="gitattributes">.gitattributes</h2>
+<p>公式：<code>要匹配的文件模式 属性1 属性2 ...</code>。</p>
+<h3 id="示例-1">示例 1</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">* text=auto
+</span></span></code></pre></div><p>对任何文件，设置 text=auto，表示文件的行尾自动转换。如果是文本文件，则在文件入 Git 库时，行尾自动转换为 LF。如果已经在入 Git 库中的文件的行尾为 CRLF，则该文件在入 Git 库时，不再转换为 LF。</p>
+<h3 id="示例-2">示例 2</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">*.txt text
+</span></span></code></pre></div><p>对于 txt 文件，标记为文本文件，并进行行尾规范化。</p>
+<h3 id="示例-3">示例 3</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">*.jpg -text
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">*.jpg binary
+</span></span></code></pre></div><p>对于 jpg 文件，标记为非文本文件，不进行任何的行尾转换。<code>*.jpg -text</code> 可能是旧版本的写法。</p>
+<h3 id="示例-4">示例 4</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">*.vcproj text eol=crlf
+</span></span></code></pre></div><p>对于 vcproj 文件，标记为文本文件，在文件入 Git 库时进行规范化，即行尾为 LF。但是在检出到工作目录时，行尾自动转换为 CRLF。</p>
+<h3 id="示例-5">示例 5</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">*.sh text eol=lf
+</span></span></code></pre></div><p>对于 sh 文件，标记为文本文件，在文件入 Git 库时进行规范化，即行尾为 LF。在检出到工作目录时，行尾也不会转换为 CRLF（即保持 LF）。</p>
+<h3 id="示例-6">示例 6</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">*.py eol=lf
+</span></span></code></pre></div><p>对于 py 文件，只针对工作目录中的文件，行尾为 LF。</p>
+<h2 id="还是有问题">还是有问题</h2>
+<p>在项目中已经添加 <code>.gitattributes</code> 文件，但是还是出现了报错，这时要检查 git 的版本。（CentOS 自带的 git 版本较低）</p>
+<blockquote>
+<p>可以参考：<a href="https://zyf.im/2019/11/25/centos-upgrade-git-by-yum/">CentOS yum 升级 git 版本</a></p>
+</blockquote>
+<p>后来还查到了一个方法，<code>.gitattributes</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">* -crlf
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://blog.csdn.net/taiyangdao/article/details/78484623">Git 的 gitattributes 文件详解 | csdn</a></li>
+<li><a href="https://git-scm.com/docs/gitattributes">gitattributes - Defining attributes per path | git-scm</a></li>
+<li><a href="https://www.rtuin.nl/2013/02/how-to-make-git-ignore-different-line-endings/">How to make Git ignore different line endings | rtuin</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Git 提交 message 规范</title>
       <link>https://zyf.im/2019/06/04/git-commit-message-style-guide/</link>
-      <pubDate>Tue, 04 Jun 2019 14:07:46 +0800</pubDate>
+      <pubDate>Tue, 04 Jun 2019 14:07:46 +0000</pubDate>
       <guid>https://zyf.im/2019/06/04/git-commit-message-style-guide/</guid>
       <description>&lt;p&gt;commit message 应该清晰明了，说明本次提交的目的。基本公式：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;type&amp;gt;(&amp;lt;scope&amp;gt;): &amp;lt;subject&amp;gt;
@@ -216,11 +523,76 @@
 &lt;h3 id=&#34;commitizen-cli&#34;&gt;commitizen cli&lt;/h3&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/commitizen/cz-cli&#34;&gt;commitizen/cz-cli&lt;/a&gt; 使用它提供的 &lt;code&gt;git cz&lt;/code&gt; 命令替代我们的 &lt;code&gt;git commit&lt;/code&gt; 命令，帮助我们生成符合规范的 commit message。&lt;/p&gt;
 &lt;p&gt;除此之外，我们还需要为 &lt;code&gt;commitizen&lt;/code&gt; 指定一个 &lt;code&gt;Adapter&lt;/code&gt; 比如：&lt;a href=&#34;https://github.com/commitizen/cz-conventional-changelog&#34;&gt;commitizen/cz-conventional-changelog&lt;/a&gt;（一个符合 Angular 团队规范的 preset）使得 &lt;code&gt;commitizen&lt;/code&gt; 按照我们指定的规范帮助我们生成 commit message。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>commit message 应该清晰明了，说明本次提交的目的。基本公式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+</span></span></code></pre></div><!-- more -->
+<p>完整公式：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+</span></span><span class="line"><span class="cl">&lt;BLANK LINE&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;BLANK LINE&gt;
+</span></span><span class="line"><span class="cl">&lt;footer&gt;
+</span></span></code></pre></div><h2 id="type">type</h2>
+<p>用于说明 commit 的类别，只允许使用下面 7 个标识。</p>
+<ul>
+<li>feat：新功能（feature）</li>
+<li>fix：修补 bug</li>
+<li>docs：文档（documentation）</li>
+<li>style：格式（不影响代码运行的变动）</li>
+<li>refactor：重构（即不是新增功能，也不是修改 bug 的代码变动）</li>
+<li>test：增加测试</li>
+<li>chore：构建过程或辅助工具的变动</li>
+</ul>
+<h2 id="scope">scope</h2>
+<p>用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。</p>
+<h2 id="subject">subject</h2>
+<p>是 commit 目的的简短描述，不超过 50 个字符。</p>
+<ol>
+<li>以动词开头，使用第一人称现在时，比如 change，而不是 changed 或 changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号 <code>.</code></li>
+</ol>
+<h2 id="cli-工具">cli 工具</h2>
+<h3 id="commitizen-cli">commitizen cli</h3>
+<p><a href="https://github.com/commitizen/cz-cli">commitizen/cz-cli</a> 使用它提供的 <code>git cz</code> 命令替代我们的 <code>git commit</code> 命令，帮助我们生成符合规范的 commit message。</p>
+<p>除此之外，我们还需要为 <code>commitizen</code> 指定一个 <code>Adapter</code> 比如：<a href="https://github.com/commitizen/cz-conventional-changelog">commitizen/cz-conventional-changelog</a>（一个符合 Angular 团队规范的 preset）使得 <code>commitizen</code> 按照我们指定的规范帮助我们生成 commit message。</p>
+<p>全局安装（首选）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install -g commitizen cz-conventional-changelog
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;{ &#34;path&#34;: &#34;cz-conventional-changelog&#34; }&#39;</span> &gt; ~/.czrc
+</span></span></code></pre></div><p>项目级安装（首选）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install -D commitizen cz-conventional-changelog
+</span></span></code></pre></div><p><code>package.json</code> 中配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="s2">&#34;script&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   ...,
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;commit&#34;</span>: <span class="s2">&#34;git-cz&#34;</span>,
+</span></span><span class="line"><span class="cl"><span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;config&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;commitizen&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="s2">&#34;path&#34;</span>: <span class="s2">&#34;node_modules/cz-conventional-changelog&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>如果全局安装过 <code>commitizen</code>，那么在对应的项目中执行 <code>git cz</code> or <code>npm run commit</code> 都可以。</p>
+<h3 id="自定义规范">自定义规范</h3>
+<p>也许 Angular 的那套规范我们不习惯，那么可以通过指定 Adapter <a href="https://github.com/leonardoanalista/cz-customizable">leonardoanalista/cz-customizable</a> 指定一套符合自己团队的规范。</p>
+<h3 id="校验-message">校验 message</h3>
+<p>可以通过 <a href="https://github.com/conventional-changelog/commitlint">conventional-changelog/commitlint</a> 校验 commit message。同时可以配合使用 <a href="https://github.com/typicode/husky">typicode/husky</a> 🐶 Git hooks made easy。</p>
+<h3 id="生成-changelog">生成 CHANGELOG</h3>
+<p><a href="https://github.com/conventional-changelog/standard-version">conventional-changelog/standard-version</a> 🏆 自动化版本和更新日志生成。</p>
+<p>还看到一个有意思的库 <a href="https://github.com/semantic-release/semantic-release">📦🚀 semantic-release</a> 待研究。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://juejin.im/entry/5b429be75188251ac85830ff">你可能会忽略的 Git 提交规范 - juejin</a></li>
+<li><a href="https://juejin.im/post/5afc5242f265da0b7f44bee4">优雅的提交你的 Git Commit Message - juejin</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html">Commit message 和 Change log 编写指南 - ruanyifeng</a></li>
+<li><a href="https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit">AngularJS Git Commit Message Conventions - google docs</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 协同模型</title>
       <link>https://zyf.im/2018/01/19/got-git-reading-notes-model/</link>
-      <pubDate>Fri, 19 Jan 2018 14:00:00 +0800</pubDate>
+      <pubDate>Fri, 19 Jan 2018 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/01/19/got-git-reading-notes-model/</guid>
       <description>&lt;p&gt;主要内容：【Git 协同模型】&lt;/p&gt;
 &lt;h2 id=&#34;经典-git-协同模型&#34;&gt;经典 Git 协同模型&lt;/h2&gt;
@@ -271,11 +643,140 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 将 lib 目录下的文件更新出来&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git checkout -- lib
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在还不能忙着提交，因为如果现在进行提交就体现不出来两个分支的合并关系。需要使用 Git 底层的命令进行数据提交。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>主要内容：【Git 协同模型】</p>
+<h2 id="经典-git-协同模型">经典 Git 协同模型</h2>
+<h3 id="集中式协同模型">集中式协同模型</h3>
+<p>可以像集中式版本控制系统那样使用 Git，在一个大家都可以访问到的服务器上架设 Git 服务器，每个人从该服务器克隆代码，本地提交推送到服务器上。</p>
+<h2 id="金字塔式协同模型">金字塔式协同模型</h2>
+<p>虽然理论上每个开发者的版本库都是平等的，但是会有一个公认的权威的版本库，这个版本库由一个或者多个核心开发者负责维护（具有推送的权限）。</p>
+<p>开源社区逐渐发展出金字塔模型，而这也是必然之选。</p>
+<!-- more -->
+<h2 id="topgit-协同模型">Topgit 协同模型</h2>
+<blockquote>
+<p>笔者注：Topgit 是否已经过时？</p>
+</blockquote>
+<p><code>卖主分支 Vendor Branch</code> 是在版本库中专门创建一个和上游同步的分支，一旦有上游代码发布就捡入到卖主分支中。</p>
+<h2 id="子模组协同模型">子模组协同模型</h2>
+<h3 id="创建子模组">创建子模组</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule add /path/to/repos/libA.git lib/lib_a
+</span></span></code></pre></div><p><code>.gitmodules</code> 的内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat .gitmodules
+</span></span><span class="line"><span class="cl"><span class="o">[</span>submodule <span class="s2">&#34;lib/lib_a&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">path</span> <span class="o">=</span> lib/lib_a
+</span></span><span class="line"><span class="cl">        <span class="nv">url</span> <span class="o">=</span> /path/to/repos/libA.git
+</span></span></code></pre></div><h3 id="克隆带子模组的版本库">克隆带子模组的版本库</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone /path/to/repos/super.git /path/to/my/workspace/super-clone
+</span></span></code></pre></div><p>子模组的版本库并不会默认克隆，如果需要克隆出子模组型式引用的外部库，需要执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule init
+</span></span><span class="line"><span class="cl">git submodule update
+</span></span></code></pre></div><h3 id="在子模组中修改和子模组的更新">在子模组中修改和子模组的更新</h3>
+<p>修改更新的方式和普通仓库一样。如果修改了子模块，要先推送子模块的修改，再推送主仓库，以防止其他人克隆 super 版本库、更新模组时因为找不到该子模组版本库相应的提交而导致出错。</p>
+<p>查看子模组状态：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule status
+</span></span></code></pre></div><h2 id="子树合并">子树合并</h2>
+<h3 id="引入外部版本库">引入外部版本库</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 注册外部版本库</span>
+</span></span><span class="line"><span class="cl">git remote add util /path/to/repos/util.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git fetch util
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有分支</span>
+</span></span><span class="line"><span class="cl">git branch -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 util/master 远程分支创建一个本地分支 util-branch</span>
+</span></span><span class="line"><span class="cl">git checkout -b util-branch util/master
+</span></span></code></pre></div><h3 id="子目录方式合并外部版本库">子目录方式合并外部版本库</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在主分支，将分支 util-branch 读取到当前分支的一个子目录下</span>
+</span></span><span class="line"><span class="cl">git read-tree --prefix<span class="o">=</span>lib util-branch
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 lib 目录下的文件更新出来</span>
+</span></span><span class="line"><span class="cl">git checkout -- lib
+</span></span></code></pre></div><p>现在还不能忙着提交，因为如果现在进行提交就体现不出来两个分支的合并关系。需要使用 Git 底层的命令进行数据提交。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 将暂存区的目录树保存下来</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git write-tree
+</span></span></code></pre></div><p>要手工创建一个合并提交，即新的提交要有两个父提交。这两个父提交分别是 master 分支和 util-branch 分支的最新提交。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;subtree merge&#34;</span> <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  git commit-tree 2153518409d218609af40babededec6e8ef51616 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 911b1af2e0c95a2fc1306b8dea707064d5386c2e <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 12408a149bfa78a4c2d4011f884aa2adb04f0934
+</span></span><span class="line"><span class="cl">62ae6cc3f9280418bdb0fcf6c1e678905b1fe690
+</span></span></code></pre></div><p>需要把当前的 master 分支重置到此提交 ID：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset 62ae6cc3f9280418bdb0fcf6c1e678905b1fe690
+</span></span></code></pre></div><p>操作繁琐，可使用下面 <code>subtree</code> 命令进行代替。</p>
+<h3 id="利用子树合并跟踪上游改动">利用子树合并跟踪上游改动</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout util-branch
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git pull
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git checkout master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git merge -Xsubtree<span class="o">=</span>lib util-branch
+</span></span></code></pre></div><h2 id="git-subtree">Git Subtree</h2>
+<h3 id="管理子项目">管理子项目</h3>
+<p>假设 <code>P1 项目</code>、<code>P2 项目</code> 共用 <code>S 项目</code></p>
+<ul>
+<li>关联 S 项目</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git subtree add --prefix<span class="o">=</span>&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash
+</span></span></code></pre></div><p><code>--squash</code> 意思是把 <code>subtree</code> 的改动合并成一次 <code>commit</code>，这样就不用拉取子项目完整的历史记录。<code>--prefix</code> 之后的 <code>=</code> 等号也可以用空格。</p>
+<ul>
+<li>更新代码</li>
+</ul>
+<p>P1、P2 项目里各种提交 commit，其中有些 commit 会涉及到 <code>S 目录</code> 的更改，但是没关系。</p>
+<ul>
+<li>提交更改到子项目</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git subtree push --prefix<span class="o">=</span>&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt;
+</span></span></code></pre></div><p>Git 会遍历 <code>步骤 2</code> 中所有的 <code>commit</code>，从中找出针对 <code>S 目录</code> 的更改，然后把这些更改记录提交到 <code>S 项目</code> 的 Git 服务器上，并保留 <code>步骤 2</code> 中的相关 <code>S 的提交</code> 记录到 <code>S仓库</code> 中。</p>
+<ul>
+<li>更新子目录</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git subtree pull --prefix<span class="o">=</span>&lt;S项目的相对路径&gt; &lt;S 项目 git 地址&gt; &lt;分支&gt; --squash
+</span></span></code></pre></div><h3 id="拆分已有项目">拆分已有项目</h3>
+<p>需要从现有项目中抽取公共模块单独进行 Git 管理，假设已有 <code>项目 P</code> 抽取 <code>项目 S</code>。</p>
+<ul>
+<li>提交日志分离</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git subtree split -P &lt;S项目的相对路径&gt; -b &lt;临时branch&gt;
+</span></span></code></pre></div><p>Git 会遍历所有的 commit，分离出与 S 项目的相对路径相关的 commit，并存入临时 branch 中。</p>
+<ul>
+<li>创建子 repo</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir &lt;S项目新路径&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> S项目新路径
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git pull &lt;P项目的路径&gt; &lt;临时branch&gt;
+</span></span><span class="line"><span class="cl">git remote add origin &lt;S项目的git仓库&gt;
+</span></span><span class="line"><span class="cl">git push origin -u master
+</span></span></code></pre></div><ul>
+<li>清理数据</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> P项目的路径
+</span></span><span class="line"><span class="cl">git rm -rf &lt;S项目的相对路径&gt;
+</span></span><span class="line"><span class="cl">git commit -m <span class="s1">&#39;移除相应模块&#39;</span> <span class="c1"># 提交删除申请</span>
+</span></span><span class="line"><span class="cl">git branch -D &lt;临时branch&gt; <span class="c1"># 删除临时分支</span>
+</span></span></code></pre></div><ul>
+<li>添加 subtree</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git subtree add --prefix<span class="o">=</span>&lt;S项目的相对路径&gt; &lt;S项目git地址&gt; &lt;分支&gt; --squash
+</span></span><span class="line"><span class="cl">git push origin master
+</span></span></code></pre></div><p>执行完第 2 步时，对应的目录已经剥离出来形成独立的项目了。第 3，4 步主要是把当前项目的对应的文件给删除，重新在 P 项目建立 Subtree。</p>
+<p><em>tip:</em>
+推送到 GitHub Page：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git subtree push --prefix<span class="o">=</span>dist origin gh-pages
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/04-git-model/">4. 协同模型 — GotGit</a></li>
+<li><a href="https://www.jianshu.com/p/3096069e9b72">Git Subtree 的使用</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 和声</title>
       <link>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</link>
-      <pubDate>Wed, 17 Jan 2018 19:00:00 +0800</pubDate>
+      <pubDate>Wed, 17 Jan 2018 19:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</guid>
       <description>&lt;p&gt;主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】&lt;/p&gt;
 &lt;h2 id=&#34;git-协议与工作协同&#34;&gt;Git 协议与工作协同&lt;/h2&gt;
@@ -307,11 +808,202 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git merge -s recursive -X ours [&amp;lt;commit&amp;gt;...]
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Merge branch obsolete into the current branch, using ours merge strategy:&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】</p>
+<h2 id="git-协议与工作协同">Git 协议与工作协同</h2>
+<h3 id="git-支持的协议">Git 支持的协议</h3>
+<p>SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。</p>
+<p>SSH 协议：</p>
+<pre tabindex="0"><code>ssh://[user@]example.com[:port]/path/to/repo.git/
+
+[user@]example.com:path/to/repo.git/
+</code></pre><p>GIT 协议，最常用的只读协议：</p>
+<pre tabindex="0"><code>git://example.com[:port]/path/to/repo.git/
+</code></pre><p>HTTP[S] 协议：</p>
+<pre tabindex="0"><code>http[s]://example.com[:port]/path/to/repo.git/
+</code></pre><!-- more -->
+<h3 id="强制非快进式推送">强制非快进式推送</h3>
+<pre tabindex="0"><code>git push -f
+</code></pre><p>强制推送，会强制刷新服务器中的版本。</p>
+<h3 id="禁止非快进式推送">禁止非快进式推送</h3>
+<pre tabindex="0"><code>git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true
+</code></pre><h2 id="冲突解决">冲突解决</h2>
+<h3 id="拉回操作中的合并">拉回操作中的合并</h3>
+<pre tabindex="0"><code>git pull = git fetch + git merge
+</code></pre><h3 id="合并策略">合并策略</h3>
+<blockquote>
+<p><a href="https://git-scm.com/docs/git-merge#_merge_strategies">Merge Strategis</a></p>
+</blockquote>
+<p>Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。</p>
+<pre tabindex="0"><code>git merge [-s &lt;strategy&gt;] [-X &lt;strategy-option&gt;] [&lt;commit&gt;...]
+</code></pre><p>This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.</p>
+<pre tabindex="0"><code>git merge -s recursive -X ours [&lt;commit&gt;...]
+</code></pre><p>Merge branch obsolete into the current branch, using ours merge strategy:</p>
+<pre tabindex="0"><code>git merge -s ours obsolete
+</code></pre><h2 id="git-里程碑">Git 里程碑</h2>
+<h3 id="显示里程碑">显示里程碑</h3>
+<pre tabindex="0"><code>git tag
+</code></pre><p>显示说明。<code>-n&lt;num&gt;</code> 显示最多 <code>&lt;num&gt;</code> 行里程碑的说明：</p>
+<pre tabindex="0"><code>git tag -n1
+</code></pre><p>使用统配：</p>
+<pre tabindex="0"><code>git tag -l v1.*
+</code></pre><p>查看提交对应的里程碑及其他引用：</p>
+<pre tabindex="0"><code>git log --oneline --decorate
+</code></pre><h3 id="创建里程碑">创建里程碑</h3>
+<p>当创建了里程碑 mytag 后，会在版本库的 .git/refs/tags 目录下创建一个新文件。实际上指向的是一个提交：</p>
+<pre tabindex="0"><code>git tag mytag
+
+git cat-file -t mytag
+commit
+</code></pre><p>带说明的 tag 指向的不再是一个提交，而是一个 tag 对象：</p>
+<pre tabindex="0"><code>git tag -m &#34;My first annotated tag.&#34; mytag2
+
+git cat-file -t mytag2
+tag
+</code></pre><p>为里程碑对象添加 GnuPG 签名：</p>
+<pre tabindex="0"><code>git tag -s -m &#34;My first GPG-signed tag.&#34; mytag3
+</code></pre><h3 id="删除里程碑">删除里程碑</h3>
+<pre tabindex="0"><code>git tag -d mytag
+Deleted tag &#39;mytag&#39; (was 60a2f4f)
+</code></pre><h3 id="共享里程碑">共享里程碑</h3>
+<p>创建的里程碑，默认只在本地版本库中可见，不会因为对分支执行推送而将里程碑也推送到远程版本库。</p>
+<p>将 mytag 里程碑共享到上游版本库：</p>
+<pre tabindex="0"><code>git push origin mytag
+</code></pre><p>所有里程碑全部推送到远程版本库：</p>
+<pre tabindex="0"><code>git push origin refs/tags/*
+</code></pre><ul>
+<li>里程碑共享，必须显式的推送。</li>
+<li>执行获取或拉回操作，自动从远程版本库获取新里程碑，并在本地版本库中创建。</li>
+<li>如果本地已有同名的里程碑，默认不会从上游同步里程碑，即使两者里程碑的指向是不同的。</li>
+</ul>
+<h3 id="删除远程版本库的里程碑">删除远程版本库的里程碑</h3>
+<pre tabindex="0"><code>git push origin :mytag2
+</code></pre><h3 id="里程碑命名规范">里程碑命名规范</h3>
+<p><a href="https://semver.org/lang/zh-CN/">语义化版本 2.0.0</a></p>
+<p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p>
+<ul>
+<li>主版本号：当你做了不兼容的 API 修改，</li>
+<li>次版本号：当你做了向下兼容的功能性新增，</li>
+<li>修订号：当你做了向下兼容的问题修正。</li>
+</ul>
+<p>先行版本号及版本编译信息可以加到 <code>主版本号.次版本号.修订号</code> 的后面，作为延伸。</p>
+<h2 id="git-分支">Git 分支</h2>
+<p>分支是代码管理的利器。如果没有有效的分支管理，代码管理就适应不了复杂的开发过程和项目的需要。</p>
+<h3 id="分支命令概述">分支命令概述</h3>
+<pre tabindex="0"><code># 显示
+1. git branch
+
+# 创建
+2. git branch &lt;branchname&gt;
+3. git branch &lt;branchname&gt; &lt;start-point&gt;
+
+# 删除，-d 在删除分支 &lt;branchname&gt; 时会检查所要删除的分支是否已经合并到其他分支中，否则拒绝删除。
+4. git branch -d &lt;branchname&gt;
+5. git branch -D &lt;branchname&gt;
+
+# 重命名，-m 如果版本库中已经存在名为 &lt;newbranch&gt; 的分支，拒绝执行重命名，而 7 会强制执行。
+6. git branch -m &lt;oldbranch&gt; &lt;newbranch&gt;
+7. git branch -M &lt;oldbranch&gt; &lt;newbranch&gt;
+</code></pre><p>创建并切换到新分支：</p>
+<pre tabindex="0"><code>git checkout -b &lt;new_branch&gt; [&lt;start_point&gt;]
+</code></pre><h3 id="分支变基">分支变基</h3>
+<ul>
+<li>master</li>
+<li>dev（开发完成，领先 master）</li>
+</ul>
+<pre tabindex="0"><code># 先切换到 dev
+git checkout dev
+
+# 变基操作
+git rebase master
+
+# 遇到冲突，解决冲突
+
+# 添加到暂存区
+git add -u
+
+# 继续变基
+git rebase --continue
+
+# 直接将 dev 推送到远程 master
+git push origin dev:master
+
+# 切换到 master
+git checkout master
+
+# 拉取最新代码
+git pull
+
+# 删除 dev 分支
+git branch -d dev
+</code></pre><h2 id="远程版本库">远程版本库</h2>
+<h3 id="远程分支">远程分支</h3>
+<p>查看远程分支：</p>
+<pre tabindex="0"><code>git branch -r
+</code></pre><p>在向远程版本库执行获取操作时，不是把远程版本库的分支原封不动地复制到本地版本库的分支中，而是复制到另外的命名空间。</p>
+<p>远程分支不是真正意义上的分支，是类似于里程碑一样的引用。如果针对远程分支执行检出命令，会看到大段的错误警告。</p>
+<p>远程分支类似于里程碑，如果检出就会使得头指针 HEAD 处于分离头指针状态。实际上除了以 refs/heads 为前缀的引用之外，如果检出任何其他引用，都将使工作区处于分离头指针状态。如果对远程分支进行修改就需要创建新的本地分支。</p>
+<h3 id="分支追踪">分支追踪</h3>
+<p>为了能够在远程分支 <code>origin/hello-1.x</code> 上进行工作，需要基于该远程分支创建本地分支：</p>
+<pre tabindex="0"><code>git checkout hello-1.x
+</code></pre><p>从远程分支创建本地分支，自动建立了分支间的跟踪，而从一个本地分支创建另外一个本地分支则没有。</p>
+<p>从 <code>hello-1.x</code> 分支中创建新的本地分支 <code>hello-jx</code>，并与远程建立联系。</p>
+<pre tabindex="0"><code>git checkout -b hello-jx hello-1.x
+</code></pre><pre tabindex="0"><code>cat .git/config
+</code></pre><h3 id="远程版本库-1">远程版本库</h3>
+<pre tabindex="0"><code># 设置
+git remote add new-remote file:///path/to/repos/hello-user1.git
+
+# 修改 url
+git remote set-url new-remote file:///path/to/repos/hello-user2.git
+
+# 单独修改 push 地址
+git remote set-url --push new-remote /path/to/repos/hello-user2.git
+
+# 修改 版本库名称
+git remote rename new-remote user2
+
+# 当注册了多个远程版本库并希望获取所有远程版本库的更新
+git remote update
+
+# 如果某个远程版本库不想在执行 git remote update 时获得更新
+git config remote.user2.skipDefaultUpdate true
+
+# 删除
+git remote rm
+</code></pre><h3 id="push-和-pull-操作与远程版本库">PUSH 和 PULL 操作与远程版本库</h3>
+<p>在执行 <code>git pull</code> 操作的时候可以通过参数 <code>--rebase</code> 设置使用变基而非合并操作，将本地分支的改动变基到跟踪分支上。为了避免因为忘记使用 <code>--rebase</code> 参数导致分支的合并，可进行设置：</p>
+<pre tabindex="0"><code>git config branch.&lt;branchname&gt;.rebase true
+</code></pre><p>这样在遇到冲突（本地和远程分支出现偏离）的情况下，会采用变基操作，而不是默认的合并操作。</p>
+<p>如果为本地版本库设置参数 <code>branch.autosetuprebase</code> ，值为 <code>true</code>，则在基于远程分支建立本地追踪分支时，会自动配置 <code>branch.&lt;branchname&gt;.rebase</code> 参数。</p>
+<h3 id="分支和里程碑的安全性">分支和里程碑的安全性</h3>
+<ul>
+<li>
+<p>用 <code>reflog</code> 记录对分支的操作历史。默认创建的带工作区的版本库都会包含 <code>core.logallrefupdates</code> 为 <code>true</code> 的配置，这样在版本库中建立的每个分支都会创建对应的 <code>reflog</code>。但是创建的裸版本库默认不包含这个设置，也就不会为每个分支设置 <code>reflog</code>。可能因为分支误操作导致数据丢失，可以考虑为裸版本库添加此配置。</p>
+</li>
+<li>
+<p>关闭非快进式提交。配置 <code>receive.denyNonFastForwards</code> 设置为 <code>true</code>，则禁止一切非快进式推送。更好的方法是通过架设基于 SSH 协议的 Git 服务器，配置强制提交的用户权限。</p>
+</li>
+<li>
+<p>关闭分支删除功能。配置 <code>receive.denyDeletes</code> 设置为 <code>true</code>，则禁止删除分支。更好的方法是：配置分支删除的用户权限。</p>
+</li>
+</ul>
+<h2 id="补丁文件交互">补丁文件交互</h2>
+<p>将最近三个提交转换为补丁文件：</p>
+<pre tabindex="0"><code>git format-patch -s HEAD~3..HEAD
+</code></pre><p><code>-s</code> 会在导出的补丁文件中添加当前用户的签名。</p>
+<p>应用补丁：</p>
+<pre tabindex="0"><code>git am user1-mail-archive
+</code></pre><p><code>git apply</code> 可以应用一般格式的补丁文件，但是不能执行提交，也不能保持补丁中的作者信息。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/03-git-harmony">3. Git 和声 — GotGit</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 4</title>
       <link>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</link>
-      <pubDate>Mon, 25 Dec 2017 16:00:00 +0800</pubDate>
+      <pubDate>Mon, 25 Dec 2017 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</guid>
       <description>&lt;p&gt;主要内容：【历史穿梭】、【改变历史】、【Git 克隆】&lt;/p&gt;
 &lt;h2 id=&#34;历史穿梭&#34;&gt;历史穿梭&lt;/h2&gt;
@@ -355,11 +1047,223 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 81993234fc12a325d303eccea20f6fd629412712
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;版本范围表示法git-rev-list&#34;&gt;版本范围表示法：git rev-list&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;git rev-list&lt;/code&gt; 可以帮助研究 Git 的各种版本范围语法。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>主要内容：【历史穿梭】、【改变历史】、【Git 克隆】</p>
+<h2 id="历史穿梭">历史穿梭</h2>
+<p>查看条件个数：</p>
+<pre tabindex="0"><code>git rev-list HEAD | wc -l
+</code></pre><h3 id="版本表示法git-rev-parse">版本表示法：git rev-parse</h3>
+<p><code>git rev-parse</code> pick out and massage parameters for other git commands.</p>
+<ul>
+<li><code>--git-dir</code> 可以显示 Git 版本库的位置</li>
+<li><code>--show-cdup</code> 当前工作区目录的深度</li>
+<li><code>--parseopt</code> 可以用于被 Git 无关应用用于解析命令行参数</li>
+</ul>
+<pre tabindex="0"><code># 显示分支，tag
+git rev-parse --symbolic --branches
+
+git rev-parse --symbolic --branches
+
+# 显示定义的所有引用
+git rev-parse --symbolic --glob=refs/*
+</code></pre><!-- more -->
+<pre tabindex="0"><code># 显示多个表达式的 SHA1 哈希值：
+
+git rev-parse  master  refs/heads/master
+6652a0dce6a5067732c00ef0a220810a7230655e
+6652a0dce6a5067732c00ef0a220810a7230655e
+
+^后面的数字代表该提交的第几个父提交，~&lt;n&gt;就相当于连续&lt;n&gt;个符号^
+
+git rev-parse  A~3  A^^^
+e80aa7481beda65ae00e35afc4bc4b171f9b0ebf
+e80aa7481beda65ae00e35afc4bc4b171f9b0ebf
+
+# 暂存区里的文件和HEAD中的文件相同
+
+git rev-parse  :gitg.png  HEAD:gitg.png
+fc58966ccc1e5af24c2c9746196550241bc01c50
+fc58966ccc1e5af24c2c9746196550241bc01c50
+
+# 在提交日志中查找字串的方式显示提交
+git rev-parse :/&#34;Commit A&#34;
+81993234fc12a325d303eccea20f6fd629412712
+</code></pre><h3 id="版本范围表示法git-rev-list">版本范围表示法：git rev-list</h3>
+<p><code>git rev-list</code> 可以帮助研究 Git 的各种版本范围语法。</p>
+<pre tabindex="0"><code># 从开始到 tag：A 的所有历史提交
+git rev-list --oneline  A
+
+# 每个 tag 历史提交的并集
+git rev-list --oneline  D  F
+
+# ^ 排除这个版本及其历史版本
+git rev-list --oneline  ^G D
+
+# ^G D 等价于 G..D
+git rev-list --oneline  G..D
+
+# 含 ^ 的参数顺序不重要，..
+# ^B C 相当于 B..C
+# C ^B 相当于 B..C
+# C..B 相当于 ^C B
+</code></pre><h3 id="浏览日志git">浏览日志：git</h3>
+<p><code>--graph</code> 参数调用 <code>git log</code> 可以显示字符界面的提交关系图。</p>
+<pre tabindex="0"><code>git config --global alias.glog &#34;log --graph&#34;
+</code></pre><ul>
+<li><code>--oneline</code> 单行显示</li>
+<li><code>-&lt;n&gt;</code> 显示最近的 <n> 条日志</li>
+<li><code>-p</code> 显示变动</li>
+<li><code>--stat</code> 显示变动摘要</li>
+</ul>
+<p>查看、分析某一个提交：</p>
+<pre tabindex="0"><code>git show D --stat
+tag D
+...
+
+git cat-file -p D^0
+</code></pre><h3 id="差异比较git-diff">差异比较：git diff</h3>
+<ul>
+<li>比较里程碑 B 和里程碑 A，用命令：git diff B A</li>
+<li>比较工作区和里程碑 A，用命令：git diff A</li>
+<li>比较暂存区和里程碑 A，用命令：git diff -cached A</li>
+<li>比较工作区和暂存区，用命令：git diff</li>
+<li>比较暂存区和 HEAD，用命令：git diff -cached</li>
+<li>比较工作区和 HEAD，用命令：git diff HEAD</li>
+</ul>
+<p>显示不同版本下的文件差异：</p>
+<pre tabindex="0"><code>git diff &lt;commit1&gt; &lt;commit2&gt; -- &lt;paths&gt;
+</code></pre><p>非 Git 目录/文件的差异比较，可在版本库之外使用：</p>
+<pre tabindex="0"><code>git diff &lt;path1&gt; &lt;path2&gt;
+</code></pre><ul>
+<li><code>--word-diff</code> 差异逐 <em>词</em> 比较，而非缺省的逐 <em>行</em> 比较</li>
+</ul>
+<h3 id="文件追溯git-blame">文件追溯：git blame</h3>
+<p>逐行显示文件，在每一行的行首显示此行最早是在什么版本引入的，由谁引入。</p>
+<p>只想查看某几行，使用 -L n,m 参数：</p>
+<pre tabindex="0"><code>git blame -L 6,+5 README
+</code></pre><h3 id="二分查找git-bisect">二分查找：git bisect</h3>
+<p>定位问题代码。</p>
+<h2 id="改变历史">改变历史</h2>
+<p>作为分布式版本控制系统，一旦版本库被多人共享，改变历史就可能是无法完成的任务。</p>
+<h3 id="悔棋">悔棋</h3>
+<p><code>git commit –amend</code> 单步悔棋，修补式提交。</p>
+<p>检出文件到前一版：</p>
+<pre tabindex="0"><code>git checkout HEAD^ -- src/hello.h
+</code></pre><h3 id="多步悔棋">多步悔棋</h3>
+<pre tabindex="0"><code>git reset --soft HEAD^^
+</code></pre><h3 id="回到未来">回到未来</h3>
+<p>拣选指令 <code>git cherry-pick</code> 从众多的提交中挑选出一个提交应用在当前的工作分支中。</p>
+<p>该命令需要提供一个提交 ID 作为参数，操作过程相当于将该提交导出为补丁文件，然后在当前 HEAD 上重放形成无论内容还是提交说明都一致的提交。</p>
+<p>操作例子：<code>A B C D E F</code> 6 次提交。</p>
+<p>例子 1.1：出掉 <code>D</code>：</p>
+<pre tabindex="0"><code># 将 HEAD 指针切换到 C
+git checkout C
+
+# 拣选将 E 提交在当前 HEAD 上
+git cherry-pick E
+
+# 拣选操作将 F 提交在当前 HEAD 上
+git cherry-pick master
+
+# 将 master 分支指向新的提交 ID（f677821）上
+git checkout master
+git reset --hard HEAD@{1}
+</code></pre><p>例子 1.2：D 融入 C：</p>
+<pre tabindex="0"><code>git checkout D
+
+# 将 C 和 D 融合
+git reset --soft HEAD^^
+
+# 提交说明重用C提交的提交说明
+git commit -C C
+
+git cherry-pick E
+git cherry-pick F
+</code></pre><p>git rebase 对提交执行变基操作，即可以实现将指定范围的提交“嫁接”到另外一个提交之上。</p>
+<pre tabindex="0"><code>git rebase --onto &lt;newbase&gt; &lt;since&gt; &lt;till&gt;
+</code></pre><p>变基操作的过程：</p>
+<ol>
+<li>首先执行 git checkout <till>，如果 till 不是一个分支，则变基操作是在 detached HEAD 分离头指针 状态的，当变基结束后，对 master 分支执行重置以实现把变基结果记录在分支中。</li>
+<li>将<since>..<till>所标识的提交范围写到一个临时文件中。（<since>..<till>是指包括<till>的所有历史提交排除<since>以及<since>的历史提交后形成的版本范围）</li>
+<li>当前分支强制重置（git reset &ndash;hard）到<newbase>。</li>
+<li>从保存在临时文件中的提交列表中，一个一个将提交按照顺序重新提交到重置之后的分支上。</li>
+<li>如果遇到提交已经在分支中包含，跳过该提交。</li>
+<li>如果在提交过程遇到冲突，变基过程暂停。用户解决冲突后，执行 git rebase –continue 继续变基操作。或者执行 git rebase –skip 跳过此提交。或者执行 git rebase –abort 就此终止变基操作切换到变基前的分支上。</li>
+</ol>
+<p>例子 2.1：出掉 <code>D</code>：</p>
+<pre tabindex="0"><code>git rebase --onto C D F
+# or
+git rebase --onto C E^ F
+</code></pre><p>例子 2.2：D 融入 C：</p>
+<pre tabindex="0"><code>git checkout D
+
+# C和D融合
+git reset --soft HEAD^^
+
+git add .
+
+# 复用 C 的提交信息
+git commit -C C
+
+# 记住这个提交 ID，可以用 tag 的方法
+git tag newbase
+
+git rebase --onto newbase E^ master
+</code></pre><p><code>-i</code> 交互式变基方法。</p>
+<p>例子 3.1：出掉 <code>D</code>：</p>
+<pre tabindex="0"><code>git rebase -i D^
+
+# d, drop = remove commit
+# 提交 D 标示修改为 d
+</code></pre><p>例子 3.2：D 融入 C：</p>
+<pre tabindex="0"><code>git rebase -i C^
+
+# 提交 D 标示修改为 s
+</code></pre><h3 id="丢弃历史">丢弃历史</h3>
+<p><strong>重点内容第一次 Get</strong></p>
+<p>历史有的时候会成为负担。只保留最近的 100 次提交，抛弃之前的历史提交。那么应该如何操作呢？</p>
+<p>例：清除 tag A 之前的提交历史：</p>
+<pre tabindex="0"><code># 查看里程碑A指向的目录树
+git cat-file -p A^{tree}
+
+# 使用git commit-tree命令直接从该目录树创建提交
+echo &#34;Commit from tree of tag A.&#34; | git commit-tree A^{tree}
+8f7f94ba6a9d94ecc1c223aa4b311670599e1f86
+
+# 命令git commit-tree的输出是一个提交的SHA1哈希值。
+# 会发现这个提交没有历史提交，可以称之为孤儿提交。
+git log 8f7f94ba6a9d94ecc1c223aa4b311670599e1f86
+
+# 将master分支从里程碑到最新的提交全部迁移到刚刚生成的孤儿提交上。
+git rebase --onto 8f7f94ba6a9d94ecc1c223aa4b311670599e1f86 A master
+</code></pre><h3 id="反转提交">反转提交</h3>
+<pre tabindex="0"><code>git revert HEAD
+</code></pre><h2 id="git-克隆">Git 克隆</h2>
+<h3 id="鸡蛋不装在一个篮子里">鸡蛋不装在一个篮子里</h3>
+<pre tabindex="0"><code>1. git clone &lt;repository&gt; &lt;directory&gt;
+2. git clone --bare   &lt;repository&gt; &lt;directory.git&gt;
+3. git clone --mirror &lt;repository&gt; &lt;directory.git&gt;
+</code></pre><p>一般约定俗成裸版本库的目录名以 <code>.git</code> 为后缀。</p>
+<p>用法 3 区别于用法 2 之处在于用法 3 克隆出来的裸版本对上游版本库进行了注册，这样可以在裸版本库中使用 git fetch 命令和上游版本库进行持续同步。</p>
+<h3 id="克隆生成裸版本库">克隆生成裸版本库</h3>
+<pre tabindex="0"><code>git clone --bare /path/to/my/workspace/demo /path/to/repos/demo.git
+</code></pre><p>demo.git 目录就是版本库目录，不含工作区。</p>
+<pre tabindex="0"><code>git --git-dir=/path/to/repos/demo.git config core.bare
+true
+
+# 向其 push
+git push /path/to/repos/demo.git
+</code></pre><h3 id="创建生成裸版本库">创建生成裸版本库</h3>
+<pre tabindex="0"><code>git init --bare /path/to/repos/demo-init.git
+</code></pre><h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html">2. Git 独奏 — GotGit</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>关于 GitHub README.md 中图片加载失败</title>
       <link>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</link>
-      <pubDate>Wed, 22 Nov 2017 16:00:00 +0800</pubDate>
+      <pubDate>Wed, 22 Nov 2017 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/11/22/github-readme-content-length-exceeded/</guid>
       <description>&lt;h2 id=&#34;遇到的问题&#34;&gt;遇到的问题&lt;/h2&gt;
 &lt;p&gt;在编写 GitHub 的 README.md 后，其中引用的网络图片无法正常显示，点击 &lt;code&gt;alt&lt;/code&gt; 的文字提示：&lt;code&gt;Content length exceeded&lt;/code&gt;。&lt;/p&gt;
@@ -374,11 +1278,25 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://soyaine.cn/blog/2016/12/31/soyaine-daily-070&#34;&gt;关于 GitHub 无法图片加载的问题&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
+      <content:encoded><![CDATA[<h2 id="遇到的问题">遇到的问题</h2>
+<p>在编写 GitHub 的 README.md 后，其中引用的网络图片无法正常显示，点击 <code>alt</code> 的文字提示：<code>Content length exceeded</code>。</p>
+<!-- more -->
+<h2 id="分析">分析</h2>
+<p>根据 <a href="https://help.github.com/articles/about-anonymized-image-urls/">About anonymized image URLs</a> 这篇文章：上传的图片 URL 将被修改，所以个人信息将不会被跟踪。GitHub 将使用 <a href="https://github.com/atmos/camo">开源项目 Camo</a>。Camo 将为每一个图片生成一个以 <code>https://camo.githubusercontent.com/</code> 匿名代理 URL 同时隐藏来自其他用户的浏览器详细信息和相关信息。</p>
+<p>我引用的 GIF 图片有 <strong>7MB</strong> 多，那么图片大小的限制是多少？</p>
+<p><a href="https://github.com/atmos/camo/blob/master/server.coffee#L18">camo - server.coffee#L18</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">content_length_limit = parseInt(process.env.CAMO_LENGTH_LIMIT || 5242880, 10)
+</span></span></code></pre></div><p>换算后大小正好是 <strong>5MB</strong>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://soyaine.cn/blog/2016/12/31/soyaine-daily-070">关于 GitHub 无法图片加载的问题</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>Git checkout --theirs --ours 解决冲突文件</title>
       <link>https://zyf.im/2017/08/30/git-checkout-theirs-ours-resolve-conflict/</link>
-      <pubDate>Wed, 30 Aug 2017 20:00:00 +0800</pubDate>
+      <pubDate>Wed, 30 Aug 2017 20:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/08/30/git-checkout-theirs-ours-resolve-conflict/</guid>
       <description>&lt;p&gt;在 Git 合并冲突时，&lt;code&gt;git checkout --ours&lt;/code&gt; 和 &lt;code&gt;git checkout --theirs&lt;/code&gt; 用于选择保留哪一方的文件版本，特别适合处理自动生成的资源文件等不需要手动逐行解决的冲突。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -408,11 +1326,91 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git merge feature-a
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Engineer B 在 push 前需要拉最新的 master，因为改到了同一行代码，出现代码冲突。以下两种方式 Engineer B 都在 feature-b 分支上操作：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>在 Git 合并冲突时，<code>git checkout --ours</code> 和 <code>git checkout --theirs</code> 用于选择保留哪一方的文件版本，特别适合处理自动生成的资源文件等不需要手动逐行解决的冲突。</p>
+<!-- more -->
+<h2 id="基本用法">基本用法</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 保留当前分支的版本（丢弃对方的修改）</span>
+</span></span><span class="line"><span class="cl">git checkout --ours &lt;file&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 保留传入分支的版本（丢弃当前分支的修改）</span>
+</span></span><span class="line"><span class="cl">git checkout --theirs &lt;file&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解决冲突后需要 add</span>
+</span></span><span class="line"><span class="cl">git add &lt;file&gt;
+</span></span></code></pre></div><p>批量处理所有冲突文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout --theirs .
+</span></span><span class="line"><span class="cl">git add .
+</span></span></code></pre></div><h2 id="场景实例">场景实例</h2>
+<p>Engineer A、B 同时从 master checkout 自己的功能分支：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Engineer A</span>
+</span></span><span class="line"><span class="cl">git checkout -b feature-a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Engineer B</span>
+</span></span><span class="line"><span class="cl">git checkout -b feature-b
+</span></span></code></pre></div><p>Engineer A 开发比较快先进行了 push：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;feat: feature-a&#34;</span>
+</span></span><span class="line"><span class="cl">git checkout master
+</span></span><span class="line"><span class="cl">git merge feature-a
+</span></span><span class="line"><span class="cl">git push
+</span></span></code></pre></div><p>Engineer B 在 push 前需要拉最新的 master，因为改到了同一行代码，出现代码冲突。以下两种方式 Engineer B 都在 feature-b 分支上操作：</p>
+<h3 id="merge-合并代码">merge 合并代码</h3>
+<p>在 feature-b 上将 master 合并进来：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout feature-b
+</span></span><span class="line"><span class="cl">git fetch origin
+</span></span><span class="line"><span class="cl">git merge origin/master
+</span></span></code></pre></div><p>在处理冲突的过程中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以自己（Engineer B / feature-b）的代码为准</span>
+</span></span><span class="line"><span class="cl">git checkout --ours .
+</span></span><span class="line"><span class="cl">git checkout --ours file.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以 master 上的代码为准（包含 Engineer A 的修改）</span>
+</span></span><span class="line"><span class="cl">git checkout --theirs .
+</span></span></code></pre></div><h3 id="rebase-合并代码">rebase 合并代码</h3>
+<p>在 feature-b 上将提交重放到 master 之上：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout feature-b
+</span></span><span class="line"><span class="cl">git fetch origin
+</span></span><span class="line"><span class="cl">git rebase origin/master
+</span></span></code></pre></div><p>在处理冲突的过程中，<strong>ours 和 theirs 语义与 merge 相反</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以自己（Engineer B / feature-b）的代码为准</span>
+</span></span><span class="line"><span class="cl">git checkout --theirs .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以 master 上的代码为准（包含 Engineer A 的修改）</span>
+</span></span><span class="line"><span class="cl">git checkout --ours .
+</span></span></code></pre></div><h2 id="注意rebase-时语义相反">注意：rebase 时语义相反</h2>
+<p>在 <code>merge</code> 和 <code>rebase</code> 中，<code>--ours</code> 和 <code>--theirs</code> 的含义是<strong>反过来</strong>的：</p>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th><code>--ours</code></th>
+          <th><code>--theirs</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>git merge</code></td>
+          <td>当前分支</td>
+          <td>被合并的分支</td>
+      </tr>
+      <tr>
+          <td><code>git rebase</code></td>
+          <td>rebase 的目标分支（upstream）</td>
+          <td>你正在 rebase 的分支（你的提交）</td>
+      </tr>
+  </tbody>
+</table>
+<p>这是因为 rebase 本质上是将你的提交逐个&quot;重放&quot;到目标分支上，此时 Git 视角下&quot;当前分支&quot;是目标分支。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/">化解冲突：git merge 与 git rebase 中的 ours 和 theirs</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 3</title>
       <link>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</link>
-      <pubDate>Thu, 03 Aug 2017 11:00:00 +0800</pubDate>
+      <pubDate>Thu, 03 Aug 2017 11:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</guid>
       <description>&lt;p&gt;主要内容：【Git 基本操作】&lt;/p&gt;
 &lt;h2 id=&#34;git-基本操作&#34;&gt;Git 基本操作&lt;/h2&gt;
@@ -434,11 +1432,110 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;h3 id=&#34;删除文件&#34;&gt;删除文件&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;rm *.txt&lt;/code&gt; 针对的是 &lt;code&gt;工作区&lt;/code&gt;，对 &lt;code&gt;暂存区&lt;/code&gt; 和 &lt;code&gt;版本库&lt;/code&gt; 没有任何影响。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;git rm detached-commit.txt hack-1.txt new-commit.txt welcome.txt&lt;/code&gt; 删除动作加入了暂存区，commit 后在版本库罪行提交中删除了，在历史提交中尚在。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>主要内容：【Git 基本操作】</p>
+<h2 id="git-基本操作">Git 基本操作</h2>
+<h3 id="先来合个影">先来合个影</h3>
+<p>在 Git 里，“留影”用的命令叫做 <code>tag</code>，更加专业的术语叫做“里程碑”（打 tag，或打标签）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git tag -m <span class="s2">&#34;Say bye-bye to all previous practice.&#34;</span> old_practice
+</span></span></code></pre></div><p>里程碑无非也是一个引用，通过记录提交 ID（或者创建 Tag 对象）来为当前版本库状态进行“留影”。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rev-parse refs/tags/old_practice
+</span></span><span class="line"><span class="cl">41bd4e2cce0f8baa9bb4cdda62927b408c846cd6
+</span></span></code></pre></div><p><code>git describe</code> 显示当前版本库的最新提交的版本号。格式：<code>最近的 tag - 距离此 tag 的个数 - 该提交的 SHA1</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git describe
+</span></span><span class="line"><span class="cl">old_practice
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># .. commit something</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git describe
+</span></span><span class="line"><span class="cl">old_practice-2-g8861c65
+</span></span></code></pre></div><!-- more -->
+<h3 id="删除文件">删除文件</h3>
+<p><code>rm *.txt</code> 针对的是 <code>工作区</code>，对 <code>暂存区</code> 和 <code>版本库</code> 没有任何影响。</p>
+<p><code>git rm detached-commit.txt hack-1.txt new-commit.txt welcome.txt</code> 删除动作加入了暂存区，commit 后在版本库罪行提交中删除了，在历史提交中尚在。</p>
+<p>可以通过下面命令查看历史版本的文件列表：</p>
+<pre tabindex="0"><code>git ls-files --with-tree=HEAD^
+detached-commit.txt
+new-commit.txt
+welcome.txt
+</code></pre><p>查看在历史版本中尚在的删除文件的内容：</p>
+<pre tabindex="0"><code>git cat-file -p HEAD^:welcome.txt
+Hello.
+Nice to meet you.
+</code></pre><p><code>git add -u</code> 命令会对工作区中 <em>所有改动</em> 以及 <em>删除文件</em> 添加到暂存区。</p>
+<h3 id="恢复删除的文件">恢复删除的文件</h3>
+<pre tabindex="0"><code>git cat-file -p HEAD~1:welcome.txt &gt; welcome.txt
+</code></pre><p>然后加入暂存区，提交到版本库：</p>
+<pre tabindex="0"><code>git add -A
+git commit -m &#34;restore file: welcome.txt&#34;
+</code></pre><p>这是通过再次添加的方式恢复被删除的文件。</p>
+<p><code>git add -A</code> 命令会对工作区中 <em>所有改动</em> 以及 <em>新增文件</em> 添加到暂存区。</p>
+<h3 id="移动文件">移动文件</h3>
+<pre tabindex="0"><code>git mv welcome.txt README
+</code></pre><h3 id="交互界面">交互界面</h3>
+<pre tabindex="0"><code>git add -i
+</code></pre><h3 id="文件忽略">文件忽略</h3>
+<pre tabindex="0"><code>cat &gt; .gitignore &lt;&lt; EOF
+&gt; hello
+&gt; *.o
+&gt; *.h
+&gt; EOF
+</code></pre><p>查看被忽略的文件：</p>
+<pre tabindex="0"><code>git status --ignored -s
+</code></pre><p>将忽略的文件强制添加到仓库中：</p>
+<pre tabindex="0"><code>git add -f hello.h
+git commit -m &#34;add hello.h&#34;
+[master 48456ab] add hello.h
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+ create mode 100644 src/hello.h
+</code></pre><p><em>忽略只对未跟踪文件有效，对于已加入版本库的文件无效。</em> 将 <code>hello.h</code> 添加到版本库后，对 <code>hello.h</code> 的修改都会立刻被跟踪到。<code>.gitignore</code> 只是对未入库的文件起作用。</p>
+<p><strong>本地独享式忽略文件</strong></p>
+<p>.gitignore 设置的文件忽略是共享式的，是因为.gitignore 被添加到版本库后成为了版本库的一部分，文件忽略在他人的工作区中同样生效。</p>
+<p>享式忽略有两种方式：</p>
+<ul>
+<li>在版本库.git 目录下的一个文件.git/info/exclude 来设置文件忽略。</li>
+<li>通过 Git 的配置变量 core.excludesfile 指定的一个忽略文件，其设置的忽略对所有文件均有效。</li>
+</ul>
+<pre tabindex="0"><code>git config --global core.excludesfile /home/jiangxin/_gitignore
+git config core.excludesfile
+/home/jiangxin/_gitignore
+
+cat /home/jiangxin/_gitignore
+*~        # vim 临时文件
+*.pyc     # python 的编译文件
+.*.mmx    # 不是正则表达式哦，因为 FreeMind-MMX 的辅助文件以点开头
+</code></pre><p><strong>Git 忽略语法</strong></p>
+<ul>
+<li><code>#</code> 表示开始的行被忽略。</li>
+<li>通配符。* 任意多字符，? 一个字符，[abc] 可选字符范围。</li>
+<li><code>最后面是一个 /</code> 表示忽略的是整个目录，同名文件不忽略，否则同名的文件和目录都忽略。</li>
+<li><code>最前面 !</code> 表示不忽略。</li>
+</ul>
+<pre tabindex="0"><code># 这是注释行 —— 被忽略
+*.a       # 忽略所有以 .a 为扩展名的文件。
+!lib.a    # 但是 lib.a 文件或者目录不要忽略，即使前面设置了对 *.a 的忽略。
+/TODO     # 只忽略根目录下的 TODO 文件，子目录的 TODO 文件不忽略。
+build/    # 忽略所有 build/ 目录下的文件。
+doc/*.txt # 忽略文件如 doc/notes.txt，但是文件如 doc/server/arch.txt 不被忽略。
+</code></pre><h3 id="文件归档">文件归档</h3>
+<p>如果想压缩工作区文件归档，可能一不小心会把版本库（.git 目录）包含其中，甚至将工作区中的忽略文件、临时文件也包含其中。所以 Git 提供了一个归档命令 <code>git archive</code>。</p>
+<pre tabindex="0"><code># 基于最新提交建立归档文件latest.zip
+git archive -o latest.zip HEAD
+
+# 只将目录 src 和 doc 建立到归档 partial.tar 中
+git archive -o partial.tar  HEAD src doc
+
+# 基于里程碑v1.0建立归档，并且为归档中文件添加目录前缀1.0
+git archive --format=tar --prefix=1.0/ v1.0 | gzip &gt; foo-1.0.tar.gz
+</code></pre><h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html">2. Git 独奏 — GotGit</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 2</title>
       <link>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</link>
-      <pubDate>Thu, 20 Jul 2017 11:00:00 +0800</pubDate>
+      <pubDate>Thu, 20 Jul 2017 11:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/</guid>
       <description>&lt;p&gt;主要内容：【Git 重置】、【Git 检出】、【恢复进度】&lt;/p&gt;
 &lt;h2 id=&#34;git-重置&#34;&gt;Git 重置&lt;/h2&gt;
@@ -459,11 +1556,177 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;查看一下 &lt;code&gt;master&lt;/code&gt; 分支的日志文件 &lt;code&gt;.git/logs/refs/heads/master&lt;/code&gt; 中的内容。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tail -5 .git/logs/refs/heads/master
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Git 提供了一个 &lt;code&gt;git reflog&lt;/code&gt; 命令，对这个文件进行操作。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>主要内容：【Git 重置】、【Git 检出】、【恢复进度】</p>
+<h2 id="git-重置">Git 重置</h2>
+<h3 id="分支游标-master-的探秘">分支游标 master 的探秘</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --graph --oneline
+</span></span><span class="line"><span class="cl">* e695606 which version checked in?
+</span></span><span class="line"><span class="cl">* a0c641e who does commit?
+</span></span><span class="line"><span class="cl">* 9e8a761 initialized.
+</span></span></code></pre></div><p>引用 <code>refs/heads/master</code> 就好像是一个游标，在有新的提交发生的时候指向了新的提交。</p>
+<p>Git 提供了 <code>git reset</code> 命令，可以将“游标”指向任意一个存在的提交 ID。注意下面的命令中使用了 <code>--hard</code> 参数，会破坏工作区未提交的改动，慎用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset --hard HEAD^
+</span></span><span class="line"><span class="cl">HEAD is now at e695606 which version checked in?
+</span></span></code></pre></div><!-- more -->
+<h3 id="用-reflog-挽救错误的重置">用 reflog 挽救错误的重置</h3>
+<p>通过 <code>.git/logs</code> 目录下日志文件记录了分支的变更。默认非裸版本库（带有工作区）都提供分支日志功能，这是因为带有工作区的版本库都有如下设置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config core.logallrefupdates
+</span></span><span class="line"><span class="cl"><span class="nb">true</span>
+</span></span></code></pre></div><p>查看一下 <code>master</code> 分支的日志文件 <code>.git/logs/refs/heads/master</code> 中的内容。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tail -5 .git/logs/refs/heads/master
+</span></span></code></pre></div><p>Git 提供了一个 <code>git reflog</code> 命令，对这个文件进行操作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reflog show master <span class="p">|</span> head -5
+</span></span><span class="line"><span class="cl">9e8a761 master@<span class="o">{</span>0<span class="o">}</span>: 9e8a761: updating HEAD
+</span></span><span class="line"><span class="cl">e695606 master@<span class="o">{</span>1<span class="o">}</span>: HEAD^: updating HEAD
+</span></span><span class="line"><span class="cl">4902dc3 master@<span class="o">{</span>2<span class="o">}</span>: commit: does master follow this new commit?
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>重置 master 为两次改变之前的值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset --hard master@<span class="o">{</span>2<span class="o">}</span>
+</span></span></code></pre></div><h3 id="深入了解-git-reset-命令">深入了解 git reset 命令</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>&lt;commit&gt;<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> &lt;paths&gt;...
+</span></span><span class="line"><span class="cl">git reset <span class="o">[</span>--soft <span class="p">|</span> --mixed <span class="p">|</span> --hard <span class="p">|</span> --merge <span class="p">|</span> --keep<span class="o">]</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>&lt;commit&gt;<span class="o">]</span>
+</span></span></code></pre></div><p>为了避免路径和引用（或者提交 ID）同名而冲突，可以在 <code>&lt;paths&gt;</code> 前用两个连续的短线（减号）作为分隔。</p>
+<p><img alt="20-got-git-reading-notes-solo-git-reset" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202770-b5966d80-8658-11ea-92e4-c348b8f12313.png"></p>
+<ul>
+<li><code>--hard</code> 会执行上图中的 1、2、3 全部的三个动作。</li>
+</ul>
+<ol>
+<li>替换引用的指向。引用指向新的提交 ID。</li>
+<li>替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。</li>
+<li>替换工作区。替换后，工作区的内容变得和暂存区一致，也和 HEAD 所指向的目录树内容相同。</li>
+</ol>
+<ul>
+<li><code>--soft</code> 会执行上图中的操作 1。</li>
+<li><code>--mixed</code>（缺省）会执行上图中的操作 1 和操作 2。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset
+</span></span><span class="line"><span class="cl">git reset HEAD
+</span></span><span class="line"><span class="cl"><span class="c1"># 仅用 HEAD 指向的目录树重置暂存区，工作区不会受到影响，相当于将之前用 git add 命令更新到暂存区的内容撤出暂存区。引用也未改变，因为引用重置到 HEAD 相当于没有重置。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git reset -- filename
+</span></span><span class="line"><span class="cl">git reset HEAD filename
+</span></span><span class="line"><span class="cl"><span class="c1"># 仅将文件 filename 撤出暂存区，暂存区中其他文件不改变。相当于对命令 git add filename 的反向操作。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git reset --soft HEAD^
+</span></span><span class="line"><span class="cl"><span class="c1"># 工作区和暂存区不改变，但是引用向前回退一次。当对最新提交的提交说明或者提交的更改不满意时，撤销最新的提交以便重新提交。git commit 的反向操作。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在之前曾经介绍过一个修补提交命令 git commit --amend，用于对最新的提交进行重新提交以修补错误的提交说明或者错误的提交文件。修补提交命令实际上相当于执行了下面两条命令。（注：文件 .git/COMMIT_EDITMSG 保存了上次的提交日志）</span>
+</span></span><span class="line"><span class="cl">git reset --soft HEAD^
+</span></span><span class="line"><span class="cl">git commit -e -F .git/COMMIT_EDITMSG
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git reset HEAD^
+</span></span><span class="line"><span class="cl"><span class="c1"># 工作区不改变，但是暂存区会回退到上一次提交之前，引用也会回退一次。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git reset --hard HEAD^
+</span></span><span class="line"><span class="cl"><span class="c1"># 彻底撤销最近的提交。引用回退到前一次，而且工作区和暂存区都会回退到上一次提交的状态。自上一次以来的提交全部丢失。</span>
+</span></span></code></pre></div><h2 id="git-检出">Git 检出</h2>
+<p>重置命令 <code>git reset</code> 的一个用途就是修改引用（如 master）的游标。如果 HEAD 要改变该如何改变呢？检出命令 <code>git checkout</code> 该命令的实质就是修改 HEAD 本身的指向，该命令不会影响分支“游标”（如 master）。</p>
+<h3 id="head-的重置即检出">HEAD 的重置即检出</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git co HEAD^
+</span></span><span class="line"><span class="cl">Note: checking out <span class="s1">&#39;HEAD^&#39;</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">You are in <span class="s1">&#39;detached HEAD&#39;</span> state. You can look around, make experimental
+</span></span><span class="line"><span class="cl">changes and commit them, and you can discard any commits you make in this
+</span></span><span class="line"><span class="cl">state without impacting any branches by performing another checkout.
+</span></span><span class="line"><span class="cl"><span class="c1"># 您现在处于 &#39;分离头指针&#39; 状态。您可以检查、测试和提交，而不影响任何分支。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过执行另外的一个 checkout 检出指令会丢弃在此状态下的修改和提交。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">If you want to create a new branch to retain commits you create, you may
+</span></span><span class="line"><span class="cl"><span class="k">do</span> so <span class="o">(</span>now or later<span class="o">)</span> by using -b with the checkout <span class="nb">command</span> again. Example:
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果想保留在此状态下的修改和提交，使用 -b 参数调用 checkout 检出指令以</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建新的跟踪分支。如：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  git checkout -b &lt;new-branch-name&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">HEAD is now at 3175afd...
+</span></span></code></pre></div><p>什么叫做 <code>detached HEAD</code> “分离头指针”状态？查看一下此时 HEAD 的内容就明白了。</p>
+<pre tabindex="0"><code>cat .git/HEAD
+3175afde9450a1dc40b09d05a012b45e967cb80f
+</code></pre><p>原来“分离头指针”状态指的就是 HEAD 头指针指向了一个具体的提交 ID，而不是一个引用（分支）。注意上面的 <code>reflog</code> 是 <code>HEAD</code> 头指针的变迁记录，而非 <code>master</code> 分支。</p>
+<p>查看一下 HEAD 和 master 对应的提交 ID，会发现现在它们指向的不一样。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rev-parse HEAD master
+</span></span><span class="line"><span class="cl">3175afde9450a1dc40b09d05a012b45e967cb80f
+</span></span><span class="line"><span class="cl">bd08cb462d38b54b930cf1934b0c33f2e4592390
+</span></span></code></pre></div><p>在“分离头指针”模式仍然可以进行提交：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status
+</span></span><span class="line"><span class="cl">HEAD detached at 3175afd
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>但是在 checkout 到其他分支时，刚才的提交会丢失，但是这个提交仍然在版本库中，由于这个提交没有被任何分支跟踪到，因此并不能保证这个提交会永久存在。</p>
+<p>实际上当 reflog 中含有该提交的日志过期后，这个提交随时都会从版本库中彻底清除。</p>
+<h3 id="挽救分离头指针">挽救分离头指针</h3>
+<p>在“分离头指针”模式下进行的测试提交除了使用提交 ID <code>acc2f69</code> 访问之外，不能通过 master 分支或其他引用访问到。使用合并操作 <code>git merge</code> 将提交 acc2f69 合并到 master 分支中来。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git merge acc2f69
+</span></span><span class="line"><span class="cl">Merge made by recursive.
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><h2 id="恢复进度">恢复进度</h2>
+<h3 id="继续暂存区未完成的实践">继续暂存区未完成的实践</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 保存当前工作进度</span>
+</span></span><span class="line"><span class="cl">git stash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看保存的进度用命令</span>
+</span></span><span class="line"><span class="cl">git stash list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 最近保存的进度进行恢复</span>
+</span></span><span class="line"><span class="cl">git stash pop
+</span></span><span class="line"><span class="cl">git stash pop <span class="o">[</span>--index<span class="o">]</span> <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --index 除了恢复工作区的文件外，还尝试恢复暂存区</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从该 &lt;stash&gt; 中恢复</span>
+</span></span></code></pre></div><pre tabindex="0"><code>git stash [save [-p|--patch] [-k|--[no-]keep-index] [-q|--quiet]
+                [-u|--include-untracked] [-a|--all] [&lt;message&gt;]]
+</code></pre><ul>
+<li><code>--patch</code> 会显示工作区和 HEAD 的差异，通过对差异文件的编辑决定在进度中最终要保存的工作区的内容，通过编辑差异文件可以在进度中排除无关内容。</li>
+<li>使用 <code>-k</code> 或者 <code>--keep-index</code> 参数，在保存进度后不会将暂存区重置。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 不删除恢复的进度之外，其余和 git stash pop 命令一样</span>
+</span></span><span class="line"><span class="cl">git stash apply <span class="o">[</span>--index<span class="o">]</span> <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除一个存储的进度</span>
+</span></span><span class="line"><span class="cl">git stash drop <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除所有存储的进度</span>
+</span></span><span class="line"><span class="cl">git stash clear
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 基于进度创建分支</span>
+</span></span><span class="line"><span class="cl">git stash branch &lt;branchname&gt; &lt;stash&gt;
+</span></span></code></pre></div><h3 id="探秘-git-stash">探秘 git stash</h3>
+<p>在执行 <code>git stash</code> 命令时，Git 实际调用了一个脚本文件实现相关的功能。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git --exec-path
+</span></span><span class="line"><span class="cl">/usr/lib/git-core
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">file /usr/lib/git-core/git-stash
+</span></span><span class="line"><span class="cl">/usr/lib/git-core/git-stash: POSIX shell script text executable
+</span></span></code></pre></div><p>本地没有被版本控制系统跟踪的文件并不能保存进度。因此本地新文件需要执行添加 <code>add</code> 再执行 git stash 命令。</p>
+<p>在用 <code>git stash</code> 命令保存进度时，提供说明更容易找到对应的进度文件。</p>
+<p>每个进度的标识都是 <code>stash@{&lt;n&gt;}</code> 格式，像极了前面介绍的 <code>reflog</code> 的格式。<code>git stash</code> 的就是用到了前面介绍的引用和引用变更日志 <code>reflog</code> 来实现的。</p>
+<p>用 git stash 保存进度，实际上会将进度保存在引用 refs/stash 所指向的提交中。多次的进度保存，实际上相当于引用 refs/stash 一次又一次的变化，而 refs/stash 引用的变化由 reflog（即.git/logs/refs/stash）所记录下来。</p>
+<h3 id="如何在引用-refsstash-中同时保存暂存区的进度和工作区中的进度">如何在引用 refs/stash 中同时保存暂存区的进度和工作区中的进度</h3>
+<pre tabindex="0"><code>git log --graph --pretty=raw  refs/stash -2
+*   commit e5c0cdc2dedc3e50e6b72a683d928e19a1d9de48
+|\  tree 780c22449b7ff67e2820e09a6332c360ddc80578
+| | parent 2b31c199d5b81099d2ecd91619027ab63e8974ef
+| | parent c5edbdcc90addb06577ff60f644acd1542369194
+| | author Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800
+| | committer Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800
+| |
+| |     WIP on master: 2b31c19 Merge commit &#39;acc2f69&#39;
+| |
+| * commit c5edbdcc90addb06577ff60f644acd1542369194
+|/  tree 780c22449b7ff67e2820e09a6332c360ddc80578
+|   parent 2b31c199d5b81099d2ecd91619027ab63e8974ef
+|   author Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800
+|   committer Jiang Xin &lt;jiangxin@ossxp.com&gt; 1291623066 +0800
+|
+|       index on master: 2b31c19 Merge commit &#39;acc2f69&#39;
+</code></pre><p>最新的提交说明中有 <code>WIP</code>（Work In Progess）字样，说明代表了工作区进度。而最新提交的第二个父提交（上图中显示为第二个提交）有 index on master 字样，说明这个提交代表着暂存区的进度。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html">2. Git 独奏 — GotGit</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 独奏 - Part 1</title>
       <link>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</link>
-      <pubDate>Wed, 19 Jul 2017 16:00:00 +0800</pubDate>
+      <pubDate>Wed, 19 Jul 2017 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/</guid>
       <description>&lt;p&gt;主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】&lt;/p&gt;
 &lt;h2 id=&#34;git-初始化&#34;&gt;Git 初始化&lt;/h2&gt;
@@ -489,11 +1752,285 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ls -aF
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./  ../  .git/
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个隐藏的 &lt;code&gt;.git&lt;/code&gt; 目录就是 Git 版本库（又叫仓库，repository）。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】</p>
+<h2 id="git-初始化">Git 初始化</h2>
+<p>设置一下 Git 的环境变量，这个设置是一次性的工作。即这些设置会在全局文件（用户主目录下的 <code>~/.gitconfig</code>）或系统文件（<code>/etc/gitconfig</code>）中做永久的记录。</p>
+<p>配置的用户名和邮件地址将在版本库提交时作为提交者的用户名和邮件地址。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;Jiang Xin&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email jiangxin@ossxp.com
+</span></span></code></pre></div><h3 id="设置一些-git-别名以便可以使用更为简洁的子命令">设置一些 Git 别名，以便可以使用更为简洁的子命令</h3>
+<p>只在本用户的全局配置中添加 Git 命令别名：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.br branch
+</span></span><span class="line"><span class="cl">git config --global alias.ci <span class="s2">&#34;commit -s&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global alias.co checkout
+</span></span><span class="line"><span class="cl">git config --global alias.st <span class="s2">&#34;-p status&#34;</span>
+</span></span></code></pre></div><!-- more -->
+<h3 id="版本库的初始化">版本库的初始化</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir demo
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> demo
+</span></span><span class="line"><span class="cl">git init
+</span></span></code></pre></div><p>初始化空的 Git 版本库于 <code>/path/to/my/workspace/demo/.git/</code></p>
+<p>git init 命令的后面直接输入目录名称</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /path/to/my/workspace
+</span></span><span class="line"><span class="cl">git init demo
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -aF
+</span></span><span class="line"><span class="cl">./  ../  .git/
+</span></span></code></pre></div><p>这个隐藏的 <code>.git</code> 目录就是 Git 版本库（又叫仓库，repository）。</p>
+<p><code>.git</code> 版本库目录所在的目录，即 <code>/path/to/my/workspace/demo</code> 目录称为 <strong>工作区</strong>。</p>
+<p>将新建立的文件添加到版本库</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add welcome.txt
+</span></span></code></pre></div><p>再执行一次提交操作，使用 <code>-m</code> 参数直接给出了提交说明。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git ci -m <span class="s2">&#34;initialized&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 7f0b2be<span class="o">]</span> init
+</span></span><span class="line"><span class="cl"> <span class="m">1</span> file changed, <span class="m">0</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">0</span> deletions<span class="o">(</span>-<span class="o">)</span>
+</span></span><span class="line"><span class="cl"> create mode <span class="m">100644</span> welcome.txt
+</span></span></code></pre></div><p><code>git ci</code> 是上面配置的别名，我个人觉得 <code>-s</code> 这个参数比较冗余。</p>
+<h3 id="思考为什么工作区下有一个-git-目录">思考：为什么工作区下有一个 <code>.git</code> 目录？</h3>
+<p>Git 的这种设计，将版本库放在工作区根目录下，所有的版本控制操作（除了和其他远程版本库之间的互操作）都在本地即可完成，不像 Subversion 只有寥寥无几的几个命令才能脱离网络执行。而且 Git 也没有 CVS 和 Subversion 的安全泄漏问题（只要保护好 .git 目录），也没有 Subversion 在本地文件搜索时出现搜索结果混乱的问题，甚至 Git 还提供了一条 <code>git grep</code> 命令来更好地搜索工作区的文件内容。</p>
+<pre tabindex="0"><code>git grep &#34;工作区文件内容搜索&#34;
+</code></pre><h3 id="当工作区中包含了子目录在子目录中执行-git-命令时如何定位版本库呢">当工作区中包含了子目录，在子目录中执行 Git 命令时，如何定位版本库呢？</h3>
+<p>当在 Git 工作区目录下执行操作的时候，会对目录依次向上递归查找 <code>.git</code> 目录，找到的 <code>.git</code> 目录就是工作区对应的版本库，<code>.git</code> 所在的目录就是工作区的根目录，文件 <code>.git/index</code> 记录了工作区文件的状态（实际上是 <strong>暂存区</strong> 的状态）。</p>
+<p>如果跟踪一下执行 <code>git status</code> 命令时的磁盘访问，会看到沿目录依次向上递归的过程。</p>
+<pre tabindex="0"><code>strace -e &#39;trace=file&#39; git status
+</code></pre><h3 id="那么有什么办法知道-git-版本库的位置以及工作区的根目录在哪里呢">那么有什么办法知道 Git 版本库的位置，以及工作区的根目录在哪里呢？</h3>
+<p>显示版本库 <code>.git</code> 目录所在的位置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rev-parse --git-dir
+</span></span><span class="line"><span class="cl">/path/to/my/workspace/demo/.git
+</span></span></code></pre></div><p>显示工作区根目录。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rev-parse --show-toplevel
+</span></span><span class="line"><span class="cl">/path/to/my/workspace/demo
+</span></span></code></pre></div><h3 id="把版本库-git-目录放在工作区是不是太不安全了">把版本库 <code>.git</code> 目录放在工作区，是不是太不安全了？</h3>
+<p>Git 克隆可以降低因为版本库和工作区混杂在一起导致的版本库被破坏的风险。在本机另外的磁盘/目录中建立 Git 克隆，并在工作区有改动提交时，手动或自动地执行向克隆版本库的推送 <code>git push</code> 操作。如果使用网络协议，还可以实现在其他机器上建立克隆，这样就更安全了（双机备份）。</p>
+<h3 id="思考git-config-命令参数的区别">思考：<code>git config</code> 命令参数的区别？</h3>
+<p>将打开 /path/to/my/workspace/demo/.git/config 文件进行编辑：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /path/to/my/workspace/demo/
+</span></span><span class="line"><span class="cl">git config -e
+</span></span></code></pre></div><p>将打开 /home/jiangxin/.gitconfig（用户主目录下的 .gitconfig 文件）全局配置文件进行编辑：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config -e --global
+</span></span></code></pre></div><p>将打开 /etc/gitconfig 系统级配置文件进行编辑：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config -e --system
+</span></span></code></pre></div><p>Git 的三个配置文件分别是 <code>版本库级别的配置文件</code>、<code>全局配置文件</code>（用户主目录下）和 <code>系统级配置文件</code>（/etc 目录下）。</p>
+<p>其中 <code>版本库级别配置文件</code> 的优先级最高，<code>全局配置文件</code> 其次，<code>系统级配置文件</code> 优先级最低。</p>
+<p>Git 配置文件采用的是 INI 文件格式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">cat /path/to/my/workspace/demo/.git/config</span>
+</span></span><span class="line"><span class="cl"><span class="k">[core]</span>
+</span></span><span class="line"><span class="cl">        <span class="na">repositoryformatversion</span> <span class="o">=</span> <span class="s">0
+</span></span></span><span class="line"><span class="cl"><span class="s">        filemode = true
+</span></span></span><span class="line"><span class="cl"><span class="s">        bare = false
+</span></span></span><span class="line"><span class="cl"><span class="s">        logallrefupdates = true</span>
+</span></span></code></pre></div><p>例如读取 <code>[core]</code> 小节的 <code>bare</code> 的属性值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config &lt;section&gt;.&lt;key&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git config core.bare
+</span></span><span class="line"><span class="cl"><span class="nb">false</span>
+</span></span></code></pre></div><p>更改或设置 INI 文件中某个属性</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config &lt;section&gt;.&lt;key&gt; &lt;value&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">git config a.b something
+</span></span><span class="line"><span class="cl">git config x.y.z others
+</span></span></code></pre></div><p>打开 <code>.git/config</code> 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>a<span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">b</span> <span class="o">=</span> something
+</span></span><span class="line"><span class="cl"><span class="o">[</span>x <span class="s2">&#34;y&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">z</span> <span class="o">=</span> others
+</span></span></code></pre></div><p>可以用 <code>git config</code> 命令操作任何其他的 INI 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">GIT_CONFIG</span><span class="o">=</span>test.ini git config a.b.c.d <span class="s2">&#34;hello, world&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">GIT_CONFIG</span><span class="o">=</span>test.ini git config a.b.c.d
+</span></span><span class="line"><span class="cl">hello, world
+</span></span></code></pre></div><h3 id="思考是谁完成的提交">思考：是谁完成的提交？</h3>
+<p>当最新的提交删除了 <code>user.name</code> 和 <code>user.email</code>，提交时 Git 对提交者的用户名和邮件地址做了大胆的猜测，这个猜测可能是错的。</p>
+<p>重新设置 <code>user.name</code> 和 <code>user.email</code>，然后执行下面的命令，重新修改最新的提交，改正作者和提交者的错误信息。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit --amend --allow-empty --reset-author
+</span></span></code></pre></div><ul>
+<li>参数 <code>--amend</code> 是对刚刚的提交进行修补，这样就可以改正前面错误的提交（用户信息错误），而不会产生另外的新提交。</li>
+<li>参数 <code>--allow-empty</code> 是因为要进行修补的提交实际上是一个空白提交，Git 默认不允许空白提交。</li>
+<li>参数 <code>--reset-author</code> 的含义是将 Author（提交者）的 ID 重置，否则只会影响最新的 Commit（提交者）的 ID。这条命令也会重置 AuthorDate 信息。</li>
+</ul>
+<h3 id="思考随意设置提交者姓名是否太不安全">思考：随意设置提交者姓名，是否太不安全？</h3>
+<p>Git 可以随意设置提交的用户名和邮件地址信息，这是分布式版本控制系统的特性使然，每个人都是自己版本库的主人，很难也没有必要进行身份认证从而使用经过认证的用户名作为提交的用户名。</p>
+<p>但是可以使用 GitLab 等服务管理权限。</p>
+<h3 id="思考命令别名是干什么的">思考：命令别名是干什么的？</h3>
+<p>命令别名可以帮助用户解决从其他版本控制系统迁移到 Git 后的使用习惯问题。</p>
+<h3 id="备份本章的工作成果">备份本章的工作成果</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /path/to/my/workspace
+</span></span><span class="line"><span class="cl">git clone demo demo-step-1
+</span></span><span class="line"><span class="cl">Cloning into demo-step-1...
+</span></span><span class="line"><span class="cl"><span class="k">done</span>.
+</span></span></code></pre></div><h2 id="git-暂存区">Git 暂存区</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --stat
+</span></span></code></pre></div><p>可以用 <code>git log</code> 查看提交日志，附加的 <code>--stat</code> 参数看到每次提交的文件变更统计。</p>
+<h3 id="修改不能直接提交">修改不能直接提交？</h3>
+<p>现在就将修改的文件“添加”到提交暂存区：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add welcome.txt
+</span></span></code></pre></div><p>这时如果和 HEAD（当前版本库的头指针）或者 master 分支（当前工作分支）进行比较，会发现有差异。这个差异才是正常的，因为尚未真正提交么。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git diff HEAD
+</span></span></code></pre></div><p>用简洁方式显示状态</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git status -s
+</span></span><span class="line"><span class="cl">M  welcome.txt
+</span></span></code></pre></div><p>通过参数 <code>--cached</code> 或者 <code>--staged</code> 参数调用 git diff 命令，看到的是提交暂存区 <code>stage</code> 和版本库中文件的差异。不然看到的是工作区的变动。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git diff --cached
+</span></span></code></pre></div><p>现在执行 git commit 命令进行提交。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit -m <span class="s2">&#34;which version checked in?&#34;</span>
+</span></span></code></pre></div><p>如何证明提交成功了呢？通过查看提交日志，看到了新的提交。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --pretty<span class="o">=</span>oneline
+</span></span></code></pre></div><h3 id="理解-git-暂存区-stage">理解 Git 暂存区 stage</h3>
+<p>当执行 <code>git status</code> 命令（或者 <code>git diff</code> 命令）扫描工作区改动的时候，先依据 <code>.git/index</code> 文件中记录的（工作区跟踪文件的）时间戳、长度等信息判断工作区文件是否改变。</p>
+<p>文件 <code>.git/index</code> 实际上就是一个包含文件索引的目录树，像是一个虚拟的工作区。在这个虚拟工作区的目录树中，记录了文件名、文件的状态信息（时间戳、文件长度等）。文件的内容并不存储其中，而是保存在 Git 对象库 <code>.git/objects</code> 目录中，文件索引建立了文件和对象库中对象实体之间的对应。</p>
+<p><img alt="got-git-reading-notes-solo-git-stage" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202431-33a64480-8658-11ea-8771-07b2bf81f657.png"></p>
+<ul>
+<li>图中可以看出此时 HEAD 实际是指向 master 分支的一个“游标”。所以图示的命令中出现 HEAD 的地方可以用 master 来替换。</li>
+<li>图中的 objects 标识的区域为 Git 的对象库，实际位于 <code>.git/objects</code> 目录下，会在后面的章节重点介绍。</li>
+<li>当执行 <code>git reset HEAD</code> 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。</li>
+<li>当执行 <code>git rm --cached &lt;file&gt;</code> 命令时，会直接从暂存区删除文件，工作区则不做出改变。</li>
+<li>当执行 <code>git checkout .</code> 或者 <code>git checkout -- &lt;file&gt;</code> 命令时，会用暂存区全部或指定的文件替换工作区的文件。这个操作很危险，会清除工作区中未添加到暂存区的改动。</li>
+<li>当执行 <code>git checkout HEAD .</code> 或者 <code>git checkout HEAD &lt;file&gt;</code> 命令时，会用 HEAD 指向的 master 分支中的全部或者部分文件替换暂存区和以及工作区中的文件。这个命令也是极具危险性的，因为不但会清除工作区中未提交的改动，也会清除暂存区中未提交的改动。</li>
+</ul>
+<h3 id="git-diff-魔法">Git diff 魔法</h3>
+<p>有什么办法能够像查看工作区一样的，直观的查看暂存区以及 HEAD 当中的目录树么？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git ls-tree -l HEAD
+</span></span><span class="line"><span class="cl"><span class="m">100644</span> blob fd3c069c1de4f4bc9b15940f490aeb48852f3c42      <span class="m">25</span>    welcome.txt
+</span></span></code></pre></div><p>要显示暂存区的目录树，可以使用 <code>git ls-files</code> 命令。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git ls-files -s
+</span></span><span class="line"><span class="cl"><span class="m">100644</span> 18832d35117ef2f013c4009f5b2128dfaeff354f <span class="m">0</span>       a/b/c/hello.txt
+</span></span></code></pre></div><p><img alt="got-git-reading-notes-solo-git-diff" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202327-06599680-8658-11ea-8329-93b424bc3726.png"></p>
+<h3 id="不要使用-git-commit--a">不要使用 git commit -a</h3>
+<p>提交命令 <code>git commit</code> 可以带上 <code>-a</code> 参数，对本地所有变更的文件执行提交操作，包括本地修改的文件，删除的文件，但不包括未被版本库跟踪的文件。</p>
+<p>这个“偷懒”的提交命令，就会丢掉 Git 暂存区带给用户最大的好处：对提交内容进行控制的能力。</p>
+<h2 id="git-对象">Git 对象</h2>
+<p>什么是 <code>HEAD</code>？什么是 <code>master</code>？为什么它们二者可以相互替换使用？为什么 Git 中的很多对象像提交、树、文件内容等都用 40 位的 <code>SHA1</code> 哈希值来表示？</p>
+<h3 id="git-对象库探秘">Git 对象库探秘</h3>
+<p>40 位十六进制数字组成的 <code>SHA1</code> 哈希值</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log -1 --pretty<span class="o">=</span>raw
+</span></span><span class="line"><span class="cl"><span class="c1"># 这是本次提交的唯一标识。</span>
+</span></span><span class="line"><span class="cl">commit e695606fc5e31b2ff9038a48a3d363f4c21a3d86
+</span></span><span class="line"><span class="cl"><span class="c1"># 这是本次提交所对应的目录树。</span>
+</span></span><span class="line"><span class="cl">tree f58da9a820e3fd9d84ab2ca2f1b467ac265038f9
+</span></span><span class="line"><span class="cl"><span class="c1"># 这是本地提交的父提交（上一次提交）。</span>
+</span></span><span class="line"><span class="cl">parent a0c641e92b10d8bcca1ed1bf84ca80340fdefee6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    which version checked in?
+</span></span></code></pre></div><p>研究 Git 对象 ID 的命令是 <code>git cat-file</code>，用下面的命令可以查看一下这三个 ID 的类型。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git cat-file -t e695606
+</span></span><span class="line"><span class="cl">commit
+</span></span><span class="line"><span class="cl">git cat-file -t f58d
+</span></span><span class="line"><span class="cl">tree
+</span></span><span class="line"><span class="cl">git cat-file -t fd3c06
+</span></span><span class="line"><span class="cl">blob
+</span></span></code></pre></div><!-- more -->
+<p>再用 <code>git cat-file</code> 命令查看一下这几个对象的内容。对于 <code>blob</code> 对象，这个对象保存着文件 welcome.txt 的内容。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git cat-file -p fd3c06
+</span></span><span class="line"><span class="cl">Hello.
+</span></span><span class="line"><span class="cl">Nice to meet you.
+</span></span></code></pre></div><p>这个写对象都存在 Git 库中的 <code>objects</code> 目录下，ID 的前两位作为目录名，后 38 位作为文件名。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> id in e695606 f58da9a a0c641e fd3c069<span class="p">;</span> <span class="k">do</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  ls .git/objects/<span class="si">${</span><span class="nv">id</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span>/<span class="si">${</span><span class="nv">id</span><span class="p">:</span><span class="nv">2</span><span class="si">}</span>*<span class="p">;</span> <span class="k">done</span>
+</span></span><span class="line"><span class="cl">.git/objects/e6/95606fc5e31b2ff9038a48a3d363f4c21a3d86
+</span></span><span class="line"><span class="cl">.git/objects/f5/8da9a820e3fd9d84ab2ca2f1b467ac265038f9
+</span></span><span class="line"><span class="cl">.git/objects/a0/c641e92b10d8bcca1ed1bf84ca80340fdefee6
+</span></span><span class="line"><span class="cl">.git/objects/fd/3c069c1de4f4bc9b15940f490aeb48852f3c42
+</span></span></code></pre></div><p><img alt="got-git-reading-notes-solo-git-objects" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202330-08235a00-8658-11ea-9040-b280b00b7e43.png"></p>
+<h3 id="head-和-master-的奥秘">HEAD 和 master 的奥秘</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log -1 HEAD
+</span></span><span class="line"><span class="cl">git log -1 master
+</span></span><span class="line"><span class="cl">git log -1 refs/heads/master
+</span></span></code></pre></div><p>在当前版本库中，<code>HEAD</code>、<code>master</code> 和 <code>refs/heads/master</code> 具有相同的指向。现在到版本库 <code>.git</code> 中一探它们的究竟：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">find .git -name HEAD -o -name master
+</span></span><span class="line"><span class="cl">.git/HEAD
+</span></span><span class="line"><span class="cl">.git/logs/HEAD
+</span></span><span class="line"><span class="cl">.git/logs/refs/heads/master
+</span></span><span class="line"><span class="cl">.git/refs/heads/master
+</span></span></code></pre></div><p>显示一下 <code>.git/HEAD</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat .git/HEAD
+</span></span><span class="line"><span class="cl">ref: refs/heads/master
+</span></span></code></pre></div><p>指向一个引用：<code>refs/heads/master</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat .git/refs/heads/master
+</span></span><span class="line"><span class="cl">e695606fc5e31b2ff9038a48a3d363f4c21a3d86
+</span></span></code></pre></div><p>显示该提交的内容</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git cat-file -p e695606fc5e31b2ff9038a48a3d363f4c21a3d86
+</span></span><span class="line"><span class="cl">tree f58da9a820e3fd9d84ab2ca2f1b467ac265038f9
+</span></span><span class="line"><span class="cl">parent a0c641e92b10d8bcca1ed1bf84ca80340fdefee6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">which version checked in?
+</span></span></code></pre></div><p>原来分支 <code>master</code> 指向的是一个提交 ID（最新提交）。</p>
+<p>这样的分支实现是多么的巧妙啊：既然可以从任何提交开始建立一条历史跟踪链，那么用一个文件指向这个链条的最新提交，那么这个文件就可以用于追踪整个提交历史了。</p>
+<p>这个文件就是 <code>.git/refs/heads/master</code> 文件。</p>
+<p><img alt="got-git-reading-notes-solo-git-repos-detail" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202610-78ca7680-8658-11ea-9b85-651555b8f005.png"></p>
+<p>目录 <code>.git/refs</code> 是保存引用的命名空间，其中 <code>.git/refs/heads</code> 目录下的引用又称为分支。对于分支既可以使用正规的长格式的表示法，如 <code>refs/heads/master</code>，也可以去掉前面的两级目录用 <code>master</code> 来表示。Git 有一个底层命令 <code>git rev-parse</code> 可以用于显示引用对应的提交 ID。</p>
+<h3 id="问题sha1-哈希值到底是什么如何生成的">问题：SHA1 哈希值到底是什么，如何生成的？</h3>
+<p>哈希(hash)是一种数据摘要算法（或称散列算法），是信息安全领域当中重要的理论基石。该算法将任意长度的输入经过散列运算转换为固定长度的输出。固定长度的输出可以称为对应的输入的数字摘要或哈希值。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> -n Git <span class="p">|</span>sha1sum
+</span></span><span class="line"><span class="cl">5819778898df55e3a762f0c5728b457970d72cae  -
+</span></span></code></pre></div><p>提交的 SHA1 哈希值生成方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git cat-file commit HEAD <span class="p">|</span> wc -c
+</span></span><span class="line"><span class="cl"><span class="m">234</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在提交信息的前面加上内容 `commit 234&lt;null&gt;`（`&lt;null&gt;`为空字符），然后执行 SHA1 哈希算法。</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span> <span class="nb">printf</span> <span class="s2">&#34;commit 234\000&#34;</span><span class="p">;</span> git cat-file commit HEAD <span class="o">)</span> <span class="p">|</span> sha1sum
+</span></span><span class="line"><span class="cl">e695606fc5e31b2ff9038a48a3d363f4c21a3d86  -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面命令得到的哈希值和用 `git rev-parse` 看到的是一样的。</span>
+</span></span><span class="line"><span class="cl">git rev-parse HEAD
+</span></span><span class="line"><span class="cl">e695606fc5e31b2ff9038a48a3d363f4c21a3d86
+</span></span></code></pre></div><p>文件内容的 SHA1 哈希值生成方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 文件总共包含 25 字节的内容。</span>
+</span></span><span class="line"><span class="cl">git cat-file blob HEAD:welcome.txt <span class="p">|</span> wc -c
+</span></span><span class="line"><span class="cl"><span class="m">25</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在文件内容的前面加上blob 25&lt;null&gt;的内容，然后执行SHA1哈希算法。</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span> <span class="nb">printf</span> <span class="s2">&#34;blob 25\000&#34;</span><span class="p">;</span> git cat-file blob HEAD:welcome.txt <span class="o">)</span> <span class="p">|</span> sha1sum
+</span></span><span class="line"><span class="cl">fd3c069c1de4f4bc9b15940f490aeb48852f3c42  -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面命令得到的哈希值和用git rev-parse看到的是一样的。</span>
+</span></span><span class="line"><span class="cl">git rev-parse HEAD:welcome.txt
+</span></span><span class="line"><span class="cl">fd3c069c1de4f4bc9b15940f490aeb48852f3c42
+</span></span></code></pre></div><p>树的 SHA1 哈希值的形成方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># HEAD对应的树的内容共包含39个字节。</span>
+</span></span><span class="line"><span class="cl">git cat-file tree HEAD^<span class="o">{</span>tree<span class="o">}</span> <span class="p">|</span> wc -c
+</span></span><span class="line"><span class="cl"><span class="m">39</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在树的内容的前面加上tree 39&lt;null&gt;的内容，然后执行SHA1哈希算法。</span>
+</span></span><span class="line"><span class="cl"><span class="o">(</span> <span class="nb">printf</span> <span class="s2">&#34;tree 39\000&#34;</span><span class="p">;</span> git cat-file tree HEAD^<span class="o">{</span>tree<span class="o">}</span> <span class="o">)</span> <span class="p">|</span> sha1sum
+</span></span><span class="line"><span class="cl">f58da9a820e3fd9d84ab2ca2f1b467ac265038f9  -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面命令得到的哈希值和用git rev-parse看到的是一样的。</span>
+</span></span><span class="line"><span class="cl">git rev-parse HEAD^<span class="o">{</span>tree<span class="o">}</span>
+</span></span><span class="line"><span class="cl">f58da9a820e3fd9d84ab2ca2f1b467ac265038f9
+</span></span></code></pre></div><h3 id="问题为什么不用顺序的数字来表示提交">问题：为什么不用顺序的数字来表示提交？</h3>
+<p>集中式版本控制系统因为只有一个集中式的版本库，可以很容易的实现依次递增的全局唯一的提交号。Git 作为分布式版本控制系统，开发可以是非线性的。这就要求提交的编号不能仅仅是本地局部有效，而是要“全球唯一”。</p>
+<p>采用部分的 SHA1 哈希值。不必写全 40 位的哈希值，只采用开头的部分，不和现有其他的冲突即可。</p>
+<p>使用 <code>master</code> 代表分支 <code>master</code> 中最新的提交，使用全称 <code>refs/heads/master</code> 亦可。</p>
+<p>使用 <code>HEAD</code> 代表版本库中最近的一次提交。</p>
+<p>符号 <code>^</code> 可以用于指代父提交。例如：</p>
+<ul>
+<li><code>HEAD^</code> 代表版本库中上一次提交，即最近一次提交的父提交。</li>
+<li><code>HEAD^^</code> 则代表 <code>HEAD^</code> 的父提交。</li>
+</ul>
+<p>对于一个提交有多个父提交，可以在符号 <code>^</code> 后面用数字表示是第几个父提交。例如：</p>
+<ul>
+<li><code>a573106^2</code> 含义是提交 <code>a573106</code> 的多个父提交中的第二个父提交。</li>
+<li><code>HEAD^1</code> 相当于 <code>HEAD^</code> 含义是 HEAD 多个父提交中的第一个。</li>
+<li><code>HEAD^^2</code> 含义是 <code>HEAD^</code>（HEAD 父提交）的多个父提交中的第二个。</li>
+</ul>
+<p>符号 <code>~&lt;n&gt;</code> 也可以用于指代祖先提交。效果等同：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">a573106~5
+</span></span><span class="line"><span class="cl">a573106^^^^^
+</span></span></code></pre></div><p>提交所对应的树对象：<code>a573106^{tree}</code></p>
+<p>某一此提交对应的文件对象：<code>a573106:path/to/file</code></p>
+<p>暂存区中的文件对象：<code>:path/to/file</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rev-parse HEAD
+</span></span><span class="line"><span class="cl">git cat-file -p e695
+</span></span><span class="line"><span class="cl">git cat-file -p e695^
+</span></span><span class="line"><span class="cl">git rev-parse e695^<span class="o">{</span>tree<span class="o">}</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/02-git-solo/index.html">2. Git 独奏 — GotGit</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>【Git 权威指南】读书笔记 - 初识 Git</title>
       <link>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</link>
-      <pubDate>Wed, 12 Jul 2017 15:00:00 +0800</pubDate>
+      <pubDate>Wed, 12 Jul 2017 15:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/07/12/got-git-reading-notes-meet-git/</guid>
       <description>&lt;p&gt;Git 是一款分布式版本控制系统，有别于 CVS 和 SVN 等集中式版本控制系统，Git 可以让研发团队更加高效地协同工作、提高生产率。使用 Git，开发人员的工作不会因为频繁地遭遇提交冲突而中断，管理人员也无须为数据的备份而担心。经过 Linux 这样庞大的项目的考验之后，Git 被证明可以胜任任何规模的团队，即便这个团队的成员分布于世界各地。&lt;/p&gt;
 &lt;p&gt;Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人的知识积累、保护好自己的数据，而且还能与他人分享自己的成果。&lt;/p&gt;
@@ -538,11 +2075,62 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo aptitude install git
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo aptitude install git-doc git-svn git-email gitk
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;软件包 git-svn、git-email、gitk 本来也是 Git 软件包的一部分，但是因为有着不一样的软件包依赖（如更多 perl 模组，tk 等），所以单独作为软件包发布。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>Git 是一款分布式版本控制系统，有别于 CVS 和 SVN 等集中式版本控制系统，Git 可以让研发团队更加高效地协同工作、提高生产率。使用 Git，开发人员的工作不会因为频繁地遭遇提交冲突而中断，管理人员也无须为数据的备份而担心。经过 Linux 这样庞大的项目的考验之后，Git 被证明可以胜任任何规模的团队，即便这个团队的成员分布于世界各地。</p>
+<p>Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人的知识积累、保护好自己的数据，而且还能与他人分享自己的成果。</p>
+<h2 id="版本控制的前世和今生">版本控制的前世和今生</h2>
+<p>即便是在 CVS 出现之前的“史前时代”，也已经有了非常好用的源码比较和打补丁的工具：<code>diff</code> 和 <code>patch</code>，他们今天生命力依然顽强。</p>
+<!-- more -->
+<p>对这 <code>hello</code> <code>world</code> 两个文件执行 diff 命令，查看两个文件的差异。如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">diff -u hello world <span class="p">|</span> less -N
+</span></span></code></pre></div><p>上面执行 <code>diff</code> 命令的 <code>-u</code> 参数很重要，使得差异输出中带有上下文。管道后面带有 <code>-N</code> 参数的 <code>less</code> 命令（按字母 <code>q</code> 退出）会在输出的每一行前面添加行号，便于对输出结果进行说明。</p>
+<p>命令 <code>patch</code> 相当于 <code>diff</code> 的反向操作</p>
+<p>分布式版本控制系统最大的反传统之处在于，可以不需要集中式的版本库，每个人都工作在通过克隆操作建立的本地版本库中，也就是说每个人都拥有一个完整的版本库。分布式版本控制系统的几乎所有操作包括查看提交日志、提交、创建里程碑和分支、合并分支、回退等都直接在本地完成而不需要网络连接。每个人都是本地版本库的主人，不再有谁能提交谁不能提交的限制，加之多样的协同工作模型（版本库间推送、拉回，及补丁文件传送等）让开源项目的参与度有爆发式增长。</p>
+<h2 id="爱上-git-的理由">爱上 Git 的理由</h2>
+<ul>
+<li>每日的工作备份。鸡蛋不全放在一个篮子里。</li>
+<li>异地协同工作。通过一个远程版本库，同步数据。</li>
+<li>现场版本控制。在部署的现场，进行源代码的修改，能够将修改结果甚至修改过程一并带走，并能够将修改结果合并至项目对应的代码库中。</li>
+<li>避免引入辅助目录。只在工作区的顶级目录下创建名为 <code>.git</code> 的目录（版本库目录），如果认为唯一的一个 <code>.git</code> 目录也过于碍眼，可以将其放到工作区之外的任意目录。一旦这么做了，你在执行 Git 命令时，要通过命令行 <code>--git-dir</code> 或环境变量 <code>GIT_DIR</code> 为工作区指定版本库目录，甚至还要指定工作区目录。</li>
+<li>重写提交说明。这个命令如果不带 <code>-m</code> 参数，会进入提交说明编辑界面。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit --amend
+</span></span></code></pre></div><ul>
+<li>想吃后悔药。假如提交的数据中不小心包含了一个不应该检入的虚拟机文件——大约有 1 个 GB。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rm --cached winxp.img
+</span></span><span class="line"><span class="cl">git commit --amend
+</span></span></code></pre></div><ul>
+<li>更好用的提交列表。正确的版本控制系统的使用方法是：一次提交只干一件事。而不要在下班时才想起来要提交，那样的话版本控制系统就被降格为文件备份系统了。</li>
+<li>更好的差异比较。<code>git diff</code></li>
+<li>工作进度保存。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git stash
+</span></span><span class="line"><span class="cl">git checkout &lt;new_branch&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># do something</span>
+</span></span><span class="line"><span class="cl">git checkout &lt;orignal_branch&gt;
+</span></span><span class="line"><span class="cl">git stash pop
+</span></span></code></pre></div><ul>
+<li>代理 SVN 提交实现移动式办公。</li>
+<li>无处不在的分页器。<code>-p</code></li>
+<li>快。Git 作为分布式版本控制系统几乎所有的操作都在本地进行。</li>
+</ul>
+<h2 id="安装-git">安装 Git</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo aptitude install git
+</span></span><span class="line"><span class="cl">sudo aptitude install git-doc git-svn git-email gitk
+</span></span></code></pre></div><p>软件包 git-svn、git-email、gitk 本来也是 Git 软件包的一部分，但是因为有着不一样的软件包依赖（如更多 perl 模组，tk 等），所以单独作为软件包发布。</p>
+<p>软件包 git-doc 则包含了 Git 的 HTML 格式文档，可以选择安装。如果安装了 Git 的 HTML 格式的文档，则可以通过执行 <code>git help -w &lt;sub-command&gt;</code> 命令，自动用 Web 浏览器打开相关子命令 <code>&lt;sub-command&gt;</code> 的 HTML 帮助。</p>
+<h2 id="中文支持">中文支持</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global core.quotepath <span class="nb">false</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.worldhello.net/gotgit/01-meet-git/index.html">1. 初识 Git — GotGit</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>Git pull rebase 和 merge no-ff 保持提交线图整洁</title>
       <link>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</link>
-      <pubDate>Fri, 17 Mar 2017 16:00:00 +0800</pubDate>
+      <pubDate>Fri, 17 Mar 2017 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/03/17/git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph/</guid>
       <description>&lt;p&gt;git log 中的一个清晰的提交线图是很方便进行 code review 和代码回退
 &lt;code&gt;git pull --rebase&lt;/code&gt; 主要是为是将提交约线图平坦化，而 &lt;code&gt;git merge --no-ff&lt;/code&gt; 则是刻意制造分叉&lt;/p&gt;
@@ -561,11 +2149,73 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                /
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;           D---E---F---G  master
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果是执行 &lt;code&gt;git pull&lt;/code&gt; 后，结果多出了 H 这个没必要的提交记录。提交线图会变成这样：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>git log 中的一个清晰的提交线图是很方便进行 code review 和代码回退
+<code>git pull --rebase</code> 主要是为是将提交约线图平坦化，而 <code>git merge --no-ff</code> 则是刻意制造分叉</p>
+<h2 id="pull-rebase">pull rebase</h2>
+<blockquote>
+<p>perform a rebase after fetching</p>
+</blockquote>
+<h3 id="状况">状况</h3>
+<p>Git 作为分布式版本控制系统，所有修改操作都是基于本地的，在团队协作过程中，假设你和你的同伴在本地中分别有各自的新提交，而你的同伴先于你 push 了代码到远程分支上，所以你必须先执行 <code>git pull</code> 来获取同伴的提交，然后才能 push 自己的提交到远程分支。</p>
+<p><img alt="170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-01" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202129-c1cdfb00-8657-11ea-814e-49f8618f301c.jpg"></p>
+<p>按照 Git 的默认策略，如果远程分支和本地分支之间的提交线图有分叉的话（即不是 fast-forwarded），Git 会执行一次 merge 操作，因此产生<strong>一次没意义的提交记录</strong>，从而造成了像上图那样的混乱。</p>
+<h3 id="解决">解决</h3>
+<p>其实在 pull 操作的时候，使用 <code>git pull --rebase</code> 选项即可很好地解决上述问题。 加上 <code>--rebase</code> 参数的作用是，提交线图有分叉的话，Git 会 <code>rebase</code> 策略来代替默认的 <code>merge</code> 策略。
+假设提交线图在执行 pull 前是这样的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">                 A---B---C  remotes/origin/master
+</span></span><span class="line"><span class="cl">                /
+</span></span><span class="line"><span class="cl">           D---E---F---G  master
+</span></span></code></pre></div><p>如果是执行 <code>git pull</code> 后，结果多出了 H 这个没必要的提交记录。提交线图会变成这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">                 A---B---C remotes/origin/master
+</span></span><span class="line"><span class="cl">                /         <span class="se">\
+</span></span></span><span class="line"><span class="cl">           D---E---F---G---H master
+</span></span></code></pre></div><p>如果是执行 <code>git pull --rebase</code> 的话，提交线图就会变成这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">                       remotes/origin/master
+</span></span><span class="line"><span class="cl">                           <span class="p">|</span>
+</span></span><span class="line"><span class="cl">           D---E---A---B---C---F<span class="s1">&#39;---G&#39;</span>  master
+</span></span></code></pre></div><p>F G 两个提交通过 <code>rebase</code> 方式重新拼接在 C 之后，多余的分叉去掉了，目的达到。</p>
+<h3 id="注意">注意</h3>
+<p>使用 <code>git log --graph</code> 可查看提交线图
+使用 <code>git pull --rebase</code> 是为了使提交线图更好看，从而方便 code review 和代码回退
+使用 <code>git pull --rebase</code> 比直接 pull 容易导致冲突的产生，如果预期冲突比较多的话，建议还是直接 pull</p>
+<!--more -->
+<h2 id="merge-no-ff">merge no-ff</h2>
+<blockquote>
+<p>generate a merge commit even if the merge resolve</p>
+</blockquote>
+<h3 id="例子-1">例子 1</h3>
+<p><code>git pull --rebase</code> 策略目的是修整提交线图，使其形成一条直线，而即将要用到的 <code>git merge --no-ff &lt;branch-name&gt;</code> 策略偏偏是反行其道，刻意地弄出提交线图分叉出来。</p>
+<p>假设你在本地准备合并两个分支，而刚好这两个分支是 fast-forwarded 的，那么直接合并后你得到一个直线的提交线图，当然这样没什么坏处，但如果你想更清晰地告诉你同伴：这一系列的提交都是为了实现同一个目的，那么你可以刻意地将这次提交内容弄成一次提交线图分叉。</p>
+<p>执行 <code>git merge --no-ff &lt;branch-name&gt;</code> 的结果大概会是这样的：</p>
+<p><img alt="170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-02" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202132-c397be80-8657-11ea-8135-781a36fc64e5.jpg"></p>
+<p>中间的分叉线路图很清晰的显示这些提交都是为了实现：<strong>complete adjusting user domains and tags</strong></p>
+<h3 id="例子-2">例子 2</h3>
+<p>往往在合并分支之前（假设要在本地将 feature 分支合并到 dev 分支），会先检查 feature 分支是否部分落后于远程 dev 分支：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout dev
+</span></span><span class="line"><span class="cl">git pull <span class="c1"># 更新 dev 分支</span>
+</span></span><span class="line"><span class="cl">git log feature..dev <span class="c1"># 对比</span>
+</span></span></code></pre></div><p>如果没有输出任何提交信息的话，即表示 feature 对于 dev 分支是 up-to-date 的。如果有输出的话而马上执行了 <code>git merge --no-ff</code> 的话，提交线图会变成这样：</p>
+<p><img alt="170317-git-pull-rebase-and-merge-no-ff-to-keep-clear-commit-graph-03" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202134-c4305500-8657-11ea-8c4b-52f858f669ec.jpg"></p>
+<p>所以这时在合并前，通常先执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout feature
+</span></span><span class="line"><span class="cl">git rebase dev
+</span></span></code></pre></div><p>这样就可以将 feature 重新拼接到更新了的 dev 之后，然后就可以合并了。这时分叉点将上移，最终得到一个干净舒服的提交线图</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>使用 <code>git pull --rebase</code> 和 <code>git merge --no-ff</code> 其实和直接使用 <code>git pull</code> <code>git merge</code> 得到的代码应该是一样。</li>
+<li>使用 <code>git pull --rebase</code> 主要是为是将提交约线图平坦化，而 <code>git merge --no-ff</code> 则是刻意制造分叉。</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://hungyuhei.github.io/2012/08/07/better-git-commit-graph-using-pull---rebase-and-merge---no-ff.html">洁癖者用 Git：pull &ndash;rebase 和 merge &ndash;no-ff</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Git 修改提交历史</title>
       <link>https://zyf.im/2017/03/13/git-modify-commits-history/</link>
-      <pubDate>Mon, 13 Mar 2017 17:00:00 +0800</pubDate>
+      <pubDate>Mon, 13 Mar 2017 17:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/03/13/git-modify-commits-history/</guid>
       <description>&lt;p&gt;在使用 Git 时，我们经常需要修改本地提交记录，比如：修改最近一次提交、将多次小的 commit 合并成一个、或者批量修改提交者信息。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -603,11 +2253,109 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#  x, exec = run command (the rest of the line) using shell&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;修改指定提交说明&#34;&gt;修改指定提交说明&lt;/h3&gt;
 &lt;p&gt;将 &lt;code&gt;pick&lt;/code&gt; 改为 &lt;code&gt;reword&lt;/code&gt;：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>在使用 Git 时，我们经常需要修改本地提交记录，比如：修改最近一次提交、将多次小的 commit 合并成一个、或者批量修改提交者信息。</p>
+<blockquote>
+<p>以下操作会修改 Git 历史记录（SHA 值会变化），请确保不要对已推送到共享仓库的提交执行这些操作。</p>
+</blockquote>
+<h2 id="修改最近一次提交">修改最近一次提交</h2>
+<h3 id="修改提交说明">修改提交说明</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit --amend
+</span></span></code></pre></div><p>进入编辑器修改提交说明，保存退出即可。</p>
+<h3 id="追加文件到最近一次提交">追加文件到最近一次提交</h3>
+<p>先将修改的文件添加到暂存区，再运行 <code>--amend</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add new_file.cpp
+</span></span><span class="line"><span class="cl">git commit --amend
+</span></span></code></pre></div><p>也可以用 <code>-a</code> 自动暂存所有已跟踪文件的修改，但要注意不要提交多余文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit -a --amend
+</span></span></code></pre></div><h3 id="将文件从本次提交中移除">将文件从本次提交中移除</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset HEAD~1
+</span></span><span class="line"><span class="cl">git checkout -- filename  <span class="c1"># 要从本次提交移除的文件</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;new commit&#34;</span>
+</span></span></code></pre></div><h2 id="修改多个提交记录交互式-rebase">修改多个提交记录（交互式 Rebase）</h2>
+<p>使用 <code>git rebase -i</code> 可以对历史提交进行修改、重排、合并、拆分等操作。</p>
+<p>例如修改最近 3 次提交：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rebase -i HEAD~3
+</span></span></code></pre></div><p>进入交互界面后，会看到提交列表（注意顺序与 <code>git log</code> 相反，最早的在上面）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pick fecb551 Init the view model
+</span></span><span class="line"><span class="cl">pick bb199a0 Update the version
+</span></span><span class="line"><span class="cl">pick bc5cd9d Add new method
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Commands:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  p, pick = use commit</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  r, reword = use commit, but edit the commit message</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  e, edit = use commit, but stop for amending</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  s, squash = use commit, but meld into previous commit</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  f, fixup = like &#34;squash&#34;, but discard this commit&#39;s log message</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  x, exec = run command (the rest of the line) using shell</span>
+</span></span></code></pre></div><h3 id="修改指定提交说明">修改指定提交说明</h3>
+<p>将 <code>pick</code> 改为 <code>reword</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">reword fecb551 Init the view model
+</span></span><span class="line"><span class="cl">pick bb199a0 Update the version
+</span></span><span class="line"><span class="cl">pick bc5cd9d Add new method
+</span></span></code></pre></div><p>保存退出后，rebase 会在该提交处打开编辑器让你修改说明。</p>
+<p>如果还需要修改提交内容，使用 <code>edit</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">edit fecb551 Init the view model
+</span></span><span class="line"><span class="cl">pick bb199a0 Update the version
+</span></span><span class="line"><span class="cl">pick bc5cd9d Add new method
+</span></span></code></pre></div><p>rebase 会在该提交处暂停，完成修改后运行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit --amend
+</span></span><span class="line"><span class="cl">git rebase --continue
+</span></span></code></pre></div><h3 id="重排或删除提交">重排或删除提交</h3>
+<p>直接调整行的顺序或删除对应行即可。例如删除 &ldquo;Update the version&rdquo; 并交换其余两次提交的顺序：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pick bc5cd9d Add new method
+</span></span><span class="line"><span class="cl">pick fecb551 Init the view model
+</span></span></code></pre></div><h3 id="合并提交squash">合并提交（Squash）</h3>
+<p>将 <code>pick</code> 改为 <code>squash</code>，该提交会被合并到上一个提交中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pick fecb551 Init the view model
+</span></span><span class="line"><span class="cl">squash bb199a0 Update the version
+</span></span><span class="line"><span class="cl">squash bc5cd9d Add new method
+</span></span></code></pre></div><p>保存退出后，rebase 会让你编辑合并后的提交说明。</p>
+<h3 id="拆分提交">拆分提交</h3>
+<p>使用 <code>edit</code> 暂停在要拆分的提交处，然后重置并分次提交：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pick fecb551 Init the view model
+</span></span><span class="line"><span class="cl">edit bb199a0 Update the version
+</span></span><span class="line"><span class="cl">pick bc5cd9d Add new method
+</span></span></code></pre></div><p>rebase 暂停后执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git reset HEAD^
+</span></span><span class="line"><span class="cl">git add file1
+</span></span><span class="line"><span class="cl">git commit -m <span class="s1">&#39;Update the version1&#39;</span>
+</span></span><span class="line"><span class="cl">git add file2
+</span></span><span class="line"><span class="cl">git commit -m <span class="s1">&#39;Update the version2&#39;</span>
+</span></span><span class="line"><span class="cl">git rebase --continue
+</span></span></code></pre></div><h2 id="批量修改提交者信息">批量修改提交者信息</h2>
+<p>查看当前仓库中所有提交者信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git log --format<span class="o">=</span><span class="s1">&#39;%aN %aE&#39;</span> <span class="p">|</span> sort -u
+</span></span></code></pre></div><p>使用 <code>filter-branch</code> 批量替换（如果 email 从未设置过，<code>OLD_EMAIL</code> 可以填 <code>user.name</code>）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git filter-branch -f --env-filter <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">OLD_EMAIL=&#34;old@qq.com&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">CORRECT_NAME=&#34;new_name&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">CORRECT_EMAIL=&#34;new@gmail.com&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">if [ &#34;$GIT_COMMITTER_EMAIL&#34; = &#34;$OLD_EMAIL&#34; ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">then
+</span></span></span><span class="line"><span class="cl"><span class="s1">    export GIT_COMMITTER_NAME=&#34;$CORRECT_NAME&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    export GIT_COMMITTER_EMAIL=&#34;$CORRECT_EMAIL&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">fi
+</span></span></span><span class="line"><span class="cl"><span class="s1">if [ &#34;$GIT_AUTHOR_EMAIL&#34; = &#34;$OLD_EMAIL&#34; ]
+</span></span></span><span class="line"><span class="cl"><span class="s1">then
+</span></span></span><span class="line"><span class="cl"><span class="s1">    export GIT_AUTHOR_NAME=&#34;$CORRECT_NAME&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    export GIT_AUTHOR_EMAIL=&#34;$CORRECT_EMAIL&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">fi
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;</span> --tag-name-filter cat -- --branches --tags
+</span></span></code></pre></div><p>修改历史后需要强制推送：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git push -f --tags
+</span></span></code></pre></div><p>如果远程分支有保护策略（如 GitLab），需要先在 Project → Settings → Repository → Protected branches 中取消保护。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://glgjing.github.io/blog/2015/01/06/git-xiu-gai-ti-jiao-li-shi/">Git 修改提交历史 - GLGJing&rsquo;s Blog</a></li>
+<li><a href="https://segmentfault.com/a/1190000008032330">Git 批量修改历史 commit 中的 user.name 和 user.email | segmentfault</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>GitHub Webhook 自动部署 Hexo</title>
       <link>https://zyf.im/2016/07/01/github-webhook-example/</link>
-      <pubDate>Fri, 01 Jul 2016 20:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Jul 2016 20:00:00 +0000</pubDate>
       <guid>https://zyf.im/2016/07/01/github-webhook-example/</guid>
       <description>&lt;p&gt;在 &lt;a href=&#34;https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/&#34;&gt;GitHub Pages 不被百度收录解决方案&lt;/a&gt; 中，思路二是通过 Dnspod 的智能 DNS 服务。简而言之就是搭建一个 Server，做一个 Blog 的镜像站，专为百度收录使用。&lt;/p&gt;
 &lt;p&gt;但是每次将新建的博客文章 &lt;code&gt;PUSH&lt;/code&gt; 到 GitHub 后，还要再登陆 Server &lt;code&gt;PULL&lt;/code&gt; 一下，简直是太蠢了。那有什么解决办法吗？答：GitHub Webhook。&lt;/p&gt;
@@ -623,11 +2371,99 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;h2 id=&#34;响应-webhook&#34;&gt;响应 Webhook&lt;/h2&gt;
 &lt;p&gt;在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。&lt;/p&gt;
 &lt;p&gt;自己在 GitHub 搜索下 &lt;code&gt;github webhook&lt;/code&gt;，&lt;code&gt;language&lt;/code&gt; 选择 &lt;code&gt;Python&lt;/code&gt; 便找到了 Python 编写的：&lt;a href=&#34;https://github.com/razius/github-webhook-handler&#34;&gt;razius/github-webhook-handler&lt;/a&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>在 <a href="/2016/06/30/github-pages-forbidden-baiduspide-solution/">GitHub Pages 不被百度收录解决方案</a> 中，思路二是通过 Dnspod 的智能 DNS 服务。简而言之就是搭建一个 Server，做一个 Blog 的镜像站，专为百度收录使用。</p>
+<p>但是每次将新建的博客文章 <code>PUSH</code> 到 GitHub 后，还要再登陆 Server <code>PULL</code> 一下，简直是太蠢了。那有什么解决办法吗？答：GitHub Webhook。</p>
+<!-- more -->
+<h2 id="webhook">Webhook</h2>
+<p>Webhook，也就是人们常说的钩子，是一个很有用的工具。你可以通过定制 Webhook 来监测你在 Github.com 上的各种事件，最常见的莫过于 push 事件。</p>
+<p>如果你设置了一个监测 push 事件的 Webhook，那么每当你的这个项目有了任何提交，这个 Webhook 都会被触发，这时 Github 就会发送一个 HTTP POST 请求到你配置好的地址。</p>
+<p>如此一来，你就可以通过这种方式去自动完成一些重复性工作；比如，你可以用 Webhook 来自动触发一些持续集成（CI）工具的运作，比如 Travis CI；又或者是通过 Webhook 去部署你的线上服务器。</p>
+<p>Github 开发者平台的文档中对 Webhook 的所能做的事是这样描述的：</p>
+<blockquote>
+<p>You’re only limited by your imagination.</p>
+</blockquote>
+<h2 id="响应-webhook">响应 Webhook</h2>
+<p>在参考文章里博主是使用 Node.js 编写的服务端响应代码，但考虑到自己对 Node.js 不熟悉，还要部署环境，所以改用 Python 语言编写响应代码。</p>
+<p>自己在 GitHub 搜索下 <code>github webhook</code>，<code>language</code> 选择 <code>Python</code> 便找到了 Python 编写的：<a href="https://github.com/razius/github-webhook-handler">razius/github-webhook-handler</a></p>
+<p>自己的 VPS 是在 <a href="https://bandwagonhost.com/aff.php?aff=5403">Bandwagon Host</a> 上购买的，最合适的配置：</p>
+<ul>
+<li>Self-managed service</li>
+<li>SSD: 10 GB</li>
+<li>RAM: 512 MB</li>
+<li>CPU: 1x Intel Xeon</li>
+<li>BW: 1000 GB/mo</li>
+<li>Link speed: 1 Gigabit</li>
+<li>VPS technology: OpenVZ/KiwiVM</li>
+<li>Linux OS: 32-bit and 64-bit Centos, Debian, Ubuntu, Fedora</li>
+</ul>
+<p>费用：</p>
+<ul>
+<li>$2.99 USD Monthly</li>
+<li>$7.99 USD Quarterly</li>
+<li>$12.99 USD Semi-Annually</li>
+<li>$19.99 USD Annually</li>
+</ul>
+<p>Bandwagon Host 支持支付宝付款很是方便，优惠码：<code>IAMSMART52J3NC</code> 再打个 9.5 折左右。这配置有时会 <code>(out of stock)</code> 等等随缘会有的。</p>
+<h3 id="安装-git">安装 Git</h3>
+<pre tabindex="0"><code>apt-get update
+apt-get install git
+</code></pre><h3 id="clone-raziusgithub-webhook-handler">clone <a href="https://github.com/razius/github-webhook-handler">razius/github-webhook-handler</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/razius/github-webhook-handler.git
+</span></span></code></pre></div><p>根据 github-webhook-handler Gettings started:</p>
+<h4 id="installation-requirements">Installation Requirements</h4>
+<p>Install dependencies found in requirements.txt</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install -r requirements.txt
+</span></span></code></pre></div><h4 id="repository-configuration">Repository Configuration</h4>
+<p>Edit repos.json to configure repositories, each repository must be registered under the form <code>GITHUB_USER/REPOSITORY_NAME</code>.</p>
+<pre tabindex="0"><code>{
+    &#34;razius/puppet&#34;: {
+        &#34;path&#34;: &#34;/home/puppet&#34;,
+        &#34;key&#34;: &#34;MyVerySecretKey&#34;,
+        &#34;action&#34;: [[&#34;git&#34;, &#34;pull&#34;, &#34;origin&#34;, &#34;master&#34;]]
+    },
+    &#34;d3non/somerandomexample/branch:live&#34;: {
+        &#34;path&#34;: &#34;/home/exampleapp&#34;,
+        &#34;key&#34;: &#34;MyVerySecretKey&#34;,
+        &#34;action&#34;: [[&#34;git&#34;, &#34;pull&#34;, &#34;origin&#34;, &#34;live&#34;],
+            [&#34;echo&#34;, &#34;execute&#34;, &#34;some&#34;, &#34;commands&#34;, &#34;...&#34;]]
+    }
+}
+</code></pre><p>过程如果出现：<code>pip: command not found</code> 可以执行：</p>
+<pre tabindex="0"><code>sudo apt-get install python-pip
+</code></pre><h4 id="set-environment-variable-for-the-reposjson-config">Set environment variable for the repos.json config</h4>
+<pre tabindex="0"><code>export REPOS_JSON_PATH=/path/to/repos.json
+</code></pre><h4 id="start-the-server">Start the server</h4>
+<pre tabindex="0"><code>python index.py 80
+</code></pre><h4 id="clone-and-pull-your-blog">clone and pull your Blog</h4>
+<pre tabindex="0"><code>git clone git@github.com:imzyf/imzyf.github.io.git
+git pull origin master
+</code></pre><p>过程如果出现：<code>Permission denied (publickey).</code> 可以参考：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/2643502/git-permission-denied-publickey">Stack Overflow-Git - Permission denied (publickey)</a></li>
+</ul>
+<pre tabindex="0"><code>cd ~/.ssh &amp;&amp; ssh-keygen
+cat id_rsa.pub | xclip
+</code></pre><p>然后添加到你的 GitHub 账户：Settings -&gt; SSH keys 中。</p>
+<h3 id="config-imzyfgithubio-webhooks">config imzyf.github.io Webhooks</h3>
+<p>首先进入你的 repo 主页，通过点击页面上的按钮 [settings] -&gt; [Webhooks &amp; service] 进入 Webhooks 配置主页面。也可以通过下面这个链接直接进入配置页面：</p>
+<pre tabindex="0"><code>https://github.com/[ 用户名 ]/[ 仓库名称 ]/settings/hooks
+</code></pre><p>此处只需要配置 Webhook 所发出的 POST 请求发往何处即可，于是我们就配置我们所需要的路径：
+<a href="">http://104.236.xxx.xxx:9988/deploy/</a>。这个地址指向的就是那个能够响应 Webhook 所发出请求的服务器。</p>
+<p>配置好 Webhook 后，Github 会发送一个 ping 来测试这个地址。如果成功了，那么这个 Webhook 前就会加上一个绿色的勾；如果你得到的是一个红色的叉，那就好好检查一下哪儿出问题了吧！</p>
+<h3 id="config-nginx-server">config Nginx server</h3>
+<h2 id="最后想说的">最后想说的</h2>
+<p>为了一个百度收录大可不必这么麻烦，刚刚查到这些解决方案时心里也是烦的、虚的，但还是硬的头皮搞了。过程中已经不单单是为了百度收录自己的博客，而是变成学习了东西、思考问题。这些解决方案网上都有，也不是自己创造的，但是别人的东西自己不尝试，就还是别人的。</p>
+<p>现在百度已经收录我的博客了，imzyf.github.io 到 Server 也是自动部署的。解决问题后的快乐和信心，才是我这次最大的收获。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://jerryzou.com/posts/webhook-practice/">jerryzou-Webhook 实践 —— 自动部署</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>GitHub Pages 不被百度收录解决方案</title>
       <link>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</link>
-      <pubDate>Thu, 30 Jun 2016 20:00:00 +0800</pubDate>
+      <pubDate>Thu, 30 Jun 2016 20:00:00 +0000</pubDate>
       <guid>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</guid>
       <description>&lt;p&gt;2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。&lt;/p&gt;
 &lt;p&gt;2017-04-22 更新：现在我的 Blog 使用的是 &lt;a href=&#34;https://www.ufovps.com/&#34;&gt;UFOVPS&lt;/a&gt; 直接部署的。&lt;/p&gt;
@@ -645,11 +2481,45 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;但是使用 CDN 也会有一个非常大的缺点：只能对 &lt;strong&gt;静态资源&lt;/strong&gt; 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。&lt;/p&gt;
 &lt;p&gt;所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！&lt;/p&gt;
 &lt;p&gt;国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>2019-12-02 更新：现在我的 Blog 还是用的 GitHub Pages，反正没有备案的域名不会被百度收录。</p>
+<p>2017-04-22 更新：现在我的 Blog 使用的是 <a href="https://www.ufovps.com/">UFOVPS</a> 直接部署的。</p>
+<hr>
+<p>在 <a href="/2016/06/24/hexo-github-blog/">使用 Hexo 和 Github 搭建个人独立博客</a> 几天后，发现百度并不对博客进行收录。</p>
+<p>在天朝使用百度搜索毕竟多数，使用百度站长工具-抓取诊断，在百度 Spider 抓取结果返回 HTTP 头：HTTP/1.1 403 Forbidden，原来是 GitHub 禁止了百度爬虫的爬去。</p>
+<!-- more -->
+<p>Google 后早已有许多热心网友给出了解决方案，自己在这里总结下。</p>
+<h2 id="思路一利用-cdn-解决百度爬虫被-github-pages-拒绝的问题">思路一：利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题</h2>
+<h3 id="解决思路">解决思路</h3>
+<p>既然 Github 彻底和百度决裂了，那我们也只能自己动手来解决了。Github 可能是封了百度的 IP，也有可能是封了百度爬虫的 User-Agent。</p>
+<p>所以要解决这个问题，最好就不要让百度爬虫直接访问 Github 了，需要在中间套一层 <a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86">反向代理</a>。</p>
+<p>那么问题又来了，既然我可以搭一个反向代理服务器了，那我为什么不直接把博客放在这台服务器上？放 Github Pages 上不就是为了少一台服务器，少一点费用吗？</p>
+<p>那有没有免费的第三方反向代理服务呢？当然有，其实现在各种 <strong>CDN 服务</strong> 不就是吗？而且还额外提供了各种网络环境下的加速功能。</p>
+<p>但是使用 CDN 也会有一个非常大的缺点：只能对 <strong>静态资源</strong> 做，因为 CDN 和反向代理有一个很大的不同就是：它会做缓存，并向各个节点分发。</p>
+<p>所以 CDN 一般都是用来给静态资源做加速的。如果你对动态页面做加速，用户看到的页面在一段时间内就一直不会变了。但是我们不怕！因为 Github Pages 本来就是全静态的！</p>
+<p>国内提供 CDN 服务的有：加速乐、七牛云存储、又拍云等。</p>
+<p>最后选择了 <a href="https://www.upyun.com/index.html"><strong>又拍云</strong></a></p>
+<p>CDN 回源配置</p>
+<p>有设置缓存时间的功能，上面明确写了：CDN 缓存时间是指 UPYUN 回源取得文件后，文件在 UPYUN CDN 网络中的缓存的时间，超过缓存时间则重新回源获取文件。</p>
+<p>是的，这才是真正满足我需求的功能！</p>
+<p>这个解决方案我尝试了，但是在 CDN 域名配置时，有天朝特色要求域名必须备案，我的域名 <code>zyf.im</code> 是在 <a href="http://www.name.com">name.com</a> 上注册的，<code>.im</code> 的尾缀也无法在国内备案。所以这个方案不适合我。</p>
+<h2 id="思路二通过-dnspod-的智能-dns-服务">思路二：通过 Dnspod 的智能 DNS 服务</h2>
+<p>在这里博主首先分析了：使用 CDN 可能 <strong>无法</strong> 真正解决百度被拒绝的问题。理由是：<strong>CDN 节点众多，百度爬取的节点可能并没有页面的缓存</strong>。</p>
+<p>通过 Dnspod 的智能 DNS 服务可以变相解决这个问题，大概的设置如下图所示，只要为你所有的主机记录重复添加 A 记录，把线路类型设置为百度，并将记录值指向你自己的云主机即可。</p>
+<p>你说什么？等下！自己的云主机？没错，其实这种方式就是 <strong>专门为百度的爬虫增开了一个小窗口</strong>，使得它可以在你自己的服务器上爬取内容，而不是直接去爬取 Github Pages 的内容。你需要自己搭个服务器，并将你的静态网站架在上面。</p>
+<p>我博客解决方案就是采用这种方法。看起来有些“笨”因为我又搭建了一个 Server 用于博客，相当于没有完全利用 GitHub Pages，实际上普通用户访问我的博客就是有利用 GitHub 的 CDN 服务的，更快一些。而且我这么做还利用了 GitHub Webhook，当我把新的页面提交到 GitHub 时，我的博客服务器会自动 <code>pull</code> 最新的项目，这么看也就不那么“傻”了。</p>
+<p>请参看：<a href="/2016/06/30/github-webhook-example/">GitHub Webhook 自动部署 Hexo</a></p>
+<p>经过这么一配置，我的博客现在已经被百度收录了。百度搜索：<code>site:zyf.im</code></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://www.dozer.cc/2015/06/github-pages-and-cdn.html">DOZER-利用 CDN 解决百度爬虫被 Github Pages 拒绝的问题</a></li>
+<li><a href="http://jerryzou.com/posts/feasibility-of-allowing-baiduSpider-for-Github-Pages/">jerryzou-解决 Github Pages 禁止百度爬虫的方法与可行性分析</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>使用 GitHub 和 Hexo 搭建个人独立博客</title>
       <link>https://zyf.im/2016/06/24/hexo-github-blog/</link>
-      <pubDate>Fri, 24 Jun 2016 18:30:00 +0800</pubDate>
+      <pubDate>Fri, 24 Jun 2016 18:30:00 +0000</pubDate>
       <guid>https://zyf.im/2016/06/24/hexo-github-blog/</guid>
       <description>&lt;p&gt;&lt;code&gt;Wordpress&lt;/code&gt; 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 &lt;code&gt;Wordpress&lt;/code&gt; 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。&lt;/p&gt;
 &lt;p&gt;近来接触到一种新的博客系统 Hexo，它的不同地方就是将：&lt;strong&gt;在上线编写博客和页面渲染的过程在线下完成&lt;/strong&gt;。&lt;/p&gt;
@@ -661,6 +2531,79 @@ git rev-parse :/&amp;#34;Commit A&amp;#34;
 &lt;p&gt;A fast, simple &amp;amp; powerful blog framework&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，&lt;a href=&#34;https://hexo.io/zh-cn/docs/setup.html&#34;&gt;Hexo setup 官方文档&lt;/a&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p><code>Wordpress</code> 这类博客系统功能强大，可对与我只想划拉的写点东西的人，感觉大材小用了。而且 <code>Wordpress</code> 需要部署，网站的服务器也会带来问题，国内的服务器首先需要备案，费用不低，国外服务器访问速度受影响。</p>
+<p>近来接触到一种新的博客系统 Hexo，它的不同地方就是将：<strong>在上线编写博客和页面渲染的过程在线下完成</strong>。</p>
+<p>在本地编写博文的 Markdown 文件，使用 Hexo 将博客网站的所有前台 HTML 等全部生成，让后将生成的文件上传的服务器就行了。</p>
+<p>那么原来 wp 中的评论等动态功能怎么办呢？放心第三方服务商早已为我们考虑了。例如：<a href="https://disqus.com/">disqus</a>就是一家第三方社会化评论系统，主要为网站主提供评论托管服务。</p>
+<p>本文的操作的系统环境是 Ubuntu 15，Windows 下的搭建可触类旁通。</p>
+<h2 id="了解-hexo">了解 Hexo</h2>
+<blockquote>
+<p>A fast, simple &amp; powerful blog framework</p>
+</blockquote>
+<p><a href="https://hexo.io/">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，<a href="https://hexo.io/zh-cn/docs/setup.html">Hexo setup 官方文档</a>。</p>
+<h2 id="安装-git">安装 Git</h2>
+<blockquote>
+<p><a href="https://git-scm.com/download/linux">Download for Linux and Unix | git-scm</a></p>
+</blockquote>
+<h2 id="安装-nodejs">安装 Node.js</h2>
+<blockquote>
+<p><a href="/2017/07/06/install-node-js-in-ubuntu-and-faq/">Linux | Mac 安装 Node.js 与常见问题 | zyf.im</a></p>
+</blockquote>
+<h2 id="安装-hexo">安装 Hexo</h2>
+<p>所有必备的应用程序安装完成后，即可使用 npm 安装 Hexo：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">npm install -g hexo-cli
+</span></span></code></pre></div><h2 id="建站">建站</h2>
+<p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo init &lt;folder&gt;
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> &lt;folder&gt;
+</span></span><span class="line"><span class="cl">npm install
+</span></span></code></pre></div><p>新建完成后，指定文件夹的目录如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">├── _config.yml
+</span></span><span class="line"><span class="cl">├── package.json
+</span></span><span class="line"><span class="cl">├── scaffolds
+</span></span><span class="line"><span class="cl">├── source
+</span></span><span class="line"><span class="cl">| ├── _drafts
+</span></span><span class="line"><span class="cl">| └── _posts
+</span></span><span class="line"><span class="cl">└── themes
+</span></span></code></pre></div><h3 id="新建一篇文章">新建一篇文章</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo new <span class="o">[</span>layout<span class="o">]</span> &lt;title&gt;
+</span></span></code></pre></div><p>如果没有设置 layout 的话，默认使用 <code>_config.yml</code> 中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
+<h3 id="生成静态文件">生成静态文件</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo generate
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以简写为</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hexo g
+</span></span></code></pre></div><h3 id="启动服务器">启动服务器</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hexo server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以简写为</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hexo s
+</span></span></code></pre></div><p>网站会在 <a href="http://localhost:4000">http://localhost:4000</a> 下启动。在服务器启动期间，Hexo 会监视文件变动并自动更新，您无须重启服务器。</p>
+<h2 id="部署静态网页到-github">部署静态网页到 GitHub</h2>
+<h3 id="注册设置-github">注册设置 GitHub</h3>
+<ol>
+<li>登录 GitHub，注册自定义用户名如：<code>imzyf</code></li>
+<li>在主页右下角创建 New repository，name 必须和用户名一致如：<code>imzyf.github.io</code></li>
+<li>等待 3 分钟左右，之后即可访问静态主页如：<code>https://imzyf.github.io</code></li>
+</ol>
+<h3 id="同步内容至-github">同步内容至 GitHub</h3>
+<ol>
+<li>在 Hexo 目录下 <code>git clone git@github.com:imzyf/imzyf.github.io.git</code></li>
+<li>将 <code>public</code> 文件下的所有文件拷贝到 <code>imzyf.github.io</code> 下</li>
+<li><code>git add .</code> 增加当前子目录下所有更改过的文件至 index</li>
+<li><code>git commit -m 'xxx'</code> 提交到本地</li>
+<li><code>git push origin master</code> 将当前分支 push 到远程 master 分支</li>
+<li>最后访问主页<code>http://imzyf.github.io</code> 观察效果</li>
+</ol>
+<h2 id="绑定个人域名">绑定个人域名</h2>
+<p>在 GitHub 项目页面，Settings -&gt; GitHub Pages，Source 选择 master branch，Custom domain 填写自己的域名，同时勾选 Enforce HTTPS 让你的网址支持 HTTPS。</p>
+<p>在你的域名服务商那里，将填写的域名解析到：<code>&lt;username&gt;.github.io</code> 利于 <code>imzyf.github.io</code>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://wsgzao.github.io/post/hexo-guide/">HellDog-使用 GitHub 和 Hexo 搭建免费静态 Blog</a></li>
+</ul>]]></content:encoded>
     </item>
   </channel>
 </rss>

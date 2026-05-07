@@ -4,14 +4,14 @@
     <title>Nginx on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/nginx/</link>
     <description>Recent content in Nginx on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 27 Jun 2025 10:12:12 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NGINX 启用 HTTP/3</title>
       <link>https://zyf.im/2025/06/27/nginx-enable-http3/</link>
-      <pubDate>Fri, 27 Jun 2025 10:12:12 +0800</pubDate>
+      <pubDate>Fri, 27 Jun 2025 10:12:12 +0000</pubDate>
       <guid>https://zyf.im/2025/06/27/nginx-enable-http3/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;HTTP/2 解决了&amp;quot;多路复用、头部压缩、优先级&amp;quot;等 HTTP/1.x 的瓶颈，但仍受 TCP 先天限制。&lt;/p&gt;
@@ -51,11 +51,145 @@
 &lt;li&gt;连接迁移：通过 Connection ID 识别会话，IP 或端口改变（如移动网络/Wi-Fi 切换）无需重新建立连接。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;使用 HTTP/3 的网站：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="简介">简介</h2>
+<p>HTTP/2 解决了&quot;多路复用、头部压缩、优先级&quot;等 HTTP/1.x 的瓶颈，但仍受 TCP 先天限制。</p>
+<p>HTTP/3 则把同样的语义搬到 QUIC。Quick UDP Internet Connections 是 Google 设计的一种基于 UDP 的多路复用安全传输层协议。标准化后，HTTP/3 = HTTP over QUIC。</p>
+<table>
+  <thead>
+      <tr>
+          <th>层级</th>
+          <th>HTTP/2</th>
+          <th>HTTP/3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>传输</td>
+          <td>TCP（必）+ TLS 1.2/1.3（多数场景）</td>
+          <td>QUIC（UDP 之上）+ TLS 1.3（强制）</td>
+      </tr>
+      <tr>
+          <td>流（Stream）</td>
+          <td>Mux 在 TCP 里的逻辑流</td>
+          <td>Mux 在 QUIC 原生流</td>
+      </tr>
+      <tr>
+          <td>头压缩</td>
+          <td>HPACK</td>
+          <td>QPACK（避免队头阻塞）</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>HTTP/2 浏览器要求必须跑在 TLS 之上（ALPN=&ldquo;h2&rdquo;）。栈变为 HTTP/2 → TLS → TCP → IP。</li>
+<li>HTTP/3 使用 QUIC 替换 TCP，栈变为 HTTP/3 → QUIC（拥塞/重传）→ UDP → IP，加密集成在 QUIC（基于 TLS 1.3）。</li>
+<li><code>Mux</code> 即 multiplex，多路复用。</li>
+<li>HTTP/2 必须顺序传输，而 HTTP/3 支持乱序。</li>
+<li>如果沿用 HPACK，丢一个 UDP 包就会让所有流的头部解码卡住，因此 IETF 为 HTTP/3 设计了 QPACK 来&quot;避开队头阻塞（Head-of-Line Blocking, HoL）&quot;。</li>
+<li>连接迁移：通过 Connection ID 识别会话，IP 或端口改变（如移动网络/Wi-Fi 切换）无需重新建立连接。</li>
+</ul>
+<p>使用 HTTP/3 的网站：</p>
+<ul>
+<li><a href="https://cloudflare-quic.com/">https://cloudflare-quic.com/</a></li>
+</ul>
+<h2 id="开始实验">开始实验</h2>
+<p>启用 HTTP/3 需要使用 HTTPS，请先参考 <a href="/2025/06/26/use-https-in-local-environment/">在本地环境使用 HTTPS ｜ ZYF.IM</a>。</p>
+<p>修改 NGINX default.conf 配置文件，启用 HTTP/3：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># vi default.conf
+</span></span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># for better compatibility it&#39;s recommended
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># to use the same port for http/3 and https
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># 浏览器首次只能走 TCP，因此必须提供一个 HTTPS 入口，再通过 `Alt-Svc` 升级到 HTTP/3
+</span></span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Quick UDP Internet Connections
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># quic 关键字表示使用 UDP 监听，承载 QUIC/HTTP-3
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># reuseport 关键字表示复用端口，允许多个 NGINX 实例共享同一端口
+</span></span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">quic</span> <span class="s">reuseport</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">http2</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 启用 HTTP/3，默认是 on
+</span></span></span><span class="line"><span class="cl">    <span class="kn">http3</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">localhost</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate</span> <span class="s">/etc/ssl/certs/localhost.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate_key</span> <span class="s">/etc/ssl/certs/localhost-key.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 启用 TLS 允许 0-RTT（Early Data），允许客户端在 TLS 1.3 的重连阶段携带早期数据
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># 对 HTTP/3 非必需，但 QUIC 天生支持 0-RTT；此处保持一致
+</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_early_data</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 仅启用 TLSv1.3
+</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_ciphers</span> <span class="s">HIGH:!aNULL:!MD5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 添加 Alt-Svc 头，向客户端声明可升级到 HTTP/3
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># Alt-Svc 头告诉浏览器&#34;该资源在同一主机的 UDP/443 上能用 h3 协议&#34;，浏览器会自动重试
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># ma max-age 缓存时间，86400 秒 = 1 天
+</span></span></span><span class="line"><span class="cl">    <span class="c1"># always 关键字保证即使发生 4xx/5xx 也发送 Alt-Svc，便于调试
+</span></span></span><span class="line"><span class="cl">    <span class="kn">add_header</span> <span class="s">alt-svc</span> <span class="s">&#39;h3=&#34;:443&#34;</span><span class="p">;</span> <span class="kn">ma=86400&#39;</span> <span class="s">always</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">root</span> <span class="s">/usr/share/nginx/html</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">index</span>  <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># docker rm -f nginx-ssl</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加监听 UDP 端口</span>
+</span></span><span class="line"><span class="cl">docker run -d --name nginx-ssl <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 443:443 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 443:443/udp <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./default.conf:/etc/nginx/conf.d/default.conf:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./localhost.pem:/etc/ssl/certs/localhost.pem:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./localhost-key.pem:/etc/ssl/certs/localhost-key.pem:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./html/:/usr/share/nginx/html/:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  nginx:alpine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker container restart nginx-ssl</span>
+</span></span></code></pre></div><h2 id="测试">测试</h2>
+<h3 id="curl">curl</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用支持 HTTP/3 的 curl</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker run -ti --rm alpine/curl-http3 curl -V</span>
+</span></span><span class="line"><span class="cl">docker run -ti --network host --rm alpine/curl-http3 curl -I --http3 https://localhost/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">HTTP/3 <span class="m">200</span>
+</span></span><span class="line"><span class="cl">server: nginx/1.29.0
+</span></span><span class="line"><span class="cl">date: Fri, <span class="m">27</span> Jun <span class="m">2025</span> 03:26:09 GMT
+</span></span><span class="line"><span class="cl">content-type: text/html
+</span></span><span class="line"><span class="cl">content-length: <span class="m">656</span>
+</span></span><span class="line"><span class="cl">last-modified: Fri, <span class="m">27</span> Jun <span class="m">2025</span> 03:17:07 GMT
+</span></span><span class="line"><span class="cl">etag: <span class="s2">&#34;685e0d33-290&#34;</span>
+</span></span><span class="line"><span class="cl">alt-svc: <span class="nv">h3</span><span class="o">=</span><span class="s2">&#34;:443&#34;</span><span class="p">;</span> <span class="nv">ma</span><span class="o">=</span><span class="m">86400</span>
+</span></span><span class="line"><span class="cl">accept-ranges: bytes
+</span></span></code></pre></div><h3 id="浏览器">浏览器</h3>
+<p>无法验证成功！分析原因：</p>
+<ol>
+<li>之前 UDP 使用的是 8443，当将相关配置都改为 443 仍然在 Chrome Network 里无法看见 h3。</li>
+<li>可能 Chrome 对 localhost 或者域名解析到 127.0.0.1 的访问阻止了 HTTP/3。</li>
+</ol>
+<p>为了验证第 2 种情况，通过 AWS EC2 + 自己的域名 + Let&rsquo;s Encrypt 颁发的证书，再仿照本地配置的方法启用 HTTP/3。最终在 Chrome 中成功验证 HTTP/3。</p>
+<p>使用 Chrome 插件 <a href="https://chromewebstore.google.com/detail/http-indicator/hgcomhbcacfkpffiphlmnlhpppcjgmbl?hl=en-US">HTTP Indicator</a>：</p>
+<ul>
+<li>HTTP/1.1 显示为灰色</li>
+<li>HTTP/2 显示为蓝色</li>
+<li>HTTP/3 显示为绿色</li>
+</ul>
+<p>如何配置 AWS EC2 + 自己的域名 + Let&rsquo;s Encrypt 颁发的证书，参考：</p>
+<ul>
+<li><a href="/2018/04/26/lets-encrypt-wildcard-certificates/">使用 Certbot 获取 Let&rsquo;s Encrypt 颁发的 TLS 证书 ｜ ZYF.IM</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_v3_module.html">NGINX HTTP/3 模块</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>在本地环境使用 HTTPS</title>
       <link>https://zyf.im/2025/06/26/use-https-in-local-environment/</link>
-      <pubDate>Thu, 26 Jun 2025 12:00:00 +0800</pubDate>
+      <pubDate>Thu, 26 Jun 2025 12:00:00 +0000</pubDate>
       <guid>https://zyf.im/2025/06/26/use-https-in-local-environment/</guid>
       <description>&lt;p&gt;公网环境使用 HTTPS 参考：&lt;a href=&#34;https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/&#34;&gt;使用 Certbot 获取 Let&amp;rsquo;s Encrypt 颁发的 TLS 证书 ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -98,11 +232,271 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;测试&#34;&gt;测试&lt;/h2&gt;
 &lt;h3 id=&#34;浏览器&#34;&gt;浏览器&lt;/h3&gt;
 &lt;p&gt;浏览器访问 &lt;code&gt;https://localhost:8443/&lt;/code&gt;，如果证书是绿色的，说明成功了。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>公网环境使用 HTTPS 参考：<a href="/2018/04/26/lets-encrypt-wildcard-certificates/">使用 Certbot 获取 Let&rsquo;s Encrypt 颁发的 TLS 证书 ｜ ZYF.IM</a>。</p>
+<h2 id="简介">简介</h2>
+<p>HTTPS（HyperText Transfer Protocol Secure）是在 HTTP 之上通过 TLS/SSL 实现加密的安全通信协议，用来保护浏览器与服务器之间的数据机密性、完整性与身份可信性。</p>
+<h2 id="开始实验">开始实验</h2>
+<p><a href="https://github.com/FiloSottile/mkcert">mkcert</a> 会在本地生成一套根 CA（包含根证书和私钥），并把根证书导入系统/浏览器的信任列表。随后，它用这套 CA 的私钥为 localhost 等域名签发服务器证书；因为根证书已被信任，浏览器访问时就会把服务器证书视为可信。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install mkcert
+</span></span><span class="line"><span class="cl">mkcert -install
+</span></span><span class="line"><span class="cl">mkcert localhost
+</span></span><span class="line"><span class="cl"><span class="c1"># The certificate is at &#34;./localhost.pem&#34; and the key at &#34;./localhost-key.pem&#34; ✅</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># vi default.conf
+</span></span></span><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">localhost</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate</span> <span class="s">/etc/ssl/certs/localhost.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate_key</span> <span class="s">/etc/ssl/certs/localhost-key.pem</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 只允许 TLSv1.2 和 TLSv1.3 协议，显式禁止 TLSv1.0 和 TLSv1.1 协议
+</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 只保留高强度、带身份验证、且不使用 MD5 的 TLS 1.2（及以下）套件
+</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_ciphers</span> <span class="s">HIGH:!aNULL:!MD5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 优先使用服务器端加密套件
+</span></span></span><span class="line"><span class="cl">    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">root</span> <span class="s">/usr/share/nginx/html</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">index</span>  <span class="s">index.html</span> <span class="s">index.htm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d --name nginx-ssl <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -p 8443:443 <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./default.conf:/etc/nginx/conf.d/default.conf:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./localhost.pem:/etc/ssl/certs/localhost.pem:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -v ./localhost-key.pem:/etc/ssl/certs/localhost-key.pem:ro <span class="se">\
+</span></span></span><span class="line"><span class="cl">  nginx:alpine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker rm -f nginx-ssl</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker container restart nginx-ssl</span>
+</span></span></code></pre></div><h2 id="测试">测试</h2>
+<h3 id="浏览器">浏览器</h3>
+<p>浏览器访问 <code>https://localhost:8443/</code>，如果证书是绿色的，说明成功了。</p>
+<h3 id="curl">curl</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -I https://localhost:8443/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">HTTP/1.1 <span class="m">200</span> OK
+</span></span><span class="line"><span class="cl">Server: nginx/1.29.0
+</span></span><span class="line"><span class="cl">Date: Fri, <span class="m">27</span> Jun <span class="m">2025</span> 01:54:36 GMT
+</span></span><span class="line"><span class="cl">Content-Type: text/html
+</span></span><span class="line"><span class="cl">Content-Length: <span class="m">615</span>
+</span></span><span class="line"><span class="cl">Last-Modified: Tue, <span class="m">24</span> Jun <span class="m">2025</span> 17:57:38 GMT
+</span></span><span class="line"><span class="cl">Connection: keep-alive
+</span></span><span class="line"><span class="cl">ETag: <span class="s2">&#34;685ae712-267&#34;</span>
+</span></span><span class="line"><span class="cl">Accept-Ranges: bytes
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -v 显示详细信息，查看 TLS 版本</span>
+</span></span><span class="line"><span class="cl">curl -I https://localhost:8443/ -v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">* SSL connection using TLSv1.3 / AEAD-AES256-GCM-SHA384 / <span class="o">[</span>blank<span class="o">]</span> / UNDEF
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><h2 id="深入探索">深入探索</h2>
+<h3 id="http-的三大安全缺陷">HTTP 的三大安全缺陷</h3>
+<blockquote>
+<p>网络早已布满监听、篡改与伪装。</p>
+</blockquote>
+<ul>
+<li><strong>明文传输</strong>：任何中间节点（Wi-Fi 热点、ISP、CDN、政府网关）都能直接读取用户名、密码、Cookie、表单内容等敏感信息。</li>
+<li><strong>缺少完整性保护</strong>：中间人可随意插入、删除或修改页面内容（广告注入、恶意脚本、暗链植入），客户端亦无法察觉。</li>
+<li><strong>无法验证身份</strong>：客户端无法确认自己连接的是&quot;真正的 server&quot;，攻击者可通过 DNS 欺骗、ARP 攻击或流量劫持将流量导向钓鱼站点。</li>
+</ul>
+<h3 id="为什么需要-https">为什么需要 HTTPS</h3>
+<blockquote>
+<p>TLS 通过&quot;加密 + 身份认证 + 完整性校验&quot;应对上述风险。</p>
+</blockquote>
+<ul>
+<li>加密（Confidentiality）：对称加密保护数据内容；密钥通过非对称算法安全协商。</li>
+<li>数据完整性（Integrity）：MAC（消息鉴别码）或 AEAD 算法确保内容未被篡改。</li>
+<li>身份认证（Authentication）：服务器出示数字证书；浏览器验证证书链与域名匹配。</li>
+</ul>
+<h3 id="mac-vs-aead">MAC vs AEAD</h3>
+<ul>
+<li>MAC 提供数据完整性与对称实体认证，需要与独立的加密步骤结合来保障机密性。
+<ul>
+<li>Message Authentication Code</li>
+<li>只负责&quot;认证&quot;，不加密数据；与加密算法解耦。典型实现是 HMAC-SHA1/HMAC-SHA256。</li>
+</ul>
+</li>
+<li>AEAD 将&quot;加密 + 认证&quot;合二为一，接口更简单、实现更安全、性能更佳，是现代协议的首选。
+<ul>
+<li>Authenticated Encryption with Associated Data</li>
+<li>加密数据 + 认证数据</li>
+<li>典型实现是 AES-GCM/ChaCha20-Poly1305</li>
+</ul>
+</li>
+<li>在 TLS/QUIC/Noise 等现代协议中，AEAD 已全面取代传统的&quot;MAC-then-Encrypt&quot;。</li>
+</ul>
+<h3 id="证书类型">证书类型</h3>
+<p>按层级角色：</p>
+<ul>
+<li>根证书（Root CA）：最高级别，Subject = Issuer 自签名，预装在操作系统/浏览器的&quot;根信任库&quot;内，用于验证下级证书。</li>
+<li>中级证书（Intermediate CA）：由根证书签名，用于验证下级证书，降低根密钥泄露风险。</li>
+<li>最终实体证书（End Entity Certificate）：由中级证书签名，绑定具体域名或主体，用于验证服务器身份。</li>
+</ul>
+<p>按验证级别：</p>
+<ul>
+<li>DV（Domain Validation）证书仅验证域名所有权，通过自动化流程颁发，价格低廉甚至免费（如 Let&rsquo;s Encrypt）。</li>
+<li>OV（Organization Validation）证书需要验证组织实体信息，在浏览器证书详情中可查看公司名称。</li>
+<li>EV（Extended Validation）证书验证最为严格，地址栏会显示公司名称，但多数现代浏览器已弱化此功能的 UI 展示。</li>
+</ul>
+<h3 id="证书链">证书链</h3>
+<p>在 HTTPS、TLS、S/MIME 等基于 X.509 的公钥基础设施（PKI）中，任何一张服务器或用户证书都必须被&quot;信任根（Root CA）&ldquo;间接或直接签名。从根证书一路向下到最终实体证书所形成的&quot;逐级签名&quot;路径，就称为证书链，也叫信任链（Chain of Trust）。</p>
+<h3 id="https-在网络堆栈中的位置">HTTPS 在网络堆栈中的位置</h3>
+<ol>
+<li>HTTP/HTTPS 仍是应用层协议。</li>
+<li>TLS（Transport Layer Security）位于 HTTP 与 TCP 之间；它把上层的明文字节（HTTP 报文）加密后再交给 TCP。</li>
+<li>TCP 提供可靠的字节流；IP 负责寻址和路由；最底层是物理/链路层。</li>
+<li>HTTPS = HTTP over TLS over TCP over IP。</li>
+</ol>
+<table>
+  <thead>
+      <tr>
+          <th>协议</th>
+          <th>主要职责</th>
+          <th>典型端口</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>HTTP</td>
+          <td>应用语义：URL、方法、头、状态码…</td>
+          <td>80（无加密）</td>
+      </tr>
+      <tr>
+          <td>TLS</td>
+          <td>机密性、完整性、身份认证</td>
+          <td>443（惯例）</td>
+      </tr>
+      <tr>
+          <td>TCP</td>
+          <td>可靠传输、流量控制、重传</td>
+          <td>任意（443）</td>
+      </tr>
+      <tr>
+          <td>IP</td>
+          <td>路由、分片、寻址</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<ol>
+<li>HTTPS ≠ 新协议。它只是&quot;HTTP 报文透过 TLS 隧道运输&quot;的俗称。协议栈中依然能看到标准的 HTTP 语法，只是先被 TLS 加密，运输途中看不到明文。</li>
+<li>TLS 与 TCP 的独立性。TLS 不关心丢包、重传；这些由 TCP 处理。相反，TCP 不理解证书、握手；这些由 TLS 负责。</li>
+</ol>
+<h3 id="tls-握手过程">TLS 握手过程</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">客户端                           服务器
+</span></span><span class="line"><span class="cl">   |&lt;--- SYN → SYN/ACK → ACK ---&gt;| 建立可靠的 TCP 连接
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   |--- ClientHello (TLS)    ---&gt;| 浏览器发起 TLS 握手，告诉服务器自己支持的协议版本、密码套件、随机数（Client Random）等信息
+</span></span><span class="line"><span class="cl">   |&lt;-- ServerHello + 证书     ---|
+</span></span><span class="line"><span class="cl">   |--- 密钥协商/Finished -------&gt;|
+</span></span><span class="line"><span class="cl">   |&lt;-- Finished ----------------|
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   TLS 信道建立完成
+</span></span><span class="line"><span class="cl">   |--- HTTP GET / -------------&gt;|
+</span></span><span class="line"><span class="cl">   |&lt;-- HTTP/1.1 200 OK ---------|
+</span></span></code></pre></div><pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">sequenceDiagram
+  participant Client
+  participant Server
+  Client-&gt;&gt;Server: ClientHello&lt;br/&gt;– 支持的 TLS 版本、随机数、加密套件
+  Server--&gt;&gt;Client: ServerHello&lt;br/&gt;– 选定版本/套件、随机数
+  Server--&gt;&gt;Client: Certificate
+  Server--&gt;&gt;Client: ServerHelloDone
+  Client-&gt;&gt;Server: ClientKeyExchange&lt;br/&gt;– 预主密钥（用公钥加密）
+  Client-&gt;&gt;Server: ChangeCipherSpec
+  Client-&gt;&gt;Server: Finished（用对称密钥加密）
+  Server--&gt;&gt;Client: ChangeCipherSpec
+  Server--&gt;&gt;Client: Finished
+  note over Client,Server: 之后开始对称加密的数据传输
+</code></pre><ul>
+<li>双方首先协商算法与随机数</li>
+<li>客户端用服务器公钥加密预主密钥</li>
+<li>双方基于随机数与预主密钥生成会话密钥</li>
+<li>后续通信全部使用对称加密，提高效率</li>
+</ul>
+<h3 id="tls-13">TLS 1.3</h3>
+<p>TLS 1.3（RFC 8446）是在 2018 年 8 月正式发布的最新版本，相比 TLS 1.2 做了深度&quot;瘦身 + 加速 + 强化安全&rdquo;。</p>
+<ul>
+<li>TLS 1.3 把握手变成 1-RTT 并引入 0-RTT，显著降低延迟。</li>
+<li>强制 ECDHE + AEAD + SHA-2，淘汰所有过时与高危算法，默认提供前向保密。</li>
+<li>握手更多字段被加密，降低被动监听价值，同时带来运维与抓包新挑战。</li>
+<li>配置侧仅需保留少量推荐套件（TLS_AES_128_GCM_SHA256、TLS_CHACHA20_POLY1305_SHA256 等），比 TLS 1.2 更易运维。</li>
+</ul>
+<h3 id="rtt-vs-0-rtt">RTT vs. 0-RTT</h3>
+<p>&ldquo;RTT&quot;本身确实是一个时间量（Round-Trip Time），指数据包从客户端发出、到达服务端，再把响应返回客户端所经历的往返延迟，常用毫秒（ms）表示。</p>
+<p>在协议说明里看到的&quot;1-RTT 握手 / 2-RTT 握手&quot;属于约定俗成的缩写：把&quot;一次往返时间&quot;抽象成&quot;一次来回（round trip）&ldquo;这个计数单位来用。</p>
+<h3 id="证书与密钥">证书与密钥</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl version
+</span></span><span class="line"><span class="cl"><span class="c1"># 看看证书</span>
+</span></span><span class="line"><span class="cl">openssl x509 -in localhost.pem -noout -text
+</span></span></code></pre></div><p>证书的结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Certificate:
+</span></span><span class="line"><span class="cl">｜- Data:
+</span></span><span class="line"><span class="cl">  ｜- Version: 3
+</span></span><span class="line"><span class="cl">  ｜- Serial Number: ...
+</span></span><span class="line"><span class="cl">  ｜- Signature Algorithm: sha256WithRSAEncryption
+</span></span><span class="line"><span class="cl">  ｜- Issuer: O=mkcert development CA, OU=..., CN=mkcert ...
+</span></span><span class="line"><span class="cl">  ｜- Validity:
+</span></span><span class="line"><span class="cl">    ｜- Not Before: Jun 27 03:39:39 2025 GMT
+</span></span><span class="line"><span class="cl">    ｜- Not After : Sep 27 03:39:39 2027 GMT
+</span></span><span class="line"><span class="cl">  ｜- Subject: O=mkcert development CA, OU=...
+</span></span><span class="line"><span class="cl">  ｜- Subject Public Key Info: &lt;网站的公钥&gt;
+</span></span><span class="line"><span class="cl">    ｜- Public Key Algorithm: rsaEncryption
+</span></span><span class="line"><span class="cl">      ｜- Public-Key: (2048 bit)
+</span></span><span class="line"><span class="cl">      ｜- Modulus: &lt;模数&gt;
+</span></span><span class="line"><span class="cl">      ｜- Exponent: 65537 (0x10001)
+</span></span><span class="line"><span class="cl">   |- X509v3 extensions
+</span></span><span class="line"><span class="cl">｜- Signature Algorithm: sha256WithRSAEncryption
+</span></span><span class="line"><span class="cl">｜- Signature Value: &lt;颁发机构（CA）用自己私钥算出的数字签名，浏览器用 CA 公钥验证&gt;
+</span></span></code></pre></div><p>在 RSA 体系里，公钥由两部分组成：</p>
+<ul>
+<li>n：模数（Modulus）</li>
+<li>e：公钥指数（Exponent）</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 导出公钥</span>
+</span></span><span class="line"><span class="cl">openssl x509 -in localhost.pem -pubkey -noout &gt; pubkey.pem
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看导出的公钥</span>
+</span></span><span class="line"><span class="cl">openssl pkey -pubin -in pubkey.pem -text -noout
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 看看私钥里有什么</span>
+</span></span><span class="line"><span class="cl">openssl rsa -in localhost-key.pem -text -noout
+</span></span></code></pre></div><p>私钥的结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Private-Key: (2048 bit, 2 primes)
+</span></span><span class="line"><span class="cl"># 模 n = p × q
+</span></span><span class="line"><span class="cl">modulus: ...
+</span></span><span class="line"><span class="cl"># e 公钥指数
+</span></span><span class="line"><span class="cl">publicExponent: 65537 (0x10001)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># m = c^d mod n
+</span></span><span class="line"><span class="cl">privateExponent: ...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># p 和 q 是两个大质数
+</span></span><span class="line"><span class="cl">prime1: ...
+</span></span><span class="line"><span class="cl">prime2: ...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># exponent1 = d mod (p-1)
+</span></span><span class="line"><span class="cl">exponent1: ...
+</span></span><span class="line"><span class="cl"># exponent2 = d mod (q-1)
+</span></span><span class="line"><span class="cl">exponent2: ...
+</span></span><span class="line"><span class="cl"># coefficient = inv(q) mod p
+</span></span><span class="line"><span class="cl">coefficient: ...
+</span></span></code></pre></div><h3 id="http2">HTTP/2</h3>
+<p>当前使用的是 HTTP/1.1，如何启用 HTTP/2，请移步 <a href="/2017/06/06/nginx-enable-http2/">NGINX 启用 HTTP/2 ｜ ZYF.IM</a>。</p>
+<h3 id="http3">HTTP/3</h3>
+<p>请移步 <a href="/2025/06/27/nginx-enable-http3/">NGINX 启用 HTTP/3 ｜ ZYF.IM</a>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_ssl_module.html">NGINX HTTPS 模块</a></li>
+<li><a href="http://httpforever.com/">http://httpforever.com/</a></li>
+<li><a href="http://neverssl.com/">http://neverssl.com/</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>使用 Certbot 获取 Let’s Encrypt 颁发的 TLS 证书</title>
       <link>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</link>
-      <pubDate>Thu, 26 Apr 2018 16:00:00 +0800</pubDate>
+      <pubDate>Thu, 26 Apr 2018 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</guid>
       <description>&lt;h2 id=&#34;certbot-和-lets-encrypt-的关系&#34;&gt;Certbot 和 Let’s Encrypt 的关系&lt;/h2&gt;
 &lt;h3 id=&#34;lets-encrypt&#34;&gt;Let&amp;rsquo;s Encrypt&lt;/h3&gt;
@@ -205,11 +599,324 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl status nginx
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Started nginx.service - The nginx HTTP and reverse proxy server.&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;直接通过 &lt;a href=&#34;http://35.86.90.4&#34;&gt;http://35.86.90.4&lt;/a&gt;，会看到默认的 nginx 欢迎页面。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="certbot-和-lets-encrypt-的关系">Certbot 和 Let’s Encrypt 的关系</h2>
+<h3 id="lets-encrypt">Let&rsquo;s Encrypt</h3>
+<ul>
+<li>一个免费、自动化、开放的公共证书颁发机构（CA）。</li>
+<li>通过 ACME（Automatic Certificate Management Environment）协议向域名所有者颁发 DV（Domain Validation）TLS/SSL 证书。</li>
+</ul>
+<h3 id="certbot">Certbot</h3>
+<ul>
+<li>由 Electronic Frontier Foundation (EFF) 维护的开源 ACME 客户端。</li>
+<li>主要目标是简化与 Let&rsquo;s Encrypt 之间的交互：
+<ul>
+<li>自动化域名验证（HTTP-01、DNS-01、TLS-ALPN-01 等）</li>
+<li>安装并续期证书</li>
+<li>更新 Web 服务器配置（Apache、Nginx、Lighttpd 等）</li>
+</ul>
+</li>
+<li>Certbot 也能与任何兼容 ACME 的 CA 通信，不限于 Let&rsquo;s Encrypt。</li>
+</ul>
+<h3 id="典型工作流程">典型工作流程</h3>
+<ol>
+<li>解析参数并检测服务器类型。</li>
+<li>选择并执行挑战（例如在 /.well-known/acme-challenge/ 下写入 token）。</li>
+<li>Let’s Encrypt 回访验证域名归属。</li>
+<li>验证通过后签发证书；Certbot 下载并安装到本地。</li>
+<li>创建定时任务 certbot renew 自动续期。</li>
+</ol>
+<h2 id="开始实验">开始实验</h2>
+<blockquote>
+<p>实验环境：Amazon Linux 2023 (AL2023)</p>
+</blockquote>
+<h3 id="知识补充">知识补充</h3>
+<ul>
+<li><code>dnf（Dandified YUM）</code> 是 RPM-系 Linux 发行版的下一代包管理器。它在功能上取代了传统的 <code>yum</code>，两者命令参数几乎保持兼容。</li>
+<li><code>RPM</code> 一开始叫 Red Hat Package Manager，后来改名为递归含义的 RPM Package Manager。</li>
+<li><code>RPM-系发行版</code> 是把 RPM 作为原生软件包格式与核心包管理工具链的那一族 Linux 发行版。常听到的 Fedora / RHEL / CentOS / AlmaLinux / Rocky Linux / openSUSE / SUSE Linux Enterprise / Amazon Linux 2023 等。</li>
+<li><code>dnf</code> 不是对 <code>rpm</code> CLI 的简单封装，而是调用 <code>librpm</code> 完成最终操作。</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>包管理器</th>
+          <th>代表发行版</th>
+          <th>归属</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>dnf / yum</td>
+          <td>Fedora, RHEL, CentOS</td>
+          <td>RPM</td>
+      </tr>
+      <tr>
+          <td>zypper</td>
+          <td>openSUSE, SLE</td>
+          <td>RPM</td>
+      </tr>
+      <tr>
+          <td>apt / apt-get</td>
+          <td>Debian, Ubuntu</td>
+          <td>DEB</td>
+      </tr>
+      <tr>
+          <td>pacman</td>
+          <td>Arch Linux</td>
+          <td>tar.xz</td>
+      </tr>
+      <tr>
+          <td>apk</td>
+          <td>Alpine</td>
+          <td>.apk</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><code>snap</code> 是一种由 Canonical（Ubuntu 的开发公司）推出的跨发行版应用打包和分发格式，也指围绕它的一整套生态系统。
+<ul>
+<li>跨发行版。同一个 snap 包可以在几十种发行版上直接安装运行，不依赖各自的 RPM/Deb 系统仓库。</li>
+<li>自包含（bundled）依赖。snap 包内部包含所有依赖，无需外部安装。</li>
+<li><a href="https://snapcraft.io/">https://snapcraft.io/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="launch-an-aws-ec2-instance">Launch an AWS EC2 instance</h3>
+<ul>
+<li>Instance type: t2.nano</li>
+<li>Username: ec2-user</li>
+<li>Security Groups: Allow HTTP and HTTPS</li>
+<li>Public IPv4: 35.86.90.4</li>
+</ul>
+<h3 id="配置-nginx">配置 nginx</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo dnf update -y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo dnf install -y nginx
+</span></span><span class="line"><span class="cl">nginx -v
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx version: nginx/1.28.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo systemctl start nginx
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> nginx
+</span></span><span class="line"><span class="cl">systemctl status nginx
+</span></span><span class="line"><span class="cl"><span class="c1"># Started nginx.service - The nginx HTTP and reverse proxy server.</span>
+</span></span></code></pre></div><p>直接通过 <a href="http://35.86.90.4">http://35.86.90.4</a>，会看到默认的 nginx 欢迎页面。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/nginx/conf.d/default.conf
+</span></span></code></pre></div><pre tabindex="0"><code class="language-conf" data-lang="conf">#
+server {
+    listen       80;
+    listen       [::]:80;
+    server_name  tmp.yifans.net;
+    root         /usr/share/nginx/html;
+
+    error_page 404 /404.html;
+    location = /404.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+    }
+}
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nginx -t
+</span></span><span class="line"><span class="cl">sudo systemctl reload nginx
+</span></span></code></pre></div><p>将自己的域名（<code>tmp.yifans.net</code>）解析到 <code>35.86.90.4</code>，然后访问 <a href="http://tmp.yifans.net">http://tmp.yifans.net</a> 同样看到 nginx 欢迎页面，游览器显示 Not Secure。</p>
+<h3 id="配置-certbot">配置 certbot</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 暂无官方支持 AL2023</span>
+</span></span><span class="line"><span class="cl">sudo wget -O /etc/yum.repos.d/snapd.repo <span class="se">\
+</span></span></span><span class="line"><span class="cl">    https://bboozzoo.github.io/snapd-amazon-linux/al2023/snapd.repo
+</span></span><span class="line"><span class="cl">sudo dnf install -y snapd
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> --now snapd.socket
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo snap install --classic certbot
+</span></span><span class="line"><span class="cl">sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">certbot --version
+</span></span><span class="line"><span class="cl"><span class="c1"># certbot 4.1.1</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 前置 nginx 配置中要有 server_name tmp.yifans.net;</span>
+</span></span><span class="line"><span class="cl">sudo certbot --nginx -d tmp.yifans.net
+</span></span><span class="line"><span class="cl"><span class="c1"># 全自动完成</span>
+</span></span></code></pre></div><p>访问 <a href="http://tmp.yifans.net">http://tmp.yifans.net</a> 会自动跳转 https。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 看看被 certbot 自动修改的 nginx 配置</span>
+</span></span><span class="line"><span class="cl">cat /etc/nginx/conf.d/default.conf
+</span></span></code></pre></div><pre tabindex="0"><code class="language-conf" data-lang="conf">server {
+    server_name  tmp.yifans.net;
+    root         /usr/share/nginx/html;
+
+    error_page 404 /404.html;
+    location = /404.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/tmp.yifans.net/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tmp.yifans.net/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = tmp.yifans.net) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen       80;
+    listen       [::]:80;
+    server_name  tmp.yifans.net;
+    return 404; # managed by Certbot
+}
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 看看 certbot 预置的参数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># include /etc/letsencrypt/options-ssl-nginx.conf;</span>
+</span></span><span class="line"><span class="cl">cat /etc/letsencrypt/options-ssl-nginx.conf
+</span></span></code></pre></div><pre tabindex="0"><code class="language-conf" data-lang="conf"># This file contains important security parameters. If you modify this file
+# manually, Certbot will be unable to automatically provide future security
+# updates. Instead, Certbot will print and log an error message with a path to
+# the up-to-date file that you will need to refer to when manually updating
+# this file. Contents are based on https://ssl-config.mozilla.org
+
+ssl_session_cache shared:le_nginx_SSL:10m;
+# 在内存里创建名为 le_nginx_SSL 的共享会话缓存区域，大小 10 MiB。
+# 能加速后续同客户端的 TLS 握手（避免完整密钥交换）。
+# 10 MiB 足够保存约 40 000 个会话条目。
+
+ssl_session_timeout 1440m;
+# 单位是分钟（1440 m = 24 h）。
+# 表示缓存的会话条目过期时间；设为一天可在常见浏览器会话周期内复用。
+
+ssl_session_tickets off;
+# 关闭 TLS Session Tickets。
+# 原因：早期实现无法便捷轮换 ticket 加密密钥，导致前向安全受损。
+
+ssl_protocols TLSv1.2 TLSv1.3;
+# 明确只允许 1.2 / 1.3。
+# 关闭已不安全的 SSLv3、TLS 1.0、TLS 1.1。
+
+ssl_prefer_server_ciphers off;
+# 让客户端来决定从交集里选哪一组加密套件（服务器不强制优先级）。
+# 在只开放现代安全套件的前提下，这样做兼容性好且简化维护。
+# 如果你想严格控制，可改为 on 并自行调整 ssl_ciphers 顺序。
+
+ssl_ciphers &#34;ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384&#34;;
+# 仅保留 GCM / ChaCha20-Poly1305 这一代 AEAD 套件；弃用 CBC、RC4、3DES 等。
+# ECDHE-ECDSA（椭圆曲线 DH，证书是 ECDSA）
+# ECDHE-RSA（证书是 RSA）
+# DHE-RSA（传统 DH，给极旧设备兜底）
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">`ssl_dhparam` 告诉 Nginx 在使用 DHE（Diffie-Hellman Ephemeral）握手方式时，不用默认的 1024 位弱参数，而改用一份 自定义、更安全的 DH 参数文件。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">DHE 是 TLS/SSL 协议中的一种「密钥交换算法」。它的核心作用只有两点：
+</span></span><span class="line"><span class="cl">  - 让客户端与服务器在 公网信道 上安全地“协商出”一个对称加密用的随机密钥。
+</span></span><span class="line"><span class="cl">  - 提供 前向安全（Forward Secrecy）：哪怕以后服务器的长期私钥被泄露，过去抓到的加密数据也无法解密。
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 看看证书</span>
+</span></span><span class="line"><span class="cl">sudo openssl x509 -in /etc/letsencrypt/live/tmp.yifans.net/fullchain.pem -noout -text <span class="p">|</span> grep yifans.net
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Subject: <span class="nv">CN</span><span class="o">=</span>tmp.yifans.net
+</span></span><span class="line"><span class="cl">                DNS:tmp.yifans.net
+</span></span></code></pre></div><h3 id="只获取证书">只获取证书</h3>
+<p>首先需要将 <code>tmp-certonly.yifans.net</code> 解析到 <code>35.86.90.4</code>，为了自动完成 acme challenge。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/nginx/conf.d/certonly.conf
+</span></span></code></pre></div><pre tabindex="0"><code class="language-conf" data-lang="conf">server {
+    listen       80;
+    listen       [::]:80;
+    server_name  tmp-certonly.yifans.net;
+    root         /usr/share/nginx/html;
+
+    error_page 404 /404.html;
+    location = /404.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+    }
+}
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nginx -t
+</span></span><span class="line"><span class="cl">sudo systemctl reload nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo certbot certonly --nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">We recommend selecting either all domains, or all domains in a VirtualHost/server block.
+</span></span><span class="line"><span class="cl">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+</span></span><span class="line"><span class="cl">1: tmp.yifans.net
+</span></span><span class="line"><span class="cl">2: tmp-certonly.yifans.net
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 选择 2</span>
+</span></span><span class="line"><span class="cl">Successfully received certificate.
+</span></span><span class="line"><span class="cl">Certificate is saved at: /etc/letsencrypt/live/tmp-certonly.yifans.net/fullchain.pem
+</span></span><span class="line"><span class="cl">Key is saved at:         /etc/letsencrypt/live/tmp-certonly.yifans.net/privkey.pem
+</span></span><span class="line"><span class="cl">This certificate expires on 2025-10-01.
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/nginx/conf.d/certonly.conf 没有被自动修改，需要手动添加证书</span>
+</span></span></code></pre></div><h3 id="wildcard-certificate">Wildcard Certificate</h3>
+<ul>
+<li>需要 DNS Credentials。</li>
+<li><code>*.example.com</code> 不覆盖 <code>example.com</code>, <code>hello.goodbye.example.com</code>。</li>
+<li><code>*.goodbye.example.com</code> 可覆盖 <code>hello.goodbye.example.com</code>。</li>
+<li>不可以申请 <code>*.*.example.com</code> 只能一个 <code>*</code> asterisk。</li>
+</ul>
+<p>可以通过 DNS Plugins 插件申请 Wildcard Certificate，但是我觉得 manual 更简单。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo certbot certonly --manual -d <span class="s1">&#39;*.tmp.yifans.net&#39;</span> --preferred-challenges dns
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Please deploy a DNS TXT record under the name:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">_acme-challenge.tmp.yifans.net.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">with the following value:
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问 https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.tmp.yifans.net. 预测试配置结果。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果看到对应的值，按 Enter 继续。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Successfully received certificate.
+</span></span><span class="line"><span class="cl">Certificate is saved at: /etc/letsencrypt/live/tmp.yifans.net-0001/fullchain.pem
+</span></span><span class="line"><span class="cl">Key is saved at:         /etc/letsencrypt/live/tmp.yifans.net-0001/privkey.pem
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 看看证书</span>
+</span></span><span class="line"><span class="cl">sudo openssl x509 -in /etc/letsencrypt/live/tmp.yifans.net-0001/fullchain.pem -noout -text <span class="p">|</span> grep yifans.net
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Subject: <span class="nv">CN</span><span class="o">=</span>*.tmp.yifans.net
+</span></span><span class="line"><span class="cl">                DNS:*.tmp.yifans.net
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vi /etc/nginx/conf.d/wildcard.conf
+</span></span></code></pre></div><pre tabindex="0"><code class="language-conf" data-lang="conf">server {
+    server_name  *.tmp.yifans.net;
+    root         /usr/share/nginx/html;
+
+    error_page 404 /404.html;
+    location = /404.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+    }
+
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/tmp.yifans.net-0001/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tmp.yifans.net-0001/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+}
+
+server {
+    listen 80;
+    server_name *.tmp.yifans.net;
+    return 301 https://$host$request_uri;
+}
+</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo nginx -t
+</span></span><span class="line"><span class="cl">sudo systemctl reload nginx
+</span></span></code></pre></div><p>将 <code>1.tmp.yifans.net</code> 解析到 <code>35.86.90.4</code>，然后访问 <a href="https://1.tmp.yifans.net">https://1.tmp.yifans.net</a>，在 Chrome 的证书信息里可以看到 <code>Common Name (CN) *.tmp.yifans.net</code>。</p>
+<h3 id="证书续期">证书续期</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo certbot renew --dry-run
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://certbot.eff.org/instructions?ws=nginx&amp;os=snap">Nginx on Linux (snap) | Certbot</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>NGINX 启用 HTTP/2</title>
       <link>https://zyf.im/2017/06/06/nginx-enable-http2/</link>
-      <pubDate>Tue, 06 Jun 2017 21:00:00 +0800</pubDate>
+      <pubDate>Tue, 06 Jun 2017 21:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/06/06/nginx-enable-http2/</guid>
       <description>&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;HTTP/2（RFC 7540，2015 年发布）是自 1999 年 HTTP/1.1 以来的第一次重大升级，目标是在 不改变应用语义 的前提下，改善延迟、并发和网络效率。浏览器端基本只在 TLS 上启用（h2），明文版本 h2c 仅用于内部服务间通信。&lt;/p&gt;
@@ -257,6 +964,102 @@
 &lt;/table&gt;
 &lt;h2 id=&#34;开始实验&#34;&gt;开始实验&lt;/h2&gt;
 &lt;p&gt;启用 HTTP/2 需要使用 HTTPS，请先参考 &lt;a href=&#34;https://zyf.im/2025/06/26/use-https-in-local-environment/&#34;&gt;在本地环境使用 HTTPS ｜ ZYF.IM&lt;/a&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="简介">简介</h2>
+<p>HTTP/2（RFC 7540，2015 年发布）是自 1999 年 HTTP/1.1 以来的第一次重大升级，目标是在 不改变应用语义 的前提下，改善延迟、并发和网络效率。浏览器端基本只在 TLS 上启用（h2），明文版本 h2c 仅用于内部服务间通信。</p>
+<ul>
+<li>h2：HTTP/2 over TLS（最常见，浏览器只支持这一种）</li>
+<li>h2c：HTTP/2 over TCP（无加密）</li>
+</ul>
+<h3 id="设计背景">设计背景</h3>
+<p>移动端和富媒体时代，请求量激增，HTTP/1.1 的队头阻塞、多个 TCP 连接并行带来的 慢启动/拥塞竞争 成为瓶颈。</p>
+<p>谷歌的 SPDY 原型验证了“单连接、多路复用、压缩头部”等思路；IETF 在 SPDY 3.1 基础上标准化为 HTTP/2。</p>
+<h3 id="核心特性">核心特性</h3>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>二进制分帧 (Binary Framing)</td>
+          <td>把 HTTP 报文拆成小型 Frame；机器易解析、可并行</td>
+      </tr>
+      <tr>
+          <td>多路复用 (Multiplexing)</td>
+          <td>多个请求/响应 共享一个 TCP 连接，互不阻塞</td>
+      </tr>
+      <tr>
+          <td>流与优先级 (Stream &amp; Priority)</td>
+          <td>每个请求是双向 Stream，可指定权重与依赖</td>
+      </tr>
+      <tr>
+          <td>头部压缩 (HPACK)</td>
+          <td>静态 Huffman + 动态表，大幅减少重复的 Header 字节</td>
+      </tr>
+      <tr>
+          <td>服务器推送 (Server Push)</td>
+          <td>服务器可在请求外预送资源 (已被多数浏览器弱化/关闭)</td>
+      </tr>
+      <tr>
+          <td>流量控制</td>
+          <td>端到端窗口，避免单个大文件占满带宽</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="开始实验">开始实验</h2>
+<p>启用 HTTP/2 需要使用 HTTPS，请先参考 <a href="/2025/06/26/use-https-in-local-environment/">在本地环境使用 HTTPS ｜ ZYF.IM</a>。</p>
+<p>修改 NGINX default.conf 配置文件，启用 HTTP/2：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># vi default.conf</span>
+</span></span><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen <span class="m">443</span> ssl<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 启用 HTTP/2</span>
+</span></span><span class="line"><span class="cl">    http2 on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    server_name localhost<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    ssl_certificate /etc/ssl/certs/localhost.pem<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    ssl_certificate_key /etc/ssl/certs/localhost-key.pem<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    ssl_protocols TLSv1.2 TLSv1.3<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    ssl_ciphers HIGH:!aNULL:!MD5<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    ssl_prefer_server_ciphers on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        root /usr/share/nginx/html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        index  index.html index.htm<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker container restart nginx-ssl
+</span></span></code></pre></div><h2 id="测试">测试</h2>
+<h3 id="游览器">游览器</h3>
+<p>游览器访问 <code>https://localhost:8443/</code>，在 Chrome 开发者工具 Network 面板勾选 <code>Protocol</code>，可看到 <code>h2</code> 字样。</p>
+<p>或者使用 Chrome 插件 <a href="https://chromewebstore.google.com/detail/http-indicator/hgcomhbcacfkpffiphlmnlhpppcjgmbl?hl=en-US">HTTP Indicator</a>：</p>
+<ul>
+<li>HTTP/1.1 显示为灰色。</li>
+<li>HTTP/2 显示为蓝色。</li>
+<li>HTTP/3 显示为绿色。</li>
+</ul>
+<h3 id="curl">curl</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -I (--head) 只返回响应头</span>
+</span></span><span class="line"><span class="cl">curl -I https://localhost:8443/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">HTTP/2 <span class="m">200</span>
+</span></span><span class="line"><span class="cl">server: nginx/1.29.0
+</span></span><span class="line"><span class="cl">date: Fri, <span class="m">27</span> Jun <span class="m">2025</span> 01:56:55 GMT
+</span></span><span class="line"><span class="cl">content-type: text/html
+</span></span><span class="line"><span class="cl">content-length: <span class="m">615</span>
+</span></span><span class="line"><span class="cl">last-modified: Tue, <span class="m">24</span> Jun <span class="m">2025</span> 17:57:38 GMT
+</span></span><span class="line"><span class="cl">etag: <span class="s2">&#34;685ae712-267&#34;</span>
+</span></span><span class="line"><span class="cl">accept-ranges: bytes
+</span></span></code></pre></div><h2 id="http3">HTTP/3</h2>
+<p>请移步 <a href="/2025/06/27/nginx-enable-http3/">NGINX 启用 HTTP/3 ｜ ZYF.IM</a>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nginx.org/en/docs/http/ngx_http_v2_module.html">NGINX HTTP/2 模块</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

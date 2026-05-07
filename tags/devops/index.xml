@@ -4,14 +4,14 @@
     <title>Devops on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/devops/</link>
     <description>Recent content in Devops on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 29 Jun 2020 10:24:16 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>tcpdump 入门使用</title>
       <link>https://zyf.im/2020/06/29/tcpdump-getting-started/</link>
-      <pubDate>Mon, 29 Jun 2020 10:24:16 +0800</pubDate>
+      <pubDate>Mon, 29 Jun 2020 10:24:16 +0000</pubDate>
       <guid>https://zyf.im/2020/06/29/tcpdump-getting-started/</guid>
       <description>&lt;p&gt;tcpdump 是类 Unix 系统上最常用、最轻量的网络抓包与分析工具。它直接调用 libpcap 库，在内核层抓取链路层的数据包，然后解析输出文本格式的&amp;quot;数据包头部摘要&amp;quot;，也可将原始数据保存为 pcap 文件供 Wireshark 等 GUI 工具进一步分析。&lt;/p&gt;
 &lt;h2 id=&#34;字多不看&#34;&gt;字多不看&lt;/h2&gt;
@@ -68,6 +68,229 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;过滤语法&#34;&gt;过滤语法&lt;/h3&gt;
 &lt;p&gt;tcpdump 采用 BPF 过滤语法（Berkeley Packet Filter）：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>tcpdump 是类 Unix 系统上最常用、最轻量的网络抓包与分析工具。它直接调用 libpcap 库，在内核层抓取链路层的数据包，然后解析输出文本格式的&quot;数据包头部摘要&quot;，也可将原始数据保存为 pcap 文件供 Wireshark 等 GUI 工具进一步分析。</p>
+<h2 id="字多不看">字多不看</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump host httpforever.com and tcp port <span class="m">80</span> -A -nn
+</span></span></code></pre></div><h2 id="一举成名天下知">一举成名天下知</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">man tcpdump
+</span></span></code></pre></div><h3 id="常用参数速查">常用参数速查</h3>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>-i <iface></td>
+          <td>指定接口（不指定默认第一个可用接口）</td>
+      </tr>
+      <tr>
+          <td>-nn</td>
+          <td>不解析主机名和端口名（仅显示数字）</td>
+      </tr>
+      <tr>
+          <td>-v/-vv/-vvv</td>
+          <td>详细级别（-v/-vv/-vvv）</td>
+      </tr>
+      <tr>
+          <td>-c <num></td>
+          <td>捕获指定数量后退出</td>
+      </tr>
+      <tr>
+          <td>-s <len></td>
+          <td>抓取长度（0 = 全包；新版默认 262144 bytes）</td>
+      </tr>
+      <tr>
+          <td>-w <file></td>
+          <td>将原始数据写入 pcap 文件</td>
+      </tr>
+      <tr>
+          <td>-r <file></td>
+          <td>读取 pcap 文件离线解析</td>
+      </tr>
+      <tr>
+          <td>-A / -X</td>
+          <td>以 ASCII / 十六进制+ASCII 方式打印负载</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li><code>-i any</code> 监听所有的网卡</li>
+<li><code>-A</code> 只使用 ASCII 打印报文的全部数据，不要和 <code>-X</code> 一起使用。截取 HTTP 请求的时候可以用 <code>sudo tcpdump -nSA port 80</code></li>
+<li><code>-S</code> 显示绝对的序列号（sequence number），而不是相对编号</li>
+</ul>
+<h3 id="过滤语法">过滤语法</h3>
+<p>tcpdump 采用 BPF 过滤语法（Berkeley Packet Filter）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>proto<span class="o">]</span> <span class="o">[</span>src<span class="p">|</span>dst<span class="o">]</span> <span class="o">[</span>host<span class="p">|</span>net<span class="p">|</span>port<span class="o">]</span> &lt;对象&gt; <span class="o">[</span>逻辑运算<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">tcp and dst port <span class="m">80</span> and src net 10.0.0.0/8
+</span></span></code></pre></div><ol>
+<li>协议：ip, tcp, udp, icmp, arp, vlan, ip6, &hellip;</li>
+<li>方向：src, dst, src or dst, src and dst</li>
+<li>对象：host 10.0.0.1, net 192.168.0.0/16, port 443</li>
+<li>逻辑：and, or, not, ( )
+<ul>
+<li>与：<code>&amp;&amp;</code> 或 <code>and</code></li>
+<li>或：<code>||</code> 或 <code>or</code></li>
+<li>非：<code>!</code> 或 <code>not</code></li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 抓取所有经过 en0，目的或源地址是 192.168.50.1 的网络数据</span>
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 host 192.168.50.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 源地址</span>
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 src host 192.168.50.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 目的地址</span>
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 dst host 192.168.50.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 端口</span>
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 port <span class="m">8080</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤网段</span>
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 net 192.168
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 协议过滤</span>
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 tcp
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 udp
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 ip
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 arp
+</span></span><span class="line"><span class="cl">sudo tcpdump -i en0 icmp
+</span></span></code></pre></div><h3 id="输出格式拆解">输出格式拆解</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">14:24:12.196582 IP 192.168.91.29.56930 &gt; 146.190.62.39.http: Flags <span class="o">[</span>SEW<span class="o">]</span>, seq 193726297, win 65535, options <span class="o">[</span>mss 1460,nop,wscale 6,nop,nop,TS val <span class="m">2297696209</span> ecr 0,sackOK,eol<span class="o">]</span>, length <span class="m">0</span>
+</span></span></code></pre></div><ol>
+<li>时间戳</li>
+<li>协议层（IP/ARP/&hellip;）</li>
+<li>源地址.端口 &gt; 目标地址.端口</li>
+<li>TCP 标志位</li>
+<li>seq/ack/win 等字段</li>
+<li>报文长度</li>
+</ol>
+<p>可加 <code>-tttt</code> 打印完整日期；<code>-e</code> 显示以太网头（MAC 地址）。</p>
+<h2 id="获取适配器列表">获取适配器列表</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -D
+</span></span><span class="line"><span class="cl">sudo tcpdump --list-interfaces
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1.en0 <span class="o">[</span>Up, Running<span class="o">]</span>
+</span></span><span class="line"><span class="cl">2.p2p0 <span class="o">[</span>Up, Running<span class="o">]</span>
+</span></span><span class="line"><span class="cl">3.awdl0 <span class="o">[</span>Up, Running<span class="o">]</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><h2 id="监听适配器">监听适配器</h2>
+<p>Listen on interface.</p>
+<p>macOS 下监听适配器，必须使用 root 权限。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i en0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo tcpdump -i <span class="m">1</span>
+</span></span></code></pre></div><h2 id="flags">Flags</h2>
+<blockquote>
+<p><a href="https://amits-notes.readthedocs.io/en/latest/networking/tcpdump.html#id2">tcpdump Flags | readthedocs</a></p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>TCP Flag</th>
+          <th>Flag</th>
+          <th>Meaning</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>SYN</td>
+          <td>S</td>
+          <td>Syn packet, a session establishment request. 一个会话建立请求</td>
+      </tr>
+      <tr>
+          <td>ACK</td>
+          <td>A</td>
+          <td>Ack packet, acknowledge sender&rsquo;s data. 确认发送方的数据</td>
+      </tr>
+      <tr>
+          <td>FIN</td>
+          <td>F</td>
+          <td>Finish flag, indication of termination. 终止的标识</td>
+      </tr>
+      <tr>
+          <td>RESET</td>
+          <td>R</td>
+          <td>Reset, indication of immediate abort of conn. 指令立即中止</td>
+      </tr>
+      <tr>
+          <td>PUSH</td>
+          <td>P</td>
+          <td>Push, immediate push of data from sender. 从发送方立即推送数据</td>
+      </tr>
+      <tr>
+          <td>URGENT</td>
+          <td>U</td>
+          <td>Urgent, takes precedence over other data. 优先于其他数据</td>
+      </tr>
+      <tr>
+          <td>NONE</td>
+          <td>A dot .</td>
+          <td>Placeholder, usually used for ACK. 占位符，通常用于 ACK</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="实例">实例</h2>
+<p>抓取所有经过 eth1，目的地址是 192.168.1.254 或 192.168.1.200 端口是 80 的 TCP 数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i eth1 <span class="s1">&#39;((tcp) and (port 80) and ((dst host 192.168.1.254) or (dst host 192.168.1.200)))&#39;</span>
+</span></span></code></pre></div><p>抓取所有经过 eth1，目的网络是 192.168，但目的主机不是 192.168.1.200 的 TCP 数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i eth1 <span class="s1">&#39;((tcp) and ((dst net 192.168) and (not dst host 192.168.1.200)))&#39;</span>
+</span></span></code></pre></div><p>只抓 SYN 包：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i eth1 <span class="s1">&#39;tcp[tcpflags] = tcp-syn&#39;</span>
+</span></span></code></pre></div><p>抓 SYN, ACK：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i eth1 <span class="s1">&#39;tcp[tcpflags] &amp; tcp-syn != 0 and tcp[tcpflags] &amp; tcp-ack != 0&#39;</span>
+</span></span></code></pre></div><p>抓 DNS 请求数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i en0 udp dst port <span class="m">53</span>
+</span></span></code></pre></div><p><code>-c</code> 参数对于运维人员来说也比较常用，因为流量比较大的服务器，靠人工 CTRL+C 还是抓的太多，于是可以用 <code>-c</code> 参数指定抓多少个包：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nb">time</span> tcpdump -nn -i en0 <span class="s1">&#39;tcp[tcpflags] = tcp-syn&#39;</span> -c <span class="m">10000</span> &gt; /dev/null
+</span></span></code></pre></div><p>实时抓取端口号 8000 的 GET 包，然后写入 GET.log：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i eth0 <span class="s1">&#39;((port 8000) and (tcp[(tcp[12]&gt;&gt;2):4]=0x47455420))&#39;</span> -nnAl -w /tmp/GET.log
+</span></span></code></pre></div><h2 id="三次握手-四次挥手">三次握手 四次挥手</h2>
+<h3 id="tcp-连接建立三次握手">TCP 连接建立（三次握手）</h3>
+<p>客户端 A，服务器 B，初始序号 seq，确认号 ack。</p>
+<p>初始状态：B 处于监听状态，A 处于打开状态。</p>
+<ul>
+<li>A -&gt; B：seq = x（A 向 B 发送连接请求报文段，A 进入同步发送状态 SYN-SENT）</li>
+<li>B -&gt; A：ack = x + 1, seq = y（B 收到报文段，向 A 发送确认，B 进入同步收到状态 SYN-RCVD）</li>
+<li>A -&gt; B：ack = y + 1（A 收到 B 的确认后，再次确认，A 进入连接状态 ESTABLISHED）</li>
+</ul>
+<p>连接后的状态：B 收到 A 的确认后，进入连接状态 ESTABLISHED。</p>
+<p>为什么要握手要三次？防止失效的连接请求突然传到服务器端，让服务器端误认为要建立连接。</p>
+<h3 id="tcp-连接释放四次挥手">TCP 连接释放（四次挥手）</h3>
+<ul>
+<li>A -&gt; B：seq = u（A 发出连接释放报文段，进入终止等待 1 状态 FIN-WAIT-1）</li>
+<li>B -&gt; A：ack = u + 1, seq = v（B 收到报文段，发出确认，TCP 处于半关闭，B 还可向 A 发数据，B 进入关闭等待状态 CLOSE-WAIT）</li>
+<li>B -&gt; A：ack = u + 1, seq = w（B 重复发送确认号，进入最后确认状态 LAST-ACK）</li>
+<li>A -&gt; B：ack = w + 1, seq = u + 1（A 发出确认，进入时间等待状态 TIME-WAIT）</li>
+</ul>
+<p>经过时间等待计时器设置的时间 2MSL 后，A 才进入 CLOSED 状态。</p>
+<p>为什么 A 进入 TIME-WAIT 后必须等待 2MSL：</p>
+<ul>
+<li>保证 A 发送的最后一个 ACK 报文段能到达 B</li>
+<li>防止失效的报文段出现在连接中</li>
+</ul>
+<h3 id="需要思考的问题">需要思考的问题</h3>
+<p>问题 1：请详细描述三次握手和四次挥手的过程
+要求熟悉三次握手和四次挥手的机制，要求画出状态图。</p>
+<p>问题 2：四次挥手中 TIME_WAIT 状态存在的目的是什么？
+这个问题是画出四次挥手状态图，会引申问你。不排除还会问为什么四次挥手是四次不是二次等问题。最好是把相关问题均掌握。</p>
+<p>问题 3：TCP 是通过什么机制保障可靠性的？
+从四个方面进行回答，ACK 确认机制、超时重传、滑动窗口以及流量控制，深入的话要求详细讲出流量控制的机制。</p>
+<h3 id="抓包分析握手过程">抓包分析握手过程</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo tcpdump -i en0 host www.qq.com and tcp -S -c <span class="m">50</span>
+</span></span></code></pre></div><p><img alt="tcpdump 抓包分析握手过程" loading="lazy" src="https://user-images.githubusercontent.com/9289792/87918568-3377e280-caa9-11ea-831a-95000e308ad8.png"></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.jianshu.com/p/a57a5b0e58f0">macOS 下使用 tcpdump 抓包 | jianshu</a></li>
+<li><a href="https://amits-notes.readthedocs.io/en/latest/networking/tcpdump.html">tcpdump | readthedocs</a></li>
+<li><a href="https://www.cnblogs.com/fonxian/p/6565209.html">TCP 三次握手、四次挥手与 TcpDump 抓包分析 | 清泉白石</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

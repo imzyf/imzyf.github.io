@@ -4,14 +4,14 @@
     <title>Algorithm on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/algorithm/</link>
     <description>Recent content in Algorithm on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 23 May 2019 14:44:40 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 23 May 2019 14:44:40 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>归并排序</title>
       <link>https://zyf.im/2019/05/23/merge-sort/</link>
-      <pubDate>Thu, 23 May 2019 14:44:40 +0800</pubDate>
+      <pubDate>Thu, 23 May 2019 14:44:40 +0000</pubDate>
       <guid>https://zyf.im/2019/05/23/merge-sort/</guid>
       <description>&lt;p&gt;归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 &lt;code&gt;O(nlogn)&lt;/code&gt;。1945 年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。&lt;/p&gt;
 &lt;!-- more --&gt;
@@ -64,11 +64,69 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;use time: &amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;microtime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$startTime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;s&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;假设被排序的数列中有 N 个数。遍历一趟的时间复杂度是 &lt;code&gt;O(N)&lt;/code&gt;，需要遍历多少次呢？&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>归并排序（英语：Merge sort，或 mergesort），是创建在归并操作上的一种有效的排序算法，效率为 <code>O(nlogn)</code>。1945 年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。</p>
+<!-- more -->
+<p><img alt="merge-sort" loading="lazy" src="https://user-images.githubusercontent.com/9289792/58546744-9751a300-8238-11e9-84d1-0d33d5eaacee.gif"></p>
+<p>采用分治法：</p>
+<ul>
+<li>分割：递归地把当前序列平均分割成两半。</li>
+<li>集成：在保持元素顺序的同时将上一步得到的子序列集成到一起（归并）。</li>
+</ul>
+<p>归并操作（merge），也叫归并算法，指的是将两个已经排序的序列合并成一个序列的操作。归并排序算法依赖归并操作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="nv">$arr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$len</span> <span class="o">=</span> <span class="nx">count</span><span class="p">(</span><span class="nv">$arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$len</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$arr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="c1">// 递归结束条件, 到达这步的时候, 数组就只剩下一个元素了, 也就是分离了数组
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$mid</span> <span class="o">=</span> <span class="nv">$len</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$left</span> <span class="o">=</span> <span class="nx">array_slice</span><span class="p">(</span><span class="nv">$arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$mid</span><span class="p">);</span> <span class="c1">// 拆分数组0-mid这部分给左边left
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$right</span> <span class="o">=</span> <span class="nx">array_slice</span><span class="p">(</span><span class="nv">$arr</span><span class="p">,</span> <span class="nv">$mid</span><span class="p">);</span> <span class="c1">// 拆分数组mid-末尾这部分给右边right
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$left</span> <span class="o">=</span> <span class="nx">mergeSort</span><span class="p">(</span><span class="nv">$left</span><span class="p">);</span> <span class="c1">// 左边拆分完后开始递归合并往上走
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$right</span> <span class="o">=</span> <span class="nx">mergeSort</span><span class="p">(</span><span class="nv">$right</span><span class="p">);</span> <span class="c1">// 右边拆分完毕开始递归往上走
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$arr</span> <span class="o">=</span> <span class="nx">merge</span><span class="p">(</span><span class="nv">$left</span><span class="p">,</span> <span class="nv">$right</span><span class="p">);</span> <span class="c1">// 合并两个数组,继续递归
+</span></span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$arr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// merge函数将指定的两个有序数组(arrA, arr)合并并且排序
+</span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">merge</span><span class="p">(</span><span class="nv">$arrA</span><span class="p">,</span> <span class="nv">$arrB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$arrC</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nx">count</span><span class="p">(</span><span class="nv">$arrA</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">count</span><span class="p">(</span><span class="nv">$arrB</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 这里不断的判断哪个值小, 就将小的值给到arrC, 但是到最后肯定要剩下几个值,
+</span></span></span><span class="line"><span class="cl">        <span class="c1">// 不是剩下arrA里面的就是剩下arrB里面的而且这几个有序的值, 肯定比arrC里面所有的值都大所以使用
+</span></span></span><span class="line"><span class="cl">        <span class="nv">$arrC</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$arrA</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nv">$arrB</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">?</span> <span class="nx">array_shift</span><span class="p">(</span><span class="nv">$arrA</span><span class="p">)</span> <span class="o">:</span> <span class="nx">array_shift</span><span class="p">(</span><span class="nv">$arrB</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">array_merge</span><span class="p">(</span><span class="nv">$arrC</span><span class="p">,</span> <span class="nv">$arrA</span><span class="p">,</span> <span class="nv">$arrB</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$startTime</span> <span class="o">=</span> <span class="nx">microtime</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$arr</span> <span class="o">=</span> <span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">shuffle</span><span class="p">(</span><span class="nv">$arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s1">&#39;before sort: &#39;</span><span class="p">,</span> <span class="nx">implode</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">,</span> <span class="nv">$arr</span><span class="p">),</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$sortArr</span> <span class="o">=</span> <span class="nx">mergeSort</span><span class="p">(</span><span class="nv">$arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s1">&#39;after sort: &#39;</span><span class="p">,</span> <span class="nx">implode</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">,</span> <span class="nv">$sortArr</span><span class="p">),</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s1">&#39;use time: &#39;</span><span class="p">,</span> <span class="nx">microtime</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="nv">$startTime</span><span class="p">,</span> <span class="s2">&#34;s</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span></code></pre></div><p>假设被排序的数列中有 N 个数。遍历一趟的时间复杂度是 <code>O(N)</code>，需要遍历多少次呢？</p>
+<p>归并排序的形式就是一棵二叉树，它需要遍历的次数就是二叉树的深度，而根据 <strong>完全二叉树</strong> 的可以得出它的时间复杂度是 <code>O(N*lgN)</code>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://shockerli.net/post/merge-sort-implement-by-php/">PHP 算法 —— 归并排序</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>寻找数组中轴索引</title>
       <link>https://zyf.im/2019/03/06/find-pivot-index/</link>
-      <pubDate>Wed, 06 Mar 2019 14:00:00 +0800</pubDate>
+      <pubDate>Wed, 06 Mar 2019 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2019/03/06/find-pivot-index/</guid>
       <description>&lt;p&gt;将 pivot 索引定义为：左边的数字之和等于索引右边的数字之和。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
@@ -115,11 +173,57 @@
 &lt;li&gt;&lt;a href=&#34;https://my.oschina.net/liyurong/blog/1608204&#34;&gt;找到数组中左右两边的和相等的 pivot 的下标 Find Pivot Index&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>将 pivot 索引定义为：左边的数字之和等于索引右边的数字之和。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="n">Input</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">nums</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Output</span><span class="p">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">Explanation</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Input</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">nums</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">Output</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Explanation</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">There</span> <span class="k">is</span> <span class="n">no</span> <span class="n">index</span> <span class="n">that</span> <span class="n">satisfies</span> <span class="n">the</span> <span class="n">conditions</span> <span class="k">in</span> <span class="n">the</span> <span class="n">problem</span> <span class="n">statement</span><span class="p">.</span>
+</span></span></code></pre></div><!-- more -->
+<p>Note:</p>
+<ul>
+<li>The length of <code>nums</code> will be in the range <code>[0, 10000]</code>.</li>
+<li>Each element <code>nums[i]</code> will be an integer in the range <code>[-1000, 1000]</code>.</li>
+</ul>
+<h2 id="关键点">关键点</h2>
+<ul>
+<li>动态规划</li>
+<li>数组的和 - 中轴数 = 中轴数左边数组的和 * 2</li>
+</ul>
+<h2 id="解答">解答</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">findPivot</span><span class="p">(</span><span class="kc">_</span> <span class="n">array</span><span class="p">:</span> <span class="p">[</span><span class="nb">Int</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 数组和</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">sum</span> <span class="p">=</span> <span class="n">array</span><span class="p">.</span><span class="bp">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">+</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 左侧数组和</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">leftSum</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">in</span> <span class="n">array</span><span class="p">.</span><span class="n">enumerated</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sum</span> <span class="o">-</span> <span class="n">value</span> <span class="p">==</span> <span class="n">leftSum</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">key</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">leftSum</span> <span class="o">+=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">array</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">search</span><span class="p">(</span><span class="n">array</span><span class="p">)</span> <span class="c1">// 3</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://my.oschina.net/liyurong/blog/1608204">找到数组中左右两边的和相等的 pivot 的下标 Find Pivot Index</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>m 进制转 n 进制</title>
       <link>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</link>
-      <pubDate>Sat, 02 Mar 2019 14:00:00 +0800</pubDate>
+      <pubDate>Sat, 02 Mar 2019 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</guid>
       <description>&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
 &lt;ul&gt;
@@ -179,11 +283,70 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
 &lt;li&gt;&lt;a href=&#34;http://ascii.911cha.com/&#34;&gt;ASCII 码对照表&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="思路">思路</h2>
+<ul>
+<li>m 进制 -&gt; 十进制 -&gt; n 进制</li>
+<li>利用柯里化生成函数（炫技 🐶）</li>
+</ul>
+<!-- more -->
+<h2 id="m-进制---十进制">m 进制 -&gt; 十进制</h2>
+<pre tabindex="0"><code>// carry 范围值: 2-36
+// origin 范围值: 0-9 [ascii 48-58], A-Z [65-90], a-z [97-122]
+func carryToDecimalism(_ carry: Int) -&gt; (_ origin: String) -&gt; Int {
+    return { origin in
+        // 得到字符串对应的 ascii 码
+        let asciis = origin.uppercased().unicodeScalars.map { Int($0.value) }
+        // 累加每一位
+        let result = asciis.reversed().enumerated().map { (index, ascii) -&gt; Int in
+            var standard: Int
+            if 65 &lt;= ascii &amp;&amp; ascii &lt;= 90 {
+                standard = ascii - 65 + 10
+            } else {
+                standard = ascii - 48
+            }
+            return standard * Int(pow(Double(carry), Double(index)))
+        }.reduce(0, +)
+        return result
+    }
+}
+
+let 十六进制转十进制 = carryToDecimalism(16)
+print(十六进制转十进制(&#34;1a&#34;)) // 26
+
+let 二进制转十进制 = carryToDecimalism(2)
+print(二进制转十进制(&#34;110&#34;)) // 6
+</code></pre><h2 id="十进制---n-进制">十进制 -&gt; n 进制</h2>
+<pre tabindex="0"><code>func decimalismToCarry(_ carry: Int) -&gt; (_ origin: Int) -&gt; String {
+    return { origin in
+        var result = [Int]()
+        var remain = origin
+        while remain &gt; 0 {
+            result.append(remain % carry)
+            remain /= carry
+        }
+        if carry &lt;= 10 {
+            return result.reversed().map(String.init).joined()
+        } else {
+            return result.reversed().map { i -&gt; String in
+                return i &lt; 10 ? String(i) : String(UnicodeScalar(i + 55)!)
+            }.joined()
+        }
+    }
+}
+
+let 十进制转二进制 = decimalismToCarry(2)
+print(十进制转二进制(26)) // &#34;11010&#34;
+</code></pre><h2 id="references">References</h2>
+<ul>
+<li><a href="http://ascii.911cha.com/">ASCII 码对照表</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>超长阶乘的计算</title>
       <link>https://zyf.im/2019/03/01/extra-long-factorials/</link>
-      <pubDate>Fri, 01 Mar 2019 14:00:00 +0800</pubDate>
+      <pubDate>Fri, 01 Mar 2019 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2019/03/01/extra-long-factorials/</guid>
       <description>&lt;p&gt;打印 &lt;code&gt;n!&lt;/code&gt; 的结果（1 &amp;lt;= n &amp;lt;= 100）。注意：当 &lt;code&gt;n &amp;gt; 20&lt;/code&gt; 时 64 位的 &lt;code&gt;Int&lt;/code&gt; 将无法直接存储结果。&lt;/p&gt;
 &lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
@@ -239,11 +402,66 @@ print(十进制转二进制(26)) // &amp;#34;11010&amp;#34;
 &lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/43830151/swift-3-calculate-factorial-number-result-becomes-too-high&#34;&gt;Swift 3 calculate factorial number. Result becomes too high?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>打印 <code>n!</code> 的结果（1 &lt;= n &lt;= 100）。注意：当 <code>n &gt; 20</code> 时 64 位的 <code>Int</code> 将无法直接存储结果。</p>
+<h2 id="思路">思路</h2>
+<ul>
+<li>将大数字用 <strong>数组</strong> 形式表示。比如 987 使用 [9,8,7] 代替。</li>
+<li>每一位乘以 n，再进行进位操作，得到新数组。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">nums</span> <span class="p">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">tmpNums</span> <span class="p">=</span> <span class="n">nums</span><span class="p">.</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">}</span> <span class="c1">// [18, 16, 14]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 遍历 tmpNums 每一个数字，进行进制操作</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="bp">print</span><span class="p">(</span><span class="n">tmpNums</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="nb">String</span><span class="p">.</span><span class="kd">init</span><span class="p">).</span><span class="n">joined</span><span class="p">())</span> <span class="c1">// 1974</span>
+</span></span></code></pre></div><h2 id="解答项目">解答项目</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">extraLongFactorials</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">guard</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 结果数组</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">result</span><span class="p">:</span> <span class="p">[</span><span class="nb">Int</span><span class="p">]</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">index</span> <span class="k">in</span> <span class="mf">1.</span><span class="p">..</span><span class="n">n</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 数组翻转 从低位开始每一位乘以本次的数字</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">tmpNums</span> <span class="p">=</span> <span class="n">result</span><span class="p">.</span><span class="n">reversed</span><span class="p">().</span><span class="bp">map</span> <span class="p">{</span> <span class="nv">$0</span> <span class="o">*</span> <span class="n">index</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 进位数</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nv">carryNum</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 重置结果</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="p">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmpNums</span><span class="p">.</span><span class="n">forEach</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 每一位加上上一位的进的数</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">let</span> <span class="nv">tmpNum</span> <span class="p">=</span> <span class="nv">$0</span> <span class="o">+</span> <span class="n">carryNum</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 向下一位进制的数</span>
+</span></span><span class="line"><span class="cl">            <span class="n">carryNum</span> <span class="p">=</span> <span class="n">tmpNum</span> <span class="o">/</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 本位实际剩下的数 插入结果</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmpNum</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 处理剩余进位数 进位数是可能大于 100</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">carryNum</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 逐渐插入进制</span>
+</span></span><span class="line"><span class="cl">            <span class="n">result</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">carryNum</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">carryNum</span> <span class="o">/=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 翻转回数组</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="p">=</span> <span class="n">result</span><span class="p">.</span><span class="n">reversed</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 连接字符串</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="bp">map</span><span class="p">(</span><span class="nb">String</span><span class="p">.</span><span class="kd">init</span><span class="p">).</span><span class="n">joined</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.hackerrank.com/challenges/extra-long-factorials/problem">Extra Long Factorials | HackerRank</a></li>
+<li><a href="https://stackoverflow.com/questions/43830151/swift-3-calculate-factorial-number-result-becomes-too-high">Swift 3 calculate factorial number. Result becomes too high?</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>二分查找 Binary Search</title>
       <link>https://zyf.im/2018/12/10/binary-search/</link>
-      <pubDate>Mon, 10 Dec 2018 14:00:00 +0800</pubDate>
+      <pubDate>Mon, 10 Dec 2018 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/12/10/binary-search/</guid>
       <description>&lt;p&gt;快速从一个数组中查找一个元素。&lt;/p&gt;
 &lt;h2 id=&#34;linear-search-线性查找&#34;&gt;Linear Search 线性查找&lt;/h2&gt;
@@ -296,11 +514,93 @@ let numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 6
 // 0 ..&amp;lt; numbers.count 覆盖所有范围
 binarySearch(numbers, key: 43, range: 0 ..&amp;lt; numbers.count)  // gives 13
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;二分查找是将数组分为两个，但是我们不需要正真的创建两个新数组。取而代之，我们使用 Swift &lt;code&gt;Range&lt;/code&gt; 对象跟踪这些拆分。左闭右开。upperBound 总是比最后一个元素的索引多一。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>快速从一个数组中查找一个元素。</p>
+<h2 id="linear-search-线性查找">Linear Search 线性查找</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">linearSearch</span><span class="p">&lt;</span><span class="n">T</span><span class="p">:</span> <span class="nb">Equatable</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">a</span><span class="p">:</span> <span class="p">[</span><span class="n">T</span><span class="p">],</span> <span class="kc">_</span> <span class="n">key</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span> <span class="p">..</span><span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="bp">count</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">==</span> <span class="n">key</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>线性查找在最坏情况：遍历了整个数组，但没有找到合适的元素。平均要遍历一半的元素性能为 <code>O(n)</code>，而二分查找的效率为 <code>O(log n)</code>，也就是说一个有 <code>1,000,000</code> 元素的数组只需要 <code>20</code> 步就可以找到想要的元素 <code>log_2(1,000,000) = 19.9</code>。</p>
+<p>但是二分查找要求数组必须是排好序。</p>
+<p>二分查找步骤：</p>
+<ol>
+<li>将数组分为两半。</li>
+<li>判断想要找的元素是在左边数组还是右边，这也是数组需要排好顺序的原因。</li>
+<li>如果要的元素在左边，就将左边的数组分成更小的两部分，并判断要的元素在哪部分。</li>
+<li>重复步骤直到找到想要的元素。如果数组不能进一步查分，就说明要找的元素不在数组中。</li>
+</ol>
+<p>divide-and-conquer</p>
+<h2 id="the-code">The code</h2>
+<pre tabindex="0"><code>func binarySearch&lt;T: Comparable&gt;(_ a: [T], key: T, range: Range&lt;Int&gt;) -&gt; Int? {
+    if range.lowerBound &gt;= range.upperBound {
+        // If we get here, then the search key is not present in the array.
+        return nil
+
+    } else {
+        // Calculate where to split the array.
+        let midIndex = range.lowerBound + (range.upperBound - range.lowerBound) / 2
+
+        // Is the search key in the left half?
+        if a[midIndex] &gt; key {
+            return binarySearch(a, key: key, range: range.lowerBound ..&lt; midIndex)
+
+        // Is the search key in the right half?
+        // 这里 + 1 的原因是排除 midIndex 中间值
+        } else if a[midIndex] &lt; key {
+            return binarySearch(a, key: key, range: midIndex + 1 ..&lt; range.upperBound)
+
+        // If we get here, then we&#39;ve found the search key!
+        } else {
+            return midIndex
+        }
+    }
+}
+</code></pre><pre tabindex="0"><code>// 19 numbers
+let numbers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67]
+
+// 0 ..&lt; numbers.count 覆盖所有范围
+binarySearch(numbers, key: 43, range: 0 ..&lt; numbers.count)  // gives 13
+</code></pre><p>二分查找是将数组分为两个，但是我们不需要正真的创建两个新数组。取而代之，我们使用 Swift <code>Range</code> 对象跟踪这些拆分。左闭右开。upperBound 总是比最后一个元素的索引多一。</p>
+<pre tabindex="0"><code>midIndex = (lowerBound + upperBound) / 2
+</code></pre><p>如果这样写将存在一个 bug，就是当这两值非常大时，将存在一个越界的问题。</p>
+<h2 id="iterative-vs-recursive-迭代-vs-递归">Iterative vs recursive 迭代 vs 递归</h2>
+<p>二分查找本质是递归。</p>
+<p>使用迭代的方式实现：</p>
+<pre tabindex="0"><code>func binarySearch(_ a: [Int], key: Int) -&gt; Int? {
+    var lowerBound = 0
+    var upperBound = a.count
+    while lowerBound &lt; upperBound {
+        // 这行僵硬了 没有必要的
+        var range = lowerBound ..&lt; upperBound
+        let midIndex = range.lowerBound + (range.upperBound - range.lowerBound) / 2
+        let midValue = a[midIndex]
+        if key &lt; midValue {
+            upperBound = midIndex
+        } else if key &gt; midValue {
+            lowerBound = midIndex + 1
+        } else {
+            return midIndex
+        }
+    }
+    return nil
+}
+</code></pre><h2 id="the-end">The end</h2>
+<p>查找前数组一定要先排序吗？这取决于排序花费的时间，有时候：数组排序加二分查找比线性搜索还要慢。二分查找的优势在于一次排序后多次查找。</p>
+<p>文章代码：<a href="https://github.com/imzyf/data-structure-and-algorithm/tree/master/004-Binary%20Search">GitHub - imzyf/data-structure-and-algorithm/004-Binary Search/</a>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Binary%20Search">raywenderlich/swift-algorithm-club/Binary Search</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>插入排序 Insertion Sort</title>
       <link>https://zyf.im/2018/11/24/insertion-sort/</link>
-      <pubDate>Sat, 24 Nov 2018 16:00:00 +0800</pubDate>
+      <pubDate>Sat, 24 Nov 2018 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/11/24/insertion-sort/</guid>
       <description>&lt;p&gt;将一个数组从高到低或者从低到高排序。&lt;/p&gt;
 &lt;p&gt;插入排序算法的工作原理：&lt;/p&gt;
@@ -332,11 +632,164 @@ for (k, v) in array.enumerated() {
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;in-place-sort&#34;&gt;In-place sort&lt;/h2&gt;
 &lt;p&gt;上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 &lt;em&gt;就地排序&lt;/em&gt; 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>将一个数组从高到低或者从低到高排序。</p>
+<p>插入排序算法的工作原理：</p>
+<ol>
+<li>将若干数字放在一个数组里，数组是乱序的。</li>
+<li>从数组中挑选一个数字，它是哪个并不重要，但是为了方便我们挑选数组头部的这个。</li>
+<li>将这个数字插入到一个新的数组里。</li>
+<li>从乱序数组里挑选下一个数字也将它放到新数组里。这个数字要么在第一个数字前或者后，所以这个两个数字是被排序的。</li>
+<li>再次重从乱序数组里挑选下一个数字也将它放到新数组里，并将数字放在正确的位置。</li>
+<li>一直如此进行直到乱序数组中没有数字。这时也将等到一个排序好的新数组。</li>
+</ol>
+<!-- more -->
+<p>自己的一个实现：</p>
+<pre tabindex="0"><code>let array = [2, 1, 3, 8, 3, 5, 4]
+
+var newArray = [Int]()
+for (k, v) in array.enumerated() {
+    for (nK, nV) in newArray.enumerated() {
+        // 本次的数 小于 存在的数的第一个(nv)
+        if v &lt; nV {
+            newArray.insert(v, at: nK)
+            break
+        }
+    }
+    // 没有插入成功 放在末尾
+    if newArray.count &lt; k + 1 {
+        newArray.append(v)
+    }
+}
+</code></pre><h2 id="in-place-sort">In-place sort</h2>
+<p>上面的排序需要两个数组，一个原始的，一个排好顺序的。但是我们也可以 <em>就地排序</em> 无需创建一个额外的数组。我们只需要跟踪记录原始数组中哪里部分排好顺序了，哪一部分还没有排序。</p>
+<p>举例：<code>[ 8, 3, 5, 4, 6 ]</code> 使用 <code>|</code> 分割是否排好顺序的部分。</p>
+<pre tabindex="0"><code>// 开始时 | 在最前
+[| 8, 3, 5, 4, 6 ]
+
+// 开始向左移动，左侧只有个 8 无论什么顺序都是正确的，右侧是未排序的部分
+[ 8 | 3, 5, 4, 6 ]
+
+// 依次进行 将未排序的头部元素放在已排部分的正确位置
+[ 3, 8 | 5, 4, 6 ]
+[ 3, 5, 8 | 4, 6 ]
+[ 3, 4, 5, 8 | 6 ]
+[ 3, 4, 5, 6, 8 |]
+</code></pre><p>每次 <code>|</code> 移动，都对左侧进行排序，未排序的部分逐渐减少，排序部分增加。直到未排序部分为零。</p>
+<h2 id="how-to-insert">How to insert</h2>
+<p>将未排序的头部元素放在已排部分的正确位置，如何这到这点的？</p>
+<pre tabindex="0"><code>// 从此状态开始。下个说的 4，我们需要将 4 插入到 [ 3, 5, 8 ] 这个已经排好的数组里
+[ 3, 5, 8 | 4, 6 ]
+
+// 移动 |，这时我们注意 8 这个元素
+[ 3, 5, 8, 4 | 6 ]
+        ^
+
+// 8 大于 4，所有 8 应该在 4 的右边，8 与 4 进行位置调换
+[ 3, 5, 4, 8 | 6 ]
+        &lt;--&gt;
+      swapped
+
+// 将 4 与现在的前面的元素 5 进行比较，5 大于 4，所以 5 与 4 进行位置调换
+[ 3, 4, 5, 8 | 6 ]
+     &lt;--&gt;
+    swapped
+
+// 3 小于 4 这个数，所以我们完成了对 4 的排序，这时从头到 |，是排好顺序的
+[ 3, 4, 5, 8 | 6 ]
+</code></pre><p>这就是对插入排序算法的内循环的描述。</p>
+<h2 id="the-code">The code</h2>
+<pre tabindex="0"><code>func insertionSort(_ array: [Int]) -&gt; [Int] {
+    // 1
+    var a = array
+    // 2
+    for x in 1..&lt;a.count {
+        var y = x
+        // 3
+        while y &gt; 0 &amp;&amp; a[y] &lt; a[y - 1] {
+            a.swapAt(y - 1, y)
+            y -= 1
+        }
+    }
+    return a
+}
+</code></pre><ol>
+<li>将 <code>array</code> 复制一个副本。因为我们无法直接修改参数中的 <code>array</code>，就想 Swift 自身的 <code>sort()</code>，<code>insertionSort()</code> 将返回一个排序顺序的副本数组。</li>
+<li>两个循环在方法中。外层循环遍历轮到排序的元素，也就是从待排数组中挑选出头部的元素。<code>x</code> 索引为排好顺序的结尾索引同时也是待排数组的开头。记住，如何时间从开头到 <code>x</code> 永远都是排好顺序的，从 <code>x</code> 到最后的元素都是未排序的。</li>
+<li>内层循环查询 x 索引位置的元素。这个元素可能小于之前排序顺序数组中的每一个元素。内层循环从后倒序遍历每一个已排序的元素，每次发现这个元素之前的元素比它大，则交互位置。当内层循环完成时，数组从开头到 x 将又是已排序的。</li>
+</ol>
+<p>tip：外层循环从索引 1 开始，而不是 0。将第一个元素从堆移动到排序部分实际上并没有改变任何东西，所以我们不妨跳过它。</p>
+<h2 id="no-more-swaps">No more swaps</h2>
+<p>上面的插入排序可以正常的工作了。我们还可以通过移除调用 swap() 让程序更快一些。</p>
+<p>我们可以将所有需要换位置的元素向右移动一个位置，然后将新数字复制到正确的位置。</p>
+<pre tabindex="0"><code>[ 3, 5, 8, 4 | 6 ]   remember 4
+           *
+
+[ 3, 5, 8, 8 | 6 ]   shift 8 to the right
+        ---&gt;
+
+[ 3, 5, 5, 8 | 6 ]   shift 5 to the right
+     ---&gt;
+
+[ 3, 4, 5, 8 | 6 ]   copy 4 into place
+     *
+</code></pre><pre tabindex="0"><code>func insertionSort(_ array: [Int]) -&gt; [Int] {
+    var a = array
+    for x in 1..&lt;a.count {
+        var y = x
+        let temp = a[y]
+        // tip
+        while y &gt; 0 &amp;&amp; temp &lt; a[y - 1] {
+            // 1
+            a[y] = a[y - 1]
+            y -= 1
+        }
+        // 2
+        a[y] = temp
+    }
+    return a
+}
+</code></pre><ol>
+<li>原本需要换位置的元素右移一个位置。</li>
+<li>当内层结束时，<code>y</code> 的索引位置就是新元素的排序后的位置，将元素放在此。</li>
+</ol>
+<p>tip：这里我自己写成了 <code>while y &gt; 0 &amp;&amp; a[y] &lt; a[y - 1]</code> 这是不对的，因为我要找的是 <strong>原本</strong> 的 <code>a[y]</code> 的位置，但是循环一次后 <code>a[y]</code> 将发生变化。</p>
+<h2 id="making-it-generic">Making it generic</h2>
+<pre tabindex="0"><code>func insertionSort&lt;T&gt;(_ array: [T], _ isOrderedBefore: (T, T) -&gt; Bool) -&gt; [T] {
+    var a = array
+    for x in 1..&lt;a.count {
+        var y = x
+        let temp = a[y]
+        while y &gt; 0, isOrderedBefore(temp, a[y - 1])  {
+            a[y] = a[y - 1]
+            y -= 1
+        }
+        a[y] = temp
+    }
+
+    return a
+}
+</code></pre><p>通过闭包来执行大小比较。</p>
+<pre tabindex="0"><code>let numbers = [ 10, -1, 3, 9, 2, 27, 8, 5, 1, 3, 0, 26 ]
+insertionSort(numbers, &lt;)
+
+let objects = [ obj1, obj2, obj3, ... ]
+insertionSort(objects) { $0.priority &lt; $1.priority }
+</code></pre><p>插入排序是一种稳定 <code>stable</code> 的排序。当排序后具有相同排序键的元素保持相同的相对顺序时，排序是稳定的。这对于诸如数字或字符串之类的简单值并不重要，但在排序更复杂的对象时这很重要。在上面的示例中，如果两个对象具有相同的优先级，则无论其他属性的值如何，这两个对象都不会被交换。</p>
+<h2 id="performance">Performance</h2>
+<p>最差的插入排序是 <code>O(n^2)</code> 因为俩个相近的循环嵌套。其他排序算法（如快速排序和合并排序）具有 <code>O(n log n)</code> 性能，在大输入时速度更快。</p>
+<p>插入排序实际上对于排序小数组非常快。某些标准库具有排序功能，当分区大小为 <code>10</code> 或更小时，可以从快速排序切换到插入排序。</p>
+<p>将 <code>insertSort()</code> 与 Swift 的内置 <code>sort()</code> 进行比较。在大约 <code>100</code> 元素左右的阵列上，速度差异很小。但是，随着输入变大，<code>O(n^2)</code> 快速开始执行比 <code>O(n log n)</code> 差很多，并且插入排序无法跟上。</p>
+<p>文章代码：<a href="https://github.com/imzyf/data-structure-and-algorithm/tree/master/003-Insertion%20Sort">GitHub - imzyf/data-structure-and-algorithm/003-Insertion Sort/</a>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Insertion%20Sort">raywenderlich/swift-algorithm-club/Insertion Sort</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>队列 Queue Data Structure</title>
       <link>https://zyf.im/2018/11/22/queue-data-structure/</link>
-      <pubDate>Thu, 22 Nov 2018 16:00:00 +0800</pubDate>
+      <pubDate>Thu, 22 Nov 2018 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/11/22/queue-data-structure/</guid>
       <description>&lt;p&gt;实现一个 &lt;code&gt;队列&lt;/code&gt;，包括 &lt;code&gt;enqueue&lt;/code&gt;、&lt;code&gt;dequeue&lt;/code&gt;、&lt;code&gt;peek&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;queue&#34;&gt;Queue&lt;/h2&gt;
@@ -429,11 +882,107 @@ for (k, v) in array.enumerated() {
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;文章代码：&lt;a href=&#34;https://github.com/imzyf/data-structure-and-algorithm/tree/master/002-Queue&#34;&gt;GitHub - imzyf/data-structure-and-algorithm/002-Queue/&lt;/a&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>实现一个 <code>队列</code>，包括 <code>enqueue</code>、<code>dequeue</code>、<code>peek</code>。</p>
+<h2 id="queue">Queue</h2>
+<p><code>队列</code> 核心也是 array，A queue gives you a FIFO or first-in, first-out order. 队列是：先进先出的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">struct</span> <span class="nc">Queue</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fileprivate</span> <span class="kd">var</span> <span class="nv">array</span> <span class="p">=</span> <span class="p">[</span><span class="n">T</span><span class="p">]()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><!-- more -->
+<h2 id="enqueue">enqueue</h2>
+<p>进队，在数组尾部追加元素。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">enqueue</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="dequeue">dequeue</h2>
+<p>出队，将首位的元素移除。因为首位元素移除后，其他元素依次向前移动，所以是 O(n)。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用数组自身的方法，而不是 array.count &gt; 0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">array</span><span class="p">.</span><span class="bp">isEmpty</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用定义的变量</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="bp">isEmpty</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">array</span><span class="p">.</span><span class="bp">removeLast</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="peek">peek</h2>
+<p>查看队首元素。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// peek() 改为更有语义话的只读变量</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">var</span> <span class="nv">front</span><span class="p">:</span> <span class="n">T</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">array</span><span class="p">.</span><span class="bp">first</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="优化出队">优化出队</h2>
+<p>在出队后不移动元素而是移动 <code>起始索引</code>，就像动的收银台而不是排队的人。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// 优化 队列 的出队</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">struct</span> <span class="nc">OptimizedQueue</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">/// 这里改为了可选型，为了可以清理无效的元素</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fileprivate</span> <span class="kd">var</span> <span class="nv">array</span> <span class="p">=</span> <span class="p">[</span><span class="n">T</span><span class="p">?]()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">/// 起始索引</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fileprivate</span> <span class="kd">var</span> <span class="nv">head</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">count</span><span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 减去 起始索引 前面的数量</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">array</span><span class="p">.</span><span class="bp">count</span> <span class="o">-</span> <span class="n">head</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">isEmpty</span><span class="p">:</span> <span class="nb">Bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 根据实际数量判断</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">count</span> <span class="p">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 保持不变</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">enqueue</span><span class="p">(</span><span class="kc">_</span> <span class="n">element</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">array</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kr">mutating</span> <span class="kd">func</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">guard</span> <span class="n">head</span> <span class="o">&lt;</span> <span class="n">array</span><span class="p">.</span><span class="bp">count</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">let</span> <span class="nv">element</span> <span class="p">=</span> <span class="n">array</span><span class="p">[</span><span class="n">head</span><span class="p">]</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 置空当前位置元素</span>
+</span></span><span class="line"><span class="cl">        <span class="n">array</span><span class="p">[</span><span class="n">head</span><span class="p">]</span> <span class="p">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 前移起始索引</span>
+</span></span><span class="line"><span class="cl">        <span class="n">head</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 空索引的占用比例</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nv">percentage</span> <span class="p">=</span> <span class="nb">Double</span><span class="p">(</span><span class="n">head</span><span class="p">)</span><span class="o">/</span><span class="nb">Double</span><span class="p">(</span><span class="n">array</span><span class="p">.</span><span class="bp">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 50 0.25 都是魔法数字，主要是为了控制数组修剪的频率，可以自行调整</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">array</span><span class="p">.</span><span class="bp">count</span> <span class="o">&gt;</span> <span class="mi">50</span> <span class="o">&amp;&amp;</span> <span class="n">percentage</span> <span class="o">&gt;</span> <span class="mf">0.25</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 将起始空元素删除</span>
+</span></span><span class="line"><span class="cl">            <span class="n">array</span><span class="p">.</span><span class="n">removeFirst</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 重置 起始索引</span>
+</span></span><span class="line"><span class="cl">            <span class="n">head</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">element</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">front</span><span class="p">:</span> <span class="n">T</span><span class="p">?</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">isEmpty</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 根据 起始索引进行 返回</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">array</span><span class="p">[</span><span class="n">head</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>文章代码：<a href="https://github.com/imzyf/data-structure-and-algorithm/tree/master/002-Queue">GitHub - imzyf/data-structure-and-algorithm/002-Queue/</a>。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/raywenderlich/swift-algorithm-club/tree/master/Queue">raywenderlich/swift-algorithm-club/Queue</a></li>
+</ul>
+]]></content:encoded>
     </item>
     <item>
       <title>栈 Stack Data Structure</title>
       <link>https://zyf.im/2018/11/22/stack-data-structure/</link>
-      <pubDate>Thu, 22 Nov 2018 14:00:00 +0800</pubDate>
+      <pubDate>Thu, 22 Nov 2018 14:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/11/22/stack-data-structure/</guid>
       <description>&lt;p&gt;加入 &lt;a href=&#34;https://github.com/raywenderlich/swift-algorithm-club&#34;&gt;Swift Algorithm Club&lt;/a&gt; /&amp;lsquo;ælgə&amp;rsquo;rɪðəm/，回炉重新学习数据结构与算法。&lt;/p&gt;
 &lt;p&gt;自己创建的项目：&lt;a href=&#34;https://github.com/imzyf/data-structure-and-algorithm&#34;&gt;GitHub - imzyf/data-structure-and-algorithm&lt;/a&gt;。&lt;/p&gt;
@@ -458,6 +1007,53 @@ for (k, v) in array.enumerated() {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;因为使用的 &lt;code&gt;struct&lt;/code&gt;，修改属性值的方法要加 &lt;code&gt;mutating&lt;/code&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;pop&#34;&gt;pop&lt;/h2&gt;
 &lt;p&gt;想从一个空栈中弹出最后一个元素将返回 &lt;code&gt;nil&lt;/code&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>加入 <a href="https://github.com/raywenderlich/swift-algorithm-club">Swift Algorithm Club</a> /&lsquo;ælgə&rsquo;rɪðəm/，回炉重新学习数据结构与算法。</p>
+<p>自己创建的项目：<a href="https://github.com/imzyf/data-structure-and-algorithm">GitHub - imzyf/data-structure-and-algorithm</a>。</p>
+<p>实现一个 <code>栈</code> /stæk/，包含 <code>push</code> <code>peek</code> <code>pop</code> 与 <code>Generics</code> 泛型。</p>
+<!-- more -->
+<h2 id="stack">stack</h2>
+<p><code>栈</code> 非常像一个数组，它包括少量的方法。</p>
+<ul>
+<li>push 添加一个新元素到栈顶</li>
+<li>pop 从栈顶移除一个元素</li>
+<li>peek 查看栈顶的一个元素但是不 pop</li>
+</ul>
+<p>A stack gives you a LIFO or last-in first-out order. 栈是后进先出，队列是先进先出。</p>
+<pre tabindex="0"><code>public struct Stack&lt;Element&gt; {
+    fileprivate var array: [Element] = []
+}
+</code></pre><h2 id="push">push</h2>
+<p><code>push</code> 是在数组的尾部添加元素是以 <code>O(1)</code>，如果是在数组最前添加是 <code>O(n)</code> 这是昂贵的。</p>
+<pre tabindex="0"><code>public mutating func push(_ element: Element) {
+  array.append(element)
+}
+</code></pre><p>因为使用的 <code>struct</code>，修改属性值的方法要加 <code>mutating</code>。</p>
+<h2 id="pop">pop</h2>
+<p>想从一个空栈中弹出最后一个元素将返回 <code>nil</code>。</p>
+<pre tabindex="0"><code>public mutating func pop(_ element: Element) {
+    return array.popLast()
+}
+</code></pre><h2 id="peek">peek</h2>
+<p>与 <code>pop</code> 有点像，但是并没有移除栈顶的元素。</p>
+<pre tabindex="0"><code>/// peek 改为更加语义化的 top 只读变量
+public var top: T? {
+    return array.last
+}
+</code></pre><h2 id="other">other</h2>
+<p>两个其他的常用属性，栈是否为空，栈中元素的个数。</p>
+<pre tabindex="0"><code>public var isEmpty: Bool {
+  return array.isEmpty
+}
+
+public var count: Int {
+  return array.count
+}
+</code></pre><h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.raywenderlich.com/800-swift-algorithm-club-swift-stack-data-structure">Swift Algorithm Club: Swift Stack Data Structure</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
