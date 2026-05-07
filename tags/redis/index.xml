@@ -4,14 +4,14 @@
     <title>Redis on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/redis/</link>
     <description>Recent content in Redis on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 17 Aug 2020 19:34:29 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 17 Aug 2020 19:34:29 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Redis 正则批量删除 key</title>
       <link>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</link>
-      <pubDate>Mon, 17 Aug 2020 19:34:29 +0800</pubDate>
+      <pubDate>Mon, 17 Aug 2020 19:34:29 +0000</pubDate>
       <guid>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</guid>
       <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-lua&#34; data-lang=&#34;lua&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;EVAL&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;return redis.call(&amp;#39;del&amp;#39;, &amp;#39;defaultKey&amp;#39;, unpack(redis.call(&amp;#39;keys&amp;#39;, ARGV[1])))&amp;#34;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prefix&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;循环删除：&lt;/p&gt;
@@ -21,6 +21,15 @@
 &lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/4006324/how-to-atomically-delete-keys-matching-a-pattern-using-redis&#34;&gt;How to atomically delete keys matching a pattern using Redis | stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&amp;ndash; EOF &amp;ndash;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">EVAL</span> <span class="s2">&#34;return redis.call(&#39;del&#39;, &#39;defaultKey&#39;, unpack(redis.call(&#39;keys&#39;, ARGV[1])))&#34;</span> <span class="mi">0</span> <span class="n">prefix</span><span class="p">:</span><span class="o">*</span>
+</span></span></code></pre></div><p>循环删除：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">EVAL</span> <span class="s2">&#34;local keys = redis.call(&#39;keys&#39;, ARGV[1]) </span><span class="se">\n</span><span class="s2"> for i=1,#keys,5000 do </span><span class="se">\n</span><span class="s2"> redis.call(&#39;del&#39;, unpack(keys, i, math.min(i+4999, #keys))) </span><span class="se">\n</span><span class="s2"> end </span><span class="se">\n</span><span class="s2"> return keys&#34;</span> <span class="mi">0</span> <span class="n">prefix</span><span class="p">:</span><span class="o">*</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/4006324/how-to-atomically-delete-keys-matching-a-pattern-using-redis">How to atomically delete keys matching a pattern using Redis | stackoverflow</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

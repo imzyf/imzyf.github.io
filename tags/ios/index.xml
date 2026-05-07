@@ -4,14 +4,14 @@
     <title>Ios on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/ios/</link>
     <description>Recent content in Ios on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 15 Feb 2019 17:00:00 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 15 Feb 2019 17:00:00 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【Swifter - Swift 开发者必备 Tips】笔记</title>
       <link>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</link>
-      <pubDate>Fri, 15 Feb 2019 17:00:00 +0800</pubDate>
+      <pubDate>Fri, 15 Feb 2019 17:00:00 +0000</pubDate>
       <guid>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</guid>
       <description>&lt;p&gt;再读王巍的《Swifter - Swift 开发者必备 Tips》，看看有什么新收获。&lt;/p&gt;
 &lt;h2 id=&#34;柯里化currying&#34;&gt;柯里化（Currying）&lt;/h2&gt;
@@ -60,11 +60,139 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// remainder {x 0 y 20 w 100 h 80}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;autoclosure-和-&#34;&gt;&lt;code&gt;@autoclosure&lt;/code&gt; 和 &lt;code&gt;??&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;@autoclosure&lt;/code&gt; 做的事情就是把一句表达式自动的封装成一个闭包（closure）。这样有时候在语法上看起来就会非常漂亮。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>再读王巍的《Swifter - Swift 开发者必备 Tips》，看看有什么新收获。</p>
+<h2 id="柯里化currying">柯里化（Currying）</h2>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%9F%AF%E9%87%8C%E5%8C%96">柯里化</a>是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。这个词自己是第一次见到。</p>
+<p>自己的理解是：把接受多个参数的函数变换为先接受一个参数，然后返回一个函数，这个函数再接受其他参数。</p>
+<p>两个细节：</p>
+<ul>
+<li>只有一个参数，并且这个参数是该函数的第一个参数。必须按照参数的定义顺序来调用柯里化函数。</li>
+<li>柯里化函数的函数体只会执行一次，只会在调用完最后一个参数的时候执行柯里化函数体。</li>
+</ul>
+<!-- more -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// 一个数加 x 的函数</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">addTo</span><span class="p">(</span><span class="kc">_</span> <span class="n">adder</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">(</span><span class="nb">Int</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="n">adder</span> <span class="o">+</span> <span class="nv">$0</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// +2</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">addTwo</span> <span class="p">=</span> <span class="n">addTo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="n">addTwo</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c1">// 8</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// +10</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">addTen</span> <span class="p">=</span> <span class="n">addTo</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">addTen</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c1">// 16</span>
+</span></span></code></pre></div><p>柯里化是一种量产相似方法的好办法，可以通过柯里化一个方法模板来避免写出很多重复代码，也方便了今后维护。</p>
+<p>书中还提到了一个封装 <a href="https://oleb.net/blog/2014/07/swift-instance-methods-curried-functions/">Selector</a> 的例子，但是没懂，欢迎指教。</p>
+<p>Reference:</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/5b27fec8c616">Swift 函数柯里化介绍及使用场景</a></li>
+</ul>
+<h2 id="将-protocol-的方法声明为-mutating">将 protocol 的方法声明为 mutating</h2>
+<p><code>protocol</code> 不仅可以被 <code>class</code> 类型实现，也适用于 <code>struct</code> 和 <code>enum</code>。因为这个原因，就要考虑定义的方法是否应该使用 <code>mutating</code> 来修饰。在 <code>protocol</code> 中使用 <code>mutating</code> 修饰的方法，对于 <code>class</code> 的实现是完全透明的。</p>
+<h2 id="多元组tuple">多元组（Tuple）</h2>
+<p>Python 中有见过类似用法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// 交互数据</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">swapMe</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kc">_</span> <span class="n">a</span><span class="p">:</span> <span class="kr">inout</span> <span class="n">T</span><span class="p">,</span> <span class="kc">_</span> <span class="n">b</span><span class="p">:</span> <span class="kr">inout</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">a</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nv">b</span> <span class="p">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl"><span class="n">swapMe</span><span class="p">(&amp;</span><span class="n">a</span><span class="p">,</span> <span class="p">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="c1">// a: 20  b: 10</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// 可读的返回值</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">rect</span> <span class="p">=</span> <span class="n">CGRect</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="p">(</span><span class="n">slice</span><span class="p">,</span> <span class="n">remainder</span><span class="p">)</span> <span class="p">=</span> <span class="n">rect</span><span class="p">.</span><span class="n">divided</span><span class="p">(</span><span class="n">atDistance</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="n">from</span><span class="p">:</span> <span class="p">.</span><span class="n">minYEdge</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// slice {x 0 y 0 w 100 h 20}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// remainder {x 0 y 20 w 100 h 80}</span>
+</span></span></code></pre></div><h2 id="autoclosure-和-"><code>@autoclosure</code> 和 <code>??</code></h2>
+<p><code>@autoclosure</code> 做的事情就是把一句表达式自动的封装成一个闭包（closure）。这样有时候在语法上看起来就会非常漂亮。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">logIfTrue</span><span class="p">(</span><span class="kc">_</span> <span class="n">predicate</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">predicate</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;True&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">logIfTrue</span><span class="p">(</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 而不是 logIfTrue { 2 &gt; 1 }</span>
+</span></span></code></pre></div><p>Swift 把 <code>2 &gt; 1</code> 这个表达式自动转换为 <code>() -&gt; Bool</code>。</p>
+<p>Swift 中 <code>??</code> 定义为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">/// 猜测 ?? 的实现</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="kr">optional</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="p">.</span><span class="n">some</span><span class="p">(</span><span class="kd">let</span> <span class="nv">value</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">defaultValue</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>使用 <code>@autoclosure</code> 来修饰默认值看起来有些画蛇添足，但是如果默认值是通过一系列复杂计算得到话，在 optional 不为 <code>nil</code> 的情况下就会造成浪费。<code>@autoclosure</code> 将计算推迟到 <code>optional</code> 为 <code>nil</code>。</p>
+<h2 id="escaping"><code>@escaping</code></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">doWork</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">block</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">doWork</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;work&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这里默认了一个隐藏假设：参数中 <code>block</code> 的内容会在 <code>doWork</code> 返回之前就完成了，也就是说，对于 <code>block</code> 的调用是同步行为。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">doWorkAsync</span><span class="p">(</span><span class="n">block</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">block</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>@escaping</code> 表明这个闭包是会 <strong>逃逸</strong> 出该方法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">S</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">foo</span> <span class="p">=</span> <span class="s">&#34;foo&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">method1</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">doWork</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">print</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">foo</span> <span class="p">=</span> <span class="s">&#34;method1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">method2</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">doWorkAsync</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">print</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">foo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">foo</span> <span class="p">=</span> <span class="s">&#34;method2&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">func</span> <span class="nf">method3</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">foo</span> <span class="p">=</span> <span class="s">&#34;method4&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">doWorkAsync</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">print</span><span class="p">(</span><span class="kc">self</span><span class="p">?.</span><span class="n">foo</span> <span class="p">??</span> <span class="s">&#34;nil&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">foo</span> <span class="p">=</span> <span class="s">&#34;method3&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">S</span><span class="p">().</span><span class="n">method1</span><span class="p">()</span>  <span class="c1">// foo - 同步</span>
+</span></span><span class="line"><span class="cl"><span class="n">S</span><span class="p">().</span><span class="n">method2</span><span class="p">()</span>  <span class="c1">// method2 - 由于强引用</span>
+</span></span><span class="line"><span class="cl"><span class="n">S</span><span class="p">().</span><span class="n">method3</span><span class="p">()</span>  <span class="c1">// nil - 已经释放</span>
+</span></span></code></pre></div><h2 id="optional-chaining">Optional Chaining</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">playClosure</span> <span class="p">=</span> <span class="p">{</span> <span class="p">(</span><span class="n">child</span><span class="p">:</span> <span class="n">Child</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">    <span class="n">child</span><span class="p">.</span><span class="n">pet</span><span class="p">?.</span><span class="n">toy</span><span class="p">?.</span><span class="n">play</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这里 <code>Void</code> 是不合理的，因为真正的结果是一个 <code>Optional</code> 的结果，所以应该为 <code>Void?</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">playClosure</span> <span class="p">=</span> <span class="p">{</span> <span class="p">(</span><span class="n">child</span><span class="p">:</span> <span class="n">Child</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">?</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">    <span class="n">child</span><span class="p">.</span><span class="n">pet</span><span class="p">?.</span><span class="n">toy</span><span class="p">?.</span><span class="n">play</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 判断方法是否调用成功：</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="kd">let</span> <span class="nv">result</span> <span class="p">=</span> <span class="n">playClosure</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;happy&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;can&#39;t play&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>]]></content:encoded>
     </item>
     <item>
       <title>Swift 初始化</title>
       <link>https://zyf.im/2018/03/31/swift-init/</link>
-      <pubDate>Sat, 31 Mar 2018 17:00:00 +0800</pubDate>
+      <pubDate>Sat, 31 Mar 2018 17:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/03/31/swift-init/</guid>
       <description>&lt;p&gt;因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只是这样套着 Java 去理解，但也发现了不相同的地方。&lt;/p&gt;
 &lt;h2 id=&#34;初始化顺序&#34;&gt;初始化顺序&lt;/h2&gt;
@@ -103,11 +231,254 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Swift 中类的初始化顺序：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>因为自己是直接从 Swift 进入的 iOS 开发，Swift 与 Objective-C 初始化的对比就不多提了。感觉上 Swift 初始化的方式像 Java，自己也只是这样套着 Java 去理解，但也发现了不相同的地方。</p>
+<h2 id="初始化顺序">初始化顺序</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Blog</span><span class="p">:</span> <span class="n">NSObject</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">String</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这里有一条错误 <code>error: property 'self.param' not initialized at implicitly generated super.init call</code>，说明 <code>param</code> 参数没有在隐式生成 <code>super.init</code> 调用之前完成初始化。</p>
+<p>Swift 中并不是不调用 <code>super.init</code>，而是为了方便开发者，由编译器完成了这一步。但要求在调用 <code>super.init</code> 之前完成成员变量的初始化。</p>
+<!-- more -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Blog</span><span class="p">:</span> <span class="n">NSObject</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">String</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">param</span> <span class="p">=</span> <span class="s">&#34;swift init&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>对于需要修改父类中成员变量值的情况，我们需要在调用 <code>super.init</code> 之后再进行修改：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Cat</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;cat&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Tiger</span><span class="p">:</span> <span class="n">Cat</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">power</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">power</span> <span class="p">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;tiger&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Swift 中类的初始化顺序：</p>
+<ol>
+<li>初始化自己的成员变量（必须）</li>
+<li>调用父类初始化方法（如无需第三步，则这一步可省略）</li>
+<li>修改父类成员变量（可选）</li>
+</ol>
+<p>补充说明：</p>
+<ul>
+<li><code>let</code> 声明的常量可以在初始化方法中进行赋值。Swift 中的 init 方法只会被调用一次，这与 Objective-C 不同</li>
+<li>即使成员变量是可选类型，如 <code>let power: Int?</code> 仍然需要进行初始化；<code>var power: Int?</code> 则可以不用</li>
+</ul>
+<h2 id="关键字">关键字</h2>
+<p>例子 1：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// error 1</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">()</span> <span class="c1">// error 2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// error 3</span>
+</span></span></code></pre></div><p>将父类从 <code>NSObject</code> 修改为 <code>UIView</code>，竟然收到 3 条错误：</p>
+<ol>
+<li>initializer does not override a <strong>designated</strong> initializer from its superclass</li>
+<li>must call a designated initializer of the superclass &lsquo;UIView&rsquo;</li>
+<li><strong>&lsquo;required&rsquo;</strong> initializer &lsquo;init(coder:)&rsquo; must be provided by subclass of &lsquo;UIView&rsquo;</li>
+</ol>
+<p>例子 2：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span> <span class="c1">// error</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">fatalError</span><span class="p">(</span><span class="s">&#34;init(coder:) has not been implemented&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>error：</p>
+<ul>
+<li><strong>convenience</strong> initializer for &lsquo;CustomView&rsquo; must delegate (with &lsquo;self.init&rsquo;) rather than chaining to a superclass</li>
+</ul>
+<p>上面两个例子出现了 3 个关键字：<code>designated</code>、<code>convenience</code> 和 <code>required</code>。</p>
+<h3 id="designated">designated</h3>
+<p>Swift 定义了两种类初始化器类型，用来保证所有成员属性能够获得一个初始化值。即 designated initializers [i&rsquo;niʃəlaizə] 和 convenience initializers。</p>
+<blockquote>
+<p>Designated initializers are the primary initializers for a class. A designated initializer fully initializes all properties introduced by that class and calls an appropriate superclass initializer to continue the initialization process up the superclass chain.</p>
+</blockquote>
+<ol>
+<li>primary initializers：designated initializers 是一个类的主初始化器，理论上来说是一个类初始化的必经之路。（不同的初始化路径可能调用不同的 designated initializers）</li>
+<li>fully initializes all properties：必须在 designated initializers 中完成所有成员属性的初始化</li>
+<li>calls an appropriate superclass initializer：需要调用合适的父类初始化器完成初始化，不能随意调用</li>
+</ol>
+<p><em>在 Swift 中 designated initializers 的写法和一般的初始化方法无异</em>。在 Sample 1 中，我们试图去 override init，可以理解为我们就是在 override 一个 designated initializers，然后收到了错误 Initializer does not override a designated initializer from its superclass，可见我们并没有找到合适的 designated initializers。进入父类 UIView，可以看到下面两个初始化方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span>
+</span></span></code></pre></div><p>原来，这两个才是父类的 designated initializers，那我们改改试试：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// error 1 fixed</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span> <span class="c1">// error 2 fixed</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// error 3</span>
+</span></span></code></pre></div><p>error 1 fixed 由此可见：我们去 override 一个不是 designated initializers 的初始化器时，是不满足定义中所说的 primary initializers，这就可能导致这个初始化器不被执行，成员变量没有初始化，这样创建的“半成品”实例可能存在一些不安全的情况。</p>
+<p>第二条 fully initializes all properties，这点我们并没有犯错，因为我们已经初始化了 CustomView 类中引入的 param 变量。</p>
+<p>第三条 calls an appropriate superclass initializer 很明显就对应了 error 2，我们 override init(frame:)，那我们就必须调用对应的父类初始化方法。</p>
+<p>error 3 提示我们 init(coder:) 是一个 &lsquo;required&rsquo; initializer，子类必须提供</p>
+<h3 id="required">required</h3>
+<blockquote>
+<p>Write the required modifier before the definition of a class initializer to indicate that every subclass of the class must implement that initializer.</p>
+</blockquote>
+<p>通过添加 required 关键字强制子类对某个初始化方法进行重写。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// error 1 fixed</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span> <span class="c1">// error 2 fixed</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">fatalError</span><span class="p">(</span><span class="s">&#34;init(coder:) has not been implemented&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="c1">// error 3 fixed</span>
+</span></span></code></pre></div><p>error 3 fixed。插入的这个方法很奇怪，方法体里直接写 <code>fatalError(&quot;init(coder:) has not been implemented&quot;)</code>，那岂不是走到这里就 crash 了？</p>
+<p>designated initializers 是一个类的主初始化器，理论上来说是一个类初始化的必经之路（不同的初始化路径可能调用不同的 designated initializers）。其实，这个 <code>init(coder:)</code> 与 <code>init(frame: frame)</code> 就是不同的初始化路径，当我们使用 xib 方式初始化一个 view 时，就会走到 <code>init(coder:)</code>。此时，如果我们没有真正实现这个方法，就会出现 fatal crash。</p>
+<p>完整初始方案：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="convenience">convenience</h3>
+<blockquote>
+<p>Convenience initializers are secondary, supporting initializers for a class. You can define a convenience initializer to call a designated initializer from the same class as the convenience initializer with some of the designated initializer’s parameters set to default values. You can also define a convenience initializer to create an instance of that class for a specific use case or input value type.</p>
+</blockquote>
+<p>convenience initializers 是对类初始化方法的补充，用于为类提供一些快捷的初始化方法。可以不创建这类方法，但如果创建了，就需要遵循原则：call a designated initializer from the same class，也就是说要调用该类自己的 <code>designated initializer</code>。那么我们应该 <code>override init(frame:)</code>，然后修改为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span> <span class="c1">// error fixed</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">fatalError</span><span class="p">(</span><span class="s">&#34;init(coder:) has not been implemented&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>然后对成员变量 <code>param</code> 赋值：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="n">param</span> <span class="c1">// error</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span> <span class="c1">// error</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">fatalError</span><span class="p">(</span><span class="s">&#34;init(coder:) has not been implemented&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>出现两个错误：</p>
+<ul>
+<li>Use of &lsquo;self&rsquo; in property access &lsquo;param&rsquo; before self.init initializes self</li>
+<li>Property &lsquo;self.param&rsquo; not initialized at super.init call</li>
+</ul>
+<p>第二个错误我们清楚，是需要在调用 super.init 之前初始化本类成员属性。</p>
+<p>第一个错误其实是 Swift 编译器提供的安全检查，文档原文如下：</p>
+<blockquote>
+<p>A convenience initializer must delegate to another initializer before assigning a value to any property (including properties defined by the same class). If it doesn’t, the new value the convenience initializer assigns will be overwritten by its own class’s designated initializer.</p>
+</blockquote>
+<p>原来 Swift 防止 convenience initializers 中赋值之后又被该类自己的 designated initializer 覆盖而做了检查。因此，正确的方式应该是调用该类的其他初始化方法之后再修改属性值，最终修改如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CustomView</span><span class="p">:</span> <span class="n">UIView</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nv">param</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">convenience</span> <span class="kd">init</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="nb">Int</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="n">param</span> <span class="c1">// error fixed</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">override</span> <span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">CGRect</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">0</span> <span class="c1">// error fixed</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">required</span> <span class="kd">init</span><span class="p">?(</span><span class="n">coder</span> <span class="n">aDecoder</span><span class="p">:</span> <span class="n">NSCoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">param</span> <span class="p">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">coder</span><span class="p">:</span> <span class="n">aDecoder</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="小结">小结</h3>
+<ol>
+<li>子类中初始化方法必须覆盖全部初始化路径，以保证对象完全初始化</li>
+<li>子类中 <code>designated initializer</code> 必须调用父类中对应的 <code>designated initializer</code>，以保证父类也能完成初始化</li>
+<li>子类中如果重写父类中 <code>convenience initializer</code> 所需要的全部 <code>init</code> 方法，就可以在子类中使用父类的 <code>convenience initializer</code> 了</li>
+<li>子类如果没有定义任何 <code>designated initializer</code>，则默认继承所有父类的 <code>designated initializer</code> 及 <code>convenience initializer</code></li>
+<li>子类中必须实现的 <code>designated initializer</code>，可以通过添加 <code>required</code> 关键字强制子类重写其实现，以保证依赖该方法的 <code>convenience initializer</code> 始终可以使用</li>
+<li><code>convenience initializer</code> 必须调用自身类中的其他初始化方法，并在最终必须调用一个 <code>designated initializer</code></li>
+<li>在构造器完成初始化之前，不能调用任何实例方法或读取任何实例属性的值，<code>self</code> 本身也不能被引用</li>
+</ol>
+<h2 id="可失败初始化器">可失败初始化器</h2>
+<p>可失败初始化器 <code>Failable Initializers</code>，即可能返回 <code>nil</code> 的初始化方法。</p>
+<blockquote>
+<p>A failable initializer creates an <em>optional value</em> of the type it initializes. You write <em>return nil within a failable initializer</em> to indicate a point at which initialization failure can be triggered.</p>
+</blockquote>
+<p>就是将初始化返回值变成 optional value，并在不满足初始化条件的地方 return nil。通过调用处判断是否有值即可知道是否初始化成功。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Product</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">name</span><span class="p">:</span> <span class="nb">String</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">?(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">name</span><span class="p">.</span><span class="bp">isEmpty</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">nil</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CartItem</span><span class="p">:</span> <span class="n">Product</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">quantity</span><span class="p">:</span> <span class="nb">Int</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">init</span><span class="p">?(</span><span class="n">name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="n">quantity</span><span class="p">:</span> <span class="nb">Int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">quantity</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">nil</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">self</span><span class="p">.</span><span class="n">quantity</span> <span class="p">=</span> <span class="n">quantity</span>
+</span></span><span class="line"><span class="cl">        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>CartItem 类的初始化方法先对传入参数 <code>quantity</code> 的值进行判断，小于 <code>1</code> 则为无效参数，然后 <code>return nil</code>（初始化失败），大于或等于 <code>1</code> 则继续调用父类 <code>Product</code> 的初始化方法，再次判断传入参数 <code>name</code>，为空则 <code>return nil</code>（初始化失败），否则继续初始化。</p>
+<p>总的来说，可失败初始化器的设定，是在保证安全性的基础上提供了逻辑上更清晰的初始化方式。<code>Failable Initializers</code> 所有的结果都将是 <code>T?</code> 类型，通过 <code>Optional Binding</code> 方式，我们就能知道初始化是否成功，并安全地使用它们了。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="http://huizhao.win/2016/11/13/swift-init/">从 Swift 初始化说起</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Initialization.html">The Swift Programming Language (Swift 4.1) Initialization</a></li>
+<li><a href="https://draveness.me/swift-zhong-init-de-shi-yong">Swift 类构造器的使用</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>iOS 开发技巧与工具推荐</title>
       <link>https://zyf.im/2018/01/12/ios-dev-tips-and-tools/</link>
-      <pubDate>Fri, 12 Jan 2018 13:00:00 +0800</pubDate>
+      <pubDate>Fri, 12 Jan 2018 13:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/01/12/ios-dev-tips-and-tools/</guid>
       <description>&lt;h2 id=&#34;状态栏&#34;&gt;状态栏&lt;/h2&gt;
 &lt;h3 id=&#34;help&#34;&gt;Help&lt;/h3&gt;
@@ -129,6 +500,151 @@
 &lt;img src=&#34;https://user-images.githubusercontent.com/9289792/80204090-cba52d80-865a-11ea-9d1f-d6f772fc7e1c.jpg&#34; alt=&#34;xcode-unknown-tips-Show the Code Snippet Labrary&#34; width=&#34;260px&#34; /&gt;
 &lt;h3 id=&#34;show-the-media-library&#34;&gt;Show the Media Library&lt;/h3&gt;
 &lt;p&gt;可以直接拖拽图片到 xib 中，自动创建 UIImageView。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="状态栏">状态栏</h2>
+<h3 id="help">Help</h3>
+<p><code>Search</code> 框可以方便地检索相关设置项。</p>
+<img src="https://user-images.githubusercontent.com/9289792/80204076-c811a680-865a-11ea-8c0b-5e3b70ae22bd.jpg" alt="xcode-unknown-tips-Search" width="960px" />
+<!-- more -->
+<h2 id="navigator">Navigator</h2>
+<p><code>⌘ 1</code> .. <code>⌘ 7</code> 可以切换窗口。</p>
+<h3 id="show-the-symbol-navigator">Show the Symbol navigator</h3>
+<p>在类不多时，可以方便查看所有类的结构；类多时可使用下方的 filter 功能过滤。</p>
+<img src="https://user-images.githubusercontent.com/9289792/80204084-ca740080-865a-11ea-8fb0-e102827a3123.jpg" alt="xcode-unknown-tips-Show the Symbol navigator" width="260px" />
+<h3 id="show-the-breakpoint-navigator">Show the Breakpoint navigator</h3>
+<p>点击右下角 <code>+</code> 选择 <code>Exception Breakpoint..</code>，可以添加更明确的报错断点，支持选择 Objective-C 或 Swift 语言。</p>
+<img src="https://user-images.githubusercontent.com/9289792/80204086-cb0c9700-865a-11ea-93b5-7fc0edd67daf.jpg" alt="xcode-unknown-tips-Show the Breakpoint navigator" width="260px" />
+<h2 id="utilities">Utilities</h2>
+<p><code>⌘ ⌥ 1</code> .. <code>⌘ ⌥ 7</code> 可以切换窗口。</p>
+<h3 id="show-the-code-snippet-library">Show the Code Snippet Library</h3>
+<p>代码片段模板，也可以将自己写好的代码片段拖入。</p>
+<img src="https://user-images.githubusercontent.com/9289792/80204090-cba52d80-865a-11ea-9d1f-d6f772fc7e1c.jpg" alt="xcode-unknown-tips-Show the Code Snippet Labrary" width="260px" />
+<h3 id="show-the-media-library">Show the Media Library</h3>
+<p>可以直接拖拽图片到 xib 中，自动创建 UIImageView。</p>
+<h2 id="xib">xib</h2>
+<h3 id="快捷键">快捷键</h3>
+<p>按住 <code>option</code> 拖拽可以快速复制组件。</p>
+<h2 id="快捷键-1">快捷键</h2>
+<h3 id="option-">option ⌥</h3>
+<ul>
+<li>按住 <code>⌥</code> 并点击代码或方法时，可查看行内文档帮助。</li>
+<li>按住 <code>⌥</code> 点击文件可以在辅助编辑窗模式打开文件（多栏显示，适用于 xib 与代码绑定）。<em>推荐</em></li>
+<li>按住 <code>⌥ ⇧</code> 点击文件可以选择文件打开的窗口位置。</li>
+</ul>
+<h3 id="显示和隐藏栏">显示和隐藏栏</h3>
+<ul>
+<li><code>⌘ ⇧ y</code> 显示/隐藏调试区域。</li>
+<li><code>⌘ ⌥ ⏎</code> 显示辅助编辑栏，Open the assistant editor</li>
+<li><code>⌘ ⏎</code> 隐藏辅助编辑器栏。</li>
+</ul>
+<h3 id="组合键">组合键</h3>
+<blockquote>
+<p>^ 为 control，⌥ 为 option</p>
+</blockquote>
+<ul>
+<li><code>⌘ ⌥ {</code> <code>⌘ ⌥ }</code> 整行上下移动代码。</li>
+<li>将光标放在方法名上任一位置，点开 <code>Edit</code>，按住 <code>⌃ ⇧</code> 将看到 <code>Copy Qualified Symbol Name</code>，按住 <code>⌃ ⇧ ⌥</code> 将看到 <code>Copy Symbol Name</code>。例如 <code>[UIColor colorWithRed:255/255.0f green:127/255.0f blue:80/255.0f alpha:1]</code> 将被拷贝为 <code>+[UIColor colorWithRed:green:blue:alpha:]</code>。</li>
+<li>自动缩进代码：<code>^ i</code>，或全选 <code>⌘ a</code> 后 <code>^ i</code>。</li>
+<li><code>⌘ ⇧ o</code> Open Quickly 快速查找文件。</li>
+</ul>
+<h2 id="uikit-技巧">UIKit 技巧</h2>
+<h3 id="uitableviewcell-自适应-uitextview-高度">UITableViewCell 自适应 UITextView 高度</h3>
+<p>使用 Auto Layout 实现：</p>
+<ol>
+<li>给 textView 上下左右建立相对于 cell 的约束</li>
+<li>取消 textView 的 <code>Scrolling Enabled</code></li>
+<li>设置 <code>tableView.estimatedRowHeight = 70</code></li>
+<li>设置 <code>textView.delegate = self</code></li>
+</ol>
+<p>关键代码（避免 <code>reloadData</code> 导致键盘隐藏和跳动）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">textViewDidChange</span><span class="p">(</span><span class="kc">_</span> <span class="n">textView</span><span class="p">:</span> <span class="n">UITextView</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nv">currentOffset</span> <span class="p">=</span> <span class="n">tableView</span><span class="p">.</span><span class="n">contentOffset</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UIView</span><span class="p">.</span><span class="n">setAnimationsEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tableView</span><span class="p">.</span><span class="n">beginUpdates</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tableView</span><span class="p">.</span><span class="n">endUpdates</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UIView</span><span class="p">.</span><span class="n">setAnimationsEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tableView</span><span class="p">.</span><span class="n">setContentOffset</span><span class="p">(</span><span class="n">currentOffset</span><span class="p">,</span> <span class="n">animated</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="command-line">Command Line</h2>
+<ul>
+<li><code>security find-identity -v</code> 显示已安装的有效证书身份。</li>
+</ul>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="too-many-symbol-files">Too many symbol files</h3>
+<p>上传 App Store 后收到此警告，通常是因为三方库生成了冗余的 32 位 symbols 文件。</p>
+<p>解决方法：在 <code>Podfile</code> 中添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">post_install</span> <span class="k">do</span> <span class="o">|</span><span class="n">installer</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">  <span class="n">installer</span><span class="o">.</span><span class="n">pods_project</span><span class="o">.</span><span class="n">targets</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">target</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">    <span class="n">target</span><span class="o">.</span><span class="n">build_configurations</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span></span><span class="line"><span class="cl">      <span class="n">config</span><span class="o">.</span><span class="n">build_settings</span><span class="o">[</span><span class="s1">&#39;ARCHS&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;arm64&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">  <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>检查 <code>info.plist</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;key&gt;</span>UIRequiredDeviceCapabilities<span class="nt">&lt;/key&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;array&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;string&gt;</span>arm64<span class="nt">&lt;/string&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/array&gt;</span>
+</span></span></code></pre></div><p>在 Build Settings 中搜索 <code>valid architecture</code>，填写 <code>arm64</code>。</p>
+<h2 id="库推荐">库推荐</h2>
+<h3 id="rswift---强类型引用资源">R.swift - 强类型引用资源</h3>
+<p><a href="https://github.com/mac-cain13/R.swift">R.swift</a> 获取强类型、自动编译的图片、字体、segues 等资源，避免字符串引用导致的运行时错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// 传统方式（字符串，无编译检查）</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">icon</span> <span class="p">=</span> <span class="n">UIImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span> <span class="s">&#34;settings-icon&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">font</span> <span class="p">=</span> <span class="n">UIFont</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">&#34;San Francisco&#34;</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// R.swift（强类型，编译时检查）</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">icon</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">settingsIcon</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nv">font</span> <span class="p">=</span> <span class="n">R</span><span class="p">.</span><span class="n">font</span><span class="p">.</span><span class="n">sanFrancisco</span><span class="p">(</span><span class="n">size</span><span class="p">:</span> <span class="mi">42</span><span class="p">)</span>
+</span></span></code></pre></div><p>配置要点：</p>
+<ul>
+<li>添加 <code>R.generated.swift</code> 时不要勾选 <code>Copy items if needed</code></li>
+<li>在 <code>.gitignore</code> 添加 <code>*.generated.swift</code></li>
+<li>新增资源后需 <code>⌘ + B</code> 编译才可使用</li>
+</ul>
+<h3 id="promisekit---异步编程">PromiseKit - 异步编程</h3>
+<p><a href="https://github.com/mxcl/PromiseKit">PromiseKit</a> 用于解决回调地狱问题：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-swift" data-lang="swift"><span class="line"><span class="cl"><span class="c1">// Promise 链式调用</span>
+</span></span><span class="line"><span class="cl"><span class="n">firstly</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">login</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}.</span><span class="n">then</span> <span class="p">{</span> <span class="n">creds</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fetch</span><span class="p">(</span><span class="n">avatar</span><span class="p">:</span> <span class="n">creds</span><span class="p">.</span><span class="n">user</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}.</span><span class="n">done</span> <span class="p">{</span> <span class="n">image</span> <span class="k">in</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">self</span><span class="p">.</span><span class="n">imageView</span> <span class="p">=</span> <span class="n">image</span>
+</span></span><span class="line"><span class="cl"><span class="p">}.</span><span class="k">catch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 错误处理</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 并行操作</span>
+</span></span><span class="line"><span class="cl"><span class="n">when</span><span class="p">(</span><span class="n">fulfilled</span><span class="p">:</span> <span class="n">operation1</span><span class="p">(),</span> <span class="n">operation2</span><span class="p">())</span>
+</span></span></code></pre></div><p>核心概念：</p>
+<ul>
+<li><code>then</code> - 链式调用，返回新 Promise</li>
+<li><code>done</code> - 链尾成功处理</li>
+<li><code>catch</code> - 统一错误处理</li>
+<li><code>when</code> - 并行等待多个 Promise</li>
+<li><code>ensure</code> - 无论成功失败都执行</li>
+</ul>
+<h3 id="fastlane---自动化构建">fastlane - 自动化构建</h3>
+<p><a href="https://fastlane.tools/">fastlane</a> 是 iOS/Android 自动化构建工具集：</p>
+<ul>
+<li><code>produce</code> - 创建 App ID</li>
+<li><code>cert</code> / <code>sigh</code> - 管理证书和描述文件</li>
+<li><code>gym</code> - 构建打包</li>
+<li><code>deliver</code> - 上传 App Store</li>
+<li><code>snapshot</code> - 自动截图</li>
+<li><code>match</code> - 团队证书同步</li>
+</ul>
+<blockquote>
+<p>建议直接参考 <a href="https://docs.fastlane.tools/">fastlane 官方文档</a>，并结合 Xcode Cloud 或 GitHub Actions 实现 CI/CD。</p>
+</blockquote>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://juejin.im/post/5a7198ac51882573505189c8">[译]每个 iOS 开发者都该知道的 17 个 Xcode 小技巧</a></li>
+<li><a href="https://github.com/mac-cain13/R.swift">R.swift - GitHub</a></li>
+<li><a href="https://github.com/mxcl/PromiseKit/blob/master/Documentation/GettingStarted.md">PromiseKit - Getting Started</a></li>
+<li><a href="https://docs.fastlane.tools/">fastlane 官方文档</a></li>
+</ul>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

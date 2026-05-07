@@ -4,14 +4,14 @@
     <title>Composer on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/composer/</link>
     <description>Recent content in Composer on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 28 Oct 2020 11:36:27 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 28 Oct 2020 11:36:27 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/composer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Composer 文档笔记</title>
       <link>https://zyf.im/2020/10/28/composer-document-note/</link>
-      <pubDate>Wed, 28 Oct 2020 11:36:27 +0800</pubDate>
+      <pubDate>Wed, 28 Oct 2020 11:36:27 +0000</pubDate>
       <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
       <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic usage&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -40,11 +40,402 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# calls&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump-autoload
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Bash Completions&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="basic-usage">Basic usage</h2>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/01-basic-usage.md">https://getcomposer.org/doc/01-basic-usage.md</a></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># get a list of your locally available platform packages.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># php | ext-&lt;name&gt; | lib-&lt;name&gt;</span>
+</span></span><span class="line"><span class="cl">composer show --platform
+</span></span></code></pre></div><h3 id="libraries">Libraries</h3>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/02-libraries.md">https://getcomposer.org/doc/02-libraries.md</a></p>
+</blockquote>
+<p>Light-weight distribution packages 轻量级分发包。使用 <code>.gitattributes</code> 来防止不需要的文件使 zip 分发包膨胀。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">// .gitattributes
+</span></span><span class="line"><span class="cl">/demo export-ignore
+</span></span><span class="line"><span class="cl">phpunit.xml.dist export-ignore
+</span></span><span class="line"><span class="cl">/.github/ export-ignore
+</span></span></code></pre></div><p>通过检查手动生成的压缩文件进行测试：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git archive branchName --format zip -o file.zip
+</span></span></code></pre></div><h2 id="command-line-interface--commands">Command-line interface / Commands</h2>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/03-cli.md">https://getcomposer.org/doc/03-cli.md</a></p>
+</blockquote>
+<p>As Composer uses symfony/console you can call commands by short name if it&rsquo;s not ambiguous.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer dump
+</span></span><span class="line"><span class="cl"><span class="c1"># calls</span>
+</span></span><span class="line"><span class="cl">composer dump-autoload
+</span></span></code></pre></div><p>Bash Completions</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer completion bash &gt; completion.bash
+</span></span></code></pre></div><p>Global Options:</p>
+<ul>
+<li><code>--profile</code> 显示计时和内存使用信息</li>
+</ul>
+<p>install / i:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar install
+</span></span></code></pre></div><p>如果当前目录中有 <code>composer.lock</code> 文件，会使用其中的确切版本而不是重新解析。这确保了每个人使用的依赖版本相同。</p>
+<p>如果没有 <code>composer.lock</code> 文件，Composer 会在解析依赖后创建一个。</p>
+<p>常用选项：</p>
+<ul>
+<li><code>--prefer-install</code>: 指定安装方式，可选 <code>source</code> 或 <code>dist</code></li>
+<li><code>--no-dev</code>: 跳过安装 <code>require-dev</code> 中列出的包</li>
+<li><code>--optimize-autoloader (-o)</code>: 优化自动加载器，建议在生产环境使用</li>
+<li><code>--classmap-authoritative (-a)</code>: 仅从 classmap 自动加载类，隐式启用 <code>--optimize-autoloader</code></li>
+</ul>
+<p>update / u / upgrade:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar update
+</span></span></code></pre></div><p>更新所有依赖到最新版本（根据 composer.json 的约束）并更新 composer.lock 文件。</p>
+<p>常用选项：</p>
+<ul>
+<li><code>--prefer-stable</code>: 优先使用稳定版本</li>
+<li><code>--prefer-lowest</code>: 尝试回退到最低匹配的版本</li>
+<li><code>--with-dependencies</code>: 同时更新依赖的依赖项</li>
+</ul>
+<p>require / r:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar require vendor/package:version
+</span></span></code></pre></div><p>添加新的依赖包并更新 composer.json 文件。</p>
+<p>remove / rm / uninstall:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar remove vendor/package
+</span></span></code></pre></div><p>移除包并更新 composer.json 文件。</p>
+<p>dump-autoload / dumpautoload:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar dump-autoload
+</span></span></code></pre></div><p>更新自动加载器，不安装或更新任何包。在添加新类时很有用。</p>
+<p>选项：</p>
+<ul>
+<li><code>-o, --optimize</code>: 生成优化的 autoloader</li>
+<li><code>--classmap-authoritative (-a)</code>: 仅从 classmap 自动加载</li>
+<li><code>--no-dev</code>: 不生成开发环境的 autoloader</li>
+</ul>
+<p>global:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar global require vendor/package
+</span></span></code></pre></div><p>全局安装包，存储在 COMPOSER_HOME 目录。</p>
+<p>search:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar search keyword
+</span></span></code></pre></div><p>搜索包。</p>
+<p>self-update / selfupdate:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar self-update
+</span></span></code></pre></div><p>更新 Composer 到最新版本。</p>
+<p>Composer 支持多种环境变量来控制其行为：</p>
+<ul>
+<li><code>COMPOSER_HOME</code>: 指定 Composer 主目录位置</li>
+<li><code>COMPOSER_CACHE_DIR</code>: 更改 Composer 缓存目录</li>
+<li><code>COMPOSER_MEMORY_LIMIT</code>: 设置 PHP 内存限制</li>
+<li><code>COMPOSER_PROCESS_TIMEOUT</code>: 设置命令执行超时时间（默认 300 秒）</li>
+<li><code>COMPOSER_NO_INTERACTION</code>: 禁用交互模式</li>
+<li><code>COMPOSER_NO_DEV</code>: 等同于 <code>--no-dev</code> 选项</li>
+<li><code>COMPOSER_VENDOR_DIR</code>: 更改安装依赖的目录</li>
+</ul>
+<h2 id="the-composerjson-schema">The composer.json schema</h2>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/04-schema.md">https://getcomposer.org/doc/04-schema.md</a></p>
+</blockquote>
+<p>composer.json 文件是 Composer 项目的核心配置文件，用于定义包的基本信息和依赖关系。以下是主要字段的说明：</p>
+<h3 id="基本字段">基本字段</h3>
+<ul>
+<li><strong>name</strong>: 包名称，格式为 <code>vendor/project</code>，例如 <code>monolog/monolog</code>。必须小写，可包含短横线、下划线或点号。</li>
+<li><strong>description</strong>: 包的简短描述，通常为一行。</li>
+<li><strong>version</strong>: 包的版本号，格式如 <code>1.0.0</code> 或 <code>v1.0.0</code>。一般建议省略，由 VCS 标签推断。</li>
+<li><strong>type</strong>: 包类型，默认为 <code>library</code>。其他可选值包括 <code>project</code>、<code>metapackage</code> 和 <code>composer-plugin</code>。</li>
+<li><strong>keywords</strong>: 关键词数组，用于搜索和过滤。</li>
+<li><strong>homepage</strong>: 项目网站的 URL。</li>
+<li><strong>readme</strong>: 自述文件的相对路径，默认为 <code>README.md</code>。</li>
+<li><strong>time</strong>: 版本发布日期，格式为 <code>YYYY-MM-DD</code> 或 <code>YYYY-MM-DD HH:MM:SS</code>。</li>
+<li><strong>license</strong>: 包的许可证，可以是字符串或字符串数组。</li>
+</ul>
+<h3 id="作者与支持">作者与支持</h3>
+<ul>
+<li><strong>authors</strong>: 包作者数组，每个作者为一个对象，包含 <code>name</code>、<code>email</code>、<code>homepage</code> 和 <code>role</code> 字段。</li>
+<li><strong>support</strong>: 提供支持的各种信息，如 <code>email</code>、<code>issues</code>、<code>forum</code>、<code>wiki</code> 等。</li>
+<li><strong>funding</strong>: 用于赞助包作者的 URL 数组。</li>
+</ul>
+<h3 id="依赖管理">依赖管理</h3>
+<ul>
+<li><strong>require</strong>: 运行时必需的依赖包映射表（包名到版本约束）。</li>
+<li><strong>require-dev</strong>: 开发环境需要的依赖包映射表，仅对根包有效。</li>
+<li><strong>conflict</strong>: 与当前包冲突的包。</li>
+<li><strong>replace</strong>: 由当前包替换的包。</li>
+<li><strong>provide</strong>: 当前包提供的包（接口实现等）。</li>
+<li><strong>suggest</strong>: 推荐安装的包，仅起信息提示作用。</li>
+</ul>
+<h3 id="自动加载配置">自动加载配置</h3>
+<ul>
+<li><strong>autoload</strong>: 定义项目自动加载规则，支持 <code>psr-4</code>、<code>psr-0</code>、<code>classmap</code> 和 <code>files</code>。</li>
+<li><strong>autoload-dev</strong>: 开发环境的额外自动加载规则，仅对根包有效。</li>
+</ul>
+<h3 id="其他高级配置">其他高级配置</h3>
+<ul>
+<li><strong>repositories</strong>: 定义额外的包来源，仅对根包有效。</li>
+<li><strong>minimum-stability</strong>: 默认包稳定性过滤级别，仅对根包有效。</li>
+<li><strong>prefer-stable</strong>: 是否优先使用稳定版本，仅对根包有效。</li>
+<li><strong>config</strong>: 各种配置选项，仅对根包有效。</li>
+<li><strong>scripts</strong>: 在安装过程中各个阶段执行的脚本钩子，仅对根包有效。</li>
+<li><strong>extra</strong>: 供脚本使用的任意额外数据。</li>
+<li><strong>bin</strong>: 应作为二进制文件安装的文件集合。</li>
+</ul>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;monolog/monolog&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Logging library&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;keywords&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;logging&#34;</span><span class="p">,</span> <span class="s2">&#34;psr-3&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;homepage&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/Seldaek/monolog&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;license&#34;</span><span class="p">:</span> <span class="s2">&#34;MIT&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;authors&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Jordi Boggiano&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;j.boggiano@seld.be&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;homepage&#34;</span><span class="p">:</span> <span class="s2">&#34;https://seld.be&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;require&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;php&#34;</span><span class="p">:</span> <span class="s2">&#34;&gt;=5.3.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;psr/log&#34;</span><span class="p">:</span> <span class="s2">&#34;~1.0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;autoload&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;psr-4&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;Monolog\\&#34;</span><span class="p">:</span> <span class="s2">&#34;src/Monolog&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="repositories">Repositories</h2>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/05-repositories.md">https://getcomposer.org/doc/05-repositories.md</a></p>
+</blockquote>
+<p>仓库是包的来源，Composer 会在所有配置的仓库中查找项目所需的包。本节介绍仓库的概念和类型。</p>
+<h3 id="仓库类型">仓库类型</h3>
+<h4 id="1-composer-仓库">1. Composer 仓库</h4>
+<p>使用单个 <code>packages.json</code> 文件包含所有包元数据的仓库类型，这也是 Packagist 使用的类型。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;composer&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.org&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h4 id="2-vcs-仓库">2. VCS 仓库</h4>
+<p>版本控制系统（Version Control System）仓库，支持从 git、svn、fossil 或 hg 仓库安装包。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;vcs&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/username/repository&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;require&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vendor/package&#34;</span><span class="p">:</span> <span class="s2">&#34;dev-branch-name&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>使用 VCS 仓库的主要场景包括：</p>
+<ul>
+<li>维护第三方库的自己的分支</li>
+<li>使用私有仓库</li>
+<li>需要直接从版本控制系统获取代码</li>
+</ul>
+<h4 id="3-package-仓库">3. Package 仓库</h4>
+<p>针对不支持 Composer 的项目，可以手动定义包的信息。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;package&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;package&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;smarty/smarty&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;3.1.7&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;dist&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.smarty.net/files/Smarty-3.1.7.zip&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;zip&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="自托管仓库选项">自托管仓库选项</h3>
+<p>当需要保持包私有或为项目创建独立生态系统时，可以选择自托管仓库：</p>
+<ol>
+<li>
+<p><strong>Private Packagist</strong>：提供私有包托管和镜像功能的托管或自托管应用。</p>
+</li>
+<li>
+<p><strong>Satis</strong>：轻量级的静态 Composer 仓库生成器，适合小型团队。</p>
+</li>
+<li>
+<p><strong>Artifact 仓库</strong>：使用包含 ZIP 或 TAR 归档文件的文件夹作为包源。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;artifact&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;path/to/directory/with/zips/&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Path 仓库</strong>：直接依赖本地目录，对于单体仓库特别有用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;path&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;../../packages/my-package&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="禁用-packagistorg">禁用 Packagist.org</h3>
+<p>默认情况下，Composer 会使用 Packagist.org 作为包源。如需禁用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;packagist.org&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>或通过全局配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar config -g repo.packagist <span class="nb">false</span>
+</span></span></code></pre></div><h2 id="config">Config</h2>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/06-config.md">https://getcomposer.org/doc/06-config.md</a></p>
+</blockquote>
+<p>Composer 配置选项可以通过 <code>composer.json</code> 中的 <code>config</code> 字段设置。以下是一些常用的配置项：</p>
+<h3 id="基本配置选项">基本配置选项</h3>
+<ul>
+<li>
+<p><strong>process-timeout</strong>: 进程执行超时时间（秒），默认 300（5分钟）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;process-timeout&#34;</span><span class="p">:</span> <span class="mi">900</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>allow-plugins</strong>: 控制哪些 Composer 插件可以执行代码（Composer 2.2.0+）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;allow-plugins&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vendor/plugin-name&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;another-vendor/*&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>preferred-install</strong>: 首选安装方式，可为 <code>source</code>、<code>dist</code> 或 <code>auto</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;preferred-install&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vendor/*&#34;</span><span class="p">:</span> <span class="s2">&#34;source&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;*&#34;</span><span class="p">:</span> <span class="s2">&#34;dist&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="仓库与认证">仓库与认证</h3>
+<ul>
+<li>
+<p><strong>github-protocols</strong>: 克隆 GitHub 仓库使用的协议列表，默认 <code>[&quot;https&quot;, &quot;ssh&quot;, &quot;git&quot;]</code>。</p>
+</li>
+<li>
+<p><strong>github-oauth</strong>: GitHub OAuth 令牌列表。</p>
+</li>
+<li>
+<p><strong>gitlab-oauth</strong>/<strong>gitlab-token</strong>: GitLab OAuth 令牌或私有令牌列表。</p>
+</li>
+<li>
+<p><strong>http-basic</strong>: HTTP 基本认证信息。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;http-basic&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;example.org&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;username&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;password&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="目录与缓存">目录与缓存</h3>
+<ul>
+<li><strong>vendor-dir</strong>: 安装依赖的目录，默认为 <code>vendor</code>。</li>
+<li><strong>bin-dir</strong>: 二进制文件链接目录，默认为 <code>vendor/bin</code>。</li>
+<li><strong>cache-dir</strong>: 缓存目录。</li>
+<li><strong>cache-files-ttl</strong>: 缓存文件的存活时间（秒），默认 15552000（6个月）。</li>
+<li><strong>cache-files-maxsize</strong>: 缓存可使用的最大空间，默认 &ldquo;300MiB&rdquo;。</li>
+</ul>
+<h3 id="自动加载相关">自动加载相关</h3>
+<ul>
+<li><strong>optimize-autoloader</strong>: 始终优化自动加载器，默认 <code>false</code>。</li>
+<li><strong>prepend-autoloader</strong>: 是否将 Composer 自动加载器前置到已存在的自动加载器，默认 <code>true</code>。</li>
+<li><strong>classmap-authoritative</strong>: 设为 <code>true</code> 时，自动加载器只会从 classmap 加载类，默认 <code>false</code>。</li>
+<li><strong>apcu-autoloader</strong>: 是否使用 APCu 缓存查找的类，默认 <code>false</code>。</li>
+</ul>
+<h3 id="安全与其他">安全与其他</h3>
+<ul>
+<li><strong>platform-check</strong>: 平台检查级别，默认 <code>php-only</code>，可设为 <code>true</code> 或 <code>false</code>。</li>
+<li><strong>secure-http</strong>: 是否只允许通过 HTTPS 下载包，默认 <code>true</code>。</li>
+<li><strong>discard-changes</strong>: 处理脏更新的方式，默认 <code>false</code>，可设为 <code>true</code> 或 <code>stash</code>。</li>
+<li><strong>sort-packages</strong>: 添加新包时是否按名称排序，默认 <code>false</code>。</li>
+</ul>
+<h3 id="全局配置">全局配置</h3>
+<p>某些配置可通过命令行全局设置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar config -g repo.packagist <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">php composer.phar config -g process-timeout <span class="m">900</span>
+</span></span></code></pre></div><h2 id="runtime-composer-utilities">Runtime Composer utilities</h2>
+<blockquote>
+<p><a href="https://getcomposer.org/doc/07-runtime.md">https://getcomposer.org/doc/07-runtime.md</a></p>
+</blockquote>
+<p>Composer 除了安装和管理依赖外，还提供了一些运行时实用工具。如果需要依赖特定版本的这些功能，可以通过 <code>composer-runtime-api</code> 包实现。</p>
+<h3 id="自动加载">自动加载</h3>
+<p>最常用的运行时工具是自动加载器，在所有 Composer 版本中可用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/vendor/autoload.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 现在可以使用项目的依赖了
+</span></span></span><span class="line"><span class="cl"><span class="nv">$log</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Monolog\Logger</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="已安装版本信息">已安装版本信息</h3>
+<p>Composer 2.0 引入了 <code>Composer\InstalledVersions</code> 类，提供了检查已安装包的静态方法。</p>
+<h4 id="检查包是否存在">检查包是否存在</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span> <span class="c1">// 返回布尔值
+</span></span></span><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;psr/log-implementation&#39;</span><span class="p">);</span> <span class="c1">// 检查虚拟包
+</span></span></span></code></pre></div><p>从 Composer 2.1 开始，还可以检查包是否通过 require-dev 安装：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span> <span class="c1">// 仅检查 require 中的包
+</span></span></span></code></pre></div><h4 id="检查包版本">检查包版本</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Composer\Semver\VersionParser</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 检查包是否满足版本约束
+</span></span></span><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">satisfies</span><span class="p">(</span><span class="k">new</span> <span class="nx">VersionParser</span><span class="p">,</span> <span class="s1">&#39;vendor/package&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.*&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 获取包的版本号
+</span></span></span><span class="line"><span class="cl"><span class="nv">$version</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getVersion</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span> <span class="c1">// 标准化版本 (如 1.2.3.0)
+</span></span></span><span class="line"><span class="cl"><span class="nv">$prettyVersion</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getPrettyVersion</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span> <span class="c1">// 原始版本 (如 v1.2.3)
+</span></span></span></code></pre></div><h4 id="获取包的安装路径">获取包的安装路径</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 获取包安装的绝对路径
+</span></span></span><span class="line"><span class="cl"><span class="nv">$path</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getInstallPath</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span>
+</span></span></code></pre></div><h4 id="查找指定类型的已安装包">查找指定类型的已安装包</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 获取所有类型为 &#39;foo-plugin&#39; 的已安装包
+</span></span></span><span class="line"><span class="cl"><span class="nv">$packages</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getInstalledPackagesByType</span><span class="p">(</span><span class="s1">&#39;foo-plugin&#39;</span><span class="p">);</span>
+</span></span></code></pre></div><h3 id="平台检查">平台检查</h3>
+<p>Composer 2.0 引入了 <code>vendor/composer/platform_check.php</code> 文件，会在包含自动加载器时自动执行。它会验证当前 PHP 环境是否满足平台要求，如 PHP 版本和扩展。</p>
+<p>默认情况下，只检查 PHP 版本（<code>php-only</code>）。可以通过 <code>platform-check</code> 配置选项修改行为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;platform-check&#34;</span><span class="p">:</span> <span class="kc">true</span>  <span class="c1">// 也检查 PHP 扩展
+</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>如果要禁用此安全检查：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;platform-check&#34;</span><span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="二进制文件中的自动加载器路径">二进制文件中的自动加载器路径</h3>
+<p>Composer 2.2 引入了全局变量 <code>$_composer_autoload_path</code>，它在运行 Composer 安装的二进制文件时设置。</p>
+<h3 id="二进制文件中的-bin-dir-路径">二进制文件中的 bin-dir 路径</h3>
+<p>Composer 2.2.2 引入了全局变量 <code>$_composer_bin_dir</code>，它在运行 Composer 安装的二进制文件时设置。</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Composer vendor 提交至 Git</title>
       <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
-      <pubDate>Mon, 10 Aug 2020 14:24:47 +0800</pubDate>
+      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
       <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
       <description>&lt;h2 id=&#34;应该将-vendor-提交到-git-吗&#34;&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;
 &lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
@@ -65,18 +456,141 @@
 &lt;h2 id=&#34;我的做法&#34;&gt;我的做法&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;问题解决了，但是不确信做法是否正确。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="应该将-vendor-提交到-git-吗">应该将 vendor 提交到 Git 吗</h2>
+<p>一般建议是 <strong>不</strong>。<code>vendor</code> 目录应添加到 <code>.gitignore</code>。</p>
+<p>最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行 Composer。</p>
+<p>虽然在某些环境下这样做很诱人，但也会导致一些问题：</p>
+<ul>
+<li>大型 VCS 存储库的大小和更新代码时的差异。</li>
+<li>在你自己的 VCS 复制你所有依赖的历史。</li>
+<li>将通过 git 安装的依赖项添加到 git repo 中将显示为 <code>submodules</code>。这是有问题的，因为它们不是真正的 <code>submodules</code>，您将会遇到问题。</li>
+</ul>
+<p>如果你真的觉得你必须这样做，你有几个选择：</p>
+<ul>
+<li>限制自己安装带标记的版本（没有 dev 版本），这样就只能安装压缩版，并避免与 git <code>submodules</code> 有关的问题。</li>
+<li>Use <code>--prefer-dist</code> or set <code>preferred-install</code> to <code>dist</code> in your config.</li>
+<li>Remove the <code>.git</code> directory of every dependency after the installation, then you can add them to your git repo. You can do that with <code>rm -rf vendor/\*\*/.git</code> in ZSH or <code>find vendor/ -type d -name &quot;.git&quot; -exec rm -rf {} \;</code> in Bash. 但这意味着您必须在运行 composer 更新之前从磁盘中删除这些依赖项。</li>
+<li>Add a <code>.gitignore</code> rule <code>/vendor/**/.git</code> to ignore all the vendor <code>.git</code> folders. 这种方法不需要在运行编写器更新之前从磁盘删除依赖项。</li>
+</ul>
+<h2 id="我的做法">我的做法</h2>
+<blockquote>
+<p>问题解决了，但是不确信做法是否正确。</p>
+</blockquote>
+<p>因为网络环境与部署的原因，在生产环境下是将 <code>vendor</code> 目录提交到 <code>git</code> 中的。使用过程中确实出现了，部分类库成为了 <code>submodules</code>，无法把真实的代码提交进 git。</p>
+<p>可尝试执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rm rf --cache vendor
+</span></span><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;add vendor&#34;</span>
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md">Should I commit the dependencies in my vendor directory? | getcomposer</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Lonicera Framework</title>
       <link>https://zyf.im/2019/12/19/lonicera-framework/</link>
-      <pubDate>Thu, 19 Dec 2019 16:46:06 +0800</pubDate>
+      <pubDate>Thu, 19 Dec 2019 16:46:06 +0000</pubDate>
       <guid>https://zyf.im/2019/12/19/lonicera-framework/</guid>
       <description>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</description>
+      <content:encoded><![CDATA[<p>项目代码：<a href="https://github.com/imzyf/lonicera">imzyf/lonicera | GitHub</a></p>
+<blockquote>
+<p>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</p>
+</blockquote>
+<p>Lonicera Framework - Every French soldier carries a marshal’s baton in his knapsack.</p>
+<h2 id="mvc">MVC</h2>
+<p>MVC 模式的目的是实现一种动态的程序设计，使后续对程序的修改和扩展简化，并且使程序某一部分的重复利用成为可能。</p>
+<h2 id="lonicera-01">Lonicera 0.1</h2>
+<h3 id="bootstrap">bootstrap</h3>
+<p>index.php 单一入口模式。</p>
+<p>启动 PHP 内置 Web 服务器：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php -S localhost:7070
+</span></span></code></pre></div><h3 id="路由器层">路由器层</h3>
+<p>更偏向于使用 PATH_INFO 方式来访问。</p>
+<p>从传统 URL 参数模式的访问地址进行解析，提取里面的 group、controller、action、param 4 个参数，随后交给 bootstrap 进行 dispatch 处理。</p>
+<h3 id="数据模型">数据模型</h3>
+<p>用 PDO 来实现连接数据库。</p>
+<ul>
+<li>ORM Object Relational Mapping 对象与数据库的映射叫作对象关系映射</li>
+<li>PO Persistent Object 把一个数据库中的表的一行记录对应的对象称为持久对象</li>
+<li>BO Business Object 业务对象 把业务逻辑封装为一个对象</li>
+<li>VO Value Object 值对象 界面显示的数据对象</li>
+<li>DTO Data Transfer Object 用在热呵呵需要数据传输的地方</li>
+<li>DAO Data Access Object 指代 Active Record 模式中的数据对象</li>
+</ul>
+<p>传统的 ORM 模式提倡数据对象和负责持久化的代码的分开，但是这并没有坚持数据操作的工作量。还有一种 ORM 模式叫作 Active Record。在 Active Record 中，模型层集成了 ORM 的功能，他们及代表实体，包含因为业务逻辑，又是数据对象，并负责把自己存储到数据库中。</p>
+<p>Active Record 模式中的数据对象不再是 PO 对象，而是 DAO。</p>
+<p>一系列的数据库操作组合起来，称之为 Service。Service 向下负责与数据库打交道，向上负责接收页面传递的参数以及数据的传输。理论上应该对 DAO 进项抽象到一个 Service 中。</p>
+<h3 id="视图层">视图层</h3>
+<p>PHP MVC 中的显示层开始朝着轻量化、API 化发展了。</p>
+<p>增强一个类通常途径：</p>
+<ol>
+<li>使用 <code>__call</code> <code>__set</code> <code>__get</code> 等魔术方法</li>
+<li>使用反射</li>
+<li>使用 <code>trait</code></li>
+<li>使用继承和组合</li>
+</ol>
+<h3 id="初步改进">初步改进</h3>
+<p><code>spl_autoload_register</code> 统一加载文件。</p>
+<h2 id="lonicera-02">Lonicera 0.2</h2>
+<h3 id="引入异常机制">引入异常机制</h3>
+<p>同时设置 <code>set_error_handler</code> 和 <code>set_exception_handler</code>。PHP 同时存在错误和异常两个互不包含的概念。</p>
+<h3 id="拦截器与插件">拦截器与插件</h3>
+<p><code>dispatch</code> 中处理。使用正则匹配、<code>call_user_func</code>。</p>
+<h3 id="request-增强与安全防御">Request 增强与安全防御</h3>
+<p>包装 <code>$_REQUEST</code>。</p>
+<h2 id="lonicera-03">Lonicera 0.3</h2>
+<h3 id="composer-类加载机制">Composer 类加载机制</h3>
+<p><code>PSR-4</code>。</p>
+<h3 id="model-增强">Model 增强</h3>
+<p><code>illuminata/database</code>。</p>
+<h3 id="控制反转与依赖注入">控制反转与依赖注入</h3>
+<p><code>Inversion of Control</code> <code>IoC</code>，<code>Dependency Injection</code> <code>DI</code>。</p>
+<ul>
+<li>谁控制谁？IoC 容器控制了对象。</li>
+<li>控制什么？主要控制了外部资源获取（不只是对象创建，还包括比如文件等）。</li>
+</ul>
+<p>传统应用程序是：由我们自己在对象中主动控制去直接获取依赖对象，而反转则是：由容器来帮忙创建及注入依赖对象。由于是容器帮我们查找及注入依赖对象，对象只是被动接受依赖对象，所以是反转。</p>
+<ul>
+<li>哪些方面反转了？依赖对象的获取被反转了。</li>
+</ul>
+<p>在我们使用 UserOrder 对象的时候，不再需要手动去创建 User 对象和 Order 对象了，而是直接问 IoC 容器去要 UserOrder 对象，IoC 容器会负责查找 UserOrder 的依赖并替我们创建 User 对象和 Order 对象，并管理它们。也就是说和我们打交道的是 IoC 容器。</p>
+<p>依赖注入，是组件之间依赖关系由容器在运行期决定形象来说，即由容器动态地将某个依赖关系注入到组件之中。依赖注入的目的并非是为软件系统带来更多功能，而是为了提高组件重用的效率，并为系统搭建一个灵活、可扩展的平台。</p>
+<p>通过依赖注入机制，我们只需要通过简单的配置，而无需任何代码就可指定目标需要的资源，完成自身的业务逻辑，而不需要关心具体的资源来自何处，由谁实现。</p>
+<ul>
+<li>谁依赖于谁？当然是应用程序依赖于 IoC 容器。</li>
+<li>为什么需要依赖？应用程序需要 IoC 容器来提供对象需要的外部资源。</li>
+<li>谁注入谁？IoC 容器注入应用程序某个对象，应用程序依赖的对象。</li>
+<li>注入了什么？注入某个对象所需要的外部资源(包括对象、资源、常量数据)。</li>
+</ul>
+<p>IoC 和 DI 是两个相辅相成的概念，IoC 的实现是使用了 DI，而 DI 的目的是为了实现 IoC。实际上，它们是同一个概念的不同角度描述。</p>
+<p>为什么要这么做，这么做有什么意义呢？依赖注入帮我们降低了创建对象的成本，使得对象之间松耦合。</p>
+<p><code>composer</code> 通过 <code>composer.json</code> 来管理第三方依赖，从这个角度讲，<code>composer</code> 就是一个 IoC 容器。</p>
+<p><code>PSR-11</code> <code>Psr\Contanier\ContainerInterface</code>。</p>
+<h2 id="db-sql">DB SQL</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="n">utf8mb4</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">FOREIGN_KEY_CHECKS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- ----------------------------
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- Table structure for user
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- ----------------------------
+</span></span></span><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_unicode_ci</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;名字&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">unsigned</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="w"> </span><span class="k">COLLATE</span><span class="o">=</span><span class="n">utf8mb4_unicode_ci</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">FOREIGN_KEY_CHECKS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
     <item>
       <title>Laravel 中 composer 加载流程</title>
       <link>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</link>
-      <pubDate>Sun, 28 Apr 2019 19:21:12 +0800</pubDate>
+      <pubDate>Sun, 28 Apr 2019 19:21:12 +0000</pubDate>
       <guid>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</guid>
       <description>&lt;h2 id=&#34;启动&#34;&gt;启动&lt;/h2&gt;
 &lt;ul&gt;
@@ -156,6 +670,458 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;composer&lt;/code&gt; 先向 &lt;code&gt;PHP&lt;/code&gt; 自动加载机制注册了一个函数，这个函数 &lt;code&gt;require&lt;/code&gt; 了 &lt;code&gt;ClassLoader&lt;/code&gt; 文件。成功 &lt;code&gt;new&lt;/code&gt; 出该文件中核心类 &lt;code&gt;ClassLoader()&lt;/code&gt; 后，又销毁了该函数。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="启动">启动</h2>
+<ul>
+<li>Laravel 5.8</li>
+</ul>
+<p>文章以 Laravel 学习。入口文件 <code>public/index.php</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// Register The Auto Loader
+</span></span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../vendor/autoload.php&#39;</span><span class="p">;</span>
+</span></span></code></pre></div><p><code>autoload.php</code> 不负责具体功能逻辑，只做了两件事：初始化自动加载类、注册自动加载类。</p>
+<p><code>autoload_real.php</code> 中的类名为 <code>ComposerAutoloaderInit...</code> 这可能是为防止与用户自定义类名跟这个类重复冲突，加上了哈希值。</p>
+<p>其实还有一个做法我们更加熟悉，是定义一个命名空间。这里为什么不定义一个命名空间呢？一种理解：命名空间一般都是为了复用，而这个类只需要运行一次即可，以后也不会用得到，用哈希值更加合适。</p>
+<!-- more -->
+<h2 id="autoload_realphp">autoload_real.php</h2>
+<p><code>autoload.php</code> 主要调用了 <code>getLoader()</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getLoader</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 单例模式，自动加载类只能有一个 1
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">!==</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 获得自动加载核心类对象 2
+</span></span></span><span class="line"><span class="cl">    <span class="nx">spl_autoload_register</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;ComposerAutoloaderInit76e88f0b305cd64c7c84b90b278c31db&#39;</span><span class="p">,</span> <span class="s1">&#39;loadClassLoader&#39;</span><span class="p">),</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span> <span class="o">=</span> <span class="nv">$loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Composer\Autoload\ClassLoader</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">spl_autoload_unregister</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;ComposerAutoloaderInit76e88f0b305cd64c7c84b90b278c31db&#39;</span><span class="p">,</span> <span class="s1">&#39;loadClassLoader&#39;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化自动加载核心类对象 3
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$useStaticLoader</span> <span class="o">=</span> <span class="nx">PHP_VERSION_ID</span> <span class="o">&gt;=</span> <span class="mi">50600</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">defined</span><span class="p">(</span><span class="s1">&#39;HHVM_VERSION&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">function_exists</span><span class="p">(</span><span class="s1">&#39;zend_loader_file_encoded&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">zend_loader_file_encoded</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$useStaticLoader</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">require_once</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_static.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">call_user_func</span><span class="p">(</span><span class="nx">\Composer\Autoload\ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="na">getInitializer</span><span class="p">(</span><span class="nv">$loader</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$map</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_namespaces.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$map</span> <span class="k">as</span> <span class="nv">$namespace</span> <span class="o">=&gt;</span> <span class="nv">$path</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$namespace</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$map</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_psr4.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$map</span> <span class="k">as</span> <span class="nv">$namespace</span> <span class="o">=&gt;</span> <span class="nv">$path</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">setPsr4</span><span class="p">(</span><span class="nv">$namespace</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$classMap</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_classmap.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$classMap</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">addClassMap</span><span class="p">(</span><span class="nv">$classMap</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 注册自动加载核心类对象 4
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 自动加载全局函数 5
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$useStaticLoader</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$includeFiles</span> <span class="o">=</span> <span class="nx">Composer\Autoload\ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$files</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$includeFiles</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_files.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$includeFiles</span> <span class="k">as</span> <span class="nv">$fileIdentifier</span> <span class="o">=&gt;</span> <span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">composerRequire76e88f0b305cd64c7c84b90b278c31db</span><span class="p">(</span><span class="nv">$fileIdentifier</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$loader</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="单例模式-1">单例模式 1</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">!==</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="构造-classloader-核心类-2">构造 ClassLoader 核心类 2</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">spl_autoload_register</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;ComposerAutoloaderInit76e88f0b305cd64c7c84b90b278c31db&#39;</span><span class="p">,</span> <span class="s1">&#39;loadClassLoader&#39;</span><span class="p">),</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span> <span class="o">=</span> <span class="nv">$loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Composer\Autoload\ClassLoader</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spl_autoload_unregister</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;ComposerAutoloaderInit76e88f0b305cd64c7c84b90b278c31db&#39;</span><span class="p">,</span> <span class="s1">&#39;loadClassLoader&#39;</span><span class="p">));</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">loadClassLoader</span><span class="p">(</span><span class="nv">$class</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;Composer\Autoload\ClassLoader&#39;</span> <span class="o">===</span> <span class="nv">$class</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/ClassLoader.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>composer</code> 先向 <code>PHP</code> 自动加载机制注册了一个函数，这个函数 <code>require</code> 了 <code>ClassLoader</code> 文件。成功 <code>new</code> 出该文件中核心类 <code>ClassLoader()</code> 后，又销毁了该函数。</p>
+<p>为什么不直接 <code>require</code>？原因是：怕有的用户也定义了个 <code>\Composer\Autoload\ClassLoader</code> 命名空间，导致自动加载错误文件。</p>
+<p>那为什么不跟引导类一样用个哈希值呢？原因是：这个类是可以复用的，框架允许用户使用这个类。</p>
+<h2 id="初始化核心类对象-3">初始化核心类对象 3</h2>
+<p>对自动加载类的初始化，主要是给自动加载核心类初始化顶级命名空间映射。初始化的方法有两种：</p>
+<ol>
+<li>使用 <code>autoload_static</code> 进行静态初始化</li>
+<li>调用核心类接口初始化</li>
+</ol>
+<h3 id="autoload_static-静态初始化">autoload_static 静态初始化</h3>
+<p>静态初始化只支持 <code>PHP 5.6</code> 以上版本、不支持 <code>HHVM</code> 虚拟机、不存在 <code>Zend-encoded file</code>。</p>
+<p><code>autoload_static.php</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// autoload_static.php @generated by Composer
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">Composer\Autoload</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// hash 防止冲突
+</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$files</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$prefixLengthsPsr4</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$prefixDirsPsr4</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$fallbackDirsPsr4</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$prefixesPsr0</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="nv">$classMap</span> <span class="o">=</span> <span class="k">array</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getInitializer</span><span class="p">(</span><span class="nx">ClassLoader</span> <span class="nv">$loader</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">\Closure</span><span class="o">::</span><span class="na">bind</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$loader</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">prefixLengthsPsr4</span> <span class="o">=</span> <span class="nx">ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$prefixLengthsPsr4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">prefixDirsPsr4</span> <span class="o">=</span> <span class="nx">ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$prefixDirsPsr4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">fallbackDirsPsr4</span> <span class="o">=</span> <span class="nx">ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$fallbackDirsPsr4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">prefixesPsr0</span> <span class="o">=</span> <span class="nx">ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$prefixesPsr0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">classMap</span> <span class="o">=</span> <span class="nx">ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$classMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="k">null</span><span class="p">,</span> <span class="nx">ClassLoader</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这个静态初始化类的核心就是 <code>getInitializer()</code> 函数，它将自己类中的顶级命名空间映射给了 ClassLoader 类。</p>
+<p>值得注意的是这个函数返回的是一个匿名函数，为什么呢？原因就是 <code>ClassLoader</code> 中的 <code>prefixLengthsPsr4</code> 、<code>prefixDirsPsr4</code> 等等方法都是 <code>private</code> 的。普通的函数没办法给类的 <code>private</code> 成员变量赋值。利用匿名函数的绑定功能就可以将把匿名函数转为 <code>ClassLoader</code> 类的成员函数。</p>
+<p>关于匿名函数的 <a href="http://www.cnblogs.com/yjf512/p/4421289.html">绑定功能</a>。</p>
+<p>接下来就是 顶级命名空间 初始化的关键了。</p>
+<h4 id="classmap">classMap</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="nv">$classMap</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;App\\Api\\Middleware\\DeviceRecord&#39;</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/app/Api/Middleware/DeviceRecord.php&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;App\\Api\\Middleware\\HeaderCheck&#39;</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/../..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/app/Api/Middleware/HeaderCheck.php&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></div><p>直接命名空间全名与目录的映射，没有顶级命名空间。简单粗暴，也导致这个数组相当的大。</p>
+<h4 id="psr0-顶级命名空间映射">PSR0 顶级命名空间映射</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="nv">$prefixesPsr0</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;P&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Prophecy\\&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="mi">0</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/phpspec/prophecy/src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Parsedown&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="mi">0</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/erusev/parsedown&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p>为了快速找到顶级命名空间，这里使用命名空间第一个字母作为前缀索引。这个映射的用法比较明显，假如我们有 <code>Parsedown/example</code> 这样的命名空间，首先通过首字母 <code>P</code>，找到：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;P&#39;</span> <span class="o">=&gt;</span> <span class="k">array</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span></span></code></pre></div><p>这个数组，然后就会遍历这个数组来和 <code>Parsedown/example</code> 比较，发现第一个 <code>Prophecy</code> 不符合，第二个 <code>Parsedown</code> 符合，然后得到了映射目录（映射目录可能不止一个）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="mi">0</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/erusev/parsedown&#39;</span><span class="p">,</span>
+</span></span></code></pre></div><p>接着遍历这个数组，尝试 <code>__DIR__ . '/..' . '/erusev/parsedown/Parsedown/example.php'</code> 是否存在，如果不存在接着遍历数组（这个例子数组只有一个元素），如果数组遍历完都没有，就会加载失败。</p>
+<h4 id="psr4-标准顶级命名空间映射">PSR4 标准顶级命名空间映射</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="nv">$prefixLengthsPsr4</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;p&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;phpDocumentor\\Reflection\\&#39;</span> <span class="o">=&gt;</span> <span class="mi">25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Z&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;Zend\\Diactoros\\&#39;</span> <span class="o">=&gt;</span> <span class="mi">15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="nv">$prefixDirsPsr4</span> <span class="o">=</span> <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;phpDocumentor\\Reflection\\&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">0</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/phpdocumentor/reflection-common/src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">1</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/phpdocumentor/reflection-docblock/src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">2</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/phpdocumentor/type-resolver/src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;Zend\\Diactoros\\&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">0</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/zendframework/zend-diactoros/src&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></div><p><code>PSR4</code> 标准 <code>顶级命名空间</code> 映射用了两个数组，第一个和 <code>PSR0</code> 一样用命名空间第一个字母作为前缀索引，然后是 <code>顶级命名空间</code>，但是最终并不是文件路径，而是 <code>顶级命名空间</code> 的长度。为什么呢？因为 <code>PSR4</code> 的文件目录更加灵活，更加简洁。</p>
+<p><code>PSR0</code> 中 <code>顶级命名空间</code> 目录 <strong>直接加</strong> 到命名空间前面就可以得到路径：</p>
+<pre tabindex="0"><code>                                        ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Parsedown/example =&gt; __DIR__ . &#39;/..&#39; . &#39;/erusev/parsedown/Parsedown/example.php
+                                                         ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+</code></pre><p>而 <code>PSR4</code> 却是用顶级命名空间目录 <strong>替换</strong> 顶级命名空间，所以获得顶级命名空间的 <strong>长度</strong> 很重要：</p>
+<pre tabindex="0"><code>                                        ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Parsedown/example =&gt; __DIR__ . &#39;/..&#39; . &#39;/erusev/parsedown/example.php
+                                                ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+</code></pre><p>举例：假如我们找 <code>Symfony\\Polyfill\\Mbstring\\example</code> 这个类，和 <code>PSR0</code> 一样通过前缀索引和字符串匹配我们得到了:</p>
+<pre tabindex="0"><code>&#39;Symfony\\Polyfill\\Mbstring\\&#39; =&gt; 26,
+</code></pre><p>这条记录，键是顶级命名空间，值是命名空间的长度。拿到顶级命名空间后去 <code>$prefixDirsPsr4</code> 获取它的映射目录数组（注意映射目录可能不止一条）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;Symfony\\Polyfill\\Mbstring\\&#39;</span> <span class="o">=&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">array</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="s1">&#39;/symfony/polyfill-mbstring&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">),</span>
+</span></span></code></pre></div><p>将 <code>Symfony\\Polyfill\\Mbstring\\example</code> 前 26 个字母替换为 <code>__DIR__ . '/..' . '/symfony/polyfill-mbstring</code> 也就是：</p>
+<pre tabindex="0"><code>__DIR__ . &#39;/..&#39; . &#39;/symfony/polyfill-mbstring/example.php
+</code></pre><p>先验证磁盘上这个文件是否存在，如果不存在接着遍历。如果遍历后没有找到，则加载失败。</p>
+<p>自动加载核心类 <code>ClassLoader</code> 的静态初始化完成！</p>
+<blockquote>
+<p>其实还有 <code>$fallbackDirsPsr4</code>，暂未研究</p>
+</blockquote>
+<h3 id="调用接口初始化">调用接口初始化</h3>
+<p>如果 <code>PHP</code> 版本低于 <code>5.6</code> 或者使用 <code>HHVM</code> 虚拟机环境或者存在 <code>zend_loader_file_encoded</code>，那么就要使用核心类的接口进行初始化。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">PSR0 取出命名空间的第一个字母作为索引，一个索引对应多个顶级命名空间，一个顶级命名空间对应多个目录路径，具体形式可以查看上面的 autoload_static 的 $prefixesPsr0。
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">如果没有顶级命名空间，就只存储一个路径名，以便在后面尝试加载。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$map</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_namespaces.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="nv">$map</span> <span class="k">as</span> <span class="nv">$namespace</span> <span class="o">=&gt;</span> <span class="nv">$path</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$namespace</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">PSR4 如果没有顶级命名空间，就直接保存目录。
+</span></span></span><span class="line"><span class="cl"><span class="cm">如果有命名空间的话，要保证顶级命名空间最后是 \，然后分别保存
+</span></span></span><span class="line"><span class="cl"><span class="cm">( 前缀 -&gt; 顶级命名空间，顶级命名空间 -&gt; 顶级命名空间长度 )
+</span></span></span><span class="line"><span class="cl"><span class="cm">( 顶级命名空间 -&gt; 目录 )
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">这两个映射数组。具体形式可以查看上面我们讲的 autoload_static 的 prefixLengthsPsr4、$prefixDirsPsr4 。
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$map</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_psr4.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="nv">$map</span> <span class="k">as</span> <span class="nv">$namespace</span> <span class="o">=&gt;</span> <span class="nv">$path</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">setPsr4</span><span class="p">(</span><span class="nv">$namespace</span><span class="p">,</span> <span class="nv">$path</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">整个命名空间与目录之间的映射
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$classMap</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_classmap.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$classMap</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$loader</span><span class="o">-&gt;</span><span class="na">addClassMap</span><span class="p">(</span><span class="nv">$classMap</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="注册核心类对象-4">注册核心类对象 4</h2>
+<p>Composer 自动加载功能的启动与初始化，经过启动与初始化，自动加载核心类对象已经获得了顶级命名空间与相应目录的映射，换句话说，如果有命名空间 <code>App\Console\Kernel</code>，我们已经知道了 <code>App\</code> 对应的目录，接下来我们就要解决下面的就是 <code>\Console\Kernel</code> 这一段。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * Registers this instance as an autoloader.
+</span></span></span><span class="line"><span class="cl"><span class="sd"> *
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @param bool $prepend Whether to prepend the autoloader or not
+</span></span></span><span class="line"><span class="cl"><span class="sd">*/</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">(</span><span class="nv">$prepend</span> <span class="o">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">spl_autoload_register</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="nv">$this</span><span class="p">,</span> <span class="s1">&#39;loadClass&#39;</span><span class="p">),</span> <span class="k">true</span><span class="p">,</span> <span class="nv">$prepend</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>一行代码实现自动加载。核心在 <code>ClassLoader</code> 的 <code>loadClass()</code> 函数上，这个函数负责按照 <code>PSR</code> 标准将顶层命名空间以下的内容转为对应的目录，也就是上面所说的将 <code>App\Console\Kernel</code> 中 <code>Console\Kernel</code> 这一段转为目录。</p>
+<h2 id="自动加载全局函数-5">自动加载全局函数 5</h2>
+<p><code>Composer</code> 不止可以自动加载命名空间，还可以加载全局函数。就是把全局函数写到特定的文件里面去，在程序运行前挨个 <code>require</code> 就行了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nv">$useStaticLoader</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 静态初始化
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$includeFiles</span> <span class="o">=</span> <span class="nx">Composer\Autoload\ComposerStaticInit76e88f0b305cd64c7c84b90b278c31db</span><span class="o">::</span><span class="nv">$files</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 普通初始化
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$includeFiles</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_files.php&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="nv">$includeFiles</span> <span class="k">as</span> <span class="nv">$fileIdentifier</span> <span class="o">=&gt;</span> <span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">composerRequire76e88f0b305cd64c7c84b90b278c31db</span><span class="p">(</span><span class="nv">$fileIdentifier</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">composerRequire76e88f0b305cd64c7c84b90b278c31db</span><span class="p">(</span><span class="nv">$fileIdentifier</span><span class="p">,</span> <span class="nv">$file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;__composer_autoload_files&#39;</span><span class="p">][</span><span class="nv">$fileIdentifier</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">require</span> <span class="nv">$file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">&#39;__composer_autoload_files&#39;</span><span class="p">][</span><span class="nv">$fileIdentifier</span><span class="p">]</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="问题-1">问题 1</h3>
+<p>为什么不直接 <code>require</code> <code>$includeFiles</code> 里面的每个文件名，而要用类外面的函数 <code>composerRequire...</code> ？</p>
+<ul>
+<li>避免和用户定义函数冲突</li>
+<li>防止有人在全局函数所在的文件写 <code>$this</code> 或者 <code>self</code></li>
+</ul>
+<p>假如 <code>$includeFiles</code> 有个 <code>app/helper.php</code> 文件，这个 <code>helper.php</code> 文件的函数外有一行代码： <code>$this-&gt;foo()</code>，如果引导类在 <code>getLoader()</code> 函数直接 <code>require($file)</code>，那么引导类就会运行这句代码，调用自己的 <code>foo()</code> 函数，这显然是错的。</p>
+<p>事实上 <code>helper.php</code> 就不应该出现 <code>$this</code> 或 <code>self</code> 这样的代码，这样写一般都是用户写错了的，一旦这样的事情发生：</p>
+<ul>
+<li>第一种情况：引导类恰好有 <code>foo()</code> 函数，那么就会莫名其妙执行了引导类的 <code>foo()</code>。</li>
+<li>第二种情况：引导类没有 <code>foo()</code> 函数，但是却甩出来引导类没有 <code>foo()</code> 方法这样的错误提示，用户不知道自己哪里错了。把 <code>require</code> 语句放到 <strong>引导类的外面</strong>，遇到 <code>$this</code> 或者 <code>self</code> ，程序就会告诉用户根本没有类， <code>$this</code> 或 <code>self</code> 无效，错误信息更加明朗。</li>
+</ul>
+<h3 id="问题-2">问题 2</h3>
+<p>为什么要用 <code>hash</code> 作为 <code>$fileIdentifier</code>？</p>
+<p>这个变量是用来控制全局函数只被 <code>require</code> 一次的，那为什么不用 <code>require_once</code> 呢？事实上 <code>require_once</code> 比 <code>require</code> 效率低很多，使用全局变量 <code>$GLOBALS</code> 这样控制加载会更快。猜测另一个原因应该是 <code>require_once</code> 对相对路径的支持并不理想，所以 <code>composer</code> 尽量少用 <code>require_once</code>。</p>
+<h2 id="运行">运行</h2>
+<p><code>ClassLoader</code> 将 <code>loadClass()</code> 函数注册到 <code>PHP SPL</code> 中的 <code>spl_autoload_register()</code> 里面去。这样，每当 PHP 遇到一个不认识的命名空间的时候，PHP 会自动调用注册到 <code>spl_autoload_register()</code> 里面的函数堆栈，运行其中的每个函数，直到找到命名空间对应的文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * Loads the given class or interface.
+</span></span></span><span class="line"><span class="cl"><span class="sd"> *
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @param  string    $class The name of the class
+</span></span></span><span class="line"><span class="cl"><span class="sd">    * @return bool|null True if loaded, null otherwise
+</span></span></span><span class="line"><span class="cl"><span class="sd">    */</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">loadClass</span><span class="p">(</span><span class="nv">$class</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">findFile</span><span class="p">(</span><span class="nv">$class</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">includeFile</span><span class="p">(</span><span class="nv">$file</span><span class="p">);</span> <span class="c1">// include $file; Prevents access to $this/self from included files.
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sd">/**
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * Finds the path to the file where the class is defined.
+</span></span></span><span class="line"><span class="cl"><span class="sd"> *
+</span></span></span><span class="line"><span class="cl"><span class="sd"> * @param string $class The name of the class
+</span></span></span><span class="line"><span class="cl"><span class="sd">    *
+</span></span></span><span class="line"><span class="cl"><span class="sd">    * @return string|false The path if found, false otherwise
+</span></span></span><span class="line"><span class="cl"><span class="sd">    */</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">findFile</span><span class="p">(</span><span class="nv">$class</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// class map lookup
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classMap</span><span class="p">[</span><span class="nv">$class</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classMap</span><span class="p">[</span><span class="nv">$class</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// classMapAuthoritative 关闭搜索未在类映射中注册的类的 prefix and fallback directories。- 不清楚干啥的 暂没研究
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">classMapAuthoritative</span> <span class="o">||</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">missingClasses</span><span class="p">[</span><span class="nv">$class</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果启用扩展名，则使用 APCu 前缀来缓存已找到/未找到的类。 - 不清楚干啥的 暂没研究
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">apcuPrefix</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$file</span> <span class="o">=</span> <span class="nx">apcu_fetch</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">apcuPrefix</span><span class="o">.</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$hit</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nv">$hit</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nv">$file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">findFileWithExtension</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="s1">&#39;.php&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Search for Hack files if we are running on HHVM
+</span></span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">false</span> <span class="o">===</span> <span class="nv">$file</span> <span class="o">&amp;&amp;</span> <span class="nx">defined</span><span class="p">(</span><span class="s1">&#39;HHVM_VERSION&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">findFileWithExtension</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="s1">&#39;.hh&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">null</span> <span class="o">!==</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">apcuPrefix</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">apcu_add</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">apcuPrefix</span><span class="o">.</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$file</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">false</span> <span class="o">===</span> <span class="nv">$file</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Remember that this class does not exist.
+</span></span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">missingClasses</span><span class="p">[</span><span class="nv">$class</span><span class="p">]</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>loadClass()</code> 主要调用 <code>findFile()</code> 函数。<code>findFile()</code> 在解析命名空间的时候主要分为两部分：</p>
+<ul>
+<li><code>classMap</code> 直接看命名空间是否在映射数组</li>
+<li><code>findFileWithExtension()</code> 包含了 <code>PSR0</code>、<code>PSR4</code></li>
+</ul>
+<p>如果我们在代码中写 <code>'phpDocumentor\Reflection\example</code>，PHP 会通过 SPL 调用 <code>loadClass</code> -&gt; <code>findFile</code> -&gt; <code>findFileWithExtension</code>。</p>
+<ul>
+<li>首先默认用 <code>.php</code> 后缀名调用 <code>findFileWithExtension</code> 函数里，利用 <code>PSR4</code> 标准尝试解析目录文件，如果文件不存在则继续用 <code>PSR0</code> 标准解析</li>
+<li>如果解析出来的目录文件仍然不存在，但是环境是 <code>HHVM</code> 虚拟机，继续用后缀名 <code>.hh</code> 再次调用 <code>findFileWithExtension</code> 函数，如果不存在，说明此命名空间无法加载，放到 <code>classMap</code> 中设为 <code>false</code>，以便以后更快地加载</li>
+</ul>
+<h3 id="psr4">PSR4</h3>
+<p>对于 <code>phpDocumentor\Reflection\example</code>，当尝试利用 <code>PSR4</code> 标准映射目录时，步骤如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// $class: phpDocumentor\Reflection\example
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// PSR-4 lookup
+</span></span></span><span class="line"><span class="cl"><span class="nv">$logicalPathPsr4</span> <span class="o">=</span> <span class="nx">strtr</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="s1">&#39;\\&#39;</span><span class="p">,</span> <span class="nx">DIRECTORY_SEPARATOR</span><span class="p">)</span> <span class="o">.</span> <span class="nv">$ext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// $logicalPathPsr4: phpDocumentor/Reflection/example.php(hh)`
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$first</span> <span class="o">=</span> <span class="nv">$class</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// $first: p
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">prefixLengthsPsr4</span><span class="p">[</span><span class="nv">$first</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* &#39;p&#39; =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    array (
+</span></span></span><span class="line"><span class="cl"><span class="cm">        &#39;phpDocumentor\\Reflection\\&#39; =&gt; 25,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    ),
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$subPath</span> <span class="o">=</span> <span class="nv">$class</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// $subPath: phpDocumentor\Reflection\example
+</span></span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="k">false</span> <span class="o">!==</span> <span class="nv">$lastPos</span> <span class="o">=</span> <span class="nx">strrpos</span><span class="p">(</span><span class="nv">$subPath</span><span class="p">,</span> <span class="s1">&#39;\\&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// $lastPos 13
+</span></span></span><span class="line"><span class="cl">        <span class="nv">$subPath</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$subPath</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$lastPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$search</span> <span class="o">=</span> <span class="nv">$subPath</span><span class="o">.</span><span class="s1">&#39;\\&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">prefixDirsPsr4</span><span class="p">[</span><span class="nv">$search</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// search phpDocumentor\\Reflection\\
+</span></span></span><span class="line"><span class="cl">            <span class="c1">// $lastPos 25
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="cm">/* &#39;phpDocumentor\\Reflection\\&#39; =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">                array (
+</span></span></span><span class="line"><span class="cl"><span class="cm">                    0 =&gt; __DIR__ . &#39;/..&#39; . &#39;/phpdocumentor/reflection-common/src&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                    1 =&gt; __DIR__ . &#39;/..&#39; . &#39;/phpdocumentor/reflection-docblock/src&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                    2 =&gt; __DIR__ . &#39;/..&#39; . &#39;/phpdocumentor/type-resolver/src&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="cm">                ),
+</span></span></span><span class="line"><span class="cl"><span class="cm">            */</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">$pathEnd</span> <span class="o">=</span> <span class="nx">DIRECTORY_SEPARATOR</span> <span class="o">.</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$logicalPathPsr4</span><span class="p">,</span> <span class="nv">$lastPos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// $pathEnd /example.php(hh)
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">prefixDirsPsr4</span><span class="p">[</span><span class="nv">$search</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$dir</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 遍历 3 个
+</span></span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$dir</span> <span class="o">.</span> <span class="nv">$pathEnd</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">// $file __DIR__ . &#39;/..&#39; . /phpdocumentor/type-resolver/src/example.php(hh)`
+</span></span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="nv">$file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="psr0">PSR0</h3>
+<p>如果 <code>PSR4</code> 标准加载失败，则要进行 <code>PSR0</code> 标准加载。对于 <code>phpDocumentor\Reflection\example</code>，当尝试利用 <code>PSR0</code> 标准映射目录时，步骤如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// $class: phpDocumentor\Reflection\example
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// PSR-0 lookup
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="k">false</span> <span class="o">!==</span> <span class="nv">$pos</span> <span class="o">=</span> <span class="nx">strrpos</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="s1">&#39;\\&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// namespaced class name
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$logicalPathPsr0</span> <span class="o">=</span> <span class="nx">substr</span><span class="p">(</span><span class="nv">$logicalPathPsr4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span> <span class="nx">strtr</span><span class="p">(</span><span class="nx">substr</span><span class="p">(</span><span class="nv">$logicalPathPsr4</span><span class="p">,</span> <span class="nv">$pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="nx">DIRECTORY_SEPARATOR</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// PEAR-like class name
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$logicalPathPsr0</span> <span class="o">=</span> <span class="nx">strtr</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="nx">DIRECTORY_SEPARATOR</span><span class="p">)</span> <span class="o">.</span> <span class="nv">$ext</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// $logicalPathPsr0: phpDocumentor/Reflection/example.php(hh)`
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">prefixesPsr0</span><span class="p">[</span><span class="nv">$first</span><span class="p">]))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">prefixesPsr0</span><span class="p">[</span><span class="nv">$first</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$prefix</span> <span class="o">=&gt;</span> <span class="nv">$dirs</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/* &#39;P&#39; =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">        array (
+</span></span></span><span class="line"><span class="cl"><span class="cm">            &#39;Prophecy\\&#39; =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">            array (
+</span></span></span><span class="line"><span class="cl"><span class="cm">                0 =&gt; __DIR__ . &#39;/..&#39; . &#39;/phpspec/prophecy/src&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="cm">            ),
+</span></span></span><span class="line"><span class="cl"><span class="cm">            &#39;Parsedown&#39; =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">            array (
+</span></span></span><span class="line"><span class="cl"><span class="cm">                0 =&gt; __DIR__ . &#39;/..&#39; . &#39;/erusev/parsedown&#39;,
+</span></span></span><span class="line"><span class="cl"><span class="cm">            ),
+</span></span></span><span class="line"><span class="cl"><span class="cm">        ), */</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">===</span> <span class="nx">strpos</span><span class="p">(</span><span class="nv">$class</span><span class="p">,</span> <span class="nv">$prefix</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">foreach</span> <span class="p">(</span><span class="nv">$dirs</span> <span class="k">as</span> <span class="nv">$dir</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="nx">file_exists</span><span class="p">(</span><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$dir</span> <span class="o">.</span> <span class="nx">DIRECTORY_SEPARATOR</span> <span class="o">.</span> <span class="nv">$logicalPathPsr0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">// $file __DIR__ . &#39;/..&#39; . &#39;/phpspec/prophecy/src&#39; . phpDocumentor/Reflection/example.php(hh)
+</span></span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="nv">$file</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="qa">Q&amp;A</h2>
+<p>个人一些疑问：</p>
+<h3 id="防止用户自定义与-classloader-命名空间冲突">防止用户自定义与 ClassLoader 命名空间冲突</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">spl_autoload_register</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;ComposerAutoloaderInit76e88f0b305cd64c7c84b90b278c31db&#39;</span><span class="p">,</span> <span class="s1">&#39;loadClassLoader&#39;</span><span class="p">),</span> <span class="k">true</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">self</span><span class="o">::</span><span class="nv">$loader</span> <span class="o">=</span> <span class="nv">$loader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Composer\Autoload\ClassLoader</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spl_autoload_unregister</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;ComposerAutoloaderInit76e88f0b305cd64c7c84b90b278c31db&#39;</span><span class="p">,</span> <span class="s1">&#39;loadClassLoader&#39;</span><span class="p">));</span>
+</span></span></code></pre></div><p>为什么这样可以解决：与用户也定义了个 <code>\Composer\Autoload\ClassLoader</code> 命名空间，导致自动加载错误文件。</p>
+<p>与第四个参数 <code>$prepend</code> <code>true</code> 有关吗？</p>
+<h3 id="composer-staticloader-有什么优势">composer StaticLoader 有什么优势</h3>
+<p><code>composer</code> 在加载类和加载全局方法时，都有两种方式。</p>
+<pre tabindex="0"><code>$useStaticLoader = PHP_VERSION_ID &gt;= 50600 &amp;&amp; !defined(&#39;HHVM_VERSION&#39;) &amp;&amp; (!function_exists(&#39;zend_loader_file_encoded&#39;) || !zend_loader_file_encoded());
+</code></pre><p>以 <code>$useStaticLoader</code> 的值进行选择，为什么一定分两种，静态方法是有什么优势吗？</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/LeoYang90/laravel-source-analysis/blob/master/PHP%20Composer%E2%80%94%E2%80%94%20%E5%88%9D%E5%A7%8B%E5%8C%96%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md">PHP Composer - 初始化源码分析</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

@@ -4,19 +4,19 @@
     <title>Regular-Expression on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/regular-expression/</link>
     <description>Recent content in Regular-Expression on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 01 Mar 2023 15:31:15 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 01 Mar 2023 15:31:15 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/regular-expression/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>正则表达式</title>
       <link>https://zyf.im/2023/03/01/regular-expression-getting-started/</link>
-      <pubDate>Wed, 01 Mar 2023 15:31:15 +0800</pubDate>
+      <pubDate>Wed, 01 Mar 2023 15:31:15 +0000</pubDate>
       <guid>https://zyf.im/2023/03/01/regular-expression-getting-started/</guid>
       <description>&lt;h2 id=&#34;00&#34;&gt;00&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://regex101.com/&#34;&gt;regex101&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jex.im/regulex/#!flags=&amp;amp;re=%5E(a%7Cb)*%3F%24&#34;&gt;regulex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://jex.im/regulex/#!flags=&amp;amp;re=%5E%28a%7Cb%29*%3F%24&#34;&gt;regulex&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://ihateregex.io/expr/username/&#34;&gt;ihateregex&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;01-元字符&#34;&gt;01 元字符&lt;/h2&gt;
@@ -76,6 +76,500 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;.+?&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;the little cat&amp;#34; is a toy, it lokks &amp;#34;a little bad&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 非贪婪模式&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;&amp;#34;the little cat&amp;#34;&amp;#39;, &amp;#39;&amp;#34;a little bad&amp;#34;&amp;#39;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独占模式(Possessive) &lt;code&gt;++&lt;/code&gt;：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 &lt;strong&gt;不会回溯&lt;/strong&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="00">00</h2>
+<ul>
+<li><a href="https://regex101.com/">regex101</a></li>
+<li><a href="https://jex.im/regulex/#!flags=&amp;re=%5E%28a%7Cb%29*%3F%24">regulex</a></li>
+<li><a href="https://ihateregex.io/expr/username/">ihateregex</a></li>
+</ul>
+<h2 id="01-元字符">01 元字符</h2>
+<p>正则表达式 —— 字符串的规则。</p>
+<p>元字符就是指那些在正则表达式中具有特殊意义的专用字符。</p>
+<ul>
+<li>特殊单字符
+<ul>
+<li><code>.</code> 任意字符（换行除外）</li>
+<li><code>\d</code> 任意数字 <code>\D</code> 任意非数字</li>
+<li><code>\w</code> A-Za-z0-9_ <code>\W</code></li>
+<li><code>\s</code> 空白符 <code>\S</code></li>
+</ul>
+</li>
+<li>空白符
+<ul>
+<li><code>\r</code> 回车符</li>
+<li><code>\n</code> 换行符</li>
+<li><code>\f</code> 换页符</li>
+<li><code>\t</code> 制表符</li>
+<li><code>\v</code> 垂直制表符</li>
+</ul>
+</li>
+<li>范围
+<ul>
+<li><code>|</code> 或</li>
+<li><code>[abc]</code> 多选一</li>
+<li><code>[a-z]</code> 之间</li>
+<li><code>[^abc]</code> 取反，不能是括号中的任意单个元素</li>
+</ul>
+</li>
+<li>量词
+<ul>
+<li><code>*</code> 0&lt;=</li>
+<li><code>+</code> 1&lt;=</li>
+<li><code>?</code> 0或1</li>
+<li><code>{m}</code> m</li>
+<li><code>{m,}</code> m&lt;=</li>
+<li><code>{m,n}</code> m-n</li>
+</ul>
+</li>
+</ul>
+<h2 id="02-量词与贪婪">02 量词与贪婪</h2>
+<p>贪婪(Greedy) <code>*</code>：匹配最长。在贪婪量词模式下，正则表达式会尽可能长地去匹配符合规则的字符串，且会回溯。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">preg_match_all</span><span class="p">(</span><span class="s2">&#34;/a*/i&#34;</span><span class="p">,</span> <span class="s2">&#34;aaabb&#34;</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$matches</span><span class="p">);</span>
+</span></span></code></pre></div><p>非贪婪(Reluctant) <code>+?</code>：匹配最短。在非贪婪量词模式下，正则表达式会匹配尽可能短的字符串。</p>
+<p>ENV：Python3</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;a*&#39;</span><span class="p">,</span> <span class="s1">&#39;aaabb&#39;</span><span class="p">)</span> <span class="c1"># 贪婪模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;aaa&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;a*?&#39;</span><span class="p">,</span> <span class="s1">&#39;aaabb&#39;</span><span class="p">)</span> <span class="c1"># 非贪婪模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&#39;, &#39;a&#39;, &#39;&#39;, &#39;a&#39;, &#39;&#39;, &#39;a&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#34;.+&#34;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#34;the little cat&#34; is a toy, it lokks &#34;a little bad&#34;&#39;</span><span class="p">)</span> <span class="c1"># 贪婪模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&#34;the little cat&#34; is a toy, it lokks &#34;a little bad&#34;&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#34;.+?&#34;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#34;the little cat&#34; is a toy, it lokks &#34;a little bad&#34;&#39;</span><span class="p">)</span> <span class="c1"># 非贪婪模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&#34;the little cat&#34;&#39;, &#39;&#34;a little bad&#34;&#39;]</span>
+</span></span></code></pre></div><p>独占模式(Possessive) <code>++</code>：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 <strong>不会回溯</strong>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 回溯示例：</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;xy{1,3}z&#39;</span><span class="p">,</span> <span class="s1">&#39;xyyz&#39;</span><span class="p">)</span> <span class="c1"># 回溯</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;xyyz&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 xy{1,3} 会尽可能长地去匹配到 xyyz，无法匹配 z，向前回溯 xyy</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 z 匹配到剩下字符串 z</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;xy{1,3}?z&#39;</span><span class="p">,</span> <span class="s1">&#39;xyyz&#39;</span><span class="p">)</span> <span class="c1"># 非贪婪</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;xyyz&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 xy{1,3} 会尽可能短地去匹配到 xy</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 z 匹配到字符串 y，无法匹配，向前回溯</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 xy{1,3} 会尽可能短地去匹配 xyy</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 z 匹配到剩下字符串 z</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 独占模式示例：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pip install regex -i https://mirrors.aliyun.com/pypi/simple/</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">regex</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;xy{1,3}+z&#39;</span><span class="p">,</span> <span class="s1">&#39;xyyz&#39;</span><span class="p">)</span> <span class="c1"># 独占</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;xyyz&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 xy{1,3}+ 会尽可能长地去匹配到 xyy 并占用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 z 匹配到字符串 z</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;xy{1,3}+yz&#39;</span><span class="p">,</span> <span class="s1">&#39;xyyz&#39;</span><span class="p">)</span> <span class="c1"># 独占</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 xy{1,3}+ 会尽可能长地去匹配到 xyy 并占用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 正则 yz 无法匹配到剩下字符串 z</span>
+</span></span></code></pre></div><h2 id="03-分组与引用">03 分组与引用</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">regex</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 不保存分组 (?:正则)</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d</span><span class="si">{4}</span><span class="s1">)-(?:\d</span><span class="si">{2}</span><span class="s1">)-(\d</span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&#34;年：\1  日：\2&#34;</span><span class="p">,</span> <span class="s1">&#39;2023-03-01&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;年：2023  日：01&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 去除重复连续单词</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\w+)(\s\1)+&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&#34;\1&#34;</span><span class="p">,</span> <span class="s1">&#39;the little cat cat is in the hat hat hat, we like it.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;the little cat is in the hat, we like it.&#39;</span>
+</span></span></code></pre></div><h2 id="04-匹配模式">04 匹配模式</h2>
+<p>指改变元字符匹配行为。</p>
+<p>不区分大小写模式（Case-Insensitive）<code>(?模式标识)</code> <code>(?i)</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">regex</span>
+</span></span><span class="line"><span class="cl"><span class="n">regex</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;(?i)cat&#34;</span><span class="p">,</span> <span class="s2">&#34;cat Cat CAt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;cat&#39;, &#39;Cat&#39;, &#39;CAt&#39;]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-re" data-lang="re"><span class="line"><span class="cl"><span class="ow">#</span> <span class="n">https</span><span class="ow">:</span><span class="c1">//regex101.com/r/3OUJda/1
+</span></span></span><span class="line"><span class="cl"><span class="ow">#</span> <span class="n">二次重复时的大小写一致</span>
+</span></span><span class="line"><span class="cl"><span class="ow">((?</span><span class="n">i</span><span class="ow">)</span><span class="n">cat</span><span class="ow">)</span> <span class="err">\</span><span class="n">1</span>
+</span></span></code></pre></div><p>点号通配模式（Dot All）<code>(?s)</code> 让英文的点 <code>.</code> 可以匹配上包括换行的任何字符。等价 <code>[\s\S]</code> <code>[\d\D]</code> <code>[\w\W]</code>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-re" data-lang="re"><span class="line"><span class="cl"><span class="ow">#</span> <span class="n">https</span><span class="ow">:</span><span class="c1">//regex101.com/r/zXtwLv/1
+</span></span></span><span class="line"><span class="cl"><span class="ow">#</span> <span class="n">匹配包括换行符</span>
+</span></span><span class="line"><span class="cl"><span class="ow">(?</span><span class="n">s</span><span class="ow">).+</span>
+</span></span></code></pre></div><p>多行匹配模式（Multiline）<code>(?m)</code> 使 <code>^</code> 和 <code>$</code> 能匹配上每行的开头或结尾。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-re" data-lang="re"><span class="line"><span class="cl"><span class="ow">#</span> <span class="n">分行匹配</span>
+</span></span><span class="line"><span class="cl"><span class="ow">(?</span><span class="n">m</span><span class="ow">)</span><span class="o">^</span><span class="n">cat</span><span class="ow">|</span><span class="n">dog</span><span class="o">$</span>
+</span></span></code></pre></div><p>注释模式（Comment）<code>(?#)</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-re" data-lang="re"><span class="line"><span class="cl"><span class="ow">(</span><span class="err">\</span><span class="n">w</span><span class="ow">+)(?#</span><span class="n">word</span><span class="ow">)</span> <span class="err">\</span><span class="n">1</span><span class="ow">(?#</span><span class="n">word</span> <span class="n">repeat</span> <span class="n">again</span><span class="ow">)</span>
+</span></span></code></pre></div><h2 id="05-断言-assertion">05 断言 Assertion</h2>
+<p>对要匹配的文本的位置也有一定的要求。只用于匹配位置，而不是文本内容本身，这种结构就是断言。</p>
+<p>边界（Boundary）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 单词边界 \b</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># tom -&gt; jerry, tomorrow 不受影响</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\btom\b&#39;</span><span class="p">,</span> <span class="s1">&#39;jerry&#39;</span><span class="p">,</span> <span class="s2">&#34;tom asked me if I would go fishing with him tomorrow.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;jerry asked me if I would go fishing with him tomorrow.&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 行的开始结束</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \A \z 不受模式影响</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \A -&gt; ^, \z -&gt; $</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\Atom&#39;</span><span class="p">,</span> <span class="s1">&#39;jerry&#39;</span><span class="p">,</span> <span class="s2">&#34;tom asked me if I would go fishing with him tomorrow.&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 环视 左尖括号代表看左边，没有尖括号是看右边，感叹号是非的意思</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?&lt;=Y) 左边是Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?&lt;!Y) 左边不是Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?=Y) 右边是Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?!Y) 右边不是Y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[1-9]\d</span><span class="si">{5}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s2">&#34;138001380002&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;138001&#39;, &#39;380002&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!\d)[1-9]\d</span><span class="si">{5}</span><span class="s1">(?!\d)&#39;</span><span class="p">,</span> <span class="s2">&#34;138001380002&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 左边不是数字、右边不是数字</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?&lt;!\d)[1-9]\d</span><span class="si">{5}</span><span class="s1">(?!\d)&#39;</span><span class="p">,</span> <span class="s2">&#34;code138001code&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 左边不是数字、右边不是数字</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;138001&#39;]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># \b\w+\b -&gt; (?&lt;!\w)\w+(?!\w) -&gt; (?&lt;=\W)\w+(?=\W)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># https://regex101.com/r/PBEKxY/1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># (\w+)(\s+\b\1\b)+</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 单词，单词的左边是单词边界、可以有一个及以上空格，右边是单词边界</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 比 (\w+)(\s+\1)+ 更严谨 eg: the little cat cat2 is in the hat hat2</span>
+</span></span></code></pre></div><h2 id="06-转义">06 转义</h2>
+<p>转义字符 Escape Character 后面的字符，不是原来的意思了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">d&#39;</span><span class="p">,</span> <span class="s1">&#39;abc</span><span class="se">\\</span><span class="s1">d123d</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\\d&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;a*b+c?</span><span class="se">\\</span><span class="s1">d123d</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># bad escape (end of pattern) at position 0</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;a*b+c?</span><span class="se">\\</span><span class="s1">d123d</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\\&#39;, &#39;\\&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 字符串-&gt;正则表达式：字符串转义和正则转义</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \\\\ 字符串转义 \\</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \\ 正则转义 \</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;a*b+c?</span><span class="se">\\</span><span class="s1">d123d</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\\&#39;, &#39;\\&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;\(\)\[]\</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;()[]</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;()[]{}&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 方括号和花括号的转义一般转义开括号就可以，但圆括号两个都需要转义</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;\d&#39;</span><span class="p">)</span> <span class="c1"># 反斜杠和字母d转义</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;\\\\d&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;\d&#39;</span><span class="p">),</span> <span class="s1">&#39;\d&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\\d&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;[+]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;\\[\\+\\]&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;[+]&#39;</span><span class="p">),</span> <span class="s1">&#39;[+]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;[+]&#39;]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^ab]&#39;</span><span class="p">,</span> <span class="s1">&#39;^ab&#39;</span><span class="p">)</span>  <span class="c1"># 转义前代表&#34;非&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;^&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^cd]&#39;</span><span class="p">,</span> <span class="s1">&#39;^ab&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;^&#39;, &#39;a&#39;, &#39;b&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\^ab]&#39;</span><span class="p">,</span> <span class="s1">&#39;^ab&#39;</span><span class="p">)</span>  <span class="c1"># 转义后代表普通字符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;^&#39;, &#39;a&#39;, &#39;b&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a-c]&#39;</span><span class="p">,</span> <span class="s1">&#39;abc-&#39;</span><span class="p">)</span>  <span class="c1"># 中划线在中间，代表&#34;范围&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a\-c]&#39;</span><span class="p">,</span> <span class="s1">&#39;abc-&#39;</span><span class="p">)</span>  <span class="c1"># 中划线在中间，转义后的</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[-ac]&#39;</span><span class="p">,</span> <span class="s1">&#39;abc-&#39;</span><span class="p">)</span>  <span class="c1"># 在开头，不需要转义</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[ac-]&#39;</span><span class="p">,</span> <span class="s1">&#39;abc-&#39;</span><span class="p">)</span>  <span class="c1"># 在结尾，不需要转义</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;a&#39;, &#39;c&#39;, &#39;-&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[]ab]&#39;</span><span class="p">,</span> <span class="s1">&#39;]ab&#39;</span><span class="p">)</span>  <span class="c1"># 右括号不转义，在首位</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;]&#39;, &#39;a&#39;, &#39;b&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a]b]&#39;</span><span class="p">,</span> <span class="s1">&#39;]ab&#39;</span><span class="p">)</span>  <span class="c1"># 右括号不转义，不在首位</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[a\]b]&#39;</span><span class="p">,</span> <span class="s1">&#39;]ab&#39;</span><span class="p">)</span>  <span class="c1"># 转义后代表普通字符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;]&#39;, &#39;a&#39;, &#39;b&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[.*+?()]&#39;</span><span class="p">,</span> <span class="s1">&#39;[.*+?()]&#39;</span><span class="p">)</span>  <span class="c1"># 单个长度的元字符在中括号里，可以不转义</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;.&#39;, &#39;*&#39;, &#39;+&#39;, &#39;?&#39;, &#39;(&#39;, &#39;)&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\d]&#39;</span><span class="p">,</span> <span class="s1">&#39;d12</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># \w，\d等在中括号中还是元字符的功能</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;1&#39;, &#39;2&#39;]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n</span><span class="se">\n\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\n&#39;] \n -&gt; (\n) -&gt; (\n)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n</span><span class="se">\n\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\n&#39;] \\n -&gt; \n -&gt; (\n)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n</span><span class="se">\n\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\n&#39;] \\\n -&gt; \n -&gt; (\n)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;\\\n&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\\\</span><span class="s1">n&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n</span><span class="se">\n\\</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\\n&#39;] \\\\n -&gt; \\\n -&gt; \(\n)</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">n&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;\\\\n&#39;</span>
+</span></span></code></pre></div><h2 id="07-流派及其特性">07 流派及其特性</h2>
+<ul>
+<li>POSIX Portable Operating System Interface。不能使用 <code>\d</code>。
+<ul>
+<li>BRE Basic Regular Expression 基本正则表达式。<code>grep</code> <code>sed</code> 花园问管家 <code>{}()?|+</code> 要转义。</li>
+<li>ERE Extended Regular Expression 扩展正则表达式。<code>egrep</code> <code>grep -E</code> <code>sed -E</code>。</li>
+</ul>
+</li>
+<li>PCRE Perl Compatible Regular Expressions。可以使用 <code>\d</code> <code>\w</code> <code>\s</code>。<code>grep -P</code> <code>sed -P</code>。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">grep --help <span class="p">|</span> grep PATTERN
+</span></span><span class="line"><span class="cl"><span class="c1"># PATTERN is, by default, a basic regular expression (BRE).</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   -E, --extended-regexp     PATTERN is an extended regular expression (ERE)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   -F, --fixed-strings       PATTERN is a set of newline-separated fixed strings</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   -G, --basic-regexp        PATTERN is a basic regular expression (BRE)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   -P, --perl-regexp         PATTERN is a Perl regular expression</span>
+</span></span></code></pre></div><blockquote>
+<p><a href="https://www.infoq.cn/article/2011/07/regular-expressions-6-posix">Linux/Unix 工具与正则表达式的 POSIX 规范 | 余晟</a></p>
+</blockquote>
+<h2 id="08-处理-unicode-文本">08 处理 Unicode 文本</h2>
+<p>Unicode 相当于规定了字符对应的码值，这个码值得编码成字节的形式去传输和存储。最常见的编码方式是 UTF-8，另外还有 UTF-16，UTF-32 等。UTF-8 之所以能够流行起来，是因为其编码比较巧妙，采用的是变长的方法。也就是一个 Unicode 字符，在使用 UTF-8 编码表示时占用 1 到 4 个字节不等。最重要的是 Unicode 兼容 ASCII 编码，在表示纯英文时，并不会占用更多存储空间。而汉字呢，在 UTF-8 中，通常是用三个字节来表示。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># python2.7</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="sa">u</span><span class="s1">&#39;极客&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;\xe6\x9e\x81\xe5\xae\xa2&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="sa">u</span><span class="s1">&#39;时间&#39;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;\xe6\x97\xb6\xe9\x97\xb4&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 都含有 e6</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[时间]&#39;</span><span class="p">,</span> <span class="s1">&#39;极客&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[时间]&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 230</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 151</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 182</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 233</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 151</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 180</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;_sre.SRE_Pattern object at 0x10ab44d78&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[极客]&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 230</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 158</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 129</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 229</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 174</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 162</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;_sre.SRE_Pattern object at 0x10ab44e40&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">ur</span><span class="s1">&#39;[时间]&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 26102</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   literal 38388</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;_sre.SRE_Pattern object at 0x10ac02710&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">ur</span><span class="s1">&#39;[时间]&#39;</span><span class="p">,</span> <span class="s1">&#39;时间&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">ur</span><span class="s1">&#39;[时间]&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;时间&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="kc">True</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># python2.7</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^.$&#39;</span><span class="p">,</span> <span class="s1">&#39;学&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^.$&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;学&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [u&#39;\u5b66&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">ur</span><span class="s1">&#39;^.$&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;学&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [u&#39;\u5b66&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">unichr</span><span class="p">(</span><span class="mh">0x5B66</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 学</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># python3</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^.$&#39;</span><span class="p">,</span> <span class="s1">&#39;学&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;学&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(?a)^.$&#39;</span><span class="p">,</span> <span class="s1">&#39;学&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;学&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?a) 表示启用 ASCII 模式</span>
+</span></span><span class="line"><span class="cl"><span class="nb">chr</span><span class="p">(</span><span class="mh">0x5B66</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;学&#39;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 可以匹配汉语 in PHP
+</span></span></span><span class="line"><span class="cl"><span class="nx">\p</span><span class="p">{</span><span class="nx">Han</span><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># python2.7</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;客</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;极客客客客&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">ur</span><span class="s1">&#39;客</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;极客客客客&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;客</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;极客客客客&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># []</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">ur</span><span class="s1">&#39;客</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa">u</span><span class="s1">&#39;极客客客客&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [u&#39;\u5ba2\u5ba2\u5ba2&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(客)</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;极客客客客&#39;</span><span class="p">)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># python3</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;客</span><span class="si">{3}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;极客客客客&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;客客客&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 Python3 中，不需要在正则表达式字符串前面添加 u 前缀，因为所有字符串都默认为 Unicode 字符串。</span>
+</span></span></code></pre></div><ul>
+<li><a href="https://en.wikipedia.org/wiki/Script_%28Unicode%29#Hani">Script (Unicode) | wikipedia</a></li>
+</ul>
+<h2 id="09-编辑器中使用正则">09 编辑器中使用正则</h2>
+<p>竖向编辑：MacOS alt + 鼠标纵向滑动。</p>
+<h2 id="10-语言中用正则">10 语言中用正则</h2>
+<p>校验文本内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\A\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">\Z&#39;</span><span class="p">)</span>  <span class="c1"># 建议先编译，提高效率</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;2020-06-01&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="s1">&#39;2020-06-01&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># 使用 match 时 \A 可省略，match 就是从头匹配</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;2020-05 2020-06&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;2020-05&#39;, &#39;2020-06&#39;]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="sr">/^\d{4}-\d{2}-\d{2}$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&#34;2020-06-01&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="sr">/^\d{4}-\d{2}-\d{2}$/</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s2">&#34;2020-01-01&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/^\d{4}-\d{2}-\d{2}$/</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;2020-06-01&#34;</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">regex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 0
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$regex</span> <span class="o">=</span> <span class="s1">&#39;/^\d{4}-\d{2}-\d{2}$/&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$ret</span> <span class="o">=</span> <span class="nx">preg_match</span><span class="p">(</span><span class="nv">$regex</span><span class="p">,</span> <span class="s2">&#34;2020-06-01&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$ret</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// int(1)
+</span></span></span></code></pre></div><p>提取文本内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 没有子组时</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d</span><span class="si">{4}</span><span class="s1">-\d</span><span class="si">{2}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;2020-05 2020-06&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;2020-05&#39;, &#39;2020-06&#39;]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 有子组时</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d</span><span class="si">{4}</span><span class="s1">)-(\d</span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;2020-05 2020-06&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[(</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;05&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span> <span class="s1">&#39;06&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d</span><span class="si">{4}</span><span class="s1">)-(\d</span><span class="si">{2}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="k">match</span> <span class="ow">in</span> <span class="n">reg</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s1">&#39;2020-05 2020-06&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;date: &#39;</span><span class="p">,</span> <span class="k">match</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># 整个正则匹配到的内容</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;year: &#39;</span><span class="p">,</span> <span class="k">match</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># 第一个子组</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;month:&#39;</span><span class="p">,</span> <span class="k">match</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># 第二个子组</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># date:  2020-05</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># year:  2020</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># month: 05</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># date:  2020-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># year:  2020</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># month: 06</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用g模式，查找所有符合要求的内容
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;2020-06 2020-07&#34;</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d{4}-\d{2}/g</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#39;2020-06&#39;, &#39;2020-07&#39;]
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 不使用g模式，找到第一个就会停下来
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;2020-06 2020-07&#34;</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d{4}-\d{2}/</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#39;2020-06&#39;, index: 0, input: &#39;2020-06 2020-07&#39;, groups: undefined]
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$regex</span> <span class="o">=</span> <span class="s2">&#34;/\d{4}-\d{2}/&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$str</span> <span class="o">=</span> <span class="s2">&#34;2020-05 2020-04&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$matchs</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">preg_match_all</span><span class="p">(</span><span class="nv">$regex</span><span class="p">,</span> <span class="nv">$str</span><span class="p">,</span> <span class="nv">$matchs</span><span class="p">,</span> <span class="nx">PREG_SET_ORDER</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$matchs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// array(2) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [0] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   array(1) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     [0] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     string(7) &#34;2020-05&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   }
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [1] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   array(1) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     [0] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//     string(7) &#34;2020-04&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   }
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// PREG_PATTERN_ORDER: 结果排序为$matches[0]保存完整模式的所有匹配, $matches[1]保存第一个子组的所有匹配，以此类推。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// PREG_SET_ORDER: 结果排序为$matches[0]包含第一次匹配得到的所有匹配(包含子组)，$matches[1]是包含第二次匹配到的所有匹配(包含子组)的数组，以此类推。
+</span></span></span></code></pre></div><p>替换文本内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d</span><span class="si">{2}</span><span class="s1">)-(\d</span><span class="si">{2}</span><span class="s1">)-(\d</span><span class="si">{4}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\3年\1月\2日&#39;</span><span class="p">,</span> <span class="s1">&#39;02-20-2020 05-21-2020&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;2020年02月20日 2020年05月21日&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以在替换中使用 \g&lt;数字&gt;，如果分组多于10个时避免歧义</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\g&lt;3&gt;年\g&lt;1&gt;月\g&lt;2&gt;日&#39;</span><span class="p">,</span> <span class="s1">&#39;02-20-2020 05-21-2020&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;2020年02月20日 2020年05月21日&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回替换次数</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\3年\1月\2日&#39;</span><span class="p">,</span> <span class="s1">&#39;02-20-2020 05-21-2020&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (&#39;2020年02月20日 2020年05月21日&#39;, 2)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用g模式，替换所有的
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;02-20-2020 05-21-2020&#34;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d{2})-(\d{2})-(\d{4})/g</span><span class="p">,</span> <span class="s2">&#34;$3年$1月$2日&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;2020年02月20日 2020年05月21日&#34;
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 不使用 g 模式时，只替换一次
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;02-20-2020 05-21-2020&#34;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d{2})-(\d{2})-(\d{4})/</span><span class="p">,</span> <span class="s2">&#34;$3年$1月$2日&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;2020年02月20日 05-21-2020&#34;
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$ret</span> <span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/(\d{2})-(\d{2})-(\d{4})/&#39;</span><span class="p">,</span> <span class="s1">&#39;\3年\1月\2日&#39;</span><span class="p">,</span> <span class="s2">&#34;02-20-2020 05-21-2020&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$ret</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// string(35) &#34;2020年02月20日 2020年05月21日&#34;
+</span></span></span></code></pre></div><p>切割文本内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\W+&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;apple&#39;, &#39;pear&#39;, &#39;orange&#39;, &#39;tea&#39;]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 限制切割次数，比如切一刀，变成两部分</span>
+</span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># [&#39;apple&#39;, &#39;pear! orange; tea&#39;]</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\W+/</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;apple&#34;, &#34;pear&#34;, &#34;orange&#34;, &#34;tea&#34;]
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 传入第二个参数的情况
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\W+/</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;apple&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\W+/</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;apple&#34;, &#34;pear&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/\W+/</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// [&#34;apple&#34;, &#34;pear&#34;, &#34;orange&#34;, &#34;tea&#34;]
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$ret</span> <span class="o">=</span> <span class="nx">preg_split</span><span class="p">(</span><span class="s1">&#39;/\W+/&#39;</span><span class="p">,</span> <span class="s1">&#39;apple, pear! orange; tea&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$ret</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// array(4) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [0] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   string(5) &#34;apple&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [1] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   string(4) &#34;pear&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [2] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   string(6) &#34;orange&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [3] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   string(3) &#34;tea&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span><span class="line"><span class="cl"><span class="nv">$ret</span> <span class="o">=</span> <span class="nx">preg_split</span><span class="p">(</span><span class="s1">&#39;/\W+/&#39;</span><span class="p">,</span> <span class="s1">&#39;apple, pear! orange; tea&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$ret</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// array(2) {
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [0] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   string(5) &#34;apple&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   [1] =&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1">//   string(17) &#34;pear! orange; tea&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span></span></code></pre></div><h2 id="11-匹配原理以及优化原则">11 匹配原理以及优化原则</h2>
+<p>回溯不可怕，我们要尽量减少回溯后的判断</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">1000000</span> <span class="o">+</span> <span class="s1">&#39;abc&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">timeit</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></div><ul>
+<li>提前编译好正则。</li>
+<li>尽量准确表示匹配范围：匹配引号里面的内容 <code>.+?</code> 改写为 <code>[^&quot;]+</code>。</li>
+<li>提取出公共部分：<code>(abcd|abxy)</code> =&gt; <code>ab(cd|xy)</code>，<code>(^this|^that)</code> =&gt; <code>^th(is|at)</code>。</li>
+<li>出现可能性大的放左边：<code>\.(?:com|net)\b</code>。</li>
+<li>只在必要时才使用子组：把不需要保存子组的括号中加上 <code>?:</code> 来表示只用于归组。</li>
+<li>警惕嵌套的子组重复：<code>(.*)*</code> 匹配的次数会呈指数级增长，尽量不要写这样的正则。</li>
+<li>避免不同分支重复匹配。</li>
+</ul>
+<p>NFA 是以表达式为主导的，先看正则表达式，再看文本。而 DFA 则是以文本为主导的，先看文本，再看正则表达式。POSIX NFA 是指符合 POSIX 标准的 NFA 引擎，它会不断回溯，以确保找到最左侧最长匹配。</p>
+<h2 id="12-常见问题">12 常见问题</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(?:(?!\d\d)\w)</span><span class="si">{6}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;11abcd&#39;</span><span class="p">)</span> <span class="c1"># 不能匹配上</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 否定预测先行断言的语法&#34;(?!)&#34;来排除两个数字字符结尾的情况</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?!) 表示匹配不满足某个条件的位置</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="k">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(?:\w(?!\d\d))</span><span class="si">{6}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="s1">&#39;11abcd&#39;</span><span class="p">)</span> <span class="c1"># 错误正则示范</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &lt;re.Match object; span=(0, 6), match=&#39;11abcd&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (11) 回溯</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1(1a) ok</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 11ab... ok</span>
+</span></span></code></pre></div><ul>
+<li>正负号、可二位小数、小数位末尾 0 无影响 <a href="https://jex.im/regulex/#!flags=&amp;re=%5E%5B-%2B%5D%3F%5Cd%2B%28%3F%3A%5C.%28%3F%3A%5Cd%29%7B0%2C2%7D0*%29%3F%24">Regulex</a>：<code>^[-+]?\d+(?:\.(?:\d){0,2}0*)?$</code></li>
+<li>手机号码：<code>1(?:3\d|4[5-9]|5[0-35-9]|6[2567]|7[0-8]|8\d|9[1389])\d{8}</code></li>
+<li>身份证：<code>[1-9]\d{14}(\d\d[0-9Xx])?</code></li>
+<li>邮政编码：<code>(?&lt;!\d)\d{6}(?!\d)</code></li>
+<li>中文字符：<code>[\u4E00-\u9FFF]</code> <code>\p{Han}</code></li>
+<li>邮箱：<code>a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+</code></li>
+</ul>
+<h2 id="程语言的角度来理解正则">程语言的角度来理解正则</h2>
+<ul>
+<li>命令式编程的世界观是：程序是由若干行动指令组成的有序列表；</li>
+<li>命令式编程的方法论是：用变量来存储数据，用语句来执行指令。</li>
+<li>声明式编程的世界观是：程序是由若干目标任务组成的有序列表；</li>
+<li>声明式编程的方法论是：用语法元素来描述任务，由解析引擎转化为指令并执行。</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li>《精通正则表达式（第三版）》</li>
+<li>《正则指引（第二版）》</li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>

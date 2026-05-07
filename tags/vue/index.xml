@@ -4,14 +4,14 @@
     <title>Vue on ZYF.IM BLOG</title>
     <link>https://zyf.im/tags/vue/</link>
     <description>Recent content in Vue on ZYF.IM BLOG</description>
-    <generator>Hugo -- 0.158.0</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 08 Aug 2019 17:33:38 +0800</lastBuildDate>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 08 Aug 2019 17:33:38 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/vue/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vue Code Snippet</title>
       <link>https://zyf.im/2019/08/08/vue-code-snippet/</link>
-      <pubDate>Thu, 08 Aug 2019 17:33:38 +0800</pubDate>
+      <pubDate>Thu, 08 Aug 2019 17:33:38 +0000</pubDate>
       <guid>https://zyf.im/2019/08/08/vue-code-snippet/</guid>
       <description>&lt;h2 id=&#34;重置-data-的数据为初始状态&#34;&gt;重置 data 的数据为初始状态&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;...&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
@@ -74,6 +74,191 @@
 &lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isEmptyObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;实现源码：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="重置-data-的数据为初始状态">重置 data 的数据为初始状态</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="nx">$data</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="k">this</span><span class="p">.</span><span class="nx">$data</span><span class="p">,</span> <span class="p">...</span><span class="k">this</span><span class="p">.</span><span class="nx">$options</span><span class="p">.</span><span class="nx">data</span><span class="p">()</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Object.assign(this.$data, this.$options.data());
+</span></span></span><span class="line"><span class="cl"><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">$options</span><span class="p">.</span><span class="nx">data</span><span class="p">().</span><span class="nx">form</span><span class="p">,</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
+</span></span></code></pre></div><h2 id="修改-elementui-默认样式">修改 ElementUI 默认样式</h2>
+<blockquote>
+<p><a href="https://juejin.cn/post/7011016159545786376">vue 中令人头疼的 element-ui 组件默认 css 样式修改 | juejin</a></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;my-class&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">el-table</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">el-table</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;scss&#34;</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">my-class__expand-column</span> <span class="p">.</span><span class="nc">cell</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">my-class</span> <span class="p">.</span><span class="nc">el-table</span> <span class="nt">tbody</span> <span class="nt">tr</span><span class="p">:</span><span class="nd">hover</span> <span class="o">&gt;</span> <span class="nt">td</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">cursor</span><span class="p">:</span> <span class="kc">pointer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span></code></pre></div><h2 id="watch-对象的属性">watch 对象的属性</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">a</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">msg</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">channel</span><span class="o">:</span> <span class="s2">&#34;音乐&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">style</span><span class="o">:</span> <span class="s2">&#34;活泼&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">a</span><span class="p">(</span><span class="nx">newval</span><span class="p">,</span> <span class="nx">oldVal</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;new: %s, old: %s&#34;</span><span class="p">,</span> <span class="nx">newval</span><span class="p">,</span> <span class="nx">oldVal</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">msg</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">handler</span><span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// 深度监听
+</span></span></span><span class="line"><span class="cl">      <span class="nx">deep</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>监听对象内的某一具体属性，可以通过 <code>computed</code> 做中间层来实现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">channel</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">msg</span><span class="p">.</span><span class="nx">channel</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="nx">watch</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">channel</span><span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;new: %s, old: %s&#39;</span><span class="p">,</span> <span class="nx">newValue</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="判断-data-中的对象是否为空">判断 data 中的对象是否为空</h2>
+<ol>
+<li>利用 <code>jQuery</code> 的 <code>isEmptyObject</code>：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span><span class="p">.</span><span class="nx">isEmptyObject</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">list</span><span class="p">);</span>
+</span></span></code></pre></div><p>实现源码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">isEmptyObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nx">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol start="2">
+<li>获取对象中的属性名，存到一个数组中，通过判断数组的 <code>length</code> 来判断此对象是否为空：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getOwnPropertyNames</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></div><p>ES6：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">list</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></div><ol start="3">
+<li>转化为 JSON 字符串，再判断该字符串是否为 <code>{}</code>：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;{}&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></div><h2 id="关闭-webpack-dev-server-自动刷新">关闭 webpack-dev-server 自动刷新</h2>
+<p>文件保存后页面自动刷新，看着眼晕。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hot</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">inline</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">liveReload</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>注释掉 <code>plugins</code> 中的相关插件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// new webpack.HotModuleReplacementPlugin()
+</span></span></span><span class="line"><span class="cl"><span class="p">],</span>
+</span></span></code></pre></div><blockquote>
+<p>必须有 webpack.HotModuleReplacementPlugin 才能完全启用 HMR。如果 webpack 或 webpack-dev-server 是通过 &ndash;hot 选项启动的，那么这个插件会被自动添加，所以你可能不需要把它添加到 webpack.config.js 中。</p>
+</blockquote>
+<h2 id="nexttick">nextTick</h2>
+<p>在 Vue 生命周期的 <code>created()</code> 钩子函数进行的 DOM 操作一定要放在 <code>Vue.nextTick()</code> 的回调函数中。</p>
+<p>在数据变化后要执行的某个操作，而这个操作需要使用随数据改变而改变的 DOM 结构的时候，这个操作都应该放进 <code>Vue.nextTick()</code> 的回调函数中。</p>
+<blockquote>
+<p>Vue 异步执行 DOM 更新。只要观察到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。如果同一个 <code>watcher</code> 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作上非常重要。然后，在下一个的事件循环 &ldquo;tick&rdquo; 中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部尝试对异步队列使用原生的 <code>Promise.then</code> 和 <code>MessageChannel</code>，如果执行环境不支持，会采用 <code>setTimeout(fn, 0)</code> 代替。</p>
+</blockquote>
+<h2 id="键盘监听事件">键盘监听事件</h2>
+<blockquote>
+<p><a href="https://cn.vuejs.org/v2/guide/events.html#%E6%8C%89%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6">按键修饰符 | vue</a></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="err">@</span><span class="na">keyup</span><span class="err">.</span><span class="na">esc</span><span class="o">=</span><span class="s">&#34;KeyUpEsc&#34;</span> <span class="p">/&gt;</span>
+</span></span></code></pre></div><blockquote>
+<p><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#%E5%B0%86%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E5%88%B0%E7%BB%84%E4%BB%B6">将原生事件绑定到组件 | vue</a></p>
+</blockquote>
+<p>使用 element 组件库的 el-input 标签，绑定 delete 键：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">el-input</span>
+</span></span><span class="line"><span class="cl">  <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;input&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">placeholder</span><span class="o">=</span><span class="s">&#34;请输入内容&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="err">@</span><span class="na">keyup</span><span class="err">.</span><span class="na">delete</span><span class="err">.</span><span class="na">native</span><span class="o">=</span><span class="s">&#34;KeyUpDelete&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&gt;&lt;/</span><span class="nt">el-input</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>为什么这次绑定事件多一个 <code>.native</code> 修饰符，这个可能是因为 element-ui 封装了个 div 在 input 标签外面，把原来的事件隐藏了，所以如果不加 <code>.native</code> 的话，按键不会生效。</p>
+<p>上面两种实现方式是当 input 标签获取到<strong>焦点</strong>的时候才能监听到键盘，下面这种是全局监听 enter 键，是把监听事件绑定到 document 上（登录页面常用）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">created</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nx">_this</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">document</span><span class="p">.</span><span class="nx">onkeydown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">let</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">==</span> <span class="mi">13</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">_this</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">   <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span></code></pre></div><h2 id="键盘回车后页面被刷新">键盘回车后页面被刷新</h2>
+<p>form 回车后执行查询方法，但是却重新刷新了页面，并且路由多了一个问号，<code>http://localhost:3009/?#/admin</code>。</p>
+<p>解决方案：<code>el-from</code> 加上 <code>@submit.native.prevent</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">el-form</span> <span class="err">@</span><span class="na">submit</span><span class="err">.</span><span class="na">native</span><span class="err">.</span><span class="na">prevent</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">el-form-item</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">el-input</span> <span class="err">@</span><span class="na">keyup</span><span class="err">.</span><span class="na">enter</span><span class="err">.</span><span class="na">native</span><span class="o">=</span><span class="s">&#34;handleInputConfirm(obj)&#34;</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">el-input</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">el-form-item</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">el-form</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">handleInputConfirm</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// ... 提交内容
+</span></span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></div><p>原因：当一个 <code>form</code> 元素中只有一个输入框时，在该输入框中按下回车应提交该表单。如果希望阻止这一默认行为，可以在标签上添加 <code>@submit.native.prevent</code>。</p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/hibiscus-ben/p/10861062.html">vue 键盘回车事件导致页面刷新的问题，路由多了一个问号 | cnblogs</a></p>
+</blockquote>
+<p>解决方案二：为表单元素增加属性 <code>onSubmit=&quot;return false&quot;</code>。</p>
+<blockquote>
+<p><a href="https://weiku.co/article/297/">Vue element-ui 键盘回车事件表单自动提交造成页面刷新问题</a></p>
+</blockquote>
+<h2 id="sync-修饰符">.sync 修饰符</h2>
+<p><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6">.sync 修饰符 | vue</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">history-dialog</span>
+</span></span><span class="line"><span class="cl">  <span class="na">:historys</span><span class="o">=</span><span class="s">&#34;historyTable&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">:dialogVisible</span><span class="err">.</span><span class="na">sync</span><span class="o">=</span><span class="s">&#34;dialogHistoryTableVisible&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">/&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">onClose</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s2">&#34;update:dialogVisible&#34;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">   <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span>
+</span></span></code></pre></div><ul>
+<li><a href="https://www.cnblogs.com/penghuwan/p/7473375.html">【Vue】Vue 中的父子组件通讯以及使用 sync 同步父子组件数据 | penghuwan</a></li>
+</ul>
+<h2 id="优化图片加载失败">优化图片加载失败</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">:src</span><span class="o">=</span><span class="s">&#34;item.picture&#34;</span> <span class="err">@</span><span class="na">error</span><span class="err">.</span><span class="na">once</span><span class="o">=</span><span class="s">&#34;handleImgError($event)&#34;</span> <span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">handleImgError</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&#34;http://www.ianbiangou.cn/index/ICON2.png&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="数据绑定">数据绑定</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="nx">form</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// 不要用这种：this.form = &#39;&#39;;
+</span></span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://blog.csdn.net/wangqing84411433/article/details/79582888">jQuery.isEmptyObject() 函数详解 | csdn</a></li>
+<li><a href="https://juejin.im/post/5a6fdb846fb9a01cc0268618">简单理解 Vue 中的 nextTick | juejin</a></li>
+<li><a href="https://www.jianshu.com/p/f2172afaf9bf">Vue 中键盘监听事件（解决 element 监听键盘不生效）| jianshu</a></li>
+<li><a href="https://www.cnblogs.com/zhuzhenwei918/p/6891368.html">图片加载失败优化处理 | cnblogs</a></li>
+<li><a href="https://stackoverflow.com/questions/41797704/how-to-disable-webpack-dev-server-auto-reload">How to disable webpack dev server auto reload? | stackoverflow</a></li>
+</ul>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
