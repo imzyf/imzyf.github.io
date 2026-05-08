@@ -2,31 +2,7 @@
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 <a href=/tags/>Tags</a>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>Git
-<a href=/tags/git/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>Git checkout --theirs --ours 解决冲突文件</h2></header><div class=entry-content><p>在 Git 合并冲突时，git checkout --ours 和 git checkout --theirs 用于选择保留哪一方的文件版本，特别适合处理自动生成的资源文件等不需要手动逐行解决的冲突。
-基本用法 # 保留当前分支的版本（丢弃对方的修改） git checkout --ours &lt;file> # 保留传入分支的版本（丢弃当前分支的修改） git checkout --theirs &lt;file> # 解决冲突后需要 add git add &lt;file> 批量处理所有冲突文件：
-git checkout --theirs . git add . 场景实例 Engineer A、B 同时从 master checkout 自己的功能分支：
-# Engineer A git checkout -b feature-a # Engineer B git checkout -b feature-b Engineer A 开发比较快先进行了 push：
-git add . git commit -m "feat: feature-a" git checkout master git merge feature-a git push Engineer B 在 push 前需要拉最新的 master，因为改到了同一行代码，出现代码冲突。以下两种方式 Engineer B 都在 feature-b 分支上操作：
-...</p></div><footer class=entry-footer><span title='2017-08-30 20:00:00 +0000 UTC'>August 30, 2017</span>&nbsp;·&nbsp;<span>1 min</span>&nbsp;·&nbsp;<span>211 words</span>&nbsp;·&nbsp;<span>Me</span></footer><a class=entry-link aria-label="post link to Git checkout --theirs --ours 解决冲突文件" href=https://zyf.im/2017/08/30/git-checkout-theirs-ours-resolve-conflict/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>【Git 权威指南】读书笔记 - 独奏 - Part 3</h2></header><div class=entry-content><p>主要内容：【Git 基本操作】
-Git 基本操作 先来合个影 在 Git 里，“留影”用的命令叫做 tag，更加专业的术语叫做“里程碑”（打 tag，或打标签）。
-git tag -m "Say bye-bye to all previous practice." old_practice 里程碑无非也是一个引用，通过记录提交 ID（或者创建 Tag 对象）来为当前版本库状态进行“留影”。
-git rev-parse refs/tags/old_practice 41bd4e2cce0f8baa9bb4cdda62927b408c846cd6 git describe 显示当前版本库的最新提交的版本号。格式：最近的 tag - 距离此 tag 的个数 - 该提交的 SHA1
-git describe old_practice # .. commit something git describe old_practice-2-g8861c65 删除文件 rm *.txt 针对的是 工作区，对 暂存区 和 版本库 没有任何影响。
-git rm detached-commit.txt hack-1.txt new-commit.txt welcome.txt 删除动作加入了暂存区，commit 后在版本库罪行提交中删除了，在历史提交中尚在。
-...</p></div><footer class=entry-footer><span title='2017-08-03 11:00:00 +0000 UTC'>August 3, 2017</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>308 words</span>&nbsp;·&nbsp;<span>Me</span></footer><a class=entry-link aria-label="post link to 【Git 权威指南】读书笔记 - 独奏 - Part 3" href=https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>【Git 权威指南】读书笔记 - 独奏 - Part 2</h2></header><div class=entry-content><p>主要内容：【Git 重置】、【Git 检出】、【恢复进度】
-Git 重置 分支游标 master 的探秘 git log --graph --oneline * e695606 which version checked in? * a0c641e who does commit? * 9e8a761 initialized. 引用 refs/heads/master 就好像是一个游标，在有新的提交发生的时候指向了新的提交。
-Git 提供了 git reset 命令，可以将“游标”指向任意一个存在的提交 ID。注意下面的命令中使用了 --hard 参数，会破坏工作区未提交的改动，慎用。
-git reset --hard HEAD^ HEAD is now at e695606 which version checked in? 用 reflog 挽救错误的重置 通过 .git/logs 目录下日志文件记录了分支的变更。默认非裸版本库（带有工作区）都提供分支日志功能，这是因为带有工作区的版本库都有如下设置：
-git config core.logallrefupdates true 查看一下 master 分支的日志文件 .git/logs/refs/heads/master 中的内容。
-tail -5 .git/logs/refs/heads/master Git 提供了一个 git reflog 命令，对这个文件进行操作。
-...</p></div><footer class=entry-footer><span title='2017-07-20 11:00:00 +0000 UTC'>July 20, 2017</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>619 words</span>&nbsp;·&nbsp;<span>Me</span></footer><a class=entry-link aria-label="post link to 【Git 权威指南】读书笔记 - 独奏 - Part 2" href=https://zyf.im/2017/07/20/got-git-reading-notes-solo-part2/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>【Git 权威指南】读书笔记 - 独奏 - Part 1</h2></header><div class=entry-content><p>主要内容：【Git 初始化】、【Git 暂存区】、【Git 对象】
-Git 初始化 设置一下 Git 的环境变量，这个设置是一次性的工作。即这些设置会在全局文件（用户主目录下的 ~/.gitconfig）或系统文件（/etc/gitconfig）中做永久的记录。
-配置的用户名和邮件地址将在版本库提交时作为提交者的用户名和邮件地址。
-git config --global user.name "Jiang Xin" git config --global user.email jiangxin@ossxp.com 设置一些 Git 别名，以便可以使用更为简洁的子命令 只在本用户的全局配置中添加 Git 命令别名：
-git config --global alias.br branch git config --global alias.ci "commit -s" git config --global alias.co checkout git config --global alias.st "-p status" 版本库的初始化 mkdir demo cd demo git init 初始化空的 Git 版本库于 /path/to/my/workspace/demo/.git/
-git init 命令的后面直接输入目录名称
-cd /path/to/my/workspace git init demo ls -aF ./ ../ .git/ 这个隐藏的 .git 目录就是 Git 版本库（又叫仓库，repository）。
-...</p></div><footer class=entry-footer><span title='2017-07-19 16:00:00 +0000 UTC'>July 19, 2017</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>898 words</span>&nbsp;·&nbsp;<span>Me</span></footer><a class=entry-link aria-label="post link to 【Git 权威指南】读书笔记 - 独奏 - Part 1" href=https://zyf.im/2017/07/19/got-git-reading-notes-solo-part1/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>【Git 权威指南】读书笔记 - 初识 Git</h2></header><div class=entry-content><p>Git 是一款分布式版本控制系统，有别于 CVS 和 SVN 等集中式版本控制系统，Git 可以让研发团队更加高效地协同工作、提高生产率。使用 Git，开发人员的工作不会因为频繁地遭遇提交冲突而中断，管理人员也无须为数据的备份而担心。经过 Linux 这样庞大的项目的考验之后，Git 被证明可以胜任任何规模的团队，即便这个团队的成员分布于世界各地。
+<a href=/tags/git/index.xml title=RSS aria-label=RSS><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>【Git 权威指南】读书笔记 - 初识 Git</h2></header><div class=entry-content><p>Git 是一款分布式版本控制系统，有别于 CVS 和 SVN 等集中式版本控制系统，Git 可以让研发团队更加高效地协同工作、提高生产率。使用 Git，开发人员的工作不会因为频繁地遭遇提交冲突而中断，管理人员也无须为数据的备份而担心。经过 Linux 这样庞大的项目的考验之后，Git 被证明可以胜任任何规模的团队，即便这个团队的成员分布于世界各地。
 Git 是开源社区奉献给每一个人的宝贝，用好它可以实现个人的知识积累、保护好自己的数据，而且还能与他人分享自己的成果。
 版本控制的前世和今生 即便是在 CVS 出现之前的“史前时代”，也已经有了非常好用的源码比较和打补丁的工具：diff 和 patch，他们今天生命力依然顽强。
 对这 hello world 两个文件执行 diff 命令，查看两个文件的差异。如下所示：
