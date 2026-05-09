@@ -243,7 +243,6 @@
 <p>贫血模型（<strong>Anemic Domain Model</strong>，Fowler 2003）指领域对象 <strong>只有数据没有行为</strong>，违背面向对象原则；相对的富/充血模型（<strong>Rich Domain Model</strong>）强调领域对象应同时包含<strong>数据 + 行为</strong>，更贴近真正的面向对象（可理解为贫血更偏 <strong>面向过程</strong>、富模型更偏 <strong>面向对象</strong>），但企业实践中两者并非非黑即白，应结合多种范式；落到编码，核心要求是 <strong>代码与模型一致</strong>（发现模型问题要 <strong>及时改模型</strong>），并解决 <strong>层间依赖</strong>：将 <strong>DTO 移到应用层</strong>、用 <strong>依赖倒置</strong> 让适配器层依赖领域层，同时理解 <strong>领域模型 vs 设计模型（UML）</strong> 的区别，以便明确哪些和业务讨论、哪些仅在工程内部讨论，从而提升抽象分层下的沟通与效率。</p>
 <h2 id="11-代码实现-创建领域对象实现领域逻辑">11 代码实现 创建领域对象、实现领域逻辑</h2>
 <p>实现领域逻辑时应使用能表达领域知识的命名，即 <strong>DDD 表意接口（Intention-Revealing Interfaces）</strong>；一旦违背，常见坏味道是 <strong>函数过长</strong> 与 <strong>注释过多</strong>，可用 <strong>抽取函数</strong> 重构解决。需区分 <strong>领域逻辑</strong> 与 <strong>应用逻辑</strong>，关键在于是否包含领域专家关心的 <strong>领域知识</strong>；领域逻辑应优先放入 <strong>领域对象</strong>，不适合放入对象的则放入 <strong>领域服务</strong>。复杂对象的创建推荐用 <strong>工厂（Factory）</strong>，参数少可直接调用工厂，参数多可配合 <strong>Builder</strong>。模块划分有按性质（<strong>横切</strong>）与按耦合/业务（<strong>纵切</strong>）两种，建议采用 <strong>先横后竖</strong> 的策略。</p>
-<h2 id="12-代码实现-更加面向对象">12 代码实现 更加“面向对象”</h2>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>

@@ -26,12 +26,6 @@
     <loc>https://zyf.im/tags/php-migrating/</loc>
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2025/12/01/tech-stack/</loc>
-    <lastmod>2025-12-01T12:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/tech-stack/</loc>
-    <lastmod>2025-12-01T12:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/nginx/</loc>
     <lastmod>2025-06-27T10:12:12+00:00</lastmod>
   </url><url>
@@ -129,10 +123,7 @@
     <lastmod>2022-10-01T10:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/mysql/</loc>
-    <lastmod>2022-09-14T18:55:54+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/09/14/mysql-course-45-part2/</loc>
-    <lastmod>2022-09-14T18:55:54+00:00</lastmod>
+    <lastmod>2022-08-14T15:53:16+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2022/08/14/mysql-course-45-part1/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
@@ -140,23 +131,11 @@
     <loc>https://zyf.im/2022/07/28/shell-code-snippet/</loc>
     <lastmod>2022-07-28T11:51:46+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2022/07/26/front-end-code-snippet/</loc>
-    <lastmod>2022-07-26T11:51:46+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/01/10/group-concat-max-len/</loc>
-    <lastmod>2022-01-10T15:53:16+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2021/12/31/review-2021/</loc>
     <lastmod>2021-12-31T20:16:41+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/10/13/php-install-grpc/</loc>
     <lastmod>2021-10-13T15:48:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/hive/</loc>
-    <lastmod>2021-09-14T11:58:42+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2021/09/14/sql-over-partition-by/</loc>
-    <lastmod>2021-09-14T11:58:42+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</loc>
     <lastmod>2021-07-20T14:58:33+00:00</lastmod>
@@ -191,26 +170,8 @@
     <loc>https://zyf.im/2020/10/28/composer-document-note/</loc>
     <lastmod>2020-10-28T11:36:27+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2020/09/11/use-illuminate-components-without-laravel/</loc>
-    <lastmod>2020-09-11T15:00:39+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/redis/</loc>
-    <lastmod>2020-08-17T19:34:29+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/08/17/redis-matching-a-pattern-delete-keys/</loc>
-    <lastmod>2020-08-17T19:34:29+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/08/14/mysql-json-data-type/</loc>
-    <lastmod>2020-08-14T19:39:55+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</loc>
     <lastmod>2020-08-10T14:24:47+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/devops/</loc>
-    <lastmod>2020-06-29T10:24:16+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/06/29/tcpdump-getting-started/</loc>
-    <lastmod>2020-06-29T10:24:16+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/phpstorm/</loc>
     <lastmod>2020-05-26T09:45:15+00:00</lastmod>
@@ -233,29 +194,17 @@
     <loc>https://zyf.im/2020/04/15/php-code-snippet/</loc>
     <lastmod>2020-04-15T18:03:44+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2020/04/14/mysql-illegal-mix-of-collations/</loc>
-    <lastmod>2020-04-14T17:05:01+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
     <lastmod>2020-03-13T22:25:25+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/pr/</loc>
     <lastmod>2020-03-13T22:25:25+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2020/02/27/php-ftp-intermittently-unable-upload/</loc>
-    <lastmod>2020-02-27T20:23:45+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2019/12/31/review-2019/</loc>
     <lastmod>2019-12-31T23:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2019-12-19T16:46:06+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/vue/</loc>
-    <lastmod>2019-08-08T17:33:38+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/08/08/vue-code-snippet/</loc>
-    <lastmod>2019-08-08T17:33:38+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
     <lastmod>2019-06-04T14:07:46+00:00</lastmod>
@@ -271,9 +220,6 @@
   </url><url>
     <loc>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</loc>
     <lastmod>2019-04-28T19:21:12+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/04/10/php-strpos-warning/</loc>
-    <lastmod>2019-04-10T20:27:21+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/swift/</loc>
     <lastmod>2019-03-06T14:00:00+00:00</lastmod>
@@ -338,12 +284,6 @@
     <loc>https://zyf.im/2017/12/25/got-git-reading-notes-solo-part4/</loc>
     <lastmod>2017-12-25T16:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/photoshop/</loc>
-    <lastmod>2017-11-23T09:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/11/23/photoshop-edit-gif/</loc>
-    <lastmod>2017-11-23T09:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2017/08/03/got-git-reading-notes-solo-part3/</loc>
     <lastmod>2017-08-03T11:00:00+00:00</lastmod>
   </url><url>
@@ -359,17 +299,11 @@
     <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
     <lastmod>2017-06-06T21:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2017/05/25/how-to-use-this-self-parent-in-php/</loc>
-    <lastmod>2017-05-25T15:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
     <lastmod>2017-05-14T13:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/reading-notes/</loc>
     <lastmod>2017-05-14T13:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/04/21/cgi-fastcgi-phpcgi-php-fpm/</loc>
-    <lastmod>2017-04-21T11:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</loc>
     <lastmod>2017-04-20T20:00:00+00:00</lastmod>
@@ -382,9 +316,6 @@
   </url><url>
     <loc>https://zyf.im/2017/03/13/git-modify-commits-history/</loc>
     <lastmod>2017-03-13T17:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/09/php-empty-method-judge-0/</loc>
-    <lastmod>2017-03-09T17:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/12/31/review-2016/</loc>
     <lastmod>2016-12-31T22:00:00+00:00</lastmod>
@@ -499,12 +430,6 @@
   </url><url>
     <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
     <lastmod>2016-06-24T18:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/ubuntu/</loc>
-    <lastmod>2016-06-14T13:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/06/14/ubuntu-bluetooth-keyboard/</loc>
-    <lastmod>2016-06-14T13:30:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/05/06/core-java-reading-notes/</loc>
     <lastmod>2016-05-06T11:00:00+00:00</lastmod>
