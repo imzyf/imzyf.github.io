@@ -503,7 +503,6 @@
 <li>验证两个 token 是否匹配；</li>
 </ol>
 <p>1、2、6、7 都是跟 token 有关，负责 token 的生成、验证；3、4 都是在处理 URL，负责 URL 的拼接、解析；5 是操作 AppID 和密码，负责从存储中读取 AppID 和密码。AuthToken、Url、CredentialStorage。</p>
-<h2 id="15">15</h2>
 ]]></content:encoded>
     </item>
     <item>

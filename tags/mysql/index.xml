@@ -422,120 +422,6 @@ User Records 根据节点的不同，User Records 又分为四种不同类型：
 </ul>
 <p>在可重复读隔离级别下，事务在启动的时候就“拍了个快照”。注意，这个快照是基于整库的。</p>
 <p>InnoDB 里面每个事务有一个唯一的事务 ID，叫作 transaction id。它是在事务开始的时候向 InnoDB 的事务系统申请的，是按申请顺序严格递增的。</p>
-<hr>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>MySQL Code Snippet</title>
-      <link>https://zyf.im/2021/01/29/mysql-code-snippet/</link>
-      <pubDate>Fri, 29 Jan 2021 18:08:00 +0000</pubDate>
-      <guid>https://zyf.im/2021/01/29/mysql-code-snippet/</guid>
-      <description>&lt;h2 id=&#34;tips-sql&#34;&gt;Tips SQL&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 追踪优化器 Trace 功能
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--  optimizer_trace_enabled=1
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--  optimizer_trace_file=optimizer_trace.log
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;optimizer_trace&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;optimizer_trace&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;enabled=on&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- &amp;lt;your query&amp;gt;;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;optimizer_trace&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;enabled=off&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;INFORMATION_SCHEMA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OPTIMIZER_TRACE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 查看优化后的 SQL
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 在联表查询时比较有效果
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;EXPLAIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;你的&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SQL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SHOW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;WARNINGS&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 查看处理
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SHOW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PROCESSLIST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 查看结构
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SHOW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;COLUMNS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DESCRIBE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;视图更新&#34;&gt;视图更新&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OR&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;REPLACE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;VIEW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;视图名&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[...]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[...]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;字符集转换&#34;&gt;字符集转换&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;LEFT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;code_value&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cost_type&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;CONVERT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;code&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USING&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;COLLATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8mb4_unicode_ci&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;function&#34;&gt;Function&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- https://www.w3schools.com/sql/func_mysql_find_in_set.asp
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;FIND_IN_SET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;aa,bb,cc&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;select&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;FIND_IN_SET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;0&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- COALESCE 函数用于返回参数列表中第一个非 NULL 值。如果所有参数都为 NULL，则返回 NULL
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;COALESCE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;code_value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;AS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cost_type_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;on-vs-using&#34;&gt;ON vs USING&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/11366006/mysql-on-vs-using&#34;&gt;MySQL ON vs USING? | stackoverflow&lt;/a&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="tips-sql">Tips SQL</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 追踪优化器 Trace 功能
-</span></span></span><span class="line"><span class="cl"><span class="c1">--  optimizer_trace_enabled=1
-</span></span></span><span class="line"><span class="cl"><span class="c1">--  optimizer_trace_file=optimizer_trace.log
-</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">optimizer_trace</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">optimizer_trace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;enabled=on&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- &lt;your query&gt;;
-</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">optimizer_trace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;enabled=off&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">OPTIMIZER_TRACE</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 查看优化后的 SQL
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 在联表查询时比较有效果
-</span></span></span><span class="line"><span class="cl"><span class="k">EXPLAIN</span><span class="w"> </span><span class="o">&lt;</span><span class="err">你的</span><span class="w"> </span><span class="k">SQL</span><span class="o">&gt;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">WARNINGS</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 查看处理
-</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">PROCESSLIST</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 查看结构
-</span></span></span><span class="line"><span class="cl"><span class="k">DESC</span><span class="w"> </span><span class="k">user</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">COLUMNS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">user</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">DESCRIBE</span><span class="w"> </span><span class="k">user</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h2 id="视图更新">视图更新</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="k">REPLACE</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="err">视图名</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="p">[...]</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">[...]</span><span class="w">
-</span></span></span></code></pre></div><h2 id="字符集转换">字符集转换</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">code_value</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">cost_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">CONVERT</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="o">`</span><span class="n">code</span><span class="o">`</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">utf8mb4</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8mb4_unicode_ci</span><span class="w">
-</span></span></span></code></pre></div><h2 id="function">Function</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- https://www.w3schools.com/sql/func_mysql_find_in_set.asp
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">FIND_IN_SET</span><span class="p">(</span><span class="s1">&#39;bb&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;aa,bb,cc&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">FIND_IN_SET</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0&#39;</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- COALESCE 函数用于返回参数列表中第一个非 NULL 值。如果所有参数都为 NULL，则返回 NULL
-</span></span></span><span class="line"><span class="cl"><span class="n">COALESCE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">`</span><span class="n">code_value</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cost_type_name</span><span class="p">,</span><span class="w">
-</span></span></span></code></pre></div><h2 id="on-vs-using">ON vs USING</h2>
-<p><a href="https://stackoverflow.com/questions/11366006/mysql-on-vs-using">MySQL ON vs USING? | stackoverflow</a></p>
-<h2 id="删除重复数据">删除重复数据</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">student</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">id</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">tmp</span><span class="p">)</span><span class="w">
-</span></span></span></code></pre></div><p>要多加一层 tmp 包装，否则会遇到：<code>1093 - You can't specify target table 'student' for update in FROM clause</code></p>
-<h2 id="备份表">备份表</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 创建同结构备份表
-</span></span></span><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">zzz_my_table_220727</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="n">my_table</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 将需要数据写入备份表
-</span></span></span><span class="line"><span class="cl"><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">zzz_my_table_220727</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">my_table</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 情况原表
-</span></span></span><span class="line"><span class="cl"><span class="k">truncate</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">my_table</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h2 id="sql-and-or-执行优先级">SQL AND OR 执行优先级</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">table01</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">condition1</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">condition2</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">condition3</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 等价于：
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">table01</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">condition1</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="p">(</span><span class="n">condition2</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">condition3</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 而非：
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">table01</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="p">(</span><span class="n">condition1</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">condition2</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">condition3</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p><code>and</code> 级别高于 <code>or</code>。相当于可以把 <code>and</code> 看成 <code>乘号 *</code>，把 <code>or</code> 看成 <code>加号 +</code>。</p>
-<h2 id="事务">事务</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="o">//</span><span class="err">对读取的记录加共享锁</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">lock</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">share</span><span class="w"> </span><span class="k">mode</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- //对读取的记录加独占锁
-</span></span></span><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">update</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h2 id="references">References</h2>
-<ul>
-<li><a href="https://www.standbyside.com/2019/06/19/tips-of-coding-3/">编程小技巧（3）：查看优化后的 SQL</a></li>
-</ul>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>
@@ -997,28 +883,28 @@ User Records 根据节点的不同，User Records 又分为四种不同类型：
 <p>同时也要注意，我们将各个时区都设置为 <code>UTC</code> 后，<code>ago</code> 的时间很好计算，但是在一个月之后日前时间完全显示，美国用户看北京用户的发布日期时间也应该是在中国看来的 <code>2018-05-27 10:00:00</code>，此发布日期不应该以美国用户为标准。这个问题的解决方法还在考虑，日期时间是存储多个字段来区分用于显示或比较，还是自行转换处理，需要实践测试。</p>
 <h2 id="mysql-查看修改时区">MySQL 查看、修改时区</h2>
 <h3 id="查看时区">查看时区</h3>
-<pre tabindex="0"><code>&gt; select now();   # 或 select curtime();
-
-&gt; show variables like &#34;%time_zone%&#34;; # SELECT @@global.time_zone, @@session.time_zone;
-+------------------+--------+
-| Variable_name    | Value  |
-+------------------+--------+
-| system_time_zone | CST    |
-| time_zone        | SYSTEM |
-+------------------+--------+
-
-# time_zone 说明 mysql 使用 system 的时区，system_time_zone 说明 system 使用 CST 时区
-</code></pre><h3 id="修改时区">修改时区</h3>
-<pre tabindex="0"><code>&gt; set global time_zone = &#39;+8:00&#39;;  # 修改 mysql 全局时区为北京时间，即我们所在的东8区
-&gt; set time_zone = &#39;+8:00&#39;;  # 修改当前会话时区 SET time_zone = &#39;Asia/Shanghai&#39;
-&gt; flush privileges;  # 立即生效
-</code></pre><p>通过修改 <code>my.cnf</code> 配置文件来修改时区</p>
-<pre tabindex="0"><code># vim /etc/my.cnf
-# 在[mysqld]区域中加上
-default-time-zone=&#39;+8:00&#39;
-
-# /etc/init.d/mysqld restart  # 重启 mysql 使新时区生效
-</code></pre><h2 id="最后的总结">最后的总结</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&gt; select now();   # 或 select curtime();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; show variables like &#34;%time_zone%&#34;; # SELECT @@global.time_zone, @@session.time_zone;
+</span></span><span class="line"><span class="cl">+------------------+--------+
+</span></span><span class="line"><span class="cl">| Variable_name    | Value  |
+</span></span><span class="line"><span class="cl">+------------------+--------+
+</span></span><span class="line"><span class="cl">| system_time_zone | CST    |
+</span></span><span class="line"><span class="cl">| time_zone        | SYSTEM |
+</span></span><span class="line"><span class="cl">+------------------+--------+
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># time_zone 说明 mysql 使用 system 的时区，system_time_zone 说明 system 使用 CST 时区
+</span></span></code></pre></div><h3 id="修改时区">修改时区</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&gt; set global time_zone = &#39;+8:00&#39;;  # 修改 mysql 全局时区为北京时间，即我们所在的东8区
+</span></span><span class="line"><span class="cl">&gt; set time_zone = &#39;+8:00&#39;;  # 修改当前会话时区 SET time_zone = &#39;Asia/Shanghai&#39;
+</span></span><span class="line"><span class="cl">&gt; flush privileges;  # 立即生效
+</span></span></code></pre></div><p>通过修改 <code>my.cnf</code> 配置文件来修改时区</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># vim /etc/my.cnf
+</span></span><span class="line"><span class="cl"># 在[mysqld]区域中加上
+</span></span><span class="line"><span class="cl">default-time-zone=&#39;+8:00&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># /etc/init.d/mysqld restart  # 重启 mysql 使新时区生效
+</span></span></code></pre></div><h2 id="最后的总结">最后的总结</h2>
 <p>全球化的项目应当考虑：</p>
 <ul>
 <li>项目、数据库、服务器都建议设置为 <code>UTC</code></li>
@@ -1028,159 +914,6 @@ default-time-zone=&#39;+8:00&#39;
 <h2 id="references">References</h2>
 <ul>
 <li><a href="http://coolnull.com/4091.html">mysql 修改时区的几种方法</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>MySQL 5.6 5.7 组内排序的区别</title>
-      <link>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</link>
-      <pubDate>Thu, 20 Apr 2017 20:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</guid>
-      <description>&lt;p&gt;MySQL 5.7 对比 5.6 有很多的变化。一个常见的需求：按条件分组后，取出每组中某字段最大值的那条记录。其实就是组内排序的问题，我的做法是：子查询先进行倒序排序，外层查询分组。&lt;/p&gt;
-&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-md&#34; data-lang=&#34;md&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+----+----+-------+
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| id | no | name |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+----+----+-------+
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 5 | 5 | Mike |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 4 | 4 | Herry |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 3 | 3 | wyett |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 2 | 2 | John |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 7 | 2 | John |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 1 | 1 | Mike |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 6 | 1 | John |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 8 | 1 | Mike |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;| 9 | 1 | Mike |
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;+----+----+-------+
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;要求：取出每人（按 name），最大 no 的记录。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>MySQL 5.7 对比 5.6 有很多的变化。一个常见的需求：按条件分组后，取出每组中某字段最大值的那条记录。其实就是组内排序的问题，我的做法是：子查询先进行倒序排序，外层查询分组。</p>
-<h2 id="示例">示例</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">+----+----+-------+
-</span></span><span class="line"><span class="cl">| id | no | name |
-</span></span><span class="line"><span class="cl">+----+----+-------+
-</span></span><span class="line"><span class="cl">| 5 | 5 | Mike |
-</span></span><span class="line"><span class="cl">| 4 | 4 | Herry |
-</span></span><span class="line"><span class="cl">| 3 | 3 | wyett |
-</span></span><span class="line"><span class="cl">| 2 | 2 | John |
-</span></span><span class="line"><span class="cl">| 7 | 2 | John |
-</span></span><span class="line"><span class="cl">| 1 | 1 | Mike |
-</span></span><span class="line"><span class="cl">| 6 | 1 | John |
-</span></span><span class="line"><span class="cl">| 8 | 1 | Mike |
-</span></span><span class="line"><span class="cl">| 9 | 1 | Mike |
-</span></span><span class="line"><span class="cl">+----+----+-------+
-</span></span></code></pre></div><p>要求：取出每人（按 name），最大 no 的记录。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="k">no</span><span class="p">,</span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">testorder</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">no</span><span class="w"> </span><span class="k">desc</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="n">a</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">+----+----+-------+
-</span></span><span class="line"><span class="cl">| id | no | name |
-</span></span><span class="line"><span class="cl">+----+----+-------+
-</span></span><span class="line"><span class="cl">| 4 | 4 | Herry |
-</span></span><span class="line"><span class="cl">| 2 | 2 | John |
-</span></span><span class="line"><span class="cl">| 5 | 5 | Mike |
-</span></span><span class="line"><span class="cl">| 3 | 3 | wyett |
-</span></span><span class="line"><span class="cl">+----+----+-------+
-</span></span></code></pre></div><p>但是在 5.7 中，首先需要关闭 <code>ql_mode = ONLY_FULL_GROUP_BY</code>；相同的 <code>name</code> 值，返回则是取了 <strong>最早写入的数据行</strong> ，<strong>忽略了 <code>order by no desc</code>，按照数据的逻辑存储顺序来返回</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl">+----+----+-------+
-</span></span><span class="line"><span class="cl">| id | no | name |
-</span></span><span class="line"><span class="cl">+----+----+-------+
-</span></span><span class="line"><span class="cl">| 4 | 4 | Herry |
-</span></span><span class="line"><span class="cl">| 2 | 2 | John |
-</span></span><span class="line"><span class="cl">| 1 | 1 | Mike |
-</span></span><span class="line"><span class="cl">| 3 | 3 | wyett |
-</span></span><span class="line"><span class="cl">+----+----+-------+
-</span></span></code></pre></div><p>等价于</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="k">no</span><span class="p">,</span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">testorder</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">name</span><span class="w">
-</span></span></span></code></pre></div><!--more -->
-<p>A query such as</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">field1</span><span class="p">,</span><span class="w"> </span><span class="n">field2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">field1</span><span class="p">,</span><span class="w"> </span><span class="n">field2</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">table1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">field2</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">alias</span><span class="w">
-</span></span></span></code></pre></div><p>returns a result set that is not necessarily ordered by field2. This is not a bug.
-A &ldquo;table&rdquo; (and subquery in the FROM clause too) is - according to the SQL standard - an unordered set of rows.
-Rows in a table (or in a subquery in the FROM clause) do not come in any specific order.</p>
-<p>可以总结为：</p>
-<ul>
-<li>在 FROM 后的 subquery 中的 ORDER BY 会被忽略</li>
-<li>GROUP BY cloumn 返回的行是无序的</li>
-</ul>
-<h2 id="解决方案">解决方案</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="k">no</span><span class="p">,</span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">testorder</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="k">no</span><span class="p">)</span><span class="w"> </span><span class="k">no</span><span class="p">,</span><span class="n">name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">testorder</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">name</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="k">no</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="k">no</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">name</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="k">no</span><span class="w">
-</span></span></span></code></pre></div><p>其他方案：</p>
-<ol>
-<li>对于不符合 ONLY_FULL_GROUP_BY 限制的字段，添加 unique 索引。</li>
-<li>使用 ANY_VALUE()，让 MySQL 跳过 ONLY_FULL_GROUP_BY 检测。</li>
-</ol>
-<h2 id="小结">小结</h2>
-<blockquote>
-<p><a href="https://dev.mysql.com/doc/refman/5.6/en/group-by-handling.html">MySQL 5.6 Handling of GROUP BY</a></p>
-</blockquote>
-<p>In standard SQL, a query that includes a GROUP BY clause cannot refer to nonaggregated columns in the select list that are not named in the GROUP BY clause.</p>
-<p>在标准 SQL 中，包含 GROUP BY 子句的查询 <strong>不能引用</strong> select 列表中未在 GROUP BY 子句中命名的列。</p>
-<p>MySQL extends the standard SQL use of GROUP BY so that the select list can refer to nonaggregated columns not named in the GROUP BY clause. This means that the preceding query is legal in MySQL.</p>
-<p>MySQL 扩展了 GROUP BY 的标准 SQL 使用，以便选择列表可以引用 GROUP BY 子句中未命名的非集合列。这意味着前面的查询在 MySQL 中是合法的。</p>
-<p>However, this is useful primarily when all values in each nonaggregated column not named in the GROUP BY are the same for each group. The server is free to choose any value from each group, so unless they are the same, the values chosen are indeterminate.</p>
-<p>但是，主要是在 GROUP BY 中 <strong>未命名的每个非分组列中的所有值对于每个组是相同的</strong>，这是有用的。服务器可以自由选择每个组中的任何值，因此除非它们相同，所选择的值是 <strong>不确定的</strong>。</p>
-<p>Furthermore, the selection of values from each group cannot be influenced by adding an ORDER BY clause. Result set sorting occurs after values have been chosen, and ORDER BY does not affect which values within each group the server chooses.</p>
-<p>此外，通过添加 ORDER BY 子句不会影响来自每个组的值的选择。结果集排序发生在选择值后，ORDER BY <strong>不影响</strong> 服务选择的每个组中的哪些值。</p>
-<blockquote>
-<p><a href="https://dev.mysql.com/doc/refman/5.7/en/group-by-handling.html">MySQL 5.7 Handling of GROUP BY</a></p>
-</blockquote>
-<p>MySQL 5.7.5 and up implements detection of functional dependence. If the ONLY_FULL_GROUP_BY SQL mode is enabled (which it is by default), MySQL rejects queries for which the select list, HAVING condition, or ORDER BY list refer to nonaggregated columns that are neither named in the GROUP BY clause nor are functionally dependent on them. (Before 5.7.5, MySQL does not detect functional dependency and ONLY_FULL_GROUP_BY is not enabled by default.)</p>
-<p>MySQL 5.7.5 及以上功能依赖检测功能。如果启用了 ONLY_FULL_GROUP_BY SQL 模式（默认情况下），MySQL 将拒绝对列表，HAVING 条件或 ORDER BY 列表的查询引用在 GROUP BY 子句中既未命名的非集合列，也不在功能上依赖于它们。（5.7.5 之前，MySQL 没有检测到功能依赖关系，默认情况下不启用 ONLY_FULL_GROUP_BY）</p>
-<p>You can achieve the same effect without disabling ONLY_FULL_GROUP_BY by using ANY_VALUE() to refer to the nonaggregated column.</p>
-<p>你可以通过使用 <code>ANY_VALUE()</code> 使禁用了 ONLY_FULL_GROUP_BY 的 SQL，来实现相同的效果来引用非聚合列。</p>
-<h2 id="56-与-57-的区别">5.6 与 5.7 的区别</h2>
-<p>5.6 升级到 5.7 版本要注意：</p>
-<ol>
-<li>sql_mode 默认值的改变。</li>
-<li>optimizer_switch 值的改变。</li>
-<li>备库升级影响主备复制。</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">SQL_MODE</span><span class="p">,</span><span class="w"> </span><span class="o">@@</span><span class="k">GLOBAL</span><span class="p">.</span><span class="n">SQL_MODE</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 5.6
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- NO_ENGINE_SUBSTITUTION
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 5.7
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
-</span></span></span></code></pre></div><ul>
-<li><code>ONLY_FULL_GROUP_BY</code> SELECT 查询的字段必须是 GROUP BY 中出现的或者使用聚合函数的或者是具有唯一索引的。</li>
-<li><code>STRICT_TRANS_TABLES</code> 在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做任何限制。</li>
-<li><code>NO_ZERO_IN_DATE</code> 在严格模式，不接受月或日部分为 0 的日期。如果使用 IGNORE 选项，我们为类似的日期插入'0000-00-00&rsquo;。在非严格模式，可以接受该日期，但会生成警告。</li>
-<li><code>NO_ZERO_DATE</code> 在严格模式，不要将 &lsquo;0000-00-00&rsquo;做为合法日期。你仍然可以用 IGNORE 选项插入零日期。在非严格模式，可以接受该日期，但会生成警告。</li>
-<li><code>ERROR_FOR_DIVISION_BY_ZERO</code> 在严格模式，在 INSERT 或 UPDATE 过程中，如果被零除(或 MOD(X，0))，则产生错误(否则为警告)。如果未给出该模式，被零除时 MySQL 返回 NULL。如果用到 INSERT IGNORE 或 UPDATE IGNORE 中，MySQL 生成被零除警告，但操作结果为 NULL。</li>
-<li><code>NO_AUTO_CREATE_USER</code> 防止 GRANT 自动创建新用户，除非还指定了密码。</li>
-<li><code>NO_ENGINE_SUBSTITUTION</code> 如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常。</li>
-</ul>
-<h3 id="strict_trans_tables-和-strict_all_tables-的区别">STRICT_TRANS_TABLES 和 STRICT_ALL_TABLES 的区别</h3>
-<p>唯一的区别是：对于不支持事务的表，若开启 STRICT_TRANS_TABLES，MySQL 会尝试将一个不合法的字段值转换成一个值最近的合法值插入表中；而开启 STRICT_ALL_TABLES 后，则表现为不写入数据，且抛出错误。</p>
-<p>因为现在绝大部分用的 InnoDB 引擎，是支持事务的，所以基本不用关心这种区别。</p>
-<h3 id="严格模式和非严格模式的区别">严格模式和非严格模式的区别</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;STRICT_TRANS_TABLES&#39;</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>严格模式下不能在无符号整数字段插入负值。</p>
-<ul>
-<li>非严格模式下，会存储为 0。</li>
-<li>严格模式下，报错。</li>
-</ul>
-<p>严格模式下，无默认值的 NOT NULL 字段在插入数据时必须指定值。</p>
-<ul>
-<li>非严格模式下，若不插入数据会存储字段类型的默认值。</li>
-<li>严格模式下，报错。</li>
-</ul>
-<p>严格模式下，插入字符串不能超出定义长度</p>
-<ul>
-<li>非严格模式下，会成功插入数据，但是内容被截断。</li>
-<li>严格模式下，报错。</li>
-</ul>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="http://mysqlwyett.com/blog/2017/01/17/max_values_in_group_by/">MySQL 组内排序取最大值 | mysqlwyett</a></li>
-<li><a href="http://stackoverflow.com/questions/1066453/mysql-group-by-and-order-by">sql - MySQL Group By and Order By; - Stack Overflow</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/50278304">MySQL5.7 中的 sql_mode 默认值 | zhihu</a></li>
-<li><a href="https://www.letianbiji.com/mysql/mysql-strict-mode.html">MySQL: 严格模式 | letianbiji</a></li>
 </ul>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
@@ -1710,91 +1443,6 @@ NOT NULL，字段值禁止为空</p>
 </span></span></span><span class="line"><span class="cl"><span class="n">pid</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">,</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">table_name1</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="cm">/* 外键 pid 参照 table_name1中的 id 字段 */</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
-</span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>IMOOC MySQL 开发技巧</title>
-      <link>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</link>
-      <pubDate>Mon, 25 Jul 2016 10:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</guid>
-      <description>&lt;p&gt;主要涉及：JOIN 、JOIN 更新、GROUP BY HAVING 数据查重/去重。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;inner&#34;&gt;INNER&lt;/h2&gt;
-&lt;p&gt;INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN(MySQL 不支持)、CROSS JOIN&lt;/p&gt;
-&lt;p&gt;这是在网上找到的非常好的一篇博文，图解 JOIN 语句：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/&#34;&gt;CODING HORROR-A Visual Explanation of SQL Joins&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;下图可以很清楚的明白，JOIN 的数据选取范围：&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;160725-imooc-mysql-development-skills-notes-001&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199172-9d701f80-8653-11ea-8d20-498f54e41708.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;160725-imooc-mysql-development-skills-notes-002&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199188-9fd27980-8653-11ea-9386-e76dca7b4d0c.jpeg&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;更新使用过滤条件中包括本身的表&#34;&gt;更新使用过滤条件中包括本身的表&lt;/h2&gt;
-&lt;p&gt;更新 &lt;code&gt;t1&lt;/code&gt; &lt;code&gt;t2&lt;/code&gt; 表中 &lt;code&gt;col_a&lt;/code&gt; 重复的字段：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;hi&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;IN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INNER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ERROR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1093&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;可转换为：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;UPDATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aa&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INNER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bb&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;on&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;aa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bb&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;col_a&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;hi&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;查询重复数据删除重复数据&#34;&gt;查询重复数据、删除重复数据&lt;/h2&gt;
-&lt;p&gt;利用 &lt;code&gt;GROUP BY&lt;/code&gt; 和 &lt;code&gt;HAVING&lt;/code&gt; 查询重复数据：&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>主要涉及：JOIN 、JOIN 更新、GROUP BY HAVING 数据查重/去重。</p>
-<!-- more -->
-<h2 id="inner">INNER</h2>
-<p>INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN(MySQL 不支持)、CROSS JOIN</p>
-<p>这是在网上找到的非常好的一篇博文，图解 JOIN 语句：</p>
-<blockquote>
-<p><a href="https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/">CODING HORROR-A Visual Explanation of SQL Joins</a></p>
-</blockquote>
-<p>下图可以很清楚的明白，JOIN 的数据选取范围：</p>
-<p><img alt="160725-imooc-mysql-development-skills-notes-001" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80199172-9d701f80-8653-11ea-8d20-498f54e41708.png"></p>
-<p><img alt="160725-imooc-mysql-development-skills-notes-002" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80199188-9fd27980-8653-11ea-9386-e76dca7b4d0c.jpeg"></p>
-<h2 id="更新使用过滤条件中包括本身的表">更新使用过滤条件中包括本身的表</h2>
-<p>更新 <code>t1</code> <code>t2</code> 表中 <code>col_a</code> 重复的字段：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">t1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">col_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">col_a</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">col_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">on</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">col_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">col_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">ERROR</span><span class="p">:</span><span class="mi">1093</span><span class="w">
-</span></span></span></code></pre></div><p>可转换为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">aa</span><span class="w"> </span><span class="k">JOIN</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">col_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="k">on</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">a</span><span class="p">.</span><span class="n">col_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">col_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="n">bb</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">aa</span><span class="p">.</span><span class="n">col_a</span><span class="o">=</span><span class="w"> </span><span class="n">bb</span><span class="p">.</span><span class="n">col_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">col_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;hi&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h2 id="查询重复数据删除重复数据">查询重复数据、删除重复数据</h2>
-<p>利用 <code>GROUP BY</code> 和 <code>HAVING</code> 查询重复数据：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">col_a</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">col_a</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>删除重复数据，对于相同数据保留 ID 最大的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w"> </span><span class="n">a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">col_a</span><span class="p">,</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">MAX</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">col_a</span><span class="w"> </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="n">b</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">col_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">col_a</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>

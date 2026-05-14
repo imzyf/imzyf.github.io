@@ -108,7 +108,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$color</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$transparent</span> <span class="o">=</span> <span class="nv">$color</span><span class="o">-&gt;</span><span class="na">withAlpha</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="nodiscard-属性">#[\NoDiscard] 属性</h3>
+</span></span></code></pre></div><h3 id="nodiscard-属性"><code>#[\NoDiscard]</code> 属性</h3>
 <p>新的 <code>#[\NoDiscard]</code> 属性用于标记函数返回值不应被忽略：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#[\NoDiscard(&#34;检查操作是否成功&#34;)]
 </span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">saveData</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
@@ -128,8 +128,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 显式忽略（不会警告）
 </span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nx">void</span><span class="p">)</span> <span class="nx">saveData</span><span class="p">([</span><span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span><span class="p">]);</span>
-</span></span></code></pre></div><h3 id="常量表达式中的闭包">常量表达式中的闭包</h3>
-<p>PHP 8.5 允许在属性、常量和默认值中使用静态闭包和一等可调用对象：</p>
+</span></span></code></pre></div><h3 id="常量表达式中的闭包与一等可调用对象">常量表达式中的闭包与一等可调用对象</h3>
+<p>PHP 8.5 允许在属性、常量、默认值和 attribute 参数中使用静态闭包和一等可调用对象，过去这些位置只能放标量字面量：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Validator</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">RULES</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="nx">filter_var</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
@@ -137,15 +137,19 @@
 </span></span><span class="line"><span class="cl">    <span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">process</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 默认值用 first-class callable —— 8.5 之前会语法错误
+</span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">process</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">callable</span> <span class="nv">$callback</span> <span class="o">=</span> <span class="nx">strtoupper</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$callback</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="持久化-curl-share-handles">持久化 cURL Share Handles</h3>
-<p>新的 <code>curl_share_init_persistent()</code> 函数可以跨请求维护 cURL 共享句柄：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 创建持久化的共享句柄
-</span></span></span><span class="line"><span class="cl"><span class="nv">$share</span> <span class="o">=</span> <span class="nx">curl_share_init_persistent</span><span class="p">(</span><span class="s1">&#39;my-share-handle&#39;</span><span class="p">);</span>
+<p>新的 <code>curl_share_init_persistent()</code> 函数可以跨请求维护 cURL 共享句柄，常用于复用 DNS 解析与连接池：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 创建持久化的共享句柄，复用 DNS 解析和连接
+</span></span></span><span class="line"><span class="cl"><span class="nv">$share</span> <span class="o">=</span> <span class="nx">curl_share_init_persistent</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">CURL_LOCK_DATA_DNS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">CURL_LOCK_DATA_CONNECT</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$ch</span> <span class="o">=</span> <span class="nx">curl_init</span><span class="p">(</span><span class="s1">&#39;https://example.com&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_SHARE</span><span class="p">,</span> <span class="nv">$share</span><span class="p">);</span>
@@ -205,10 +209,15 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$distance</span> <span class="o">=</span> <span class="nx">grapheme_levenshtein</span><span class="p">(</span><span class="s1">&#39;café&#39;</span><span class="p">,</span> <span class="s1">&#39;cafe&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$distance</span><span class="p">);</span> <span class="c1">// 1
 </span></span></span></code></pre></div><h3 id="closuregetcurrent">Closure::getCurrent()</h3>
-<p>在闭包内部获取当前闭包实例，便于实现递归：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nx">Closure</span><span class="o">::</span><span class="na">getCurrent</span><span class="p">()(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<p>匿名闭包递归不再需要 <code>use (&amp;$fn)</code> 自引用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// PHP 8.5 之前 - 必须 use (&amp;$factorial) 拿到自身
+</span></span></span><span class="line"><span class="cl"><span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$factorial</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nv">$factorial</span><span class="p">(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// PHP 8.5 - 直接用 Closure::getCurrent()
+</span></span></span><span class="line"><span class="cl"><span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nx">Closure</span><span class="o">::</span><span class="na">getCurrent</span><span class="p">()(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// 120
@@ -216,17 +225,20 @@
 <h3 id="致命错误包含堆栈跟踪">致命错误包含堆栈跟踪</h3>
 <p>PHP 8.5 中，致命错误现在会包含完整的堆栈跟踪信息，大大提升了调试体验。</p>
 <h3 id="新的-dom-方法">新的 DOM 方法</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DOMDocument</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">loadHTML</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&#34;box&#34;&gt;A&lt;/div&gt;&lt;div class=&#34;box&#34;&gt;B&lt;/div&gt;&#39;</span><span class="p">);</span>
+<p>PHP 8.5 在 8.4 引入的 <code>\Dom\HTMLDocument</code> API 上补了两个常用方法（注意：是新的 <code>\Dom\</code> 命名空间，不是 legacy 的 <code>DOMDocument</code>）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="o">=</span> <span class="nx">\Dom\HTMLDocument</span><span class="o">::</span><span class="na">createFromString</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&lt;div class=&#34;box&#34;&gt;A&lt;/div&gt;&lt;div class=&#34;box&#34;&gt;B&lt;/div&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// getElementsByClassName()
 </span></span></span><span class="line"><span class="cl"><span class="nv">$elements</span> <span class="o">=</span> <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;box&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$elements</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">;</span> <span class="c1">// 2
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// insertAdjacentHTML()
+</span></span><span class="line"><span class="cl"><span class="c1">// insertAdjacentHTML() - 8.4 已有 querySelector
 </span></span></span><span class="line"><span class="cl"><span class="nv">$div</span> <span class="o">=</span> <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$div</span><span class="o">-&gt;</span><span class="na">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;span&gt;New&lt;/span&gt;&#39;</span><span class="p">);</span>
 </span></span></code></pre></div><h3 id="属性可以应用于常量">属性可以应用于常量</h3>
+<p>PHP 8.4 引入了 <code>#[Deprecated]</code> 属性，PHP 8.5 把可被 attribute 标记的目标扩展到了类常量：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">#[Deprecated(&#34;Use NEW_CONST instead&#34;)]
 </span></span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">OLD_CONST</span> <span class="o">=</span> <span class="s1">&#39;old&#39;</span><span class="p">;</span>
@@ -245,6 +257,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">Counter</span><span class="o">::</span><span class="nv">$count</span><span class="p">;</span> <span class="c1">// 可读
 </span></span></span><span class="line"><span class="cl"><span class="nx">Counter</span><span class="o">::</span><span class="nv">$count</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 错误：不可写
 </span></span></span></code></pre></div><h3 id="构造函数提升支持-final-属性">构造函数提升支持 final 属性</h3>
+<p><code>final</code> 属性禁止子类用同名属性覆盖，过去只能写在类体里，8.5 起可以直接出现在构造函数提升参数上：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">final</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span>
@@ -279,7 +292,10 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// ✅ 使用 shell_exec()
 </span></span></span><span class="line"><span class="cl"><span class="nv">$output</span> <span class="o">=</span> <span class="nx">shell_exec</span><span class="p">(</span><span class="s1">&#39;ls -la&#39;</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="非标准类型转换">非标准类型转换</h3>
+</span></span></code></pre></div><blockquote>
+<p>注意：<code>shell_exec()</code> 与反引号一样不会转义参数。如果命令里要拼接外部输入，用 <code>escapeshellarg()</code> 或者直接走 <code>proc_open()</code> + 数组参数，避免 shell 注入。</p>
+</blockquote>
+<h3 id="非标准类型转换">非标准类型转换</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// ❌ PHP 8.5 已弃用
 </span></span></span><span class="line"><span class="cl"><span class="nv">$bool</span> <span class="o">=</span> <span class="p">(</span><span class="nx">boolean</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$int</span> <span class="o">=</span> <span class="p">(</span><span class="nx">integer</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
@@ -290,8 +306,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="nv">$bool</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bool</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$int</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$float</span> <span class="o">=</span> <span class="p">(</span><span class="nx">float</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$bin</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="mysqli_execute">mysqli_execute()</h3>
+</span></span><span class="line"><span class="cl"><span class="nv">$bin</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>  <span class="c1">// (binary) 历来就是 (string) 的别名，行为完全一致
+</span></span></span></code></pre></div><h3 id="mysqli_execute">mysqli_execute()</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// ❌ 已弃用
 </span></span></span><span class="line"><span class="cl"><span class="nx">mysqli_execute</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">

@@ -108,7 +108,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$color</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$transparent</span> <span class="o">=</span> <span class="nv">$color</span><span class="o">-&gt;</span><span class="na">withAlpha</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="nodiscard-属性">#[\NoDiscard] 属性</h3>
+</span></span></code></pre></div><h3 id="nodiscard-属性"><code>#[\NoDiscard]</code> 属性</h3>
 <p>新的 <code>#[\NoDiscard]</code> 属性用于标记函数返回值不应被忽略：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#[\NoDiscard(&#34;检查操作是否成功&#34;)]
 </span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">saveData</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
@@ -128,8 +128,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 显式忽略（不会警告）
 </span></span></span><span class="line"><span class="cl"><span class="p">(</span><span class="nx">void</span><span class="p">)</span> <span class="nx">saveData</span><span class="p">([</span><span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span><span class="p">]);</span>
-</span></span></code></pre></div><h3 id="常量表达式中的闭包">常量表达式中的闭包</h3>
-<p>PHP 8.5 允许在属性、常量和默认值中使用静态闭包和一等可调用对象：</p>
+</span></span></code></pre></div><h3 id="常量表达式中的闭包与一等可调用对象">常量表达式中的闭包与一等可调用对象</h3>
+<p>PHP 8.5 允许在属性、常量、默认值和 attribute 参数中使用静态闭包和一等可调用对象，过去这些位置只能放标量字面量：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Validator</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">RULES</span> <span class="o">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="nx">filter_var</span><span class="p">(</span><span class="o">...</span><span class="p">),</span>
@@ -137,15 +137,19 @@
 </span></span><span class="line"><span class="cl">    <span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">process</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 默认值用 first-class callable —— 8.5 之前会语法错误
+</span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">process</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">callable</span> <span class="nv">$callback</span> <span class="o">=</span> <span class="nx">strtoupper</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$callback</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="持久化-curl-share-handles">持久化 cURL Share Handles</h3>
-<p>新的 <code>curl_share_init_persistent()</code> 函数可以跨请求维护 cURL 共享句柄：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 创建持久化的共享句柄
-</span></span></span><span class="line"><span class="cl"><span class="nv">$share</span> <span class="o">=</span> <span class="nx">curl_share_init_persistent</span><span class="p">(</span><span class="s1">&#39;my-share-handle&#39;</span><span class="p">);</span>
+<p>新的 <code>curl_share_init_persistent()</code> 函数可以跨请求维护 cURL 共享句柄，常用于复用 DNS 解析与连接池：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 创建持久化的共享句柄，复用 DNS 解析和连接
+</span></span></span><span class="line"><span class="cl"><span class="nv">$share</span> <span class="o">=</span> <span class="nx">curl_share_init_persistent</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">CURL_LOCK_DATA_DNS</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">CURL_LOCK_DATA_CONNECT</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$ch</span> <span class="o">=</span> <span class="nx">curl_init</span><span class="p">(</span><span class="s1">&#39;https://example.com&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">curl_setopt</span><span class="p">(</span><span class="nv">$ch</span><span class="p">,</span> <span class="nx">CURLOPT_SHARE</span><span class="p">,</span> <span class="nv">$share</span><span class="p">);</span>
@@ -205,10 +209,15 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$distance</span> <span class="o">=</span> <span class="nx">grapheme_levenshtein</span><span class="p">(</span><span class="s1">&#39;café&#39;</span><span class="p">,</span> <span class="s1">&#39;cafe&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$distance</span><span class="p">);</span> <span class="c1">// 1
 </span></span></span></code></pre></div><h3 id="closuregetcurrent">Closure::getCurrent()</h3>
-<p>在闭包内部获取当前闭包实例，便于实现递归：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nx">Closure</span><span class="o">::</span><span class="na">getCurrent</span><span class="p">()(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<p>匿名闭包递归不再需要 <code>use (&amp;$fn)</code> 自引用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// PHP 8.5 之前 - 必须 use (&amp;$factorial) 拿到自身
+</span></span></span><span class="line"><span class="cl"><span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span> <span class="k">use</span> <span class="p">(</span><span class="o">&amp;</span><span class="nv">$factorial</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nv">$factorial</span><span class="p">(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// PHP 8.5 - 直接用 Closure::getCurrent()
+</span></span></span><span class="line"><span class="cl"><span class="nv">$factorial</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nx">Closure</span><span class="o">::</span><span class="na">getCurrent</span><span class="p">()(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="c1">// 120
@@ -216,17 +225,20 @@
 <h3 id="致命错误包含堆栈跟踪">致命错误包含堆栈跟踪</h3>
 <p>PHP 8.5 中，致命错误现在会包含完整的堆栈跟踪信息，大大提升了调试体验。</p>
 <h3 id="新的-dom-方法">新的 DOM 方法</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DOMDocument</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">loadHTML</span><span class="p">(</span><span class="s1">&#39;&lt;div class=&#34;box&#34;&gt;A&lt;/div&gt;&lt;div class=&#34;box&#34;&gt;B&lt;/div&gt;&#39;</span><span class="p">);</span>
+<p>PHP 8.5 在 8.4 引入的 <code>\Dom\HTMLDocument</code> API 上补了两个常用方法（注意：是新的 <code>\Dom\</code> 命名空间，不是 legacy 的 <code>DOMDocument</code>）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$doc</span> <span class="o">=</span> <span class="nx">\Dom\HTMLDocument</span><span class="o">::</span><span class="na">createFromString</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&lt;div class=&#34;box&#34;&gt;A&lt;/div&gt;&lt;div class=&#34;box&#34;&gt;B&lt;/div&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// getElementsByClassName()
 </span></span></span><span class="line"><span class="cl"><span class="nv">$elements</span> <span class="o">=</span> <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;box&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$elements</span><span class="o">-&gt;</span><span class="na">length</span><span class="p">;</span> <span class="c1">// 2
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// insertAdjacentHTML()
+</span></span><span class="line"><span class="cl"><span class="c1">// insertAdjacentHTML() - 8.4 已有 querySelector
 </span></span></span><span class="line"><span class="cl"><span class="nv">$div</span> <span class="o">=</span> <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$div</span><span class="o">-&gt;</span><span class="na">insertAdjacentHTML</span><span class="p">(</span><span class="s1">&#39;beforeend&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;span&gt;New&lt;/span&gt;&#39;</span><span class="p">);</span>
 </span></span></code></pre></div><h3 id="属性可以应用于常量">属性可以应用于常量</h3>
+<p>PHP 8.4 引入了 <code>#[Deprecated]</code> 属性，PHP 8.5 把可被 attribute 标记的目标扩展到了类常量：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">#[Deprecated(&#34;Use NEW_CONST instead&#34;)]
 </span></span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">OLD_CONST</span> <span class="o">=</span> <span class="s1">&#39;old&#39;</span><span class="p">;</span>
@@ -245,6 +257,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">Counter</span><span class="o">::</span><span class="nv">$count</span><span class="p">;</span> <span class="c1">// 可读
 </span></span></span><span class="line"><span class="cl"><span class="nx">Counter</span><span class="o">::</span><span class="nv">$count</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 错误：不可写
 </span></span></span></code></pre></div><h3 id="构造函数提升支持-final-属性">构造函数提升支持 final 属性</h3>
+<p><code>final</code> 属性禁止子类用同名属性覆盖，过去只能写在类体里，8.5 起可以直接出现在构造函数提升参数上：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">final</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span>
@@ -279,7 +292,10 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// ✅ 使用 shell_exec()
 </span></span></span><span class="line"><span class="cl"><span class="nv">$output</span> <span class="o">=</span> <span class="nx">shell_exec</span><span class="p">(</span><span class="s1">&#39;ls -la&#39;</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="非标准类型转换">非标准类型转换</h3>
+</span></span></code></pre></div><blockquote>
+<p>注意：<code>shell_exec()</code> 与反引号一样不会转义参数。如果命令里要拼接外部输入，用 <code>escapeshellarg()</code> 或者直接走 <code>proc_open()</code> + 数组参数，避免 shell 注入。</p>
+</blockquote>
+<h3 id="非标准类型转换">非标准类型转换</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// ❌ PHP 8.5 已弃用
 </span></span></span><span class="line"><span class="cl"><span class="nv">$bool</span> <span class="o">=</span> <span class="p">(</span><span class="nx">boolean</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$int</span> <span class="o">=</span> <span class="p">(</span><span class="nx">integer</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
@@ -290,8 +306,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="nv">$bool</span> <span class="o">=</span> <span class="p">(</span><span class="nx">bool</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$int</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$float</span> <span class="o">=</span> <span class="p">(</span><span class="nx">float</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$bin</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="mysqli_execute">mysqli_execute()</h3>
+</span></span><span class="line"><span class="cl"><span class="nv">$bin</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>  <span class="c1">// (binary) 历来就是 (string) 的别名，行为完全一致
+</span></span></span></code></pre></div><h3 id="mysqli_execute">mysqli_execute()</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// ❌ 已弃用
 </span></span></span><span class="line"><span class="cl"><span class="nx">mysqli_execute</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -4404,424 +4420,6 @@ server {
 ]]></content:encoded>
     </item>
     <item>
-      <title>PHP 安装 gRPC</title>
-      <link>https://zyf.im/2021/10/13/php-install-grpc/</link>
-      <pubDate>Wed, 13 Oct 2021 15:48:41 +0000</pubDate>
-      <guid>https://zyf.im/2021/10/13/php-install-grpc/</guid>
-      <description>&lt;h2 id=&#34;env&#34;&gt;ENV&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat /etc/redhat-release
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CentOS Linux release 7.2 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;Final&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uname -a
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Linux xxx-xxx 3.10.107-1-tlinux2_kvm_guest-0052 &lt;span class=&#34;c1&#34;&gt;#1 SMP Wed Jan 15 18:42:19 CST 2020 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;pecl&#34;&gt;PECL&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pecl install grpc
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果遇到：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Connection to &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;ssl://pecl.php.net:443′ failed:
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;参考：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://zyf.im/2020/08/07/deploy-swoft-framework/&#34;&gt;PHP Swoft 框架环境配置 | ZYF.IM&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;build&#34;&gt;Build&lt;/h2&gt;
-&lt;h3 id=&#34;通用手动安装-pecl-扩展&#34;&gt;通用手动安装 PECL 扩展&lt;/h3&gt;
-&lt;p&gt;For this to work, you’ll need to have root access to your server, and you’ll most probably need developer tools installed as well.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://pecl.php.net/&#34;&gt;https://pecl.php.net/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建临时目录&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mkdir /tmp/download/ &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp/download/
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget http://pecl.php.net/get/&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;extension&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;.tgz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 解压&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xvf &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;extension&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;.tgz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;extension&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 配置&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;phpize
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看参数&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --help
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 设置参考 以实际情况为准&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --enable-&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;extension&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 编译&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class=&#34;nb&#34;&gt;test&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 安装&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;make install
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 ini 路径&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php --ini
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 开启&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vi &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;php-ini&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;.ini
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;extension&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=[&lt;/span&gt;extension&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;.so
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;gcc-is-currently-not-installed&#34;&gt;gcc is currently not installed&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install gcc
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...already installed and latest version...
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gcc
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;...gcc is currently not installed.
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum reinstall gcc
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 重新安装后解决&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;grpclbtokenandclientstatsattributetostring-const&#34;&gt;GrpcLb::TokenAndClientStatsAttribute::ToString() const&lt;/h3&gt;
-&lt;p&gt;原因：gcc 版本过低。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="env">ENV</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /etc/redhat-release
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">CentOS Linux release 7.2 <span class="o">(</span>Final<span class="o">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">uname -a
-</span></span><span class="line"><span class="cl">Linux xxx-xxx 3.10.107-1-tlinux2_kvm_guest-0052 <span class="c1">#1 SMP Wed Jan 15 18:42:19 CST 2020 x86_64 x86_64 x86_64 GNU/Linux</span>
-</span></span></code></pre></div><h2 id="pecl">PECL</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pecl install grpc
-</span></span></code></pre></div><p>如果遇到：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Connection to <span class="sb">`</span>ssl://pecl.php.net:443′ failed:
-</span></span></code></pre></div><p>参考：</p>
-<p><a href="/2020/08/07/deploy-swoft-framework/">PHP Swoft 框架环境配置 | ZYF.IM</a></p>
-<h2 id="build">Build</h2>
-<h3 id="通用手动安装-pecl-扩展">通用手动安装 PECL 扩展</h3>
-<p>For this to work, you’ll need to have root access to your server, and you’ll most probably need developer tools installed as well.</p>
-<blockquote>
-<p><a href="https://pecl.php.net/">https://pecl.php.net/</a></p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建临时目录</span>
-</span></span><span class="line"><span class="cl">mkdir /tmp/download/ <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /tmp/download/
-</span></span><span class="line"><span class="cl"><span class="c1"># 下载</span>
-</span></span><span class="line"><span class="cl">wget http://pecl.php.net/get/<span class="o">[</span>extension<span class="o">]</span>.tgz
-</span></span><span class="line"><span class="cl"><span class="c1"># 解压</span>
-</span></span><span class="line"><span class="cl">tar -xvf <span class="o">[</span>extension<span class="o">]</span>.tgz
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="o">[</span>extension<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 配置</span>
-</span></span><span class="line"><span class="cl">phpize
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看参数</span>
-</span></span><span class="line"><span class="cl">./configure --help
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置参考 以实际情况为准</span>
-</span></span><span class="line"><span class="cl">./configure --enable-<span class="o">[</span>extension<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 编译</span>
-</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make <span class="nb">test</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 安装</span>
-</span></span><span class="line"><span class="cl">make install
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看 ini 路径</span>
-</span></span><span class="line"><span class="cl">php --ini
-</span></span><span class="line"><span class="cl"><span class="c1"># 开启</span>
-</span></span><span class="line"><span class="cl">vi <span class="o">[</span>php-ini<span class="o">]</span>.ini
-</span></span><span class="line"><span class="cl"><span class="nv">extension</span><span class="o">=[</span>extension<span class="o">]</span>.so
-</span></span></code></pre></div><h3 id="gcc-is-currently-not-installed">gcc is currently not installed</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install gcc
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">...already installed and latest version...
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">gcc
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">...gcc is currently not installed.
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">yum reinstall gcc
-</span></span><span class="line"><span class="cl"><span class="c1"># 重新安装后解决</span>
-</span></span></code></pre></div><h3 id="grpclbtokenandclientstatsattributetostring-const">GrpcLb::TokenAndClientStatsAttribute::ToString() const</h3>
-<p>原因：gcc 版本过低。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install centos-release-scl
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">yum install devtoolset-8-gcc*
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">scl <span class="nb">enable</span> devtoolset-8 bash
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">source</span> /opt/rh/devtoolset-8/enable
-</span></span></code></pre></div><h2 id="references">References</h2>
-<ul>
-<li><a href="https://cloud.google.com/php/grpc">安装适用于 PHP 的 gRPC | cloud.google</a></li>
-<li><a href="https://www.jianshu.com/p/387b7a46d9fd">PHP 安装 grpc 扩展报错 | jianshu</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>PHP __invoke 使用</title>
-      <link>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</link>
-      <pubDate>Tue, 20 Jul 2021 14:58:33 +0000</pubDate>
-      <guid>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</guid>
-      <description>&lt;p&gt;why they are magic? Because they are magically called by PHP when specific actions happen.&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;__invoke()&lt;/code&gt; method is called when a script tries to call an object as a function.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;php&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;CallableClass&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__invoke&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$obj&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;CallableClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;is_callable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;int&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bool&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;使用明显的操作方法初始化&#34;&gt;使用明显的操作方法初始化&lt;/h2&gt;
-&lt;p&gt;例如，当我们有一个提供者时，就会发生这种情况。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/aws/aws-sdk-php/blob/master/src/Endpoint/PatternEndpointProvider.php&#34;&gt;aws-sdk-php/src/Endpoint/PatternEndpointProvider.php&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__invoke&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;array&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[])&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$service&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;service&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;service&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$region&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;region&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;region&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nv&#34;&gt;$keys&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$region&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$service&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$region&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/*&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;*/&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$service&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;*/*&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;foreach&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$keys&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;patterns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;expand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;patterns&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nx&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;scheme&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;scheme&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;https&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nv&#34;&gt;$service&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;nv&#34;&gt;$region&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;它使用 invoke 使用一些参数提供端点。我们如何使用这个类？&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>why they are magic? Because they are magically called by PHP when specific actions happen.</p>
-<p>The <code>__invoke()</code> method is called when a script tries to call an object as a function.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CallableClass</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">var_dump</span><span class="p">(</span><span class="nv">$x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CallableClass</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$obj</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">is_callable</span><span class="p">(</span><span class="nv">$obj</span><span class="p">));</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">int<span class="o">(</span>5<span class="o">)</span>
-</span></span><span class="line"><span class="cl">bool<span class="o">(</span><span class="nb">true</span><span class="o">)</span>
-</span></span></code></pre></div><h2 id="使用明显的操作方法初始化">使用明显的操作方法初始化</h2>
-<p>例如，当我们有一个提供者时，就会发生这种情况。</p>
-<p><a href="https://github.com/aws/aws-sdk-php/blob/master/src/Endpoint/PatternEndpointProvider.php">aws-sdk-php/src/Endpoint/PatternEndpointProvider.php</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="k">array</span> <span class="nv">$args</span> <span class="o">=</span> <span class="p">[])</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">$service</span> <span class="o">=</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="s1">&#39;service&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$args</span><span class="p">[</span><span class="s1">&#39;service&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">$region</span> <span class="o">=</span> <span class="nx">isset</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$args</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">$keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;</span><span class="si">{</span><span class="nv">$region</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nv">$service</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;</span><span class="si">{</span><span class="nv">$region</span><span class="si">}</span><span class="s2">/*&#34;</span><span class="p">,</span> <span class="s2">&#34;*/</span><span class="si">{</span><span class="nv">$service</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;*/*&#34;</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$keys</span> <span class="k">as</span> <span class="nv">$key</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">patterns</span><span class="p">[</span><span class="nv">$key</span><span class="p">]))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">expand</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">patterns</span><span class="p">[</span><span class="nv">$key</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">                <span class="nx">isset</span><span class="p">(</span><span class="nv">$args</span><span class="p">[</span><span class="s1">&#39;scheme&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="nv">$args</span><span class="p">[</span><span class="s1">&#39;scheme&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="s1">&#39;https&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nv">$service</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nv">$region</span>
-</span></span><span class="line"><span class="cl">            <span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>它使用 invoke 使用一些参数提供端点。我们如何使用这个类？</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">testReturnsNullWhenUnresolved</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">$e</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PatternEndpointProvider</span><span class="p">([</span><span class="s1">&#39;foo&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;rules&#39;</span> <span class="o">=&gt;</span> <span class="p">[]]]);</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertNull</span><span class="p">(</span><span class="nv">$e</span><span class="p">([</span><span class="s1">&#39;service&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;region&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;bar&#39;</span><span class="p">]));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="尝试使用单动作控制器">尝试使用单动作控制器？</h2>
-<p>控制器应该大而广泛？他们不应该。我们应该有瘦控制器和胖服务。</p>
-<p>在这里，invoke 可以帮助我们，因为我们可以定义一个只处理单个动作的控制器，并在其上放置单个 invoke 方法。</p>
-<p>这也有助于我们实现单一职责原则，即 SOLID 中的 S，这是前五个面向对象设计 (OOD) 原则的首字母缩写词。</p>
-<blockquote>
-<p>A class should have one and only one reason to change, meaning that a class should have only one job.</p>
-</blockquote>
-<p>在 Laravel 中的例子：<a href="https://laravel.com/docs/5.7/controllers#single-action-controllers">Single Action Controllers | laravel</a>：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\User</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ShowProfile</span> <span class="k">extends</span> <span class="nx">Controller</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="sd">/**
-</span></span></span><span class="line"><span class="cl"><span class="sd">     * Show the profile for the given user.
-</span></span></span><span class="line"><span class="cl"><span class="sd">     *
-</span></span></span><span class="line"><span class="cl"><span class="sd">     * @param  int  $id
-</span></span></span><span class="line"><span class="cl"><span class="sd">     * @return View
-</span></span></span><span class="line"><span class="cl"><span class="sd">     */</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;user.profile&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nx">User</span><span class="o">::</span><span class="na">findOrFail</span><span class="p">(</span><span class="nv">$id</span><span class="p">)]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>然后，在注册路由时，我们不需要指定方法名称。只有类名。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;user/{id}&#39;</span><span class="p">,</span> <span class="s1">&#39;ShowProfile&#39;</span><span class="p">);</span>
-</span></span></code></pre></div><p>This way we can have Single Action Controllers.</p>
-<h2 id="实现回调函数-by-gpt">实现回调函数 by GPT</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Sorter</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$a</span> <span class="o">&lt;=&gt;</span> <span class="nv">$b</span><span class="p">;</span> <span class="c1">// 比较函数
-</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="nx">usort</span><span class="p">(</span><span class="nv">$numbers</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Sorter</span><span class="p">());</span>
-</span></span><span class="line"><span class="cl"><span class="nx">print_r</span><span class="p">(</span><span class="nv">$numbers</span><span class="p">);</span> <span class="c1">// 输出排序后的数组
-</span></span></span></code></pre></div><h2 id="实现函数式编程-by-gpt">实现函数式编程 by GPT</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Adder</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="nv">$value</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">value</span> <span class="o">+</span> <span class="nv">$x</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$add5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Adder</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$add5</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// 结果为 8
-</span></span></span></code></pre></div><h2 id="references">References</h2>
-<ul>
-<li><a href="https://luis-barros-nobrega.medium.com/php-invoke-is-anybody-using-it-1933c64d17f1">PHP invoke: is anybody using it? | medium</a></li>
-<li><a href="https://www.php.net/manual/en/language.oop5.magic.php#object.invoke">__invoke() | php</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>PHP strict_types 严格模式</title>
-      <link>https://zyf.im/2021/07/19/php-strict-types/</link>
-      <pubDate>Mon, 19 Jul 2021 19:58:26 +0000</pubDate>
-      <guid>https://zyf.im/2021/07/19/php-strict-types/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;严格模式的声明 &lt;em&gt;必须&lt;/em&gt; 放在文件的顶部。&lt;/li&gt;
-&lt;li&gt;严格模式不仅作用于函数参数的类型声明，也作用于函数的返回值类型。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;声明 PHP 文件作为严格模式的一个好事是，实际上只适用于当前文件。这确保了这个文件是严格类型，但是他没有影响到整个项目中的其他文件。这允许你一步一步的迁移非严格模式的代码。&lt;/p&gt;
-&lt;p&gt;使用提示类型没有 strict_types 可能导致微妙的错误。&lt;/p&gt;
-&lt;p&gt;严格类型之前，&lt;code&gt;int $x&lt;/code&gt; 意味着 &lt;code&gt;$x must have a value coercible to an int&lt;/code&gt;。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a float (example: 13.1459 -&amp;gt; 13)&lt;/li&gt;
-&lt;li&gt;a bool (example: true -&amp;gt; 1)&lt;/li&gt;
-&lt;li&gt;a null (example: null -&amp;gt; 0)&lt;/li&gt;
-&lt;li&gt;a string with leading digits (example: “15 Trees” -&amp;gt; 15)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;设置严格模式后，you tell the engine that &lt;code&gt;int $x&lt;/code&gt; means &lt;code&gt;$x must only be an int proper, no type coercion allowed&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;谁给更关心 &lt;code&gt;strict_type&lt;/code&gt; 这行？is more for the reader than for the writer. Why? Bacause it will explicitly tell the reader:&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<ul>
-<li>严格模式的声明 <em>必须</em> 放在文件的顶部。</li>
-<li>严格模式不仅作用于函数参数的类型声明，也作用于函数的返回值类型。</li>
-</ul>
-<p>声明 PHP 文件作为严格模式的一个好事是，实际上只适用于当前文件。这确保了这个文件是严格类型，但是他没有影响到整个项目中的其他文件。这允许你一步一步的迁移非严格模式的代码。</p>
-<p>使用提示类型没有 strict_types 可能导致微妙的错误。</p>
-<p>严格类型之前，<code>int $x</code> 意味着 <code>$x must have a value coercible to an int</code>。</p>
-<ul>
-<li>a float (example: 13.1459 -&gt; 13)</li>
-<li>a bool (example: true -&gt; 1)</li>
-<li>a null (example: null -&gt; 0)</li>
-<li>a string with leading digits (example: “15 Trees” -&gt; 15)</li>
-</ul>
-<p>设置严格模式后，you tell the engine that <code>int $x</code> means <code>$x must only be an int proper, no type coercion allowed</code>。</p>
-<p>谁给更关心 <code>strict_type</code> 这行？is more for the reader than for the writer. Why? Bacause it will explicitly tell the reader:</p>
-<p>The types in this current scope are treated strictly.</p>
-<h2 id="对比">对比</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$b</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">));</span>
-</span></span></code></pre></div><p>运行输出 <code>int(3)</code>。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$b</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">));</span>
-</span></span></code></pre></div><p>运行输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PHP Fatal error:  Uncaught TypeError: Argument <span class="m">1</span> passed to add<span class="o">()</span> must be of the <span class="nb">type</span> int, float given, ...
-</span></span></code></pre></div><h2 id="声明位置">声明位置</h2>
-<p>必须在脚本最前。不能写在脚本的中间，如下写法是错误的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$b</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">));</span>
-</span></span></code></pre></div><p>运行后报错：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PHP Fatal error:  strict_types declaration must be the very first statement in the script in ...
-</span></span></code></pre></div><p>不得使用 block mode 进行声明：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">var_dump</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>运行后报错：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PHP Fatal error:  strict_types declaration must not use block mode in ...
-</span></span></code></pre></div><h2 id="多文件场景">多文件场景</h2>
-<h3 id="例子-1">例子 1</h3>
-<p><code>A.php</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 严格模式
-</span></span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$b</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><code>B.php</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 非严格模式
-</span></span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;A.php&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 违反了 A 的定义
-</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">));</span>
-</span></span></code></pre></div><p>运行</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php B.php
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">int<span class="o">(</span>3<span class="o">)</span>
-</span></span></code></pre></div><h3 id="例子-2">例子 2</h3>
-<p><code>A.php</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 非严格模式
-</span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$a</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$b</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span>
-</span></span><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p><code>B.php</code></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 严格模式
-</span></span></span><span class="line"><span class="cl"><span class="k">declare</span><span class="p">(</span><span class="nx">strict_types</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="s1">&#39;A.php&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 违反了 A 的定义
-</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">add</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">));</span>
-</span></span></code></pre></div><p>运行</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php B.php
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">PHP Fatal error:  Uncaught TypeError: Argument <span class="m">1</span> passed to add<span class="o">()</span> must be of the <span class="nb">type</span> int, float given, called in ...
-</span></span></code></pre></div><h3 id="小结">小结</h3>
-<ul>
-<li>函数定义时的严格模式，行为并不会出现什么不同。</li>
-<li>函数执行时的，严格模式会出现差异。</li>
-<li><code>declare(strict_types=1);</code> 的声明本身在 A.php 文件中完成。被 B.php 文件 require，而 B.php 并没有定义严格模式，那么执行 require 的 B.php 文件不会变成严格模式。</li>
-</ul>
-<h2 id="总结">总结</h2>
-<p>只有在写 declare 的文件的执行部分才会执行严格模式，该文件中调用的其它函数（其它文件中的函数）也会被影响。</p>
-<p>若果想完全使用严格模式，比较简单的方法是在所有 php 文件都写上 <code>declare(strict_types=1);</code>。</p>
-<h2 id="工具">工具</h2>
-<p>推荐自动格式化工具：<a href="https://github.com/symplify/easy-coding-standard">symplify/easy-coding-standard</a>。</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000018389227">关于 declare(strict_types=1) 的有效范围 | segmentfault</a></li>
-<li><a href="https://chemaclass.medium.com/strict-types-in-php-d4166bd25394">Strict Types in PHP | medium</a></li>
-<li><a href="https://www.php.net/manual/en/migration70.new-features.php#migration70.new-features.scalar-type-declarations">Scalar type declarations | php</a></li>
-<li><a href="https://www.php.net/manual/en/language.types.declarations.php#language.types.declarations.strict">Strict typing | php</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
       <title>PHP 月份加减问题</title>
       <link>https://zyf.im/2021/01/27/php-strtotime-month/</link>
       <pubDate>Wed, 27 Jan 2021 18:18:24 +0000</pubDate>
@@ -5720,146 +5318,6 @@ server {
 <li><a href="https://www.codecasts.com/blog/post/php-tricky-floats-comparison-with-int">PHP 浮点型与整型比较的小坑 | codecasts</a></li>
 <li><a href="https://blog.csdn.net/fdipzone/article/details/48106065">php 浮点数比较方法 | csdn</a></li>
 <li><a href="https://www.laruence.com/2013/03/26/2884.html">PHP 浮点数的一个常见问题的解答 | laruence</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>PHP GD 入门使用</title>
-      <link>https://zyf.im/2020/04/16/php-gd-getting-started/</link>
-      <pubDate>Thu, 16 Apr 2020 17:24:37 +0000</pubDate>
-      <guid>https://zyf.im/2020/04/16/php-gd-getting-started/</guid>
-      <description>&lt;h2 id=&#34;gd-安装配置&#34;&gt;GD 安装、配置&lt;/h2&gt;
-&lt;p&gt;考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。&lt;/p&gt;
-&lt;h3 id=&#34;字体库-freetype-2&#34;&gt;字体库 FreeType 2&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.freetype.org/&#34;&gt;https://www.freetype.org/&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在临时目录进行操作&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# https://download.savannah.gnu.org/releases/freetype/&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget http://download.savannah.gnu.org/releases/freetype/freetype-2.10.1.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar zxvf freetype-2.10.1.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; freetype-2.10.1
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --prefix&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/freetype &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;图像格式-jpeg&#34;&gt;图像格式 jpeg&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# http://www.ijg.org/&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget http://www.ijg.org/files/jpegsrc.v9d.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar zxvf jpegsrc.v9.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; jpeg-9/
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --prefix&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/jpeg &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;图像格式-png&#34;&gt;图像格式 png&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /tmp
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# http://www.libpng.org/pub/png/libpng.html&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://download.sourceforge.net/libpng/libpng-1.6.37.tar.gz --no-check-certificate
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar zxvf libpng-1.6.37.tar.gz
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; libpng-1.6.37
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure --prefix&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;/usr/local/libpng &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;安装-gd&#34;&gt;安装 GD&lt;/h3&gt;
-&lt;p&gt;&lt;img alt=&#34;GD 安装、配置&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80169757-e35bc200-8618-11ea-8851-a4bc7411f6f9.png&#34;&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="gd-安装配置">GD 安装、配置</h2>
-<p>考虑到功能需要使用字体库、图像格式 jpeg\png 所以先安装相关库。</p>
-<h3 id="字体库-freetype-2">字体库 FreeType 2</h3>
-<p><a href="https://www.freetype.org/">https://www.freetype.org/</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在临时目录进行操作</span>
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># https://download.savannah.gnu.org/releases/freetype/</span>
-</span></span><span class="line"><span class="cl">wget http://download.savannah.gnu.org/releases/freetype/freetype-2.10.1.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">tar zxvf freetype-2.10.1.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> freetype-2.10.1
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">./configure --prefix<span class="o">=</span>/usr/local/freetype <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
-</span></span></code></pre></div><h3 id="图像格式-jpeg">图像格式 jpeg</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># http://www.ijg.org/</span>
-</span></span><span class="line"><span class="cl">wget http://www.ijg.org/files/jpegsrc.v9d.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">tar zxvf jpegsrc.v9.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> jpeg-9/
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">./configure --prefix<span class="o">=</span>/usr/local/jpeg <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
-</span></span></code></pre></div><h3 id="图像格式-png">图像格式 png</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /tmp
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># http://www.libpng.org/pub/png/libpng.html</span>
-</span></span><span class="line"><span class="cl">wget https://download.sourceforge.net/libpng/libpng-1.6.37.tar.gz --no-check-certificate
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">tar zxvf libpng-1.6.37.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> libpng-1.6.37
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">./configure --prefix<span class="o">=</span>/usr/local/libpng <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
-</span></span></code></pre></div><h3 id="安装-gd">安装 GD</h3>
-<p><img alt="GD 安装、配置" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80169757-e35bc200-8618-11ea-8851-a4bc7411f6f9.png"></p>
-<p>背景：服务器 php 7.1 通过编译自行安装的。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 到 php 源码 dir</span>
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="o">{</span>php-source-dir<span class="o">}</span>/ext/gd/
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 生成 configure 文件</span>
-</span></span><span class="line"><span class="cl"><span class="o">{</span>php-dir<span class="o">}</span>/bin/phpize
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看可用参数</span>
-</span></span><span class="line"><span class="cl">./configure --help
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置参数</span>
-</span></span><span class="line"><span class="cl">./configure --with-php-config<span class="o">={</span>php-dir<span class="o">}</span>/bin/php-config --with-jpeg-dir<span class="o">=</span>/usr/local/jpeg --with-png-dir<span class="o">=</span>/usr/local/libpng --with-freetype-dir<span class="o">=</span>/usr/local/freetype --enable-gd-native-ttf
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">vim <span class="o">{</span>php-dir<span class="o">}</span>/lib/php.ini
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 最底下增加一行</span>
-</span></span><span class="line"><span class="cl"><span class="nv">extension</span><span class="o">=</span>gd.so
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">service php-fpm reload
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 检查</span>
-</span></span><span class="line"><span class="cl">php -r <span class="s2">&#34;var_dump(gd_info());&#34;</span>
-</span></span></code></pre></div><p>编译前一定要记得 <code>make clean</code> 清除上次的编译内容，尤其是已经编译安装过的。</p>
-<h2 id="实例">实例</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$pic</span> <span class="o">=</span> <span class="nx">imagecreate</span><span class="p">(</span><span class="nv">$maxWidth</span><span class="p">,</span> <span class="nv">$maxHeight</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">//定义颜色
-</span></span></span><span class="line"><span class="cl"><span class="nv">$black</span> <span class="o">=</span> <span class="nx">imagecolorallocate</span><span class="p">(</span><span class="nv">$pic</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$white</span> <span class="o">=</span> <span class="nx">imagecolorallocate</span><span class="p">(</span><span class="nv">$pic</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 白底
-</span></span></span><span class="line"><span class="cl"><span class="nx">imagefill</span><span class="p">(</span><span class="nv">$pic</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$white</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 打水印
-</span></span></span><span class="line"><span class="cl"><span class="nx">imagettftext</span><span class="p">(</span><span class="nv">$pic</span><span class="p">,</span> <span class="nv">$fontSize</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="nv">$x</span><span class="p">,</span> <span class="nv">$y</span><span class="p">,</span> <span class="nv">$lightGrey</span><span class="p">,</span> <span class="nv">$fontFile</span><span class="p">,</span> <span class="nv">$mark</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">imagejpeg</span><span class="p">(</span><span class="nv">$pic</span><span class="p">,</span> <span class="nv">$resultPath</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">imagedestroy</span><span class="p">(</span><span class="nv">$pic</span><span class="p">);</span>
-</span></span></code></pre></div><p>文字右对齐：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// https://php.golaravel.com/function.imagettfbbox.html
-</span></span></span><span class="line"><span class="cl"><span class="nv">$bbox</span> <span class="o">=</span> <span class="nx">imagettfbbox</span><span class="p">(</span><span class="nv">$fontSize</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$fontFile</span><span class="p">,</span> <span class="nv">$text</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$offset</span> <span class="o">=</span> <span class="nv">$colWidth</span> <span class="o">-</span> <span class="nv">$bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">50</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">imagettftext</span><span class="p">(</span><span class="nv">$pic</span><span class="p">,</span> <span class="nv">$fontSize</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$x</span> <span class="o">+</span> <span class="nv">$offset</span><span class="p">,</span> <span class="nv">$y</span><span class="p">,</span> <span class="nv">$_color</span><span class="p">,</span> <span class="nv">$fontFile</span><span class="p">,</span> <span class="nv">$text</span><span class="p">);</span>
-</span></span></code></pre></div><h2 id="遇到的报错">遇到的报错</h2>
-<h3 id="call-to-undefined-function-imagettftext">Call to undefined function imagettftext()</h3>
-<p>出现此问题应该就是 <code>FreeType</code> 没有装好，可参考上面的步骤。</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://php.golaravel.com/intro.image.html">php 中文手册 | golaravel</a></li>
-<li><a href="https://stackoverflow.com/questions/7290958/php-fatal-error-call-to-undefined-function-imagettftext">PHP Fatal error: Call to undefined function imagettftext() | stackoverflow</a></li>
 </ul>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
@@ -7087,130 +6545,6 @@ Parsedown/example =&gt; __DIR__ . &#39;/..&#39; . &#39;/erusev/parsedown/example
 <p>Hack 是一门建立在 PHP 之上的编程语音，引入了静态类型，新的数据结构和额外的接口，同时还能向后兼容现有的动态类型 PHP 代码。</p>
 <p>动态类型和静态类型，二者之间的区别在于何时检查 PHP 类型。动态类型在运行时检查类型，而静态类型在编译时检查类型。</p>
 <p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>PhpStorm 使用经验</title>
-      <link>https://zyf.im/2018/05/05/phpstorm-using-experience/</link>
-      <pubDate>Sat, 05 May 2018 14:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2018/05/05/phpstorm-using-experience/</guid>
-      <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/phpstorm/getting-started/episode-1/&#34;&gt;Two shortcuts to get started&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Shift+Shift(⇧+⇧)&lt;/code&gt; helps you find anything within your project.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Alt+Enter(Option+Enter)&lt;/code&gt; provides instant access to contextual actions and quick fixes relevant to the selected code.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Getting started with PHP in PhpStorm&lt;/p&gt;
-&lt;p&gt;还有个 &lt;code&gt;One Dark theme&lt;/code&gt; 但是 &lt;code&gt;Material Theme UI&lt;/code&gt; 已经包含这个主题。&lt;/p&gt;
-&lt;p&gt;配置：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Preferences &amp;gt; Appearance &amp;amp; Behavior &amp;gt; Appearance&lt;/code&gt; 下，右侧配置：&lt;code&gt;Theme: Darcula&lt;/code&gt;，勾选 &lt;code&gt;User custom font: .AppleSystemUIFont&lt;/code&gt; &lt;code&gt;Size: 18&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Preferences &amp;gt; Editor &amp;gt; Font&lt;/code&gt; 下，右侧配置：&lt;code&gt;Font: Menlo&lt;/code&gt; &lt;code&gt;Size: 18&lt;/code&gt; &lt;code&gt;Line spacing: 1.2&lt;/code&gt;。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="getting-started">Getting Started</h2>
-<p><a href="https://www.jetbrains.com/phpstorm/getting-started/episode-1/">Two shortcuts to get started</a></p>
-<ul>
-<li><code>Shift+Shift(⇧+⇧)</code> helps you find anything within your project.</li>
-<li><code>Alt+Enter(Option+Enter)</code> provides instant access to contextual actions and quick fixes relevant to the selected code.</li>
-</ul>
-<p>Getting started with PHP in PhpStorm</p>
-<p>还有个 <code>One Dark theme</code> 但是 <code>Material Theme UI</code> 已经包含这个主题。</p>
-<p>配置：</p>
-<p><code>Preferences &gt; Appearance &amp; Behavior &gt; Appearance</code> 下，右侧配置：<code>Theme: Darcula</code>，勾选 <code>User custom font: .AppleSystemUIFont</code> <code>Size: 18</code>。</p>
-<p><code>Preferences &gt; Editor &gt; Font</code> 下，右侧配置：<code>Font: Menlo</code> <code>Size: 18</code> <code>Line spacing: 1.2</code>。</p>
-<p><code>Preferences &gt; Editor &gt; Color Scheme</code> 下，右侧配置：<code>Seheme: Atom One Dark(Material)</code> 点击右侧的三个点 <code>Duplicate</code> 复制一份。</p>
-<p><code>Preferences &gt; Editor &gt; Color Scheme &gt; General</code> 下，右侧配置：</p>
-<ul>
-<li>Editor &gt; Gutter background，右侧 <code>Background: 292929</code>（设置行号背景色）</li>
-<li>Editor &gt; Vertical Scrollar &gt; Thumb 与 Thumb while scrolling，右侧 <code>Background: 305599C0</code>（设置垂直滑块色）</li>
-<li>Editor &gt; Text &gt; Default text，右侧 <code>Background: 292929</code>（设置面板背景色）</li>
-</ul>
-<h2 id="快捷键">快捷键</h2>
-<ul>
-<li><code>command + ,</code> 打开设置</li>
-<li><code>command + shift + t</code> 在代码和对应单元测试间用快速切换</li>
-<li><code>command + e</code> 查看最近编辑文件列表</li>
-<li><code>shift + shift</code> 搜索文件/类/操作/设置</li>
-<li><code>command + option + t</code> 快速包裹 if/foreach/while 等控制结构
-<ul>
-<li><code>command + option + +/-</code> 快速展开/折叠</li>
-</ul>
-</li>
-<li><code>option + F12</code> 呼出内置终端</li>
-<li><code>command + shift + a</code> &ldquo;Quick Lists&rdquo; 创建高频操作集合</li>
-<li>Refactor
-<ul>
-<li><code>control + t</code> 重构代码优化</li>
-<li><code>command + n</code> 代码生成</li>
-<li><code>option + return</code> 语法修复、代码优化等建议</li>
-<li><code>option + 鼠标选择</code> 同时修改多处相同内容</li>
-</ul>
-</li>
-<li>Git
-<ul>
-<li><code>command + k</code> Commit Changes</li>
-<li><code>command + shift + k</code> Push Changes</li>
-<li><code>control + v</code> 查看版本操作菜单</li>
-</ul>
-</li>
-<li>Debug
-<ul>
-<li><code>command + F8</code>   # 添加断点</li>
-<li><code>control + d</code>    # 启动调试</li>
-<li><code>F8</code>             # Step Over</li>
-<li><code>F7</code>             # Step Into</li>
-<li><code>shift + F8</code>     # Step Out</li>
-</ul>
-</li>
-</ul>
-<h2 id="技巧">技巧</h2>
-<h3 id="围绕选择输入">围绕选择输入</h3>
-<p>设置选择了一个词后，再按单引号或双引号，将选中的单词用引号括起来。</p>
-<p><code>Preferences</code> 中搜索 <code>Surround Selection on typing quote or brace</code> 将其勾选（<code>Editor &gt; General &gt; Smart Keys</code> 下）。</p>
-<h3 id="关闭文档提示">关闭文档提示</h3>
-<p>鼠标放在方法上会出现文档提示，想关闭。</p>
-<p><code>Preferences</code> 中搜索 <code>Show quick documentation on mouse move</code> 取消勾选（<code>Editor &gt; Code Editing</code> 下）。</p>
-<h3 id="使用-php-cs-fixer">使用 PHP-CS-Fixer</h3>
-<blockquote>
-<p><a href="https://github.com/FriendsOfPHP/PHP-CS-Fixer">The PHP Coding Standards Fixer</a> (PHP CS Fixer) tool fixes your code to follow standards.</p>
-</blockquote>
-<p>工作环境：MacBook。</p>
-<p>打开 PhpStorm <code>Preferences &gt; Tools &gt; External Tools</code> 添加：</p>
-<p><img alt="180416-use-php-cs-fixer-in-phpstorm-001" loading="lazy" src="https://user-images.githubusercontent.com/9289792/88664953-715fb100-d110-11ea-970e-9dcb72945ebb.png"></p>
-<ul>
-<li>Program: <code>/usr/local/bin/php-cs-fixer</code></li>
-<li>Arguments: <code>--verbose fix &quot;$FileDir$/$FileName$&quot; --dry-run --rules=@PSR1,@PSR2,@Symfony</code>（Note that previous verions of PHP-CS-Fixer used &ndash;levels instead of &ndash;rules. 未找到）</li>
-<li>Working directory: <code>$ProjectFileDir$</code></li>
-<li>我取消勾选了 <code>Open console for tool output</code>，可以不输出日志信息</li>
-</ul>
-<p>为了方便使用，保存文件时就可以格式化，设置快捷键 <code>Preferences &gt; Keymap &gt; Macros</code>：</p>
-<p><img alt="180416-use-php-cs-fixer-in-phpstorm-002" loading="lazy" src="https://user-images.githubusercontent.com/9289792/88665170-c996b300-d110-11ea-8acf-62dad3694f2d.png"></p>
-<p>设置 php-cs-fix 单独的快捷键 <code>Preferences &gt; Keymap &gt; External Tools</code>：</p>
-<p><img alt="180416-use-php-cs-fixer-in-phpstorm-003" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202900-e5de0c00-8658-11ea-826f-b4d058fa2209.png"></p>
-<h3 id="关闭不常用的插件">关闭不常用的插件</h3>
-<p><code>Preferences &gt; Plugins &gt; Installed</code> 向下滚动，<code>Bundled</code> 中有不少预装但不常用的可以禁掉。</p>
-<h2 id="遇到过的一些问题">遇到过的一些问题</h2>
-<h3 id="文件类型错误">文件类型错误</h3>
-<p>一个文件被新建后，明明扩展名没有错，但是却没有语法高亮，删除文件后也不解决问题。</p>
-<p>解决办法：<code>Editor &gt; File Types</code> 找 <code>Text</code> 将里面涉及的文件删除掉。</p>
-<ul>
-<li><a href="https://segmentfault.com/q/1010000004495692">phpstorm 文件类型错误</a></li>
-</ul>
-<h3 id="undefined-function-xxx">Undefined function XXX</h3>
-<p>出现 PHP 的原生方法未定义的警告。</p>
-<p>解决方法：<code>File &gt; Invalidate Caches / Restart</code></p>
-<h3 id="typo-in-word-xxx">Typo: In word XXX</h3>
-<p>提示单词拼写错误，但是其中没有问题，比如全拼的名字。</p>
-<p>解决方法：option + enter -&gt; Save to dictionary</p>
-<ul>
-<li><a href="https://www.jetbrains.com/help/phpstorm/spellchecking.html">Spellchecking | jetbrains</a></li>
-</ul>
-<h3 id="warning-multiple-definitions-exists-for-class">warning: Multiple definitions exists for class</h3>
-<p>I resolved this by going to <code>Preferences-&gt; Languages &amp; Frameworks-&gt; PHP</code>; and then under <code>Include path</code>, remove the conflicting path. (In my case a package reference in the vendor directory to a package I was developing inside my Laravel project)</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://laravel-china.org/articles/4172/create-beautiful-phpstorm-interface">打造漂亮的 PhpStorm 界面</a></li>
-<li><a href="http://www.pilishen.com/posts/phpstorm-tips-and-tricks">大牛们的 PHPstorm 使用技巧和建议</a></li>
-<li><a href="https://gist.github.com/nienkedekker/3ddb9ece42233698c0e3f3e42cf1ff34">Use PHP-CS-Fixer in PHPStorm</a></li>
-</ul>
 ]]></content:encoded>
     </item>
   </channel>

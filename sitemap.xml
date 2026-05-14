@@ -2,21 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://zyf.im/posts/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/vaultwarden/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/php/</loc>
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
@@ -24,6 +9,15 @@
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/php-migrating/</loc>
+    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/posts/</loc>
+    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/</loc>
+    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/</loc>
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/nginx/</loc>
@@ -104,23 +98,11 @@
     <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
     <lastmod>2022-11-28T10:36:34+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/categories/code-snippet/</loc>
-    <lastmod>2022-11-17T10:09:26+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/11/17/docker-code-snippet/</loc>
-    <lastmod>2022-11-17T10:09:26+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/docker/</loc>
     <lastmod>2022-11-09T22:24:01+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2022/11/09/explore-laradock/</loc>
     <lastmod>2022-11-09T22:24:01+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/git/</loc>
-    <lastmod>2022-10-01T10:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/10/01/git-code-snippet/</loc>
-    <lastmod>2022-10-01T10:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/mysql/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
@@ -128,20 +110,11 @@
     <loc>https://zyf.im/2022/08/14/mysql-course-45-part1/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2022/07/28/shell-code-snippet/</loc>
-    <lastmod>2022-07-28T11:51:46+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2021/12/31/review-2021/</loc>
     <lastmod>2021-12-31T20:16:41+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2021/10/13/php-install-grpc/</loc>
-    <lastmod>2021-10-13T15:48:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2021/07/20/php-invoke-is-anybody-using-it/</loc>
-    <lastmod>2021-07-20T14:58:33+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2021/07/19/php-strict-types/</loc>
-    <lastmod>2021-07-19T19:58:26+00:00</lastmod>
+    <loc>https://zyf.im/tags/git/</loc>
+    <lastmod>2021-07-12T10:40:15+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/07/12/git-and-github-secrets/</loc>
     <lastmod>2021-07-12T10:40:15+00:00</lastmod>
@@ -151,9 +124,6 @@
   </url><url>
     <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</loc>
     <lastmod>2021-02-05T11:00:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2021/01/29/mysql-code-snippet/</loc>
-    <lastmod>2021-01-29T18:08:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/01/27/php-strtotime-month/</loc>
     <lastmod>2021-01-27T18:18:24+00:00</lastmod>
@@ -182,23 +152,8 @@
     <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
     <lastmod>2020-05-09T17:32:34+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/ide/</loc>
-    <lastmod>2020-04-28T10:43:39+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/04/28/ide-snippet/</loc>
-    <lastmod>2020-04-28T10:43:39+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/04/16/php-gd-getting-started/</loc>
-    <lastmod>2020-04-16T17:24:37+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2020/04/15/php-code-snippet/</loc>
     <lastmod>2020-04-15T18:03:44+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/03/13/prcc2019-getting-started-notes/</loc>
-    <lastmod>2020-03-13T22:25:25+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/pr/</loc>
-    <lastmod>2020-03-13T22:25:25+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/12/31/review-2019/</loc>
     <lastmod>2019-12-31T23:00:00+00:00</lastmod>
@@ -260,9 +215,6 @@
     <loc>https://zyf.im/2018/05/08/modern-php-reading-notes/</loc>
     <lastmod>2018-05-08T17:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2018/05/05/phpstorm-using-experience/</loc>
-    <lastmod>2018-05-05T14:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</loc>
     <lastmod>2018-04-26T16:00:00+00:00</lastmod>
   </url><url>
@@ -304,9 +256,6 @@
   </url><url>
     <loc>https://zyf.im/tags/reading-notes/</loc>
     <lastmod>2017-05-14T13:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/04/20/mysql-group-by-and-order-by-difference-between-56-57/</loc>
-    <lastmod>2017-04-20T20:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
     <lastmod>2017-04-11T11:00:00+00:00</lastmod>
@@ -404,9 +353,6 @@
     <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
     <lastmod>2016-07-31T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/07/25/imooc-mysql-development-skills-notes/</loc>
-    <lastmod>2016-07-25T10:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
     <lastmod>2016-07-11T09:00:00+00:00</lastmod>
   </url><url>
@@ -441,8 +387,8 @@
   </url><url>
     <loc>https://zyf.im/archives/</loc>
   </url><url>
-    <loc>https://zyf.im/links/</loc>
+    <loc>https://zyf.im/bookmarks/</loc>
   </url><url>
-    <loc>https://zyf.im/search/</loc>
+    <loc>https://zyf.im/quotes/</loc>
   </url>
 </urlset>
