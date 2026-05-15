@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://zyf.im/tags/1password/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/categories/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/categories/ops/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/posts/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/self-hosted/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/vaultwarden/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</loc>
+    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/tags/php/</loc>
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
@@ -9,15 +36,6 @@
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/php-migrating/</loc>
-    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/posts/</loc>
-    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/</loc>
-    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/</loc>
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/nginx/</loc>
@@ -76,9 +94,6 @@
   </url><url>
     <loc>https://zyf.im/2023/02/01/go-language-lesson-one/</loc>
     <lastmod>2023-02-01T11:44:27+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/categories/</loc>
-    <lastmod>2022-12-31T20:16:41+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/categories/review/</loc>
     <lastmod>2022-12-31T20:16:41+00:00</lastmod>

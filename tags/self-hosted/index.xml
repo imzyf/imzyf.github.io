@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Self-Hosted on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/self-hosted/</link>
+    <description>Recent content in Self-Hosted on ZYF.IM BLOG</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 23 Apr 2026 15:06:07 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/self-hosted/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从 1Password 迁移到 Vaultwarden</title>
+      <link>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</link>
+      <pubDate>Thu, 23 Apr 2026 15:06:07 +0000</pubDate>
+      <guid>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;1Password 不再有跨区订阅优惠，Family Annual ¥498/年 还是有些肉疼。同事们都推荐 Vaultwarden，正好 VPS 闲着，干脆自建。&lt;/p&gt;
+&lt;p&gt;Vaultwarden 是 Bitwarden 服务端的 Rust 重写实现，协议完全兼容官方客户端（桌面 / 移动端 / 浏览器扩展），但资源占用极低，1C/1G 的小机器跑得很轻松。&lt;/p&gt;
+&lt;h2 id=&#34;前置准备&#34;&gt;前置准备&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;一台 Debian 12 VPS（1C/1G 起步即可，家用绰绰有余）&lt;/li&gt;
+&lt;li&gt;一个域名，例如 &lt;code&gt;vault.example.com&lt;/code&gt;，在 DNS 服务商把 A 记录指向 VPS 公网 IP&lt;/li&gt;
+&lt;li&gt;一个 SMTP 邮箱（用于邀请家人、找回密码），推荐 &lt;a href=&#34;https://resend.com&#34;&gt;Resend&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;环境初始化&#34;&gt;环境初始化&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt upgrade -y &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apt install -y curl ca-certificates
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;timedatectl set-timezone Asia/Shanghai
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;adduser evan
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;usermod -aG sudo evan
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl -fsSL https://get.docker.com &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; sh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl &lt;span class=&#34;nb&#34;&gt;enable&lt;/span&gt; --now docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;usermod -aG docker evan
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;部署-vaultwarden--caddy&#34;&gt;部署 Vaultwarden + Caddy&lt;/h2&gt;
+&lt;p&gt;切到普通用户，建立工作目录：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="背景">背景</h2>
+<p>1Password 不再有跨区订阅优惠，Family Annual ¥498/年 还是有些肉疼。同事们都推荐 Vaultwarden，正好 VPS 闲着，干脆自建。</p>
+<p>Vaultwarden 是 Bitwarden 服务端的 Rust 重写实现，协议完全兼容官方客户端（桌面 / 移动端 / 浏览器扩展），但资源占用极低，1C/1G 的小机器跑得很轻松。</p>
+<h2 id="前置准备">前置准备</h2>
+<ul>
+<li>一台 Debian 12 VPS（1C/1G 起步即可，家用绰绰有余）</li>
+<li>一个域名，例如 <code>vault.example.com</code>，在 DNS 服务商把 A 记录指向 VPS 公网 IP</li>
+<li>一个 SMTP 邮箱（用于邀请家人、找回密码），推荐 <a href="https://resend.com">Resend</a></li>
+</ul>
+<h2 id="环境初始化">环境初始化</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt update <span class="o">&amp;&amp;</span> apt upgrade -y <span class="o">&amp;&amp;</span> apt install -y curl ca-certificates
+</span></span><span class="line"><span class="cl">timedatectl set-timezone Asia/Shanghai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">adduser evan
+</span></span><span class="line"><span class="cl">usermod -aG sudo evan
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">curl -fsSL https://get.docker.com <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now docker
+</span></span><span class="line"><span class="cl">usermod -aG docker evan
+</span></span></code></pre></div><h2 id="部署-vaultwarden--caddy">部署 Vaultwarden + Caddy</h2>
+<p>切到普通用户，建立工作目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -iu evan
+</span></span><span class="line"><span class="cl">mkdir -p ~/vaultwarden/<span class="o">{</span>vw-data,caddy-data,caddy-config<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/vaultwarden
+</span></span></code></pre></div><p>写 <code>docker-compose.yml</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">vaultwarden</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">vaultwarden/server:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">vaultwarden</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">DOMAIN</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://${VAULT_HOST}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ADMIN_TOKEN</span><span class="p">:</span><span class="w"> </span><span class="l">${ADMIN_TOKEN}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SIGNUPS_ALLOWED</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;false&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SMTP_HOST</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;smtp.resend.com&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SMTP_FROM</span><span class="p">:</span><span class="w"> </span><span class="l">${SMTP_FROM}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SMTP_PORT</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;465&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SMTP_SECURITY</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;force_tls&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SMTP_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;resend&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">SMTP_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l">${SMTP_PASSWORD}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">512M</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./vw-data:/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">internal]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">caddy:2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">caddy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">VAULT_HOST</span><span class="p">:</span><span class="w"> </span><span class="l">${VAULT_HOST}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;80:80&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;443:443&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./Caddyfile:/etc/caddy/Caddyfile:ro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./caddy-data:/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./caddy-config:/config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">internal]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">internal</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></span></span></code></pre></div><p>写 <code>.env</code>，凭据全部走环境变量，别直接写进 compose。<code>VAULT_HOST</code> 是单一来源，Vaultwarden 的 <code>DOMAIN</code> 由 compose 拼上 <code>https://</code> 前缀，Caddyfile 通过 <code>{$VAULT_HOST}</code> 读到纯 hostname：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim .env
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-env" data-lang="env"><span class="line"><span class="cl"><span class="nv">VAULT_HOST</span><span class="o">=</span><span class="s2">&#34;vault.example.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_FROM</span><span class="o">=</span><span class="s2">&#34;vault@notify.example.com&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SMTP_PASSWORD</span><span class="o">=</span><span class="s2">&#34;re_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ADMIN_TOKEN</span><span class="o">=</span><span class="s1">&#39;$argon2id$v=19$m=65540,t=3,p=4$&lt;salt&gt;$&lt;hash&gt;&#39;</span>
+</span></span></code></pre></div><p><code>ADMIN_TOKEN</code> 是后台管理页 <code>/admin</code> 的访问密钥，跟普通用户登录是两套体系。在 <code>SIGNUPS_ALLOWED: false</code> 的私有部署下，邀请家人、改运行时配置、管理 Organization 都要靠它。两点务必照做：</p>
+<p><strong>1. 填 argon2id hash，别填明文。</strong> 明文会被 <code>docker inspect</code> / debug 模式下的 <code>docker logs</code> / 某些重启场景下的 <code>ps -ef</code> 捕获；哈希后即使 <code>.env</code> 泄漏，攻击者也无法直接登录。生成命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -it vaultwarden/server /vaultwarden <span class="nb">hash</span>
+</span></span></code></pre></div><p>交互式输入两次 token，输出 <code>$argon2id$...</code> 整段粘进 <code>.env</code>。</p>
+<blockquote>
+<p>同一个 token 每次跑出的 hash 都不一样，这是 argon2id 故意的——salt 是现场随机生成并嵌在 hash 串里的。任挑一个写进 <code>.env</code> 都行，不必纠结哪个&quot;对&quot;。验证时 Vaultwarden 会从存储 hash 里提取 salt 复现比对。</p>
+</blockquote>
+<p>注意：<strong>登录 <code>/admin</code> 时输入的是原文 token，不是 hash</strong>，原文请自己用密码管理器存好。</p>
+<p><strong>2. 配置稳定后关掉后台。</strong> 家人都加完、SMTP 调通后，把 <code>.env</code> 里 <code>ADMIN_TOKEN=</code> 留空（或注释整行），重启容器后 <code>/admin</code> 直接 404，攻击面归零。后续要管理时再临时打开重启即可。</p>
+<p>更多细节参考 <a href="https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page">Vaultwarden Wiki: Enabling admin page</a>。</p>
+<p>写 <code>Caddyfile</code>，域名从 compose 注入的环境变量读取：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-caddy" data-lang="caddy"><span class="line"><span class="cl"><span class="se">{$VAULT_HOST}</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">encode</span> <span class="s">zstd</span> <span class="s">gzip</span>
+</span></span><span class="line"><span class="cl">    <span class="k">reverse_proxy</span> <span class="n">vaultwarden</span><span class="p">:</span><span class="mi">80</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>启动：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker compose up -d
+</span></span><span class="line"><span class="cl">docker compose logs -f
+</span></span></code></pre></div><p>容器跑起来后，访问 <a href="https://vault.example.com/admin">https://vault.example.com/admin</a>，用 <code>ADMIN_TOKEN</code> 原文登录后台，就可以邀请家人了。</p>
+<h2 id="数据备份方案">数据备份方案</h2>
+<p>Vaultwarden 所有状态都在 <code>vw-data/</code> 下：SQLite 数据库 <code>db.sqlite3</code>、附件 <code>attachments/</code>、Sends <code>sends/</code>、RSA 私钥 <code>rsa_key.*</code>、运行时配置 <code>config.json</code>。<code>icon_cache/</code> 只是网页 favicon 缓存，可忽略。</p>
+<p>VPS 故障、误删条目、或者哪天 docker volume 玄学损坏，没备份就是全家几百条密码一锅端。三条原则：</p>
+<ol>
+<li><strong>每日异地备份</strong>（脱离 VPS）</li>
+<li><strong>加密</strong>（云端泄漏不直接暴露 vault）</li>
+<li><strong>季度演练恢复</strong>（没真解密验证过的备份等于没备份）</li>
+</ol>
+<h3 id="restic--backblaze-b2">restic + Backblaze B2</h3>
+<p><a href="https://restic.net/">restic</a> 自带去重、增量、AES-256 加密，单二进制，跟 B2 / R2 / S3 都能直连。下面以 B2 为例（10GB 内免费，对密码库绰绰有余）。</p>
+<p>宿主机一次性初始化：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install -y restic
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat &gt; /root/.restic-env <span class="s">&lt;&lt;&#39;EOF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s">B2_ACCOUNT_ID=&lt;key-id&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">B2_ACCOUNT_KEY=&lt;application-key&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">RESTIC_REPOSITORY=b2:my-vaultwarden-backup:/
+</span></span></span><span class="line"><span class="cl"><span class="s">RESTIC_PASSWORD_FILE=/root/.restic-password
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> /root/.restic-env
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;&lt;a-strong-passphrase&gt;&#39;</span> &gt; /root/.restic-password
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> /root/.restic-password
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -a<span class="p">;</span> <span class="nb">source</span> /root/.restic-env<span class="p">;</span> <span class="nb">set</span> +a
+</span></span><span class="line"><span class="cl">restic init
+</span></span></code></pre></div><blockquote>
+<p><code>RESTIC_PASSWORD</code> 是恢复备份的<strong>唯一凭据</strong>，丢了就什么都救不回来。它又不能只存在 Vaultwarden 里（鸡生蛋问题），交叉存一份到 1Password（迁移过渡期）+ 打印一份纸质放抽屉。</p>
+</blockquote>
+<h3 id="备份脚本">备份脚本</h3>
+<p><code>/root/vaultwarden-backup.sh</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -a<span class="p">;</span> <span class="nb">source</span> /root/.restic-env<span class="p">;</span> <span class="nb">set</span> +a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">SOURCE</span><span class="o">=</span><span class="s2">&#34;/home/evan/vaultwarden/vw-data&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 任何退出路径都保证容器恢复运行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">trap</span> <span class="s1">&#39;docker start vaultwarden &gt;/dev/null 2&gt;&amp;1 || true&#39;</span> EXIT
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 短暂停机（~5s）拿到一致性快照</span>
+</span></span><span class="line"><span class="cl">docker stop vaultwarden &gt;/dev/null
+</span></span><span class="line"><span class="cl">restic backup <span class="s2">&#34;</span><span class="nv">$SOURCE</span><span class="s2">&#34;</span> --tag vaultwarden
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 滚动保留：日 7 / 周 4 / 月 12</span>
+</span></span><span class="line"><span class="cl">restic forget --prune <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --keep-daily <span class="m">7</span> --keep-weekly <span class="m">4</span> --keep-monthly <span class="m">12</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x /root/vaultwarden-backup.sh
+</span></span></code></pre></div><blockquote>
+<p>不在线备份（不用 <code>sqlite3 .backup</code>）的原因：vaultwarden 官方镜像不一定带 sqlite3 CLI，且 WAL 模式下直接 rsync 容易拿到不一致快照。stop 5 秒最稳。家用场景凌晨 3 点没人在用，这点停机完全无感。</p>
+</blockquote>
+<h3 id="每日跑">每日跑</h3>
+<p>cron 一行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo crontab -e
+</span></span></code></pre></div><pre tabindex="0"><code class="language-cron" data-lang="cron">30 3 * * * /root/vaultwarden-backup.sh &gt;&gt; /var/log/vaultwarden-backup.log 2&gt;&amp;1
+</code></pre><h3 id="演练恢复">演练恢复</h3>
+<p><strong>每季度做一次</strong>，且必须真解密一条记录验证 —— 文件存在不等于能解密：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 拉一份最新快照到临时目录</span>
+</span></span><span class="line"><span class="cl">restic snapshots
+</span></span><span class="line"><span class="cl">restic restore latest --target /tmp/vw-restore
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 把 /tmp/vw-restore/.../vw-data 当数据卷起一个测试 compose</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 master password 登录 → 打开任意条目 → 字段能看到明文 = 成功</span>
+</span></span></code></pre></div><p>SQLite 文件损坏或 RSA 密钥不匹配时，文件都在但密码全部解不开。<strong>演练才是备份的最后一公里</strong>。</p>
+<h2 id="ssh-agent-设置">SSH Agent 设置</h2>
+<p>Bitwarden 桌面端从 2024 年起内置了 SSH Agent，可以替代 1Password 的 SSH 体验。Vaultwarden 服务端不参与，全部在客户端完成。</p>
+<p>启用步骤：</p>
+<ol>
+<li>
+<p>打开 Bitwarden Desktop → Settings，勾选 <strong>Use Bitwarden SSH Agent</strong></p>
+</li>
+<li>
+<p>客户端会在系统目录里建一个 socket，先确认路径：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsof -U <span class="p">|</span> grep bitwarden-ssh-agent
+</span></span></code></pre></div><p>macOS 上典型路径：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">~/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
+</span></span></code></pre></div></li>
+<li>
+<p>把它 symlink 到一个稳定的位置，方便 shell 引用：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ln -sf <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">       <span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.bitwarden-ssh-agent.sock&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>在 <code>~/.zshrc</code> / <code>~/.bashrc</code> 里导出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">SSH_AUTH_SOCK</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HOME</span><span class="s2">/.bitwarden-ssh-agent.sock&#34;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>验证：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh-add -l
+</span></span></code></pre></div><p>能列出 Bitwarden 里标记为 SSH Key 的条目就成功了。</p>
+</li>
+</ol>
+<h2 id="迁移注意点">迁移注意点</h2>
+<ul>
+<li><strong>用桌面客户端导出 / 导入，不要用手机端的两端同步迁移</strong>。手机端那个流程会丢失部分自定义字段（TODO: 补具体丢失了哪些字段）</li>
+<li><strong>1Password 的 Vault 分组信息会丢失</strong>，迁移后需要在 Vaultwarden 里手工建文件夹重新归类</li>
+<li><strong>Passkey 无法迁移</strong>。Passkey 是绑定在验证器 app 内部的，必须在新平台上对每个站点重新注册</li>
+<li><strong>附件无法直接迁移</strong>，但 1Password 导出的 <code>.1pux</code> 文件本质是 zip，把后缀改成 <code>.zip</code> 解压后就能拿到原始附件，再手工挂回 Vaultwarden 对应条目</li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>
