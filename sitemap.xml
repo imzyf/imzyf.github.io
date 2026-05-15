@@ -113,12 +113,6 @@
     <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
     <lastmod>2022-11-28T10:36:34+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/docker/</loc>
-    <lastmod>2022-11-09T22:24:01+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/11/09/explore-laradock/</loc>
-    <lastmod>2022-11-09T22:24:01+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/mysql/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
   </url><url>
@@ -127,12 +121,6 @@
   </url><url>
     <loc>https://zyf.im/2021/12/31/review-2021/</loc>
     <lastmod>2021-12-31T20:16:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/git/</loc>
-    <lastmod>2021-07-12T10:40:15+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2021/07/12/git-and-github-secrets/</loc>
-    <lastmod>2021-07-12T10:40:15+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</loc>
     <lastmod>2021-02-06T11:00:41+00:00</lastmod>
@@ -158,6 +146,9 @@
     <loc>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</loc>
     <lastmod>2020-08-10T14:24:47+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/tags/git/</loc>
+    <lastmod>2020-08-10T14:24:47+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/tags/phpstorm/</loc>
     <lastmod>2020-05-26T09:45:15+00:00</lastmod>
   </url><url>
@@ -167,17 +158,11 @@
     <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
     <lastmod>2020-05-09T17:32:34+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2020/04/15/php-code-snippet/</loc>
-    <lastmod>2020-04-15T18:03:44+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2019/12/31/review-2019/</loc>
     <lastmod>2019-12-31T23:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2019-12-19T16:46:06+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/06/04/git-commit-message-style-guide/</loc>
-    <lastmod>2019-06-04T14:07:46+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</loc>
     <lastmod>2019-05-25T11:05:46+00:00</lastmod>

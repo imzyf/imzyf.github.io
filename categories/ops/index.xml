@@ -14,7 +14,7 @@
       <pubDate>Thu, 23 Apr 2026 15:06:07 +0000</pubDate>
       <guid>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</guid>
       <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
-&lt;p&gt;1Password 不再有跨区订阅优惠，Family Annual ¥498/年 还是有些肉疼。同事们都推荐 Vaultwarden，正好 VPS 闲着，干脆自建。&lt;/p&gt;
+&lt;p&gt;1Password 不再有跨区订阅优惠，Family Annual ¥498/年 还是有些肉疼。同事们都推荐 Vaultwarden，正好有空闲的 VPS，干脆自建。&lt;/p&gt;
 &lt;p&gt;Vaultwarden 是 Bitwarden 服务端的 Rust 重写实现，协议完全兼容官方客户端（桌面 / 移动端 / 浏览器扩展），但资源占用极低，1C/1G 的小机器跑得很轻松。&lt;/p&gt;
 &lt;h2 id=&#34;前置准备&#34;&gt;前置准备&lt;/h2&gt;
 &lt;ul&gt;
@@ -35,7 +35,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;部署-vaultwarden--caddy&#34;&gt;部署 Vaultwarden + Caddy&lt;/h2&gt;
 &lt;p&gt;切到普通用户，建立工作目录：&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="背景">背景</h2>
-<p>1Password 不再有跨区订阅优惠，Family Annual ¥498/年 还是有些肉疼。同事们都推荐 Vaultwarden，正好 VPS 闲着，干脆自建。</p>
+<p>1Password 不再有跨区订阅优惠，Family Annual ¥498/年 还是有些肉疼。同事们都推荐 Vaultwarden，正好有空闲的 VPS，干脆自建。</p>
 <p>Vaultwarden 是 Bitwarden 服务端的 Rust 重写实现，协议完全兼容官方客户端（桌面 / 移动端 / 浏览器扩展），但资源占用极低，1C/1G 的小机器跑得很轻松。</p>
 <h2 id="前置准备">前置准备</h2>
 <ul>
@@ -220,10 +220,10 @@
 </ol>
 <h2 id="迁移注意点">迁移注意点</h2>
 <ul>
-<li><strong>用桌面客户端导出 / 导入，不要用手机端的两端同步迁移</strong>。手机端那个流程会丢失部分自定义字段（TODO: 补具体丢失了哪些字段）</li>
-<li><strong>1Password 的 Vault 分组信息会丢失</strong>，迁移后需要在 Vaultwarden 里手工建文件夹重新归类</li>
-<li><strong>Passkey 无法迁移</strong>。Passkey 是绑定在验证器 app 内部的，必须在新平台上对每个站点重新注册</li>
-<li><strong>附件无法直接迁移</strong>，但 1Password 导出的 <code>.1pux</code> 文件本质是 zip，把后缀改成 <code>.zip</code> 解压后就能拿到原始附件，再手工挂回 Vaultwarden 对应条目</li>
+<li><strong>用桌面客户端导出 / 导入，不要用手机端的两端同步迁移</strong>，手机端那个流程会丢失部分自定义字段。</li>
+<li><strong>1Password 的 Vault 分组信息会丢失</strong>，迁移后需要在 Vaultwarden 里手工建文件夹重新归类。</li>
+<li><strong>Passkey 无法迁移</strong>，Passkey 是绑定在验证器 app 内部的，必须在新平台上对每个站点重新注册。</li>
+<li><strong>附件无法直接迁移</strong>，但 1Password 导出的 <code>.1pux</code> 文件本质是 zip，把后缀改成 <code>.zip</code> 解压后就能拿到原始附件，再手工挂回 Vaultwarden 对应条目。</li>
 </ul>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
