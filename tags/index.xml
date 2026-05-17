@@ -9,13 +9,6 @@
     <lastBuildDate>Thu, 23 Apr 2026 15:06:07 +0000</lastBuildDate>
     <atom:link href="https://zyf.im/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>1password</title>
-      <link>https://zyf.im/tags/1password/</link>
-      <pubDate>Thu, 23 Apr 2026 15:06:07 +0000</pubDate>
-      <guid>https://zyf.im/tags/1password/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Self-Hosted</title>
       <link>https://zyf.im/tags/self-hosted/</link>
       <pubDate>Thu, 23 Apr 2026 15:06:07 +0000</pubDate>
@@ -135,10 +128,10 @@
       <description></description>
     </item>
     <item>
-      <title>Ios</title>
-      <link>https://zyf.im/tags/ios/</link>
-      <pubDate>Fri, 15 Feb 2019 17:00:00 +0000</pubDate>
-      <guid>https://zyf.im/tags/ios/</guid>
+      <title>Laravel</title>
+      <link>https://zyf.im/tags/laravel/</link>
+      <pubDate>Fri, 25 May 2018 16:00:00 +0000</pubDate>
+      <guid>https://zyf.im/tags/laravel/</guid>
       <description></description>
     </item>
     <item>
@@ -153,13 +146,6 @@
       <link>https://zyf.im/tags/leetcode/</link>
       <pubDate>Mon, 19 Sep 2016 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/tags/leetcode/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Java</title>
-      <link>https://zyf.im/tags/java/</link>
-      <pubDate>Sat, 10 Sep 2016 19:00:00 +0000</pubDate>
-      <guid>https://zyf.im/tags/java/</guid>
       <description></description>
     </item>
     <item>

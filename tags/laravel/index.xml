@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Laravel on ZYF.IM BLOG</title>
+    <link>https://zyf.im/tags/laravel/</link>
+    <description>Recent content in Laravel on ZYF.IM BLOG</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <lastBuildDate>Fri, 25 May 2018 16:00:00 +0000</lastBuildDate>
+    <atom:link href="https://zyf.im/tags/laravel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL 日期/时间类型选型与时区处理</title>
+      <link>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</link>
+      <pubDate>Fri, 25 May 2018 16:00:00 +0000</pubDate>
+      <guid>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;适用版本：MySQL 8.0+ / Laravel 10+。MySQL 5.7 已 EOL，文中不再覆盖。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一句话结论&#34;&gt;一句话结论&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;「物理时刻」（事件发生于何时）→ &lt;strong&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/strong&gt;，自动跟随会话时区转换&lt;/li&gt;
+&lt;li&gt;「字面值」（合同上写的、用户输入的日期）→ &lt;strong&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/strong&gt;，原样存取不转换&lt;/li&gt;
+&lt;li&gt;仅日期 → &lt;code&gt;DATE&lt;/code&gt;；仅时长 → &lt;code&gt;TIME&lt;/code&gt;；JS/跨语言毫秒戳 → &lt;code&gt;BIGINT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;永远不要用 &lt;code&gt;VARCHAR&lt;/code&gt; 存日期&lt;/strong&gt;——无强制约束、无法范围查询、排序按字符串&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;选型对照表&#34;&gt;选型对照表&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;范围&lt;/th&gt;
+          &lt;th&gt;字节&lt;/th&gt;
+          &lt;th&gt;时区行为&lt;/th&gt;
+          &lt;th&gt;小数秒&lt;/th&gt;
+          &lt;th&gt;典型场景&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1000-01-01 00:00:00&lt;/code&gt; ~ &lt;code&gt;9999-12-31 23:59:59&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;5 + fsp&lt;/td&gt;
+          &lt;td&gt;字符串原样存取，&lt;strong&gt;不转换&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;DATETIME(0~6)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;合同生效时点、用户填写的本地时间、历史事件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1970-01-01 00:00:01 UTC&lt;/code&gt; ~ &lt;code&gt;2038-01-19 03:14:07 UTC&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;4 + fsp&lt;/td&gt;
+          &lt;td&gt;写入：会话时区 → UTC；读取：UTC → 会话时区&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;TIMESTAMP(0~6)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;created_at&lt;/code&gt; / &lt;code&gt;updated_at&lt;/code&gt;、日志、跨时区事件戳&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1000-01-01&lt;/code&gt; ~ &lt;code&gt;9999-12-31&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;生日、纪念日、报表日期&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;-838:59:59&lt;/code&gt; ~ &lt;code&gt;838:59:59&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;3 + fsp&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;TIME(0~6)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;营业时长、计时器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;YEAR&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1901&lt;/code&gt; ~ &lt;code&gt;2155&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;罕用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;INT64&lt;/td&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;应用层控制&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;JS 毫秒戳、Unix 微秒戳、跨语言互操作&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;小数秒（fsp，fractional seconds precision）&lt;/strong&gt; 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 &lt;code&gt;DATETIME(6)&lt;/code&gt; / &lt;code&gt;TIMESTAMP(6)&lt;/code&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>适用版本：MySQL 8.0+ / Laravel 10+。MySQL 5.7 已 EOL，文中不再覆盖。</p>
+</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<ul>
+<li>「物理时刻」（事件发生于何时）→ <strong><code>TIMESTAMP</code></strong>，自动跟随会话时区转换</li>
+<li>「字面值」（合同上写的、用户输入的日期）→ <strong><code>DATETIME</code></strong>，原样存取不转换</li>
+<li>仅日期 → <code>DATE</code>；仅时长 → <code>TIME</code>；JS/跨语言毫秒戳 → <code>BIGINT</code></li>
+<li><strong>永远不要用 <code>VARCHAR</code> 存日期</strong>——无强制约束、无法范围查询、排序按字符串</li>
+</ul>
+<h2 id="选型对照表">选型对照表</h2>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>范围</th>
+          <th>字节</th>
+          <th>时区行为</th>
+          <th>小数秒</th>
+          <th>典型场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>DATETIME</code></td>
+          <td><code>1000-01-01 00:00:00</code> ~ <code>9999-12-31 23:59:59</code></td>
+          <td>5 + fsp</td>
+          <td>字符串原样存取，<strong>不转换</strong></td>
+          <td><code>DATETIME(0~6)</code></td>
+          <td>合同生效时点、用户填写的本地时间、历史事件</td>
+      </tr>
+      <tr>
+          <td><code>TIMESTAMP</code></td>
+          <td><code>1970-01-01 00:00:01 UTC</code> ~ <code>2038-01-19 03:14:07 UTC</code></td>
+          <td>4 + fsp</td>
+          <td>写入：会话时区 → UTC；读取：UTC → 会话时区</td>
+          <td><code>TIMESTAMP(0~6)</code></td>
+          <td><code>created_at</code> / <code>updated_at</code>、日志、跨时区事件戳</td>
+      </tr>
+      <tr>
+          <td><code>DATE</code></td>
+          <td><code>1000-01-01</code> ~ <code>9999-12-31</code></td>
+          <td>3</td>
+          <td>—</td>
+          <td>—</td>
+          <td>生日、纪念日、报表日期</td>
+      </tr>
+      <tr>
+          <td><code>TIME</code></td>
+          <td><code>-838:59:59</code> ~ <code>838:59:59</code></td>
+          <td>3 + fsp</td>
+          <td>—</td>
+          <td><code>TIME(0~6)</code></td>
+          <td>营业时长、计时器</td>
+      </tr>
+      <tr>
+          <td><code>YEAR</code></td>
+          <td><code>1901</code> ~ <code>2155</code></td>
+          <td>1</td>
+          <td>—</td>
+          <td>—</td>
+          <td>罕用</td>
+      </tr>
+      <tr>
+          <td><code>BIGINT</code></td>
+          <td>INT64</td>
+          <td>8</td>
+          <td>应用层控制</td>
+          <td>—</td>
+          <td>JS 毫秒戳、Unix 微秒戳、跨语言互操作</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>小数秒（fsp，fractional seconds precision）</strong> 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 <code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code>。</p>
+<p><strong>2038 注意</strong>：<code>TIMESTAMP</code> 已剩 12 年寿命。新表对长期存储字段倾向 <code>DATETIME(6)</code>；<code>created_at</code> 当前用 <code>TIMESTAMP</code> 仍可（届时官方会延或可迁移），但<strong>业务时间字段直接上 <code>DATETIME</code></strong> 更稳。</p>
+<h3 id="自动初始化default--on-update">自动初始化（DEFAULT / ON UPDATE）</h3>
+<p><code>DATETIME</code> 与 <code>TIMESTAMP</code> 都支持自动初始化与自动更新——这点 5.6 之前只有 <code>TIMESTAMP</code> 能用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">paid_at</span><span class="w">    </span><span class="n">DATETIME</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>精度必须在 <code>DEFAULT</code> / <code>ON UPDATE</code> 间一致。</p>
+<h2 id="时区机制核心">时区机制（核心）</h2>
+<h3 id="三个变量">三个变量</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%time_zone%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- system_time_zone: OS 时区（mysqld 启动时确定，运行期改 OS 不生效）
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- time_zone:        MySQL 实际使用的时区，&#39;SYSTEM&#39; 表示跟随 system_time_zone
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 每个连接还有一份 @@session.time_zone
+</span></span></span></code></pre></div><h3 id="核心规则">核心规则</h3>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>写入</th>
+          <th>读取</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>DATETIME</code></td>
+          <td>字符串原样落盘</td>
+          <td>字符串原样返回</td>
+      </tr>
+      <tr>
+          <td><code>TIMESTAMP</code></td>
+          <td>用<strong>会话时区</strong>解释字符串 → 转 UTC 落盘</td>
+          <td>UTC → <strong>会话时区</strong>字符串</td>
+      </tr>
+  </tbody>
+</table>
+<p>推论：</p>
+<ul>
+<li>同一行 <code>TIMESTAMP</code>，UTC 会话读到 <code>2026-05-17 12:00:00</code>，<code>+08:00</code> 会话读到 <code>2026-05-17 20:00:00</code>——<strong>同一物理时刻的两种表达</strong>。</li>
+<li>同一行 <code>DATETIME</code>，两个会话读到的字符串一模一样——<strong>MySQL 不知道这字符串是哪个时区的</strong>。</li>
+</ul>
+<h3 id="修改时区">修改时区</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;+00:00&#39;</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 全实例（不需要 FLUSH PRIVILEGES，与权限无关）
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;+08:00&#39;</span><span class="p">;</span><span class="w">              </span><span class="c1">-- 当前会话
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asia/Shanghai&#39;</span><span class="p">;</span><span class="w">       </span><span class="c1">-- 仅在已导入 IANA 表后可用
+</span></span></span></code></pre></div><p>固化到配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># /etc/mysql/mysql.conf.d/mysqld.cnf</span>
+</span></span><span class="line"><span class="cl"><span class="k">[mysqld]</span>
+</span></span><span class="line"><span class="cl"><span class="na">default-time-zone</span> <span class="o">=</span> <span class="s">&#39;+00:00&#39;</span>
+</span></span></code></pre></div><h3 id="导入-iana-时区表">导入 IANA 时区表</h3>
+<p>默认安装下 MySQL 只认 <code>+08:00</code> 这种数字偏移；要用 <code>Asia/Shanghai</code> 这类 IANA 名（处理夏令时更安全），先从系统 zoneinfo 导一次：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql_tzinfo_to_sql /usr/share/zoneinfo <span class="p">|</span> mysql -u root -p mysql
+</span></span></code></pre></div><blockquote>
+<p>⚠️ <strong>不要用 <code>CST</code> 命名时区。</strong> MySQL 报告的 <code>CST</code> 是歧义缩写——可能是 China / Central / Cuba Standard Time 三者之一，跨平台行为不可控。一律用 <code>+08:00</code> 或 IANA 名。</p>
+</blockquote>
+<h2 id="laravel-实战">Laravel 实战</h2>
+<h3 id="默认行为速查">默认行为速查</h3>
+<table>
+  <thead>
+      <tr>
+          <th>项</th>
+          <th>默认</th>
+          <th>位置</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>App 时区</td>
+          <td><code>UTC</code></td>
+          <td><code>config/app.php</code> → <code>timezone</code></td>
+      </tr>
+      <tr>
+          <td><code>timestamps()</code> 列</td>
+          <td><code>TIMESTAMP</code></td>
+          <td><code>Schema::create</code> → <code>$table-&gt;timestamps()</code></td>
+      </tr>
+      <tr>
+          <td><code>softDeletes()</code></td>
+          <td><code>TIMESTAMP</code></td>
+          <td><code>$table-&gt;softDeletes()</code></td>
+      </tr>
+      <tr>
+          <td>Eloquent date cast</td>
+          <td><code>Carbon</code> 实例</td>
+          <td><code>created_at</code> / <code>updated_at</code> 自动；其它字段在 <code>casts()</code> 显式</td>
+      </tr>
+      <tr>
+          <td>序列化精度（Laravel 11+）</td>
+          <td>微秒</td>
+          <td><code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code></td>
+      </tr>
+      <tr>
+          <td>序列化格式</td>
+          <td>UTC ISO-8601（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）</td>
+          <td>默认</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="推荐做法全球化项目">推荐做法（全球化项目）</h3>
+<ol>
+<li>
+<p><strong>存储侧统一 UTC</strong>：<code>mysqld default-time-zone='+00:00'</code>、<code>config('app.timezone') = 'UTC'</code>。Laravel 官方原话「strongly encouraged」。</p>
+</li>
+<li>
+<p><strong><code>created_at</code> / <code>updated_at</code> 走 Laravel 默认 <code>TIMESTAMP</code></strong>——自动跟随会话时区。</p>
+</li>
+<li>
+<p><strong>业务时间字段（合同生效、活动开始、订单期望送达）用 <code>DATETIME(6)</code></strong>——这些是「字面值」，不该被时区影响。</p>
+</li>
+<li>
+<p><strong>展示层按用户时区转换</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">created_at</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="na">setTimezone</span><span class="p">(</span><span class="nx">auth</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">timezone</span> <span class="o">??</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">);</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="容易踩的坑">容易踩的坑</h3>
+<ol>
+<li>
+<p><strong><code>created_at</code> 序列化总是 UTC，不受 <code>app.timezone</code> 影响。</strong> 这是 Laravel 12 文档明确写的——<code>timestamp</code> cast 字段「always formatted in UTC, regardless of the application&rsquo;s timezone setting」。想本地化展示请走 cast 自定义或显式 <code>setTimezone</code>。</p>
+</li>
+<li>
+<p><strong><code>Carbon::now()</code> vs <code>DB::raw('NOW()')</code> 不等价。</strong> 前者用 PHP <code>app.timezone</code>，后者用 MySQL 会话时区。两边不一致时会写入错位的「物理时刻」。统一 UTC 是最稳的根治方案。</p>
+</li>
+<li>
+<p><strong>PDO 连接默认不发 <code>SET time_zone</code>，沿用 <code>@@global.time_zone</code>。</strong> 想在连接级隔离，在 <code>config/database.php</code> 的 mysql 驱动加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">PDO</span><span class="o">::</span><span class="na">MYSQL_ATTR_INIT_COMMAND</span> <span class="o">=&gt;</span> <span class="s2">&#34;SET time_zone = &#39;+00:00&#39;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">],</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong><code>$table-&gt;timestamp('paid_at')</code> 不会自动加 <code>ON UPDATE CURRENT_TIMESTAMP</code></strong>——需要时显式 <code>-&gt;useCurrentOnUpdate()</code>，默认值用 <code>-&gt;useCurrent()</code>。</p>
+</li>
+<li>
+<p><strong>JS 互操作存毫秒</strong>：用 <code>BIGINT</code> 比让 JS 解析 MySQL DATETIME 字符串少很多麻烦。</p>
+</li>
+</ol>
+<h2 id="references">References</h2>
+<ul>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">Date and Time Data Types</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html">DATE, DATETIME, and TIMESTAMP</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/timestamp-initialization.html">Automatic Initialization and Updating for TIMESTAMP and DATETIME</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html">MySQL Server Time Zone Support</a></li>
+<li>Laravel — <a href="https://laravel.com/docs/12.x/eloquent-mutators#date-casting">Date Casting, Serialization, and Timezones</a></li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

@@ -2,15 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://zyf.im/tags/1password/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/categories/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/categories/ops/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/posts/</loc>
     <lastmod>2026-04-23T15:06:07+00:00</lastmod>
   </url><url>
@@ -37,6 +28,9 @@
   </url><url>
     <loc>https://zyf.im/tags/php-migrating/</loc>
     <lastmod>2026-01-05T21:33:57+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/2025/12/23/self-hosted-proxy-subscription-management/</loc>
+    <lastmod>2025-12-23T10:12:12+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/nginx/</loc>
     <lastmod>2025-06-27T10:12:12+00:00</lastmod>
@@ -95,6 +89,9 @@
     <loc>https://zyf.im/2023/02/01/go-language-lesson-one/</loc>
     <lastmod>2023-02-01T11:44:27+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/categories/</loc>
+    <lastmod>2022-12-31T20:16:41+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/categories/review/</loc>
     <lastmod>2022-12-31T20:16:41+00:00</lastmod>
   </url><url>
@@ -118,6 +115,9 @@
   </url><url>
     <loc>https://zyf.im/2022/08/14/mysql-course-45-part1/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/2022/07/29/golang-project-practice-reading-notes-part1/</loc>
+    <lastmod>2022-07-29T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/12/31/review-2021/</loc>
     <lastmod>2021-12-31T20:16:41+00:00</lastmod>
@@ -188,12 +188,6 @@
     <loc>https://zyf.im/2019/03/01/extra-long-factorials/</loc>
     <lastmod>2019-03-01T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2019/02/15/swifter-tips-reading-notes/</loc>
-    <lastmod>2019-02-15T17:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/ios/</loc>
-    <lastmod>2019-02-15T17:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2018/12/31/review-2018/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>
   </url><url>
@@ -209,6 +203,9 @@
     <loc>https://zyf.im/2018/11/22/stack-data-structure/</loc>
     <lastmod>2018-11-22T14:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/tags/laravel/</loc>
+    <lastmod>2018-05-25T16:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</loc>
     <lastmod>2018-05-25T16:00:00+00:00</lastmod>
   </url><url>
@@ -218,17 +215,11 @@
     <loc>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</loc>
     <lastmod>2018-04-26T16:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2018/03/31/swift-init/</loc>
-    <lastmod>2018-03-31T17:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2018/01/19/got-git-reading-notes-model/</loc>
     <lastmod>2018-01-19T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</loc>
     <lastmod>2018-01-17T19:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/01/12/ios-dev-tips-and-tools/</loc>
-    <lastmod>2018-01-12T13:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/12/31/review-2017/</loc>
     <lastmod>2017-12-31T22:00:00+00:00</lastmod>
@@ -275,9 +266,6 @@
     <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
     <lastmod>2016-09-19T16:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</loc>
-    <lastmod>2016-09-18T14:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
     <lastmod>2016-09-14T13:45:00+00:00</lastmod>
   </url><url>
@@ -292,15 +280,6 @@
   </url><url>
     <loc>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</loc>
     <lastmod>2016-09-11T19:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/java/</loc>
-    <lastmod>2016-09-10T19:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/10/mybatis-generator-tutorial/</loc>
-    <lastmod>2016-09-10T19:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/07/springmvc-getting-started-tutorial/</loc>
-    <lastmod>2016-09-07T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/thinking/</loc>
     <lastmod>2016-08-31T23:00:00+00:00</lastmod>
@@ -350,14 +329,8 @@
     <loc>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</loc>
     <lastmod>2016-08-11T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</loc>
-    <lastmod>2016-07-31T10:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
     <lastmod>2016-07-11T09:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/07/07/ubuntu-jdk-nginx-wildfly-mysql-config/</loc>
-    <lastmod>2016-07-07T10:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/github/</loc>
     <lastmod>2016-07-01T20:00:00+00:00</lastmod>
@@ -371,14 +344,8 @@
     <loc>https://zyf.im/2016/06/30/github-pages-forbidden-baiduspide-solution/</loc>
     <lastmod>2016-06-30T20:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/06/27/eclipse-maven-spring-springmvc-mybatis-example/</loc>
-    <lastmod>2016-06-27T07:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
     <lastmod>2016-06-24T18:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/05/06/core-java-reading-notes/</loc>
-    <lastmod>2016-05-06T11:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
     <lastmod>2016-03-18T17:41:00+00:00</lastmod>

@@ -829,91 +829,303 @@ User Records 根据节点的不同，User Records 又分为四种不同类型：
 ]]></content:encoded>
     </item>
     <item>
-      <title>在 MySQL 中选择合适的日期类型</title>
+      <title>MySQL 日期/时间类型选型与时区处理</title>
       <link>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</link>
       <pubDate>Fri, 25 May 2018 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</guid>
-      <description>&lt;p&gt;如何在 MySQL 中选择合适的日期类型困扰了很久，&lt;code&gt;varchar&lt;/code&gt;、&lt;code&gt;int&lt;/code&gt;、&lt;code&gt;timestamp&lt;/code&gt;、&lt;code&gt;datetime&lt;/code&gt; 都有尝试过，近来有所感悟，做此总结。&lt;/p&gt;
-&lt;p&gt;注：此总结考虑了 PHP 和 Laravel 框架的特点。&lt;/p&gt;
-&lt;h2 id=&#34;使用-varchar&#34;&gt;使用 varchar&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;varchar&lt;/code&gt; 存储日期时间的格式完全可以自己控制，&lt;code&gt;月/日/年&lt;/code&gt; 还是 &lt;code&gt;年-月-日&lt;/code&gt; 需求怎么说就怎么存，读取后展示是也不用在格式化。同时伏笔也就此埋下：日期时间格式没强制约束，总有一天字段里出现了与众不同的格式；要是日期时间会 &lt;em&gt;变化&lt;/em&gt; 或作为 &lt;em&gt;查询条件&lt;/em&gt; 或要进行 &lt;em&gt;排序&lt;/em&gt; 时就又是一坑，还是要格式化标准格式再处理。可以说 &lt;code&gt;varchar&lt;/code&gt; 应该是最差的选择了。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;使用-int-与-timestamp&#34;&gt;使用 int 与 timestamp&lt;/h2&gt;
-&lt;p&gt;PHP &lt;code&gt;time()&lt;/code&gt; 可以直接获取当前时间戳秒数，数据库字段要也是 &lt;code&gt;int&lt;/code&gt; 一存就完事了，不会有格式问题，谁用什么样转什么样。但是在数据库工具中查看此字段时显示不够直观，范围时会不方便，这些在使用 &lt;code&gt;timestamp&lt;/code&gt; 是会得到解决。&lt;/p&gt;
-&lt;p&gt;timestamp 是我一直迷惑的一个类型。我写了几个例子做测试：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;将 Laravel 项目设置为 &lt;code&gt;CST&lt;/code&gt; 中国标准时间，MySQL 时区设置为 &lt;code&gt;UTC&lt;/code&gt;，使用 &lt;code&gt;now()&lt;/code&gt; 获取当前日期时间，比如：&lt;code&gt;2018-5-25 11:00:00&lt;/code&gt; 存入 &lt;code&gt;timestamp&lt;/code&gt; 类型的字段中，使用数据库工具查看字段结果为仍然为 &lt;code&gt;2018-5-25 11:00:00&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;继续上面的操作，项目中使用查询语句查询刚才的记录，结果显示为 &lt;code&gt;2018-5-25 11:00:00&lt;/code&gt;，将项目时区从 &lt;code&gt;CST&lt;/code&gt; 改为 &lt;code&gt;UTC&lt;/code&gt; 后再次查询的结果仍然为 &lt;code&gt;2018-5-25 11:00:00&lt;/code&gt; 没有变化。&lt;/li&gt;
-&lt;li&gt;继续上面的操作，将数据库的时区改为 &lt;code&gt;+8:00&lt;/code&gt;，数据库工具、项目查询后的结果为 &lt;code&gt;2018-5-25 19:00:00&lt;/code&gt; 发生了变化，修改项目为 &lt;code&gt;CST&lt;/code&gt; 查询结果是 &lt;code&gt;2018-5-25 19:00:00&lt;/code&gt; 和刚才一样也变化了。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这个测试说明了：&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>如何在 MySQL 中选择合适的日期类型困扰了很久，<code>varchar</code>、<code>int</code>、<code>timestamp</code>、<code>datetime</code> 都有尝试过，近来有所感悟，做此总结。</p>
-<p>注：此总结考虑了 PHP 和 Laravel 框架的特点。</p>
-<h2 id="使用-varchar">使用 varchar</h2>
-<p><code>varchar</code> 存储日期时间的格式完全可以自己控制，<code>月/日/年</code> 还是 <code>年-月-日</code> 需求怎么说就怎么存，读取后展示是也不用在格式化。同时伏笔也就此埋下：日期时间格式没强制约束，总有一天字段里出现了与众不同的格式；要是日期时间会 <em>变化</em> 或作为 <em>查询条件</em> 或要进行 <em>排序</em> 时就又是一坑，还是要格式化标准格式再处理。可以说 <code>varchar</code> 应该是最差的选择了。</p>
-<!-- more -->
-<h2 id="使用-int-与-timestamp">使用 int 与 timestamp</h2>
-<p>PHP <code>time()</code> 可以直接获取当前时间戳秒数，数据库字段要也是 <code>int</code> 一存就完事了，不会有格式问题，谁用什么样转什么样。但是在数据库工具中查看此字段时显示不够直观，范围时会不方便，这些在使用 <code>timestamp</code> 是会得到解决。</p>
-<p>timestamp 是我一直迷惑的一个类型。我写了几个例子做测试：</p>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;适用版本：MySQL 8.0+ / Laravel 10+。MySQL 5.7 已 EOL，文中不再覆盖。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一句话结论&#34;&gt;一句话结论&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;「物理时刻」（事件发生于何时）→ &lt;strong&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/strong&gt;，自动跟随会话时区转换&lt;/li&gt;
+&lt;li&gt;「字面值」（合同上写的、用户输入的日期）→ &lt;strong&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/strong&gt;，原样存取不转换&lt;/li&gt;
+&lt;li&gt;仅日期 → &lt;code&gt;DATE&lt;/code&gt;；仅时长 → &lt;code&gt;TIME&lt;/code&gt;；JS/跨语言毫秒戳 → &lt;code&gt;BIGINT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;永远不要用 &lt;code&gt;VARCHAR&lt;/code&gt; 存日期&lt;/strong&gt;——无强制约束、无法范围查询、排序按字符串&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;选型对照表&#34;&gt;选型对照表&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;范围&lt;/th&gt;
+          &lt;th&gt;字节&lt;/th&gt;
+          &lt;th&gt;时区行为&lt;/th&gt;
+          &lt;th&gt;小数秒&lt;/th&gt;
+          &lt;th&gt;典型场景&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1000-01-01 00:00:00&lt;/code&gt; ~ &lt;code&gt;9999-12-31 23:59:59&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;5 + fsp&lt;/td&gt;
+          &lt;td&gt;字符串原样存取，&lt;strong&gt;不转换&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;DATETIME(0~6)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;合同生效时点、用户填写的本地时间、历史事件&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1970-01-01 00:00:01 UTC&lt;/code&gt; ~ &lt;code&gt;2038-01-19 03:14:07 UTC&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;4 + fsp&lt;/td&gt;
+          &lt;td&gt;写入：会话时区 → UTC；读取：UTC → 会话时区&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;TIMESTAMP(0~6)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;created_at&lt;/code&gt; / &lt;code&gt;updated_at&lt;/code&gt;、日志、跨时区事件戳&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1000-01-01&lt;/code&gt; ~ &lt;code&gt;9999-12-31&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;生日、纪念日、报表日期&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;-838:59:59&lt;/code&gt; ~ &lt;code&gt;838:59:59&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;3 + fsp&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;TIME(0~6)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;营业时长、计时器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;YEAR&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;1901&lt;/code&gt; ~ &lt;code&gt;2155&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;罕用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;INT64&lt;/td&gt;
+          &lt;td&gt;8&lt;/td&gt;
+          &lt;td&gt;应用层控制&lt;/td&gt;
+          &lt;td&gt;—&lt;/td&gt;
+          &lt;td&gt;JS 毫秒戳、Unix 微秒戳、跨语言互操作&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;小数秒（fsp，fractional seconds precision）&lt;/strong&gt; 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 &lt;code&gt;DATETIME(6)&lt;/code&gt; / &lt;code&gt;TIMESTAMP(6)&lt;/code&gt;。&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>适用版本：MySQL 8.0+ / Laravel 10+。MySQL 5.7 已 EOL，文中不再覆盖。</p>
+</blockquote>
+<h2 id="一句话结论">一句话结论</h2>
+<ul>
+<li>「物理时刻」（事件发生于何时）→ <strong><code>TIMESTAMP</code></strong>，自动跟随会话时区转换</li>
+<li>「字面值」（合同上写的、用户输入的日期）→ <strong><code>DATETIME</code></strong>，原样存取不转换</li>
+<li>仅日期 → <code>DATE</code>；仅时长 → <code>TIME</code>；JS/跨语言毫秒戳 → <code>BIGINT</code></li>
+<li><strong>永远不要用 <code>VARCHAR</code> 存日期</strong>——无强制约束、无法范围查询、排序按字符串</li>
+</ul>
+<h2 id="选型对照表">选型对照表</h2>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>范围</th>
+          <th>字节</th>
+          <th>时区行为</th>
+          <th>小数秒</th>
+          <th>典型场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>DATETIME</code></td>
+          <td><code>1000-01-01 00:00:00</code> ~ <code>9999-12-31 23:59:59</code></td>
+          <td>5 + fsp</td>
+          <td>字符串原样存取，<strong>不转换</strong></td>
+          <td><code>DATETIME(0~6)</code></td>
+          <td>合同生效时点、用户填写的本地时间、历史事件</td>
+      </tr>
+      <tr>
+          <td><code>TIMESTAMP</code></td>
+          <td><code>1970-01-01 00:00:01 UTC</code> ~ <code>2038-01-19 03:14:07 UTC</code></td>
+          <td>4 + fsp</td>
+          <td>写入：会话时区 → UTC；读取：UTC → 会话时区</td>
+          <td><code>TIMESTAMP(0~6)</code></td>
+          <td><code>created_at</code> / <code>updated_at</code>、日志、跨时区事件戳</td>
+      </tr>
+      <tr>
+          <td><code>DATE</code></td>
+          <td><code>1000-01-01</code> ~ <code>9999-12-31</code></td>
+          <td>3</td>
+          <td>—</td>
+          <td>—</td>
+          <td>生日、纪念日、报表日期</td>
+      </tr>
+      <tr>
+          <td><code>TIME</code></td>
+          <td><code>-838:59:59</code> ~ <code>838:59:59</code></td>
+          <td>3 + fsp</td>
+          <td>—</td>
+          <td><code>TIME(0~6)</code></td>
+          <td>营业时长、计时器</td>
+      </tr>
+      <tr>
+          <td><code>YEAR</code></td>
+          <td><code>1901</code> ~ <code>2155</code></td>
+          <td>1</td>
+          <td>—</td>
+          <td>—</td>
+          <td>罕用</td>
+      </tr>
+      <tr>
+          <td><code>BIGINT</code></td>
+          <td>INT64</td>
+          <td>8</td>
+          <td>应用层控制</td>
+          <td>—</td>
+          <td>JS 毫秒戳、Unix 微秒戳、跨语言互操作</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>小数秒（fsp，fractional seconds precision）</strong> 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 <code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code>。</p>
+<p><strong>2038 注意</strong>：<code>TIMESTAMP</code> 已剩 12 年寿命。新表对长期存储字段倾向 <code>DATETIME(6)</code>；<code>created_at</code> 当前用 <code>TIMESTAMP</code> 仍可（届时官方会延或可迁移），但<strong>业务时间字段直接上 <code>DATETIME</code></strong> 更稳。</p>
+<h3 id="自动初始化default--on-update">自动初始化（DEFAULT / ON UPDATE）</h3>
+<p><code>DATETIME</code> 与 <code>TIMESTAMP</code> 都支持自动初始化与自动更新——这点 5.6 之前只有 <code>TIMESTAMP</code> 能用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">updated_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">paid_at</span><span class="w">    </span><span class="n">DATETIME</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div><p>精度必须在 <code>DEFAULT</code> / <code>ON UPDATE</code> 间一致。</p>
+<h2 id="时区机制核心">时区机制（核心）</h2>
+<h3 id="三个变量">三个变量</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%time_zone%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- system_time_zone: OS 时区（mysqld 启动时确定，运行期改 OS 不生效）
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- time_zone:        MySQL 实际使用的时区，&#39;SYSTEM&#39; 表示跟随 system_time_zone
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 每个连接还有一份 @@session.time_zone
+</span></span></span></code></pre></div><h3 id="核心规则">核心规则</h3>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>写入</th>
+          <th>读取</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>DATETIME</code></td>
+          <td>字符串原样落盘</td>
+          <td>字符串原样返回</td>
+      </tr>
+      <tr>
+          <td><code>TIMESTAMP</code></td>
+          <td>用<strong>会话时区</strong>解释字符串 → 转 UTC 落盘</td>
+          <td>UTC → <strong>会话时区</strong>字符串</td>
+      </tr>
+  </tbody>
+</table>
+<p>推论：</p>
+<ul>
+<li>同一行 <code>TIMESTAMP</code>，UTC 会话读到 <code>2026-05-17 12:00:00</code>，<code>+08:00</code> 会话读到 <code>2026-05-17 20:00:00</code>——<strong>同一物理时刻的两种表达</strong>。</li>
+<li>同一行 <code>DATETIME</code>，两个会话读到的字符串一模一样——<strong>MySQL 不知道这字符串是哪个时区的</strong>。</li>
+</ul>
+<h3 id="修改时区">修改时区</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;+00:00&#39;</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 全实例（不需要 FLUSH PRIVILEGES，与权限无关）
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;+08:00&#39;</span><span class="p">;</span><span class="w">              </span><span class="c1">-- 当前会话
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Asia/Shanghai&#39;</span><span class="p">;</span><span class="w">       </span><span class="c1">-- 仅在已导入 IANA 表后可用
+</span></span></span></code></pre></div><p>固化到配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># /etc/mysql/mysql.conf.d/mysqld.cnf</span>
+</span></span><span class="line"><span class="cl"><span class="k">[mysqld]</span>
+</span></span><span class="line"><span class="cl"><span class="na">default-time-zone</span> <span class="o">=</span> <span class="s">&#39;+00:00&#39;</span>
+</span></span></code></pre></div><h3 id="导入-iana-时区表">导入 IANA 时区表</h3>
+<p>默认安装下 MySQL 只认 <code>+08:00</code> 这种数字偏移；要用 <code>Asia/Shanghai</code> 这类 IANA 名（处理夏令时更安全），先从系统 zoneinfo 导一次：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql_tzinfo_to_sql /usr/share/zoneinfo <span class="p">|</span> mysql -u root -p mysql
+</span></span></code></pre></div><blockquote>
+<p>⚠️ <strong>不要用 <code>CST</code> 命名时区。</strong> MySQL 报告的 <code>CST</code> 是歧义缩写——可能是 China / Central / Cuba Standard Time 三者之一，跨平台行为不可控。一律用 <code>+08:00</code> 或 IANA 名。</p>
+</blockquote>
+<h2 id="laravel-实战">Laravel 实战</h2>
+<h3 id="默认行为速查">默认行为速查</h3>
+<table>
+  <thead>
+      <tr>
+          <th>项</th>
+          <th>默认</th>
+          <th>位置</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>App 时区</td>
+          <td><code>UTC</code></td>
+          <td><code>config/app.php</code> → <code>timezone</code></td>
+      </tr>
+      <tr>
+          <td><code>timestamps()</code> 列</td>
+          <td><code>TIMESTAMP</code></td>
+          <td><code>Schema::create</code> → <code>$table-&gt;timestamps()</code></td>
+      </tr>
+      <tr>
+          <td><code>softDeletes()</code></td>
+          <td><code>TIMESTAMP</code></td>
+          <td><code>$table-&gt;softDeletes()</code></td>
+      </tr>
+      <tr>
+          <td>Eloquent date cast</td>
+          <td><code>Carbon</code> 实例</td>
+          <td><code>created_at</code> / <code>updated_at</code> 自动；其它字段在 <code>casts()</code> 显式</td>
+      </tr>
+      <tr>
+          <td>序列化精度（Laravel 11+）</td>
+          <td>微秒</td>
+          <td><code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code></td>
+      </tr>
+      <tr>
+          <td>序列化格式</td>
+          <td>UTC ISO-8601（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）</td>
+          <td>默认</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="推荐做法全球化项目">推荐做法（全球化项目）</h3>
 <ol>
-<li>将 Laravel 项目设置为 <code>CST</code> 中国标准时间，MySQL 时区设置为 <code>UTC</code>，使用 <code>now()</code> 获取当前日期时间，比如：<code>2018-5-25 11:00:00</code> 存入 <code>timestamp</code> 类型的字段中，使用数据库工具查看字段结果为仍然为 <code>2018-5-25 11:00:00</code>。</li>
-<li>继续上面的操作，项目中使用查询语句查询刚才的记录，结果显示为 <code>2018-5-25 11:00:00</code>，将项目时区从 <code>CST</code> 改为 <code>UTC</code> 后再次查询的结果仍然为 <code>2018-5-25 11:00:00</code> 没有变化。</li>
-<li>继续上面的操作，将数据库的时区改为 <code>+8:00</code>，数据库工具、项目查询后的结果为 <code>2018-5-25 19:00:00</code> 发生了变化，修改项目为 <code>CST</code> 查询结果是 <code>2018-5-25 19:00:00</code> 和刚才一样也变化了。</li>
+<li>
+<p><strong>存储侧统一 UTC</strong>：<code>mysqld default-time-zone='+00:00'</code>、<code>config('app.timezone') = 'UTC'</code>。Laravel 官方原话「strongly encouraged」。</p>
+</li>
+<li>
+<p><strong><code>created_at</code> / <code>updated_at</code> 走 Laravel 默认 <code>TIMESTAMP</code></strong>——自动跟随会话时区。</p>
+</li>
+<li>
+<p><strong>业务时间字段（合同生效、活动开始、订单期望送达）用 <code>DATETIME(6)</code></strong>——这些是「字面值」，不该被时区影响。</p>
+</li>
+<li>
+<p><strong>展示层按用户时区转换</strong>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$model</span><span class="o">-&gt;</span><span class="na">created_at</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="na">setTimezone</span><span class="p">(</span><span class="nx">auth</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">timezone</span> <span class="o">??</span> <span class="s1">&#39;UTC&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d H:i:s&#39;</span><span class="p">);</span>
+</span></span></code></pre></div></li>
 </ol>
-<p>这个测试说明了：</p>
-<ul>
-<li>项目的时区影响的是 PHP 的时区，影响的是 <code>now()</code> 产生的日期时间。</li>
-<li>一个日期时间从项目存入数据库时，这个日期时间的时区是数据库设置的时区，和项目无关了。传入什么样子数据库存什么样子，更换了参照系，但是没有转换日期时间。</li>
-<li>从数据库中读一个时间戳日期时间，这个是时间戳日期时间受到数据库的时区影响，和项目的时区无关。</li>
-</ul>
-<p>我现在认识的结论：</p>
-<ul>
-<li>因为数据库时区不可能轻易改变，所以依靠数据库转换时区不可能。</li>
-<li>没看出来时间戳对于处理时区对 <code>datatime</code> 有什么过人之处，若有就是时间戳将时间标准设置在了 <code>UTC</code>，占 4 字节更小些。</li>
-<li>数据库时区和项目时区不一致可能会坑，如果一直不一致同时各个项目也一直错下去，没不会有察觉。</li>
-<li>对应国际化项目，是不是应该将数据库和项目还有服务器都设置为 <code>UTC</code>？谁使用谁根据用户的时区进行处理。</li>
-</ul>
-<h2 id="使用-timestamp-与-datetime">使用 timestamp 与 datetime</h2>
-<p><code>datetime</code> 字段类型存储的时间不会随时间库时区发生变化，占 8 个字节，可存储 <code>1000-01-01 00:00:00</code> 到 <code>9999-12-31 23:59:59</code>。而时间戳只能存储 <code>1970</code> 年到 <code>2038</code> 年多，<code>2038</code> 还有 20 年怎么感觉马上就到了。</p>
-<p><code>datetime</code> 个人推荐的存储时间的格式。</p>
-<h2 id="时区处理常见问题">时区处理常见问题</h2>
-<p>北京用户在北京时间 <code>2018-05-27 10:00:00</code> 发布一个文章。</p>
-<p>如果在前端发布日期时间为 <code>2018-05-27 10:00:00</code>，在北京用户看来是没问题的，但是在美国的用户看来是奇怪的，因为美国没有到 <code>2018-05-27 10:00:00</code> 他们甚至还在 26 日。</p>
-<p>这时 <code>1 min ago</code> 这种展示形式就解决了这个问题，<code>ago</code> 是一种绝对的方式，在一个月之后再显示完整的日期时间，此时世界各地肯定已经度过了这个要展示日期时间，无论在哪国用户显示 <code>2018-05-27 10:00:00</code> 都不会奇怪了。</p>
-<p>同时也要注意，我们将各个时区都设置为 <code>UTC</code> 后，<code>ago</code> 的时间很好计算，但是在一个月之后日前时间完全显示，美国用户看北京用户的发布日期时间也应该是在中国看来的 <code>2018-05-27 10:00:00</code>，此发布日期不应该以美国用户为标准。这个问题的解决方法还在考虑，日期时间是存储多个字段来区分用于显示或比较，还是自行转换处理，需要实践测试。</p>
-<h2 id="mysql-查看修改时区">MySQL 查看、修改时区</h2>
-<h3 id="查看时区">查看时区</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&gt; select now();   # 或 select curtime();
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">&gt; show variables like &#34;%time_zone%&#34;; # SELECT @@global.time_zone, @@session.time_zone;
-</span></span><span class="line"><span class="cl">+------------------+--------+
-</span></span><span class="line"><span class="cl">| Variable_name    | Value  |
-</span></span><span class="line"><span class="cl">+------------------+--------+
-</span></span><span class="line"><span class="cl">| system_time_zone | CST    |
-</span></span><span class="line"><span class="cl">| time_zone        | SYSTEM |
-</span></span><span class="line"><span class="cl">+------------------+--------+
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># time_zone 说明 mysql 使用 system 的时区，system_time_zone 说明 system 使用 CST 时区
-</span></span></code></pre></div><h3 id="修改时区">修改时区</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&gt; set global time_zone = &#39;+8:00&#39;;  # 修改 mysql 全局时区为北京时间，即我们所在的东8区
-</span></span><span class="line"><span class="cl">&gt; set time_zone = &#39;+8:00&#39;;  # 修改当前会话时区 SET time_zone = &#39;Asia/Shanghai&#39;
-</span></span><span class="line"><span class="cl">&gt; flush privileges;  # 立即生效
-</span></span></code></pre></div><p>通过修改 <code>my.cnf</code> 配置文件来修改时区</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># vim /etc/my.cnf
-</span></span><span class="line"><span class="cl"># 在[mysqld]区域中加上
-</span></span><span class="line"><span class="cl">default-time-zone=&#39;+8:00&#39;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"># /etc/init.d/mysqld restart  # 重启 mysql 使新时区生效
-</span></span></code></pre></div><h2 id="最后的总结">最后的总结</h2>
-<p>全球化的项目应当考虑：</p>
-<ul>
-<li>项目、数据库、服务器都建议设置为 <code>UTC</code></li>
-<li>要考虑时分秒的字段用 <code>datetime</code> 类型，不用考虑时分秒的字段用 <code>date</code></li>
-<li><code>created_at</code> 和 <code>updated_at</code> 字段，考虑 <code>Laravel</code> 框架的特点使用 <code>timestamp</code></li>
-</ul>
+<h3 id="容易踩的坑">容易踩的坑</h3>
+<ol>
+<li>
+<p><strong><code>created_at</code> 序列化总是 UTC，不受 <code>app.timezone</code> 影响。</strong> 这是 Laravel 12 文档明确写的——<code>timestamp</code> cast 字段「always formatted in UTC, regardless of the application&rsquo;s timezone setting」。想本地化展示请走 cast 自定义或显式 <code>setTimezone</code>。</p>
+</li>
+<li>
+<p><strong><code>Carbon::now()</code> vs <code>DB::raw('NOW()')</code> 不等价。</strong> 前者用 PHP <code>app.timezone</code>，后者用 MySQL 会话时区。两边不一致时会写入错位的「物理时刻」。统一 UTC 是最稳的根治方案。</p>
+</li>
+<li>
+<p><strong>PDO 连接默认不发 <code>SET time_zone</code>，沿用 <code>@@global.time_zone</code>。</strong> 想在连接级隔离，在 <code>config/database.php</code> 的 mysql 驱动加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">PDO</span><span class="o">::</span><span class="na">MYSQL_ATTR_INIT_COMMAND</span> <span class="o">=&gt;</span> <span class="s2">&#34;SET time_zone = &#39;+00:00&#39;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">],</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong><code>$table-&gt;timestamp('paid_at')</code> 不会自动加 <code>ON UPDATE CURRENT_TIMESTAMP</code></strong>——需要时显式 <code>-&gt;useCurrentOnUpdate()</code>，默认值用 <code>-&gt;useCurrent()</code>。</p>
+</li>
+<li>
+<p><strong>JS 互操作存毫秒</strong>：用 <code>BIGINT</code> 比让 JS 解析 MySQL DATETIME 字符串少很多麻烦。</p>
+</li>
+</ol>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="http://coolnull.com/4091.html">mysql 修改时区的几种方法</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/date-and-time-types.html">Date and Time Data Types</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/datetime.html">DATE, DATETIME, and TIMESTAMP</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/timestamp-initialization.html">Automatic Initialization and Updating for TIMESTAMP and DATETIME</a></li>
+<li>MySQL 8.0 Reference — <a href="https://dev.mysql.com/doc/refman/8.0/en/time-zone-support.html">MySQL Server Time Zone Support</a></li>
+<li>Laravel — <a href="https://laravel.com/docs/12.x/eloquent-mutators#date-casting">Date Casting, Serialization, and Timezones</a></li>
 </ul>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
@@ -923,527 +1135,294 @@ User Records 根据节点的不同，User Records 又分为四种不同类型：
       <link>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</link>
       <pubDate>Tue, 11 Apr 2017 11:00:00 +0000</pubDate>
       <guid>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</guid>
-      <description>&lt;p&gt;MySQL 创建用户、修改密码、删除用户；查看、授予、撤销用户权限；对 MySQL 远程访问的新理解。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 创建用户 + 授权
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IDENTIFIED&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;pwd123&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WITH&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 查询权限
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SHOW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GRANTS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FOR&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 授权
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 撤权
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;REVOKE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_db&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+      <description>&lt;blockquote&gt;
+&lt;p&gt;适用版本：MySQL 8.0+。5.7 已于 2023-10-31 EOL，本文不再覆盖其语法（如 &lt;code&gt;IDENTIFIED BY&lt;/code&gt; 嵌在 &lt;code&gt;GRANT&lt;/code&gt; 里、&lt;code&gt;PASSWORD()&lt;/code&gt; 函数等均已移除）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;速查&#34;&gt;速查&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 建用户 + 授权（8.0 必须分两步，GRANT 不再支持隐式建用户/带密码）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IDENTIFIED&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;pwd123&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ALL&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ON&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;TO&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WITH&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;GRANT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;OPTION&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- not necessary
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;FLUSH&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;PRIVILEGES&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;管理用户&#34;&gt;管理用户&lt;/h2&gt;
-&lt;h3 id=&#34;创建用户&#34;&gt;创建用户&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CREATE USER &lt;span class=&#34;s1&#34;&gt;&amp;#39;username&amp;#39;&lt;/span&gt;@&lt;span class=&#34;s1&#34;&gt;&amp;#39;host&amp;#39;&lt;/span&gt; IDENTIFIED BY &lt;span class=&#34;s1&#34;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;username&lt;/code&gt;：创建的用户名&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;host&lt;/code&gt;：该用户在哪个主机上可以登陆。如果是本地用户可用 &lt;code&gt;localhost&lt;/code&gt;；如果想让该用户可以从任意远程主机登陆，可以使用通配符 &lt;code&gt;%&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;password&lt;/code&gt;：该用户的登陆密码。密码可以为空，如果为空则该用户可以不需要密码登陆服务器&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;例子：&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>MySQL 创建用户、修改密码、删除用户；查看、授予、撤销用户权限；对 MySQL 远程访问的新理解。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 创建用户 + 授权
-</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">_</span><span class="p">.</span><span class="n">_</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd123&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 查询权限
-</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 授权
-</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">`</span><span class="n">my_db</span><span class="o">`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 撤权
-</span></span></span><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">`</span><span class="n">my_db</span><span class="o">`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">`</span><span class="n">my_db</span><span class="o">`</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 查 / 改密 / 删
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SHOW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GRANTS&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FOR&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ALTER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IDENTIFIED&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;new_pwd&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;DROP&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;tom&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;%&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;用户&#34;&gt;用户&lt;/h2&gt;
+&lt;h3 id=&#34;创建&#34;&gt;创建&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;username&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;host&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IDENTIFIED&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;字段&lt;/th&gt;
+          &lt;th&gt;含义&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;username&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;账号名&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;host&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;允许从哪个主机登陆。&lt;code&gt;localhost&lt;/code&gt; 仅本机；&lt;code&gt;%&lt;/code&gt; 任意远端；&lt;code&gt;192.168.1.%&lt;/code&gt; 限定网段&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;password&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;登陆密码，可省略（不建议）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;8.0 的默认认证插件是 &lt;strong&gt;&lt;code&gt;caching_sha2_password&lt;/code&gt;&lt;/strong&gt;（5.7 是 &lt;code&gt;mysql_native_password&lt;/code&gt;）。绝大多数现代客户端已支持；但 PHP &lt;code&gt;mysqlnd&lt;/code&gt; &amp;lt; 7.2.8、部分老 ORM/客户端连不上时，单独为该账号回退插件：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<blockquote>
+<p>适用版本：MySQL 8.0+。5.7 已于 2023-10-31 EOL，本文不再覆盖其语法（如 <code>IDENTIFIED BY</code> 嵌在 <code>GRANT</code> 里、<code>PASSWORD()</code> 函数等均已移除）。</p>
+</blockquote>
+<h2 id="速查">速查</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 建用户 + 授权（8.0 必须分两步，GRANT 不再支持隐式建用户/带密码）
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd123&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- not necessary
-</span></span></span><span class="line"><span class="cl"><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h2 id="管理用户">管理用户</h2>
-<h3 id="创建用户">创建用户</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><ul>
-<li><code>username</code>：创建的用户名</li>
-<li><code>host</code>：该用户在哪个主机上可以登陆。如果是本地用户可用 <code>localhost</code>；如果想让该用户可以从任意远程主机登陆，可以使用通配符 <code>%</code></li>
-<li><code>password</code>：该用户的登陆密码。密码可以为空，如果为空则该用户可以不需要密码登陆服务器</li>
-</ul>
-<p>例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;dog&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;192.168.1.%&#39;</span> IDENDIFIED BY <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span> IDENTIFIED BY <span class="s1">&#39;123456&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span> IDENTIFIED BY <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="修改用户密码">修改用户密码</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SET PASSWORD FOR <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> <span class="o">=</span> PASSWORD<span class="o">(</span><span class="s1">&#39;newpassword&#39;</span><span class="o">)</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">SET PASSWORD FOR <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span> <span class="o">=</span> PASSWORD<span class="o">(</span><span class="s2">&#34;123456&#34;</span><span class="o">)</span><span class="p">;</span>
-</span></span></code></pre></div><p>如果修改当前登陆用户密码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SET <span class="nv">PASSWORD</span> <span class="o">=</span> PASSWORD<span class="o">(</span><span class="s2">&#34;newpassword&#34;</span><span class="o">)</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="删除用户">删除用户</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DROP USER <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><h2 id="访问授权">访问授权</h2>
-<h3 id="查看用户权限">查看用户权限</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SHOW GRANTS FOR <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="授予用户权限">授予用户权限</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GRANT PRIVILEGES ON databasename.tablename TO <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">GRANT SELECT, INSERT ON test.user TO <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">GRANT ALL ON *.* TO <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><ul>
-<li><code>privileges</code>：用户的操作权限，如 <code>SELECT</code> <code>INSERT</code> <code>UPDATE</code> 等，如果要授予所的权限则使用 <code>ALL</code></li>
-<li><code>databasename</code>：数据库名</li>
-<li><code>tablename</code>：表名，如果要授予该用户对所有数据库和表的相应操作权限则可用 <code>*</code> 表示</li>
-</ul>
-<p><strong>注意：</strong> 用以上命令授权的用户不能给其它用户授权，如果想让该用户可以授权，用 <code>WITH GRANT OPTION</code> 命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GRANT PRIVILEGES ON databasename.tablename TO <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span> WITH GRANT OPTION<span class="p">;</span>
-</span></span></code></pre></div><h3 id="撤销用户权限">撤销用户权限</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">REVOKE PRIVILEGE ON databasename.tablename FROM <span class="s1">&#39;username&#39;</span>@<span class="s1">&#39;host&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">REVOKE SELECT ON *.* FROM <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p><strong>注意：</strong> 假如你在给用户&rsquo;pig&rsquo;@&rsquo;%&lsquo;授权的时候是这样的（或类似的）：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GRANT SELECT ON test.user TO <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>则在使用：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">REVOKE SELECT ON _._ FROM <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>命令并 <strong>不能</strong> 撤销该用户对 test 数据库中 user 表的 SELECT 操作。</p>
-<p>相反，如果授权使用的是：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GRANT SELECT ON _._ TO <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>则：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">REVOKE SELECT ON test.user FROM <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><p>命令 <strong>也不能</strong> 撤销该用户对 test 数据库中 user 表的 SELECT 权限。</p>
-<p>具体信息可以用查看命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SHOW GRANTS FOR <span class="s1">&#39;pig&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
-</span></span></code></pre></div><h3 id="刷新权限">刷新权限</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
-</span></span></code></pre></div><h3 id="开启远程访问">开启远程访问</h3>
-<p>通过上面的配置，可以发现：开启 MySQL 远程访问，其实就是修改用户权限：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-- 只允许 192.168.1.100 连接
-</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON _._ TO <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;192.168.1.100&#39;</span> IDENTIFIED BY <span class="s1">&#39;pwd123&#39;</span> WITH GRANT OPTION<span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">-- 允许所有 ip 访问
-</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON _._ TO <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span> IDENTIFIED BY <span class="s1">&#39;pwd123&#39;</span> WITH GRANT OPTION<span class="p">;</span>
-</span></span></code></pre></div><p><strong>注意：</strong> Ubuntu 上还需要修改 MySQL 配置文件</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
-</span></span></code></pre></div><p>将 <code>bind-address = 127.0.0.1</code> 这一行注释掉, 即:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#bind-address = 127.0.0.1</span>
-</span></span></code></pre></div><p>重启 MySQL</p>
-<h2 id="补充">补充</h2>
-<p>查询当前用户：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql&gt; SELECT CURRENT_USER<span class="o">()</span><span class="p">;</span>
-</span></span></code></pre></div><table>
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 查 / 改密 / 删
+</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;new_pwd&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="用户">用户</h2>
+<h3 id="创建">创建</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;host&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><table>
   <thead>
       <tr>
-          <th>HOST</th>
-          <th>User</th>
-          <th>被条目匹配的连接</th>
+          <th>字段</th>
+          <th>含义</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td>&rsquo;thomas.loc.gov&rsquo;</td>
-          <td>&lsquo;fred&rsquo;</td>
-          <td>fred, 从 thomas.loc.gov 连接</td>
+          <td><code>username</code></td>
+          <td>账号名</td>
       </tr>
       <tr>
-          <td>&rsquo;thomas.loc.gov'</td>
-          <td>''</td>
-          <td>任何用户, 从 thomas.loc.gov 连接</td>
+          <td><code>host</code></td>
+          <td>允许从哪个主机登陆。<code>localhost</code> 仅本机；<code>%</code> 任意远端；<code>192.168.1.%</code> 限定网段</td>
       </tr>
       <tr>
-          <td>&lsquo;%&rsquo;</td>
-          <td>&lsquo;fred&rsquo;</td>
-          <td>fred, 从任何主机连接</td>
-      </tr>
-      <tr>
-          <td>&lsquo;%&rsquo;</td>
-          <td>''</td>
-          <td>任何用户, 从任何主机连接</td>
-      </tr>
-      <tr>
-          <td>&lsquo;%.loc.gov&rsquo;</td>
-          <td>&lsquo;fred&rsquo;</td>
-          <td>fred, 从在 loc.gov 域的任何主机连接</td>
-      </tr>
-      <tr>
-          <td>&lsquo;x.y.%&rsquo;</td>
-          <td>&lsquo;fred&rsquo;</td>
-          <td>fred, 从 x.y.net、x.y.com,x.y.edu 等联接（这或许无用）</td>
-      </tr>
-      <tr>
-          <td>&lsquo;144.155.166.177&rsquo;</td>
-          <td>&lsquo;fred&rsquo;</td>
-          <td>fred, 从有 144.155.166.177 的主机连接</td>
-      </tr>
-      <tr>
-          <td>&lsquo;144.155.166.%&rsquo;</td>
-          <td>&lsquo;fred&rsquo;</td>
-          <td>fred, 从 144.155.166 C 类子网的任何主机连接</td>
+          <td><code>password</code></td>
+          <td>登陆密码，可省略（不建议）</td>
       </tr>
   </tbody>
 </table>
-<p>可以在 Host 字段使用 IP 通配符值（例如，<code>'144.155.166.%'</code> 匹配在一个子网上的每台主机），有可能某人可能企图探究这种能力，通过命名一台主机为 144.155.166.somewhere.com。为了阻止这样的企图，MySQL 不允许匹配以数字和一个点起始的主机名，这样，如果你用一个命名为类似 1.2.foo.com 的主机，它的名字决不会匹配授权表中的 Host 列。只有一个 IP 数字能匹配 IP 通配符值。</p>
-<h2 id="references">References</h2>
+<p>8.0 的默认认证插件是 <strong><code>caching_sha2_password</code></strong>（5.7 是 <code>mysql_native_password</code>）。绝大多数现代客户端已支持；但 PHP <code>mysqlnd</code> &lt; 7.2.8、部分老 ORM/客户端连不上时，单独为该账号回退插件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">mysql_native_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;dog&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;192.168.1.%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w">   </span><span class="c1">-- 空密码，等价于无密码
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">                    </span><span class="c1">-- 无密码
+</span></span></span></code></pre></div><h3 id="改密--锁定--过期">改密 / 锁定 / 过期</h3>
+<p><code>ALTER USER</code> 是 8.0 修改账号属性的统一入口（<code>SET PASSWORD</code> 与 <code>PASSWORD()</code> 已废）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 改他人密码
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;new_pwd&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 改自己当前密码
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="k">USER</span><span class="p">()</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;new_pwd&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 强制下次登陆改密
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="n">EXPIRE</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 密码过期策略：每 90 天强制改一次
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="n">EXPIRE</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="k">DAY</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 账号上锁 / 解锁
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="k">LOCK</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">ACCOUNT</span><span class="w"> </span><span class="n">UNLOCK</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 连续失败登录自动锁定（8.0.19+）：5 次失败锁 1 天
+</span></span></span><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">FAILED_LOGIN_ATTEMPTS</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="n">PASSWORD_LOCK_TIME</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="删除">删除</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">DROP</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;host&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="权限">权限</h2>
+<h3 id="授予">授予</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="n">priv_type</span><span class="w"> </span><span class="p">[(</span><span class="n">col_list</span><span class="p">)]</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="n">priv_type</span><span class="w"> </span><span class="p">...]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">ON</span><span class="w"> </span><span class="p">[</span><span class="n">object_type</span><span class="p">]</span><span class="w"> </span><span class="k">level</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">TO</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="p">...]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">];</span><span class="w">
+</span></span></span></code></pre></div><p>按层级（<code>level</code>）从大到小：</p>
+<table>
+  <thead>
+      <tr>
+          <th>层级</th>
+          <th>写法</th>
+          <th>例子</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>全局</td>
+          <td><code>*.*</code></td>
+          <td><code>GRANT ALL PRIVILEGES ON *.* TO 'pig'@'%'</code></td>
+      </tr>
+      <tr>
+          <td>库</td>
+          <td><code>db.*</code></td>
+          <td><code>GRANT ALL ON my_db.* TO 'pig'@'%'</code></td>
+      </tr>
+      <tr>
+          <td>表</td>
+          <td><code>db.tbl</code></td>
+          <td><code>GRANT SELECT, INSERT ON test.user TO 'pig'@'%'</code></td>
+      </tr>
+      <tr>
+          <td>列</td>
+          <td><code>db.tbl</code> + 列名</td>
+          <td><code>GRANT SELECT (name, email) ON test.user TO 'pig'@'%'</code></td>
+      </tr>
+      <tr>
+          <td>存储例程</td>
+          <td><code>PROCEDURE db.x</code> / <code>FUNCTION db.x</code></td>
+          <td><code>GRANT EXECUTE ON PROCEDURE app.calc TO 'pig'@'%'</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><code>WITH GRANT OPTION</code> 允许被授权者把自己的权限再传给别人。</p>
+<h3 id="查看">查看</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">GRANTS</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="s1">&#39;app_read&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 含指定 role 展开后的权限
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 从系统视图反查（适合脚本）
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">user_privileges</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">GRANTEE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;&#39;pig&#39;@&#39;%&#39;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="撤销">撤销</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="n">priv_type</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">level</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">user</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">,</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 一把全收
+</span></span></span></code></pre></div><p><strong>核心规则：REVOKE 的层级必须与 GRANT 时完全一致。</strong> 表级授权只能用表级回收，库级只能用库级回收——彼此不能跨级抵消。</p>
+<table>
+  <thead>
+      <tr>
+          <th>当初 GRANT</th>
+          <th>用这条 REVOKE</th>
+          <th>结果</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>GRANT SELECT ON test.user TO 'pig'@'%'</code></td>
+          <td><code>REVOKE SELECT ON *.* FROM 'pig'@'%'</code></td>
+          <td>❌ 不生效</td>
+      </tr>
+      <tr>
+          <td><code>GRANT SELECT ON *.* TO 'pig'@'%'</code></td>
+          <td><code>REVOKE SELECT ON test.user FROM 'pig'@'%'</code></td>
+          <td>❌ 不生效</td>
+      </tr>
+      <tr>
+          <td><code>GRANT SELECT ON test.user TO 'pig'@'%'</code></td>
+          <td><code>REVOKE SELECT ON test.user FROM 'pig'@'%'</code></td>
+          <td>✅ 生效</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="flush-privileges">FLUSH PRIVILEGES？</h3>
+<p><code>CREATE USER</code> / <code>GRANT</code> / <code>REVOKE</code> / <code>ALTER USER</code> / <code>DROP USER</code> 都会自动重载授权表，<strong>不需要</strong> <code>FLUSH PRIVILEGES</code>。只有当你绕过 DCL、直接 <code>INSERT/UPDATE/DELETE</code> <code>mysql.user</code> 等系统表时（强烈不推荐）才必须手动刷新。</p>
+<h2 id="角色">角色</h2>
+<p>角色（ROLE）是命名的一组权限。给一批用户授同样权限时，比一条条 GRANT 简洁得多——一改全改。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 1. 建角色 + 给角色授权
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="s1">&#39;app_read&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;app_write&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w">                    </span><span class="k">ON</span><span class="w"> </span><span class="n">app_db</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;app_read&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span><span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">app_db</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;app_write&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 2. 把角色授给用户
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;reporter&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="s1">&#39;app_read&#39;</span><span class="w">              </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;reporter&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="s1">&#39;app_read&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;app_write&#39;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 3. 登陆即激活（否则用户每次连进来要 SET ROLE 一下，应用层一般不会做）
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;reporter&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>用户侧查看/切换：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">CURRENT_ROLE</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="s1">&#39;app_read&#39;</span><span class="p">;</span><span class="w">   </span><span class="c1">-- 只激活某个
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="k">ALL</span><span class="p">;</span><span class="w">          </span><span class="c1">-- 激活全部已授角色
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="k">NONE</span><span class="p">;</span><span class="w">         </span><span class="c1">-- 全部停用
+</span></span></span></code></pre></div><p>几条容易踩的坑：</p>
 <ul>
-<li><a href="http://www.jianshu.com/p/d7b9c468f20d">MySQL 创建用户与授权 - 简书</a></li>
-<li><a href="http://www.iteedu.com/database/mysql/mysqlmanualcn/database-administration/connection-access.php">5.7.5. 访问控制, 阶段 1：连接核实</a></li>
+<li>角色与用户共享 <code>mysql.user</code> 命名空间——<code>CREATE ROLE 'x'</code> 之后 <code>CREATE USER 'x'@'%'</code> 会冲突。</li>
+<li>角色默认 <strong><code>ACCOUNT LOCK</code></strong>，不能直接登陆，符合「角色不是账号」的语义。</li>
+<li>想全实例自动激活，可设服务器变量：<code>SET PERSIST activate_all_roles_on_login = ON;</code></li>
 </ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>MySQL LIMIT 查询优化</title>
-      <link>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</link>
-      <pubDate>Sun, 18 Sep 2016 14:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2016/09/18/mysql-limit-query-optimization/</guid>
-      <description>&lt;p&gt;最近常在 SQL 中使用到 &lt;code&gt;LIMIT ? ?&lt;/code&gt;，在执行 &lt;code&gt;LIMIT 0, 1000&lt;/code&gt; 与 &lt;code&gt;LIMIT 100000, 1000&lt;/code&gt; 时，查询速度明显有很大的区别，而且随着 LIMIT 的偏移量的增加，查询速度越来越慢。是否有办法对 SQL 中 LIMIT 查询进行优化呢？&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;limit-速度慢的原因&#34;&gt;LIMIT 速度慢的原因&lt;/h2&gt;
-&lt;p&gt;LIMIT 100000, 1000 的意思扫描满足条件的 101000 行，扔掉前面的 100000 行，返回最后的 1000 行，问题就在这里。&lt;/p&gt;
-&lt;h2 id=&#34;limit-优化思路&#34;&gt;LIMIT 优化思路&lt;/h2&gt;
-&lt;p&gt;1、尽可能从索引中直接获取数据，避免或减少直接扫描行数据的频率
-2、尽可能减少扫描的记录数，也就是先确定起始的范围，再往后取 N 条记录即可&lt;/p&gt;
-&lt;h2 id=&#34;limit-优化示例&#34;&gt;LIMIT 优化示例&lt;/h2&gt;
-&lt;h3 id=&#34;原始-sql&#34;&gt;原始 SQL&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 含条件
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ftype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 不含 WHERE
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;子查询优化-sql&#34;&gt;子查询优化 SQL&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 采用子查询的方式优化，在子查询里先从索引获取到最大 id，然后倒序排，再取 10 行结果集
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 注意这里采用了 2 次倒序排，因此在取 LIMIT 的 start 值时，比原来的值加了 10，即 935510，否则结果将和原来的不一致
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ftype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;935510&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;inner-优化-sql&#34;&gt;INNER 优化 SQL&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;-- 采用 INNER JOIN 优化，JOIN 子句里也优先从索引获取 ID 列表，然后直接关联查询获得最终结果，这里不需要加 10
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;INNER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;JOIN&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;SELECT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;FROM&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;WHERE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ftype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;ORDER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;DESC&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;LIMIT&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;935500&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USING&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;1、要学着使用 &lt;code&gt;EXPLAIN&lt;/code&gt; 对 SQL 进行优化调整
-2、推荐使用 INNER 优化 SQL
-3、发现了一个 ubuntu 中监控 MySQL 的 &lt;code&gt;mytop&lt;/code&gt; 命令，刚刚安装还没细研究&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>最近常在 SQL 中使用到 <code>LIMIT ? ?</code>，在执行 <code>LIMIT 0, 1000</code> 与 <code>LIMIT 100000, 1000</code> 时，查询速度明显有很大的区别，而且随着 LIMIT 的偏移量的增加，查询速度越来越慢。是否有办法对 SQL 中 LIMIT 查询进行优化呢？</p>
-<!-- more -->
-<h2 id="limit-速度慢的原因">LIMIT 速度慢的原因</h2>
-<p>LIMIT 100000, 1000 的意思扫描满足条件的 101000 行，扔掉前面的 100000 行，返回最后的 1000 行，问题就在这里。</p>
-<h2 id="limit-优化思路">LIMIT 优化思路</h2>
-<p>1、尽可能从索引中直接获取数据，避免或减少直接扫描行数据的频率
-2、尽可能减少扫描的记录数，也就是先确定起始的范围，再往后取 N 条记录即可</p>
-<h2 id="limit-优化示例">LIMIT 优化示例</h2>
-<h3 id="原始-sql">原始 SQL</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 含条件
-</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ftype</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 不含 WHERE
-</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h3 id="子查询优化-sql">子查询优化 SQL</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 采用子查询的方式优化，在子查询里先从索引获取到最大 id，然后倒序排，再取 10 行结果集
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 注意这里采用了 2 次倒序排，因此在取 LIMIT 的 start 值时，比原来的值加了 10，即 935510，否则结果将和原来的不一致
-</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&gt;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ftype</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">935510</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">T</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h3 id="inner-优化-sql">INNER 优化 SQL</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 采用 INNER JOIN 优化，JOIN 子句里也优先从索引获取 ID 列表，然后直接关联查询获得最终结果，这里不需要加 10
-</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="n">t1</span><span class="o">`</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ftype</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">DESC</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">935500</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">t2</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><p>1、要学着使用 <code>EXPLAIN</code> 对 SQL 进行优化调整
-2、推荐使用 INNER 优化 SQL
-3、发现了一个 ubuntu 中监控 MySQL 的 <code>mytop</code> 命令，刚刚安装还没细研究</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install mytop
-</span></span></code></pre></div><p>4、<code>USING (id)</code> 如果两个表的字段名都一样，那么可以用 using(字段名) 来协商条件，效果跟 <code>on a.id = b.id</code> 一样</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="http://imysql.com/2014/07/26/mysql-optimization-case-paging-optimize.shtml">MySQL 优化案例系列 — 分页优化 | iMySQL</a></li>
-<li><a href="http://www.fienda.com/archives/110">MYSQL 分页 limit 速度太慢优化方法 | Fienda blog</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>IMOOC 与 MySQL 的零距离接触</title>
-      <link>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</link>
-      <pubDate>Sun, 31 Jul 2016 10:00:00 +0000</pubDate>
-      <guid>https://zyf.im/2016/07/31/imooc-meet-mysql-notes/</guid>
-      <description>&lt;p&gt;涵盖全部 MySQL 数据库的基础，MySQL 数据库的基础知识、数据表的常用操作及各种约束的使用，以及综合的运用各种命令实现记录进行 CURD 等操作。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;MySQL 安装与配置&lt;/li&gt;
-&lt;li&gt;数据类型&lt;/li&gt;
-&lt;li&gt;流程控制与运算符&lt;/li&gt;
-&lt;li&gt;DDL、DCL、DQL、DML&lt;/li&gt;
-&lt;li&gt;常用函数&lt;/li&gt;
-&lt;li&gt;表类型（存储引擎）&lt;/li&gt;
-&lt;li&gt;图形化工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;修改-mysql-提示符&#34;&gt;修改 MySQL 提示符&lt;/h2&gt;
-&lt;p&gt;MySQL 客户端的默认提示符是 &lt;code&gt;mysql&amp;gt;&lt;/code&gt;，基本上没什么实际作用。其实可以修改这个提示符，让它显示一些有用的信息，例如当前所在的数据库等。修改方法有四种，其中前两种只对当前连接有效，后两种则对所有连接有效。&lt;/p&gt;
-&lt;h3 id=&#34;连接客户端时通过参数指定&#34;&gt;连接客户端时通过参数指定&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql --prompt&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;(\u@\h) [\d]&amp;gt; &amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;my.cnf&lt;/code&gt;&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-conf&#34; data-lang=&#34;conf&#34;&gt;[mysql]
-prompt=mysql(\\u@\\h:\\d)&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这样提示符就会变成 &lt;code&gt;(user@host) [database]&amp;gt;&lt;/code&gt;。其中常用的字符参数有：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;\D&lt;/code&gt; 完整的日期&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\d&lt;/code&gt; 当前数据库&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\h&lt;/code&gt; 服务器名称&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\u&lt;/code&gt; 当前用户&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;连接上客户端后，通过 &lt;code&gt;prompt&lt;/code&gt; 命令修改&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在 MySQL 的配置文件中配置。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过环境变量配置。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;export&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MYSQL_PS1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;(\u@\h) [\d]&amp;gt; &amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;a href=&#34;http://renial.iteye.com/blog/773675&#34;&gt;http://renial.iteye.com/blog/773675&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;mysql-语法规范&#34;&gt;MySQL 语法规范&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;关键字和函数名称全部 &lt;strong&gt;大写&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;数据库名称，表名称，字段名称全部 &lt;strong&gt;小写&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;SQL 语句必须以 &lt;strong&gt;分号结尾&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;数据库操作&#34;&gt;数据库操作&lt;/h2&gt;
-&lt;h3 id=&#34;数据库创建create&#34;&gt;数据库创建：CREATE&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;语法：CREATE {DATABASE SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET [=] charset_name&lt;/li&gt;
-&lt;li&gt;DATABASE 和 SCHEMA 是相同的，任选其一&lt;/li&gt;
-&lt;li&gt;IF NOT EXISTS:如果创建的数据库存在，则不只报出 warning，不写会报错&lt;/li&gt;
-&lt;li&gt;CHRARCTER SET utf8:为表设置编码方式，如果不设置则用 mysql 默认的编码方式&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;查看数据库列表show&#34;&gt;查看数据库列表：SHOW&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;SHOW { DATABASE SCHEMAS } [LIKE &amp;lsquo;pattern&amp;rsquo; WHERE expr]&lt;/li&gt;
-&lt;li&gt;SHOW CREATE DATABASE xx：显示 xx 数据库信息&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;数据库的修改alter&#34;&gt;数据库的修改：ALTER&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;修改数据库编码方式：ALTER { DATABASE SCHEMAS } [db_name][default] CHARACTER SET [=] charset_name&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;删除数据库drop&#34;&gt;删除数据库：DROP&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;删除数据库：DROP { DATABASE SCHEMAS } [IF EXISTS] db_name;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--修改mysql操作符为当前日期
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;mysql&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;uroot&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;proot&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prompt&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;err&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--展示所有数据库
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;databases&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--创建数据库
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;not&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;exists&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;character&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gbk&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--展示数据库t1的创建命令和编码形式
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--修改数据库编码格式
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;alter&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t2&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;character&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;utf8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--删除数据库
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;drop&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;database&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;exists&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;--展示警告信息
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;warnings&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;四数据类型&#34;&gt;四、数据类型&lt;/h2&gt;
-&lt;p&gt;&lt;img alt=&#34;160731-imooc-mysql-tutorials-notes-int&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/80199388-d5776280-8653-11ea-9182-29a23e53ba50.png&#34;&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>涵盖全部 MySQL 数据库的基础，MySQL 数据库的基础知识、数据表的常用操作及各种约束的使用，以及综合的运用各种命令实现记录进行 CURD 等操作。</p>
-<ul>
-<li>MySQL 安装与配置</li>
-<li>数据类型</li>
-<li>流程控制与运算符</li>
-<li>DDL、DCL、DQL、DML</li>
-<li>常用函数</li>
-<li>表类型（存储引擎）</li>
-<li>图形化工具</li>
-</ul>
-<!-- more -->
-<h2 id="修改-mysql-提示符">修改 MySQL 提示符</h2>
-<p>MySQL 客户端的默认提示符是 <code>mysql&gt;</code>，基本上没什么实际作用。其实可以修改这个提示符，让它显示一些有用的信息，例如当前所在的数据库等。修改方法有四种，其中前两种只对当前连接有效，后两种则对所有连接有效。</p>
-<h3 id="连接客户端时通过参数指定">连接客户端时通过参数指定</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mysql --prompt<span class="o">=</span><span class="s2">&#34;(\u@\h) [\d]&gt; &#34;</span>
-</span></span></code></pre></div><p><code>my.cnf</code></p>
-<pre tabindex="0"><code class="language-conf" data-lang="conf">[mysql]
-prompt=mysql(\\u@\\h:\\d)&gt;
-</code></pre><p>这样提示符就会变成 <code>(user@host) [database]&gt;</code>。其中常用的字符参数有：</p>
-<ul>
-<li><code>\D</code> 完整的日期</li>
-<li><code>\d</code> 当前数据库</li>
-<li><code>\h</code> 服务器名称</li>
-<li><code>\u</code> 当前用户</li>
-</ul>
-<p>连接上客户端后，通过 <code>prompt</code> 命令修改</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">prompt</span><span class="w"> </span><span class="p">(</span><span class="err">\</span><span class="n">u</span><span class="o">@</span><span class="err">\</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="err">\</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="w">
-</span></span></span></code></pre></div><p>在 MySQL 的配置文件中配置。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">prompt</span><span class="o">=</span><span class="p">(</span><span class="err">\\</span><span class="n">u</span><span class="o">@</span><span class="err">\\</span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="err">\\</span><span class="n">d</span><span class="p">]</span><span class="o">&gt;</span><span class="err">\\</span><span class="n">_</span><span class="w">
-</span></span></span></code></pre></div><p>通过环境变量配置。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">export</span><span class="w"> </span><span class="n">MYSQL_PS1</span><span class="o">=</span><span class="s2">&#34;(\u@\h) [\d]&gt; &#34;</span><span class="w">
-</span></span></span></code></pre></div><blockquote>
-<p>参考：<a href="http://renial.iteye.com/blog/773675">http://renial.iteye.com/blog/773675</a></p>
+<h2 id="远程访问">远程访问</h2>
+<p>开启 MySQL 远程访问 = 用户 host 字段允许远端 + 服务器 <code>bind-address</code> 不锁本机。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;192.168.1.100&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd&#39;</span><span class="p">;</span><span class="w">      </span><span class="c1">-- 仅特定 IP
+</span></span></span><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd&#39;</span><span class="p">;</span><span class="w">                  </span><span class="c1">-- 任意 IP
+</span></span></span><span class="line"><span class="cl"><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="o">*</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>Ubuntu/Debian 上还要改服务端配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 默认 127.0.0.1（只听本机），改为 0.0.0.0 监听全部网卡后重启 mysql</span>
+</span></span><span class="line"><span class="cl"><span class="na">bind-address</span> <span class="o">=</span> <span class="s">0.0.0.0</span>
+</span></span></code></pre></div><blockquote>
+<p>生产环境千万别配 <code>'root'@'%'</code> —— 给应用账号用最小权限，给运维账号绑定 VPN/堡垒机 IP。</p>
 </blockquote>
-<h2 id="mysql-语法规范">MySQL 语法规范</h2>
+<h2 id="host-匹配规则">host 匹配规则</h2>
+<p>查看当前会话的账号：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></div><p><code>user</code> / <code>host</code> 字段的匹配模式：</p>
+<table>
+  <thead>
+      <tr>
+          <th>HOST</th>
+          <th>User</th>
+          <th>匹配的连接</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>'thomas.loc.gov'</code></td>
+          <td><code>'fred'</code></td>
+          <td>fred，从 thomas.loc.gov</td>
+      </tr>
+      <tr>
+          <td><code>'thomas.loc.gov'</code></td>
+          <td><code>''</code></td>
+          <td>任何用户，从 thomas.loc.gov</td>
+      </tr>
+      <tr>
+          <td><code>'%'</code></td>
+          <td><code>'fred'</code></td>
+          <td>fred，任意主机</td>
+      </tr>
+      <tr>
+          <td><code>'%'</code></td>
+          <td><code>''</code></td>
+          <td>任何用户，任意主机</td>
+      </tr>
+      <tr>
+          <td><code>'%.loc.gov'</code></td>
+          <td><code>'fred'</code></td>
+          <td>fred，loc.gov 任意子域</td>
+      </tr>
+      <tr>
+          <td><code>'x.y.%'</code></td>
+          <td><code>'fred'</code></td>
+          <td>fred，<code>x.y.*</code> 主机</td>
+      </tr>
+      <tr>
+          <td><code>'144.155.166.177'</code></td>
+          <td><code>'fred'</code></td>
+          <td>fred，指定 IP</td>
+      </tr>
+      <tr>
+          <td><code>'144.155.166.%'</code></td>
+          <td><code>'fred'</code></td>
+          <td>fred，整个 C 类子网</td>
+      </tr>
+  </tbody>
+</table>
+<p>⚠️ <strong>IP 通配符仅对纯 IP 生效</strong>。MySQL 会拒绝匹配「以数字 + 点」起始的主机名——防止有人把主机命名成 <code>144.155.166.evil.com</code> 来骗过 <code>144.155.166.%</code> 规则。<code>1.2.foo.com</code> 这种主机名永远不会命中 host 列。</p>
+<h2 id="references">References</h2>
 <ul>
-<li>关键字和函数名称全部 <strong>大写</strong></li>
-<li>数据库名称，表名称，字段名称全部 <strong>小写</strong></li>
-<li>SQL 语句必须以 <strong>分号结尾</strong></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/access-control.html">MySQL 8.0 Reference — Access Control and Account Management</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/roles.html">MySQL 8.0 Reference — Using Roles</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/mysql-nutshell.html#mysql-nutshell-removals">What&rsquo;s Removed in MySQL 8.0</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/password-management.html#failed-login-tracking">Password Management — Failed-Login Tracking and Temporary Locking</a></li>
 </ul>
-<h2 id="数据库操作">数据库操作</h2>
-<h3 id="数据库创建create">数据库创建：CREATE</h3>
-<ul>
-<li>语法：CREATE {DATABASE SCHEMA} [IF NOT EXISTS] db_name [DEFAULT] CHARACTER SET [=] charset_name</li>
-<li>DATABASE 和 SCHEMA 是相同的，任选其一</li>
-<li>IF NOT EXISTS:如果创建的数据库存在，则不只报出 warning，不写会报错</li>
-<li>CHRARCTER SET utf8:为表设置编码方式，如果不设置则用 mysql 默认的编码方式</li>
-</ul>
-<h3 id="查看数据库列表show">查看数据库列表：SHOW</h3>
-<ul>
-<li>SHOW { DATABASE SCHEMAS } [LIKE &lsquo;pattern&rsquo; WHERE expr]</li>
-<li>SHOW CREATE DATABASE xx：显示 xx 数据库信息</li>
-</ul>
-<h3 id="数据库的修改alter">数据库的修改：ALTER</h3>
-<ul>
-<li>修改数据库编码方式：ALTER { DATABASE SCHEMAS } [db_name][default] CHARACTER SET [=] charset_name</li>
-</ul>
-<h3 id="删除数据库drop">删除数据库：DROP</h3>
-<ul>
-<li>删除数据库：DROP { DATABASE SCHEMAS } [IF EXISTS] db_name;</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">--修改mysql操作符为当前日期
-</span></span></span><span class="line"><span class="cl"><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">uroot</span><span class="w"> </span><span class="o">-</span><span class="n">proot</span><span class="w"> </span><span class="n">prompt</span><span class="w"> </span><span class="err">\</span><span class="n">D</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">--展示所有数据库
-</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">databases</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">--创建数据库
-</span></span></span><span class="line"><span class="cl"><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">gbk</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">--展示数据库t1的创建命令和编码形式
-</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">--修改数据库编码格式
-</span></span></span><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="nb">character</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">utf8</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">--删除数据库
-</span></span></span><span class="line"><span class="cl"><span class="k">drop</span><span class="w"> </span><span class="k">database</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">--展示警告信息
-</span></span></span><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">warnings</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h2 id="四数据类型">四、数据类型</h2>
-<p><img alt="160731-imooc-mysql-tutorials-notes-int" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80199388-d5776280-8653-11ea-9182-29a23e53ba50.png"></p>
-<p><img alt="160731-imooc-mysql-tutorials-notes-float" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80199384-d4decc00-8653-11ea-88ea-81e6e1f29f5a.png"></p>
-<p><img alt="160731-imooc-mysql-tutorials-notes-char" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80199382-d3150880-8653-11ea-9c7c-2385530649ad.png"></p>
-<ul>
-<li>char 型字符串有 0-255 之间的字节，通常被称作定长类型。所存字节不满 char 型所给它的字节，剩下的以空格补齐，仍会存储满你所给它的字节。</li>
-<li>varchar 型的字符串是变长类型，存多少字节它就存储多少字节，不会在后面补上空格。字节长度在 0-65535 之间。</li>
-<li>1 个字节等于 8 个 bit，L+ 几个字节后面的几个字节指的是他的最大存储范围。8 个 bit 等于就是 8 个 1，相当于 255，就是 2 的 8 次方。16 个 1 就相当于 2 的 16 次方。3 个字节四个字节依次类推。</li>
-<li>ENUM 枚举值 就是给他几个选项，它从这几个选项中做选择，最多有 65535 个值。</li>
-<li>SET 我们称之为集合，集合最多有 64 个成员，它在这些集合成员中做任意的排列组合。</li>
-</ul>
-<p><img alt="160731-imooc-mysql-tutorials-notes-time" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80199391-d60ff900-8653-11ea-9836-4fa28ac1cb33.png"></p>
-<ul>
-<li>YEAR：2 位或者 4 位，1970 到 2069 年，允许 70 到 69</li>
-<li>TIME：-8385959 到 8385959</li>
-<li>DATE：1000.01.01 到 9999.12.31</li>
-<li>DATETIME：1000.01.01 00:00:00 到 9999.12.31 23:59:59</li>
-<li>TIMESTAMP：1970.01.01 00 点起 到 2037 年之间的一个值</li>
-</ul>
-<h2 id="五数据表操作">五、数据表操作</h2>
-<ul>
-<li>数据表（或表）是数据库最重要的组成部分之一，是其他对象的基础</li>
-<li>表是一个二维表，行称为 <code>记录</code>，列称为 <code>字段</code></li>
-</ul>
-<h3 id="创建数据表据表">创建数据表据表</h3>
-<p>1、打开数据库：<code>USE db_name;</code>
-2、查看当前数据库：<code>SELECT DATABASE();</code>
-3、创建数据表：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="w"> </span><span class="k">table_name</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">column_name</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">column_name</span><span class="w"> </span><span class="n">data_type</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tb1</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">userage</span><span class="w"> </span><span class="n">TINYINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">salary</span><span class="w"> </span><span class="nb">FLOAT</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><h3 id="查看数据表">查看数据表</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="p">[</span><span class="k">FROM</span><span class="w"> </span><span class="n">db_name</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;pattern&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">expr</span><span class="p">];</span><span class="w">
-</span></span></span></code></pre></div><p>查看当前选择的数据库的所有表</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>查看 MYSQL 数据库中的所有表，当前选择数据库位置不变</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">MYSQL</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><p>查看当前选择的数据库</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DATABASE</span><span class="p">();</span><span class="w">
-</span></span></span></code></pre></div><p>查看数据表结构</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">COLUMNS</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span><span class="p">;</span><span class="w">
-</span></span></span></code></pre></div><h3 id="插入与查找">插入与查找</h3>
-<p>插入记录</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="p">[</span><span class="k">INTO</span><span class="p">]</span><span class="w"> </span><span class="n">tb_name</span><span class="w"> </span><span class="p">[(</span><span class="n">col_name</span><span class="p">,</span><span class="n">col_name</span><span class="p">,...)]</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">va1</span><span class="p">,...)</span><span class="w">
-</span></span></span></code></pre></div><p>查找记录</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">expr</span><span class="p">,..</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tb_name</span><span class="w">
-</span></span></span></code></pre></div><h3 id="空值与非空">空值与非空</h3>
-<p>NULL，字段值可以为空
-NOT NULL，字段值禁止为空</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tb2</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">age</span><span class="w"> </span><span class="n">TINYINT</span><span class="w"> </span><span class="n">UNSIGNE</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><h3 id="自动编号">自动编号</h3>
-<p>自动编号 <code>AUTO_INCREMENT</code>
-自动编号，且必须与主键配合使用</p>
-<p>自动编号 AUTO_INCREMENT 作用
-1、自动编号：保证记录的唯一性
-2、类型必须为整型（可以是 FLOAT(5,0)等，小数点后必须为 0），必须和主键 PRIMARY KEY 组合使用
-3、默认情况下，起始值为 1，每次的增量为 1</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tb3</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">id</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">-- 报错，自动增量字段必须设置成主键
-</span></span></span></code></pre></div><h3 id="主键约束">主键约束</h3>
-<p><code>PRIMARY KEY</code>，也可以写成<code>KEY</code>
-1、每张数据表只能存在一个主键
-2、主键保证记录的唯一性
-3、主键自动为<code>NOT NULL</code>，即必须要为主键赋值。但如果记录中添加了<code>AUTO_INCREMENT</code>，那么不需要手动赋值
-4、<code>auto_increment</code>必须和主键<code>primary key</code>一起使用，但主键<code>primary key</code>不一定要和<code>auto_increment</code>一块使用</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tb3</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">id</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><h3 id="唯一约束">唯一约束</h3>
-<p><code>PRIMARE KEY</code>
-主键约束 一张表中只能有一个</p>
-<p><code>UNIQUE KEY</code>
-1、唯一约束
-2、唯一约束可以保证记录的唯一性
-3、唯一约束的字段可以为空值
-4、每张数据表可以存在多个唯一约束</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tb3</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">id</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">age</span><span class="w"> </span><span class="n">tinyint</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><ul>
-<li>在创建索引时也是有区别的</li>
-</ul>
-<h3 id="默认约束">默认约束</h3>
-<p><code>DEFAULT</code> 当插入记录时，如果没有明确为字段赋值，则自动赋予默认值。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">tb6</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">id</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">sex</span><span class="w"> </span><span class="n">ENUM</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
-</span></span></span></code></pre></div><p>其中对性别字段默认选择<code>3</code></p>
-<h2 id="六约束以及修改数据表">六、约束以及修改数据表</h2>
-<ul>
-<li>FOREIGN KEY：保持数据一致性，完整性；实现一对一或一对多关系。</li>
-<li>要求：父表和子表必须使用相同的存储引擎,而且禁止使用临时表；数据表的存储引擎只能为 InnoDB；外键列和参照列必须具有类似的数据类型。其中数字的长度或是否有符号位必须相同；而字符的长度则可以不同；外键列和参照列必须创建索引。如果外键列不存在索引的话，MySQL 将自动创建索引。</li>
-<li>在 MY.ini 文件中编辑默认的存储引擎：default-storage-engine=INNODB；</li>
-<li>显示创建表的语句：SHOW CREATE TABLE table_name；</li>
-<li>查看表是否有索引：SHOW INDEXS FROM table_name；</li>
-<li>以网格查看表是否有索引：SHOW INDEXS FROM table_name\G；</li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table_name1</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">id</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table_name2</span><span class="p">(</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">id</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">username</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="n">pid</span><span class="w"> </span><span class="nb">SMALLINT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">,</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">pid</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">table_name1</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="cm">/* 外键 pid 参照 table_name1中的 id 字段 */</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="w">
-</span></span></span></code></pre></div><p>&ndash; EOF &ndash;</p>
+<p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>
   </channel>

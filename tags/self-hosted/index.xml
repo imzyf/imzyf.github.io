@@ -128,6 +128,7 @@
 </span></span></code></pre></div><p>容器跑起来后，访问 <a href="https://vault.example.com/admin">https://vault.example.com/admin</a>，用 <code>ADMIN_TOKEN</code> 原文登录后台，就可以邀请家人了。</p>
 <h2 id="数据备份方案">数据备份方案</h2>
 <p>Vaultwarden 所有状态都在 <code>vw-data/</code> 下：SQLite 数据库 <code>db.sqlite3</code>、附件 <code>attachments/</code>、Sends <code>sends/</code>、RSA 私钥 <code>rsa_key.*</code>、运行时配置 <code>config.json</code>。<code>icon_cache/</code> 只是网页 favicon 缓存，可忽略。</p>
+<p>但要&quot;一键复原&quot;光 <code>vw-data/</code> 不够：<code>docker-compose.yml</code> / <code>Caddyfile</code> / <code>.env</code> 决定怎么把数据跑起来；<code>caddy-data/</code> 存了 Let&rsquo;s Encrypt 账户密钥和已签发证书，丢了重签会触发频率限制。所以备份范围放到整个 <code>~/vaultwarden/</code> 父目录。</p>
 <p>VPS 故障、误删条目、或者哪天 docker volume 玄学损坏，没备份就是全家几百条密码一锅端。三条原则：</p>
 <ol>
 <li><strong>每日异地备份</strong>（脱离 VPS）</li>
@@ -135,7 +136,7 @@
 <li><strong>季度演练恢复</strong>（没真解密验证过的备份等于没备份）</li>
 </ol>
 <h3 id="restic--backblaze-b2">restic + Backblaze B2</h3>
-<p><a href="https://restic.net/">restic</a> 自带去重、增量、AES-256 加密，单二进制，跟 B2 / R2 / S3 都能直连。下面以 B2 为例（10GB 内免费，对密码库绰绰有余）。</p>
+<p><a href="https://restic.net/">restic</a> 自带去重、增量、AES-256 加密，单二进制，跟 B2 / R2 / S3 都能直连。下面以 <a href="https://secure.backblaze.com/">B2</a> 为例（10GB 内免费，对密码库绰绰有余）。</p>
 <p>宿主机一次性初始化：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install -y restic
 </span></span><span class="line"><span class="cl">
@@ -152,23 +153,27 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">set</span> -a<span class="p">;</span> <span class="nb">source</span> /root/.restic-env<span class="p">;</span> <span class="nb">set</span> +a
 </span></span><span class="line"><span class="cl">restic init
-</span></span></code></pre></div><blockquote>
-<p><code>RESTIC_PASSWORD</code> 是恢复备份的<strong>唯一凭据</strong>，丢了就什么都救不回来。它又不能只存在 Vaultwarden 里（鸡生蛋问题），交叉存一份到 1Password（迁移过渡期）+ 打印一份纸质放抽屉。</p>
-</blockquote>
+</span></span></code></pre></div><ul>
+<li><code>set -a</code> 让随后赋值的变量自动 export，<code>source</code> 才能把 <code>.restic-env</code> 喂给 restic 子进程；<code>set +a</code> 收尾。<code>set</code> 内置命令的符号约定跟普通 CLI 反过来 —— <code>-</code> 启用、<code>+</code> 关闭（<code>-e</code> / <code>-u</code> / <code>-o pipefail</code> 这些脚本安全开关同理）。新开 shell 手动跑 restic 时要重新 source 一次。</li>
+<li><code>RESTIC_PASSWORD</code> 是恢复备份的<strong>唯一凭据</strong>，丢了就什么都救不回来。它又不能只存在 Vaultwarden 里（鸡生蛋问题），可以打印一份纸质放抽屉。</li>
+</ul>
 <h3 id="备份脚本">备份脚本</h3>
 <p><code>/root/vaultwarden-backup.sh</code>：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
 </span></span><span class="line"><span class="cl"><span class="nb">set</span> -a<span class="p">;</span> <span class="nb">source</span> /root/.restic-env<span class="p">;</span> <span class="nb">set</span> +a
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">SOURCE</span><span class="o">=</span><span class="s2">&#34;/home/evan/vaultwarden/vw-data&#34;</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 任何退出路径都保证容器恢复运行</span>
 </span></span><span class="line"><span class="cl"><span class="nb">trap</span> <span class="s1">&#39;docker start vaultwarden &gt;/dev/null 2&gt;&amp;1 || true&#39;</span> EXIT
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 短暂停机（~5s）拿到一致性快照</span>
 </span></span><span class="line"><span class="cl">docker stop vaultwarden &gt;/dev/null
-</span></span><span class="line"><span class="cl">restic backup <span class="s2">&#34;</span><span class="nv">$SOURCE</span><span class="s2">&#34;</span> --tag vaultwarden
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份整个部署目录：vw-data + Caddyfile + docker-compose.yml + .env + caddy-data</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用相对路径，snapshot 里只记 vaultwarden/，恢复时落点干净</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/evan <span class="o">&amp;&amp;</span> restic backup vaultwarden <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --tag vaultwarden <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --exclude<span class="o">=</span><span class="s1">&#39;vaultwarden/vw-data/icon_cache&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 滚动保留：日 7 / 周 4 / 月 12</span>
 </span></span><span class="line"><span class="cl">restic forget --prune <span class="se">\
@@ -176,6 +181,9 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x /root/vaultwarden-backup.sh
 </span></span></code></pre></div><blockquote>
 <p>不在线备份（不用 <code>sqlite3 .backup</code>）的原因：vaultwarden 官方镜像不一定带 sqlite3 CLI，且 WAL 模式下直接 rsync 容易拿到不一致快照。stop 5 秒最稳。家用场景凌晨 3 点没人在用，这点停机完全无感。</p>
+</blockquote>
+<blockquote>
+<p>用相对路径是因为 restic 按 snapshot 路径串做增量匹配，绝对 / 相对混用会让下次 backup 当全新数据重传。新仓库一开始就定下来。</p>
 </blockquote>
 <h3 id="每日跑">每日跑</h3>
 <p>cron 一行：</p>
@@ -187,7 +195,7 @@
 </span></span><span class="line"><span class="cl">restic snapshots
 </span></span><span class="line"><span class="cl">restic restore latest --target /tmp/vw-restore
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 把 /tmp/vw-restore/.../vw-data 当数据卷起一个测试 compose</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /tmp/vw-restore/vaultwarden/ 是完整部署，cd 进去 docker compose up -d 就能起</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 用 master password 登录 → 打开任意条目 → 字段能看到明文 = 成功</span>
 </span></span></code></pre></div><p>SQLite 文件损坏或 RSA 密钥不匹配时，文件都在但密码全部解不开。<strong>演练才是备份的最后一公里</strong>。</p>
 <h2 id="ssh-agent-设置">SSH Agent 设置</h2>
@@ -224,6 +232,490 @@
 <li><strong>1Password 的 Vault 分组信息会丢失</strong>，迁移后需要在 Vaultwarden 里手工建文件夹重新归类。</li>
 <li><strong>Passkey 无法迁移</strong>，Passkey 是绑定在验证器 app 内部的，必须在新平台上对每个站点重新注册。</li>
 <li><strong>附件无法直接迁移</strong>，但 1Password 导出的 <code>.1pux</code> 文件本质是 zip，把后缀改成 <code>.zip</code> 解压后就能拿到原始附件，再手工挂回 Vaultwarden 对应条目。</li>
+</ul>
+<p>&ndash; EOF &ndash;</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>自建代理订阅管理</title>
+      <link>https://zyf.im/2025/12/23/self-hosted-proxy-subscription-management/</link>
+      <pubDate>Tue, 23 Dec 2025 10:12:12 +0000</pubDate>
+      <guid>https://zyf.im/2025/12/23/self-hosted-proxy-subscription-management/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;
+&lt;p&gt;挂着两三家机场 + 一台自建节点，每家命名规则不一样、节点重复、规则集要在每个客户端各贴一份。机场换链接、加节点、改分流，所有设备都要重订阅一轮。&lt;/p&gt;
+&lt;p&gt;要的是：&lt;strong&gt;所有原始订阅塞进一个聚合器，自动去重 / 改名 / 分组 / 套规则，输出一条稳定 URL，客户端只订阅这条&lt;/strong&gt;。本文用 &lt;a href=&#34;https://github.com/sub-store-org/Sub-Store&#34;&gt;Sub-Store&lt;/a&gt; + &lt;a href=&#34;https://github.com/tindy2013/subconverter&#34;&gt;subconverter&lt;/a&gt; + Docker Compose 实现。&lt;/p&gt;
+&lt;h2 id=&#34;架构与暴露策略&#34;&gt;架构与暴露策略&lt;/h2&gt;
+&lt;p&gt;三层各暴露一个稳定 URL，上下游互不影响。链路单向：客户端 → subconverter 公网 URL → 容器内拉 Sub-Store → Sub-Store 拉机场。中间任一层挂掉只影响下次订阅刷新，已下载的配置继续可用。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;机场订阅 · 自建节点
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Sub-Store · 合并 / 去重 / 改名 / 过滤 / 分组
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ↓  纯节点订阅
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;subconverter (+ sub-web GUI) · 套 ACL4SSR · 转目标格式
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;      ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;客户端 · Mihomo / Surge / sing-box
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;只有 subconverter 必须公网（客户端要拉订阅），其余关进 SSH 隧道：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="背景">背景</h2>
+<p>挂着两三家机场 + 一台自建节点，每家命名规则不一样、节点重复、规则集要在每个客户端各贴一份。机场换链接、加节点、改分流，所有设备都要重订阅一轮。</p>
+<p>要的是：<strong>所有原始订阅塞进一个聚合器，自动去重 / 改名 / 分组 / 套规则，输出一条稳定 URL，客户端只订阅这条</strong>。本文用 <a href="https://github.com/sub-store-org/Sub-Store">Sub-Store</a> + <a href="https://github.com/tindy2013/subconverter">subconverter</a> + Docker Compose 实现。</p>
+<h2 id="架构与暴露策略">架构与暴露策略</h2>
+<p>三层各暴露一个稳定 URL，上下游互不影响。链路单向：客户端 → subconverter 公网 URL → 容器内拉 Sub-Store → Sub-Store 拉机场。中间任一层挂掉只影响下次订阅刷新，已下载的配置继续可用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">机场订阅 · 自建节点
+</span></span><span class="line"><span class="cl">      ↓
+</span></span><span class="line"><span class="cl">Sub-Store · 合并 / 去重 / 改名 / 过滤 / 分组
+</span></span><span class="line"><span class="cl">      ↓  纯节点订阅
+</span></span><span class="line"><span class="cl">subconverter (+ sub-web GUI) · 套 ACL4SSR · 转目标格式
+</span></span><span class="line"><span class="cl">      ↓
+</span></span><span class="line"><span class="cl">客户端 · Mihomo / Surge / sing-box
+</span></span></code></pre></div><p>只有 subconverter 必须公网（客户端要拉订阅），其余关进 SSH 隧道：</p>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>服务</th>
+          <th>容器端口</th>
+          <th>宿主机绑定</th>
+          <th>对外</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>2</td>
+          <td>sub-store</td>
+          <td>3001</td>
+          <td><code>127.0.0.1:3001</code></td>
+          <td>仅 SSH 隧道</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>subconverter</td>
+          <td>25500</td>
+          <td><code>127.0.0.1:25500</code></td>
+          <td><strong>公网域名 + Caddy</strong></td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>sub-web</td>
+          <td>80</td>
+          <td><code>127.0.0.1:25580</code></td>
+          <td>仅 SSH 隧道</td>
+      </tr>
+  </tbody>
+</table>
+<p>subconverter 公网入口叠两层防御：<strong>Caddy UA 白名单</strong>（藏 banner，挡裸扫描器）+ <strong><code>api_access_token</code></strong>（每条 URL 必带 token，真访问控制）。</p>
+<h2 id="前置准备">前置准备</h2>
+<ul>
+<li>VPS 一台（1C/512M 起步），Debian 12 / Ubuntu 22.04+</li>
+<li>域名 <code>sub.example.com</code>，A 记录指向 VPS（只 subconverter 用）</li>
+<li>本机 SSH 公钥已加进 VPS</li>
+</ul>
+<h2 id="环境初始化">环境初始化</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt update <span class="o">&amp;&amp;</span> apt upgrade -y <span class="o">&amp;&amp;</span> apt install -y curl ca-certificates
+</span></span><span class="line"><span class="cl">timedatectl set-timezone Asia/Shanghai
+</span></span><span class="line"><span class="cl">adduser evan <span class="o">&amp;&amp;</span> usermod -aG sudo evan
+</span></span><span class="line"><span class="cl">curl -fsSL https://get.docker.com <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --now docker
+</span></span><span class="line"><span class="cl">usermod -aG docker evan
+</span></span></code></pre></div><h2 id="部署核心栈">部署核心栈</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo -iu evan
+</span></span><span class="line"><span class="cl">mkdir -p ~/sherpa/<span class="o">{</span>sub-store-data,subconverter/<span class="o">{</span>snippets,rules<span class="o">}}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/sherpa
+</span></span></code></pre></div><h3 id="docker-composeyml">docker-compose.yml</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">x-logging</span><span class="p">:</span><span class="w"> </span><span class="cp">&amp;log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">json-file</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">options</span><span class="p">:</span><span class="w"> </span>{<span class="w"> </span><span class="nt">max-size</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;10m&#34;</span><span class="nt">, max-file</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;3&#34;</span><span class="w"> </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sub-store</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">xream/sub-store:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">sub-store</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;127.0.0.1:3001:3001&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">./sub-store-data:/opt/app/data]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;SUB_STORE_FRONTEND_BACKEND_PATH=${SUB_STORE_FRONTEND_BACKEND_PATH:?missing in .env}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">SUB_STORE_FRONTEND_HOST=0.0.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">SUB_STORE_FRONTEND_PORT=3001</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">SUB_STORE_DATA_BASE_PATH=/opt/app/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">sherpa-net]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="cp">*log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># MetaCubeX fork 跟进 Hysteria2 / TUIC / Reality;tindy2013 原版更新慢</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">subconverter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ghcr.io/metacubex/subconverter:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">subconverter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;127.0.0.1:25500:25500&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./subconverter/pref.toml:/base/pref.toml:ro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./subconverter/snippets:/base/snippets:ro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./subconverter/rules:/base/rules:ro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">sherpa-net]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="cp">*log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sub-web</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">careywong/subweb:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">sub-web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">API_URL=https://${SUB_DOMAIN}]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;127.0.0.1:25580:80&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">subconverter]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">sherpa-net]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="cp">*log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 显式 name,Caddy 子项目 external 引用;容器之间用服务名通信,不走宿主机 loopback</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sherpa-net</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">sherpa-net</span><span class="w">
+</span></span></span></code></pre></div><h3 id="env">.env</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat &gt; .env <span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">SUB_DOMAIN=sub.example.com
+</span></span></span><span class="line"><span class="cl"><span class="s">SUB_STORE_FRONTEND_BACKEND_PATH=/api-$(openssl rand -hex 16)
+</span></span></span><span class="line"><span class="cl"><span class="s">SSH_HOST=evan@&lt;vps-ip&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> .env
+</span></span></code></pre></div><p><code>SUB_STORE_FRONTEND_BACKEND_PATH</code> 是 Sub-Store「路径即密钥」的访问控制 —— 后端 API 挂到 <code>/&lt;random&gt;/api/...</code>，没前缀直接 404。即便不暴露公网也必填（前端代码写死要带）。</p>
+<h3 id="subconverterpreftoml">subconverter/pref.toml</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat &gt; subconverter/pref.toml <span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">[common]
+</span></span></span><span class="line"><span class="cl"><span class="s">api_mode = true
+</span></span></span><span class="line"><span class="cl"><span class="s">api_access_token = &#34;$(openssl rand -hex 32)&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[node_pref]
+</span></span></span><span class="line"><span class="cl"><span class="s">udp_flag = true
+</span></span></span><span class="line"><span class="cl"><span class="s">filter_deprecated_nodes = true
+</span></span></span><span class="line"><span class="cl"><span class="s">append_sub_userinfo = true
+</span></span></span><span class="line"><span class="cl"><span class="s">clash_use_new_field_name = true
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[managed_config]
+</span></span></span><span class="line"><span class="cl"><span class="s">write_managed_config = true
+</span></span></span><span class="line"><span class="cl"><span class="s"># 必须真实公网域名,客户端按这个 URL 自动刷新;写 localhost 客户端更新不了
+</span></span></span><span class="line"><span class="cl"><span class="s">managed_config_prefix = &#34;https://sub.example.com&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[emojis]
+</span></span></span><span class="line"><span class="cl"><span class="s">add_emoji = true
+</span></span></span><span class="line"><span class="cl"><span class="s">remove_old_emoji = true
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">[ruleset]
+</span></span></span><span class="line"><span class="cl"><span class="s">enabled = true
+</span></span></span><span class="line"><span class="cl"><span class="s">overwrite_original_rules = true
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">chmod <span class="m">600</span> subconverter/pref.toml
+</span></span></code></pre></div><h3 id="启动--自检">启动 + 自检</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker compose up -d
+</span></span><span class="line"><span class="cl">curl -s http://127.0.0.1:25500/version       <span class="c1"># subconverter vx.x.x backend</span>
+</span></span><span class="line"><span class="cl">curl -sI http://127.0.0.1:3001/ <span class="p">|</span> head -1    <span class="c1"># HTTP/1.1 200 OK</span>
+</span></span></code></pre></div><h2 id="公网入口caddy-反代">公网入口：Caddy 反代</h2>
+<p>宿主机已有 Caddy，<code>/etc/caddy/Caddyfile</code> 加一段，<code>systemctl reload caddy</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-caddy" data-lang="caddy"><span class="line"><span class="cl"><span class="gh">sub.example.com</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">encode</span> <span class="s">gzip</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@blocked</span> <span class="k">not</span> <span class="k">header</span> <span class="s">User-Agent</span> <span class="s">*Clash*</span> <span class="s">*Quantumult*</span> <span class="s">*Surge*</span> <span class="s">*Shadowrocket*</span> <span class="s">*Stash*</span> <span class="s">*Loon*</span> <span class="s">*Mihomo*</span> <span class="s">*sing-box*</span> <span class="s">*curl*</span> <span class="s">*wget*</span>
+</span></span><span class="line"><span class="cl">    <span class="k">respond</span> <span class="nd">@blocked</span> <span class="mi">403</span>
+</span></span><span class="line"><span class="cl">    <span class="k">reverse_proxy</span> <span class="n">127.0.0.1</span><span class="p">:</span><span class="mi">25500</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>没 Caddy 就跑容器版子项目 <code>caddy/</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># caddy/docker-compose.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">caddy:2-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">unless-stopped</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;80:80&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;443:443&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./Caddyfile:/etc/caddy/Caddyfile:ro</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">caddy_data:/data</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">caddy_config:/config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">caddy-net, sherpa-net]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">caddy-net</span><span class="p">:</span><span class="w"> </span>{<span class="w"> </span><span class="nt">driver: bridge, name</span><span class="p">:</span><span class="w"> </span><span class="l">caddy-net }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sherpa-net</span><span class="p">:</span><span class="w"> </span>{<span class="w"> </span><span class="nt">external: true, name</span><span class="p">:</span><span class="w"> </span><span class="l">sherpa-net }  </span><span class="w"> </span><span class="c"># 引用主项目同名网络</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">volumes</span><span class="p">:</span><span class="w"> </span>{<span class="w"> </span><span class="nt">caddy_data</span><span class="p">:</span><span class="w"> </span>{<span class="nt">}, caddy_config</span><span class="p">:</span><span class="w"> </span>{}<span class="w"> </span>}<span class="w">
+</span></span></span></code></pre></div><p><code>caddy/Caddyfile</code> 跟上面一样，把 <code>reverse_proxy</code> 改成走容器网络的服务名：<code>reverse_proxy subconverter:25500</code>。</p>
+<p>自检：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl -i https://sub.example.com/version            <span class="c1"># 403,UA 被挡</span>
+</span></span><span class="line"><span class="cl">curl -iA <span class="s2">&#34;Mihomo&#34;</span> https://sub.example.com/version  <span class="c1"># 200</span>
+</span></span></code></pre></div><blockquote>
+<p>UA 白名单不是安全机制（改 UA 太容易），作用是把 zgrab / nmap 扫描里的 banner 干掉。真正的访问控制是 <code>api_access_token</code>。</p>
+</blockquote>
+<h2 id="本机访问ssh-隧道">本机访问：SSH 隧道</h2>
+<p>Sub-Store / sub-web 只绑 loopback，靠 SSH 隧道把端口转回本机。配 <code>~/.ssh/config</code>：</p>
+<pre tabindex="0"><code class="language-ssh-config" data-lang="ssh-config">Host sherpa
+    HostName &lt;vps-ip&gt;
+    User evan
+    IdentityFile ~/.ssh/id_ed25519
+    LocalForward 3001  127.0.0.1:3001
+    LocalForward 25580 127.0.0.1:25580
+    ServerAliveInterval 60
+    ExitOnForwardFailure yes
+</code></pre><p>简单粗暴：<code>ssh -fN sherpa</code>。坏处是要关只能 pgrep + kill。幂等管理用 ControlMaster，开 / 关 / 查对着同一个 socket：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">SOCK</span><span class="o">=</span>/tmp/sherpa-tunnel-<span class="k">$(</span>id -u<span class="k">)</span>.sock
+</span></span><span class="line"><span class="cl">ssh -S <span class="s2">&#34;</span><span class="nv">$SOCK</span><span class="s2">&#34;</span> -O check sherpa 2&gt;/dev/null <span class="o">||</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  ssh -fN -M -S <span class="s2">&#34;</span><span class="nv">$SOCK</span><span class="s2">&#34;</span> sherpa     <span class="c1"># 启动(已有则跳过)</span>
+</span></span><span class="line"><span class="cl">ssh -S <span class="s2">&#34;</span><span class="nv">$SOCK</span><span class="s2">&#34;</span> -O check sherpa     <span class="c1"># 查</span>
+</span></span><span class="line"><span class="cl">ssh -S <span class="s2">&#34;</span><span class="nv">$SOCK</span><span class="s2">&#34;</span> -O <span class="nb">exit</span>  sherpa     <span class="c1"># 关</span>
+</span></span></code></pre></div><p>长期保活：<code>autossh -M 0 -fN sherpa</code>（<code>-M 0</code> 关掉 autossh 自带 echo 探测，完全依赖 SSH 的 <code>ServerAliveInterval</code>）。</p>
+<p>隧道起来后：</p>
+<ul>
+<li><strong>Sub-Store 后台</strong> <code>http://localhost:3001/?api=http://localhost:3001/api-xxxxxxxx</code>（<code>api=</code> 填 <code>.env</code> 的 <code>SUB_STORE_FRONTEND_BACKEND_PATH</code>，浏览器记 localStorage）</li>
+<li><strong>sub-web GUI</strong> <code>http://localhost:25580</code>，「后端地址」填 <code>https://sub.example.com</code></li>
+</ul>
+<blockquote>
+<p>手机端 SSH 隧道不友好，VPS 和手机都加 <a href="https://tailscale.com/">Tailscale</a> tailnet，手机直连 <code>http://&lt;tailscale-ip&gt;:3001/...</code>。这部分单独写。</p>
+</blockquote>
+<h2 id="第-1-层节点源">第 1 层：节点源</h2>
+<ul>
+<li><strong>机场订阅</strong>：复制后台的 <code>https://airport.example.com/api/v1/client/subscribe?token=xxx</code> URL，多家就准备多条</li>
+<li><strong>自建节点（可选）</strong>：另一台 VPS 上跑 <a href="https://github.com/mack-a/v2ray-agent">mack-a/v2ray-agent</a> 一键脚本，协议选 VLESS-Reality（抗封锁最强，免域名证书）。生成的 <code>vless://...</code> 当一条「单节点订阅」喂给 Sub-Store。<strong>独立 VPS</strong>，管理面挂了不影响出口流量</li>
+</ul>
+<h2 id="第-2-层sub-store-编排">第 2 层：Sub-Store 编排</h2>
+<p>两个抽象：<strong>订阅</strong>（单源）+ <strong>组合订阅</strong>（多源合并 + 节点操作流水线）。典型用法：每家机场 / 每条自建节点建一条单订阅 → 全部加进主组合 <code>all</code> → 客户端只订阅主组合。</p>
+<p>「组合订阅 → all」加节点操作流水线，顺序重要：</p>
+<table>
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>操作</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>类型过滤</td>
+          <td>砍掉客户端不支持的协议</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>正则过滤</td>
+          <td>关键字 <code>剩余|到期|官网|订阅|流量|套餐</code>，砍伪节点</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>倍率过滤（脚本）</td>
+          <td>砍倍率 ≥ 2 的高耗节点</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>正则改名</td>
+          <td><code>🇭🇰 香港 01</code> / <code>HK-01</code> / <code>Hong Kong-01</code> 统一格式</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>正则排序</td>
+          <td>按国家分组</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>去重</td>
+          <td>按 <code>server + port + uuid</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><code>all</code> 最终拿到一个 URL，<strong>视场景换 host</strong>：</p>
+<table>
+  <thead>
+      <tr>
+          <th>视角</th>
+          <th>URL</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>容器内</td>
+          <td><code>http://sub-store:3001/api-xxx/download/collection/all?target=ClashMeta</code></td>
+          <td>✅ 填进 sub-web</td>
+      </tr>
+      <tr>
+          <td>隧道</td>
+          <td><code>http://localhost:3001/api-xxx/download/collection/all?target=ClashMeta</code></td>
+          <td>本地调试看节点</td>
+      </tr>
+  </tbody>
+</table>
+<p>容器内用服务名 <code>sub-store</code>（同 <code>sherpa-net</code>，Docker DNS 解析）。这条 URL 会出现在客户端订阅链接的 <code>url=</code> 参数里，但 hostname <code>sub-store</code> 只在 docker 网络内可解析，公网拿到也访问不了。</p>
+<h2 id="第-3-层subconverter-串接">第 3 层：subconverter 串接</h2>
+<p>subconverter URL 模板：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">https://sub.example.com/sub
+</span></span><span class="line"><span class="cl">  ?target=clash
+</span></span><span class="line"><span class="cl">  &amp;url=&lt;URL-encoded 第 2 层 URL&gt;
+</span></span><span class="line"><span class="cl">  &amp;config=&lt;URL-encoded 远程 config&gt;
+</span></span><span class="line"><span class="cl">  &amp;access_token=&lt;pref.toml 的 api_access_token&gt;
+</span></span><span class="line"><span class="cl">  &amp;emoji=true&amp;list=false&amp;udp=true
+</span></span></code></pre></div><p>手拼太累，用 sub-web GUI（<code>http://localhost:25580</code>）填表：</p>
+<table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>填法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>后端地址</td>
+          <td><code>https://sub.example.com</code></td>
+      </tr>
+      <tr>
+          <td>订阅链接</td>
+          <td><strong>容器内视角</strong> <code>http://sub-store:3001/api-xxx/download/collection/all</code></td>
+      </tr>
+      <tr>
+          <td>客户端</td>
+          <td><code>Clash</code></td>
+      </tr>
+      <tr>
+          <td>远程配置</td>
+          <td><a href="https://github.com/ACL4SSR/ACL4SSR">ACL4SSR</a> 模板（完整 / 精简 / 含广告拦截，按需选）</td>
+      </tr>
+      <tr>
+          <td>高级 → access_token</td>
+          <td><code>pref.toml</code> 里的那个</td>
+      </tr>
+  </tbody>
+</table>
+<p>远程 config 默认走 GitHub 原始链接，怕限流就 clone 到本地：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/ACL4SSR/ACL4SSR.git ~/sherpa/subconverter/rules/ACL4SSR
+</span></span><span class="line"><span class="cl"><span class="c1"># config 改成 config/ACL4SSR/Clash/config/ACL4SSR_Online_Full.ini</span>
+</span></span></code></pre></div><h3 id="上下游联动">上下游联动</h3>
+<p>三层架构最舒服的地方：改一处不影响其他。</p>
+<table>
+  <thead>
+      <tr>
+          <th>想做</th>
+          <th>改哪层</th>
+          <th>客户端 URL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>机场换链接</td>
+          <td>第 2 层单订阅</td>
+          <td>❌ 不变</td>
+      </tr>
+      <tr>
+          <td>加自建节点</td>
+          <td>第 2 层加单订阅 + 进组合</td>
+          <td>❌ 不变</td>
+      </tr>
+      <tr>
+          <td>砍某地区节点</td>
+          <td>第 2 层组合过滤规则</td>
+          <td>❌ 不变</td>
+      </tr>
+      <tr>
+          <td>换分流规则</td>
+          <td>第 3 层 <code>config</code> / <code>pref.toml</code></td>
+          <td>✅ 换新 URL</td>
+      </tr>
+      <tr>
+          <td>加 sing-box 客户端</td>
+          <td>第 3 层 <code>target=singbox</code></td>
+          <td>✅ 给 sing-box 新 URL</td>
+      </tr>
+  </tbody>
+</table>
+<p>下一节的短链方案能把所有 ✅ 都变 ❌。</p>
+<h2 id="短链固定订阅-url">短链固定订阅 URL</h2>
+<p>上一节的 subconverter URL 又长又会变：换 token / 调规则 / 加 target 都要重订一遍。家里多设备 / 共享家人就翻车。</p>
+<p>套一层短链：客户端订阅短链，短链指真实 URL。改后端时只改短链目标，客户端无感。推荐 <a href="https://short.io/">short.io</a> —— 免费版支持自定义域名 + API，不挂广告中转页（bit.ly / tinyurl 免费版会跳广告，部分客户端识别为非订阅响应直接报错）。</p>
+<p>注册 → 加自己的域名 <code>s.example.com</code>（按界面提示加 CNAME）→ 每种格式 / 每个家人各建一条：</p>
+<table>
+  <thead>
+      <tr>
+          <th>短链</th>
+          <th>目标</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>s.example.com/clash</code></td>
+          <td>clash 格式</td>
+      </tr>
+      <tr>
+          <td><code>s.example.com/sing</code></td>
+          <td>sing-box 格式</td>
+      </tr>
+      <tr>
+          <td><code>s.example.com/mom</code></td>
+          <td>给妈用的（可叠 token / 限节点）</td>
+      </tr>
+  </tbody>
+</table>
+<p>注意：</p>
+<ul>
+<li><strong><code>access_token</code> 暴露给 short.io</strong> —— 介意就自托管 <a href="https://shlink.io/">Shlink</a> / <a href="https://yourls.org/">YOURLS</a> 跟主栈放一起</li>
+<li><strong>每人独立短链</strong> —— 想踢人 / 限速只动一条目标 URL</li>
+<li><strong>免费版每月 1k 跳转</strong> —— 6 小时刷一次，五口之家月 120 次够用</li>
+</ul>
+<h2 id="客户端">客户端</h2>
+<table>
+  <thead>
+      <tr>
+          <th>平台</th>
+          <th>推荐</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>macOS / Linux</td>
+          <td><a href="https://github.com/mihomo-party-org/mihomo-party">Mihomo Party</a> · <a href="https://github.com/clash-verge-rev/clash-verge-rev">Clash Verge Rev</a> · <a href="https://nssurge.com/">Surge</a></td>
+      </tr>
+      <tr>
+          <td>iOS</td>
+          <td><a href="https://apps.apple.com/app/shadowrocket/id932747118">Shadowrocket</a> · <a href="https://apps.apple.com/app/stash/id1596063349">Stash</a></td>
+      </tr>
+      <tr>
+          <td>Android</td>
+          <td><a href="https://github.com/MetaCubeX/ClashMetaForAndroid">Clash Meta for Android</a></td>
+      </tr>
+  </tbody>
+</table>
+<p>桌面优先 <a href="https://github.com/MetaCubeX/mihomo">Mihomo</a> 内核（规则兼容性最好）。<a href="https://github.com/SagerNet/sing-box">sing-box</a> 用 <code>target=singbox</code>，配置精简但规则生态没 Mihomo 完整。</p>
+<h2 id="节点诊断">节点诊断</h2>
+<table>
+  <thead>
+      <tr>
+          <th>工具</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="https://www.whatismyip.com/">https://www.whatismyip.com/</a></td>
+          <td>出口 IP + ISP 归属</td>
+      </tr>
+      <tr>
+          <td><a href="https://ping.pe/8.8.8.8">https://ping.pe/8.8.8.8</a></td>
+          <td>全球多点 ping 延迟 / 丢包</td>
+      </tr>
+      <tr>
+          <td><a href="https://lg.dmit.sh/">https://lg.dmit.sh/</a></td>
+          <td>多家机房 Looking Glass，反测 VPS 网络质量</td>
+      </tr>
+      <tr>
+          <td><a href="https://apimobile.meituan.com/locate/v2/ip/loc?rgeo=true&amp;ip=8.8.8.8">https://apimobile.meituan.com/locate/v2/ip/loc?rgeo=true&ip=8.8.8.8</a></td>
+          <td>美团 IP 库定位，判断 IP 在国内 App 眼里属哪个城市</td>
+      </tr>
+      <tr>
+          <td><a href="https://apimobile.meituan.com/group/v1/city/latlng/21.7,110.9?tag=0">https://apimobile.meituan.com/group/v1/city/latlng/21.7,110.9?tag=0</a></td>
+          <td>经纬度反查城市，配合上一条交叉验证</td>
+      </tr>
+      <tr>
+          <td><a href="https://ip.skk.moe/">https://ip.skk.moe/</a></td>
+          <td>IP 信息 + 流媒体解锁 + IP 类型（家宽 / 机房 / 移动）一站式</td>
+      </tr>
+  </tbody>
+</table>
+<p>挑节点优先看「IP 类型 = 家宽 (Residential)」，机房 IP 越来越多被 Netflix / ChatGPT 风控。</p>
+<h2 id="维护">维护</h2>
+<ul>
+<li><strong>数据</strong>：业务数据在 <code>~/sherpa/sub-store-data/</code> + <code>~/sherpa/subconverter/</code> + <code>.env</code>，整个 <code>~/sherpa/</code> 打 tar 异地。备份策略复用 [[migrate-from-1password-to-vaultwarden|Vaultwarden 那篇]] 的 restic + B2，差异是可以把 restic 也跑 Docker（crontab 写进容器）跟主栈解耦</li>
+<li><strong>升级</strong>：<code>docker compose pull &amp;&amp; docker compose up -d</code>，三个 <code>latest</code> 都滚动，介意稳定性锁 tag</li>
+<li><strong>日志</strong>：<code>docker compose logs -f sub-store / subconverter / sub-web</code></li>
+<li><strong>隧道掉了</strong>：客户端无影响（已下载的 config 继续可用），只是后台进不去，重连 <code>ssh -fN sherpa</code></li>
+<li><strong>token 泄漏</strong>：改 <code>.env</code> 的 <code>SUB_STORE_FRONTEND_BACKEND_PATH</code> 或 <code>pref.toml</code> 的 <code>api_access_token</code>，<code>docker compose up -d</code> 重启。前者要重填浏览器 <code>api=</code> 参数，后者要重生成所有订阅 URL（用短链就只改短链目标）</li>
+<li><strong>证书续签自动</strong>，但 80/443 被挡会失败，到期前 30 天看下 <code>caddy-logs</code></li>
 </ul>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>

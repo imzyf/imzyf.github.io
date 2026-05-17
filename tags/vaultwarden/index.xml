@@ -128,6 +128,7 @@
 </span></span></code></pre></div><p>容器跑起来后，访问 <a href="https://vault.example.com/admin">https://vault.example.com/admin</a>，用 <code>ADMIN_TOKEN</code> 原文登录后台，就可以邀请家人了。</p>
 <h2 id="数据备份方案">数据备份方案</h2>
 <p>Vaultwarden 所有状态都在 <code>vw-data/</code> 下：SQLite 数据库 <code>db.sqlite3</code>、附件 <code>attachments/</code>、Sends <code>sends/</code>、RSA 私钥 <code>rsa_key.*</code>、运行时配置 <code>config.json</code>。<code>icon_cache/</code> 只是网页 favicon 缓存，可忽略。</p>
+<p>但要&quot;一键复原&quot;光 <code>vw-data/</code> 不够：<code>docker-compose.yml</code> / <code>Caddyfile</code> / <code>.env</code> 决定怎么把数据跑起来；<code>caddy-data/</code> 存了 Let&rsquo;s Encrypt 账户密钥和已签发证书，丢了重签会触发频率限制。所以备份范围放到整个 <code>~/vaultwarden/</code> 父目录。</p>
 <p>VPS 故障、误删条目、或者哪天 docker volume 玄学损坏，没备份就是全家几百条密码一锅端。三条原则：</p>
 <ol>
 <li><strong>每日异地备份</strong>（脱离 VPS）</li>
@@ -135,7 +136,7 @@
 <li><strong>季度演练恢复</strong>（没真解密验证过的备份等于没备份）</li>
 </ol>
 <h3 id="restic--backblaze-b2">restic + Backblaze B2</h3>
-<p><a href="https://restic.net/">restic</a> 自带去重、增量、AES-256 加密，单二进制，跟 B2 / R2 / S3 都能直连。下面以 B2 为例（10GB 内免费，对密码库绰绰有余）。</p>
+<p><a href="https://restic.net/">restic</a> 自带去重、增量、AES-256 加密，单二进制，跟 B2 / R2 / S3 都能直连。下面以 <a href="https://secure.backblaze.com/">B2</a> 为例（10GB 内免费，对密码库绰绰有余）。</p>
 <p>宿主机一次性初始化：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install -y restic
 </span></span><span class="line"><span class="cl">
@@ -152,23 +153,27 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">set</span> -a<span class="p">;</span> <span class="nb">source</span> /root/.restic-env<span class="p">;</span> <span class="nb">set</span> +a
 </span></span><span class="line"><span class="cl">restic init
-</span></span></code></pre></div><blockquote>
-<p><code>RESTIC_PASSWORD</code> 是恢复备份的<strong>唯一凭据</strong>，丢了就什么都救不回来。它又不能只存在 Vaultwarden 里（鸡生蛋问题），交叉存一份到 1Password（迁移过渡期）+ 打印一份纸质放抽屉。</p>
-</blockquote>
+</span></span></code></pre></div><ul>
+<li><code>set -a</code> 让随后赋值的变量自动 export，<code>source</code> 才能把 <code>.restic-env</code> 喂给 restic 子进程；<code>set +a</code> 收尾。<code>set</code> 内置命令的符号约定跟普通 CLI 反过来 —— <code>-</code> 启用、<code>+</code> 关闭（<code>-e</code> / <code>-u</code> / <code>-o pipefail</code> 这些脚本安全开关同理）。新开 shell 手动跑 restic 时要重新 source 一次。</li>
+<li><code>RESTIC_PASSWORD</code> 是恢复备份的<strong>唯一凭据</strong>，丢了就什么都救不回来。它又不能只存在 Vaultwarden 里（鸡生蛋问题），可以打印一份纸质放抽屉。</li>
+</ul>
 <h3 id="备份脚本">备份脚本</h3>
 <p><code>/root/vaultwarden-backup.sh</code>：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
 </span></span><span class="line"><span class="cl"><span class="nb">set</span> -a<span class="p">;</span> <span class="nb">source</span> /root/.restic-env<span class="p">;</span> <span class="nb">set</span> +a
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">SOURCE</span><span class="o">=</span><span class="s2">&#34;/home/evan/vaultwarden/vw-data&#34;</span>
-</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 任何退出路径都保证容器恢复运行</span>
 </span></span><span class="line"><span class="cl"><span class="nb">trap</span> <span class="s1">&#39;docker start vaultwarden &gt;/dev/null 2&gt;&amp;1 || true&#39;</span> EXIT
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 短暂停机（~5s）拿到一致性快照</span>
 </span></span><span class="line"><span class="cl">docker stop vaultwarden &gt;/dev/null
-</span></span><span class="line"><span class="cl">restic backup <span class="s2">&#34;</span><span class="nv">$SOURCE</span><span class="s2">&#34;</span> --tag vaultwarden
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份整个部署目录：vw-data + Caddyfile + docker-compose.yml + .env + caddy-data</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用相对路径，snapshot 里只记 vaultwarden/，恢复时落点干净</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /home/evan <span class="o">&amp;&amp;</span> restic backup vaultwarden <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --tag vaultwarden <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --exclude<span class="o">=</span><span class="s1">&#39;vaultwarden/vw-data/icon_cache&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 滚动保留：日 7 / 周 4 / 月 12</span>
 </span></span><span class="line"><span class="cl">restic forget --prune <span class="se">\
@@ -176,6 +181,9 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x /root/vaultwarden-backup.sh
 </span></span></code></pre></div><blockquote>
 <p>不在线备份（不用 <code>sqlite3 .backup</code>）的原因：vaultwarden 官方镜像不一定带 sqlite3 CLI，且 WAL 模式下直接 rsync 容易拿到不一致快照。stop 5 秒最稳。家用场景凌晨 3 点没人在用，这点停机完全无感。</p>
+</blockquote>
+<blockquote>
+<p>用相对路径是因为 restic 按 snapshot 路径串做增量匹配，绝对 / 相对混用会让下次 backup 当全新数据重传。新仓库一开始就定下来。</p>
 </blockquote>
 <h3 id="每日跑">每日跑</h3>
 <p>cron 一行：</p>
@@ -187,7 +195,7 @@
 </span></span><span class="line"><span class="cl">restic snapshots
 </span></span><span class="line"><span class="cl">restic restore latest --target /tmp/vw-restore
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 把 /tmp/vw-restore/.../vw-data 当数据卷起一个测试 compose</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /tmp/vw-restore/vaultwarden/ 是完整部署，cd 进去 docker compose up -d 就能起</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 用 master password 登录 → 打开任意条目 → 字段能看到明文 = 成功</span>
 </span></span></code></pre></div><p>SQLite 文件损坏或 RSA 密钥不匹配时，文件都在但密码全部解不开。<strong>演练才是备份的最后一公里</strong>。</p>
 <h2 id="ssh-agent-设置">SSH Agent 设置</h2>
