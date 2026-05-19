@@ -61,9 +61,9 @@
 </ul>
 <p>Bandwagon Host 支持支付宝付款很是方便，优惠码：<code>IAMSMART52J3NC</code> 再打个 9.5 折左右。这配置有时会 <code>(out of stock)</code> 等等随缘会有的。</p>
 <h3 id="安装-git">安装 Git</h3>
-<pre tabindex="0"><code>apt-get update
-apt-get install git
-</code></pre><h3 id="clone-raziusgithub-webhook-handler">clone <a href="https://github.com/razius/github-webhook-handler">razius/github-webhook-handler</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt-get update
+</span></span><span class="line"><span class="cl">apt-get install git
+</span></span></code></pre></div><h3 id="clone-raziusgithub-webhook-handler">clone <a href="https://github.com/razius/github-webhook-handler">razius/github-webhook-handler</a></h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/razius/github-webhook-handler.git
 </span></span></code></pre></div><p>根据 github-webhook-handler Gettings started:</p>
 <h4 id="installation-requirements">Installation Requirements</h4>
@@ -71,40 +71,39 @@ apt-get install git
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install -r requirements.txt
 </span></span></code></pre></div><h4 id="repository-configuration">Repository Configuration</h4>
 <p>Edit repos.json to configure repositories, each repository must be registered under the form <code>GITHUB_USER/REPOSITORY_NAME</code>.</p>
-<pre tabindex="0"><code>{
-    &#34;razius/puppet&#34;: {
-        &#34;path&#34;: &#34;/home/puppet&#34;,
-        &#34;key&#34;: &#34;MyVerySecretKey&#34;,
-        &#34;action&#34;: [[&#34;git&#34;, &#34;pull&#34;, &#34;origin&#34;, &#34;master&#34;]]
-    },
-    &#34;d3non/somerandomexample/branch:live&#34;: {
-        &#34;path&#34;: &#34;/home/exampleapp&#34;,
-        &#34;key&#34;: &#34;MyVerySecretKey&#34;,
-        &#34;action&#34;: [[&#34;git&#34;, &#34;pull&#34;, &#34;origin&#34;, &#34;live&#34;],
-            [&#34;echo&#34;, &#34;execute&#34;, &#34;some&#34;, &#34;commands&#34;, &#34;...&#34;]]
-    }
-}
-</code></pre><p>过程如果出现：<code>pip: command not found</code> 可以执行：</p>
-<pre tabindex="0"><code>sudo apt-get install python-pip
-</code></pre><h4 id="set-environment-variable-for-the-reposjson-config">Set environment variable for the repos.json config</h4>
-<pre tabindex="0"><code>export REPOS_JSON_PATH=/path/to/repos.json
-</code></pre><h4 id="start-the-server">Start the server</h4>
-<pre tabindex="0"><code>python index.py 80
-</code></pre><h4 id="clone-and-pull-your-blog">clone and pull your Blog</h4>
-<pre tabindex="0"><code>git clone git@github.com:imzyf/imzyf.github.io.git
-git pull origin master
-</code></pre><p>过程如果出现：<code>Permission denied (publickey).</code> 可以参考：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;razius/puppet&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/home/puppet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;MyVerySecretKey&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;action&#34;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&#34;git&#34;</span><span class="p">,</span> <span class="s2">&#34;pull&#34;</span><span class="p">,</span> <span class="s2">&#34;origin&#34;</span><span class="p">,</span> <span class="s2">&#34;master&#34;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;d3non/somerandomexample/branch:live&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/home/exampleapp&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;MyVerySecretKey&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;action&#34;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&#34;git&#34;</span><span class="p">,</span> <span class="s2">&#34;pull&#34;</span><span class="p">,</span> <span class="s2">&#34;origin&#34;</span><span class="p">,</span> <span class="s2">&#34;live&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span><span class="s2">&#34;echo&#34;</span><span class="p">,</span> <span class="s2">&#34;execute&#34;</span><span class="p">,</span> <span class="s2">&#34;some&#34;</span><span class="p">,</span> <span class="s2">&#34;commands&#34;</span><span class="p">,</span> <span class="s2">&#34;...&#34;</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>过程如果出现：<code>pip: command not found</code> 可以执行：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get install python-pip
+</span></span></code></pre></div><h4 id="set-environment-variable-for-the-reposjson-config">Set environment variable for the repos.json config</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">REPOS_JSON_PATH</span><span class="o">=</span>/path/to/repos.json
+</span></span></code></pre></div><h4 id="start-the-server">Start the server</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python index.py <span class="m">80</span>
+</span></span></code></pre></div><h4 id="clone-and-pull-your-blog">clone and pull your Blog</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone git@github.com:imzyf/imzyf.github.io.git
+</span></span><span class="line"><span class="cl">git pull origin master
+</span></span></code></pre></div><p>过程如果出现：<code>Permission denied (publickey).</code> 可以参考：</p>
 <ul>
 <li><a href="http://stackoverflow.com/questions/2643502/git-permission-denied-publickey">Stack Overflow-Git - Permission denied (publickey)</a></li>
 </ul>
-<pre tabindex="0"><code>cd ~/.ssh &amp;&amp; ssh-keygen
-cat id_rsa.pub | xclip
-</code></pre><p>然后添加到你的 GitHub 账户：Settings -&gt; SSH keys 中。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ~/.ssh <span class="o">&amp;&amp;</span> ssh-keygen
+</span></span><span class="line"><span class="cl">cat id_rsa.pub <span class="p">|</span> xclip
+</span></span></code></pre></div><p>然后添加到你的 GitHub 账户：Settings -&gt; SSH keys 中。</p>
 <h3 id="config-imzyfgithubio-webhooks">config imzyf.github.io Webhooks</h3>
 <p>首先进入你的 repo 主页，通过点击页面上的按钮 [settings] -&gt; [Webhooks &amp; service] 进入 Webhooks 配置主页面。也可以通过下面这个链接直接进入配置页面：</p>
-<pre tabindex="0"><code>https://github.com/[ 用户名 ]/[ 仓库名称 ]/settings/hooks
-</code></pre><p>此处只需要配置 Webhook 所发出的 POST 请求发往何处即可，于是我们就配置我们所需要的路径：
-<a href="">http://104.236.xxx.xxx:9988/deploy/</a>。这个地址指向的就是那个能够响应 Webhook 所发出请求的服务器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://github.com/<span class="o">[</span> 用户名 <span class="o">]</span>/<span class="o">[</span> 仓库名称 <span class="o">]</span>/settings/hooks
+</span></span></code></pre></div><p>此处只需要配置 Webhook 所发出的 POST 请求发往何处即可，于是我们就配置我们所需要的路径：<a href="http://104.236.xxx.xxx:9988/deploy/">http://104.236.xxx.xxx:9988/deploy/</a>。这个地址指向的就是那个能够响应 Webhook 所发出请求的服务器。</p>
 <p>配置好 Webhook 后，Github 会发送一个 ping 来测试这个地址。如果成功了，那么这个 Webhook 前就会加上一个绿色的勾；如果你得到的是一个红色的叉，那就好好检查一下哪儿出问题了吧！</p>
 <h3 id="config-nginx-server">config Nginx server</h3>
 <h2 id="最后想说的">最后想说的</h2>

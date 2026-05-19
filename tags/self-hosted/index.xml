@@ -180,10 +180,8 @@
 </span></span></span><span class="line"><span class="cl">  --keep-daily <span class="m">7</span> --keep-weekly <span class="m">4</span> --keep-monthly <span class="m">12</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x /root/vaultwarden-backup.sh
 </span></span></code></pre></div><blockquote>
-<p>不在线备份（不用 <code>sqlite3 .backup</code>）的原因：vaultwarden 官方镜像不一定带 sqlite3 CLI，且 WAL 模式下直接 rsync 容易拿到不一致快照。stop 5 秒最稳。家用场景凌晨 3 点没人在用，这点停机完全无感。</p>
-</blockquote>
-<blockquote>
-<p>用相对路径是因为 restic 按 snapshot 路径串做增量匹配，绝对 / 相对混用会让下次 backup 当全新数据重传。新仓库一开始就定下来。</p>
+<p>不在线备份（不用 <code>sqlite3 .backup</code>）的原因：vaultwarden 官方镜像不一定带 sqlite3 CLI，且 WAL 模式下直接 rsync 容易拿到不一致快照。stop 5 秒最稳。家用场景凌晨 3 点没人在用，这点停机完全无感。
+用相对路径是因为 restic 按 snapshot 路径串做增量匹配，绝对 / 相对混用会让下次 backup 当全新数据重传。新仓库一开始就定下来。</p>
 </blockquote>
 <h3 id="每日跑">每日跑</h3>
 <p>cron 一行：</p>
