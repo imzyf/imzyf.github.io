@@ -14,200 +14,308 @@
       <pubDate>Wed, 19 Apr 2023 10:47:10 +0000</pubDate>
       <guid>https://zyf.im/2023/04/19/mongodb-course/</guid>
       <description>&lt;h2 id=&#34;04-特色及优势&#34;&gt;04 特色及优势&lt;/h2&gt;
-&lt;p&gt;对象模型，快速响应业务变化：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;多形性：同一个集合中可以包含不同字段（类型）的文档对象。&lt;/li&gt;
-&lt;li&gt;动态性：线上修改数据模式，修改是应用与数据库均无须下线。&lt;/li&gt;
-&lt;li&gt;数据治理：支持使用JSONSchema 来规范数据模式。在保证模式灵活动态的前提下，提供数据治理能力。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;快速的开发：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;只存储在一个存储区读写。&lt;/li&gt;
-&lt;li&gt;反范式、无关联的组织极大优化查询速度。&lt;/li&gt;
-&lt;li&gt;程序 API 自然，开发速度快。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;原生的高可用：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Replica Set - 2 to 50 个成员，建议单数。&lt;/li&gt;
-&lt;li&gt;自恢复。&lt;/li&gt;
-&lt;li&gt;多中心容灾能力。&lt;/li&gt;
-&lt;li&gt;滚动服务，最小化服务终端。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;横向扩展能力：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;需要的时候无缝扩展。&lt;/li&gt;
-&lt;li&gt;应用全透明。&lt;/li&gt;
-&lt;li&gt;多种数据分布策略。&lt;/li&gt;
-&lt;li&gt;轻松支持 TB-PB 数量级。&lt;/li&gt;
-&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;维度&lt;/th&gt;
+          &lt;th&gt;能力&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数据模型&lt;/td&gt;
+          &lt;td&gt;多形性（同集合不同字段）、动态性（在线改模式）、JSONSchema 治理&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;开发体验&lt;/td&gt;
+          &lt;td&gt;单存储区读写、反范式 + 无关联优化、API 自然&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;高可用&lt;/td&gt;
+          &lt;td&gt;Replica Set（2~50 节点，建议奇数）、自恢复、多中心容灾、滚动维护&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;横向扩展&lt;/td&gt;
+          &lt;td&gt;无缝扩容、应用透明、多种数据分布策略，可达 TB-PB&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 &lt;h2 id=&#34;06-基本操作&#34;&gt;06 基本操作&lt;/h2&gt;
+&lt;p&gt;环境与样本数据：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://cloud.mongodb.com/v2/&#34;&gt;cloud.mongodb.com 云服务&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/tapdata/geektime-mongodb-course/blob/master/aggregation/dump.tar.gz&#34;&gt;样本数据 | geektime-mongodb-course&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/tapdata/geektime-mongodb-course/blob/master/aggregation/dump.tar.gz&#34;&gt;样本数据 dump.tar.gz&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xvf dump.tar.gz
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mongorestore --uri&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;mongodb://root:root@10.130.0.12/?&amp;amp;authMechanism=SCRAM-SHA-1&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 插入
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;insertOne&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;apple&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;insertMany&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;apple&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;pear&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;orange&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 查询
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;fmiller&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Elizabeth Ray&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$or&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^E/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}]})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;a &amp;lt;&amp;gt; 1&lt;/code&gt; &lt;code&gt;{a: {$ne: 1}}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a &amp;gt; 1&lt;/code&gt; &lt;code&gt;{a: {$gt: 1}}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a &amp;gt;= 1&lt;/code&gt; &lt;code&gt;{a: {$gte: 1}}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a &amp;lt; 1&lt;/code&gt; &lt;code&gt;{a: {$lt: 1}}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a &amp;lt;= 1&lt;/code&gt; &lt;code&gt;{a: {$lte: 1}}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a=1 OR b=1&lt;/code&gt; &lt;code&gt;{$or: [{a: 1}, {b: 1}]}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a IS NULL&lt;/code&gt; &lt;code&gt;{a: {$exists: false}}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a IS (1,2,3)&lt;/code&gt; &lt;code&gt;{a: {$in: [1, 2, 3]}}&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 同时满足
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$eleMatch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;city&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Rome&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;country&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;USA&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 投影 projection
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// like select
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// remove
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;abrown&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;crud&#34;&gt;CRUD&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 插入
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;insertOne&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;apple&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;insertMany&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;apple&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;pear&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;orange&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}])&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// update
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;updateOne&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;fmiller&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;China&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;updateMany&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;fmiller&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;China&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}})&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// $set $unset
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// $push $pushAll $pop 数组操作
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// $pull $pullAll 如果匹配，从数组中删除相应的对象
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// $addToSet 如果不存在则增加一个值到数组
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 查询
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;fmiller&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Elizabeth Ray&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$or&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^E/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 投影（projection）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;email&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;   &lt;span class=&#34;c1&#34;&gt;// 排除
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;find&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;sr&#34;&gt;/^f/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;     &lt;span class=&#34;c1&#34;&gt;// 仅返回
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// drop
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 删除
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;remove&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;abrown&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 更新
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;updateOne&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;fmiller&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;China&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;customers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;updateMany&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;username&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;fmiller&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;$set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;China&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;})&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 表 / 库管理
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fruit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;drop&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;collections&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dropDatabase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dbs&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;08-聚合查询&#34;&gt;08 聚合查询&lt;/h2&gt;
-&lt;p&gt;Aggregation Framework&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;sql--mongo-操作符对照&#34;&gt;SQL ↔ Mongo 操作符对照&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;SQL&lt;/th&gt;
+          &lt;th&gt;Mongo&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;a &amp;lt;&amp;gt; 1&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{a: {$ne: 1}}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;a &amp;gt; 1&lt;/code&gt; / &lt;code&gt;&amp;gt;=&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{a: {$gt: 1}}&lt;/code&gt; / &lt;code&gt;{$gte: 1}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;a &amp;lt; 1&lt;/code&gt; / &lt;code&gt;&amp;lt;=&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{a: {$lt: 1}}&lt;/code&gt; / &lt;code&gt;{$lte: 1}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;a = 1 OR b = 1&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{$or: [{a: 1}, {b: 1}]}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;a IS NULL&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{a: {$exists: false}}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;a IN (1, 2, 3)&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{a: {$in: [1, 2, 3]}}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;同时满足子文档条件&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;{$elemMatch: {city: &amp;quot;Rome&amp;quot;, country: &amp;quot;USA&amp;quot;}}&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;常用更新操作符&#34;&gt;常用更新操作符&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;操作&lt;/th&gt;
+          &lt;th&gt;含义&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;$set&lt;/code&gt; / &lt;code&gt;$unset&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;设置 / 移除字段&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;$push&lt;/code&gt; / &lt;code&gt;$pop&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;数组追加 / 弹出&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;$pull&lt;/code&gt; / &lt;code&gt;$pullAll&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;按匹配从数组中删除&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;$addToSet&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;不存在则添加，去重&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;08-聚合查询&#34;&gt;08 聚合查询&lt;/h2&gt;
+&lt;p&gt;Aggregation Framework：&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="04-特色及优势">04 特色及优势</h2>
-<p>对象模型，快速响应业务变化：</p>
-<ul>
-<li>多形性：同一个集合中可以包含不同字段（类型）的文档对象。</li>
-<li>动态性：线上修改数据模式，修改是应用与数据库均无须下线。</li>
-<li>数据治理：支持使用JSONSchema 来规范数据模式。在保证模式灵活动态的前提下，提供数据治理能力。</li>
-</ul>
-<p>快速的开发：</p>
-<ul>
-<li>只存储在一个存储区读写。</li>
-<li>反范式、无关联的组织极大优化查询速度。</li>
-<li>程序 API 自然，开发速度快。</li>
-</ul>
-<p>原生的高可用：</p>
-<ul>
-<li>Replica Set - 2 to 50 个成员，建议单数。</li>
-<li>自恢复。</li>
-<li>多中心容灾能力。</li>
-<li>滚动服务，最小化服务终端。</li>
-</ul>
-<p>横向扩展能力：</p>
-<ul>
-<li>需要的时候无缝扩展。</li>
-<li>应用全透明。</li>
-<li>多种数据分布策略。</li>
-<li>轻松支持 TB-PB 数量级。</li>
-</ul>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>能力</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>数据模型</td>
+          <td>多形性（同集合不同字段）、动态性（在线改模式）、JSONSchema 治理</td>
+      </tr>
+      <tr>
+          <td>开发体验</td>
+          <td>单存储区读写、反范式 + 无关联优化、API 自然</td>
+      </tr>
+      <tr>
+          <td>高可用</td>
+          <td>Replica Set（2~50 节点，建议奇数）、自恢复、多中心容灾、滚动维护</td>
+      </tr>
+      <tr>
+          <td>横向扩展</td>
+          <td>无缝扩容、应用透明、多种数据分布策略，可达 TB-PB</td>
+      </tr>
+  </tbody>
+</table>
 <h2 id="06-基本操作">06 基本操作</h2>
+<p>环境与样本数据：</p>
 <ul>
 <li><a href="https://cloud.mongodb.com/v2/">cloud.mongodb.com 云服务</a></li>
-<li><a href="https://github.com/tapdata/geektime-mongodb-course/blob/master/aggregation/dump.tar.gz">样本数据 | geektime-mongodb-course</a></li>
+<li><a href="https://github.com/tapdata/geektime-mongodb-course/blob/master/aggregation/dump.tar.gz">样本数据 dump.tar.gz</a></li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -xvf dump.tar.gz
 </span></span><span class="line"><span class="cl">mongorestore --uri<span class="o">=</span><span class="s2">&#34;mongodb://root:root@10.130.0.12/?&amp;authMechanism=SCRAM-SHA-1&#34;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 插入
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fruit</span><span class="p">.</span><span class="nx">insertOne</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;apple&#34;</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fruit</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;apple&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;pear&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;orange&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="cl"><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 查询
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;fmiller&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Elizabeth Ray&#34;</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">$or</span><span class="o">:</span> <span class="p">[{</span><span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="sr">/^E/</span><span class="p">}]})</span>
-</span></span></code></pre></div><ul>
-<li><code>a &lt;&gt; 1</code> <code>{a: {$ne: 1}}</code></li>
-<li><code>a &gt; 1</code> <code>{a: {$gt: 1}}</code></li>
-<li><code>a &gt;= 1</code> <code>{a: {$gte: 1}}</code></li>
-<li><code>a &lt; 1</code> <code>{a: {$lt: 1}}</code></li>
-<li><code>a &lt;= 1</code> <code>{a: {$lte: 1}}</code></li>
-<li><code>a=1 OR b=1</code> <code>{$or: [{a: 1}, {b: 1}]}</code></li>
-<li><code>a IS NULL</code> <code>{a: {$exists: false}}</code></li>
-<li><code>a IS (1,2,3)</code> <code>{a: {$in: [1, 2, 3]}}</code></li>
-</ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 同时满足
-</span></span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nx">$eleMatch</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;city&#34;</span><span class="o">:</span> <span class="s2">&#34;Rome&#34;</span><span class="p">,</span> <span class="s2">&#34;country&#34;</span><span class="o">:</span> <span class="s2">&#34;USA&#34;</span><span class="p">}}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 投影 projection
-</span></span></span><span class="line"><span class="cl"><span class="c1">// like select
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span><span class="p">},</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="mi">0</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span><span class="p">},</span> <span class="p">{</span><span class="nx">_id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="mi">1</span><span class="p">})</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// remove
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;abrown&#34;</span><span class="p">})</span>
+</span></span></code></pre></div><h3 id="crud">CRUD</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 插入
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fruit</span><span class="p">.</span><span class="nx">insertOne</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;apple&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fruit</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;apple&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;pear&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;orange&#34;</span> <span class="p">}])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// update
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;fmiller&#34;</span><span class="p">},</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="nx">from</span><span class="o">:</span> <span class="s2">&#34;China&#34;</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">updateMany</span><span class="p">({</span><span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;fmiller&#34;</span><span class="p">},</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="nx">from</span><span class="o">:</span> <span class="s2">&#34;China&#34;</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// $set $unset
-</span></span></span><span class="line"><span class="cl"><span class="c1">// $push $pushAll $pop 数组操作
-</span></span></span><span class="line"><span class="cl"><span class="c1">// $pull $pullAll 如果匹配，从数组中删除相应的对象
-</span></span></span><span class="line"><span class="cl"><span class="c1">// $addToSet 如果不存在则增加一个值到数组
+</span></span><span class="line"><span class="cl"><span class="c1">// 查询
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;fmiller&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Elizabeth Ray&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">$or</span><span class="o">:</span> <span class="p">[{</span> <span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="sr">/^E/</span> <span class="p">}]</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 投影（projection）
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="mi">0</span> <span class="p">})</span>   <span class="c1">// 排除
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="sr">/^f/</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">_id</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="mi">1</span> <span class="p">})</span>     <span class="c1">// 仅返回
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// drop
+</span></span><span class="line"><span class="cl"><span class="c1">// 删除
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">remove</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;abrown&#34;</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 更新
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;fmiller&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="s2">&#34;China&#34;</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">customers</span><span class="p">.</span><span class="nx">updateMany</span><span class="p">({</span> <span class="nx">username</span><span class="o">:</span> <span class="s2">&#34;fmiller&#34;</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">from</span><span class="o">:</span> <span class="s2">&#34;China&#34;</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 表 / 库管理
 </span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fruit</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="nx">show</span> <span class="nx">collections</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">db</span>
 </span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">dropDatabase</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="nx">show</span> <span class="nx">dbs</span>
-</span></span></code></pre></div><h2 id="08-聚合查询">08 聚合查询</h2>
-<p>Aggregation Framework</p>
-<ul>
-<li>Pipeline</li>
-<li>Stage</li>
-</ul>
+</span></span></code></pre></div><h3 id="sql--mongo-操作符对照">SQL ↔ Mongo 操作符对照</h3>
+<table>
+  <thead>
+      <tr>
+          <th>SQL</th>
+          <th>Mongo</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>a &lt;&gt; 1</code></td>
+          <td><code>{a: {$ne: 1}}</code></td>
+      </tr>
+      <tr>
+          <td><code>a &gt; 1</code> / <code>&gt;=</code></td>
+          <td><code>{a: {$gt: 1}}</code> / <code>{$gte: 1}</code></td>
+      </tr>
+      <tr>
+          <td><code>a &lt; 1</code> / <code>&lt;=</code></td>
+          <td><code>{a: {$lt: 1}}</code> / <code>{$lte: 1}</code></td>
+      </tr>
+      <tr>
+          <td><code>a = 1 OR b = 1</code></td>
+          <td><code>{$or: [{a: 1}, {b: 1}]}</code></td>
+      </tr>
+      <tr>
+          <td><code>a IS NULL</code></td>
+          <td><code>{a: {$exists: false}}</code></td>
+      </tr>
+      <tr>
+          <td><code>a IN (1, 2, 3)</code></td>
+          <td><code>{a: {$in: [1, 2, 3]}}</code></td>
+      </tr>
+      <tr>
+          <td>同时满足子文档条件</td>
+          <td><code>{$elemMatch: {city: &quot;Rome&quot;, country: &quot;USA&quot;}}</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="常用更新操作符">常用更新操作符</h3>
+<table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>$set</code> / <code>$unset</code></td>
+          <td>设置 / 移除字段</td>
+      </tr>
+      <tr>
+          <td><code>$push</code> / <code>$pop</code></td>
+          <td>数组追加 / 弹出</td>
+      </tr>
+      <tr>
+          <td><code>$pull</code> / <code>$pullAll</code></td>
+          <td>按匹配从数组中删除</td>
+      </tr>
+      <tr>
+          <td><code>$addToSet</code></td>
+          <td>不存在则添加，去重</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="08-聚合查询">08 聚合查询</h2>
+<p>Aggregation Framework：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">pipeline</span> <span class="o">=</span> <span class="p">[</span><span class="nx">stage1</span><span class="p">,</span> <span class="nx">stage2</span><span class="p">,</span> <span class="p">...]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">collection</span><span class="o">&gt;</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">pipeline</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">option</span> <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><ul>
-<li>$match 过滤</li>
-<li>$project 投影</li>
-<li>$sort 排序</li>
-<li>$group 分组</li>
-<li>$skip $limit 结果限制</li>
-<li>$lookup 左外连接</li>
-</ul>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">collection</span><span class="o">&gt;</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span><span class="nx">pipeline</span><span class="p">,</span> <span class="p">{</span> <span class="nx">option</span> <span class="p">})</span>
+</span></span></code></pre></div><p>常用 stage：</p>
+<table>
+  <thead>
+      <tr>
+          <th>Stage</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>$match</code></td>
+          <td>过滤</td>
+      </tr>
+      <tr>
+          <td><code>$project</code></td>
+          <td>投影</td>
+      </tr>
+      <tr>
+          <td><code>$sort</code></td>
+          <td>排序</td>
+      </tr>
+      <tr>
+          <td><code>$group</code></td>
+          <td>分组</td>
+      </tr>
+      <tr>
+          <td><code>$skip</code> / <code>$limit</code></td>
+          <td>分页</td>
+      </tr>
+      <tr>
+          <td><code>$lookup</code></td>
+          <td>左外连接</td>
+      </tr>
+  </tbody>
+</table>
 <h2 id="09-聚合查询实验">09 聚合查询实验</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 计算总合计
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 全集合总计
 </span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">    <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">$group</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">_id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nx">total</span><span class="o">:</span> <span class="p">{</span><span class="nx">$sum</span><span class="o">:</span> <span class="s2">&#34;$total&#34;</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span> <span class="nx">$group</span><span class="o">:</span> <span class="p">{</span> <span class="nx">_id</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">total</span><span class="o">:</span> <span class="p">{</span> <span class="nx">$sum</span><span class="o">:</span> <span class="s2">&#34;$total&#34;</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;_id&#34;: null,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;total&#34;: NumberDecimal(&#34;44019609&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span><span class="line"><span class="cl"><span class="c1">// { _id: null, total: NumberDecimal(&#34;44019609&#34;) }
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 查询 2019 第一季度，已完成订单（completed）总金额（金额+运费）和订单总数
+</span></span><span class="line"><span class="cl"><span class="c1">// 2019 Q1 已完成订单总金额（订单金额 + 运费）和订单数
 </span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">$match</span><span class="o">:</span> <span class="p">{</span>
@@ -231,66 +339,90 @@
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;count&#34;: 5875,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;grandTotal&#34;: NumberDecimal(&#34;2636376&#34;)
-</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span><span class="line"><span class="cl"><span class="c1">// { count: 5875, grandTotal: NumberDecimal(&#34;2636376&#34;) }
 </span></span></span></code></pre></div><h2 id="10-复制集机制及原理">10 复制集机制及原理</h2>
-<p>由3个以上具有投票权的节点组成：</p>
+<h3 id="角色">角色</h3>
+<table>
+  <thead>
+      <tr>
+          <th>节点</th>
+          <th>数量</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>PRIMARY</td>
+          <td>1</td>
+          <td>接收写入、参与选举投票</td>
+      </tr>
+      <tr>
+          <td>SECONDARY</td>
+          <td>2+（建议奇数）</td>
+          <td>复制主节点新数据、参与投票</td>
+      </tr>
+  </tbody>
+</table>
+<p>集群上限 50 节点，<strong>有投票权的节点最多 7 个</strong>。</p>
+<h3 id="数据复制">数据复制</h3>
 <ul>
-<li>1个主节点 PRIMARY：接收写入操作和选举时投票。</li>
-<li>两个或多个从节点 SECONDARY：复制主节点上的新数据和选举时投票。</li>
+<li>主节点把写操作（经必要转换）写入 <strong>oplog</strong>。</li>
+<li>从节点通过在主节点上打开 <strong>tailable cursor</strong> 不断拉 oplog，本地回放。</li>
 </ul>
-<p>数据是如何复制的：</p>
+<h3 id="故障恢复选举">故障恢复（选举）</h3>
 <ul>
-<li>当一个修改操作，无论是插入、更新或删除，到达主节点时它对数据的操作将被记录下来(经过些必要的转换)，这些记录称为 oplog。</li>
-<li>从节点通过在主节点上打开一个 tailable 游标不断获取新进入主节点的 oplog，并在自己的数据上回放，以此保持跟主节点的数据一致。</li>
+<li>有投票权的节点两两心跳。</li>
+<li>连续 5 次心跳未收到判定失联。</li>
+<li>主节点失联 → 触发选举；从节点失联 → 不选举。</li>
+<li>基于 <strong>RAFT</strong> 一致性算法，需 <strong>多数投票节点存活</strong>。</li>
 </ul>
-<p>通过选举完成故障恢复：</p>
+<h3 id="当选条件">当选条件</h3>
 <ul>
-<li>具有投票权的节点之间两两互相发送心跳。</li>
-<li>当5次心跳未收到时判断为节点失联。</li>
-<li>如果失联的是主节点，从节点会发起选举，选出新的主节点。</li>
-<li>如果失联的是从节点则不会产生新的选举。</li>
-<li>选举基于RAFT一致性算法实现，选举成功的必要条件是大多数投票节点存活。</li>
-<li>复制集中最多可以有50个节点，但具有投票权的节点最多7个。</li>
+<li>与多数节点建立连接。</li>
+<li>oplog 足够新。</li>
+<li>优先级足够高（若有配置）。</li>
 </ul>
-<p>影响选举的因素：</p>
+<h3 id="节点选配项">节点选配项</h3>
+<table>
+  <thead>
+      <tr>
+          <th>参数</th>
+          <th>作用</th>
+          <th>注意</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>v</code></td>
+          <td>是否具有投票权</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>priority</code></td>
+          <td>优先级（越高越优先成为 primary）</td>
+          <td><code>priority = 0</code> 永不成为主节点</td>
+      </tr>
+      <tr>
+          <td><code>hidden</code></td>
+          <td>复制数据但对应用不可见</td>
+          <td>可投票，但 <code>priority</code> 必须为 0</td>
+      </tr>
+      <tr>
+          <td><code>slaveDelay</code></td>
+          <td>复制 N 秒前的数据（延迟节点）</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="注意事项">注意事项</h3>
 <ul>
-<li>整个集群必须有大多数节点存活。</li>
-<li>被选举为主节点的节点必须：
-<ul>
-<li>能够与多数节点建立连接</li>
-<li>具有较新的 oplog</li>
-<li>具有较高的优先级(如果有配置)</li>
-</ul>
-</li>
-</ul>
-<p>复制集节点有以下常见的选配项：</p>
-<ul>
-<li>是否具有投票权（v 参数）：有则参与投票。</li>
-<li>优先级（priority 参数）：优先级越高的节点越优先成为主节点。优先级为0的节点无法成为主节点。</li>
-<li>隐藏（hidden 参数）：复制数据，但对应用不可见。隐藏节点可以具有投票仅，但优先级必须为0。</li>
-<li>延迟（slaveDelay 参数）：复制 n 秒之前的数据，保持与主节点的时间差。</li>
-</ul>
-<p>复制集注意事项：</p>
-<ul>
-<li>关于硬件：
-<ul>
-<li>因为正常的复制集节点都有可能成为主节点，它们的地位是一样的，因此硬件配置上必须致；</li>
-<li>为了保证节点不会同时岩机，各节点使用的硬件必须具有独立性。</li>
-</ul>
-</li>
-<li>关于软件：
-<ul>
-<li>复制集各节点软件版本必须一致，以避免出现不可预知的问题。</li>
-</ul>
-</li>
-<li>增加节点不会增加系统写性能！</li>
+<li><strong>硬件</strong>：节点配置必须一致（地位对等）；不同节点的硬件需相互独立（避免同时宕）。</li>
+<li><strong>软件</strong>：所有节点版本必须一致。</li>
+<li>增加节点 <strong>不会</strong> 提升写性能。</li>
 </ul>
 <h2 id="11-搭建-mongodb-复制集">11 搭建 MongoDB 复制集</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p runtime/data_db<span class="o">{</span>1,2,3<span class="o">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl">mkdir -p runtime/data_configdb<span class="o">{</span>1,2,3<span class="o">}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir -p runtime/data_db<span class="o">{</span>1,2,3<span class="o">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">      <span class="o">&amp;&amp;</span> mkdir -p runtime/data_configdb<span class="o">{</span>1,2,3<span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">hostname -f
 </span></span><span class="line"><span class="cl">
@@ -301,425 +433,633 @@
 <li><a href="https://www.mongodb.com/docs/database-tools/">database-tools | mongodb</a></li>
 </ul>
 <h2 id="13-模型设计基础">13 模型设计基础</h2>
-<ul>
-<li>Entity</li>
-<li>Attribute</li>
-<li>Relationship</li>
-</ul>
-<p>概念模型 CDM -&gt; 逻辑模型 LDM -&gt; 物理模型 PDM
-对象 -&gt; 实体、属性、关系 -&gt; 表结构、字段列表、主外建</p>
+<p>三要素：<strong>Entity（实体）/ Attribute（属性）/ Relationship（关系）</strong>。</p>
+<p>三层模型映射：</p>
+<table>
+  <thead>
+      <tr>
+          <th>层次</th>
+          <th>概念</th>
+          <th>对应内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>概念 CDM</td>
+          <td>业务对象</td>
+          <td>对象</td>
+      </tr>
+      <tr>
+          <td>逻辑 LDM</td>
+          <td>实体 / 属性 / 关系</td>
+          <td>实体、属性、关系</td>
+      </tr>
+      <tr>
+          <td>物理 PDM</td>
+          <td>数据库结构</td>
+          <td>表结构、字段列表、主外键</td>
+      </tr>
+  </tbody>
+</table>
 <h2 id="14-json-文档模型设计">14 JSON 文档模型设计</h2>
-<p>无模式的由来：可以省略无论建模的具体过程，物理模型可省。</p>
+<p>无模式：物理建模过程可省。</p>
 <p>设计原则：</p>
 <ul>
-<li>性能 Performance</li>
-<li>开发易用 Ease of Development</li>
+<li><strong>Performance</strong> 性能</li>
+<li><strong>Ease of Development</strong> 开发易用</li>
 </ul>
 <h2 id="15-基础设计">15 基础设计</h2>
-<p>集合、字段、基础形状 -&gt; 引用及关联 -&gt; 最终模式</p>
-<p>业务需求及逻辑模型 &ndash;逻辑导向-&gt; 基础建模 &mdash;&gt; 集合、字段、基础形状</p>
-<p>一个文档 16MB max.</p>
-<p>内嵌为主。</p>
-<h2 id="16-工况细化">16 工况细化</h2>
-<p>技术需求、读写比例、方式及数据 &ndash;技术导向-&gt; 工况细化 &mdash;&gt; 引用及关联</p>
-<p>引用模式 $lookup：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">$lookup</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">form</span><span class="o">:</span> <span class="s2">&#34;groups&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">localField</span><span class="o">:</span> <span class="s2">&#34;groups_ids&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">foreignField</span><span class="o">:</span> <span class="s2">&#34;groups_id&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">as</span><span class="o">:</span> <span class="s2">&#34;groups&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">])</span>
-</span></span></code></pre></div><p>使用引用方式：</p>
+<p>流程：业务需求 / 逻辑模型 ──逻辑导向──→ <strong>基础建模</strong> → 集合 / 字段 / 基础形状 → 引用及关联 → 最终模式。</p>
+<p>约束：</p>
 <ul>
-<li>内嵌文档太大</li>
-<li>内嵌文档或数组元素频繁修改</li>
-<li>内嵌文档数组元素持续增长且没有封顶</li>
+<li>单文档最大 <strong>16 MB</strong>。</li>
+<li>默认 <strong>内嵌为主</strong>。</li>
 </ul>
-<p>使用引用的设计：</p>
+<h2 id="16-工况细化">16 工况细化</h2>
+<p>流程：技术需求 / 读写比例 ──技术导向──→ <strong>工况细化</strong> → 引用及关联。</p>
+<p>引用模式 <code>$lookup</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">contacts</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">([</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">$lookup</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">from</span><span class="o">:</span> <span class="s2">&#34;groups&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">localField</span><span class="o">:</span> <span class="s2">&#34;groups_ids&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">foreignField</span><span class="o">:</span> <span class="s2">&#34;groups_id&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">as</span><span class="o">:</span> <span class="s2">&#34;groups&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="p">])</span>
+</span></span></code></pre></div><h3 id="何时改用引用">何时改用引用</h3>
 <ul>
-<li>没有主外键的检查</li>
-<li>$lookup 只支持 left outer join</li>
-<li>$lookup 的关系目标（from）不能是分片表</li>
+<li>内嵌文档太大。</li>
+<li>内嵌文档或数组元素频繁修改。</li>
+<li>内嵌数组元素持续增长且无封顶。</li>
+</ul>
+<h3 id="引用方式的限制">引用方式的限制</h3>
+<ul>
+<li>没有主外键约束检查。</li>
+<li><code>$lookup</code> 只支持 <strong>left outer join</strong>。</li>
+<li><code>$lookup</code> 的 <code>from</code> 不能是分片表。</li>
 </ul>
 <h2 id="17-模式套用">17 模式套用</h2>
-<p>经验和学习 &ndash;模式导向-&gt; 套用设计模式 -&gt; 优化的模型</p>
-<p>时序数据，分桶设计：利用文档内嵌组，将一个时间段的数据聚合到一个文档里。大量减少文档数据量，大量减少索引占用空间。</p>
+<p>流程：经验 / 学习 ──模式导向──→ <strong>套用设计模式</strong> → 优化的模型。</p>
+<p><strong>分桶设计（Bucket Pattern）</strong>：时序数据按时间段聚合到一个文档内。</p>
+<ul>
+<li>大幅减少文档总数。</li>
+<li>大幅减少索引占用空间。</li>
+</ul>
 <h2 id="18-设计模式集锦">18 设计模式集锦</h2>
-<p>大文档，很多字段，很多索引。列转行。列数据变化为数组。多语言多国家属性，类似字段需要建立很多索引。转化为数组，一个索引解决所有查询问题。</p>
-<p>模型灵活了，如何管理文档不同版本？增加一个版本字段。schema_version。</p>
-<p>统计网页点击流量。近似计算。if random(0,9)==0 increment by 10。</p>
-<p>业绩排名、游戏排名等精确统计。消耗资源多，聚合计算时间长。用预聚合字段。模型中直接增加统计字段，每次更新数据时同时更新统计值。</p>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>模式</th>
+          <th>做法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>字段繁多、索引爆炸（多语言多国家属性）</td>
+          <td>列转行</td>
+          <td>把列转成数组元素，一条索引解决所有该类查询</td>
+      </tr>
+      <tr>
+          <td>模式持续演进，需管理不同版本</td>
+          <td>Schema Version</td>
+          <td>文档加 <code>schema_version</code> 字段</td>
+      </tr>
+      <tr>
+          <td>网页点击流量等粗粒度统计</td>
+          <td>近似计算</td>
+          <td><code>if random(0,9) == 0 increment by 10</code></td>
+      </tr>
+      <tr>
+          <td>业绩 / 游戏排名等精确统计</td>
+          <td>预聚合</td>
+          <td>模型中加统计字段，每次写入时同步更新</td>
+      </tr>
+  </tbody>
+</table>
 <h2 id="19-写操作事务-writeconcern">19 写操作事务 writeConcern</h2>
-<p><a href="https://www.mongodb.com/docs/manual/reference/write-concern/">write-concern | mongodb</a></p>
+<p><a href="https://www.mongodb.com/docs/manual/reference/write-concern/">Write Concern | mongodb</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">{ w: &lt;value&gt;, j: &lt;boolean&gt;, wtimeout: &lt;number&gt; }
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">rs</span><span class="p">.</span><span class="nx">status</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="s2">&#34;majority&#34;</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="mi">3</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="mi">1</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// WriteResult({ &#34;nInserted&#34; : 1, &#34;writeConcernError&#34; : [ ] })
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="mi">4</span><span class="p">}})</span>
+</span></span></code></pre></div><p><code>w</code> 取值：</p>
+<ul>
+<li><code>1</code>：写入主节点即返回。</li>
+<li>数字 <code>n</code>：等待 n 个节点确认。</li>
+<li><code>&quot;majority&quot;</code>：等待多数节点确认。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="s2">&#34;majority&#34;</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="mi">4</span> <span class="p">}</span> <span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [Error] 100 - Not enough data-bearing nodes
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">()</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 配置延迟节点，模拟网络延迟
-</span></span></span><span class="line"><span class="cl"><span class="nx">conf</span><span class="o">=</span><span class="nx">rs</span><span class="p">.</span><span class="nx">conf</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;_id&#34;: 3,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;host&#34;: &#34;mongo3:27017&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;arbiterOnly&#34;: false,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;buildIndexes&#34;: true,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;hidden&#34;: false,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;priority&#34;: 1,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;tags&#34;: { },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;slaveDelay&#34;: NumberLong(&#34;0&#34;),
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;votes&#34;: 1
-</span></span></span><span class="line"><span class="cl"><span class="c1">// }
-</span></span></span><span class="line"><span class="cl"><span class="nx">conf</span><span class="p">.</span><span class="nx">members</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">slaveDelay</span><span class="o">=</span><span class="mi">5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 没有选举权
-</span></span></span><span class="line"><span class="cl"><span class="nx">conf</span><span class="p">.</span><span class="nx">members</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">priority</span><span class="o">=</span><span class="mi">0</span>
+</span></span></span></code></pre></div><h3 id="实验延迟节点--writeconcern-超时">实验：延迟节点 + writeConcern 超时</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 配置延迟节点（5s 延迟、不参选）
+</span></span></span><span class="line"><span class="cl"><span class="nx">conf</span> <span class="o">=</span> <span class="nx">rs</span><span class="p">.</span><span class="nx">conf</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">conf</span><span class="p">.</span><span class="nx">members</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">slaveDelay</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="nx">conf</span><span class="p">.</span><span class="nx">members</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">priority</span> <span class="o">=</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="nx">rs</span><span class="p">.</span><span class="nx">reconfig</span><span class="p">(</span><span class="nx">conf</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;_id&#34;: 3,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;host&#34;: &#34;mongo3:27017&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;arbiterOnly&#34;: false,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;buildIndexes&#34;: true,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;hidden&#34;: false,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;priority&#34;: 0,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;tags&#34;: { },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;slaveDelay&#34;: NumberLong(&#34;5&#34;),
-</span></span></span><span class="line"><span class="cl"><span class="c1">//     &#34;votes&#34;: 1
-</span></span></span><span class="line"><span class="cl"><span class="c1">// }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// → 等待 5s 才返回
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="mi">3</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// Result Time 5s
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 3s 超时
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">wtimeout</span><span class="o">:</span><span class="mi">3000</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// writeResult({
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;nInserted&#34; : 1,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         &#34;writeConcernError&#34; : {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                 &#34;code&#34; : 64,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                 &#34;codeName&#34; : &#34;WriteConcernFailed&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                 &#34;errmsg&#34; : &#34;waiting for replication timed out&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                 &#34;errInfo&#34; : {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                         &#34;wtimeout&#34; : true,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                         &#34;writeConcern&#34; : {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                                 &#34;w&#34; : 3,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                                 &#34;wtimeout&#34; : 3000,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                                 &#34;provenance&#34; : &#34;clientSupplied&#34;
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                         }
-</span></span></span><span class="line"><span class="cl"><span class="c1">//                 }
-</span></span></span><span class="line"><span class="cl"><span class="c1">//         }
-</span></span></span><span class="line"><span class="cl"><span class="c1">// })
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">5</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nx">wtimeout</span><span class="o">:</span> <span class="mi">3000</span> <span class="p">}</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// → writeConcernError: waiting for replication timed out
 </span></span></span></code></pre></div><h2 id="20-读操作事务-readpreference">20 读操作事务 readPreference</h2>
+<p>参考：</p>
 <ul>
-<li><a href="https://www.mongodb.com/docs/manual/core/read-preference/">Read Preference | mongodb</a></li>
-<li><a href="https://www.mongodb.com/docs/v4.4/core/read-preference-tags/">Read Preference Tags | mongodb</a></li>
+<li><a href="https://www.mongodb.com/docs/manual/core/read-preference/">Read Preference</a></li>
+<li><a href="https://www.mongodb.com/docs/v4.4/core/read-preference-tags/">Read Preference Tags</a></li>
 </ul>
-<p>配置：</p>
-<ul>
-<li>mongodb://&hellip;/?replicaSet=rs&amp;readPrefence=secondary</li>
-<li>通过驱动API，MongoCollection.withReadPrefence(ReadPrefence readPref)</li>
-<li>Mongo Shell: db.collection.find({}).readPref(&ldquo;secondary&rdquo;)</li>
-</ul>
-<p>实验：</p>
+<p>三种配置方式：</p>
+<table>
+  <thead>
+      <tr>
+          <th>方式</th>
+          <th>写法</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>连接串</td>
+          <td><code>mongodb://.../?replicaSet=rs&amp;readPreference=secondary</code></td>
+      </tr>
+      <tr>
+          <td>驱动 API</td>
+          <td><code>MongoCollection.withReadPreference(ReadPreference readPref)</code></td>
+      </tr>
+      <tr>
+          <td>Mongo Shell</td>
+          <td><code>db.collection.find({}).readPref(&quot;secondary&quot;)</code></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="实验从节点写锁后读结果差异">实验：从节点写锁后读结果差异</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 主节点
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="nx">w</span><span class="o">:</span> <span class="mi">3</span><span class="p">}})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 1 line
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">({}).</span><span class="nx">readPref</span><span class="p">(</span><span class="s2">&#34;secondary&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 1 line
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">})</span>  <span class="c1">// 三副本确认
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">({}).</span><span class="nx">readPref</span><span class="p">(</span><span class="s2">&#34;secondary&#34;</span><span class="p">)</span>                    <span class="c1">// 1 line
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 从节点 1、2
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 1 line
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fsyncLock</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// now locked against writes, use db.fsyncUnlock() to unlock 锁住写入
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fsyncLock</span><span class="p">()</span>                                             <span class="c1">// 锁住写入
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 主节点
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">3</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 2 line
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readPref</span><span class="p">(</span><span class="s2">&#34;secondary&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 1 line
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">3</span> <span class="p">})</span>                              <span class="c1">// 只写主
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">({})</span>                                          <span class="c1">// 2 lines
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readPref</span><span class="p">(</span><span class="s2">&#34;secondary&#34;</span><span class="p">)</span>                      <span class="c1">// 1 line ← 从未同步
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 从节点 1、2
 </span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fsyncUnlock</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 主节点
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readPref</span><span class="p">(</span><span class="s2">&#34;secondary&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><h2 id="21-读操作事务-readconcern">21 读操作事务 readConcern</h2>
-<ul>
-<li><a href="https://www.mongodb.com/docs/manual/reference/read-concern/">read-concern | mongodb</a></li>
-</ul>
-<p>enableMajorityReadConcern: true</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 从节点 1、2
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readPref</span><span class="p">(</span><span class="s2">&#34;secondary&#34;</span><span class="p">)</span>                      <span class="c1">// 2 lines ← 已同步
+</span></span></span></code></pre></div><h2 id="21-读操作事务-readconcern">21 读操作事务 readConcern</h2>
+<p><a href="https://www.mongodb.com/docs/manual/reference/read-concern/">Read Concern</a></p>
+<p>开启：<code>enableMajorityReadConcern: true</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 从节点 1、2 锁定写入，模拟主从不一致
 </span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">fsyncLock</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 主节点
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="nx">count</span><span class="o">:</span><span class="mi">3</span><span class="p">})</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readConcern</span><span class="p">(</span><span class="s2">&#34;local&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 如果在一个写操作到达大多数节点前读取了这个写操作，然后因为系统故障该操作回滚了，则发生了脏读
-</span></span></span><span class="line"><span class="cl"><span class="c1">// {readConcern: &#34;majority&#34;} 可以避免脏读
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readConcern</span><span class="p">(</span><span class="s2">&#34;majority&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>majority 约为：Read Committed。</p>
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">3</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readConcern</span><span class="p">(</span><span class="s2">&#34;local&#34;</span><span class="p">)</span>     <span class="c1">// 可能脏读（若该写操作后被回滚）
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">test</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">readConcern</span><span class="p">(</span><span class="s2">&#34;majority&#34;</span><span class="p">)</span>  <span class="c1">// 避免脏读
+</span></span></span></code></pre></div><p><code>majority</code> 近似 SQL 的 <strong>Read Committed</strong>。</p>
 <h2 id="22-多文档事务">22 多文档事务</h2>
+<h3 id="acid-在-mongodb-的实现">ACID 在 MongoDB 的实现</h3>
+<table>
+  <thead>
+      <tr>
+          <th>性质</th>
+          <th>实现机制</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Atomicity</td>
+          <td>事务本身</td>
+      </tr>
+      <tr>
+          <td>Consistency</td>
+          <td><code>writeConcern</code> + <code>readConcern</code></td>
+      </tr>
+      <tr>
+          <td>Isolation</td>
+          <td><code>readConcern</code></td>
+      </tr>
+      <tr>
+          <td>Durability</td>
+          <td>Journal + Replication</td>
+      </tr>
+  </tbody>
+</table>
+<p>约束：</p>
 <ul>
-<li>Atomocity 原子性</li>
-<li>Consistency 一致性 writeConcern,readConcern</li>
-<li>Isolation 隔离性 readConcern</li>
-<li>Durability 持久性 Journal and Replication</li>
+<li>事务默认 <strong>60s</strong> 内必须完成。</li>
+<li>多文档事务中的读 <strong>必须走主节点</strong>。</li>
 </ul>
-<p>实验启用事务后的隔离性：</p>
+<h3 id="实验事务隔离性">实验：事务隔离性</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">drop</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="nx">x</span><span class="o">:</span><span class="mi">2</span><span class="p">}]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">2</span> <span class="p">}]);</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">getMongo</span><span class="p">().</span><span class="nx">startSession</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">startTransaction</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">coll</span> <span class="o">=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">getDatabase</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">).</span><span class="nx">getCollection</span><span class="p">(</span><span class="s1">&#39;tx&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">1</span><span class="p">}});</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// {
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   acknowledged: true,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   insertedId: null,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   matchedCount: 1,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   modifiedCount: 1,
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   upsertedCount: 0
-</span></span></span><span class="line"><span class="cl"><span class="c1">// }
-</span></span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// [
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   { _id: ObjectId(&#34;64478074fcfac90fb90f1a65&#34;), x: 1 },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   { _id: ObjectId(&#34;64478074fcfac90fb90f1a66&#34;), x: 2, y: 1 }
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ]
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// [
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   { _id: ObjectId(&#34;64478074fcfac90fb90f1a65&#34;), x: 1 },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   { _id: ObjectId(&#34;64478074fcfac90fb90f1a66&#34;), x: 2 }
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ]
-</span></span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">commitTransaction</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
-</span></span></code></pre></div><p>实验可重复读 Repeatable Read：</p>
+</span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>    <span class="c1">// 事务内：{x:1}, {x:2, y:1}
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>   <span class="c1">// 事务外：{x:1}, {x:2}             ← 隔离
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">commitTransaction</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>   <span class="c1">// {x:1}, {x:2, y:1}
+</span></span></span></code></pre></div><h3 id="实验可重复读snapshot">实验：可重复读（snapshot）</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">drop</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="nx">x</span><span class="o">:</span><span class="mi">2</span><span class="p">}]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">2</span> <span class="p">}]);</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">getMongo</span><span class="p">().</span><span class="nx">startSession</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">startTransaction</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">readConcern</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;level&#34;</span><span class="o">:</span> <span class="s2">&#34;snapshot&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;w&#34;</span><span class="o">:</span> <span class="s2">&#34;majority&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">readConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">level</span><span class="o">:</span> <span class="s2">&#34;snapshot&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="s2">&#34;majority&#34;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">coll</span> <span class="o">=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">getDatabase</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">).</span><span class="nx">getCollection</span><span class="p">(</span><span class="s1">&#39;tx&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="mi">1</span><span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 模拟事务之外的操作
-</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">1</span><span class="p">}});</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">find</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// [
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   { _id: ObjectId(&#34;644782c3fcfac90fb90f1a69&#34;), x: 1, y: 1 },
-</span></span></span><span class="line"><span class="cl"><span class="c1">//   { _id: ObjectId(&#34;644782c3fcfac90fb90f1a6a&#34;), x: 2 }
-</span></span></span><span class="line"><span class="cl"><span class="c1">// ]
-</span></span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="mi">1</span><span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// { _id: ObjectId(&#34;644782c3fcfac90fb90f1a69&#34;), x: 1 }
+</span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>                  <span class="c1">// 首次读
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 事务外的更新
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>                  <span class="c1">// 仍是首次的快照
 </span></span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">abortTransaction</span><span class="p">();</span>
-</span></span></code></pre></div><p>实验写冲突：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">drop</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">tx</span><span class="p">.</span><span class="nx">insertMany</span><span class="p">([{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="nx">x</span><span class="o">:</span><span class="mi">2</span><span class="p">}]);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// shell 1、2
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">getMongo</span><span class="p">().</span><span class="nx">startSession</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">startTransaction</span><span class="p">({</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">readConcern</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;level&#34;</span><span class="o">:</span> <span class="s2">&#34;snapshot&#34;</span><span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span><span class="s2">&#34;w&#34;</span><span class="o">:</span> <span class="s2">&#34;majority&#34;</span><span class="p">}</span>
+</span></span></code></pre></div><h3 id="实验写冲突">实验：写冲突</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// shell 1、2 同时开事务
+</span></span></span><span class="line"><span class="cl"><span class="nx">session</span><span class="p">.</span><span class="nx">startTransaction</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">readConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">level</span><span class="o">:</span> <span class="s2">&#34;snapshot&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">writeConcern</span><span class="o">:</span> <span class="p">{</span> <span class="nx">w</span><span class="o">:</span> <span class="s2">&#34;majority&#34;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
-</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">coll</span> <span class="o">=</span> <span class="nx">session</span><span class="p">.</span><span class="nx">getDatabase</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">).</span><span class="nx">getCollection</span><span class="p">(</span><span class="s1">&#39;tx&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// shell 1
-</span></span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">1</span><span class="p">}});</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// ok
+</span></span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">});</span>   <span class="c1">// ok
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// shell 2
-</span></span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="nx">$set</span><span class="o">:</span> <span class="p">{</span><span class="nx">y</span><span class="o">:</span><span class="mi">1</span><span class="p">}});</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// MongoServerError: WriteConflict error: this operation conflicted with another operation. Please retry your operation or multi-document transaction.
-</span></span></span><span class="line"><span class="cl"><span class="c1">// session.abortTransaction();
-</span></span></span></code></pre></div><ul>
-<li>事务默认 60s 内完成。</li>
-<li>多文档事务中的读操作必须使用主节点读。</li>
-</ul>
-<h2 id="23-change-stream">23 Change Stream</h2>
-<p>类似触发器。</p>
+</span></span></span><span class="line"><span class="cl"><span class="nx">coll</span><span class="p">.</span><span class="nx">updateOne</span><span class="p">({</span> <span class="nx">x</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">$set</span><span class="o">:</span> <span class="p">{</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// MongoServerError: WriteConflict — 须 retry 或 abort
+</span></span></span></code></pre></div><h2 id="23-change-stream">23 Change Stream</h2>
+<p>类似数据库触发器，<strong>基于 oplog</strong>。</p>
+<h3 id="对比传统触发器">对比传统触发器</h3>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>触发器</th>
+          <th>Change Stream</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>触发方式</td>
+          <td>同步（事务保证）</td>
+          <td>异步</td>
+      </tr>
+      <tr>
+          <td>触发位置</td>
+          <td>数据库内</td>
+          <td>客户端回调事件</td>
+      </tr>
+      <tr>
+          <td>触发次数</td>
+          <td>一次</td>
+          <td>每个订阅事件的客户端各一次</td>
+      </tr>
+      <tr>
+          <td>故障恢复</td>
+          <td>事务回滚</td>
+          <td>从断点重新触发</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="可追踪事件">可追踪事件</h3>
 <ul>
-<li>触发方式：异步 | 同步（事务保证）</li>
-<li>触发位置：回调事件 | 数据库触发器</li>
-<li>触发次数：每个订阅事件的客户端 | 1次</li>
-<li>故障恢复：从上此断点重新触发 | 事务回滚</li>
+<li><code>insert</code> / <code>update</code> / <code>delete</code></li>
+<li><code>drop</code> / <code>rename</code> / <code>dropDatabase</code></li>
+<li><code>invalidate</code>：<code>drop / rename / dropDatabase</code> 触发，并关闭 change stream</li>
 </ul>
-<p>基于 oplog 实现。被追踪的变更事件主要包括：</p>
+<h3 id="约束">约束</h3>
 <ul>
-<li>insert/update/delete</li>
-<li>drop</li>
-<li>rename</li>
-<li>dropDatabase</li>
-<li>invalidate：drop/rename/dropDatabase 将导致 invalidate 被触发，并关闭 chage stream</li>
+<li>隔离级别 = <strong>可重复读</strong>。</li>
+<li>集群必须开启 <strong>majority readConcern</strong>。</li>
+<li>集群无法满足 <code>{w: &quot;majority&quot;}</code> 时不会触发。</li>
+<li>可用聚合管道过滤事件。</li>
 </ul>
-<p>可重复读。未开启 majority readConcern 的集群无法使用 Change Stream。当集群无法满足 {w: &ldquo;majority&rdquo;} 时，不会触发 Change Stream。</p>
-<p>可以使用集合管道的过滤步骤过滤事件。</p>
 <h2 id="25-分片集群机制及原理">25 分片集群机制及原理</h2>
-<ul>
-<li>路由节点 mongos</li>
-<li>配置节点 mongod</li>
-<li>数据节点 mongod</li>
-</ul>
-<p>分片集群数据发布方式</p>
-<ul>
-<li>基于范围 查询性能好，数据分布可能不均匀</li>
-<li>基于哈希 发布均匀，范围查询效率低；日志、物联网</li>
-<li>Zone 数据天然分区</li>
-</ul>
-<h2 id="25-分片集群设计">25 分片集群设计</h2>
-<ul>
-<li>片键 shard key 文档中的一个字段</li>
-<li>文档 doc</li>
-<li>块 chunk</li>
-<li>分片 shard</li>
-<li>集群 cluster</li>
-</ul>
-<p>片键：</p>
-<ul>
-<li>取值基数范围要大</li>
-<li>取值范围应尽可能均匀</li>
-<li>对主要查询要具有定向能力</li>
-</ul>
-<p>组合片键。{user_id:1, time:1}</p>
+<h3 id="进程角色">进程角色</h3>
+<table>
+  <thead>
+      <tr>
+          <th>角色</th>
+          <th>进程</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>路由</td>
+          <td>mongos</td>
+          <td>转发请求</td>
+      </tr>
+      <tr>
+          <td>配置</td>
+          <td>mongod</td>
+          <td>元数据 / 路由表</td>
+      </tr>
+      <tr>
+          <td>数据</td>
+          <td>mongod</td>
+          <td>实际存数据片段</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="数据分布策略">数据分布策略</h3>
+<table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>优点</th>
+          <th>缺点</th>
+          <th>典型场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>范围</td>
+          <td>范围查询快</td>
+          <td>数据可能倾斜</td>
+          <td>自然有序的数据</td>
+      </tr>
+      <tr>
+          <td>哈希</td>
+          <td>分布均匀</td>
+          <td>范围查询差</td>
+          <td>日志、物联网</td>
+      </tr>
+      <tr>
+          <td>Zone</td>
+          <td>天然分区</td>
+          <td>维护成本高</td>
+          <td>按地区 / 业务隔离</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="26-分片集群设计">26 分片集群设计</h2>
+<p>核心术语：</p>
+<table>
+  <thead>
+      <tr>
+          <th>术语</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>shard key</td>
+          <td>文档中作为分片依据的一个字段</td>
+      </tr>
+      <tr>
+          <td>doc</td>
+          <td>文档</td>
+      </tr>
+      <tr>
+          <td>chunk</td>
+          <td>一个 shard key 范围内的文档块</td>
+      </tr>
+      <tr>
+          <td>shard</td>
+          <td>分片节点（一个 replica set）</td>
+      </tr>
+      <tr>
+          <td>cluster</td>
+          <td>整个分片集群</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="片键设计三条">片键设计三条</h3>
+<ol>
+<li>取值基数范围要<strong>大</strong>。</li>
+<li>取值范围尽可能<strong>均匀</strong>。</li>
+<li>对主要查询要具有 <strong>定向能力</strong>。</li>
+</ol>
+<p><strong>组合片键</strong> 例：<code>{user_id: 1, time: 1}</code>。</p>
 <h2 id="27-分片集群搭建及扩容">27 分片集群搭建及扩容</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1 配置域名解析</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 2 准备分片目录</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3 创建第1个分片复制集 member1:27010 member3:27010 member5:27010</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3 创建第 1 个分片复制集 member1:27010 member3:27010 member5:27010</span>
 </span></span><span class="line"><span class="cl">mongod --bind_ip_all --replSet shard1 --shardsvr --wiredTigerCacheSizeGB <span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --shardsvr 标注为分片节点</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --wiredTigerCacheSizeGB 1 缓存大小</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --shardsvr               标注为分片节点</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --wiredTigerCacheSizeGB  缓存大小</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 4 初始化分片复制集</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 5 创建 config server 复制集 member1:27019 member3:27019 member5:27019</span>
 </span></span><span class="line"><span class="cl">mongod --bind_ip_all --replSet config --configsvr --wiredTigerCacheSizeGB <span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --configsvr 标注为配置节点</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 6 创建 config server 复制集</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --configsvr              标注为配置节点</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 7 搭建 mongos member1:27017</span>
-</span></span><span class="line"><span class="cl">mongos --bind_ip_all --configdb config/member1:27019,member3:27019,member5:27019,
-</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 mongos 添加分片</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 6 初始化 config server 复制集</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7 搭建 mongos</span>
+</span></span><span class="line"><span class="cl">mongos --bind_ip_all --configdb config/member1:27019,member3:27019,member5:27019
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接 mongos 添加分片</span>
 </span></span><span class="line"><span class="cl">sh.addShard<span class="o">(</span><span class="s2">&#34;shard1/member1:27010,member3:27010,member5:27010&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 8 创建分片表</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 mongos member1:27017</span>
 </span></span><span class="line"><span class="cl">sh.enableSharding<span class="o">(</span><span class="s2">&#34;foo&#34;</span><span class="o">)</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">sh.shardCollection<span class="o">(</span><span class="s2">&#34;foo.bar&#34;</span>, <span class="o">{</span>_id: <span class="s2">&#34;hashed&#34;</span><span class="o">})</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">sh.status<span class="o">()</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 插入测试数据</span>
 </span></span><span class="line"><span class="cl">use foo
-</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">(</span>var <span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>1&lt;10000<span class="p">;</span>i++<span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  db.bar.insert<span class="o">({</span>i:i<span class="o">))</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span>var <span class="nv">i</span> <span class="o">=</span> 0<span class="p">;</span> i &lt; 10000<span class="p">;</span> i++<span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  db.bar.insert<span class="o">({</span> i: i <span class="o">})</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 9 创建第2个分片复制集  member2:27011 member4:27011 member6:27011</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 10 初始化第2个分片复制集</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 11 加入第2个分片</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 连接到 mongos 添加分片</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 9~11 创建并加入第 2 个分片复制集</span>
 </span></span><span class="line"><span class="cl">sh.addShard<span class="o">(</span><span class="s2">&#34;shard2/member2:27011,member4:27011,member6:27011&#34;</span><span class="o">)</span>
 </span></span></code></pre></div><h2 id="28-监控最佳实践">28 监控最佳实践</h2>
+<p>工具：</p>
 <ul>
-<li>MongoDB Ops Manager</li>
-<li>Percona</li>
-<li>程序脚本</li>
+<li><strong>MongoDB Ops Manager</strong></li>
+<li><strong>Percona</strong></li>
+<li>自研监控脚本</li>
 </ul>
-<p>如何获取监控数据：</p>
+<p>数据获取：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">serverStatus</span><span class="p">()</span>              <span class="c1">// 从上次启动到现在
+</span></span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">serverStatus</span><span class="p">().</span><span class="nx">opcounters</span>
+</span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">isMaster</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mongostat</span>                      <span class="c1">// CLI 工具
+</span></span></span></code></pre></div><h2 id="29-备份与恢复">29 备份与恢复</h2>
+<p>策略：</p>
 <ul>
-<li>db.serverStatus() 从上次开机到现在为止</li>
-<li>db.isMaster()</li>
-<li>monogostats</li>
-<li>db.serverStatus().opcounters</li>
-</ul>
-<h2 id="29-备份与恢复">29 备份与恢复</h2>
-<ul>
-<li>延迟节点备份</li>
-<li>全量备份+Oplog增量，Oplog 幂等性 支持重放</li>
-<li>mongodump &ndash;oplog；不遗漏 dump 时的数据</li>
-<li>mongorestore &ndash;oplogReplay</li>
+<li><strong>延迟节点</strong> —— 抗误删。</li>
+<li><strong>全量 + Oplog 增量</strong> —— oplog 幂等可重放。</li>
+<li><code>mongodump --oplog</code> 不遗漏 dump 期间的数据。</li>
+<li><code>mongorestore --oplogReplay</code> 配合恢复。</li>
 </ul>
 <h2 id="31-安全架构">31 安全架构</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">createRole</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">   <span class="nx">role</span><span class="o">:</span> <span class="s2">&#34;readWriteRole&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">   <span class="nx">privileges</span><span class="o">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">      <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">resource</span><span class="o">:</span> <span class="p">{</span> <span class="nx">db</span><span class="o">:</span> <span class="s2">&#34;myDatabase&#34;</span><span class="p">,</span> <span class="nx">collection</span><span class="o">:</span> <span class="s2">&#34;sample&#34;</span> <span class="p">},</span>
-</span></span><span class="line"><span class="cl">        <span class="nx">actions</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&#34;find&#34;</span><span class="p">,</span> <span class="s2">&#34;insert&#34;</span><span class="p">,</span> <span class="s2">&#34;update&#34;</span><span class="p">,</span> <span class="s2">&#34;remove&#34;</span> <span class="p">]</span>
-</span></span><span class="line"><span class="cl">      <span class="p">}</span>
-</span></span><span class="line"><span class="cl">   <span class="p">],</span>
-</span></span><span class="line"><span class="cl">   <span class="nx">roles</span><span class="o">:</span> <span class="p">[{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;read&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">db</span><span class="o">:</span> <span class="s1">&#39;sampledb&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">privileges</span><span class="o">:</span> <span class="p">[{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">resource</span><span class="o">:</span> <span class="p">{</span> <span class="nx">db</span><span class="o">:</span> <span class="s2">&#34;myDatabase&#34;</span><span class="p">,</span> <span class="nx">collection</span><span class="o">:</span> <span class="s2">&#34;sample&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">actions</span><span class="o">:</span> <span class="p">[</span> <span class="s2">&#34;find&#34;</span><span class="p">,</span> <span class="s2">&#34;insert&#34;</span><span class="p">,</span> <span class="s2">&#34;update&#34;</span><span class="p">,</span> <span class="s2">&#34;remove&#34;</span> <span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}],</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">roles</span><span class="o">:</span> <span class="p">[{</span> <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;read&#39;</span><span class="p">,</span> <span class="nx">db</span><span class="o">:</span> <span class="s1">&#39;sampledb&#39;</span> <span class="p">}]</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">createUser</span><span class="p">({</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">user</span><span class="o">:</span> <span class="s1">&#39;sampleUser&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">pwd</span><span class="o">:</span> <span class="s1">&#39;pwd&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">roles</span><span class="o">:</span> <span class="p">[{</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;readWriteRole&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">      <span class="nx">db</span><span class="o">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">roles</span><span class="o">:</span> <span class="p">[{</span> <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;readWriteRole&#39;</span><span class="p">,</span> <span class="nx">db</span><span class="o">:</span> <span class="s1">&#39;admin&#39;</span> <span class="p">}]</span>
 </span></span><span class="line"><span class="cl"><span class="p">})</span>
 </span></span></code></pre></div><h2 id="32-安全加固实践">32 安全加固实践</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 禁止脚本执行</span>
-</span></span><span class="line"><span class="cl">--noscripting
-</span></span><span class="line"><span class="cl"><span class="c1"># 必须鉴权</span>
-</span></span><span class="line"><span class="cl">--auth
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mongod --noscripting   <span class="c1"># 禁止脚本执行</span>
+</span></span><span class="line"><span class="cl">mongod --auth          <span class="c1"># 强制鉴权</span>
 </span></span></code></pre></div><h2 id="33-索引机制一">33 索引机制（一）</h2>
-<ul>
-<li>Index、Key、DataPage</li>
-<li>Covered Query/FETCH</li>
-<li>IXSCAN/COLLSCAN 索引扫描/集合扫描</li>
-<li>Big O Notation 时间复杂度</li>
-<li>Query Shape 查询的形状</li>
-<li>Index Prefix 索引前缀</li>
-<li>Selectivity 过滤器 选择区别度大的</li>
-<li>B-数结构</li>
-</ul>
-<p>B-树和B+树都是常见的多路搜索树结构，常用于数据库索引和文件系统中。它们的主要区别在于如何存储和检索数据。</p>
-<p>B-树是一种自平衡的搜索树，其中每个节点可以存储多个键和对应的值，并支持在O(log n)时间内进行搜索、插入和删除操作。B-树的每个节点都包含了一个子节点数组，可以用来搜索和遍历树。在B-树中，所有节点都可以存储键和值，而非仅仅是叶子节点。</p>
-<p>B+树与B-树非常相似，但是只有叶节点包含了所有的键和值，而且所有叶节点都通过指针链接在一起。这意味着在B+树上进行查找只需要搜索一条从根节点到叶节点的路径，而在B-树中可能需要搜索多个节点。B+树的非叶子节点只包含键，而不包含值，这使得B+树在维护索引时更加高效。</p>
-<p>因此，B+树比B-树更适用于存储和检索大量数据，尤其是数据库和文件系统中的索引。B+树的叶子节点形成了一个有序链表，可以方便地进行区间查找和遍历。而B-树则更适合内存较小的情况下，例如缓存。</p>
+<p>核心概念速查：</p>
+<table>
+  <thead>
+      <tr>
+          <th>概念</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Index / Key / DataPage</td>
+          <td>索引、键、数据页</td>
+      </tr>
+      <tr>
+          <td>Covered Query / FETCH</td>
+          <td>完全由索引返回 / 需要回表取数据</td>
+      </tr>
+      <tr>
+          <td>IXSCAN / COLLSCAN</td>
+          <td>索引扫描 / 集合扫描</td>
+      </tr>
+      <tr>
+          <td>Big O Notation</td>
+          <td>时间复杂度</td>
+      </tr>
+      <tr>
+          <td>Query Shape</td>
+          <td>查询形状（相同 shape 可复用执行计划）</td>
+      </tr>
+      <tr>
+          <td>Index Prefix</td>
+          <td>索引前缀</td>
+      </tr>
+      <tr>
+          <td>Selectivity</td>
+          <td>选择性 —— 过滤掉的比例越大越好</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="b-tree-vs-btree">B-Tree vs B+Tree</h3>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>B-Tree</th>
+          <th>B+Tree</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>数据存放</td>
+          <td>所有节点都可存 key + value</td>
+          <td>仅叶子节点存 key + value</td>
+      </tr>
+      <tr>
+          <td>叶子链表</td>
+          <td>无</td>
+          <td>叶子用指针串成有序链表，区间查询友好</td>
+      </tr>
+      <tr>
+          <td>适用</td>
+          <td>内存索引、缓存</td>
+          <td><strong>磁盘索引</strong>（数据库、文件系统）</td>
+      </tr>
+  </tbody>
+</table>
+<p>MongoDB / MySQL InnoDB 都用 B+Tree。</p>
 <h2 id="34-索引机制二">34 索引机制（二）</h2>
-<p>.explain(true) 查看：</p>
-<ul>
-<li><code>executionTimeMillis</code></li>
-<li><code>totalDocsExamined</code></li>
-<li><code>executionStages.docsExamined</code></li>
-<li><code>executionStages.inputStage.stage</code></li>
-</ul>
-<p>组合索引 ESR 原则，Equal(最前) Sort(中间) Range(最后)</p>
-<p>db.member.createIndex({city:1}, {background: true})</p>
-<h2 id="36-性能诊断工具">36 性能诊断工具</h2>
-<p>mongostat 了解 MongoDB 运行状态的工具。</p>
-<ul>
-<li>dirty 没有刷盘的比例 &lt;5%</li>
-<li>used</li>
-<li>qrw 排队的请求</li>
-<li>con 连接数量</li>
-</ul>
-<p>mongotop 了解集合压力状态</p>
-<p><a href="https://github.com/rueckstiess/mtools">mtools</a></p>
+<p><code>.explain(true)</code> 关注字段：</p>
+<table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>executionTimeMillis</code></td>
+          <td>执行毫秒数</td>
+      </tr>
+      <tr>
+          <td><code>totalDocsExamined</code></td>
+          <td>共扫描文档数</td>
+      </tr>
+      <tr>
+          <td><code>executionStages.docsExamined</code></td>
+          <td>当前阶段扫描文档数</td>
+      </tr>
+      <tr>
+          <td><code>executionStages.inputStage.stage</code></td>
+          <td>输入阶段类型</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>ESR 原则</strong>：组合索引顺序 = <strong>E</strong>qual（最前）→ <strong>S</strong>ort（中间）→ <strong>R</strong>ange（最后）。</p>
+<p>后台建索引：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="nx">member</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">({</span> <span class="nx">city</span><span class="o">:</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">background</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span>
+</span></span></code></pre></div><h2 id="36-性能诊断工具">36 性能诊断工具</h2>
+<p><strong><code>mongostat</code></strong> —— 实时运行状态：</p>
+<table>
+  <thead>
+      <tr>
+          <th>指标</th>
+          <th>关注阈值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>dirty</td>
+          <td>&lt; 5%（脏页比例）</td>
+      </tr>
+      <tr>
+          <td>used</td>
+          <td>缓存使用率</td>
+      </tr>
+      <tr>
+          <td>qrw</td>
+          <td>排队请求数</td>
+      </tr>
+      <tr>
+          <td>con</td>
+          <td>连接数</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong><code>mongotop</code></strong> —— 集合维度压力。</p>
+<p><strong><a href="https://github.com/rueckstiess/mtools">mtools</a></strong> —— 日志分析。</p>
 <h2 id="41-应用场景及选型">41 应用场景及选型</h2>
 <p>优点：</p>
 <ul>
-<li>横向扩展能力，数据量或并发量增加时候架构可以自动扩容</li>
-<li>灵活模型，适合迭代开发，数据模型多变场景</li>
-<li>JSON 数据结构，适合微服务/REST API</li>
+<li>横向扩展 —— 数据 / 并发增长可自动扩容。</li>
+<li>灵活模型 —— 适合快速迭代、数据模型多变。</li>
+<li>JSON 结构 —— 与微服务 / REST API 天然契合。</li>
 </ul>
 <h2 id="44-关系型数据库迁移">44 关系型数据库迁移</h2>
-<p>从基于关系型数据库应用迁移到 MongoDB 的理由：</p>
+<p>迁移到 MongoDB 的理由：</p>
 <ul>
-<li>高并发需求（数千 - 数十万 ops），关系型数据库不容易扩展</li>
-<li>快速迭代 - 关系型模式太严谨</li>
-<li>灵活的 JSON 模式</li>
-<li>大数据量需求</li>
-<li>地理位置查询</li>
-<li>多数据中心跨地域部署</li>
+<li>高并发（数千 ~ 十万 ops），关系型不易扩展。</li>
+<li>快速迭代，关系型模式太严谨。</li>
+<li>灵活的 JSON 模式。</li>
+<li>大数据量需求。</li>
+<li>地理位置查询。</li>
+<li>多数据中心跨地域部署。</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

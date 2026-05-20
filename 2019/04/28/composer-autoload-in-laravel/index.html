@@ -8,7 +8,6 @@ require __DIR__.'/../vendor/autoload.php';
 autoload.php 不负责具体功能逻辑，只做了两件事：初始化自动加载类、注册自动加载类。
 autoload_real.php 中的类名为 ComposerAutoloaderInit... 这可能是为防止与用户自定义类名跟这个类重复冲突，加上了哈希值。
 其实还有一个做法我们更加熟悉，是定义一个命名空间。这里为什么不定义一个命名空间呢？一种理解：命名空间一般都是为了复用，而这个类只需要运行一次即可，以后也不会用得到，用哈希值更加合适。
-
 autoload_real.php
 autoload.php 主要调用了 getLoader()：
 public static function getLoader()

@@ -1,152 +1,170 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>【Git 权威指南】读书笔记 - 和声 | ZYF.IM BLOG</title><meta name=keywords content="git"><meta name=description content="主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】
-Git 协议与工作协同
-Git 支持的协议
-SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。
-SSH 协议：
-ssh://[user@]example.com[:port]/path/to/repo.git/
+<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>【Git 权威指南】读书笔记 - 协同 | ZYF.IM BLOG</title><meta name=keywords content="git"><meta name=description content='【Git 权威指南】&ldquo;和声&rdquo;+&ldquo;协同模型"两章的精炼合并版：远程协议、推送与冲突解决、里程碑共享、分支协同、工作流模型、共用代码（submodule / subtree）。
 
-[user@]example.com:path/to/repo.git/
-GIT 协议，最常用的只读协议：
-git://example.com[:port]/path/to/repo.git/
-HTTP[S] 协议：
-http[s]://example.com[:port]/path/to/repo.git/
+本文沿用书中 master 作为默认分支名；Git 2.28+ 默认改为 main，行为完全一致。
 
-强制非快进式推送
-git push -f
-强制推送，会强制刷新服务器中的版本。
-禁止非快进式推送
-git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true
-冲突解决
-拉回操作中的合并
-git pull = git fetch + git merge
-合并策略
+远程协议与版本库
+协议选择
 
-Merge Strategis
+  
+      
+          协议
+          用途
+          现状
+      
+  
+  
+      
+          SSH
+          推 + 拉，需公钥认证
+          协作首选
+      
+      
+          HTTPS
+          推 + 拉，凭证由 helper 缓存
+          网络受限环境首选；个人项目常用
+      
+      
+          本地
+          file:// 或裸路径
+          备份 / 镜像
+      
+      
+          git://
+          只读匿名协议
+          已弃用，GitHub 2022 年关停
+      
+      
+          FTP / RSYNC
+          —
+          已弃用，忘了它们
+      
+  
 
-Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。
-git merge [-s <strategy>] [-X <strategy-option>] [<commit>...]
-This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.
-git merge -s recursive -X ours [<commit>...]
-Merge branch obsolete into the current branch, using ours merge strategy:"><meta name=author content="Me"><link rel=canonical href=https://zyf.im/2018/01/17/got-git-reading-notes-harmony/><link crossorigin=anonymous href=/assets/css/stylesheet.9aecb24df9d82d4e97d983b9a3ae6e30cb48b5ec58f646721ccc596b06647753.css integrity="sha256-muyyTfnYLU6X2YO5o65uMMtItexY9kZyHMxZawZkd1M=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2018/01/17/got-git-reading-notes-harmony/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2018/01/17/got-git-reading-notes-harmony/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="【Git 权威指南】读书笔记 - 和声"><meta property="og:description" content="主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】
-Git 协议与工作协同 Git 支持的协议 SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。
-SSH 协议：
-ssh://[user@]example.com[:port]/path/to/repo.git/ [user@]example.com:path/to/repo.git/ GIT 协议，最常用的只读协议：
-git://example.com[:port]/path/to/repo.git/ HTTP[S] 协议：
-http[s]://example.com[:port]/path/to/repo.git/ 强制非快进式推送 git push -f 强制推送，会强制刷新服务器中的版本。
-禁止非快进式推送 git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true 冲突解决 拉回操作中的合并 git pull = git fetch + git merge 合并策略 Merge Strategis
-Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。
-git merge [-s <strategy>] [-X <strategy-option>] [<commit>...] This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.
-git merge -s recursive -X ours [<commit>...] Merge branch obsolete into the current branch, using ours merge strategy:"><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-01-17T19:00:00+00:00"><meta property="article:modified_time" content="2018-01-17T19:00:00+00:00"><meta property="article:tag" content="Git"><meta name=twitter:card content="summary"><meta name=twitter:title content="【Git 权威指南】读书笔记 - 和声"><meta name=twitter:description content="主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】
-Git 协议与工作协同 Git 支持的协议 SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。
-SSH 协议：
-ssh://[user@]example.com[:port]/path/to/repo.git/ [user@]example.com:path/to/repo.git/ GIT 协议，最常用的只读协议：
-git://example.com[:port]/path/to/repo.git/ HTTP[S] 协议：
-http[s]://example.com[:port]/path/to/repo.git/ 强制非快进式推送 git push -f 强制推送，会强制刷新服务器中的版本。
-禁止非快进式推送 git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true 冲突解决 拉回操作中的合并 git pull = git fetch + git merge 合并策略 Merge Strategis
-Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。
-git merge [-s <strategy>] [-X <strategy-option>] [<commit>...] This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.
-git merge -s recursive -X ours [<commit>...] Merge branch obsolete into the current branch, using ours merge strategy:"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"【Git 权威指南】读书笔记 - 和声","item":"https://zyf.im/2018/01/17/got-git-reading-notes-harmony/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"【Git 权威指南】读书笔记 - 和声","name":"【Git 权威指南】读书笔记 - 和声","description":"主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】\nGit 协议与工作协同 Git 支持的协议 SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。\nSSH 协议：\nssh://[user@]example.com[:port]/path/to/repo.git/ [user@]example.com:path/to/repo.git/ GIT 协议，最常用的只读协议：\ngit://example.com[:port]/path/to/repo.git/ HTTP[S] 协议：\nhttp[s]://example.com[:port]/path/to/repo.git/ 强制非快进式推送 git push -f 强制推送，会强制刷新服务器中的版本。\n禁止非快进式推送 git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true 冲突解决 拉回操作中的合并 git pull = git fetch + git merge 合并策略 Merge Strategis\nGit 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。\ngit merge [-s \u0026lt;strategy\u0026gt;] [-X \u0026lt;strategy-option\u0026gt;] [\u0026lt;commit\u0026gt;...] This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.\ngit merge -s recursive -X ours [\u0026lt;commit\u0026gt;...] Merge branch obsolete into the current branch, using ours merge strategy:\n","keywords":["git"],"articleBody":"主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】\nGit 协议与工作协同 Git 支持的协议 SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。\nSSH 协议：\nssh://[user@]example.com[:port]/path/to/repo.git/ [user@]example.com:path/to/repo.git/ GIT 协议，最常用的只读协议：\ngit://example.com[:port]/path/to/repo.git/ HTTP[S] 协议：\nhttp[s]://example.com[:port]/path/to/repo.git/ 强制非快进式推送 git push -f 强制推送，会强制刷新服务器中的版本。\n禁止非快进式推送 git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true 冲突解决 拉回操作中的合并 git pull = git fetch + git merge 合并策略 Merge Strategis\nGit 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。\ngit merge [-s ] [-X ] [...] This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.\ngit merge -s recursive -X ours [...] Merge branch obsolete into the current branch, using ours merge strategy:\ngit merge -s ours obsolete Git 里程碑 显示里程碑 git tag 显示说明。-n 显示最多 行里程碑的说明：\ngit tag -n1 使用统配：\ngit tag -l v1.* 查看提交对应的里程碑及其他引用：\ngit log --oneline --decorate 创建里程碑 当创建了里程碑 mytag 后，会在版本库的 .git/refs/tags 目录下创建一个新文件。实际上指向的是一个提交：\ngit tag mytag git cat-file -t mytag commit 带说明的 tag 指向的不再是一个提交，而是一个 tag 对象：\ngit tag -m \"My first annotated tag.\" mytag2 git cat-file -t mytag2 tag 为里程碑对象添加 GnuPG 签名：\ngit tag -s -m \"My first GPG-signed tag.\" mytag3 删除里程碑 git tag -d mytag Deleted tag 'mytag' (was 60a2f4f) 共享里程碑 创建的里程碑，默认只在本地版本库中可见，不会因为对分支执行推送而将里程碑也推送到远程版本库。\n将 mytag 里程碑共享到上游版本库：\ngit push origin mytag 所有里程碑全部推送到远程版本库：\ngit push origin refs/tags/* 里程碑共享，必须显式的推送。 执行获取或拉回操作，自动从远程版本库获取新里程碑，并在本地版本库中创建。 如果本地已有同名的里程碑，默认不会从上游同步里程碑，即使两者里程碑的指向是不同的。 删除远程版本库的里程碑 git push origin :mytag2 里程碑命名规范 语义化版本 2.0.0\n版本格式：主版本号.次版本号.修订号，版本号递增规则如下：\n主版本号：当你做了不兼容的 API 修改， 次版本号：当你做了向下兼容的功能性新增， 修订号：当你做了向下兼容的问题修正。 先行版本号及版本编译信息可以加到 主版本号.次版本号.修订号 的后面，作为延伸。\nGit 分支 分支是代码管理的利器。如果没有有效的分支管理，代码管理就适应不了复杂的开发过程和项目的需要。\n分支命令概述 # 显示 1. git branch # 创建 2. git branch 3. git branch # 删除，-d 在删除分支 时会检查所要删除的分支是否已经合并到其他分支中，否则拒绝删除。 4. git branch -d 5. git branch -D # 重命名，-m 如果版本库中已经存在名为 的分支，拒绝执行重命名，而 7 会强制执行。 6. git branch -m 7. git branch -M 创建并切换到新分支：\ngit checkout -b [] 分支变基 master dev（开发完成，领先 master） # 先切换到 dev git checkout dev # 变基操作 git rebase master # 遇到冲突，解决冲突 # 添加到暂存区 git add -u # 继续变基 git rebase --continue # 直接将 dev 推送到远程 master git push origin dev:master # 切换到 master git checkout master # 拉取最新代码 git pull # 删除 dev 分支 git branch -d dev 远程版本库 远程分支 查看远程分支：\ngit branch -r 在向远程版本库执行获取操作时，不是把远程版本库的分支原封不动地复制到本地版本库的分支中，而是复制到另外的命名空间。\n远程分支不是真正意义上的分支，是类似于里程碑一样的引用。如果针对远程分支执行检出命令，会看到大段的错误警告。\n远程分支类似于里程碑，如果检出就会使得头指针 HEAD 处于分离头指针状态。实际上除了以 refs/heads 为前缀的引用之外，如果检出任何其他引用，都将使工作区处于分离头指针状态。如果对远程分支进行修改就需要创建新的本地分支。\n分支追踪 为了能够在远程分支 origin/hello-1.x 上进行工作，需要基于该远程分支创建本地分支：\ngit checkout hello-1.x 从远程分支创建本地分支，自动建立了分支间的跟踪，而从一个本地分支创建另外一个本地分支则没有。\n从 hello-1.x 分支中创建新的本地分支 hello-jx，并与远程建立联系。\ngit checkout -b hello-jx hello-1.x cat .git/config 远程版本库 # 设置 git remote add new-remote file:///path/to/repos/hello-user1.git # 修改 url git remote set-url new-remote file:///path/to/repos/hello-user2.git # 单独修改 push 地址 git remote set-url --push new-remote /path/to/repos/hello-user2.git # 修改 版本库名称 git remote rename new-remote user2 # 当注册了多个远程版本库并希望获取所有远程版本库的更新 git remote update # 如果某个远程版本库不想在执行 git remote update 时获得更新 git config remote.user2.skipDefaultUpdate true # 删除 git remote rm PUSH 和 PULL 操作与远程版本库 在执行 git pull 操作的时候可以通过参数 --rebase 设置使用变基而非合并操作，将本地分支的改动变基到跟踪分支上。为了避免因为忘记使用 --rebase 参数导致分支的合并，可进行设置：\ngit config branch..rebase true 这样在遇到冲突（本地和远程分支出现偏离）的情况下，会采用变基操作，而不是默认的合并操作。\n如果为本地版本库设置参数 branch.autosetuprebase ，值为 true，则在基于远程分支建立本地追踪分支时，会自动配置 branch..rebase 参数。\n分支和里程碑的安全性 用 reflog 记录对分支的操作历史。默认创建的带工作区的版本库都会包含 core.logallrefupdates 为 true 的配置，这样在版本库中建立的每个分支都会创建对应的 reflog。但是创建的裸版本库默认不包含这个设置，也就不会为每个分支设置 reflog。可能因为分支误操作导致数据丢失，可以考虑为裸版本库添加此配置。\n关闭非快进式提交。配置 receive.denyNonFastForwards 设置为 true，则禁止一切非快进式推送。更好的方法是通过架设基于 SSH 协议的 Git 服务器，配置强制提交的用户权限。\n关闭分支删除功能。配置 receive.denyDeletes 设置为 true，则禁止删除分支。更好的方法是：配置分支删除的用户权限。\n补丁文件交互 将最近三个提交转换为补丁文件：\ngit format-patch -s HEAD~3..HEAD -s 会在导出的补丁文件中添加当前用户的签名。\n应用补丁：\ngit am user1-mail-archive git apply 可以应用一般格式的补丁文件，但是不能执行提交，也不能保持补丁中的作者信息。\nReferences 3. Git 和声 — GotGit ","wordCount":"469","inLanguage":"en","datePublished":"2018-01-17T19:00:00Z","dateModified":"2018-01-17T19:00:00Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2018/01/17/got-git-reading-notes-harmony/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)">ZYF.IM</a></div><ul id=menu class=menu><li><a href=https://til.zyf.im/ title=TIL><span>TIL</span>&nbsp;
+ssh://[user@]example.com[:port]/path/to/repo.git
+[user@]example.com:path/to/repo.git          # SSH 简写
+https://example.com/path/to/repo.git
+远程版本库管理
+git remote -v                                # 列出 fetch/push URL
+git remote add <name> <url>                  # 注册
+git remote set-url <name> <url>              # 改 URL
+git remote set-url --push <name> <url>       # 单独改 push URL（读写分离）
+git remote rename <old> <new>
+git remote rm <name>
+git remote update                            # 拉取所有 remote 的更新
+git config remote.<name>.skipDefaultUpdate true   # 排除某个 remote
+fetch / pull 的关系
+git pull = git fetch + git merge        # 默认
+git pull --rebase = git fetch + git rebase
+习惯用 rebase 整理历史的人，全局开启：'><meta name=author content="Me, LLM"><link rel=canonical href=https://zyf.im/2018/01/17/got-git-reading-notes-harmony/><link crossorigin=anonymous href=/assets/css/stylesheet.9aecb24df9d82d4e97d983b9a3ae6e30cb48b5ec58f646721ccc596b06647753.css integrity="sha256-muyyTfnYLU6X2YO5o65uMMtItexY9kZyHMxZawZkd1M=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2018/01/17/got-git-reading-notes-harmony/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2018/01/17/got-git-reading-notes-harmony/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="【Git 权威指南】读书笔记 - 协同"><meta property="og:description" content='【Git 权威指南】“和声”+“协同模型"两章的精炼合并版：远程协议、推送与冲突解决、里程碑共享、分支协同、工作流模型、共用代码（submodule / subtree）。
+本文沿用书中 master 作为默认分支名；Git 2.28+ 默认改为 main，行为完全一致。
+远程协议与版本库 协议选择 协议 用途 现状 SSH 推 + 拉，需公钥认证 协作首选 HTTPS 推 + 拉，凭证由 helper 缓存 网络受限环境首选；个人项目常用 本地 file:// 或裸路径 备份 / 镜像 git:// 只读匿名协议 已弃用，GitHub 2022 年关停 FTP / RSYNC — 已弃用，忘了它们 ssh://[user@]example.com[:port]/path/to/repo.git [user@]example.com:path/to/repo.git # SSH 简写 https://example.com/path/to/repo.git 远程版本库管理 git remote -v # 列出 fetch/push URL git remote add <name> <url> # 注册 git remote set-url <name> <url> # 改 URL git remote set-url --push <name> <url> # 单独改 push URL（读写分离） git remote rename <old> <new> git remote rm <name> git remote update # 拉取所有 remote 的更新 git config remote.<name>.skipDefaultUpdate true # 排除某个 remote fetch / pull 的关系 git pull = git fetch + git merge # 默认 git pull --rebase = git fetch + git rebase 习惯用 rebase 整理历史的人，全局开启：'><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-01-17T19:00:00+00:00"><meta property="article:modified_time" content="2018-01-17T19:00:00+00:00"><meta property="article:tag" content="Git"><meta name=twitter:card content="summary"><meta name=twitter:title content="【Git 权威指南】读书笔记 - 协同"><meta name=twitter:description content='【Git 权威指南】“和声”+“协同模型"两章的精炼合并版：远程协议、推送与冲突解决、里程碑共享、分支协同、工作流模型、共用代码（submodule / subtree）。
+本文沿用书中 master 作为默认分支名；Git 2.28+ 默认改为 main，行为完全一致。
+远程协议与版本库 协议选择 协议 用途 现状 SSH 推 + 拉，需公钥认证 协作首选 HTTPS 推 + 拉，凭证由 helper 缓存 网络受限环境首选；个人项目常用 本地 file:// 或裸路径 备份 / 镜像 git:// 只读匿名协议 已弃用，GitHub 2022 年关停 FTP / RSYNC — 已弃用，忘了它们 ssh://[user@]example.com[:port]/path/to/repo.git [user@]example.com:path/to/repo.git # SSH 简写 https://example.com/path/to/repo.git 远程版本库管理 git remote -v # 列出 fetch/push URL git remote add <name> <url> # 注册 git remote set-url <name> <url> # 改 URL git remote set-url --push <name> <url> # 单独改 push URL（读写分离） git remote rename <old> <new> git remote rm <name> git remote update # 拉取所有 remote 的更新 git config remote.<name>.skipDefaultUpdate true # 排除某个 remote fetch / pull 的关系 git pull = git fetch + git merge # 默认 git pull --rebase = git fetch + git rebase 习惯用 rebase 整理历史的人，全局开启：'><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://zyf.im/posts/"},{"@type":"ListItem","position":2,"name":"【Git 权威指南】读书笔记 - 协同","item":"https://zyf.im/2018/01/17/got-git-reading-notes-harmony/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"【Git 权威指南】读书笔记 - 协同","name":"【Git 权威指南】读书笔记 - 协同","description":"【Git 权威指南】\u0026ldquo;和声\u0026rdquo;+\u0026ldquo;协同模型\u0026quot;两章的精炼合并版：远程协议、推送与冲突解决、里程碑共享、分支协同、工作流模型、共用代码（submodule / subtree）。\n本文沿用书中 master 作为默认分支名；Git 2.28+ 默认改为 main，行为完全一致。\n远程协议与版本库 协议选择 协议 用途 现状 SSH 推 + 拉，需公钥认证 协作首选 HTTPS 推 + 拉，凭证由 helper 缓存 网络受限环境首选；个人项目常用 本地 file:// 或裸路径 备份 / 镜像 git:// 只读匿名协议 已弃用，GitHub 2022 年关停 FTP / RSYNC — 已弃用，忘了它们 ssh://[user@]example.com[:port]/path/to/repo.git [user@]example.com:path/to/repo.git # SSH 简写 https://example.com/path/to/repo.git 远程版本库管理 git remote -v # 列出 fetch/push URL git remote add \u0026lt;name\u0026gt; \u0026lt;url\u0026gt; # 注册 git remote set-url \u0026lt;name\u0026gt; \u0026lt;url\u0026gt; # 改 URL git remote set-url --push \u0026lt;name\u0026gt; \u0026lt;url\u0026gt; # 单独改 push URL（读写分离） git remote rename \u0026lt;old\u0026gt; \u0026lt;new\u0026gt; git remote rm \u0026lt;name\u0026gt; git remote update # 拉取所有 remote 的更新 git config remote.\u0026lt;name\u0026gt;.skipDefaultUpdate true # 排除某个 remote fetch / pull 的关系 git pull = git fetch + git merge # 默认 git pull --rebase = git fetch + git rebase 习惯用 rebase 整理历史的人，全局开启：\n","keywords":["git"],"articleBody":"【Git 权威指南】“和声”+“协同模型\"两章的精炼合并版：远程协议、推送与冲突解决、里程碑共享、分支协同、工作流模型、共用代码（submodule / subtree）。\n本文沿用书中 master 作为默认分支名；Git 2.28+ 默认改为 main，行为完全一致。\n远程协议与版本库 协议选择 协议 用途 现状 SSH 推 + 拉，需公钥认证 协作首选 HTTPS 推 + 拉，凭证由 helper 缓存 网络受限环境首选；个人项目常用 本地 file:// 或裸路径 备份 / 镜像 git:// 只读匿名协议 已弃用，GitHub 2022 年关停 FTP / RSYNC — 已弃用，忘了它们 ssh://[user@]example.com[:port]/path/to/repo.git [user@]example.com:path/to/repo.git # SSH 简写 https://example.com/path/to/repo.git 远程版本库管理 git remote -v # 列出 fetch/push URL git remote add # 注册 git remote set-url # 改 URL git remote set-url --push # 单独改 push URL（读写分离） git remote rename git remote rm git remote update # 拉取所有 remote 的更新 git config remote..skipDefaultUpdate true # 排除某个 remote fetch / pull 的关系 git pull = git fetch + git merge # 默认 git pull --rebase = git fetch + git rebase 习惯用 rebase 整理历史的人，全局开启：\ngit config --global pull.rebase true git config --global branch.autosetuprebase always # 新追踪分支自动设 rebase pull.rebase=true 是 2.6+ 后协同的现代默认姿势，避免 git pull 平白塞进一堆 Merge branch 'main' 的噪声。\n推送与冲突解决 推送基础 git push # 推当前分支到追踪的上游 git push -u origin # 首次推并建立 upstream git push origin dev:master # 显式 refspec：本地 dev → 远端 master 非快进推送：force 的现代姿势 git push -f # 危险：会盖掉别人推的东西 git push --force-with-lease # 推荐：只在远端确实是你看到的版本时才覆盖 git push --force-with-lease --force-if-includes # 2.30+ 更严格：还要求你 fetch 过最新 --force-with-lease 是 -f 的安全替代品。它检测远端是否被别人推了新东西，是就拒推 —— 多人协作改 rebase 后强推必备。\n服务端禁止非快进推送（用于受保护分支）：\ngit --git-dir=/path/to/shared.git config receive.denyNonFastForwards true git --git-dir=/path/to/shared.git config receive.denyDeletes true 真正的权限控制还是交给 GitLab / GitHub 服务端的 protected branch / push rule，这里只是底层兜底。\n冲突解决的实际流程 合并 / 变基遇冲突时，冲突文件长这样：\n\u003c\u003c\u003c\u003c\u003c\u003c\u003c HEAD 我这边的版本 ======= 对方分支的版本 \u003e\u003e\u003e\u003e\u003e\u003e\u003e feature 工作流程：\ngit status # 列出 \"both modified\" 的文件 # 编辑器里手动取舍，或调工具 git mergetool # 调用 vimdiff / opendiff / vscode 等 git diff --check # 检查是否还有遗留 \u003c\u003c\u003c\u003c\u003c\u003c\u003c git add git commit # merge 用 commit；rebase 用 git rebase --continue git merge --abort # 想反悔 git rebase --abort 合并策略关键陷阱：-X ours vs -s ours 写法相近，效果完全不同：\n命令 行为 git merge -X ours recursive 策略 + ours 选项。只在冲突 hunk 上偏向本方，非冲突的对方改动正常合入 git merge -s ours ours 策略。对方分支整个内容全部丢弃，只记录一笔合并提交 后者常用于\"我宣告这个分支已废弃但要在历史上标一笔”。误用会神不知鬼不觉丢光对方所有改动。\n合并方式：fast-forward 还是 no-ff git merge feature # 默认：如果可以 ff 就 ff，分支痕迹消失 git merge --no-ff feature # 强制产生合并提交，保留分支拓扑 git config --global merge.ff false 团队偏好\"看得见每个 feature 分支\"的，统一关掉 ff；偏好线性历史的，反过来用 rebase + ff。\n里程碑共享 tag 不会随分支自动推 git push origin v1.0 # 推单个 tag git push origin --tags # 推所有本地 tag git push origin refs/tags/v* # refspec 通配 git push origin :refs/tags/v1.0 # 删除远端 tag git fetch --tags # 主动拉所有 tag 默认 git fetch 只会带回与已 fetch 的 commit 可达的 tag，孤立 tag 不会自动同步。 远端有同名 tag 而本地没有时会建立；本地已存在则不会覆盖，需要 git fetch --tags -f。\n命名：语义化版本 Semantic Versioning 2.0 —— MAJOR.MINOR.PATCH：\nMAJOR 不兼容改动 MINOR 向下兼容的新功能 PATCH 向下兼容的修复 预发布 / 编译信息：1.0.0-beta.1+20251010。\n分支协同 本地分支基本操作 git branch # 列本地 git branch -r # 列远程跟踪 git branch -a # 全部 git branch -vv # 含 upstream 关系 git switch # 切分支（2.23+，比 checkout 语义清晰） git switch -c [] # 创建并切换 git branch -d # 安全删（未合并会拒绝） git branch -D # 强删 git branch -m # 重命名 远程跟踪分支 origin/main 这种引用住在 refs/remotes/ 命名空间，是 fetch 后服务端最新状态的本地快照，不是真正的分支 —— 不能直接 commit 到它上面。\ngit switch hello-1.x # DWIM：本地无同名分支时，自动基于 origin/hello-1.x 建并跟踪 git switch -c local-feat origin/feat # 显式基于远程分支建跟踪分支 git branch --set-upstream-to=origin/main main # 给已存在分支补设 upstream git fetch --prune # 清理远端已删的跟踪分支 DWIM (Do What I Mean)：git switch 时若本地无同名分支但远端恰有一个 origin/，Git 会自动创建本地分支并设 upstream。多个 remote 都有时不触发，避免歧义。\nrebase 整理本地分支 dev 基于老的 master，希望以最新 master 为基底再推送：\ngit switch dev git fetch origin git rebase origin/master # 冲突 → 解决 → git add → git rebase --continue git push --force-with-lease # 历史被重写，必须 force（用 with-lease 才安全） 共享分支 rebase 后必须 --force-with-lease，且最好提前在团队里 broadcast 一下。 个人独享分支随便 rebase；团队共享主干永远 merge 不 rebase。\ngit worktree：并行多分支 不再需要\"克隆好几份仓库\"或者 git stash 来回切：\ngit worktree add ../proj-hotfix hotfix # 在隔壁目录开一个挂在 hotfix 分支的工作区 git worktree list git worktree remove ../proj-hotfix 每个 worktree 共享同一 .git/objects，但有独立工作区和独立 HEAD。Code review、跑长测试、临时改 hotfix 都不打断主工作区。\n分支安全配置 配置 作用 core.logallrefupdates=true 给每条分支记 reflog（带工作区的库默认开；裸库默认关，建议手动打开） receive.denyNonFastForwards=true 服务端拒绝非快进推送 receive.denyDeletes=true 服务端拒绝删除分支 工作流模型 经典三种，选用按团队规模和发布节奏：\n模型 适用 关键约束 Trunk-based 持续部署、CI 强的小到中团队 所有人直推 main（或短命 feature 分支）+ feature flag GitHub Flow SaaS 持续交付，最常见 main 永远可部署，feature 分支走 PR → 合并 → 部署 GitFlow 有明确版本发布周期的产品（客户端、SDK） main + develop + release/* + hotfix/*，重 Topgit、卖主分支 (Vendor Branch) 是 2010 年前的产物，现代项目用包管理器（npm / composer / cargo）+ submodule / subtree 覆盖了这些场景，可忽略。\n共用代码：submodule vs subtree 两者解决同一问题（在一个仓库里嵌套引用另一个仓库），但取舍完全不同：\n维度 submodule subtree 子项目代码物理位置 独立 .git，靠 commit 指针引用 直接嵌入主仓库 克隆体验 需要 --recurse-submodules 或 init 克隆主仓即拿全 主仓体积 小（只存指针） 大（含子项目历史） 协作者上手成本 高（需理解 submodule + detached HEAD） 低（看起来就是普通目录） 双向同步（向上游回推） 直接在子仓库 push 即可 麻烦（git subtree push 提取相关 commit） 适合 真正独立的依赖，少改 共享代码模板、内嵌工具脚本 submodule 标准姿势 git submodule add # 添加；生成 .gitmodules git clone --recurse-submodules # 一次克隆主仓 + 所有子模块（推荐） git submodule update --init --recursive # 已克隆的仓库补拉子模块 git submodule update --remote # 把子模块拉到其追踪分支的最新 git submodule status submodule 头号陷阱：每个 submodule 始终处于 detached HEAD。要在子模块里改东西，先 git -C switch 切到分支，提交后先推子仓库，再推主仓库 —— 顺序反了别人会拉不到对应 commit。\nsubtree 标准姿势 # 引入：把 S 项目作为主仓的 lib/s 子目录 git subtree add --prefix=lib/s main --squash # 拉上游更新 git subtree pull --prefix=lib/s main --squash # 把主仓内对 lib/s 的改动回推到 S 项目 git subtree push --prefix=lib/s feature-branch --squash 把上游历史压成一笔 commit，主仓 git log 干净，代价是主仓再也看不到子项目的提交图。统一加或统一不加，混用会撞合并冲突。\n从已有项目剥离子模块 # 1. 从 P 项目里抽出 lib/s 的所有 commit，存到临时分支 git subtree split -P lib/s -b extracted # 2. 创建独立的 S 仓库 mkdir ../s \u0026\u0026 cd ../s \u0026\u0026 git init git pull ../P extracted git remote add origin git push -u origin main # 3. P 项目里删掉原目录，改用 subtree 引用 cd ../P git rm -rf lib/s \u0026\u0026 git commit -m \"Extract lib/s to standalone repo\" git subtree add --prefix=lib/s main --squash 一个常见用途：把构建产物推到 GitHub Pages\ngit subtree push --prefix=dist origin gh-pages 补丁文件交互 少数场景（邮件协作 / 没有共同远端 / 跨网隔离环境）会用补丁文件传递提交：\ngit format-patch -s HEAD~3..HEAD # 把最近 3 个提交导成 3 个 *.patch 文件，-s 加 Signed-off-by git format-patch -s origin/main..HEAD # 导出 fork 后所有新增提交 git am \u003c user1.mbox # 收方导入，保留 author 与 message git apply foo.patch # 仅打补丁，不产生 commit，author 信息丢失 git apply --check foo.patch # 试跑，不真改 Linux 内核、Git 本身都还在用邮件 + git format-patch / git am 流程；日常 GitHub / GitLab 协作用 PR / MR 即可。\nReferences 3. Git 和声 — GotGit 4. 协同模型 — GotGit Semantic Versioning 2.0.0 – EOF –\n","wordCount":"952","inLanguage":"en","datePublished":"2018-01-17T19:00:00Z","dateModified":"2018-01-17T19:00:00Z","author":[{"@type":"Person","name":"Me"},{"@type":"Person","name":"LLM"}],"mainEntityOfPage":{"@type":"WebPage","@id":"https://zyf.im/2018/01/17/got-git-reading-notes-harmony/"},"publisher":{"@type":"Organization","name":"ZYF.IM BLOG","logo":{"@type":"ImageObject","url":"https://zyf.im/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://zyf.im/ accesskey=h title="ZYF.IM (Alt + H)">ZYF.IM</a></div><ul id=menu class=menu><li><a href=https://til.zyf.im/ title=TIL><span>TIL</span>&nbsp;
 <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg></a></li><li><a href=https://zyf.im/archives/ title=Archives><span>Archives</span></a></li><li><a href=https://zyf.im/bookmarks/ title=Bookmarks><span>Bookmarks</span></a></li><li><a href=https://zyf.im/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 <a href=/posts/>Posts</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">【Git 权威指南】读书笔记 - 和声</h1><div class=post-meta><span title='2018-01-17 19:00:00 +0000 UTC'>January 17, 2018</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>469 words</span>&nbsp;·&nbsp;<span>Me</span></div></header><details class=toc open><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#git-协议与工作协同>Git 协议与工作协同</a><ul><li><a href=#git-支持的协议>Git 支持的协议</a></li><li><a href=#强制非快进式推送>强制非快进式推送</a></li><li><a href=#禁止非快进式推送>禁止非快进式推送</a></li></ul></li><li><a href=#冲突解决>冲突解决</a><ul><li><a href=#拉回操作中的合并>拉回操作中的合并</a></li><li><a href=#合并策略>合并策略</a></li></ul></li><li><a href=#git-里程碑>Git 里程碑</a><ul><li><a href=#显示里程碑>显示里程碑</a></li><li><a href=#创建里程碑>创建里程碑</a></li><li><a href=#删除里程碑>删除里程碑</a></li><li><a href=#共享里程碑>共享里程碑</a></li><li><a href=#删除远程版本库的里程碑>删除远程版本库的里程碑</a></li><li><a href=#里程碑命名规范>里程碑命名规范</a></li></ul></li><li><a href=#git-分支>Git 分支</a><ul><li><a href=#分支命令概述>分支命令概述</a></li><li><a href=#分支变基>分支变基</a></li></ul></li><li><a href=#远程版本库>远程版本库</a><ul><li><a href=#远程分支>远程分支</a></li><li><a href=#分支追踪>分支追踪</a></li><li><a href=#远程版本库-1>远程版本库</a></li><li><a href=#push-和-pull-操作与远程版本库>PUSH 和 PULL 操作与远程版本库</a></li><li><a href=#分支和里程碑的安全性>分支和里程碑的安全性</a></li></ul></li><li><a href=#补丁文件交互>补丁文件交互</a></li><li><a href=#references>References</a></li></ul></nav></div></details><div class="post-content md-content"><p>主要内容：【Git 协议与工作协同】、【冲突解决】、【Git 里程碑】、【Git 分支】、【远程版本库】、【补丁文件交互】</p><h2 id=git-协议与工作协同>Git 协议与工作协同<a hidden class=anchor aria-hidden=true href=#git-协议与工作协同>#</a></h2><h3 id=git-支持的协议>Git 支持的协议<a hidden class=anchor aria-hidden=true href=#git-支持的协议>#</a></h3><p>SSH、GIT、HTTP、HTTPS、FTP、FTPS、RSYNC 及前面已经看到的本地协议。</p><p>SSH 协议：</p><pre tabindex=0><code>ssh://[user@]example.com[:port]/path/to/repo.git/
-
-[user@]example.com:path/to/repo.git/
-</code></pre><p>GIT 协议，最常用的只读协议：</p><pre tabindex=0><code>git://example.com[:port]/path/to/repo.git/
-</code></pre><p>HTTP[S] 协议：</p><pre tabindex=0><code>http[s]://example.com[:port]/path/to/repo.git/
-</code></pre><h3 id=强制非快进式推送>强制非快进式推送<a hidden class=anchor aria-hidden=true href=#强制非快进式推送>#</a></h3><pre tabindex=0><code>git push -f
-</code></pre><p>强制推送，会强制刷新服务器中的版本。</p><h3 id=禁止非快进式推送>禁止非快进式推送<a hidden class=anchor aria-hidden=true href=#禁止非快进式推送>#</a></h3><pre tabindex=0><code>git --git-dir=/path/to/repos/shared.git config receive.denyNonFastForwards true
-</code></pre><h2 id=冲突解决>冲突解决<a hidden class=anchor aria-hidden=true href=#冲突解决>#</a></h2><h3 id=拉回操作中的合并>拉回操作中的合并<a hidden class=anchor aria-hidden=true href=#拉回操作中的合并>#</a></h3><pre tabindex=0><code>git pull = git fetch + git merge
-</code></pre><h3 id=合并策略>合并策略<a hidden class=anchor aria-hidden=true href=#合并策略>#</a></h3><blockquote><p><a href=https://git-scm.com/docs/git-merge#_merge_strategies>Merge Strategis</a></p></blockquote><p>Git 合并操作支持很多合并策略，默认会选择最适合的合并策略。例如，和一个分支进行合并时会选择 recursive 合并策略，当和两个或两个以上的其他分支进行合并时采用 octopus 合并策略。</p><pre tabindex=0><code>git merge [-s &lt;strategy&gt;] [-X &lt;strategy-option&gt;] [&lt;commit&gt;...]
-</code></pre><p>This option forces conflicting hunks to be auto-resolved cleanly by favoring our version.</p><pre tabindex=0><code>git merge -s recursive -X ours [&lt;commit&gt;...]
-</code></pre><p>Merge branch obsolete into the current branch, using ours merge strategy:</p><pre tabindex=0><code>git merge -s ours obsolete
-</code></pre><h2 id=git-里程碑>Git 里程碑<a hidden class=anchor aria-hidden=true href=#git-里程碑>#</a></h2><h3 id=显示里程碑>显示里程碑<a hidden class=anchor aria-hidden=true href=#显示里程碑>#</a></h3><pre tabindex=0><code>git tag
-</code></pre><p>显示说明。<code>-n&lt;num></code> 显示最多 <code>&lt;num></code> 行里程碑的说明：</p><pre tabindex=0><code>git tag -n1
-</code></pre><p>使用统配：</p><pre tabindex=0><code>git tag -l v1.*
-</code></pre><p>查看提交对应的里程碑及其他引用：</p><pre tabindex=0><code>git log --oneline --decorate
-</code></pre><h3 id=创建里程碑>创建里程碑<a hidden class=anchor aria-hidden=true href=#创建里程碑>#</a></h3><p>当创建了里程碑 mytag 后，会在版本库的 .git/refs/tags 目录下创建一个新文件。实际上指向的是一个提交：</p><pre tabindex=0><code>git tag mytag
-
-git cat-file -t mytag
-commit
-</code></pre><p>带说明的 tag 指向的不再是一个提交，而是一个 tag 对象：</p><pre tabindex=0><code>git tag -m &#34;My first annotated tag.&#34; mytag2
-
-git cat-file -t mytag2
-tag
-</code></pre><p>为里程碑对象添加 GnuPG 签名：</p><pre tabindex=0><code>git tag -s -m &#34;My first GPG-signed tag.&#34; mytag3
-</code></pre><h3 id=删除里程碑>删除里程碑<a hidden class=anchor aria-hidden=true href=#删除里程碑>#</a></h3><pre tabindex=0><code>git tag -d mytag
-Deleted tag &#39;mytag&#39; (was 60a2f4f)
-</code></pre><h3 id=共享里程碑>共享里程碑<a hidden class=anchor aria-hidden=true href=#共享里程碑>#</a></h3><p>创建的里程碑，默认只在本地版本库中可见，不会因为对分支执行推送而将里程碑也推送到远程版本库。</p><p>将 mytag 里程碑共享到上游版本库：</p><pre tabindex=0><code>git push origin mytag
-</code></pre><p>所有里程碑全部推送到远程版本库：</p><pre tabindex=0><code>git push origin refs/tags/*
-</code></pre><ul><li>里程碑共享，必须显式的推送。</li><li>执行获取或拉回操作，自动从远程版本库获取新里程碑，并在本地版本库中创建。</li><li>如果本地已有同名的里程碑，默认不会从上游同步里程碑，即使两者里程碑的指向是不同的。</li></ul><h3 id=删除远程版本库的里程碑>删除远程版本库的里程碑<a hidden class=anchor aria-hidden=true href=#删除远程版本库的里程碑>#</a></h3><pre tabindex=0><code>git push origin :mytag2
-</code></pre><h3 id=里程碑命名规范>里程碑命名规范<a hidden class=anchor aria-hidden=true href=#里程碑命名规范>#</a></h3><p><a href=https://semver.org/lang/zh-CN/>语义化版本 2.0.0</a></p><p>版本格式：主版本号.次版本号.修订号，版本号递增规则如下：</p><ul><li>主版本号：当你做了不兼容的 API 修改，</li><li>次版本号：当你做了向下兼容的功能性新增，</li><li>修订号：当你做了向下兼容的问题修正。</li></ul><p>先行版本号及版本编译信息可以加到 <code>主版本号.次版本号.修订号</code> 的后面，作为延伸。</p><h2 id=git-分支>Git 分支<a hidden class=anchor aria-hidden=true href=#git-分支>#</a></h2><p>分支是代码管理的利器。如果没有有效的分支管理，代码管理就适应不了复杂的开发过程和项目的需要。</p><h3 id=分支命令概述>分支命令概述<a hidden class=anchor aria-hidden=true href=#分支命令概述>#</a></h3><pre tabindex=0><code># 显示
-1. git branch
-
-# 创建
-2. git branch &lt;branchname&gt;
-3. git branch &lt;branchname&gt; &lt;start-point&gt;
-
-# 删除，-d 在删除分支 &lt;branchname&gt; 时会检查所要删除的分支是否已经合并到其他分支中，否则拒绝删除。
-4. git branch -d &lt;branchname&gt;
-5. git branch -D &lt;branchname&gt;
-
-# 重命名，-m 如果版本库中已经存在名为 &lt;newbranch&gt; 的分支，拒绝执行重命名，而 7 会强制执行。
-6. git branch -m &lt;oldbranch&gt; &lt;newbranch&gt;
-7. git branch -M &lt;oldbranch&gt; &lt;newbranch&gt;
-</code></pre><p>创建并切换到新分支：</p><pre tabindex=0><code>git checkout -b &lt;new_branch&gt; [&lt;start_point&gt;]
-</code></pre><h3 id=分支变基>分支变基<a hidden class=anchor aria-hidden=true href=#分支变基>#</a></h3><ul><li>master</li><li>dev（开发完成，领先 master）</li></ul><pre tabindex=0><code># 先切换到 dev
-git checkout dev
-
-# 变基操作
-git rebase master
-
-# 遇到冲突，解决冲突
-
-# 添加到暂存区
-git add -u
-
-# 继续变基
-git rebase --continue
-
-# 直接将 dev 推送到远程 master
-git push origin dev:master
-
-# 切换到 master
-git checkout master
-
-# 拉取最新代码
-git pull
-
-# 删除 dev 分支
-git branch -d dev
-</code></pre><h2 id=远程版本库>远程版本库<a hidden class=anchor aria-hidden=true href=#远程版本库>#</a></h2><h3 id=远程分支>远程分支<a hidden class=anchor aria-hidden=true href=#远程分支>#</a></h3><p>查看远程分支：</p><pre tabindex=0><code>git branch -r
-</code></pre><p>在向远程版本库执行获取操作时，不是把远程版本库的分支原封不动地复制到本地版本库的分支中，而是复制到另外的命名空间。</p><p>远程分支不是真正意义上的分支，是类似于里程碑一样的引用。如果针对远程分支执行检出命令，会看到大段的错误警告。</p><p>远程分支类似于里程碑，如果检出就会使得头指针 HEAD 处于分离头指针状态。实际上除了以 refs/heads 为前缀的引用之外，如果检出任何其他引用，都将使工作区处于分离头指针状态。如果对远程分支进行修改就需要创建新的本地分支。</p><h3 id=分支追踪>分支追踪<a hidden class=anchor aria-hidden=true href=#分支追踪>#</a></h3><p>为了能够在远程分支 <code>origin/hello-1.x</code> 上进行工作，需要基于该远程分支创建本地分支：</p><pre tabindex=0><code>git checkout hello-1.x
-</code></pre><p>从远程分支创建本地分支，自动建立了分支间的跟踪，而从一个本地分支创建另外一个本地分支则没有。</p><p>从 <code>hello-1.x</code> 分支中创建新的本地分支 <code>hello-jx</code>，并与远程建立联系。</p><pre tabindex=0><code>git checkout -b hello-jx hello-1.x
-</code></pre><pre tabindex=0><code>cat .git/config
-</code></pre><h3 id=远程版本库-1>远程版本库<a hidden class=anchor aria-hidden=true href=#远程版本库-1>#</a></h3><pre tabindex=0><code># 设置
-git remote add new-remote file:///path/to/repos/hello-user1.git
-
-# 修改 url
-git remote set-url new-remote file:///path/to/repos/hello-user2.git
-
-# 单独修改 push 地址
-git remote set-url --push new-remote /path/to/repos/hello-user2.git
-
-# 修改 版本库名称
-git remote rename new-remote user2
-
-# 当注册了多个远程版本库并希望获取所有远程版本库的更新
-git remote update
-
-# 如果某个远程版本库不想在执行 git remote update 时获得更新
-git config remote.user2.skipDefaultUpdate true
-
-# 删除
-git remote rm
-</code></pre><h3 id=push-和-pull-操作与远程版本库>PUSH 和 PULL 操作与远程版本库<a hidden class=anchor aria-hidden=true href=#push-和-pull-操作与远程版本库>#</a></h3><p>在执行 <code>git pull</code> 操作的时候可以通过参数 <code>--rebase</code> 设置使用变基而非合并操作，将本地分支的改动变基到跟踪分支上。为了避免因为忘记使用 <code>--rebase</code> 参数导致分支的合并，可进行设置：</p><pre tabindex=0><code>git config branch.&lt;branchname&gt;.rebase true
-</code></pre><p>这样在遇到冲突（本地和远程分支出现偏离）的情况下，会采用变基操作，而不是默认的合并操作。</p><p>如果为本地版本库设置参数 <code>branch.autosetuprebase</code> ，值为 <code>true</code>，则在基于远程分支建立本地追踪分支时，会自动配置 <code>branch.&lt;branchname>.rebase</code> 参数。</p><h3 id=分支和里程碑的安全性>分支和里程碑的安全性<a hidden class=anchor aria-hidden=true href=#分支和里程碑的安全性>#</a></h3><ul><li><p>用 <code>reflog</code> 记录对分支的操作历史。默认创建的带工作区的版本库都会包含 <code>core.logallrefupdates</code> 为 <code>true</code> 的配置，这样在版本库中建立的每个分支都会创建对应的 <code>reflog</code>。但是创建的裸版本库默认不包含这个设置，也就不会为每个分支设置 <code>reflog</code>。可能因为分支误操作导致数据丢失，可以考虑为裸版本库添加此配置。</p></li><li><p>关闭非快进式提交。配置 <code>receive.denyNonFastForwards</code> 设置为 <code>true</code>，则禁止一切非快进式推送。更好的方法是通过架设基于 SSH 协议的 Git 服务器，配置强制提交的用户权限。</p></li><li><p>关闭分支删除功能。配置 <code>receive.denyDeletes</code> 设置为 <code>true</code>，则禁止删除分支。更好的方法是：配置分支删除的用户权限。</p></li></ul><h2 id=补丁文件交互>补丁文件交互<a hidden class=anchor aria-hidden=true href=#补丁文件交互>#</a></h2><p>将最近三个提交转换为补丁文件：</p><pre tabindex=0><code>git format-patch -s HEAD~3..HEAD
-</code></pre><p><code>-s</code> 会在导出的补丁文件中添加当前用户的签名。</p><p>应用补丁：</p><pre tabindex=0><code>git am user1-mail-archive
-</code></pre><p><code>git apply</code> 可以应用一般格式的补丁文件，但是不能执行提交，也不能保持补丁中的作者信息。</p><h2 id=references>References<a hidden class=anchor aria-hidden=true href=#references>#</a></h2><ul><li><a href=http://www.worldhello.net/gotgit/03-git-harmony>3. Git 和声 — GotGit</a></li></ul></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/git/>Git</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2018/01/19/got-git-reading-notes-model/><span class=title>« Prev</span>
-<span>【Git 权威指南】读书笔记 - 协同模型</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">【Git 权威指南】读书笔记 - 协同</h1><div class=post-meta><span title='2018-01-17 19:00:00 +0000 UTC'>January 17, 2018</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>952 words</span>&nbsp;·&nbsp;<span>Me, LLM</span></div></header><details class=toc open><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><nav id=TableOfContents><ul><li><a href=#远程协议与版本库>远程协议与版本库</a><ul><li><a href=#协议选择>协议选择</a></li><li><a href=#远程版本库管理>远程版本库管理</a></li><li><a href=#fetch--pull-的关系>fetch / pull 的关系</a></li></ul></li><li><a href=#推送与冲突解决>推送与冲突解决</a><ul><li><a href=#推送基础>推送基础</a></li><li><a href=#非快进推送force-的现代姿势>非快进推送：force 的现代姿势</a></li><li><a href=#冲突解决的实际流程>冲突解决的实际流程</a></li><li><a href=#合并策略关键陷阱-x-ours-vs--s-ours>合并策略关键陷阱：<code>-X ours</code> vs <code>-s ours</code></a></li><li><a href=#合并方式fast-forward-还是-no-ff>合并方式：fast-forward 还是 no-ff</a></li></ul></li><li><a href=#里程碑共享>里程碑共享</a><ul><li><a href=#tag-不会随分支自动推>tag 不会随分支自动推</a></li><li><a href=#命名语义化版本>命名：语义化版本</a></li></ul></li><li><a href=#分支协同>分支协同</a><ul><li><a href=#本地分支基本操作>本地分支基本操作</a></li><li><a href=#远程跟踪分支>远程跟踪分支</a></li><li><a href=#rebase-整理本地分支>rebase 整理本地分支</a></li><li><a href=#git-worktree并行多分支>git worktree：并行多分支</a></li><li><a href=#分支安全配置>分支安全配置</a></li></ul></li><li><a href=#工作流模型>工作流模型</a></li><li><a href=#共用代码submodule-vs-subtree>共用代码：submodule vs subtree</a><ul><li><a href=#submodule-标准姿势>submodule 标准姿势</a></li><li><a href=#subtree-标准姿势>subtree 标准姿势</a></li><li><a href=#从已有项目剥离子模块>从已有项目剥离子模块</a></li></ul></li><li><a href=#补丁文件交互>补丁文件交互</a></li><li><a href=#references>References</a></li></ul></nav></div></details><div class="post-content md-content"><p>【Git 权威指南】&ldquo;和声&rdquo;+&ldquo;协同模型"两章的精炼合并版：远程协议、推送与冲突解决、里程碑共享、分支协同、工作流模型、共用代码（submodule / subtree）。</p><blockquote><p>本文沿用书中 <code>master</code> 作为默认分支名；Git 2.28+ 默认改为 <code>main</code>，行为完全一致。</p></blockquote><h2 id=远程协议与版本库>远程协议与版本库<a hidden class=anchor aria-hidden=true href=#远程协议与版本库>#</a></h2><h3 id=协议选择>协议选择<a hidden class=anchor aria-hidden=true href=#协议选择>#</a></h3><table><thead><tr><th>协议</th><th>用途</th><th>现状</th></tr></thead><tbody><tr><td>SSH</td><td>推 + 拉，需公钥认证</td><td>协作首选</td></tr><tr><td>HTTPS</td><td>推 + 拉，凭证由 helper 缓存</td><td>网络受限环境首选；个人项目常用</td></tr><tr><td>本地</td><td><code>file://</code> 或裸路径</td><td>备份 / 镜像</td></tr><tr><td><code>git://</code></td><td>只读匿名协议</td><td><strong>已弃用</strong>，GitHub 2022 年关停</td></tr><tr><td>FTP / RSYNC</td><td>—</td><td><strong>已弃用</strong>，忘了它们</td></tr></tbody></table><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ssh://<span class=o>[</span>user@<span class=o>]</span>example.com<span class=o>[</span>:port<span class=o>]</span>/path/to/repo.git
+</span></span><span class=line><span class=cl><span class=o>[</span>user@<span class=o>]</span>example.com:path/to/repo.git          <span class=c1># SSH 简写</span>
+</span></span><span class=line><span class=cl>https://example.com/path/to/repo.git
+</span></span></code></pre></div><h3 id=远程版本库管理>远程版本库管理<a hidden class=anchor aria-hidden=true href=#远程版本库管理>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git remote -v                                <span class=c1># 列出 fetch/push URL</span>
+</span></span><span class=line><span class=cl>git remote add &lt;name&gt; &lt;url&gt;                  <span class=c1># 注册</span>
+</span></span><span class=line><span class=cl>git remote set-url &lt;name&gt; &lt;url&gt;              <span class=c1># 改 URL</span>
+</span></span><span class=line><span class=cl>git remote set-url --push &lt;name&gt; &lt;url&gt;       <span class=c1># 单独改 push URL（读写分离）</span>
+</span></span><span class=line><span class=cl>git remote rename &lt;old&gt; &lt;new&gt;
+</span></span><span class=line><span class=cl>git remote rm &lt;name&gt;
+</span></span><span class=line><span class=cl>git remote update                            <span class=c1># 拉取所有 remote 的更新</span>
+</span></span><span class=line><span class=cl>git config remote.&lt;name&gt;.skipDefaultUpdate <span class=nb>true</span>   <span class=c1># 排除某个 remote</span>
+</span></span></code></pre></div><h3 id=fetch--pull-的关系>fetch / pull 的关系<a hidden class=anchor aria-hidden=true href=#fetch--pull-的关系>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>git pull = git fetch + git merge        # 默认
+</span></span><span class=line><span class=cl>git pull --rebase = git fetch + git rebase
+</span></span></code></pre></div><p>习惯用 rebase 整理历史的人，全局开启：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global pull.rebase <span class=nb>true</span>
+</span></span><span class=line><span class=cl>git config --global branch.autosetuprebase always   <span class=c1># 新追踪分支自动设 rebase</span>
+</span></span></code></pre></div><blockquote><p><code>pull.rebase=true</code> 是 2.6+ 后协同的现代默认姿势，避免 <code>git pull</code> 平白塞进一堆 <code>Merge branch 'main'</code> 的噪声。</p></blockquote><h2 id=推送与冲突解决>推送与冲突解决<a hidden class=anchor aria-hidden=true href=#推送与冲突解决>#</a></h2><h3 id=推送基础>推送基础<a hidden class=anchor aria-hidden=true href=#推送基础>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git push                                <span class=c1># 推当前分支到追踪的上游</span>
+</span></span><span class=line><span class=cl>git push -u origin &lt;branch&gt;             <span class=c1># 首次推并建立 upstream</span>
+</span></span><span class=line><span class=cl>git push origin dev:master              <span class=c1># 显式 refspec：本地 dev → 远端 master</span>
+</span></span></code></pre></div><h3 id=非快进推送force-的现代姿势>非快进推送：force 的现代姿势<a hidden class=anchor aria-hidden=true href=#非快进推送force-的现代姿势>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git push -f                                       <span class=c1># 危险：会盖掉别人推的东西</span>
+</span></span><span class=line><span class=cl>git push --force-with-lease                       <span class=c1># 推荐：只在远端确实是你看到的版本时才覆盖</span>
+</span></span><span class=line><span class=cl>git push --force-with-lease --force-if-includes   <span class=c1># 2.30+ 更严格：还要求你 fetch 过最新</span>
+</span></span></code></pre></div><blockquote><p><code>--force-with-lease</code> 是 <code>-f</code> 的安全替代品。它检测远端是否被别人推了新东西，是就拒推 —— 多人协作改 rebase 后强推必备。</p></blockquote><p>服务端禁止非快进推送（用于受保护分支）：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git --git-dir<span class=o>=</span>/path/to/shared.git config receive.denyNonFastForwards <span class=nb>true</span>
+</span></span><span class=line><span class=cl>git --git-dir<span class=o>=</span>/path/to/shared.git config receive.denyDeletes <span class=nb>true</span>
+</span></span></code></pre></div><blockquote><p>真正的权限控制还是交给 GitLab / GitHub 服务端的 protected branch / push rule，这里只是底层兜底。</p></blockquote><h3 id=冲突解决的实际流程>冲突解决的实际流程<a hidden class=anchor aria-hidden=true href=#冲突解决的实际流程>#</a></h3><p>合并 / 变基遇冲突时，冲突文件长这样：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-text data-lang=text><span class=line><span class=cl>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+</span></span><span class=line><span class=cl>我这边的版本
+</span></span><span class=line><span class=cl>=======
+</span></span><span class=line><span class=cl>对方分支的版本
+</span></span><span class=line><span class=cl>&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature
+</span></span></code></pre></div><p>工作流程：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git status                       <span class=c1># 列出 &#34;both modified&#34; 的文件</span>
+</span></span><span class=line><span class=cl><span class=c1># 编辑器里手动取舍，或调工具</span>
+</span></span><span class=line><span class=cl>git mergetool                    <span class=c1># 调用 vimdiff / opendiff / vscode 等</span>
+</span></span><span class=line><span class=cl>git diff --check                 <span class=c1># 检查是否还有遗留 &lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>
+</span></span><span class=line><span class=cl>git add &lt;files&gt;
+</span></span><span class=line><span class=cl>git commit                       <span class=c1># merge 用 commit；rebase 用 git rebase --continue</span>
+</span></span><span class=line><span class=cl>git merge --abort                <span class=c1># 想反悔</span>
+</span></span><span class=line><span class=cl>git rebase --abort
+</span></span></code></pre></div><h3 id=合并策略关键陷阱-x-ours-vs--s-ours>合并策略关键陷阱：<code>-X ours</code> vs <code>-s ours</code><a hidden class=anchor aria-hidden=true href=#合并策略关键陷阱-x-ours-vs--s-ours>#</a></h3><p>写法相近，<strong>效果完全不同</strong>：</p><table><thead><tr><th>命令</th><th>行为</th></tr></thead><tbody><tr><td><code>git merge -X ours &lt;branch></code></td><td>recursive 策略 + ours 选项。<strong>只在冲突 hunk</strong> 上偏向本方，非冲突的对方改动正常合入</td></tr><tr><td><code>git merge -s ours &lt;branch></code></td><td>ours 策略。<strong>对方分支整个内容全部丢弃</strong>，只记录一笔合并提交</td></tr></tbody></table><p>后者常用于"我宣告这个分支已废弃但要在历史上标一笔&rdquo;。误用会神不知鬼不觉丢光对方所有改动。</p><h3 id=合并方式fast-forward-还是-no-ff>合并方式：fast-forward 还是 no-ff<a hidden class=anchor aria-hidden=true href=#合并方式fast-forward-还是-no-ff>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git merge feature                <span class=c1># 默认：如果可以 ff 就 ff，分支痕迹消失</span>
+</span></span><span class=line><span class=cl>git merge --no-ff feature        <span class=c1># 强制产生合并提交，保留分支拓扑</span>
+</span></span><span class=line><span class=cl>git config --global merge.ff <span class=nb>false</span>
+</span></span></code></pre></div><p>团队偏好"看得见每个 feature 分支"的，统一关掉 ff；偏好线性历史的，反过来用 rebase + ff。</p><h2 id=里程碑共享>里程碑共享<a hidden class=anchor aria-hidden=true href=#里程碑共享>#</a></h2><h3 id=tag-不会随分支自动推>tag 不会随分支自动推<a hidden class=anchor aria-hidden=true href=#tag-不会随分支自动推>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git push origin v1.0                     <span class=c1># 推单个 tag</span>
+</span></span><span class=line><span class=cl>git push origin --tags                   <span class=c1># 推所有本地 tag</span>
+</span></span><span class=line><span class=cl>git push origin refs/tags/v*             <span class=c1># refspec 通配</span>
+</span></span><span class=line><span class=cl>git push origin :refs/tags/v1.0          <span class=c1># 删除远端 tag</span>
+</span></span><span class=line><span class=cl>git fetch --tags                         <span class=c1># 主动拉所有 tag</span>
+</span></span></code></pre></div><blockquote><p>默认 <code>git fetch</code> 只会带回与已 fetch 的 commit <strong>可达</strong>的 tag，孤立 tag 不会自动同步。
+远端有同名 tag 而本地没有时会建立；本地已存在则<strong>不会覆盖</strong>，需要 <code>git fetch --tags -f</code>。</p></blockquote><h3 id=命名语义化版本>命名：语义化版本<a hidden class=anchor aria-hidden=true href=#命名语义化版本>#</a></h3><p><a href=https://semver.org/lang/zh-CN/>Semantic Versioning 2.0</a> —— <code>MAJOR.MINOR.PATCH</code>：</p><ul><li><strong>MAJOR</strong> 不兼容改动</li><li><strong>MINOR</strong> 向下兼容的新功能</li><li><strong>PATCH</strong> 向下兼容的修复</li></ul><p>预发布 / 编译信息：<code>1.0.0-beta.1+20251010</code>。</p><h2 id=分支协同>分支协同<a hidden class=anchor aria-hidden=true href=#分支协同>#</a></h2><h3 id=本地分支基本操作>本地分支基本操作<a hidden class=anchor aria-hidden=true href=#本地分支基本操作>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git branch                              <span class=c1># 列本地</span>
+</span></span><span class=line><span class=cl>git branch -r                           <span class=c1># 列远程跟踪</span>
+</span></span><span class=line><span class=cl>git branch -a                           <span class=c1># 全部</span>
+</span></span><span class=line><span class=cl>git branch -vv                          <span class=c1># 含 upstream 关系</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git switch &lt;branch&gt;                     <span class=c1># 切分支（2.23+，比 checkout 语义清晰）</span>
+</span></span><span class=line><span class=cl>git switch -c &lt;new&gt; <span class=o>[</span>&lt;start&gt;<span class=o>]</span>           <span class=c1># 创建并切换</span>
+</span></span><span class=line><span class=cl>git branch -d &lt;branch&gt;                  <span class=c1># 安全删（未合并会拒绝）</span>
+</span></span><span class=line><span class=cl>git branch -D &lt;branch&gt;                  <span class=c1># 强删</span>
+</span></span><span class=line><span class=cl>git branch -m &lt;old&gt; &lt;new&gt;               <span class=c1># 重命名</span>
+</span></span></code></pre></div><h3 id=远程跟踪分支>远程跟踪分支<a hidden class=anchor aria-hidden=true href=#远程跟踪分支>#</a></h3><p><code>origin/main</code> 这种引用住在 <code>refs/remotes/</code> 命名空间，是 fetch 后服务端最新状态的<strong>本地快照</strong>，不是真正的分支 —— 不能直接 commit 到它上面。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git switch hello-1.x                    <span class=c1># DWIM：本地无同名分支时，自动基于 origin/hello-1.x 建并跟踪</span>
+</span></span><span class=line><span class=cl>git switch -c local-feat origin/feat    <span class=c1># 显式基于远程分支建跟踪分支</span>
+</span></span><span class=line><span class=cl>git branch --set-upstream-to<span class=o>=</span>origin/main main   <span class=c1># 给已存在分支补设 upstream</span>
+</span></span><span class=line><span class=cl>git fetch --prune                       <span class=c1># 清理远端已删的跟踪分支</span>
+</span></span></code></pre></div><blockquote><p><strong>DWIM (Do What I Mean)</strong>：<code>git switch &lt;name></code> 时若本地无同名分支但远端恰有一个 <code>origin/&lt;name></code>，Git 会自动创建本地分支并设 upstream。多个 remote 都有时不触发，避免歧义。</p></blockquote><h3 id=rebase-整理本地分支>rebase 整理本地分支<a hidden class=anchor aria-hidden=true href=#rebase-整理本地分支>#</a></h3><p><code>dev</code> 基于老的 <code>master</code>，希望以最新 <code>master</code> 为基底再推送：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git switch dev
+</span></span><span class=line><span class=cl>git fetch origin
+</span></span><span class=line><span class=cl>git rebase origin/master
+</span></span><span class=line><span class=cl><span class=c1># 冲突 → 解决 → git add → git rebase --continue</span>
+</span></span><span class=line><span class=cl>git push --force-with-lease             <span class=c1># 历史被重写，必须 force（用 with-lease 才安全）</span>
+</span></span></code></pre></div><blockquote><p>共享分支 rebase 后必须 <code>--force-with-lease</code>，且最好提前在团队里 broadcast 一下。
+个人独享分支随便 rebase；团队共享主干永远 merge 不 rebase。</p></blockquote><h3 id=git-worktree并行多分支>git worktree：并行多分支<a hidden class=anchor aria-hidden=true href=#git-worktree并行多分支>#</a></h3><p>不再需要"克隆好几份仓库"或者 <code>git stash</code> 来回切：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git worktree add ../proj-hotfix hotfix         <span class=c1># 在隔壁目录开一个挂在 hotfix 分支的工作区</span>
+</span></span><span class=line><span class=cl>git worktree list
+</span></span><span class=line><span class=cl>git worktree remove ../proj-hotfix
+</span></span></code></pre></div><p>每个 worktree 共享同一 <code>.git/objects</code>，但有独立工作区和独立 HEAD。Code review、跑长测试、临时改 hotfix 都不打断主工作区。</p><h3 id=分支安全配置>分支安全配置<a hidden class=anchor aria-hidden=true href=#分支安全配置>#</a></h3><table><thead><tr><th>配置</th><th>作用</th></tr></thead><tbody><tr><td><code>core.logallrefupdates=true</code></td><td>给每条分支记 reflog（带工作区的库默认开；裸库默认关，建议手动打开）</td></tr><tr><td><code>receive.denyNonFastForwards=true</code></td><td>服务端拒绝非快进推送</td></tr><tr><td><code>receive.denyDeletes=true</code></td><td>服务端拒绝删除分支</td></tr></tbody></table><h2 id=工作流模型>工作流模型<a hidden class=anchor aria-hidden=true href=#工作流模型>#</a></h2><p>经典三种，选用按团队规模和发布节奏：</p><table><thead><tr><th>模型</th><th>适用</th><th>关键约束</th></tr></thead><tbody><tr><td><strong>Trunk-based</strong></td><td>持续部署、CI 强的小到中团队</td><td>所有人直推 <code>main</code>（或短命 feature 分支）+ feature flag</td></tr><tr><td><strong>GitHub Flow</strong></td><td>SaaS 持续交付，最常见</td><td><code>main</code> 永远可部署，feature 分支走 PR → 合并 → 部署</td></tr><tr><td><strong>GitFlow</strong></td><td>有明确版本发布周期的产品（客户端、SDK）</td><td><code>main</code> + <code>develop</code> + <code>release/*</code> + <code>hotfix/*</code>，重</td></tr></tbody></table><blockquote><p>Topgit、卖主分支 (Vendor Branch) 是 2010 年前的产物，现代项目用包管理器（npm / composer / cargo）+ submodule / subtree 覆盖了这些场景，可忽略。</p></blockquote><h2 id=共用代码submodule-vs-subtree>共用代码：submodule vs subtree<a hidden class=anchor aria-hidden=true href=#共用代码submodule-vs-subtree>#</a></h2><p>两者解决同一问题（在一个仓库里嵌套引用另一个仓库），但取舍完全不同：</p><table><thead><tr><th>维度</th><th>submodule</th><th>subtree</th></tr></thead><tbody><tr><td>子项目代码物理位置</td><td>独立 <code>.git</code>，靠 commit 指针引用</td><td><strong>直接嵌入主仓库</strong></td></tr><tr><td>克隆体验</td><td>需要 <code>--recurse-submodules</code> 或 init</td><td>克隆主仓即拿全</td></tr><tr><td>主仓体积</td><td>小（只存指针）</td><td>大（含子项目历史）</td></tr><tr><td>协作者上手成本</td><td>高（需理解 submodule + detached HEAD）</td><td>低（看起来就是普通目录）</td></tr><tr><td>双向同步（向上游回推）</td><td>直接在子仓库 push 即可</td><td>麻烦（<code>git subtree push</code> 提取相关 commit）</td></tr><tr><td>适合</td><td>真正独立的依赖，少改</td><td>共享代码模板、内嵌工具脚本</td></tr></tbody></table><h3 id=submodule-标准姿势>submodule 标准姿势<a hidden class=anchor aria-hidden=true href=#submodule-标准姿势>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git submodule add &lt;url&gt; &lt;path&gt;          <span class=c1># 添加；生成 .gitmodules</span>
+</span></span><span class=line><span class=cl>git clone --recurse-submodules &lt;url&gt;    <span class=c1># 一次克隆主仓 + 所有子模块（推荐）</span>
+</span></span><span class=line><span class=cl>git submodule update --init --recursive <span class=c1># 已克隆的仓库补拉子模块</span>
+</span></span><span class=line><span class=cl>git submodule update --remote           <span class=c1># 把子模块拉到其追踪分支的最新</span>
+</span></span><span class=line><span class=cl>git submodule status
+</span></span></code></pre></div><blockquote><p><strong>submodule 头号陷阱</strong>：每个 submodule 始终处于 detached HEAD。要在子模块里改东西，先 <code>git -C &lt;path> switch &lt;branch></code> 切到分支，提交后<strong>先推子仓库，再推主仓库</strong> —— 顺序反了别人会拉不到对应 commit。</p></blockquote><h3 id=subtree-标准姿势>subtree 标准姿势<a hidden class=anchor aria-hidden=true href=#subtree-标准姿势>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 引入：把 S 项目作为主仓的 lib/s 子目录</span>
+</span></span><span class=line><span class=cl>git subtree add --prefix<span class=o>=</span>lib/s &lt;s-url&gt; main --squash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 拉上游更新</span>
+</span></span><span class=line><span class=cl>git subtree pull --prefix<span class=o>=</span>lib/s &lt;s-url&gt; main --squash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 把主仓内对 lib/s 的改动回推到 S 项目</span>
+</span></span><span class=line><span class=cl>git subtree push --prefix<span class=o>=</span>lib/s &lt;s-url&gt; feature-branch
+</span></span></code></pre></div><p><code>--squash</code> 把上游历史压成一笔 commit，主仓 <code>git log</code> 干净，代价是主仓再也看不到子项目的提交图。<strong>统一加或统一不加</strong>，混用会撞合并冲突。</p><h3 id=从已有项目剥离子模块>从已有项目剥离子模块<a hidden class=anchor aria-hidden=true href=#从已有项目剥离子模块>#</a></h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 1. 从 P 项目里抽出 lib/s 的所有 commit，存到临时分支</span>
+</span></span><span class=line><span class=cl>git subtree split -P lib/s -b extracted
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 创建独立的 S 仓库</span>
+</span></span><span class=line><span class=cl>mkdir ../s <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ../s <span class=o>&amp;&amp;</span> git init
+</span></span><span class=line><span class=cl>git pull ../P extracted
+</span></span><span class=line><span class=cl>git remote add origin &lt;s-url&gt;
+</span></span><span class=line><span class=cl>git push -u origin main
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. P 项目里删掉原目录，改用 subtree 引用</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> ../P
+</span></span><span class=line><span class=cl>git rm -rf lib/s <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;Extract lib/s to standalone repo&#34;</span>
+</span></span><span class=line><span class=cl>git subtree add --prefix<span class=o>=</span>lib/s &lt;s-url&gt; main --squash
+</span></span></code></pre></div><blockquote><p>一个常见用途：把构建产物推到 GitHub Pages</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git subtree push --prefix<span class=o>=</span>dist origin gh-pages
+</span></span></code></pre></div></blockquote><h2 id=补丁文件交互>补丁文件交互<a hidden class=anchor aria-hidden=true href=#补丁文件交互>#</a></h2><p>少数场景（邮件协作 / 没有共同远端 / 跨网隔离环境）会用补丁文件传递提交：</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git format-patch -s HEAD~3..HEAD         <span class=c1># 把最近 3 个提交导成 3 个 *.patch 文件，-s 加 Signed-off-by</span>
+</span></span><span class=line><span class=cl>git format-patch -s origin/main..HEAD    <span class=c1># 导出 fork 后所有新增提交</span>
+</span></span><span class=line><span class=cl>git am &lt; user1.mbox                      <span class=c1># 收方导入，保留 author 与 message</span>
+</span></span><span class=line><span class=cl>git apply foo.patch                      <span class=c1># 仅打补丁，不产生 commit，author 信息丢失</span>
+</span></span><span class=line><span class=cl>git apply --check foo.patch              <span class=c1># 试跑，不真改</span>
+</span></span></code></pre></div><p>Linux 内核、Git 本身都还在用邮件 + <code>git format-patch</code> / <code>git am</code> 流程；日常 GitHub / GitLab 协作用 PR / MR 即可。</p><h2 id=references>References<a hidden class=anchor aria-hidden=true href=#references>#</a></h2><ul><li><a href=http://www.worldhello.net/gotgit/03-git-harmony>3. Git 和声 — GotGit</a></li><li><a href=http://www.worldhello.net/gotgit/04-git-model/>4. 协同模型 — GotGit</a></li><li><a href=https://semver.org/lang/zh-CN/>Semantic Versioning 2.0.0</a></li></ul><p>&ndash; EOF &ndash;</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://zyf.im/tags/git/>Git</a></li></ul><nav class=paginav><a class=prev href=https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/><span class=title>« Prev</span>
+<span>用 Certbot 自动化 Let's Encrypt TLS 证书</span>
 </a><a class=next href=https://zyf.im/2017/12/31/review-2017/><span class=title>Next »</span>
 <span>回顾 2017</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://zyf.im/>ZYF.IM BLOG</a></span> ·
 <span>Powered by

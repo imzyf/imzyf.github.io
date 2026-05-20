@@ -18,9 +18,12 @@
 &lt;h3 id=&#34;参考资源&#34;&gt;参考资源&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;在线测试环境：&lt;a href=&#34;https://3v4l.org/&#34;&gt;https://3v4l.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;sandbox：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;官方发布说明：&lt;a href=&#34;https://www.php.net/releases/8.5/en.php&#34;&gt;https://www.php.net/releases/8.5/en.php&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;迁移指南：&lt;a href=&#34;https://www.php.net/manual/en/migration85.php&#34;&gt;https://www.php.net/manual/en/migration85.php&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;更新详情：&lt;a href=&#34;https://php.watch/versions/8.5&#34;&gt;https://php.watch/versions/8.5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Supported Versions：&lt;a href=&#34;https://www.php.net/supported-versions.php&#34;&gt;https://www.php.net/supported-versions.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EOL：&lt;a href=&#34;https://www.php.net/eol.php&#34;&gt;https://www.php.net/eol.php&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;php-85-新特性&#34;&gt;PHP 8.5 新特性&lt;/h2&gt;
 &lt;h3 id=&#34;管道运算符pipe-operator&#34;&gt;管道运算符（Pipe Operator）&lt;/h3&gt;
@@ -44,9 +47,12 @@
 <h3 id="参考资源">参考资源</h3>
 <ul>
 <li>在线测试环境：<a href="https://3v4l.org/">https://3v4l.org/</a></li>
+<li>sandbox：<a href="https://onlinephp.io/">https://onlinephp.io/</a></li>
 <li>官方发布说明：<a href="https://www.php.net/releases/8.5/en.php">https://www.php.net/releases/8.5/en.php</a></li>
 <li>迁移指南：<a href="https://www.php.net/manual/en/migration85.php">https://www.php.net/manual/en/migration85.php</a></li>
 <li>更新详情：<a href="https://php.watch/versions/8.5">https://php.watch/versions/8.5</a></li>
+<li>Supported Versions：<a href="https://www.php.net/supported-versions.php">https://www.php.net/supported-versions.php</a></li>
+<li>EOL：<a href="https://www.php.net/eol.php">https://www.php.net/eol.php</a></li>
 </ul>
 <h2 id="php-85-新特性">PHP 8.5 新特性</h2>
 <h3 id="管道运算符pipe-operator">管道运算符（Pipe Operator）</h3>
@@ -4013,558 +4019,151 @@
       <link>https://zyf.im/2020/10/28/composer-document-note/</link>
       <pubDate>Wed, 28 Oct 2020 11:36:27 +0000</pubDate>
       <guid>https://zyf.im/2020/10/28/composer-document-note/</guid>
-      <description>&lt;h2 id=&#34;basic-usage&#34;&gt;Basic usage&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/01-basic-usage.md&#34;&gt;https://getcomposer.org/doc/01-basic-usage.md&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# get a list of your locally available platform packages.&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# php | ext-&amp;lt;name&amp;gt; | lib-&amp;lt;name&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer show --platform
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;libraries&#34;&gt;Libraries&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/02-libraries.md&#34;&gt;https://getcomposer.org/doc/02-libraries.md&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Light-weight distribution packages 轻量级分发包。使用 &lt;code&gt;.gitattributes&lt;/code&gt; 来防止不需要的文件使 zip 分发包膨胀。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-txt&#34; data-lang=&#34;txt&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;// .gitattributes
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/demo export-ignore
+      <description>&lt;h2 id=&#34;命令行&#34;&gt;命令行&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;composer dump&lt;/code&gt; 能跑，因为 symfony/console 允许 unambiguous prefix —— 任何 composer 子命令都可缩到能唯一匹配的最短前缀：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump              &lt;span class=&#34;c1&#34;&gt;# = dump-autoload&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer i                 &lt;span class=&#34;c1&#34;&gt;# = install&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer show --platform   &lt;span class=&#34;c1&#34;&gt;# 列本机 platform package（php / ext-* / lib-*）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;--prefer-install=source|dist|auto&lt;/code&gt; 是 install / update 的同名 flag；&lt;code&gt;--prefer-source&lt;/code&gt; / &lt;code&gt;--prefer-dist&lt;/code&gt; 是它的快捷写法，三者底层同一开关。&lt;/p&gt;
+&lt;h2 id=&#34;发包瘦身&#34;&gt;发包瘦身&lt;/h2&gt;
+&lt;p&gt;dist tarball 默认把 repo 里所有文件打进去（demo / test / CI 配置）。&lt;code&gt;.gitattributes&lt;/code&gt; 加 &lt;code&gt;export-ignore&lt;/code&gt; 把它们排除出 dist：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/demo            export-ignore
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;phpunit.xml.dist export-ignore
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/.github/ export-ignore
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过检查手动生成的压缩文件进行测试：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git archive branchName --format zip -o file.zip
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;command-line-interface--commands&#34;&gt;Command-line interface / Commands&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&#34;https://getcomposer.org/doc/03-cli.md&#34;&gt;https://getcomposer.org/doc/03-cli.md&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;As Composer uses symfony/console you can call commands by short name if it&amp;rsquo;s not ambiguous.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# calls&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;composer dump-autoload
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Bash Completions&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="basic-usage">Basic usage</h2>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/01-basic-usage.md">https://getcomposer.org/doc/01-basic-usage.md</a></p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># get a list of your locally available platform packages.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># php | ext-&lt;name&gt; | lib-&lt;name&gt;</span>
-</span></span><span class="line"><span class="cl">composer show --platform
-</span></span></code></pre></div><h3 id="libraries">Libraries</h3>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/02-libraries.md">https://getcomposer.org/doc/02-libraries.md</a></p>
-</blockquote>
-<p>Light-weight distribution packages 轻量级分发包。使用 <code>.gitattributes</code> 来防止不需要的文件使 zip 分发包膨胀。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">// .gitattributes
-</span></span><span class="line"><span class="cl">/demo export-ignore
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/.github/        export-ignore
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;本地 &lt;code&gt;git archive&lt;/code&gt; 预览实际 dist 包内容：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git archive HEAD --format zip -o preview.zip
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;几个反直觉默认&#34;&gt;几个反直觉默认&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;Config&lt;/th&gt;
+          &lt;th&gt;默认&lt;/th&gt;
+          &lt;th&gt;坑&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;process-timeout&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;300s&lt;/td&gt;
+          &lt;td&gt;装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;platform-check&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;php-only&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;只查 PHP 版本，&lt;strong&gt;不查扩展&lt;/strong&gt;。缺扩展要等运行时 &lt;code&gt;Call to undefined function&lt;/code&gt; 才暴露&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;discard-changes&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;source 装的包本地有改动时 update 会卡 prompt；CI 设 &lt;code&gt;true&lt;/code&gt; 或 &lt;code&gt;stash&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;preferred-install&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;code&gt;auto&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;config&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;#34;process-timeout&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;900&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nt&#34;&gt;&amp;#34;preferred-install&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;myorg/*&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;source&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nt&#34;&gt;&amp;#34;*&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;dist&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;生产环境-autoload-优化&#34;&gt;生产环境 autoload 优化&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;composer install --no-dev&lt;/code&gt; 是基操，再加：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="命令行">命令行</h2>
+<p><code>composer dump</code> 能跑，因为 symfony/console 允许 unambiguous prefix —— 任何 composer 子命令都可缩到能唯一匹配的最短前缀：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer dump              <span class="c1"># = dump-autoload</span>
+</span></span><span class="line"><span class="cl">composer i                 <span class="c1"># = install</span>
+</span></span><span class="line"><span class="cl">composer show --platform   <span class="c1"># 列本机 platform package（php / ext-* / lib-*）</span>
+</span></span></code></pre></div><p><code>--prefer-install=source|dist|auto</code> 是 install / update 的同名 flag；<code>--prefer-source</code> / <code>--prefer-dist</code> 是它的快捷写法，三者底层同一开关。</p>
+<h2 id="发包瘦身">发包瘦身</h2>
+<p>dist tarball 默认把 repo 里所有文件打进去（demo / test / CI 配置）。<code>.gitattributes</code> 加 <code>export-ignore</code> 把它们排除出 dist：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/demo            export-ignore
 </span></span><span class="line"><span class="cl">phpunit.xml.dist export-ignore
-</span></span><span class="line"><span class="cl">/.github/ export-ignore
-</span></span></code></pre></div><p>通过检查手动生成的压缩文件进行测试：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git archive branchName --format zip -o file.zip
-</span></span></code></pre></div><h2 id="command-line-interface--commands">Command-line interface / Commands</h2>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/03-cli.md">https://getcomposer.org/doc/03-cli.md</a></p>
-</blockquote>
-<p>As Composer uses symfony/console you can call commands by short name if it&rsquo;s not ambiguous.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer dump
-</span></span><span class="line"><span class="cl"><span class="c1"># calls</span>
-</span></span><span class="line"><span class="cl">composer dump-autoload
-</span></span></code></pre></div><p>Bash Completions</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">composer completion bash &gt; completion.bash
-</span></span></code></pre></div><p>Global Options:</p>
-<ul>
-<li><code>--profile</code> 显示计时和内存使用信息</li>
-</ul>
-<p>install / i:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar install
-</span></span></code></pre></div><p>如果当前目录中有 <code>composer.lock</code> 文件，会使用其中的确切版本而不是重新解析。这确保了每个人使用的依赖版本相同。</p>
-<p>如果没有 <code>composer.lock</code> 文件，Composer 会在解析依赖后创建一个。</p>
-<p>常用选项：</p>
-<ul>
-<li><code>--prefer-install</code>: 指定安装方式，可选 <code>source</code> 或 <code>dist</code></li>
-<li><code>--no-dev</code>: 跳过安装 <code>require-dev</code> 中列出的包</li>
-<li><code>--optimize-autoloader (-o)</code>: 优化自动加载器，建议在生产环境使用</li>
-<li><code>--classmap-authoritative (-a)</code>: 仅从 classmap 自动加载类，隐式启用 <code>--optimize-autoloader</code></li>
-</ul>
-<p>update / u / upgrade:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar update
-</span></span></code></pre></div><p>更新所有依赖到最新版本（根据 composer.json 的约束）并更新 composer.lock 文件。</p>
-<p>常用选项：</p>
-<ul>
-<li><code>--prefer-stable</code>: 优先使用稳定版本</li>
-<li><code>--prefer-lowest</code>: 尝试回退到最低匹配的版本</li>
-<li><code>--with-dependencies</code>: 同时更新依赖的依赖项</li>
-</ul>
-<p>require / r:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar require vendor/package:version
-</span></span></code></pre></div><p>添加新的依赖包并更新 composer.json 文件。</p>
-<p>remove / rm / uninstall:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar remove vendor/package
-</span></span></code></pre></div><p>移除包并更新 composer.json 文件。</p>
-<p>dump-autoload / dumpautoload:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar dump-autoload
-</span></span></code></pre></div><p>更新自动加载器，不安装或更新任何包。在添加新类时很有用。</p>
-<p>选项：</p>
-<ul>
-<li><code>-o, --optimize</code>: 生成优化的 autoloader</li>
-<li><code>--classmap-authoritative (-a)</code>: 仅从 classmap 自动加载</li>
-<li><code>--no-dev</code>: 不生成开发环境的 autoloader</li>
-</ul>
-<p>global:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar global require vendor/package
-</span></span></code></pre></div><p>全局安装包，存储在 COMPOSER_HOME 目录。</p>
-<p>search:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar search keyword
-</span></span></code></pre></div><p>搜索包。</p>
-<p>self-update / selfupdate:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar self-update
-</span></span></code></pre></div><p>更新 Composer 到最新版本。</p>
-<p>Composer 支持多种环境变量来控制其行为：</p>
-<ul>
-<li><code>COMPOSER_HOME</code>: 指定 Composer 主目录位置</li>
-<li><code>COMPOSER_CACHE_DIR</code>: 更改 Composer 缓存目录</li>
-<li><code>COMPOSER_MEMORY_LIMIT</code>: 设置 PHP 内存限制</li>
-<li><code>COMPOSER_PROCESS_TIMEOUT</code>: 设置命令执行超时时间（默认 300 秒）</li>
-<li><code>COMPOSER_NO_INTERACTION</code>: 禁用交互模式</li>
-<li><code>COMPOSER_NO_DEV</code>: 等同于 <code>--no-dev</code> 选项</li>
-<li><code>COMPOSER_VENDOR_DIR</code>: 更改安装依赖的目录</li>
-</ul>
-<h2 id="the-composerjson-schema">The composer.json schema</h2>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/04-schema.md">https://getcomposer.org/doc/04-schema.md</a></p>
-</blockquote>
-<p>composer.json 文件是 Composer 项目的核心配置文件，用于定义包的基本信息和依赖关系。以下是主要字段的说明：</p>
-<h3 id="基本字段">基本字段</h3>
-<ul>
-<li><strong>name</strong>: 包名称，格式为 <code>vendor/project</code>，例如 <code>monolog/monolog</code>。必须小写，可包含短横线、下划线或点号。</li>
-<li><strong>description</strong>: 包的简短描述，通常为一行。</li>
-<li><strong>version</strong>: 包的版本号，格式如 <code>1.0.0</code> 或 <code>v1.0.0</code>。一般建议省略，由 VCS 标签推断。</li>
-<li><strong>type</strong>: 包类型，默认为 <code>library</code>。其他可选值包括 <code>project</code>、<code>metapackage</code> 和 <code>composer-plugin</code>。</li>
-<li><strong>keywords</strong>: 关键词数组，用于搜索和过滤。</li>
-<li><strong>homepage</strong>: 项目网站的 URL。</li>
-<li><strong>readme</strong>: 自述文件的相对路径，默认为 <code>README.md</code>。</li>
-<li><strong>time</strong>: 版本发布日期，格式为 <code>YYYY-MM-DD</code> 或 <code>YYYY-MM-DD HH:MM:SS</code>。</li>
-<li><strong>license</strong>: 包的许可证，可以是字符串或字符串数组。</li>
-</ul>
-<h3 id="作者与支持">作者与支持</h3>
-<ul>
-<li><strong>authors</strong>: 包作者数组，每个作者为一个对象，包含 <code>name</code>、<code>email</code>、<code>homepage</code> 和 <code>role</code> 字段。</li>
-<li><strong>support</strong>: 提供支持的各种信息，如 <code>email</code>、<code>issues</code>、<code>forum</code>、<code>wiki</code> 等。</li>
-<li><strong>funding</strong>: 用于赞助包作者的 URL 数组。</li>
-</ul>
-<h3 id="依赖管理">依赖管理</h3>
-<ul>
-<li><strong>require</strong>: 运行时必需的依赖包映射表（包名到版本约束）。</li>
-<li><strong>require-dev</strong>: 开发环境需要的依赖包映射表，仅对根包有效。</li>
-<li><strong>conflict</strong>: 与当前包冲突的包。</li>
-<li><strong>replace</strong>: 由当前包替换的包。</li>
-<li><strong>provide</strong>: 当前包提供的包（接口实现等）。</li>
-<li><strong>suggest</strong>: 推荐安装的包，仅起信息提示作用。</li>
-</ul>
-<h3 id="自动加载配置">自动加载配置</h3>
-<ul>
-<li><strong>autoload</strong>: 定义项目自动加载规则，支持 <code>psr-4</code>、<code>psr-0</code>、<code>classmap</code> 和 <code>files</code>。</li>
-<li><strong>autoload-dev</strong>: 开发环境的额外自动加载规则，仅对根包有效。</li>
-</ul>
-<h3 id="其他高级配置">其他高级配置</h3>
-<ul>
-<li><strong>repositories</strong>: 定义额外的包来源，仅对根包有效。</li>
-<li><strong>minimum-stability</strong>: 默认包稳定性过滤级别，仅对根包有效。</li>
-<li><strong>prefer-stable</strong>: 是否优先使用稳定版本，仅对根包有效。</li>
-<li><strong>config</strong>: 各种配置选项，仅对根包有效。</li>
-<li><strong>scripts</strong>: 在安装过程中各个阶段执行的脚本钩子，仅对根包有效。</li>
-<li><strong>extra</strong>: 供脚本使用的任意额外数据。</li>
-<li><strong>bin</strong>: 应作为二进制文件安装的文件集合。</li>
-</ul>
-<p>示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;monolog/monolog&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Logging library&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;keywords&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;logging&#34;</span><span class="p">,</span> <span class="s2">&#34;psr-3&#34;</span><span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;homepage&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/Seldaek/monolog&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;license&#34;</span><span class="p">:</span> <span class="s2">&#34;MIT&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;authors&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Jordi Boggiano&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;email&#34;</span><span class="p">:</span> <span class="s2">&#34;j.boggiano@seld.be&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;homepage&#34;</span><span class="p">:</span> <span class="s2">&#34;https://seld.be&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;require&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;php&#34;</span><span class="p">:</span> <span class="s2">&#34;&gt;=5.3.0&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;psr/log&#34;</span><span class="p">:</span> <span class="s2">&#34;~1.0&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">},</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;autoload&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;psr-4&#34;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&#34;Monolog\\&#34;</span><span class="p">:</span> <span class="s2">&#34;src/Monolog&#34;</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="repositories">Repositories</h2>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/05-repositories.md">https://getcomposer.org/doc/05-repositories.md</a></p>
-</blockquote>
-<p>仓库是包的来源，Composer 会在所有配置的仓库中查找项目所需的包。本节介绍仓库的概念和类型。</p>
-<h3 id="仓库类型">仓库类型</h3>
-<h4 id="1-composer-仓库">1. Composer 仓库</h4>
-<p>使用单个 <code>packages.json</code> 文件包含所有包元数据的仓库类型，这也是 Packagist 使用的类型。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;composer&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://example.org&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h4 id="2-vcs-仓库">2. VCS 仓库</h4>
-<p>版本控制系统（Version Control System）仓库，支持从 git、svn、fossil 或 hg 仓库安装包。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;vcs&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/username/repository&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">],</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;require&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vendor/package&#34;</span><span class="p">:</span> <span class="s2">&#34;dev-branch-name&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>使用 VCS 仓库的主要场景包括：</p>
-<ul>
-<li>维护第三方库的自己的分支</li>
-<li>使用私有仓库</li>
-<li>需要直接从版本控制系统获取代码</li>
-</ul>
-<h4 id="3-package-仓库">3. Package 仓库</h4>
-<p>针对不支持 Composer 的项目，可以手动定义包的信息。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;package&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;package&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;smarty/smarty&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;3.1.7&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;dist&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.smarty.net/files/Smarty-3.1.7.zip&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                    <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;zip&#34;</span>
-</span></span><span class="line"><span class="cl">                <span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="自托管仓库选项">自托管仓库选项</h3>
-<p>当需要保持包私有或为项目创建独立生态系统时，可以选择自托管仓库：</p>
-<ol>
-<li>
-<p><strong>Private Packagist</strong>：提供私有包托管和镜像功能的托管或自托管应用。</p>
-</li>
-<li>
-<p><strong>Satis</strong>：轻量级的静态 Composer 仓库生成器，适合小型团队。</p>
-</li>
-<li>
-<p><strong>Artifact 仓库</strong>：使用包含 ZIP 或 TAR 归档文件的文件夹作为包源。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;artifact&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;path/to/directory/with/zips/&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></li>
-<li>
-<p><strong>Path 仓库</strong>：直接依赖本地目录，对于单体仓库特别有用。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;path&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;../../packages/my-package&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></li>
-</ol>
-<h3 id="禁用-packagistorg">禁用 Packagist.org</h3>
-<p>默认情况下，Composer 会使用 Packagist.org 作为包源。如需禁用：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;repositories&#34;</span><span class="p">:</span> <span class="p">[</span>
-</span></span><span class="line"><span class="cl">        <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;packagist.org&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>或通过全局配置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar config -g repo.packagist <span class="nb">false</span>
-</span></span></code></pre></div><h2 id="config">Config</h2>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/06-config.md">https://getcomposer.org/doc/06-config.md</a></p>
-</blockquote>
-<p>Composer 配置选项可以通过 <code>composer.json</code> 中的 <code>config</code> 字段设置。以下是一些常用的配置项：</p>
-<h3 id="基本配置选项">基本配置选项</h3>
-<ul>
-<li>
-<p><strong>process-timeout</strong>: 进程执行超时时间（秒），默认 300（5分钟）。</p>
+</span></span><span class="line"><span class="cl">/.github/        export-ignore
+</span></span></code></pre></div><p>本地 <code>git archive</code> 预览实际 dist 包内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git archive HEAD --format zip -o preview.zip
+</span></span></code></pre></div><h2 id="几个反直觉默认">几个反直觉默认</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Config</th>
+          <th>默认</th>
+          <th>坑</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>process-timeout</code></td>
+          <td>300s</td>
+          <td>装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout</td>
+      </tr>
+      <tr>
+          <td><code>platform-check</code></td>
+          <td><code>php-only</code></td>
+          <td>只查 PHP 版本，<strong>不查扩展</strong>。缺扩展要等运行时 <code>Call to undefined function</code> 才暴露</td>
+      </tr>
+      <tr>
+          <td><code>discard-changes</code></td>
+          <td><code>false</code></td>
+          <td>source 装的包本地有改动时 update 会卡 prompt；CI 设 <code>true</code> 或 <code>stash</code></td>
+      </tr>
+      <tr>
+          <td><code>preferred-install</code></td>
+          <td><code>auto</code></td>
+          <td>可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist</td>
+      </tr>
+  </tbody>
+</table>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;process-timeout&#34;</span><span class="p">:</span> <span class="mi">900</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></li>
-<li>
-<p><strong>allow-plugins</strong>: 控制哪些 Composer 插件可以执行代码（Composer 2.2.0+）。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;allow-plugins&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vendor/plugin-name&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;another-vendor/*&#34;</span><span class="p">:</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></li>
-<li>
-<p><strong>preferred-install</strong>: 首选安装方式，可为 <code>source</code>、<code>dist</code> 或 <code>auto</code>。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;process-timeout&#34;</span><span class="p">:</span> <span class="mi">900</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="nt">&#34;preferred-install&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;vendor/*&#34;</span><span class="p">:</span> <span class="s2">&#34;source&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;myorg/*&#34;</span><span class="p">:</span> <span class="s2">&#34;source&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nt">&#34;*&#34;</span><span class="p">:</span> <span class="s2">&#34;dist&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></li>
-</ul>
-<h3 id="仓库与认证">仓库与认证</h3>
+</span></span></code></pre></div><h2 id="生产环境-autoload-优化">生产环境 autoload 优化</h2>
+<p><code>composer install --no-dev</code> 是基操，再加：</p>
 <ul>
-<li>
-<p><strong>github-protocols</strong>: 克隆 GitHub 仓库使用的协议列表，默认 <code>[&quot;https&quot;, &quot;ssh&quot;, &quot;git&quot;]</code>。</p>
-</li>
-<li>
-<p><strong>github-oauth</strong>: GitHub OAuth 令牌列表。</p>
-</li>
-<li>
-<p><strong>gitlab-oauth</strong>/<strong>gitlab-token</strong>: GitLab OAuth 令牌或私有令牌列表。</p>
-</li>
-<li>
-<p><strong>http-basic</strong>: HTTP 基本认证信息。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;http-basic&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&#34;example.org&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;username&#34;</span><span class="p">:</span> <span class="s2">&#34;username&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                <span class="nt">&#34;password&#34;</span><span class="p">:</span> <span class="s2">&#34;password&#34;</span>
-</span></span><span class="line"><span class="cl">            <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div></li>
+<li><code>-o</code> / <code>--optimize-autoloader</code>：把 PSR-4 规则转成 classmap，避免运行时按规则扫文件系统</li>
+<li><code>-a</code> / <code>--classmap-authoritative</code>：autoloader 只信 classmap，不再 fallback 到文件系统 stat。隐式包含 <code>-o</code></li>
 </ul>
-<h3 id="目录与缓存">目录与缓存</h3>
-<ul>
-<li><strong>vendor-dir</strong>: 安装依赖的目录，默认为 <code>vendor</code>。</li>
-<li><strong>bin-dir</strong>: 二进制文件链接目录，默认为 <code>vendor/bin</code>。</li>
-<li><strong>cache-dir</strong>: 缓存目录。</li>
-<li><strong>cache-files-ttl</strong>: 缓存文件的存活时间（秒），默认 15552000（6个月）。</li>
-<li><strong>cache-files-maxsize</strong>: 缓存可使用的最大空间，默认 &ldquo;300MiB&rdquo;。</li>
-</ul>
-<h3 id="自动加载相关">自动加载相关</h3>
-<ul>
-<li><strong>optimize-autoloader</strong>: 始终优化自动加载器，默认 <code>false</code>。</li>
-<li><strong>prepend-autoloader</strong>: 是否将 Composer 自动加载器前置到已存在的自动加载器，默认 <code>true</code>。</li>
-<li><strong>classmap-authoritative</strong>: 设为 <code>true</code> 时，自动加载器只会从 classmap 加载类，默认 <code>false</code>。</li>
-<li><strong>apcu-autoloader</strong>: 是否使用 APCu 缓存查找的类，默认 <code>false</code>。</li>
-</ul>
-<h3 id="安全与其他">安全与其他</h3>
-<ul>
-<li><strong>platform-check</strong>: 平台检查级别，默认 <code>php-only</code>，可设为 <code>true</code> 或 <code>false</code>。</li>
-<li><strong>secure-http</strong>: 是否只允许通过 HTTPS 下载包，默认 <code>true</code>。</li>
-<li><strong>discard-changes</strong>: 处理脏更新的方式，默认 <code>false</code>，可设为 <code>true</code> 或 <code>stash</code>。</li>
-<li><strong>sort-packages</strong>: 添加新包时是否按名称排序，默认 <code>false</code>。</li>
-</ul>
-<h3 id="全局配置">全局配置</h3>
-<p>某些配置可通过命令行全局设置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">php composer.phar config -g repo.packagist <span class="nb">false</span>
-</span></span><span class="line"><span class="cl">php composer.phar config -g process-timeout <span class="m">900</span>
-</span></span></code></pre></div><h2 id="runtime-composer-utilities">Runtime Composer utilities</h2>
-<blockquote>
-<p><a href="https://getcomposer.org/doc/07-runtime.md">https://getcomposer.org/doc/07-runtime.md</a></p>
-</blockquote>
-<p>Composer 除了安装和管理依赖外，还提供了一些运行时实用工具。如果需要依赖特定版本的这些功能，可以通过 <code>composer-runtime-api</code> 包实现。</p>
-<h3 id="自动加载">自动加载</h3>
-<p>最常用的运行时工具是自动加载器，在所有 Composer 版本中可用。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/vendor/autoload.php&#39;</span><span class="p">;</span>
+<p><code>-a</code> 比 <code>-o</code> 更激进：classmap 没收录的类（运行期动态 include 老代码）会找不到。常规 Laravel / Symfony 应用是安全的。</p>
+<h2 id="运行时探查">运行时探查</h2>
+<p><code>Composer\InstalledVersions</code> 在 Composer 2.0+ 全程可用，比读 <code>composer.lock</code> 干净：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Composer\InstalledVersions</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Composer\Semver\VersionParser</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 现在可以使用项目的依赖了
-</span></span></span><span class="line"><span class="cl"><span class="nv">$log</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Monolog\Logger</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="已安装版本信息">已安装版本信息</h3>
-<p>Composer 2.0 引入了 <code>Composer\InstalledVersions</code> 类，提供了检查已安装包的静态方法。</p>
-<h4 id="检查包是否存在">检查包是否存在</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span> <span class="c1">// 返回布尔值
-</span></span></span><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;psr/log-implementation&#39;</span><span class="p">);</span> <span class="c1">// 检查虚拟包
-</span></span></span></code></pre></div><p>从 Composer 2.1 开始，还可以检查包是否通过 require-dev 安装：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span> <span class="c1">// 仅检查 require 中的包
-</span></span></span></code></pre></div><h4 id="检查包版本">检查包版本</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">Composer\Semver\VersionParser</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 检查包是否满足版本约束
-</span></span></span><span class="line"><span class="cl"><span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">satisfies</span><span class="p">(</span><span class="k">new</span> <span class="nx">VersionParser</span><span class="p">,</span> <span class="s1">&#39;vendor/package&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0.*&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 获取包的版本号
-</span></span></span><span class="line"><span class="cl"><span class="nv">$version</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getVersion</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span> <span class="c1">// 标准化版本 (如 1.2.3.0)
-</span></span></span><span class="line"><span class="cl"><span class="nv">$prettyVersion</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getPrettyVersion</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span> <span class="c1">// 原始版本 (如 v1.2.3)
-</span></span></span></code></pre></div><h4 id="获取包的安装路径">获取包的安装路径</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 获取包安装的绝对路径
-</span></span></span><span class="line"><span class="cl"><span class="nv">$path</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getInstallPath</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span>
-</span></span></code></pre></div><h4 id="查找指定类型的已安装包">查找指定类型的已安装包</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 获取所有类型为 &#39;foo-plugin&#39; 的已安装包
-</span></span></span><span class="line"><span class="cl"><span class="nv">$packages</span> <span class="o">=</span> <span class="nx">\Composer\InstalledVersions</span><span class="o">::</span><span class="na">getInstalledPackagesByType</span><span class="p">(</span><span class="s1">&#39;foo-plugin&#39;</span><span class="p">);</span>
-</span></span></code></pre></div><h3 id="平台检查">平台检查</h3>
-<p>Composer 2.0 引入了 <code>vendor/composer/platform_check.php</code> 文件，会在包含自动加载器时自动执行。它会验证当前 PHP 环境是否满足平台要求，如 PHP 版本和扩展。</p>
-<p>默认情况下，只检查 PHP 版本（<code>php-only</code>）。可以通过 <code>platform-check</code> 配置选项修改行为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;platform-check&#34;</span><span class="p">:</span> <span class="kc">true</span>  <span class="c1">// 也检查 PHP 扩展
-</span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>如果要禁用此安全检查：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&#34;platform-check&#34;</span><span class="p">:</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h3 id="二进制文件中的自动加载器路径">二进制文件中的自动加载器路径</h3>
-<p>Composer 2.2 引入了全局变量 <code>$_composer_autoload_path</code>，它在运行 Composer 安装的二进制文件时设置。</p>
-<h3 id="二进制文件中的-bin-dir-路径">二进制文件中的 bin-dir 路径</h3>
-<p>Composer 2.2.2 引入了全局变量 <code>$_composer_bin_dir</code>，它在运行 Composer 安装的二进制文件时设置。</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Composer vendor 提交至 Git</title>
-      <link>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</link>
-      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
-      <guid>https://zyf.im/2020/08/10/commit-composer-vendor-to-git/</guid>
-      <description>&lt;h2 id=&#34;应该将-vendor-提交到-git-吗&#34;&gt;应该将 vendor 提交到 Git 吗&lt;/h2&gt;
-&lt;p&gt;一般建议是 &lt;strong&gt;不&lt;/strong&gt;。&lt;code&gt;vendor&lt;/code&gt; 目录应添加到 &lt;code&gt;.gitignore&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行 Composer。&lt;/p&gt;
-&lt;p&gt;虽然在某些环境下这样做很诱人，但也会导致一些问题：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;大型 VCS 存储库的大小和更新代码时的差异。&lt;/li&gt;
-&lt;li&gt;在你自己的 VCS 复制你所有依赖的历史。&lt;/li&gt;
-&lt;li&gt;将通过 git 安装的依赖项添加到 git repo 中将显示为 &lt;code&gt;submodules&lt;/code&gt;。这是有问题的，因为它们不是真正的 &lt;code&gt;submodules&lt;/code&gt;，您将会遇到问题。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果你真的觉得你必须这样做，你有几个选择：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;限制自己安装带标记的版本（没有 dev 版本），这样就只能安装压缩版，并避免与 git &lt;code&gt;submodules&lt;/code&gt; 有关的问题。&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;--prefer-dist&lt;/code&gt; or set &lt;code&gt;preferred-install&lt;/code&gt; to &lt;code&gt;dist&lt;/code&gt; in your config.&lt;/li&gt;
-&lt;li&gt;Remove the &lt;code&gt;.git&lt;/code&gt; directory of every dependency after the installation, then you can add them to your git repo. You can do that with &lt;code&gt;rm -rf vendor/\*\*/.git&lt;/code&gt; in ZSH or &lt;code&gt;find vendor/ -type d -name &amp;quot;.git&amp;quot; -exec rm -rf {} \;&lt;/code&gt; in Bash. 但这意味着您必须在运行 composer 更新之前从磁盘中删除这些依赖项。&lt;/li&gt;
-&lt;li&gt;Add a &lt;code&gt;.gitignore&lt;/code&gt; rule &lt;code&gt;/vendor/**/.git&lt;/code&gt; to ignore all the vendor &lt;code&gt;.git&lt;/code&gt; folders. 这种方法不需要在运行编写器更新之前从磁盘删除依赖项。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;我的做法&#34;&gt;我的做法&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;问题解决了，但是不确信做法是否正确。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="应该将-vendor-提交到-git-吗">应该将 vendor 提交到 Git 吗</h2>
-<p>一般建议是 <strong>不</strong>。<code>vendor</code> 目录应添加到 <code>.gitignore</code>。</p>
-<p>最佳实践是让所有开发人员使用 Composer 来安装依赖项。类似地，构建服务器、CI、部署工具等都应该作为项目启动的一部分来运行 Composer。</p>
-<p>虽然在某些环境下这样做很诱人，但也会导致一些问题：</p>
+</span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span>             <span class="c1">// bool
+</span></span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;psr/log-implementation&#39;</span><span class="p">);</span>     <span class="c1">// virtual package（实现了 psr/log 的任意包）
+</span></span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">isInstalled</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>      <span class="c1">// 仅查 require，跳过 require-dev（2.1+）
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">satisfies</span><span class="p">(</span><span class="k">new</span> <span class="nx">VersionParser</span><span class="p">,</span> <span class="s1">&#39;vendor/package&#39;</span><span class="p">,</span> <span class="s1">&#39;^2.0&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">getVersion</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span>              <span class="c1">// 标准化版本，如 1.2.3.0
+</span></span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">getPrettyVersion</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span>        <span class="c1">// 原始字串，如 v1.2.3
+</span></span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">getInstallPath</span><span class="p">(</span><span class="s1">&#39;vendor/package&#39;</span><span class="p">);</span>          <span class="c1">// 绝对路径
+</span></span></span><span class="line"><span class="cl"><span class="nx">InstalledVersions</span><span class="o">::</span><span class="na">getInstalledPackagesByType</span><span class="p">(</span><span class="s1">&#39;foo-plugin&#39;</span><span class="p">);</span>  <span class="c1">// 按 composer.json 的 type 字段筛
+</span></span></span></code></pre></div><p>写插件 / 探测可选依赖时 <code>isInstalled('psr/log-implementation')</code> 比 <code>class_exists(LoggerInterface::class)</code> 准 —— 后者会被 IDE / opcache stub 干扰。</p>
+<h2 id="composer-installed-bin-script-里定位资源">composer-installed bin script 里定位资源</h2>
+<p>写在 <code>composer.json</code> 的 <code>bin</code> 字段被装到 <code>vendor/bin/</code> 后，找回项目的 <code>vendor/autoload.php</code> 传统要 <code>dirname(__DIR__, N)</code> 往上猜目录，被装在不同深度就要重写。Composer 2.2+ 注入两个全局变量解决：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env php
+</span></span></span><span class="line"><span class="cl"><span class="o">&lt;?</span><span class="nx">php</span>
+</span></span><span class="line"><span class="cl"><span class="k">require</span> <span class="nv">$_composer_autoload_path</span><span class="p">;</span>   <span class="c1">// 装它的项目的 vendor/autoload.php
+</span></span></span><span class="line"><span class="cl"><span class="nv">$binDir</span> <span class="o">=</span> <span class="nv">$_composer_bin_dir</span><span class="p">;</span>       <span class="c1">// 装它的项目的 vendor/bin
+</span></span></span></code></pre></div><h2 id="参考">参考</h2>
 <ul>
-<li>大型 VCS 存储库的大小和更新代码时的差异。</li>
-<li>在你自己的 VCS 复制你所有依赖的历史。</li>
-<li>将通过 git 安装的依赖项添加到 git repo 中将显示为 <code>submodules</code>。这是有问题的，因为它们不是真正的 <code>submodules</code>，您将会遇到问题。</li>
+<li><a href="https://getcomposer.org/doc/03-cli.md">https://getcomposer.org/doc/03-cli.md</a> — CLI 完整 reference</li>
+<li><a href="https://getcomposer.org/doc/04-schema.md">https://getcomposer.org/doc/04-schema.md</a> — composer.json 字段</li>
+<li><a href="https://getcomposer.org/doc/06-config.md">https://getcomposer.org/doc/06-config.md</a> — config 字段</li>
+<li><a href="https://getcomposer.org/doc/07-runtime.md">https://getcomposer.org/doc/07-runtime.md</a> — <code>Composer\InstalledVersions</code></li>
 </ul>
-<p>如果你真的觉得你必须这样做，你有几个选择：</p>
-<ul>
-<li>限制自己安装带标记的版本（没有 dev 版本），这样就只能安装压缩版，并避免与 git <code>submodules</code> 有关的问题。</li>
-<li>Use <code>--prefer-dist</code> or set <code>preferred-install</code> to <code>dist</code> in your config.</li>
-<li>Remove the <code>.git</code> directory of every dependency after the installation, then you can add them to your git repo. You can do that with <code>rm -rf vendor/\*\*/.git</code> in ZSH or <code>find vendor/ -type d -name &quot;.git&quot; -exec rm -rf {} \;</code> in Bash. 但这意味着您必须在运行 composer 更新之前从磁盘中删除这些依赖项。</li>
-<li>Add a <code>.gitignore</code> rule <code>/vendor/**/.git</code> to ignore all the vendor <code>.git</code> folders. 这种方法不需要在运行编写器更新之前从磁盘删除依赖项。</li>
-</ul>
-<h2 id="我的做法">我的做法</h2>
-<blockquote>
-<p>问题解决了，但是不确信做法是否正确。</p>
-</blockquote>
-<p>因为网络环境与部署的原因，在生产环境下是将 <code>vendor</code> 目录提交到 <code>git</code> 中的。使用过程中确实出现了，部分类库成为了 <code>submodules</code>，无法把真实的代码提交进 git。</p>
-<p>可尝试执行：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git rm rf --cache vendor
-</span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;add vendor&#34;</span>
-</span></span></code></pre></div><h2 id="references">References</h2>
-<ul>
-<li><a href="https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md">Should I commit the dependencies in my vendor directory? | getcomposer</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>配置 Laradock PhpStorm Xdubug</title>
-      <link>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</link>
-      <pubDate>Tue, 26 May 2020 09:45:15 +0000</pubDate>
-      <guid>https://zyf.im/2020/05/26/config-laradock-phpstorm-xdubug/</guid>
-      <description>&lt;p&gt;最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。&lt;/p&gt;
-&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;macOS&lt;/li&gt;
-&lt;li&gt;Laradock v10.0&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;请保证 Laradock 是最新的版本，可以减少不必要的麻烦。也推荐使用我精简过的项目 &lt;a href=&#34;https://github.com/imzyf/my-dock&#34;&gt;imzyf/my-dock | github&lt;/a&gt;。&lt;/p&gt;
-&lt;!-- more --&gt;
-&lt;h2 id=&#34;配置-laradock&#34;&gt;配置 Laradock&lt;/h2&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;vim .env
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;WORKSPACE_INSTALL_XDEBUG&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;PHP_FPM_INSTALL_XDEBUG&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;重新编译 php-fpm 和 workspace 容器：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker-compose build php-fpm workspace
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;配置-phpstorm&#34;&gt;配置 PhpStorm&lt;/h2&gt;
-&lt;h3 id=&#34;配置-docker&#34;&gt;配置 Docker&lt;/h3&gt;
-&lt;p&gt;Preferences &amp;gt; Build, Execution, Deploymnent &amp;gt; Docker&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;docker&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/82999144-302d2100-a03b-11ea-8a21-08bc67838fc2.png&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;配置-php&#34;&gt;配置 PHP&lt;/h3&gt;
-&lt;p&gt;Preferences &amp;gt; Languages &amp;amp; Frameworks &amp;gt; PHP，PHP CLI Interpreter 点 &lt;code&gt;...&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;php 1&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/82997395-e7746880-a038-11ea-98ca-d68052d5bd22.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;点击 +，选择 From Docker, Vagrant&amp;hellip;&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;php 2&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/82997724-55209480-a039-11ea-8235-4a0479aeb832.png&#34;&gt;&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>最近在学习 Yii2 的源码，为了方便调试所以研究下 Laradock + PhpStorm + Xdubug 的配置。</p>
-<h2 id="环境">环境</h2>
-<ul>
-<li>macOS</li>
-<li>Laradock v10.0</li>
-</ul>
-<p>请保证 Laradock 是最新的版本，可以减少不必要的麻烦。也推荐使用我精简过的项目 <a href="https://github.com/imzyf/my-dock">imzyf/my-dock | github</a>。</p>
-<!-- more -->
-<h2 id="配置-laradock">配置 Laradock</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim .env
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">WORKSPACE_INSTALL_XDEBUG</span><span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl"><span class="nv">PHP_FPM_INSTALL_XDEBUG</span><span class="o">=</span><span class="nb">true</span>
-</span></span></code></pre></div><p>重新编译 php-fpm 和 workspace 容器：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker-compose build php-fpm workspace
-</span></span></code></pre></div><h2 id="配置-phpstorm">配置 PhpStorm</h2>
-<h3 id="配置-docker">配置 Docker</h3>
-<p>Preferences &gt; Build, Execution, Deploymnent &gt; Docker</p>
-<p><img alt="docker" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82999144-302d2100-a03b-11ea-8a21-08bc67838fc2.png"></p>
-<h3 id="配置-php">配置 PHP</h3>
-<p>Preferences &gt; Languages &amp; Frameworks &gt; PHP，PHP CLI Interpreter 点 <code>...</code></p>
-<p><img alt="php 1" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82997395-e7746880-a038-11ea-98ca-d68052d5bd22.png"></p>
-<p>点击 +，选择 From Docker, Vagrant&hellip;</p>
-<p><img alt="php 2" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82997724-55209480-a039-11ea-8235-4a0479aeb832.png"></p>
-<p>Debugger 可以显示出 Xdebug。</p>
-<h3 id="配置-servers">配置 Servers</h3>
-<p>Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; Servers</p>
-<p><img alt="server" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82998171-f7d91300-a039-11ea-89e7-50b79664b0f6.png"></p>
-<p>注意：Name 必须填写 Laradock 中的 PHP_IDE_CONFIG 也就就是 <code>laradock</code>。</p>
-<h3 id="配置-xdebug">配置 Xdebug</h3>
-<p>Preferences &gt; Languages &amp; Frameworks &gt; PHP &gt; Debug。点击 <code>Validate</code>，填写。</p>
-<p><img alt="Xdebug" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82998451-530b0580-a03a-11ea-925a-1770df95eb66.png"></p>
-<p>run &gt; Edit Configurations，添加 PHP Remote Debug。IDE key 为 <code>PHPSTORM</code>。</p>
-<p><img alt="Xdebug2" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82998663-95ccdd80-a03a-11ea-9dc4-5d00d012e7df.png"></p>
-<h2 id="配置-chrome">配置 Chrome</h2>
-<p>下载插件 <a href="https://chrome.google.com/webstore/detail/eadndfjplgieldjbigjakmdgkmoaaaoc">Xdebug helper</a>，右键图标 配置。</p>
-<p><img alt="chrome" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82998865-d3316b00-a03a-11ea-94cc-a6642fa0cdbf.png"></p>
-<h2 id="enjoy">enjoy</h2>
-<p><img alt="start" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82999306-636fb000-a03b-11ea-9c0f-a059fbc47fd3.png"></p>
-<p>开启 debug，然后访问页面。</p>
-<p><img alt="fly" loading="lazy" src="https://user-images.githubusercontent.com/9289792/82999463-96b23f00-a03b-11ea-922a-4c91169628a9.png"></p>
-<p>芜湖起飞。</p>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://learnku.com/articles/24389">Laradock 使用 PhpStorm Debug 代码 | learnku</a></li>
-<li><a href="https://medium.com/@chenpohsun_12588/set-debugger-using-xdebug-with-phpstorm-laradock-454e8c2ad0d9">Set Debugger Using Xdebug With PHPStorm &amp; Laradock | medium</a></li>
-</ul>
-<p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>
     <item>
@@ -4625,14 +4224,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;0.25&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;===&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// bool(true)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;实例-5&#34;&gt;实例 5&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;19.99&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 1999.0
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 1998 !!!
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// &amp;#34;1999&amp;#34;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 1999
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 1999.0 !!!
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 1999
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;分析&#34;&gt;分析&lt;/h2&gt;
-&lt;p&gt;看文档：&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// float(1999)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// int(1998) !!!
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// string(4) &amp;#34;1999&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// int(1999)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// float(1999)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// int(1999)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;19.99 * 100&lt;/code&gt; 实际结果是 &lt;code&gt;1998.9999999999998…&lt;/code&gt;，&lt;code&gt;(int)&lt;/code&gt; 走的是向零截断而非四舍五入，所以掉到 &lt;code&gt;1998&lt;/code&gt;。打印时 PHP 默认精度只显示到 &lt;code&gt;1999&lt;/code&gt;，肉眼上看不出来这个陷阱。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="实例-1">实例 1</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$a</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">gettype</span><span class="p">(</span><span class="nv">$a</span><span class="p">));</span> <span class="c1">// string(6) &#34;double&#34;
@@ -4686,13 +4284,14 @@
 </span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">((</span><span class="mf">0.25</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">===</span> <span class="mf">0.5</span><span class="p">);</span> <span class="c1">// bool(true)
 </span></span></span></code></pre></div><h2 id="实例-5">实例 5</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$n</span> <span class="o">=</span> <span class="mf">19.99</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">dump</span><span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// 1999.0
-</span></span></span><span class="line"><span class="cl"><span class="nx">dump</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// 1998 !!!
-</span></span></span><span class="line"><span class="cl"><span class="nx">dump</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// &#34;1999&#34;
-</span></span></span><span class="line"><span class="cl"><span class="nx">dump</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// 1999
-</span></span></span><span class="line"><span class="cl"><span class="nx">dump</span><span class="p">(</span><span class="nx">round</span><span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// 1999.0 !!!
-</span></span></span><span class="line"><span class="cl"><span class="nx">dump</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span> <span class="nx">round</span><span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// 1999
-</span></span></span></code></pre></div><h2 id="分析">分析</h2>
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// float(1999)
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// int(1998) !!!
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">((</span><span class="nx">string</span><span class="p">)</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// string(4) &#34;1999&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// int(1999)
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">round</span><span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// float(1999)
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">((</span><span class="nx">int</span><span class="p">)</span> <span class="nx">round</span><span class="p">(</span><span class="nv">$n</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span> <span class="c1">// int(1999)
+</span></span></span></code></pre></div><p><code>19.99 * 100</code> 实际结果是 <code>1998.9999999999998…</code>，<code>(int)</code> 走的是向零截断而非四舍五入，所以掉到 <code>1998</code>。打印时 PHP 默认精度只显示到 <code>1999</code>，肉眼上看不出来这个陷阱。</p>
+<h2 id="分析">分析</h2>
 <p>看文档：</p>
 <ul>
 <li><a href="https://www.php.net/manual/zh/function.gettype.php">gettype | php.net</a></li>
@@ -4703,9 +4302,9 @@
 浮点数的字长和平台相关，尽管通常最大值是 1.8e308 并具有 14 位十进制数字的精度（64 位 IEEE 格式）。
 所以永远不要相信浮点数结果精确到了最后一位，也永远不要比较两个浮点数是否相等。如果确实需要更高的精度，应该使用任意精度数学函数或者 gmp 函数。</p>
 </blockquote>
-<p>实例 1：说明在 PHP 中 <code>float</code> 与 <code>dobule</code> 是一回事。在 C 级别，所有内容都存储为 double。</p>
-<p>实例 2、3：float 的比较结果是 <em>视情况而定</em>，<strong>永远不要相信浮点数结果精确到了最后一位</strong>。</p>
-<p>实例 4：出现这个问题是因为浮点数计算涉及精度，当浮点数转为二进制时有可能会造成精度丢失。</p>
+<p>实例 1：PHP 中 <code>float</code> 与 <code>double</code> 是同一种类型 —— 底层 C 实现统一用 double 存储。</p>
+<p>实例 2、3：float 的比较结果<strong>视情况而定</strong>，<strong>永远不要相信浮点数结果精确到了最后一位</strong>。</p>
+<p>实例 4：浮点数转为二进制时可能造成精度丢失。<code>0.1</code> 和 <code>0.9</code> 在二进制都是无穷循环小数，二者相加时舍入误差恰好抵消落到 <code>1.0</code>；而 <code>1 - 0.9</code> 的误差被保留并放大，所以与 <code>0.1</code> 的二进制近似值不再相等。</p>
 <ul>
 <li>Arbitrary-precision arithmetic library for PHP <a href="https://github.com/brick/math">https://github.com/brick/math</a></li>
 </ul>
@@ -4774,11 +4373,30 @@
       <link>https://zyf.im/2019/12/19/lonicera-framework/</link>
       <pubDate>Thu, 19 Dec 2019 16:46:06 +0000</pubDate>
       <guid>https://zyf.im/2019/12/19/lonicera-framework/</guid>
-      <description>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</description>
+      <description>&lt;p&gt;项目代码：&lt;a href=&#34;https://github.com/imzyf/lonicera&#34;&gt;imzyf/lonicera | GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Lonicera Framework - Every French soldier carries a marshal’s baton in his knapsack.&lt;/p&gt;
+&lt;h2 id=&#34;mvc&#34;&gt;MVC&lt;/h2&gt;
+&lt;p&gt;MVC 模式的目的是实现一种动态的程序设计，使后续对程序的修改和扩展简化，并且使程序某一部分的重复利用成为可能。&lt;/p&gt;
+&lt;h2 id=&#34;lonicera-01&#34;&gt;Lonicera 0.1&lt;/h2&gt;
+&lt;h3 id=&#34;bootstrap&#34;&gt;bootstrap&lt;/h3&gt;
+&lt;p&gt;index.php 单一入口模式。&lt;/p&gt;
+&lt;p&gt;启动 PHP 内置 Web 服务器：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;php -S localhost:7070
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;路由器层&#34;&gt;路由器层&lt;/h3&gt;
+&lt;p&gt;更偏向于使用 PATH_INFO 方式来访问。&lt;/p&gt;
+&lt;p&gt;从传统 URL 参数模式的访问地址进行解析，提取里面的 group、controller、action、param 4 个参数，随后交给 bootstrap 进行 dispatch 处理。&lt;/p&gt;
+&lt;h3 id=&#34;数据模型&#34;&gt;数据模型&lt;/h3&gt;
+&lt;p&gt;用 PDO 来实现连接数据库。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ORM Object Relational Mapping 对象与数据库的映射叫作对象关系映射&lt;/li&gt;
+&lt;li&gt;PO Persistent Object 把一个数据库中的表的一行记录对应的对象称为持久对象&lt;/li&gt;
+&lt;li&gt;BO Business Object 业务对象 把业务逻辑封装为一个对象&lt;/li&gt;
+&lt;li&gt;VO Value Object 值对象 界面显示的数据对象&lt;/li&gt;
+&lt;li&gt;DTO Data Transfer Object 用在热呵呵需要数据传输的地方&lt;/li&gt;
+&lt;li&gt;DAO Data Access Object 指代 Active Record 模式中的数据对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;传统的 ORM 模式提倡数据对象和负责持久化的代码的分开，但是这并没有坚持数据操作的工作量。还有一种 ORM 模式叫作 Active Record。在 Active Record 中，模型层集成了 ORM 的功能，他们及代表实体，包含因为业务逻辑，又是数据对象，并负责把自己存储到数据库中。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>项目代码：<a href="https://github.com/imzyf/lonicera">imzyf/lonicera | GitHub</a></p>
-<blockquote>
-<p>【PHP 核心技术与最佳实践】第二版 第 6 章 读书笔记</p>
-</blockquote>
 <p>Lonicera Framework - Every French soldier carries a marshal’s baton in his knapsack.</p>
 <h2 id="mvc">MVC</h2>
 <p>MVC 模式的目的是实现一种动态的程序设计，使后续对程序的修改和扩展简化，并且使程序某一部分的重复利用成为可能。</p>
@@ -4998,7 +4616,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;autoload.php&lt;/code&gt; 不负责具体功能逻辑，只做了两件事：初始化自动加载类、注册自动加载类。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;autoload_real.php&lt;/code&gt; 中的类名为 &lt;code&gt;ComposerAutoloaderInit...&lt;/code&gt; 这可能是为防止与用户自定义类名跟这个类重复冲突，加上了哈希值。&lt;/p&gt;
 &lt;p&gt;其实还有一个做法我们更加熟悉，是定义一个命名空间。这里为什么不定义一个命名空间呢？一种理解：命名空间一般都是为了复用，而这个类只需要运行一次即可，以后也不会用得到，用哈希值更加合适。&lt;/p&gt;
-&lt;!-- more --&gt;
 &lt;h2 id=&#34;autoload_realphp&#34;&gt;autoload_real.php&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;autoload.php&lt;/code&gt; 主要调用了 &lt;code&gt;getLoader()&lt;/code&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;getLoader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
@@ -5076,7 +4693,6 @@
 </span></span></code></pre></div><p><code>autoload.php</code> 不负责具体功能逻辑，只做了两件事：初始化自动加载类、注册自动加载类。</p>
 <p><code>autoload_real.php</code> 中的类名为 <code>ComposerAutoloaderInit...</code> 这可能是为防止与用户自定义类名跟这个类重复冲突，加上了哈希值。</p>
 <p>其实还有一个做法我们更加熟悉，是定义一个命名空间。这里为什么不定义一个命名空间呢？一种理解：命名空间一般都是为了复用，而这个类只需要运行一次即可，以后也不会用得到，用哈希值更加合适。</p>
-<!-- more -->
 <h2 id="autoload_realphp">autoload_real.php</h2>
 <p><code>autoload.php</code> 主要调用了 <code>getLoader()</code>：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getLoader</span><span class="p">()</span>

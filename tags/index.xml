@@ -100,20 +100,6 @@
       <description></description>
     </item>
     <item>
-      <title>Git</title>
-      <link>https://zyf.im/tags/git/</link>
-      <pubDate>Mon, 10 Aug 2020 14:24:47 +0000</pubDate>
-      <guid>https://zyf.im/tags/git/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Phpstorm</title>
-      <link>https://zyf.im/tags/phpstorm/</link>
-      <pubDate>Tue, 26 May 2020 09:45:15 +0000</pubDate>
-      <guid>https://zyf.im/tags/phpstorm/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Algorithm</title>
       <link>https://zyf.im/tags/algorithm/</link>
       <pubDate>Thu, 23 May 2019 14:44:40 +0000</pubDate>
@@ -132,6 +118,13 @@
       <link>https://zyf.im/tags/laravel/</link>
       <pubDate>Fri, 25 May 2018 16:00:00 +0000</pubDate>
       <guid>https://zyf.im/tags/laravel/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Git</title>
+      <link>https://zyf.im/tags/git/</link>
+      <pubDate>Wed, 17 Jan 2018 19:00:00 +0000</pubDate>
+      <guid>https://zyf.im/tags/git/</guid>
       <description></description>
     </item>
     <item>
@@ -158,15 +151,8 @@
     <item>
       <title>Github</title>
       <link>https://zyf.im/tags/github/</link>
-      <pubDate>Fri, 01 Jul 2016 20:00:00 +0000</pubDate>
+      <pubDate>Fri, 24 Jun 2016 18:30:00 +0000</pubDate>
       <guid>https://zyf.im/tags/github/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hexo</title>
-      <link>https://zyf.im/tags/hexo/</link>
-      <pubDate>Fri, 01 Jul 2016 20:00:00 +0000</pubDate>
-      <guid>https://zyf.im/tags/hexo/</guid>
       <description></description>
     </item>
   </channel>

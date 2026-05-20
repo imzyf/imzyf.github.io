@@ -18,9 +18,12 @@
 &lt;h3 id=&#34;参考资源&#34;&gt;参考资源&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;在线测试环境：&lt;a href=&#34;https://3v4l.org/&#34;&gt;https://3v4l.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;sandbox：&lt;a href=&#34;https://onlinephp.io/&#34;&gt;https://onlinephp.io/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;官方发布说明：&lt;a href=&#34;https://www.php.net/releases/8.5/en.php&#34;&gt;https://www.php.net/releases/8.5/en.php&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;迁移指南：&lt;a href=&#34;https://www.php.net/manual/en/migration85.php&#34;&gt;https://www.php.net/manual/en/migration85.php&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;更新详情：&lt;a href=&#34;https://php.watch/versions/8.5&#34;&gt;https://php.watch/versions/8.5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Supported Versions：&lt;a href=&#34;https://www.php.net/supported-versions.php&#34;&gt;https://www.php.net/supported-versions.php&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;EOL：&lt;a href=&#34;https://www.php.net/eol.php&#34;&gt;https://www.php.net/eol.php&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;php-85-新特性&#34;&gt;PHP 8.5 新特性&lt;/h2&gt;
 &lt;h3 id=&#34;管道运算符pipe-operator&#34;&gt;管道运算符（Pipe Operator）&lt;/h3&gt;
@@ -44,9 +47,12 @@
 <h3 id="参考资源">参考资源</h3>
 <ul>
 <li>在线测试环境：<a href="https://3v4l.org/">https://3v4l.org/</a></li>
+<li>sandbox：<a href="https://onlinephp.io/">https://onlinephp.io/</a></li>
 <li>官方发布说明：<a href="https://www.php.net/releases/8.5/en.php">https://www.php.net/releases/8.5/en.php</a></li>
 <li>迁移指南：<a href="https://www.php.net/manual/en/migration85.php">https://www.php.net/manual/en/migration85.php</a></li>
 <li>更新详情：<a href="https://php.watch/versions/8.5">https://php.watch/versions/8.5</a></li>
+<li>Supported Versions：<a href="https://www.php.net/supported-versions.php">https://www.php.net/supported-versions.php</a></li>
+<li>EOL：<a href="https://www.php.net/eol.php">https://www.php.net/eol.php</a></li>
 </ul>
 <h2 id="php-85-新特性">PHP 8.5 新特性</h2>
 <h3 id="管道运算符pipe-operator">管道运算符（Pipe Operator）</h3>

@@ -14,26 +14,57 @@
       <pubDate>Wed, 01 Mar 2023 17:00:00 +0000</pubDate>
       <guid>https://zyf.im/2023/03/01/hands-on-ddd/</guid>
       <description>&lt;h2 id=&#34;01-ddd-小传&#34;&gt;01 DDD 小传&lt;/h2&gt;
-&lt;p&gt;DDD（Domain-Driven Design）由 Eric Evans 于 2003 年提出，本质是一套用于开发复杂软件的系统化方法学与思想，核心关注“领域建模”。它源于面向对象方法学与敏捷开发，可理解为“把面向对象做对”（OO Done right），并将建模、设计与落地实践更体系化。&lt;/p&gt;
-&lt;p&gt;传统面向对象在企业应用中常见问题是重技术轻业务、领域建模难以掌握、协作与沟通不足、难以适应频繁变化。DDD 通过模式、原则与实践（如通用语言、限界上下文、模型驱动设计等）促进业务与技术协作沉淀知识，并用“柔性设计/演进”避免过度设计、支持持续重构。&lt;/p&gt;
-&lt;p&gt;近年因数字化带来更高复杂度与变化，以及敏捷/DevOps 与 Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，DDD 才从“屠龙术”变成广泛可用的方法。&lt;/p&gt;
-&lt;h2 id=&#34;02-迭代一-企业管理系统&#34;&gt;02 迭代一 企业管理系统&lt;/h2&gt;
-&lt;p&gt;企业为了满足管理诉求，希望员工每周在系统中填报自己在哪些项目上花了多少时间，也就是所谓的报工时。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;DDD（Domain-Driven Design）&lt;/strong&gt;：Eric Evans 2003 年提出，一套用于开发&lt;strong&gt;复杂软件&lt;/strong&gt;的方法论与思想，核心是&lt;strong&gt;领域建模&lt;/strong&gt;。常被概括成&amp;quot;把面向对象做对（OO Done Right）&amp;quot;。&lt;/p&gt;
+&lt;h3 id=&#34;传统-oo-在企业应用里的痛--ddd-的回应&#34;&gt;传统 OO 在企业应用里的痛 → DDD 的回应&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;痛点&lt;/th&gt;
+          &lt;th&gt;DDD 的回应&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;重技术轻业务&lt;/td&gt;
+          &lt;td&gt;通用语言（业务 / 开发同一套词）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;领域建模无章法&lt;/td&gt;
+          &lt;td&gt;模型驱动设计、限界上下文&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;业务 / 技术协作不足&lt;/td&gt;
+          &lt;td&gt;事件风暴、协作产出统一语言&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;难以适应频繁变化&lt;/td&gt;
+          &lt;td&gt;柔性设计 + 持续重构，避免过度设计&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;为什么近几年才出圈&#34;&gt;为什么近几年才&amp;quot;出圈&amp;quot;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;数字化推高复杂度与变化频率。&lt;/li&gt;
+&lt;li&gt;敏捷 / DevOps 把&amp;quot;小步演进&amp;quot;做成日常。&lt;/li&gt;
+&lt;li&gt;Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，DDD 不再是&amp;quot;屠龙术&amp;quot;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;02-案例需求企业工时系统&#34;&gt;02 案例需求：企业工时系统&lt;/h2&gt;
+&lt;p&gt;要做的 SaaS：员工每周填报&amp;quot;在哪些项目上花了多少时间&amp;quot;。&lt;/p&gt;
 &lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
           &lt;th&gt;需求&lt;/th&gt;
-          &lt;th&gt;核心对象/范围&lt;/th&gt;
-          &lt;th&gt;主要功能（CRUD/流程）&lt;/th&gt;
-          &lt;th&gt;关键规则/约束&lt;/th&gt;
-          &lt;th&gt;关键字段/记录&lt;/th&gt;
+          &lt;th&gt;核心对象 / 范围&lt;/th&gt;
+          &lt;th&gt;主要功能 (CRUD / 流程)&lt;/th&gt;
+          &lt;th&gt;关键规则 / 约束&lt;/th&gt;
+          &lt;th&gt;关键字段 / 记录&lt;/th&gt;
       &lt;/tr&gt;
   &lt;/thead&gt;
   &lt;tbody&gt;
       &lt;tr&gt;
           &lt;td&gt;多租户&lt;/td&gt;
           &lt;td&gt;租户（企业）&lt;/td&gt;
-          &lt;td&gt;管理多个租户（企业）&lt;/td&gt;
+          &lt;td&gt;管理多个租户&lt;/td&gt;
           &lt;td&gt;每个租户代表一个使用 SaaS 的企业&lt;/td&gt;
           &lt;td&gt;—&lt;/td&gt;
       &lt;/tr&gt;
@@ -42,57 +73,84 @@
           &lt;td&gt;部门、员工&lt;/td&gt;
           &lt;td&gt;部门：增删改查；员工：增删改查；员工分配部门&lt;/td&gt;
           &lt;td&gt;员工只能从属于一个部门&lt;/td&gt;
-          &lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事/财务等）&lt;/td&gt;
+          &lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;项目管理&lt;/td&gt;
           &lt;td&gt;客户、合同、项目&lt;/td&gt;
-          &lt;td&gt;客户：增删改查；合同：增删改查 + 开始/结束；项目：增删改查 + 开始/结束&lt;/td&gt;
+          &lt;td&gt;客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束&lt;/td&gt;
           &lt;td&gt;客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目&lt;/td&gt;
-          &lt;td&gt;合同/项目开始时间、结束时间等&lt;/td&gt;
+          &lt;td&gt;合同 / 项目开始时间、结束时间等&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;人员分配&lt;/td&gt;
           &lt;td&gt;项目成员关系&lt;/td&gt;
           &lt;td&gt;为项目分配人员；人员退出项目&lt;/td&gt;
           &lt;td&gt;项目可多人；员工可同时参与多个项目；需记录投入比例&lt;/td&gt;
-          &lt;td&gt;投入百分比（人-项目）&lt;/td&gt;
+          &lt;td&gt;投入百分比（人 - 项目）&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
           &lt;td&gt;工时登记&lt;/td&gt;
-          &lt;td&gt;工时（周报/日记录）&lt;/td&gt;
+          &lt;td&gt;工时（周报 / 日记录）&lt;/td&gt;
           &lt;td&gt;员工每周填报工时；查询；修改；填写备注&lt;/td&gt;
           &lt;td&gt;仅当员工已分配到项目后，才可在该项目报工时&lt;/td&gt;
           &lt;td&gt;日期、项目、投入时长、备注&lt;/td&gt;
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;03-事件风暴-识别领域事件&#34;&gt;03 事件风暴 识别领域事件&lt;/h2&gt;
-&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/a7cef40f-519f-4be2-b514-b577546ca51e&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;领域事件是什么&#34;&gt;领域事件是什么&lt;/h3&gt;
-&lt;p&gt;**领域事件（Domain Event）**用来表达：在业务流程的某一步完成后，所引发并被业务关心的“结果”。&lt;/p&gt;</description>
+&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7&#34;&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="01-ddd-小传">01 DDD 小传</h2>
-<p>DDD（Domain-Driven Design）由 Eric Evans 于 2003 年提出，本质是一套用于开发复杂软件的系统化方法学与思想，核心关注“领域建模”。它源于面向对象方法学与敏捷开发，可理解为“把面向对象做对”（OO Done right），并将建模、设计与落地实践更体系化。</p>
-<p>传统面向对象在企业应用中常见问题是重技术轻业务、领域建模难以掌握、协作与沟通不足、难以适应频繁变化。DDD 通过模式、原则与实践（如通用语言、限界上下文、模型驱动设计等）促进业务与技术协作沉淀知识，并用“柔性设计/演进”避免过度设计、支持持续重构。</p>
-<p>近年因数字化带来更高复杂度与变化，以及敏捷/DevOps 与 Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，DDD 才从“屠龙术”变成广泛可用的方法。</p>
-<h2 id="02-迭代一-企业管理系统">02 迭代一 企业管理系统</h2>
-<p>企业为了满足管理诉求，希望员工每周在系统中填报自己在哪些项目上花了多少时间，也就是所谓的报工时。</p>
+<p><strong>DDD（Domain-Driven Design）</strong>：Eric Evans 2003 年提出，一套用于开发<strong>复杂软件</strong>的方法论与思想，核心是<strong>领域建模</strong>。常被概括成&quot;把面向对象做对（OO Done Right）&quot;。</p>
+<h3 id="传统-oo-在企业应用里的痛--ddd-的回应">传统 OO 在企业应用里的痛 → DDD 的回应</h3>
+<table>
+  <thead>
+      <tr>
+          <th>痛点</th>
+          <th>DDD 的回应</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>重技术轻业务</td>
+          <td>通用语言（业务 / 开发同一套词）</td>
+      </tr>
+      <tr>
+          <td>领域建模无章法</td>
+          <td>模型驱动设计、限界上下文</td>
+      </tr>
+      <tr>
+          <td>业务 / 技术协作不足</td>
+          <td>事件风暴、协作产出统一语言</td>
+      </tr>
+      <tr>
+          <td>难以适应频繁变化</td>
+          <td>柔性设计 + 持续重构，避免过度设计</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="为什么近几年才出圈">为什么近几年才&quot;出圈&quot;</h3>
+<ul>
+<li>数字化推高复杂度与变化频率。</li>
+<li>敏捷 / DevOps 把&quot;小步演进&quot;做成日常。</li>
+<li>Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，DDD 不再是&quot;屠龙术&quot;。</li>
+</ul>
+<h2 id="02-案例需求企业工时系统">02 案例需求：企业工时系统</h2>
+<p>要做的 SaaS：员工每周填报&quot;在哪些项目上花了多少时间&quot;。</p>
 <table>
   <thead>
       <tr>
           <th>需求</th>
-          <th>核心对象/范围</th>
-          <th>主要功能（CRUD/流程）</th>
-          <th>关键规则/约束</th>
-          <th>关键字段/记录</th>
+          <th>核心对象 / 范围</th>
+          <th>主要功能 (CRUD / 流程)</th>
+          <th>关键规则 / 约束</th>
+          <th>关键字段 / 记录</th>
       </tr>
   </thead>
   <tbody>
       <tr>
           <td>多租户</td>
           <td>租户（企业）</td>
-          <td>管理多个租户（企业）</td>
+          <td>管理多个租户</td>
           <td>每个租户代表一个使用 SaaS 的企业</td>
           <td>—</td>
       </tr>
@@ -101,25 +159,25 @@
           <td>部门、员工</td>
           <td>部门：增删改查；员工：增删改查；员工分配部门</td>
           <td>员工只能从属于一个部门</td>
-          <td>部门层级示例：开发中心 → 开发组；职能部门（人事/财务等）</td>
+          <td>部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）</td>
       </tr>
       <tr>
           <td>项目管理</td>
           <td>客户、合同、项目</td>
-          <td>客户：增删改查；合同：增删改查 + 开始/结束；项目：增删改查 + 开始/结束</td>
+          <td>客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束</td>
           <td>客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目</td>
-          <td>合同/项目开始时间、结束时间等</td>
+          <td>合同 / 项目开始时间、结束时间等</td>
       </tr>
       <tr>
           <td>人员分配</td>
           <td>项目成员关系</td>
           <td>为项目分配人员；人员退出项目</td>
           <td>项目可多人；员工可同时参与多个项目；需记录投入比例</td>
-          <td>投入百分比（人-项目）</td>
+          <td>投入百分比（人 - 项目）</td>
       </tr>
       <tr>
           <td>工时登记</td>
-          <td>工时（周报/日记录）</td>
+          <td>工时（周报 / 日记录）</td>
           <td>员工每周填报工时；查询；修改；填写备注</td>
           <td>仅当员工已分配到项目后，才可在该项目报工时</td>
           <td>日期、项目、投入时长、备注</td>
@@ -127,628 +185,1105 @@
   </tbody>
 </table>
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7"></p>
-<h2 id="03-事件风暴-识别领域事件">03 事件风暴 识别领域事件</h2>
+<h2 id="03-事件风暴识别领域事件">03 事件风暴：识别领域事件</h2>
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/a7cef40f-519f-4be2-b514-b577546ca51e"></p>
 <h3 id="领域事件是什么">领域事件是什么</h3>
-<p>**领域事件（Domain Event）**用来表达：在业务流程的某一步完成后，所引发并被业务关心的“结果”。</p>
-<p>常见表达方式有一个很实用的习惯：</p>
-<ol>
-<li>完成时</li>
-<li>被动语态</li>
-</ol>
-<p>在 DDD 的各种命名中，优先使用约定俗成的业务术语，因为这些词本身就承载着业务知识与共识。</p>
+<p><strong>领域事件（Domain Event）</strong>：业务流程某一步完成后，引发并被业务关心的&quot;结果&quot;。</p>
+<p>命名约定：<strong>完成时 + 被动语态</strong>，优先采用业务术语本身（如「合同已签订」「工时已提交」）。</p>
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/552968ac-8fdb-4929-aa7c-deb31693f9ea"></p>
-<h3 id="领域事件的边界两条关键提醒">领域事件的边界：两条关键提醒</h3>
-<p>在识别领域事件时，有两点特别容易踩坑：</p>
-<ol>
-<li>不要把技术事件当成领域事件。领域事件强调的是 <strong>业务上发生了什么</strong>，而不是 <strong>系统内部做了什么</strong>。</li>
-<li>查询功能不算领域事件。查询行为通常不会改变业务世界的状态，因此一般 <strong>不构成领域事件</strong>。领域事件应当满足一个直觉标准：
-<ol>
-<li>对某样事物产生了影响</li>
-<li>该影响是业务要记录/追踪的</li>
-<li>或者它触发了对外通知（发消息给其他人或系统）</li>
-</ol>
-</li>
-</ol>
-<p>换句话说，领域事件通常对应“业务状态发生改变”或“业务需要对外告知”。</p>
-<h3 id="如何识别领域事件先发散再收敛">如何识别领域事件：先发散，再收敛</h3>
-<ol>
-<li>个人发散：参与者各自写出自己理解的领域事件（尽量不互相干扰）</li>
-<li>集体收敛：一起讨论、对齐含义、合并同类项、澄清歧义</li>
-</ol>
-<p>这种“先发散、后收敛、反复迭代”的方式，本质上就是一种结构化的头脑风暴：先把可能性铺开，再通过讨论把共识沉淀下来。</p>
-<h3 id="统一语言事件风暴的隐性产出">统一语言：事件风暴的隐性产出</h3>
-<p>在上述讨论过程中，其实已经在生成并强化 统一语言（Ubiquitous Language）。统一语言的核心是：</p>
+<h3 id="两类常见误判">两类常见误判</h3>
+<table>
+  <thead>
+      <tr>
+          <th>不是领域事件</th>
+          <th>为什么</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>技术事件</td>
+          <td>强调系统内部行为（如「缓存已刷新」），不属业务</td>
+      </tr>
+      <tr>
+          <td>查询行为</td>
+          <td>不改变业务状态</td>
+      </tr>
+  </tbody>
+</table>
+<p>判定标准——满足任一即可：</p>
 <ul>
-<li>业务人员和开发人员使用同一套词。</li>
-<li>同一个词在不同人心里对应同一个概念。</li>
-<li>语言一致意味着领域理解一致（语言是知识的载体）。</li>
+<li>对某事物产生了<strong>影响</strong>。</li>
+<li>该影响是<strong>业务要记录或追踪</strong>的。</li>
+<li>或它<strong>触发了对外通知</strong>（其他人 / 系统）。</li>
 </ul>
-<p>它不是某个阶段的文档，而是贯穿 DDD 全过程的基础设施。</p>
-<h3 id="事件风暴的精髓是协作">事件风暴的精髓是“协作”</h3>
-<p>事件风暴表面上是在贴事件、理流程，但真正关键的价值在于：</p>
-<ul>
-<li>让不同角色共同参与。</li>
-<li>通过讨论对齐概念与边界。</li>
-<li>在协作中形成统一语言与共同理解。</li>
-</ul>
-<h2 id="04-事件风暴-识别命令和识别领域名词">04 事件风暴 识别命令和识别领域名词</h2>
-<h3 id="命令是什么从领域事件反推">命令是什么：从领域事件反推</h3>
-<p>命令 = 引发领域事件的操作。做法上可以理解为一条简单的逆向链路：</p>
+<h3 id="识别方法发散--收敛">识别方法：发散 → 收敛</h3>
 <ol>
-<li>先有领域事件（结果）</li>
-<li>再问：是谁做了什么，才让这个结果发生？</li>
+<li><strong>个人发散</strong>：参与者各自写出自己理解的事件，互不干扰。</li>
+<li><strong>集体收敛</strong>：讨论、对齐含义、合并同类项、澄清歧义。</li>
 </ol>
-<p>除了命令本身，事件风暴里往往还会顺手补齐两类“命令的上下文信息”：</p>
+<p>反复迭代，本质是结构化的头脑风暴。</p>
+<h3 id="副产品统一语言ubiquitous-language">副产品：统一语言（Ubiquitous Language）</h3>
+<p>事件风暴贴贴纸不是终点，<strong>协作产出的共识词汇</strong>才是。统一语言的三条：</p>
 <ul>
-<li>执行者是谁？命令由谁发起/执行：可能是某个用户、某个岗位角色，也可能是系统内的某个领域对象在扮演某种角色，甚至与权限体系的角色有关。</li>
-<li>执行命令前需要查询什么数据？为了执行该命令，需要先拿到哪些信息（用于校验、决策、填充表单、定位对象等）。</li>
+<li>业务与开发使用同一套词。</li>
+<li>同一个词对所有人指同一概念。</li>
+<li>语言一致 ↔ 领域理解一致。</li>
 </ul>
-<h3 id="识别领域名词从贴纸里提取名词性概念">识别领域名词：从贴纸里提取“名词性概念”</h3>
-<p>这里的领域名词指：从命令、领域事件、执行者、查询数据中提取出来的名词性概念。举例理解：</p>
-<ul>
-<li>命令：签订合同。被影响的核心名词：合同</li>
-<li>领域事件：合同已签订。本质上是名词“合同”的状态发生变化，并被业务记录为一个重要结果。</li>
-</ul>
-<h3 id="领域规则如何保存用领域规则表沉淀">领域规则如何保存：用“领域规则表”沉淀</h3>
-<p>领域规则是关键领域知识，必须可维护、可追溯。仅靠便利贴或图：</p>
+<p>它贯穿 DDD 全过程，不是某个阶段的交付物。</p>
+<h2 id="04-事件风暴识别命令与领域名词">04 事件风暴：识别命令与领域名词</h2>
+<h3 id="命令从事件反推">命令：从事件反推</h3>
+<p><strong>命令 = 引发领域事件的操作。</strong></p>
+<p>反推链路：先有事件 → 问&quot;是谁做了什么才让它发生&quot;。</p>
+<p>每个命令还要捎带补两类上下文：</p>
+<table>
+  <thead>
+      <tr>
+          <th>上下文</th>
+          <th>问题</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>执行者</td>
+          <td>谁发起？用户、岗位、系统对象、还是权限角色</td>
+      </tr>
+      <tr>
+          <td>前置查询</td>
+          <td>执行前需要哪些数据用于校验 / 决策 / 填表</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="领域名词从贴纸里提名词">领域名词：从贴纸里提名词</h3>
+<p>从命令、事件、执行者、查询数据中抽出名词性概念：</p>
+<table>
+  <thead>
+      <tr>
+          <th>来源</th>
+          <th>例子</th>
+          <th>提取的名词</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>命令</td>
+          <td>签订合同</td>
+          <td>合同</td>
+      </tr>
+      <tr>
+          <td>领域事件</td>
+          <td>合同已签订</td>
+          <td>合同</td>
+      </tr>
+      <tr>
+          <td>查询</td>
+          <td>查询客户经理</td>
+          <td>客户经理</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="领域规则要落表不能只在便利贴上">领域规则要落表，不能只在便利贴上</h3>
+<p>领域规则是核心资产，便利贴 / 白板照片有三宗罪：</p>
 <ul>
 <li>难长期保存</li>
-<li>难版本化管理</li>
+<li>难版本化</li>
 <li>难持续更新</li>
 </ul>
-<p>更可行的方式是建立一个领域规则表：</p>
-<ul>
-<li>将事件风暴阶段识别出的规则先记录进去</li>
-<li>在后续领域建模中补充新规则</li>
-<li>与领域模型放在一起，作为领域知识的核心资产共同维护</li>
-</ul>
-<h2 id="05-领域建模实践-上">05 领域建模实践 上</h2>
-<p>从事件风暴产出的 <strong>领域名词</strong> 出发做领域建模：先将名词 <strong>暂定为实体</strong>，再梳理实体间的 <strong>关联类型（1:1 / 1:N / M:N）</strong>；建模时持续做 <strong>抽象提炼</strong> 以发现 <strong>隐含实体</strong>、让模型更贴近业务本质；最后用 <strong>注释</strong> 与 <strong>约束</strong> 补齐业务知识，其中 <strong>约束必须落到代码或数据库</strong> 并纳入<strong>业务规则表</strong>。</p>
+<p>可行做法：建一张<strong>领域规则表</strong>，从事件风暴起持续往里加，与领域模型共同维护。</p>
+<h2 id="05-领域建模实践上">05 领域建模实践（上）</h2>
+<p>从事件风暴产出的<strong>领域名词</strong>起手，按四步推进：</p>
+<ol>
+<li><strong>名词暂定为实体</strong>——先不纠结对错，全量入模。</li>
+<li><strong>梳理关联类型</strong>——1:1 / 1:N / M:N。</li>
+<li><strong>抽象提炼隐含实体</strong>——发现不在贴纸里、但业务存在的概念。</li>
+<li><strong>补注释与约束</strong>——约束<strong>必须落到代码或数据库</strong>，并纳入「业务规则表」。</li>
+</ol>
 <p><img alt="Image" loading="lazy" src="https://github.com/user-attachments/assets/8614d402-1b43-4249-b549-d39f04558424"></p>
-<h2 id="06-领域建模实践-下">06 领域建模实践 下</h2>
-<p>通过引入 <strong>关联实体</strong> 将 <strong>多对多</strong> 关系拆成两个 <strong>一对多</strong>，并为实体补齐必要的 <strong>业务操作</strong>；当模型复杂时，可按 <strong>模块拆分</strong> 来提升可理解性。领域模型完成后，还要抓住两项落地 DDD 的关键实践：补齐 <strong>业务规则</strong>、建立 <strong>词汇表（统一语言）</strong>，它们是确保模型可执行、团队认知一致的重点。</p>
+<h2 id="06-领域建模实践下">06 领域建模实践（下）</h2>
+<p>继续在上篇的模型上深化：</p>
+<ul>
+<li><strong>多对多用关联实体拆成两个一对多</strong>（如「员工 M:N 项目」拆出「成员分配」实体，承载投入比例）。</li>
+<li><strong>给实体补业务操作</strong>，让模型从&quot;数据结构&quot;长出&quot;行为&quot;。</li>
+<li>模型复杂时按<strong>模块拆分</strong>提升可理解性。</li>
+</ul>
+<p>落地 DDD 的两件关键事：</p>
+<table>
+  <thead>
+      <tr>
+          <th>实践</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>补齐业务规则</td>
+          <td>让模型可执行，规则不被遗忘</td>
+      </tr>
+      <tr>
+          <td>建立词汇表</td>
+          <td>统一语言落地，团队认知一致</td>
+      </tr>
+  </tbody>
+</table>
 <p><img alt="Image" loading="lazy" src="https://github.com/user-attachments/assets/8f2c8f7f-115c-48e4-965a-2bf3cb044959"></p>
 <h2 id="07-领域建模原理">07 领域建模原理</h2>
-<p>DDD 的 <strong>领域模型</strong> 是对领域知识的 <strong>提炼抽象</strong>，同时兼顾 <strong>业务表达</strong> 与 <strong>技术落地</strong> ；在 <strong>模型驱动设计</strong> 下要做到 <strong>领域模型 ↔ 业务需求一致</strong>、<strong>系统实现 ↔ 领域模型一致</strong>，从而确保 <strong>实现 ↔ 需求一致</strong>；而 <strong>统一语言</strong> 以领域模型与词汇表为基础，通过 <strong>持续协作</strong> 不断维护 <strong>模型、语言与实现</strong> 三者的 <strong>一致性</strong>。</p>
+<p>DDD 的<strong>领域模型</strong>是对领域知识的<strong>提炼抽象</strong>，同时兼顾<strong>业务表达</strong>与<strong>技术落地</strong>。</p>
+<h3 id="模型驱动设计的三层一致性">模型驱动设计的三层一致性</h3>
+<table>
+  <thead>
+      <tr>
+          <th>一致性</th>
+          <th>意味着</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>领域模型 ↔ 业务需求</td>
+          <td>模型反映真实业务，业务方能看懂</td>
+      </tr>
+      <tr>
+          <td>系统实现 ↔ 领域模型</td>
+          <td>代码结构与模型同形</td>
+      </tr>
+      <tr>
+          <td>实现 ↔ 需求（由前两者推出）</td>
+          <td>自然落地，不偏航</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="统一语言的维护">统一语言的维护</h3>
+<p>统一语言以<strong>领域模型 + 词汇表</strong>为基础，靠<strong>持续协作</strong>维护三者的一致性：模型、语言、实现。任何一处变了，另两处必须跟着改。</p>
 <h2 id="08-数据库设计">08 数据库设计</h2>
-<p>数据库三范式（3 Normal Form）。1NF 字段原子性：</p>
-<ol>
-<li>表中的每一列都必须是不可再分的原子值。</li>
-<li>不允许在一个字段里存多个值、列表或重复组。</li>
-</ol>
-<blockquote>
-<p>例：主键是(订单ID, 商品ID)，若订单日期只依赖订单ID，就不符合 2NF，应把订单信息拆到订单表。</p>
-</blockquote>
-<p>2NF 消除对主键的部分依赖：</p>
-<ol>
-<li>在满足 1NF 的基础上，要求非主属性必须完全依赖于整个主键。</li>
-<li>主要针对联合主键的情况：不能只依赖主键的一部分。</li>
-</ol>
-<blockquote>
-<p>例：主键是(订单ID, 商品ID)，若订单日期只依赖订单ID，就不符合 2NF，应把订单信息拆到订单表。</p>
-</blockquote>
-<p>3NF 消除传递依赖</p>
-<ol>
-<li>在满足 2NF 的基础上，要求非主属性不依赖于其他非主属性（即没有传递依赖）。</li>
-<li>非主属性应当直接依赖主键。</li>
-</ol>
-<blockquote>
-<p>例：员工ID -&gt; 部门ID -&gt; 部门名称，则部门名称是通过部门ID间接决定的，应拆出部门表存部门ID, 部门名称。</p>
-</blockquote>
-<p>DDD 强调用 <strong>领域模型驱动数据库设计</strong>，以保证 <strong>业务、代码、数据一致</strong>：<strong>实体→表</strong>、<strong>属性→字段</strong>（按需求补充），并通过 <strong>词汇表/统一语言</strong> 规范命名；关系设计上，<strong>一对多用外键</strong>（云上常见 <strong>“虚拟外键”</strong>），<strong>多对多用关联表</strong>；相较“拍脑袋”式建模，这种方式更容易 <strong>与业务对齐</strong>、更符合 <strong>范式</strong>，还能把 <strong>静态数据结构</strong> 与 <strong>动态业务逻辑</strong> 统一纳入同一套模型中。</p>
+<h3 id="三范式3nf速查">三范式（3NF）速查</h3>
+<table>
+  <thead>
+      <tr>
+          <th>范式</th>
+          <th>一句话规则</th>
+          <th>反例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1NF</td>
+          <td>字段必须原子，不可再分</td>
+          <td><code>phones = &quot;138xxxx, 139xxxx&quot;</code>，应拆成多行或多列</td>
+      </tr>
+      <tr>
+          <td>2NF</td>
+          <td>非主属性必须<strong>完全</strong>依赖整个主键</td>
+          <td>主键 <code>(订单ID, 商品ID)</code>，<code>订单日期</code> 只依赖 <code>订单ID</code>，应拆出订单表</td>
+      </tr>
+      <tr>
+          <td>3NF</td>
+          <td>非主属性不能传递依赖</td>
+          <td><code>员工ID → 部门ID → 部门名称</code>，应拆出部门表</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="ddd-怎么指导数据库设计">DDD 怎么指导数据库设计</h3>
+<table>
+  <thead>
+      <tr>
+          <th>领域模型概念</th>
+          <th>数据库映射</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>实体</td>
+          <td>表</td>
+      </tr>
+      <tr>
+          <td>属性</td>
+          <td>字段（按需补充）</td>
+      </tr>
+      <tr>
+          <td>1:N 关联</td>
+          <td>外键（云上常用「虚拟外键」）</td>
+      </tr>
+      <tr>
+          <td>M:N 关联</td>
+          <td>关联表</td>
+      </tr>
+      <tr>
+          <td>统一语言</td>
+          <td>规范命名（表名 / 字段名）</td>
+      </tr>
+  </tbody>
+</table>
+<p>相较&quot;拍脑袋&quot;建模：</p>
+<ul>
+<li>与业务对齐。</li>
+<li>更符合范式。</li>
+<li><strong>静态数据结构</strong>与<strong>动态业务逻辑</strong>统一在一套模型里。</li>
+</ul>
 <h2 id="09-分层架构">09 分层架构</h2>
-<p>分层架构的原则是让<strong>不稳定的部分依赖稳定的部分</strong>：越靠内层越稳定、越靠外层越易变；其中<strong>领域层</strong>封装领域数据与规则，是系统核心，<strong>应用层</strong>作为门面把领域能力组织成粗粒度服务并处理事务、日志等横切关注点；外部交互由<strong>适配器层</strong>承担，主动适配器接收外部请求、被动适配器访问外部资源，二者只是在调用方向上不同，从而把技术细节隔离在外层，使应用层与领域层保持技术无关；数据访问上，<strong>仓库以聚合为单位</strong>（此处可暂按“一个实体一个仓库”理解），而 <strong>DAO 以表为单位</strong>；另设 <strong>common 层</strong>承载工具与框架，为各层提供支撑。</p>
-<h2 id="10-代码实现-要贫血还是要充血">10 代码实现 要“贫血”还是要“充血”</h2>
-<p>贫血模型（<strong>Anemic Domain Model</strong>，Fowler 2003）指领域对象 <strong>只有数据没有行为</strong>，违背面向对象原则；相对的富/充血模型（<strong>Rich Domain Model</strong>）强调领域对象应同时包含<strong>数据 + 行为</strong>，更贴近真正的面向对象（可理解为贫血更偏 <strong>面向过程</strong>、富模型更偏 <strong>面向对象</strong>），但企业实践中两者并非非黑即白，应结合多种范式；落到编码，核心要求是 <strong>代码与模型一致</strong>（发现模型问题要 <strong>及时改模型</strong>），并解决 <strong>层间依赖</strong>：将 <strong>DTO 移到应用层</strong>、用 <strong>依赖倒置</strong> 让适配器层依赖领域层，同时理解 <strong>领域模型 vs 设计模型（UML）</strong> 的区别，以便明确哪些和业务讨论、哪些仅在工程内部讨论，从而提升抽象分层下的沟通与效率。</p>
-<h2 id="11-代码实现-创建领域对象实现领域逻辑">11 代码实现 创建领域对象、实现领域逻辑</h2>
-<p>实现领域逻辑时应使用能表达领域知识的命名，即 <strong>DDD 表意接口（Intention-Revealing Interfaces）</strong>；一旦违背，常见坏味道是 <strong>函数过长</strong> 与 <strong>注释过多</strong>，可用 <strong>抽取函数</strong> 重构解决。需区分 <strong>领域逻辑</strong> 与 <strong>应用逻辑</strong>，关键在于是否包含领域专家关心的 <strong>领域知识</strong>；领域逻辑应优先放入 <strong>领域对象</strong>，不适合放入对象的则放入 <strong>领域服务</strong>。复杂对象的创建推荐用 <strong>工厂（Factory）</strong>，参数少可直接调用工厂，参数多可配合 <strong>Builder</strong>。模块划分有按性质（<strong>横切</strong>）与按耦合/业务（<strong>纵切</strong>）两种，建议采用 <strong>先横后竖</strong> 的策略。</p>
+<p><strong>核心原则：不稳定的依赖稳定的。</strong> 越靠内层越稳定，越靠外层越易变。</p>
+<h3 id="各层职责">各层职责</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>职责</th>
+          <th>稳定度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>领域层</td>
+          <td>封装领域数据与规则，是系统核心</td>
+          <td>最高</td>
+      </tr>
+      <tr>
+          <td>应用层</td>
+          <td>编排领域能力为粗粒度服务，处理事务、日志等横切关注点</td>
+          <td>高</td>
+      </tr>
+      <tr>
+          <td>适配器层</td>
+          <td>隔离外部交互（主动 / 被动），让内层与技术细节解耦</td>
+          <td>低</td>
+      </tr>
+      <tr>
+          <td>common 层</td>
+          <td>工具与框架支撑</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="两组易混对子">两组易混对子</h3>
+<table>
+  <thead>
+      <tr>
+          <th>A vs B</th>
+          <th>区别</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>主动 vs 被动适配器</td>
+          <td>调用方向：前者<strong>接收</strong>外部请求；后者<strong>访问</strong>外部资源</td>
+      </tr>
+      <tr>
+          <td>Repository vs DAO</td>
+          <td>Repository 以<strong>聚合</strong>为单位（入门可按&quot;一个实体一个 Repo&quot;理解）；DAO 以<strong>表</strong>为单位</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="10-代码实现贫血还是充血">10 代码实现：贫血还是充血</h2>
+<p>贫血 / 充血的概念与对照已在 <a href="/2021/02/05/the-beauty-of-design-patterns/">设计模式之美 §11~§12</a> 详述。一句话回顾：贫血 = 数据 / 行为分离（偏面向过程）；充血 = 数据 + 行为聚合（贴近 OO）。企业实践常混用，不必非黑即白。</p>
+<p>本节补 DDD 视角的三条工程要点：</p>
+<ol>
+<li><strong>代码 ↔ 模型一致</strong>：发现实现与模型不符，<strong>改模型</strong>而非绕过模型。</li>
+<li><strong>DTO 放应用层</strong>：领域层不依赖 DTO，避免接口层数据污染领域语义。</li>
+<li><strong>依赖倒置</strong>：让适配器层依赖领域层定义的接口，而不是反过来。</li>
+</ol>
+<h3 id="别把两种模型混为一谈">别把两种&quot;模型&quot;混为一谈</h3>
+<table>
+  <thead>
+      <tr>
+          <th>模型类型</th>
+          <th>受众</th>
+          <th>用途</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>领域模型</td>
+          <td>业务 + 开发</td>
+          <td>表达业务概念、规则、关系</td>
+      </tr>
+      <tr>
+          <td>设计模型（UML 类图）</td>
+          <td>仅开发</td>
+          <td>表达工程内部结构、技术细节</td>
+      </tr>
+  </tbody>
+</table>
+<p>跟领域专家讨论时聊领域模型；内部 review 时再上设计模型。</p>
+<h2 id="11-代码实现领域对象--领域逻辑">11 代码实现：领域对象 + 领域逻辑</h2>
+<h3 id="表意接口intention-revealing-interfaces">表意接口（Intention-Revealing Interfaces）</h3>
+<p>命名要承载领域知识：方法名读起来像业务语言，而不是技术术语。</p>
+<p>常见坏味道：</p>
+<ul>
+<li>函数过长。</li>
+<li>注释过多（注释在代偿命名不到位）。</li>
+</ul>
+<p>工具：<strong>抽取函数</strong>重构，把&quot;代码读不出意图&quot;的段落抽成命名清晰的小函数。</p>
+<h3 id="领域逻辑-vs-应用逻辑">领域逻辑 vs 应用逻辑</h3>
+<p>判据：<strong>是否包含领域专家关心的领域知识？</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>例子</th>
+          <th>该放哪</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>领域逻辑</td>
+          <td>&ldquo;工时累计超过 60 小时需审批&rdquo;</td>
+          <td>领域对象优先；不合适放对象则放领域服务</td>
+      </tr>
+      <tr>
+          <td>应用逻辑</td>
+          <td>接 HTTP、组合事务、发消息、写日志</td>
+          <td>应用层</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="复杂对象的创建">复杂对象的创建</h3>
+<ul>
+<li><strong>Factory</strong>：参数少时直接调工厂方法。</li>
+<li><strong>Factory + Builder</strong>：参数多时用 Builder 链式装配，再交给 Factory 收尾。</li>
+</ul>
+<h3 id="模块划分横切--纵切">模块划分：横切 + 纵切</h3>
+<table>
+  <thead>
+      <tr>
+          <th>切法</th>
+          <th>依据</th>
+          <th>例子</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>横切</td>
+          <td>按性质 / 层</td>
+          <td>controller / service / repository</td>
+      </tr>
+      <tr>
+          <td>纵切</td>
+          <td>按业务 / 耦合</td>
+          <td>order / payment / inventory</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>先横后竖</strong>：先把分层架构搭起来，再按业务垂直切，避免一上来就过度模块化。</p>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>
     <item>
-      <title>设计模式之美 Part2</title>
-      <link>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</link>
-      <pubDate>Sat, 06 Feb 2021 11:00:41 +0000</pubDate>
-      <guid>https://zyf.im/2021/02/06/the-beauty-of-design-patterns-part2/</guid>
-      <description>&lt;h2 id=&#34;11&#34;&gt;11&lt;/h2&gt;
-&lt;p&gt;领域驱动设计（Domain Driven Design，简称 DDD）。&lt;/p&gt;
-&lt;h3 id=&#34;什么是基于贫血模型的传统开发模式&#34;&gt;什么是基于贫血模型的传统开发模式？&lt;/h3&gt;
-&lt;p&gt;UserEntity 和 UserRepository 组成了数据访问层，UserBo 和 UserService 组成了业务逻辑层，UserVo 和 UserController 在这里属于接口层。&lt;/p&gt;
-&lt;p&gt;Service 层的数据和业务逻辑，被分割为 BO 和 Service 两个类中。像 UserBo 这样，只包含数据，不包含业务逻辑的类，就叫作贫血模型（Anemic Domain Model）。&lt;/p&gt;
-&lt;p&gt;这种贫血模型将数据与操作分离，破坏了面向对象的封装特性，是一种典型的面向过程的编程风格。&lt;/p&gt;
-&lt;h3 id=&#34;什么是基于充血模型的-ddd-开发模式&#34;&gt;什么是基于充血模型的 DDD 开发模式？&lt;/h3&gt;
-&lt;p&gt;领域驱动设计，即 DDD，主要是用来指导如何解耦业务系统，划分业务模块，定义业务领域模型及其交互。&lt;/p&gt;
-&lt;p&gt;基于贫血模型的传统的开发模式，重 Service 轻 BO；基于充血模型的 DDD 开发模式，轻 Service 重 Domain。&lt;/p&gt;
-&lt;h3 id=&#34;为什么基于贫血模型的传统开发模式如此受欢迎&#34;&gt;为什么基于贫血模型的传统开发模式如此受欢迎？&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;系统业务可能都比较简单，简单到就是基于 SQL 的 CRUD 操作&lt;/li&gt;
-&lt;li&gt;充血模型的设计要比贫血模型更加有难度。我们从一开始就要设计好针对数据要暴露哪些操作，定义哪些业务逻辑。而不是像贫血模型那样，我们只需要定义数据，之后有什么功能开发需求，我们就在 Service 层定义什么操作，不需要事先做太多设计。&lt;/li&gt;
-&lt;li&gt;思维已固化，转型有成本。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;什么项目应该考虑使用基于充血模型的-ddd-开发模式&#34;&gt;什么项目应该考虑使用基于充血模型的 DDD 开发模式？&lt;/h3&gt;
-&lt;p&gt;适合业务复杂的系统开发。比如，包含各种利息计算模型、还款模型等复杂业务的金融系统。&lt;/p&gt;
-&lt;p&gt;两种不同的开发模式会导致不同的开发流程。基于充血模型的 DDD 开发模式的开发流程，在应对复杂业务系统的开发的时候更加有优势。&lt;/p&gt;
-&lt;p&gt;DDD 这种开发模式下，我们需要事先理清楚所有的业务，定义领域模型所包含的属性和方法。领域模型相当于可复用的业务中间层。新功能需求的开发，都基于之前定义好的这些领域模型来完成。&lt;/p&gt;
-&lt;h2 id=&#34;12&#34;&gt;12&lt;/h2&gt;
-&lt;h3 id=&#34;一个虚拟钱包系统&#34;&gt;一个虚拟钱包系统&lt;/h3&gt;
-&lt;p&gt;充值、提现、支付、查询余额、查询交易流水。甚至还有冻结、透支、转赠等。&lt;/p&gt;
-&lt;p&gt;整个钱包系统一部分单纯跟应用内的虚拟钱包账户打交道，另一部分单纯跟银行账户打交道。我们基于这样一个业务划分，给系统解耦，将整个钱包系统拆分为两个子系统：虚拟钱包系统和三方支付系统。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://user-images.githubusercontent.com/9289792/107135323-ba50b780-6934-11eb-8b85-1738440f42bc.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;不保证数据的强一致性，只实现数据的最终一致性。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;VirtualWalletService&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 通过构造函数或者 IOC 框架注入&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletRepository&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;private&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletTransactionRepository&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;getVirtualWallet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getWalletEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;convert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BigDecimal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;getBalance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;virtualWalletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getBalance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;debit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BigDecimal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getWalletEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 贫血型&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// BigDecimal balance = walletEntity.getBalance();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// if (balance.compareTo(amount) &amp;lt; 0) {&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//   throw new NoSufficientBalanceException(...);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// }&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// walletRepo.updateBalance(walletId, balance.subtract(amount));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// DDD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;convert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;debit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;updateBalance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;balance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;credit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BigDecimal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;getWalletEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 贫血型&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// BigDecimal balance = walletEntity.getBalance();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// walletRepo.updateBalance(walletId, balance.add(amount));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// DDD&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;convert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;credit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;updateBalance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;walletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wallet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;balance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;transfer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fromWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;toWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BigDecimal&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletTransactionEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VirtualWalletTransactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setAmount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setCreateTime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;System&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;currentTimeMillis&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setFromWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fromWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setToWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;toWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;TO_BE_EXECUTED&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionId&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;saveTransaction&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionEntity&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;debit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fromWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;credit&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;toWalletId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;amount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;InsufficientBalanceException&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;updateStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;CLOSED&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// ...rethrow exception e...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Exception&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;updateStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;FAILED&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// ...rethrow exception e...&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionRepo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;updateStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;transactionId&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Status&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;EXECUTED&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;领域模型 VirtualWallet 类很单薄，包含的业务逻辑很简单。相对于原来的贫血模型的设计思路，这种充血模型的设计思路，貌似并没有太大优势。这也是大部分业务系统都使用基于贫血模型开发的原因。不过，如果虚拟钱包系统需要支持更复杂的业务逻辑，那充血模型的优势就显现出来了。比如，我们要支持透支一定额度和冻结部分余额的功能。这个时候，我们重新来看一下 VirtualWallet 类的实现代码。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="11">11</h2>
-<p>领域驱动设计（Domain Driven Design，简称 DDD）。</p>
-<h3 id="什么是基于贫血模型的传统开发模式">什么是基于贫血模型的传统开发模式？</h3>
-<p>UserEntity 和 UserRepository 组成了数据访问层，UserBo 和 UserService 组成了业务逻辑层，UserVo 和 UserController 在这里属于接口层。</p>
-<p>Service 层的数据和业务逻辑，被分割为 BO 和 Service 两个类中。像 UserBo 这样，只包含数据，不包含业务逻辑的类，就叫作贫血模型（Anemic Domain Model）。</p>
-<p>这种贫血模型将数据与操作分离，破坏了面向对象的封装特性，是一种典型的面向过程的编程风格。</p>
-<h3 id="什么是基于充血模型的-ddd-开发模式">什么是基于充血模型的 DDD 开发模式？</h3>
-<p>领域驱动设计，即 DDD，主要是用来指导如何解耦业务系统，划分业务模块，定义业务领域模型及其交互。</p>
-<p>基于贫血模型的传统的开发模式，重 Service 轻 BO；基于充血模型的 DDD 开发模式，轻 Service 重 Domain。</p>
-<h3 id="为什么基于贫血模型的传统开发模式如此受欢迎">为什么基于贫血模型的传统开发模式如此受欢迎？</h3>
-<ul>
-<li>系统业务可能都比较简单，简单到就是基于 SQL 的 CRUD 操作</li>
-<li>充血模型的设计要比贫血模型更加有难度。我们从一开始就要设计好针对数据要暴露哪些操作，定义哪些业务逻辑。而不是像贫血模型那样，我们只需要定义数据，之后有什么功能开发需求，我们就在 Service 层定义什么操作，不需要事先做太多设计。</li>
-<li>思维已固化，转型有成本。</li>
-</ul>
-<h3 id="什么项目应该考虑使用基于充血模型的-ddd-开发模式">什么项目应该考虑使用基于充血模型的 DDD 开发模式？</h3>
-<p>适合业务复杂的系统开发。比如，包含各种利息计算模型、还款模型等复杂业务的金融系统。</p>
-<p>两种不同的开发模式会导致不同的开发流程。基于充血模型的 DDD 开发模式的开发流程，在应对复杂业务系统的开发的时候更加有优势。</p>
-<p>DDD 这种开发模式下，我们需要事先理清楚所有的业务，定义领域模型所包含的属性和方法。领域模型相当于可复用的业务中间层。新功能需求的开发，都基于之前定义好的这些领域模型来完成。</p>
-<h2 id="12">12</h2>
-<h3 id="一个虚拟钱包系统">一个虚拟钱包系统</h3>
-<p>充值、提现、支付、查询余额、查询交易流水。甚至还有冻结、透支、转赠等。</p>
-<p>整个钱包系统一部分单纯跟应用内的虚拟钱包账户打交道，另一部分单纯跟银行账户打交道。我们基于这样一个业务划分，给系统解耦，将整个钱包系统拆分为两个子系统：虚拟钱包系统和三方支付系统。</p>
-<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107135323-ba50b780-6934-11eb-8b85-1738440f42bc.png"></p>
-<p>不保证数据的强一致性，只实现数据的最终一致性。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VirtualWalletService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// 通过构造函数或者 IOC 框架注入</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">VirtualWalletRepository</span><span class="w"> </span><span class="n">walletRepo</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">VirtualWalletTransactionRepository</span><span class="w"> </span><span class="n">transactionRepo</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">VirtualWallet</span><span class="w"> </span><span class="nf">getVirtualWallet</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">walletId</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWalletEntity</span><span class="w"> </span><span class="n">walletEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">walletRepo</span><span class="p">.</span><span class="na">getWalletEntity</span><span class="p">(</span><span class="n">walletId</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWallet</span><span class="w"> </span><span class="n">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convert</span><span class="p">(</span><span class="n">walletEntity</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">wallet</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">getBalance</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">walletId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">virtualWalletRepo</span><span class="p">.</span><span class="na">getBalance</span><span class="p">(</span><span class="n">walletId</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">debit</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">walletId</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWalletEntity</span><span class="w"> </span><span class="n">walletEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">walletRepo</span><span class="p">.</span><span class="na">getWalletEntity</span><span class="p">(</span><span class="n">walletId</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 贫血型</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// BigDecimal balance = walletEntity.getBalance();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// if (balance.compareTo(amount) &lt; 0) {</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//   throw new NoSufficientBalanceException(...);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// }</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// walletRepo.updateBalance(walletId, balance.subtract(amount));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// DDD</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWallet</span><span class="w"> </span><span class="n">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convert</span><span class="p">(</span><span class="n">walletEntity</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">wallet</span><span class="p">.</span><span class="na">debit</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">walletRepo</span><span class="p">.</span><span class="na">updateBalance</span><span class="p">(</span><span class="n">walletId</span><span class="p">,</span><span class="w"> </span><span class="n">wallet</span><span class="p">.</span><span class="na">balance</span><span class="p">());</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">credit</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">walletId</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWalletEntity</span><span class="w"> </span><span class="n">walletEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">walletRepo</span><span class="p">.</span><span class="na">getWalletEntity</span><span class="p">(</span><span class="n">walletId</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 贫血型</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// BigDecimal balance = walletEntity.getBalance();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// walletRepo.updateBalance(walletId, balance.add(amount));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// DDD</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWallet</span><span class="w"> </span><span class="n">wallet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convert</span><span class="p">(</span><span class="n">walletEntity</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">wallet</span><span class="p">.</span><span class="na">credit</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">walletRepo</span><span class="p">.</span><span class="na">updateBalance</span><span class="p">(</span><span class="n">walletId</span><span class="p">,</span><span class="w"> </span><span class="n">wallet</span><span class="p">.</span><span class="na">balance</span><span class="p">());</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">transfer</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">fromWalletId</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">toWalletId</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">VirtualWalletTransactionEntity</span><span class="w"> </span><span class="n">transactionEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VirtualWalletTransactionEntity</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">transactionEntity</span><span class="p">.</span><span class="na">setAmount</span><span class="p">(</span><span class="n">amount</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">transactionEntity</span><span class="p">.</span><span class="na">setCreateTime</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">());</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">transactionEntity</span><span class="p">.</span><span class="na">setFromWalletId</span><span class="p">(</span><span class="n">fromWalletId</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">transactionEntity</span><span class="p">.</span><span class="na">setToWalletId</span><span class="p">(</span><span class="n">toWalletId</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">transactionEntity</span><span class="p">.</span><span class="na">setStatus</span><span class="p">(</span><span class="n">Status</span><span class="p">.</span><span class="na">TO_BE_EXECUTED</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">transactionId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transactionRepo</span><span class="p">.</span><span class="na">saveTransaction</span><span class="p">(</span><span class="n">transactionEntity</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">debit</span><span class="p">(</span><span class="n">fromWalletId</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">credit</span><span class="p">(</span><span class="n">toWalletId</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InsufficientBalanceException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">transactionRepo</span><span class="p">.</span><span class="na">updateStatus</span><span class="p">(</span><span class="n">transactionId</span><span class="p">,</span><span class="w"> </span><span class="n">Status</span><span class="p">.</span><span class="na">CLOSED</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">// ...rethrow exception e...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">transactionRepo</span><span class="p">.</span><span class="na">updateStatus</span><span class="p">(</span><span class="n">transactionId</span><span class="p">,</span><span class="w"> </span><span class="n">Status</span><span class="p">.</span><span class="na">FAILED</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c1">// ...rethrow exception e...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">transactionRepo</span><span class="p">.</span><span class="na">updateStatus</span><span class="p">(</span><span class="n">transactionId</span><span class="p">,</span><span class="w"> </span><span class="n">Status</span><span class="p">.</span><span class="na">EXECUTED</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><p>领域模型 VirtualWallet 类很单薄，包含的业务逻辑很简单。相对于原来的贫血模型的设计思路，这种充血模型的设计思路，貌似并没有太大优势。这也是大部分业务系统都使用基于贫血模型开发的原因。不过，如果虚拟钱包系统需要支持更复杂的业务逻辑，那充血模型的优势就显现出来了。比如，我们要支持透支一定额度和冻结部分余额的功能。这个时候，我们重新来看一下 VirtualWallet 类的实现代码。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VirtualWallet</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">createTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">isAllowedOverdraft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">overdraftAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">frozenAmount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">.</span><span class="na">ZERO</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">VirtualWallet</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">preAllocatedId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preAllocatedId</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">balance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">balance</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">getAvaliableBalance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">totalAvaliableBalance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">balance</span><span class="p">.</span><span class="na">subtract</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">frozenAmount</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isAllowedOverdraft</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="n">totalAvaliableBalance</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">overdraftAmount</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">totalAvaliableBalance</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">debit</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">credit</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">freeze</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">unfreeze</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">increaseOverdraftAmount</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">decreaseOverdraftAmount</span><span class="p">(</span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">closeOverdraft</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">openOverdraft</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><p>如果功能继续演进，我们可以增加更加细化的冻结策略、透支策略、支持钱包账号（VirtualWallet id 字段）自动生成的逻辑（不是通过构造函数经外部传入 ID，而是通过分布式 ID 生成算法来自动生成 ID）等等。</p>
-<h3 id="辩证思考与灵活应用">辩证思考与灵活应用</h3>
-<p>两种代码设计与实现中，并没有完全将 Service 类去掉，这是为什么？或者说，Service 类在这种情况下担当的职责是什么？哪些功能逻辑会放到 Service 类中？</p>
-<ol>
-<li>Service 类负责与 Repository 交流。获取数据库中的数据，转化成领域模型 VirtualWallet，然后由领域模型 VirtualWallet 来完成业务逻辑，最后调用 Repository 类的方法，将数据存回数据库。之所以让 VirtualWalletService 类与 Repository 打交道，而不是让领域模型 VirtualWallet 与 Repository 打交道，那是因为我们想保持领域模型的独立性，不与任何其他层的代码（Repository 层的代码）或开发框架（比如 Spring、MyBatis）耦合在一起，将流程性的代码逻辑（比如从 DB 中取数据、映射数据）与领域模型的业务逻辑解耦，让领域模型更加可复用。</li>
-<li>Service 类负责跨领域模型的业务聚合功能。VirtualWalletService 类中的 transfer() 转账函数会涉及两个钱包的操作，因此这部分业务逻辑无法放到 VirtualWallet 类中，所以，我们暂且把转账业务放到 VirtualWalletService 类中了。当然，虽然功能演进，使得转账业务变得复杂起来之后，我们也可以将转账业务抽取出来，设计成一个独立的领域模型。</li>
-<li>Service 类负责一些非功能性及与三方系统交互的工作。比如幂等、事务、发邮件、发消息、记录日志、调用其他系统的 RPC 接口等，都可以放到 Service 类中。</li>
-</ol>
-<h3 id="小结">小结</h3>
-<p>基于充血模型的 DDD 开发模式跟基于贫血模型的传统开发模式相比，主要区别在 Service 层。在基于充血模型的开发模式下，我们将部分原来在 Service 类中的业务逻辑移动到了一个充血的 Domain 领域模型中，让 Service 类的实现依赖这个 Domain 类。</p>
-<p>在基于充血模型的 DDD 开发模式下，Service 类并不会完全移除，而是负责一些不适合放在 Domain 类中的功能。比如，负责与 Repository 层打交道、跨领域模型的业务聚合功能、幂等事务等非功能性的工作。</p>
-<p>基于充血模型的 DDD 开发模式跟基于贫血模型的传统开发模式相比，Controller 层和 Repository 层的代码基本上相同。这是因为，Repository 层的 Entity 生命周期有限，Controller 层的 VO 只是单纯作为一种 DTO。两部分的业务逻辑都不会太复杂。业务逻辑主要集中在 Service 层。所以，Repository 层和 Controller 层继续沿用贫血模型的设计思路是没有问题的。</p>
-<p>遗留问题：Entity 与 Domain 的转换应该放在哪里？</p>
-<h2 id="13-如何对接口鉴权这样一个功能开发做面向对象分析">13 如何对接口鉴权这样一个功能开发做面向对象分析？</h2>
-<p>面向对象分析（OOA）、面向对象设计（OOD）、面向对象编程（OOP），是面向对象开发的三个主要环节。</p>
-<p>我们需要通过沟通、挖掘、分析、假设、梳理，搞清楚具体的需求有哪些，哪些是现在要做的，哪些是未来可能要做的，哪些是不用考虑做的。</p>
-<blockquote>
-<p>加密之后的密码及 AppID，可能被 <strong>重放攻击</strong>。</p>
-</blockquote>
-<p>调用方将请求接口的 URL 跟 AppID、密码拼接在一起，然后进行加密，生成一个 token。</p>
-<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107141538-3ca4a000-6964-11eb-903f-404295e31ebf.png"></p>
-<p>这样的设计仍然存在重放攻击的风险。</p>
-<p>为了解决这个问题，我们可以进一步优化 token 生成算法，引入一个随机变量，让每次接口请求生成的 token 都不一样。</p>
-<p>微服务端在收到这些数据之后，会验证当前时间戳跟传递过来的时间戳，是否在一定的时间窗口内（比如一分钟）。</p>
-<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107141588-ba68ab80-6964-11eb-8cc4-c84ddf91a6d4.png"></p>
-<h2 id="14">14</h2>
-<ol>
-<li>把 URL、AppID、密码、时间戳拼接为一个字符串；</li>
-<li>对字符串通过加密算法加密生成 token；</li>
-<li>将 token、AppID、时间戳拼接到 URL 中，形成新的 URL；</li>
-<li>解析 URL，得到 token、AppID、时间戳等信息；</li>
-<li>从存储中取出 AppID 和对应的密码；</li>
-<li>根据时间戳判断 token 是否过期失效；</li>
-<li>验证两个 token 是否匹配；</li>
-</ol>
-<p>1、2、6、7 都是跟 token 有关，负责 token 的生成、验证；3、4 都是在处理 URL，负责 URL 的拼接、解析；5 是操作 AppID 和密码，负责从存储中读取 AppID 和密码。AuthToken、Url、CredentialStorage。</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>设计模式之美 Part1</title>
-      <link>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</link>
+      <title>设计模式之美</title>
+      <link>https://zyf.im/2021/02/05/the-beauty-of-design-patterns/</link>
       <pubDate>Fri, 05 Feb 2021 11:00:41 +0000</pubDate>
-      <guid>https://zyf.im/2021/02/05/the-beauty-of-design-patterns-part1/</guid>
-      <description>&lt;h2 id=&#34;00&#34;&gt;00&lt;/h2&gt;
-&lt;p&gt;KISS 原则（Keep It Simple and Stupid），这个原则理解起来很简单，一看貌似就懂了，那我问你，怎样的代码才算是足够简单呢？怎样才算不够简单需要优化呢？&lt;/p&gt;
-&lt;p&gt;“Talk is cheap, show me the code.”&lt;/p&gt;
-&lt;h2 id=&#34;01&#34;&gt;01&lt;/h2&gt;
-&lt;p&gt;为什么要学习设计模式：应对面试中的设计模式相关问题；告别写被人吐槽的烂代码；提高复杂代码的设计和开发能力；让读源码、学框架事半功倍；为你的职场发展做铺垫。&lt;/p&gt;
-&lt;h2 id=&#34;02&#34;&gt;02&lt;/h2&gt;
-&lt;p&gt;灵活性（flexibility）、可扩展性（extensibility）、可维护性（maintainability）、可读性（readability）、可理解性（understandability）、易修改性（changeability）、可复用（reusability）、可测试性（testability）、模块化（modularity）、高内聚低耦合（high cohesion loose coupling）、高效（high effciency）、高性能（highperformance）、安全性（security）、兼容性（compatibility）、易用性（usability）、整洁（clean）、清晰（clarity）、简单（simple）、直接（straightforward）、少即是多（less code is more）、文档详尽（well-documented）、分层清晰（well-layered）、正确性（correctness、bug free）、健壮性（robustness）、鲁棒性（robustness）、可用性（reliability）、可伸缩性（scalability）、稳定性（stability）、优雅（elegant）、好（good）、坏（bad）&lt;/p&gt;
-&lt;p&gt;我们并不能通过单一的维度去评价一段代码写的好坏。比如，即使一段代码的可扩展性很好，但可读性很差，那我们也不能说这段代码质量高。&lt;/p&gt;
-&lt;p&gt;如果用数字来量化代码的可读性的话，它应该是一个连续的区间值，而非 0、1 这样的离散值。&lt;/p&gt;
-&lt;p&gt;代码质量的评价有很强的主观性。&lt;/p&gt;
-&lt;p&gt;有些词语过于笼统、抽象，比较偏向对于整体的描述，比如优雅、好、坏、整洁、清晰等；有些过于细节、偏重方法论，比如模块化、高内聚低耦合、文档详尽、分层清晰等；有些可能并不仅仅局限于编码，跟架构设计等也有关系，比如可伸缩性、可用性、稳定性等。&lt;/p&gt;
-&lt;h3 id=&#34;可维护性maintainability&#34;&gt;可维护性（maintainability）&lt;/h3&gt;
-&lt;p&gt;破坏原有代码设计、不引入新的 bug 的情况下，能够快速地修改或者添加代码。与之相反，修改或者添加代码需要冒着极大的引入新 bug 的风险，并且需要花费很长的时间才能完成。&lt;/p&gt;
-&lt;p&gt;码分层清晰、模块化好、高内聚低耦合、遵从基于接口而非实现编程的设计原则等等，那就可能意味着代码易维护。&lt;/p&gt;
-&lt;h3 id=&#34;可读性readability&#34;&gt;可读性（readability）&lt;/h3&gt;
-&lt;p&gt;“任何傻瓜都会编写计算机能理解的代码。好的程序员能够编写人能够理解的代码。”&lt;/p&gt;
-&lt;p&gt;是否符合编码规范、命名是否达意、注释是否详尽、函数是否长短合适、模块划分是否清晰、是否符合高内聚低耦合等等。&lt;/p&gt;
-&lt;p&gt;code review 是一个很好的测验代码可读性的手段。如果你的同事可以轻松地读懂你写的代码，那说明你的代码可读性很好；如果同事在读你的代码时，有很多疑问，那就说明你的代码可读性有待提高了。&lt;/p&gt;
-&lt;h3 id=&#34;可扩展性extensibility&#34;&gt;可扩展性（extensibility）&lt;/h3&gt;
-&lt;p&gt;我们在不修改或少量修改原有代码的情况下，通过扩展的方式添加新的功能代码。说直白点就是，代码预留了一些功能扩展点，你可以把新功能代码，直接插到扩展点上，而不需要因为要添加一个功能而大动干戈，改动大量的原始代码。&lt;/p&gt;
-&lt;p&gt;“对修改关闭，对扩展开放”。&lt;/p&gt;
-&lt;h3 id=&#34;灵活性flexibility&#34;&gt;灵活性（flexibility）&lt;/h3&gt;
-&lt;p&gt;如果一段代码易扩展、易复用或者易用，我们都可以称这段代码写得比较灵活。&lt;/p&gt;
+      <guid>https://zyf.im/2021/02/05/the-beauty-of-design-patterns/</guid>
+      <description>&lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
+&lt;p&gt;学习设计模式要回答两个问题：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;当我们添加一个新的功能代码的时候，原有的代码已经预留好了扩展点，我们不需要修改原有的代码，只要在扩展点上添加新的代码即可。这个时候，我们除了可以说代码易扩展，还可以说代码写得好灵活。&lt;/li&gt;
-&lt;li&gt;当我们要实现一个功能的时候，发现原有代码中，已经抽象出了很多底层可以复用的模块、类等代码，我们可以拿来直接使用。这个时候，我们除了可以说代码易复用之外，还可以说代码写得好灵活。&lt;/li&gt;
-&lt;li&gt;当我们使用某组接口的时候，如果这组接口可以应对各种使用场景，满足各种不同的需求，我们除了可以说接口易用之外，还可以说这个接口设计得好灵活或者代码写得好灵活。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;什么是好代码？&lt;/strong&gt; —— 见 §02。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;怎样写出好代码？&lt;/strong&gt; —— 面向对象、设计原则、设计模式、编程规范、代码重构这五件套各管一段，见 §03。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;简洁性simplicity&#34;&gt;简洁性（simplicity）&lt;/h3&gt;
-&lt;p&gt;尽量保持代码简单。代码简单、逻辑清晰，也就意味着易读、易维护。我们在编写代码的时候，往往也会把简单、清晰放到首位。&lt;/p&gt;
-&lt;p&gt;KISS 原则，思从深而行从简，真正的高手能云淡风轻地用最简单的方法解决最复杂的问题。这也是一个编程老手跟编程新手的本质区别之一。&lt;/p&gt;
-&lt;h3 id=&#34;可复用性reusability&#34;&gt;可复用性（reusability）&lt;/h3&gt;
-&lt;p&gt;尽量减少重复代码的编写，复用已有的代码。&lt;/p&gt;
-&lt;p&gt;当讲到面向对象特性的时候，我们会讲到继承、多态存在的目的之一，就是为了提高代码的可复用性；当讲到设计原则的时候，我们会讲到单一职责原则也跟代码的可复用性相关；当讲到重构技巧的时候，我们会讲到解耦、高内聚、模块化等都能提高代码的可复用性。可见，可复用性也是一个非常重要的代码评价标准，是很多设计原则、思想、模式等所要达到的最终效果。&lt;/p&gt;
-&lt;p&gt;DRY（Don’t Repeat Yourself）设计原则。&lt;/p&gt;
-&lt;h3 id=&#34;可测试性testability&#34;&gt;可测试性（testability）&lt;/h3&gt;
-&lt;p&gt;代码可测试性的好坏，能从侧面上非常准确地反应代码质量的好坏。代码的可测试性差，比较难写单元测试，那基本上就能说明代码设计得有问题。&lt;/p&gt;
-&lt;h2 id=&#34;03&#34;&gt;03&lt;/h2&gt;
-&lt;h3 id=&#34;面向对象&#34;&gt;面向对象&lt;/h3&gt;
+&lt;p&gt;KISS 原则人人会背，难的是判断&amp;quot;多简单算简单&amp;quot;。后面所有内容都在给这类判断提供尺子。&lt;/p&gt;
+&lt;h2 id=&#34;02-代码质量把-30-个形容词压成-2-个问题&#34;&gt;02 代码质量：把 30 个形容词压成 2 个问题&lt;/h2&gt;
+&lt;p&gt;书里列了 30 多个评价代码的英文词。它们都可以归到三层：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;层面&lt;/th&gt;
+          &lt;th&gt;关心的问题&lt;/th&gt;
+          &lt;th&gt;代表属性&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;编码层&lt;/td&gt;
+          &lt;td&gt;当下能不能读懂&lt;/td&gt;
+          &lt;td&gt;readability、simplicity、clean&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;模块层&lt;/td&gt;
+          &lt;td&gt;改动能不能控制住&lt;/td&gt;
+          &lt;td&gt;maintainability、testability、reusability&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;系统层&lt;/td&gt;
+          &lt;td&gt;长期能不能演进&lt;/td&gt;
+          &lt;td&gt;extensibility、flexibility、scalability&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;剥到最里面，只剩两个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;改一行，要扫几个文件？&lt;/strong&gt; —— 决定可维护性、可测试性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;加一个新需求，是插一段，还是重写？&lt;/strong&gt; —— 决定可扩展性、灵活性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其余术语的定位：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;面向对象的四大特性：封装、抽象、继承、多态面&lt;/li&gt;
-&lt;li&gt;向对象编程与面向过程编程的区别和联系&lt;/li&gt;
-&lt;li&gt;面向对象分析、面向对象设计、面向对象编程&lt;/li&gt;
-&lt;li&gt;接口和抽象类的区别以及各自的应用场景&lt;/li&gt;
-&lt;li&gt;基于接口而非实现编程的设计思想&lt;/li&gt;
-&lt;li&gt;多用组合少用继承的设计思想&lt;/li&gt;
-&lt;li&gt;面向过程的贫血模型和面向对象的充血模型&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;flexibility&lt;/strong&gt; 是结果不是属性：易扩展 / 易复用 / 易用三者满足任一即可称&amp;quot;灵活&amp;quot;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;elegant / good / clean&lt;/strong&gt; 偏主观，不构成评价维度，适合表态不适合度量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;robustness / reliability / scalability&lt;/strong&gt; 描述运行时行为，属于架构而非代码质量。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DRY&lt;/strong&gt; 是手段不是目标：复用是结果，过早抽象反而降低可维护性。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;设计原则&#34;&gt;设计原则&lt;/h3&gt;
-&lt;p&gt;指导我们代码设计的一些经验总结。&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<h2 id="00">00</h2>
-<p>KISS 原则（Keep It Simple and Stupid），这个原则理解起来很简单，一看貌似就懂了，那我问你，怎样的代码才算是足够简单呢？怎样才算不够简单需要优化呢？</p>
-<p>“Talk is cheap, show me the code.”</p>
-<h2 id="01">01</h2>
-<p>为什么要学习设计模式：应对面试中的设计模式相关问题；告别写被人吐槽的烂代码；提高复杂代码的设计和开发能力；让读源码、学框架事半功倍；为你的职场发展做铺垫。</p>
-<h2 id="02">02</h2>
-<p>灵活性（flexibility）、可扩展性（extensibility）、可维护性（maintainability）、可读性（readability）、可理解性（understandability）、易修改性（changeability）、可复用（reusability）、可测试性（testability）、模块化（modularity）、高内聚低耦合（high cohesion loose coupling）、高效（high effciency）、高性能（highperformance）、安全性（security）、兼容性（compatibility）、易用性（usability）、整洁（clean）、清晰（clarity）、简单（simple）、直接（straightforward）、少即是多（less code is more）、文档详尽（well-documented）、分层清晰（well-layered）、正确性（correctness、bug free）、健壮性（robustness）、鲁棒性（robustness）、可用性（reliability）、可伸缩性（scalability）、稳定性（stability）、优雅（elegant）、好（good）、坏（bad）</p>
-<p>我们并不能通过单一的维度去评价一段代码写的好坏。比如，即使一段代码的可扩展性很好，但可读性很差，那我们也不能说这段代码质量高。</p>
-<p>如果用数字来量化代码的可读性的话，它应该是一个连续的区间值，而非 0、1 这样的离散值。</p>
-<p>代码质量的评价有很强的主观性。</p>
-<p>有些词语过于笼统、抽象，比较偏向对于整体的描述，比如优雅、好、坏、整洁、清晰等；有些过于细节、偏重方法论，比如模块化、高内聚低耦合、文档详尽、分层清晰等；有些可能并不仅仅局限于编码，跟架构设计等也有关系，比如可伸缩性、可用性、稳定性等。</p>
-<h3 id="可维护性maintainability">可维护性（maintainability）</h3>
-<p>破坏原有代码设计、不引入新的 bug 的情况下，能够快速地修改或者添加代码。与之相反，修改或者添加代码需要冒着极大的引入新 bug 的风险，并且需要花费很长的时间才能完成。</p>
-<p>码分层清晰、模块化好、高内聚低耦合、遵从基于接口而非实现编程的设计原则等等，那就可能意味着代码易维护。</p>
-<h3 id="可读性readability">可读性（readability）</h3>
-<p>“任何傻瓜都会编写计算机能理解的代码。好的程序员能够编写人能够理解的代码。”</p>
-<p>是否符合编码规范、命名是否达意、注释是否详尽、函数是否长短合适、模块划分是否清晰、是否符合高内聚低耦合等等。</p>
-<p>code review 是一个很好的测验代码可读性的手段。如果你的同事可以轻松地读懂你写的代码，那说明你的代码可读性很好；如果同事在读你的代码时，有很多疑问，那就说明你的代码可读性有待提高了。</p>
-<h3 id="可扩展性extensibility">可扩展性（extensibility）</h3>
-<p>我们在不修改或少量修改原有代码的情况下，通过扩展的方式添加新的功能代码。说直白点就是，代码预留了一些功能扩展点，你可以把新功能代码，直接插到扩展点上，而不需要因为要添加一个功能而大动干戈，改动大量的原始代码。</p>
-<p>“对修改关闭，对扩展开放”。</p>
-<h3 id="灵活性flexibility">灵活性（flexibility）</h3>
-<p>如果一段代码易扩展、易复用或者易用，我们都可以称这段代码写得比较灵活。</p>
+&lt;blockquote&gt;
+&lt;p&gt;边界：可读性和可维护性常被混用。可读性是&amp;quot;读&amp;quot;的成本，可维护性是&amp;quot;改&amp;quot;的成本。一段代码可以读得懂但改不动（逻辑分散在 10 个文件），反之少见。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;03-五件套面向对象--设计原则--设计模式--编程规范--代码重构&#34;&gt;03 五件套：面向对象 / 设计原则 / 设计模式 / 编程规范 / 代码重构&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;工具&lt;/th&gt;
+          &lt;th&gt;解决什么&lt;/th&gt;
+          &lt;th&gt;抽象层次&lt;/th&gt;
+          &lt;th&gt;关键内容&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;面向对象&lt;/td&gt;
+          &lt;td&gt;复杂程序的组织方式&lt;/td&gt;
+          &lt;td&gt;最高&lt;/td&gt;
+          &lt;td&gt;封装、抽象、继承、多态（§04~§10）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;设计原则&lt;/td&gt;
+          &lt;td&gt;写代码时的判断依据&lt;/td&gt;
+          &lt;td&gt;高&lt;/td&gt;
+          &lt;td&gt;SOLID、DRY、KISS、YAGNI、LOD&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;设计模式&lt;/td&gt;
+          &lt;td&gt;反复出现的设计问题&lt;/td&gt;
+          &lt;td&gt;中&lt;/td&gt;
+          &lt;td&gt;23 种，分创建型 / 结构型 / 行为型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;编程规范&lt;/td&gt;
+          &lt;td&gt;可读性&lt;/td&gt;
+          &lt;td&gt;低&lt;/td&gt;
+          &lt;td&gt;命名、注释、函数长度、模块划分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;代码重构&lt;/td&gt;
+          &lt;td&gt;代码质量不下降的兜底&lt;/td&gt;
+          &lt;td&gt;低&lt;/td&gt;
+          &lt;td&gt;单元测试为前提，分大重构 / 小重构两种规模&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;依赖关系：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h2 id="引言">引言</h2>
+<p>学习设计模式要回答两个问题：</p>
 <ul>
-<li>当我们添加一个新的功能代码的时候，原有的代码已经预留好了扩展点，我们不需要修改原有的代码，只要在扩展点上添加新的代码即可。这个时候，我们除了可以说代码易扩展，还可以说代码写得好灵活。</li>
-<li>当我们要实现一个功能的时候，发现原有代码中，已经抽象出了很多底层可以复用的模块、类等代码，我们可以拿来直接使用。这个时候，我们除了可以说代码易复用之外，还可以说代码写得好灵活。</li>
-<li>当我们使用某组接口的时候，如果这组接口可以应对各种使用场景，满足各种不同的需求，我们除了可以说接口易用之外，还可以说这个接口设计得好灵活或者代码写得好灵活。</li>
+<li><strong>什么是好代码？</strong> —— 见 §02。</li>
+<li><strong>怎样写出好代码？</strong> —— 面向对象、设计原则、设计模式、编程规范、代码重构这五件套各管一段，见 §03。</li>
 </ul>
-<h3 id="简洁性simplicity">简洁性（simplicity）</h3>
-<p>尽量保持代码简单。代码简单、逻辑清晰，也就意味着易读、易维护。我们在编写代码的时候，往往也会把简单、清晰放到首位。</p>
-<p>KISS 原则，思从深而行从简，真正的高手能云淡风轻地用最简单的方法解决最复杂的问题。这也是一个编程老手跟编程新手的本质区别之一。</p>
-<h3 id="可复用性reusability">可复用性（reusability）</h3>
-<p>尽量减少重复代码的编写，复用已有的代码。</p>
-<p>当讲到面向对象特性的时候，我们会讲到继承、多态存在的目的之一，就是为了提高代码的可复用性；当讲到设计原则的时候，我们会讲到单一职责原则也跟代码的可复用性相关；当讲到重构技巧的时候，我们会讲到解耦、高内聚、模块化等都能提高代码的可复用性。可见，可复用性也是一个非常重要的代码评价标准，是很多设计原则、思想、模式等所要达到的最终效果。</p>
-<p>DRY（Don’t Repeat Yourself）设计原则。</p>
-<h3 id="可测试性testability">可测试性（testability）</h3>
-<p>代码可测试性的好坏，能从侧面上非常准确地反应代码质量的好坏。代码的可测试性差，比较难写单元测试，那基本上就能说明代码设计得有问题。</p>
-<h2 id="03">03</h2>
-<h3 id="面向对象">面向对象</h3>
-<ul>
-<li>面向对象的四大特性：封装、抽象、继承、多态面</li>
-<li>向对象编程与面向过程编程的区别和联系</li>
-<li>面向对象分析、面向对象设计、面向对象编程</li>
-<li>接口和抽象类的区别以及各自的应用场景</li>
-<li>基于接口而非实现编程的设计思想</li>
-<li>多用组合少用继承的设计思想</li>
-<li>面向过程的贫血模型和面向对象的充血模型</li>
-</ul>
-<h3 id="设计原则">设计原则</h3>
-<p>指导我们代码设计的一些经验总结。</p>
-<ul>
-<li>SOLID 原则 SRP 单一职责原则</li>
-<li>SOLID 原则 OCP 开闭原则</li>
-<li>SOLID 原则 SP 里式替换原则</li>
-<li>SOLID 原则 ISP 接口隔离原则</li>
-<li>SOLID 原则 DIP 依赖倒置原则</li>
-<li>DRY 原则、KISS 原则、YAGNI 原则、LOD 法则</li>
-</ul>
-<h3 id="设计模式">设计模式</h3>
-<p>针对软件开发中经常遇到的一些设计问题，总结出来的一套解决方案或者设计思路。</p>
-<p>大部分设计模式要解决的都是代码的可扩展性问题。</p>
+<p>KISS 原则人人会背，难的是判断&quot;多简单算简单&quot;。后面所有内容都在给这类判断提供尺子。</p>
+<h2 id="02-代码质量把-30-个形容词压成-2-个问题">02 代码质量：把 30 个形容词压成 2 个问题</h2>
+<p>书里列了 30 多个评价代码的英文词。它们都可以归到三层：</p>
+<table>
+  <thead>
+      <tr>
+          <th>层面</th>
+          <th>关心的问题</th>
+          <th>代表属性</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>编码层</td>
+          <td>当下能不能读懂</td>
+          <td>readability、simplicity、clean</td>
+      </tr>
+      <tr>
+          <td>模块层</td>
+          <td>改动能不能控制住</td>
+          <td>maintainability、testability、reusability</td>
+      </tr>
+      <tr>
+          <td>系统层</td>
+          <td>长期能不能演进</td>
+          <td>extensibility、flexibility、scalability</td>
+      </tr>
+  </tbody>
+</table>
+<p>剥到最里面，只剩两个问题：</p>
 <ol>
-<li>创建型 常用的有：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式。不常用的有：原型模式。</li>
-<li>结构型 常用的有：代理模式、桥接模式、装饰者模式、适配器模式。不常用的有：门面模式、组合模式、享元模式。</li>
-<li>行为型 常用的有：观察者模式、模板模式、策略模式、职责链模式、迭代器模式、状态模式。不常用的有：访问者模式、备忘录模式、命令模式、解释器模式、中介模式。</li>
+<li><strong>改一行，要扫几个文件？</strong> —— 决定可维护性、可测试性。</li>
+<li><strong>加一个新需求，是插一段，还是重写？</strong> —— 决定可扩展性、灵活性。</li>
 </ol>
-<h3 id="编程规范">编程规范</h3>
-<p>主要解决的是代码的可读性问题。</p>
-<h3 id="代码重构">代码重构</h3>
-<p>在软件开发中，只要软件在不停地迭代，就没有一劳永逸的设计。</p>
-<p>在开发初期，除非特别必须，我们一定不要过度设计，应用复杂的设计模式。而是当代码出现问题的时候，我们再针对问题，应用原则和模式进行重构。这样就能有效避免前期的过度设计。</p>
+<p>其余术语的定位：</p>
 <ul>
-<li>重构的目的（why）、对象（what）、时机（when）、方法（how）；</li>
-<li>保证重构不出错的技术手段：单元测试和代码的可测试性；</li>
-<li>两种不同规模的重构：大重构（大规模高层次）和小重构（小规模低层次）。</li>
+<li><strong>flexibility</strong> 是结果不是属性：易扩展 / 易复用 / 易用三者满足任一即可称&quot;灵活&quot;。</li>
+<li><strong>elegant / good / clean</strong> 偏主观，不构成评价维度，适合表态不适合度量。</li>
+<li><strong>robustness / reliability / scalability</strong> 描述运行时行为，属于架构而非代码质量。</li>
+<li><strong>DRY</strong> 是手段不是目标：复用是结果，过早抽象反而降低可维护性。</li>
 </ul>
-<h3 id="五者联系">五者联系</h3>
-<p>面向对象编程因为其具有丰富的特性（封装、抽象、继承、多态），可以实现很多复杂的设计思路，是很多设计原则、设计模式等编码实现的基础。</p>
-<p>设计原则是指导我们代码设计的一些经验总结，对于某些场景下，是否应该应用某种设计模式，具有指导意义。比如，“开闭原则”是很多设计模式（策略、模板等）的指导原则。</p>
-<p>设计模式是针对软件开发中经常遇到的一些设计问题，总结出来的一套解决方案或者设计思路。应用设计模式的主要目的是提高代码的可扩展性。从抽象程度上来讲，设计原则比设计模式更抽象。设计模式更加具体、更加可执行。</p>
-<p>编程规范主要解决的是代码的可读性问题。编码规范相对于设计原则、设计模式，更加具体、更加偏重代码细节、更加能落地。持续的小重构依赖的理论基础主要就是编程规范。</p>
-<p>重构作为保持代码质量不下降的有效手段，利用的就是面向对象、设计原则、设计模式、编码规范这些理论。</p>
-<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/106997160-59eb3a00-67bd-11eb-8f71-db5336d3e77f.png"></p>
-<h2 id="04">04</h2>
-<p>面向对象编程是一种编程范式或编程风格。它以类或对象作为组织代码的基本单元，并将封装、抽象、继承、多态四个特性，作为代码设计和实现的基石。</p>
-<h2 id="05">05</h2>
-<h3 id="封装encapsulation">封装（Encapsulation）</h3>
-<p>封装也叫作信息隐藏或者数据访问保护。类通过暴露有限的访问接口，授权外部仅能通过类提供的方式来访问内部信息或者数据。</p>
-<p>封装特性存在的意义，一方面是保护数据不被随意修改，提高代码的可维护性；另一方面是仅暴露有限的必要接口，提高类的易用性。</p>
-<h3 id="抽象abstraction">抽象（Abstraction）</h3>
-<p>抽象可以通过接口类或者抽象类来实现，但也并不需要特殊的语法机制来支持。</p>
-<p>抽象存在的意义，一方面是提高代码的可扩展性、维护性，修改实现不需要改变定义，减少代码的改动范围；另一方面，它也是处理复杂系统的有效手段，能有效地过滤掉不必要关注的信息。</p>
-<p>提供“函数”这一非常基础的语法机制，就可以实现抽象特性、所以，它没有很强的“特异性”，有时候并不被看作面向对象编程的特性之一。</p>
-<p>在定义（或者叫命名）类的方法的时候，也要有抽象思维，不要在方法定义中，暴露太多的实现细节，以保证在某个时间点需要改变方法的实现逻辑的时候，不用去修改其定义。getPictureUrl 好于 getAliyunPictureUrl。</p>
-<h3 id="继承inheritance">继承（Inheritance）</h3>
-<p>继承是用来表示类之间的 is-a 关系。继承主要是用来解决代码复用的问题。</p>
-<p>多用组合少用继承。</p>
-<h3 id="多态polymorphism">多态（Polymorphism）</h3>
-<p>多态是指子类可以替换父类，在实际的代码运行过程中，调用子类的方法实现。</p>
-<p>多态这种特性也需要编程语言提供特殊的语法机制来实现，比如继承、接口类、duck-typing。多态可以提高代码的扩展性和复用性，是很多设计模式、设计原则、编程技巧的代码实现基础。</p>
-<p>只要两个类具有相同的方法，就可以实现多态，并不要求两个类之间有任何关系，这就是所谓的 duck-typing，是一些动态语言所特有的语法机制。</p>
-<h2 id="06">06</h2>
-<p>相较于面向对象编程以类为组织代码的基本单元，面向过程编程则是以过程（或方法）作为组织代码的基本单元。它最主要的特点就是数据和方法相分离。相较于面向对象编程语言，面向过程编程语言最大的特点就是不支持丰富的面向对象编程特性，比如继承、多态、封装。</p>
-<p>面向对象编程相比面向过程编程有哪些优势？</p>
-<ul>
-<li>对于大规模复杂程序的开发，程序的处理流程并非单一的一条主线，而是错综复杂的网状结构。</li>
-<li>面向对象编程比起面向过程编程，更能应对这种复杂类型的程序开发。面向对象编程相比面向过程编程，具有更加丰富的特性（封装、抽象、继承、多态）。利用这些特性编写出来的代码，更加易扩展、易复用、易维护。</li>
-<li>从编程语言跟机器打交道的方式的演进规律中，我们可以总结出：面向对象编程语言比起面向过程编程语言，更加人性化、更加高级、更加智能。</li>
-</ul>
-<h2 id="07">07</h2>
-<h3 id="滥用-gettersetter-方法">滥用 getter、setter 方法</h3>
-<p>尽管 getter 方法相对 setter 方法要安全些，但是如果返回的是集合容器（比如例子中的 List 容器），也要防范集合内部数据被修改的危险。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ShoppingCart</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ... 省略其他代码...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ShoppingCartItem</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getItems</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Collections</span><span class="p">.</span><span class="na">unmodifiableList</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">items</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UnmodifiableList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">UnmodifiableCollection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">E</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">clear</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UnsupportedOperationException</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// ... 省略其他代码...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><h3 id="滥用全局变量和全局方法">滥用全局变量和全局方法</h3>
-<p>Constants 类、Utils 类的设计尽量能做到职责单一，定义一些细化的小类。</p>
-<p>静态成员变量归属于类上的数据，被所有的实例化对象所共享，也相当于一定程度上的全局变量。</p>
-<p>静态方法将方法与数据分离，破坏了封装特性，是典型的面向过程风格。</p>
-<p>只包含静态方法不包含任何属性的 Utils 类，是彻彻底底的面向过程的编程风格。要尽量避免滥用，不要不加思考地随意去定义 Utils 类。</p>
-<h3 id="定义数据和方法分离的类">定义数据和方法分离的类</h3>
-<p>Controller 层负责暴露接口给前端调用，Service 层负责核心业务逻辑，Repository 层负责数据读写。</p>
-<p>而在每一层中，我们又会定义相应的 VO（View Object）、BO（Business Object）、Entity。一般情况下，VO、BO、Entity 中只会定义数据，不会定义方法，所有操作这些数据的业务逻辑都定义在对应的 Controller 类、Service 类、Repository 类中。这就是典型的面向过程的编程风格。</p>
 <blockquote>
-<p>实际上，这种开发模式叫作基于 <code>贫血模型的开发模式</code>，也是我们现在非常常用的一种 Web 项目的开发模式。看到这里，你内心里应该有很多疑惑吧？既然这种开发模式明显违背面向对象的编程风格，为什么大部分 Web 项目都是基于这种开发模式来开发呢？</p>
+<p>边界：可读性和可维护性常被混用。可读性是&quot;读&quot;的成本，可维护性是&quot;改&quot;的成本。一段代码可以读得懂但改不动（逻辑分散在 10 个文件），反之少见。</p>
 </blockquote>
-<h3 id="在面向对象编程中为什么容易写出面向过程风格的代码">在面向对象编程中，为什么容易写出面向过程风格的代码？</h3>
-<p>面向过程编程风格恰恰符合人的这种流程化思维方式。而面向对象编程风格正好相反。它是一种自底向上的思考方式。</p>
-<p>它不是先去按照执行流程来分解任务，而是将任务翻译成一个一个的小的模块（也就是类），设计类之间的交互，最后按照流程将类组装起来，完成整个任务。</p>
-<p>在面向对象编程中，类的设计还是挺需要技巧，挺需要一定设计经验的。你要去思考如何封装合适的数据和方法到一个类里，如何设计类之间的关系，如何设计类之间的交互等等诸多设计问题。</p>
-<h3 id="面向过程编程及面向过程编程语言就真的无用武之地了吗">面向过程编程及面向过程编程语言就真的无用武之地了吗？</h3>
-<p>如果我们开发的是微小程序，或者是一个数据处理相关的代码，以算法为主，数据为辅，那脚本式的面向过程的编程风格就更适合一些。</p>
-<h2 id="08">08</h2>
-<h3 id="抽象类和接口的语法特性">抽象类和接口的语法特性</h3>
-<p>抽象类不允许被实例化，只能被继承。它可以包含属性和方法。方法既可以包含代码实现，也可以不包含代码实现。不包含代码实现的方法叫作抽象方法。子类继承抽象类，必须实现抽象类中的所有抽象方法。接口不能包含属性，只能声明方法，方法不能包含代码实现。类实现接口的时候，必须实现接口中声明的所有方法。</p>
-<h3 id="抽象类和接口存在的意义">抽象类和接口存在的意义</h3>
-<p>抽象类是对成员变量和方法的抽象，是一种 is-a 关系，是为了解决代码复用问题。接口仅仅是对方法的抽象，是一种 has-a 关系，表示具有某一组行为特性，是为了解决解耦问题，隔离接口和具体的实现，提高代码的扩展性。</p>
-<p>从类的继承层次上来看，抽象类是一种自下而上的设计思路，先有子类的代码重复，然后再抽象成上层的父类（也就是抽象类）。而接口正好相反，它是一种自上而下的设计思路。</p>
-<h2 id="09">09</h2>
-<p>“Program to an interface, not animplementation”。“基于抽象而非实现编程”。</p>
-<p>越抽象、越顶层、越脱离具体某一实现的设计，越能提高代码的灵活性，越能应对未来的需求变化。好的代码设计，不仅能应对当下的需求，而且在将来需求发生变化的时候，仍然能够在不破坏原有代码设计的情况下灵活应对。</p>
-<p>“细节是魔鬼”。</p>
+<h2 id="03-五件套面向对象--设计原则--设计模式--编程规范--代码重构">03 五件套：面向对象 / 设计原则 / 设计模式 / 编程规范 / 代码重构</h2>
+<table>
+  <thead>
+      <tr>
+          <th>工具</th>
+          <th>解决什么</th>
+          <th>抽象层次</th>
+          <th>关键内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>面向对象</td>
+          <td>复杂程序的组织方式</td>
+          <td>最高</td>
+          <td>封装、抽象、继承、多态（§04~§10）</td>
+      </tr>
+      <tr>
+          <td>设计原则</td>
+          <td>写代码时的判断依据</td>
+          <td>高</td>
+          <td>SOLID、DRY、KISS、YAGNI、LOD</td>
+      </tr>
+      <tr>
+          <td>设计模式</td>
+          <td>反复出现的设计问题</td>
+          <td>中</td>
+          <td>23 种，分创建型 / 结构型 / 行为型</td>
+      </tr>
+      <tr>
+          <td>编程规范</td>
+          <td>可读性</td>
+          <td>低</td>
+          <td>命名、注释、函数长度、模块划分</td>
+      </tr>
+      <tr>
+          <td>代码重构</td>
+          <td>代码质量不下降的兜底</td>
+          <td>低</td>
+          <td>单元测试为前提，分大重构 / 小重构两种规模</td>
+      </tr>
+  </tbody>
+</table>
+<p>依赖关系：</p>
+<ul>
+<li>面向对象是基石，提供封装、抽象、继承、多态四种语法手段。</li>
+<li>设计原则是经验，指导<strong>何时</strong>用哪种手段；如开闭原则指导策略 / 模板模式。</li>
+<li>设计模式是套路，把&quot;原则 + 手段&quot;凝固成 23 种可复用方案，主攻<strong>可扩展性</strong>。</li>
+<li>编程规范偏代码细节，是持续小重构的理论基础。</li>
+<li>重构利用前四者，把可维护性兜住。</li>
+</ul>
+<h3 id="23-种模式速查">23 种模式速查</h3>
+<table>
+  <thead>
+      <tr>
+          <th>分组</th>
+          <th>常用</th>
+          <th>不常用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>创建型</td>
+          <td>单例、工厂（方法 / 抽象）、建造者</td>
+          <td>原型</td>
+      </tr>
+      <tr>
+          <td>结构型</td>
+          <td>代理、桥接、装饰者、适配器</td>
+          <td>门面、组合、享元</td>
+      </tr>
+      <tr>
+          <td>行为型</td>
+          <td>观察者、模板、策略、职责链、迭代器、状态</td>
+          <td>访问者、备忘录、命令、解释器、中介</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="一条纪律先别过度设计">一条纪律：先别过度设计</h3>
+<p>开发初期不预先套复杂模式，等代码痛了再针对性重构 —— 这是避免过度设计最简单的纪律。</p>
+<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/106997160-59eb3a00-67bd-11eb-8f71-db5336d3e77f.png"></p>
+<h2 id="04-面向对象的定义">04 面向对象的定义</h2>
+<p>以类或对象作为代码的基本组织单元，封装、抽象、继承、多态四个特性是其基石。</p>
+<h2 id="05-面向对象四大特性">05 面向对象四大特性</h2>
+<table>
+  <thead>
+      <tr>
+          <th>特性</th>
+          <th>一句话定义</th>
+          <th>解决的问题</th>
+          <th>边界 / 易混</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>封装</td>
+          <td>通过暴露有限接口，限制外部对内部数据的访问</td>
+          <td>数据被随意改、易用性差</td>
+          <td>不是&quot;加 private 就叫封装&quot;，关键是接口收敛</td>
+      </tr>
+      <tr>
+          <td>抽象</td>
+          <td>隐藏实现，只暴露&quot;做什么&quot;</td>
+          <td>实现变更冲击调用方</td>
+          <td>任何函数都是抽象，无需面向对象语法</td>
+      </tr>
+      <tr>
+          <td>继承</td>
+          <td>用 is-a 关系复用父类成员</td>
+          <td>重复代码</td>
+          <td>层次 ≤ 2 层、关系稳定才用；否则上组合</td>
+      </tr>
+      <tr>
+          <td>多态</td>
+          <td>子类替换父类，运行时分派到具体实现</td>
+          <td>调用方与实现解耦</td>
+          <td>不与继承绑定，duck-typing / 接口也是多态</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="封装">封装</h3>
+<p>接口收敛比加 <code>private</code> 更重要。下面两版都有 getter，封装强度差别巨大：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 反例：贫血对象，外部可以随意改内部状态
+</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Cart</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">array</span> <span class="nv">$items</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$cart</span><span class="o">-&gt;</span><span class="na">items</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$item</span><span class="p">;</span> <span class="c1">// 任何地方都能这么干
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 正例：行为收敛到类内部
+</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Cart</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">array</span> <span class="nv">$items</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">Item</span> <span class="nv">$item</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* 校验、计价、触发事件 */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">items</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">items</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="抽象">抽象</h3>
+<p>判断点：方法名是否暴露实现细节？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 反例
+</span></span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">getAliyunPictureUrl</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$key</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 正例
+</span></span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">getPictureUrl</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$key</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span><span class="p">;</span>
+</span></span></code></pre></div><p>OSS 从阿里云换七牛云时，前者要改全部调用方，后者不动。</p>
+<h3 id="继承">继承</h3>
+<p>只保留 is-a 关系。&ldquo;鸟会飞 / 不会飞 / 会叫 / 不会叫&rdquo; 用继承组合会爆炸，用接口 + 组合更线性：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">interface</span> <span class="nx">Flyable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">fly</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">FlyWithWings</span> <span class="k">implements</span> <span class="nx">Flyable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">fly</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Sparrow</span> <span class="k">implements</span> <span class="nx">Flyable</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">private</span> <span class="nx">FlyWithWings</span> <span class="nv">$ability</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">fly</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ability</span><span class="o">-&gt;</span><span class="na">fly</span><span class="p">();</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="多态">多态</h3>
+<p>PHP 实现多态的三种方式，本质都是&quot;调用方只认接口，不认实现&quot;：</p>
+<table>
+  <thead>
+      <tr>
+          <th>方式</th>
+          <th>例子</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>继承 + 重写</td>
+          <td><code>Animal::speak()</code> 被 <code>Dog::speak()</code> 覆盖</td>
+      </tr>
+      <tr>
+          <td>接口实现</td>
+          <td><code>PaymentGateway</code> 由 <code>Alipay</code> / <code>Wechat</code> 实现</td>
+      </tr>
+      <tr>
+          <td>duck-typing</td>
+          <td>PHP 弱类型场景下方法签名一致即可调用</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="06-面向对象-vs-面向过程">06 面向对象 vs 面向过程</h2>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>面向过程</th>
+          <th>面向对象</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>组织单元</td>
+          <td>过程（函数）</td>
+          <td>类 / 对象</td>
+      </tr>
+      <tr>
+          <td>数据与方法</td>
+          <td>分离</td>
+          <td>绑定</td>
+      </tr>
+      <tr>
+          <td>思维方向</td>
+          <td>自顶向下，按执行流程拆任务</td>
+          <td>自底向上，先建模块再编排流程</td>
+      </tr>
+      <tr>
+          <td>适用场景</td>
+          <td>微小程序、数据处理脚本、算法题</td>
+          <td>处理流程网状的大规模复杂业务程序</td>
+      </tr>
+  </tbody>
+</table>
+<p>不是谁取代谁，是<strong>规模和复杂度</strong>在决定 —— Laravel artisan 命令、一次性数据迁移脚本，写成过程式更省事；业务核心服务越往复杂处长，越需要 OO 把复杂度装进类的边界。</p>
+<h2 id="07-容易写出面向过程代码的三种坑">07 容易写出面向过程代码的三种坑</h2>
+<h3 id="坑-1getter-返回内部集合">坑 1：getter 返回内部集合</h3>
+<p>返回内部 <code>array</code> 或可变 <code>Collection</code> 时，调用方能直接改，等于把 <code>private</code> 当摆设。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 反例：对象集合按引用共享，外部 mutation 会污染内部状态
+</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Cart</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="k">array</span> <span class="nv">$items</span> <span class="o">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">items</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">items</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 正例 1：返回不可变副本
+</span></span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">items</span><span class="p">()</span><span class="o">:</span> <span class="nx">Collection</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">collect</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">items</span><span class="p">);</span> <span class="c1">// 新实例，改不到原状态
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 正例 2：暴露行为而非数据
+</span></span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">add</span><span class="p">(</span><span class="nx">Item</span> <span class="nv">$item</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* 校验 + 计价 + 事件 */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">remove</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span></code></pre></div><h3 id="坑-2utils--constants-类堆静态方法">坑 2：Utils / Constants 类堆静态方法</h3>
+<p>只装静态方法、不持有状态的 <code>Utils</code> 类，本质是一组全局函数，破坏封装。</p>
+<p>判据：能否找到一个名词，让这堆方法围绕它聚合？能则升级成对象（<code>StringHelper::slug()</code> → <code>Slugger-&gt;make()</code>）；不能则按职责拆细，避免大杂烩。</p>
+<h3 id="坑-3贫血模型anemic-domain-model">坑 3：贫血模型（Anemic Domain Model）</h3>
+<p>Laravel 默认 MVC 即贫血结构：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Controller        ← 暴露 HTTP
+</span></span><span class="line"><span class="cl">  └─ Service      ← 业务逻辑
+</span></span><span class="line"><span class="cl">       └─ Model   ← 只有字段和关系，没有行为
+</span></span></code></pre></div><p><code>Order</code> 只有属性，&ldquo;下单 / 取消 / 退款&quot;全压在 <code>OrderService</code>，是面向过程写法。</p>
+<p>充血模型则把&quot;取消订单&quot;这类行为放回 <code>Order::cancel()</code>，模型自带不变量校验，Service 只负责事务与外部协作。</p>
+<blockquote>
+<p>贫血不等于&quot;错&rdquo;，它是大部分 Web 项目实际采用的模式，原因见 §11。</p>
+</blockquote>
+<h2 id="08-抽象类-vs-接口">08 抽象类 vs 接口</h2>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>抽象类</th>
+          <th>接口</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>实例化</td>
+          <td>不能</td>
+          <td>不能</td>
+      </tr>
+      <tr>
+          <td>持有属性</td>
+          <td>可以</td>
+          <td>不可以</td>
+      </tr>
+      <tr>
+          <td>方法实现</td>
+          <td>可有可无（抽象方法 + 普通方法）</td>
+          <td>只能声明（PHP 8+ 默认方法除外）</td>
+      </tr>
+      <tr>
+          <td>表达关系</td>
+          <td>is-a</td>
+          <td>has-a / behaves-as</td>
+      </tr>
+      <tr>
+          <td>解决问题</td>
+          <td>代码复用</td>
+          <td>解耦、行为抽象</td>
+      </tr>
+      <tr>
+          <td>设计方向</td>
+          <td>自下而上（从重复中提父类）</td>
+          <td>自上而下（先定契约再写实现）</td>
+      </tr>
+  </tbody>
+</table>
+<p>PHP 实践：能用接口就别用抽象类，Laravel <code>Contracts/*</code> 走的就是这个路线。需要复用一段实现时，优先考虑 trait + 接口的组合，而非加深继承层级。</p>
+<h2 id="09-基于接口而非实现编程">09 基于接口而非实现编程</h2>
+<blockquote>
+<p>Program to an interface, not an implementation.</p>
+</blockquote>
+<p>越脱离具体实现的设计，越能应对未来变化。落地三步：</p>
 <ol>
-<li>函数的命名不能暴露任何实现细节。</li>
-<li>封装具体的实现细节。</li>
-<li>为实现类定义抽象的接口。</li>
+<li><strong>命名不暴露实现</strong>：<code>getPictureUrl()</code> 而非 <code>getAliyunPictureUrl()</code>。</li>
+<li><strong>封装实现细节</strong>：调用方不需要知道你用的是 Guzzle 还是 cURL。</li>
+<li><strong>依赖接口而非实现类</strong>：构造函数注入 <code>PaymentGateway</code>，不注入 <code>AlipayGateway</code>。</li>
 </ol>
-<p>抽象意识、封装意识、接口意识。</p>
-<h2 id="10">10</h2>
-<p>继承层次过深、过复杂，也会影响到代码的可维护性。</p>
-<p>鸟 -&gt; 会飞、不会飞、会叫、不会叫、会下蛋、不会下蛋。</p>
-<p>利用组合（composition）、接口、委托（delegation 解决。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 接口</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Flyable</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">fly</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 提高复用性</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FlyAbility</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Flyable</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">fly</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">//...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Sparrow</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Flyable</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c1">// 组合</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">FlyAbility</span><span class="w"> </span><span class="n">flyAbility</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FlyAbility</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">fly</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 委托</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">flyAbility</span><span class="p">.</span><span class="na">fly</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><p>继承改写成组合意味着要做更细粒度的类的拆分。这也就意味着，我们要定义更多的类和接口。类和接口的增多也就或多或少地增加代码的复杂程度和维护成本。</p>
-<p>组合并不完美，继承也不是一无是处。</p>
-<p>如果类之间的继承结构稳定，层次比较浅，关系不复杂，我们就可以大胆地使用继承。反之，我们就尽量使用组合来替代继承。除此之外，还有一些设计模式、特殊的应用场景，会固定使用继承（模板模式（template pattern））或者组合（装饰者模式（decoratorpattern）、策略模式（strategy pattern）、组合模式（composite pattern））。</p>
+<p>需要练成三种意识：抽象、封装、接口。</p>
+<h2 id="10-组合-vs-继承">10 组合 vs 继承</h2>
+<p>继承层次过深会拖垮可维护性。鸟类的&quot;会飞 / 不会飞 / 会叫 / 不会叫 / 会下蛋 / 不会下蛋&quot;用继承组合爆炸成 $2^3 = 8$ 个子类。改写成 <strong>接口 + 组合 + 委托</strong> 后，正交能力可任意拼装（PHP 示例见 §05「继承」）。</p>
+<p>代价是类和接口变多，复杂度从纵向（深继承）转到横向（多组合）。</p>
+<h3 id="何时选哪个">何时选哪个</h3>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>用继承</th>
+          <th>用组合</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>类关系稳定、层次浅（≤ 2 层）</td>
+          <td>✓</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>is-a 关系明确（Cat is Animal）</td>
+          <td>✓</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>需要复用&quot;能力&quot;而非&quot;身份&quot;</td>
+          <td></td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>行为可能在运行时切换</td>
+          <td></td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>子类只复用父类一部分方法</td>
+          <td></td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td>框架强制（模板方法、Laravel 基类）</td>
+          <td>✓</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>特定模式固定一种选择：</p>
+<ul>
+<li>继承：模板模式（template pattern）。</li>
+<li>组合：装饰者模式（decorator pattern）、策略模式（strategy pattern）、组合模式（composite pattern）。</li>
+</ul>
+<h2 id="11-贫血模型-vs-ddd充血模型">11 贫血模型 vs DDD（充血模型）</h2>
+<p><strong>领域驱动设计（DDD）</strong>：用领域对象而非过程化的 Service 组织业务，把规则放回对象内部。</p>
+<h3 id="两种模式对照">两种模式对照</h3>
+<table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>贫血模型（传统 Web）</th>
+          <th>充血模型（DDD）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>数据载体</td>
+          <td>BO / Entity 只有字段</td>
+          <td>Domain 类带行为 + 不变量</td>
+      </tr>
+      <tr>
+          <td>Service</td>
+          <td>重，业务逻辑全在 Service</td>
+          <td>轻，只做编排、跨模型聚合、外部协作</td>
+      </tr>
+      <tr>
+          <td>设计时机</td>
+          <td>边写边加方法到 Service</td>
+          <td>上手前先建模，确定领域对象暴露哪些操作</td>
+      </tr>
+      <tr>
+          <td>适用场景</td>
+          <td>CRUD 主导的简单业务</td>
+          <td>业务规则复杂、长期演进的核心系统</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="贫血流行的三条原因">贫血流行的三条原因</h3>
+<ol>
+<li>业务简单 —— SQL CRUD 已经够用。</li>
+<li>充血先要建模，门槛更高。</li>
+<li>团队思维固化，转型成本不低。</li>
+</ol>
+<h3 id="何时该用-ddd">何时该用 DDD</h3>
+<p>业务规则复杂、生命周期长、需求持续叠加的系统，如金融（利息计算、还款计划、风控）。CRUD 系统强上 DDD 是负收益。</p>
+<h2 id="12-案例虚拟钱包">12 案例：虚拟钱包</h2>
+<p>业务：充值、提现、支付、转账、查询余额 / 流水；进阶有冻结、透支。</p>
+<p>按&quot;账户归属&quot;切两个子系统：</p>
+<ul>
+<li><strong>虚拟钱包</strong>：应用内账户的余额变动。</li>
+<li><strong>三方支付</strong>：与银行 / 三方对账。</li>
+</ul>
+<p>两者间只承诺最终一致。</p>
+<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107135323-ba50b780-6934-11eb-8b85-1738440f42bc.png"></p>
+<h3 id="同一段逻辑贫血-vs-充血">同一段逻辑：贫血 vs 充血</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 贫血：Service 直接操作字段，规则散在每个方法里
+</span></span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">debit</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$walletId</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$amount</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">walletRepo</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$walletId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">bccomp</span><span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">balance</span><span class="p">,</span> <span class="nv">$amount</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="nx">InsufficientBalanceException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">walletRepo</span><span class="o">-&gt;</span><span class="na">updateBalance</span><span class="p">(</span><span class="nv">$walletId</span><span class="p">,</span> <span class="nx">bcsub</span><span class="p">(</span><span class="nv">$entity</span><span class="o">-&gt;</span><span class="na">balance</span><span class="p">,</span> <span class="nv">$amount</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 充血：规则封装在领域对象内
+</span></span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">debit</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$walletId</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$amount</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$entity</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">walletRepo</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$walletId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$wallet</span> <span class="o">=</span> <span class="nx">VirtualWallet</span><span class="o">::</span><span class="na">fromEntity</span><span class="p">(</span><span class="nv">$entity</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">debit</span><span class="p">(</span><span class="nv">$amount</span><span class="p">);</span>                          <span class="c1">// 规则、不变量在这里
+</span></span></span><span class="line"><span class="cl">    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">walletRepo</span><span class="o">-&gt;</span><span class="na">updateBalance</span><span class="p">(</span><span class="nv">$walletId</span><span class="p">,</span> <span class="nv">$wallet</span><span class="o">-&gt;</span><span class="na">balance</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="领域类长出业务能力">领域类长出业务能力</h3>
+<p>支持冻结、透支后，<code>VirtualWallet</code> 自带的能力天然内聚：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">final</span> <span class="k">class</span> <span class="nc">VirtualWallet</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="k">private</span> <span class="nx">int</span> <span class="nv">$id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">private</span> <span class="nx">string</span> <span class="nv">$balance</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">private</span> <span class="nx">bool</span> <span class="nv">$allowedOverdraft</span> <span class="o">=</span> <span class="k">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">private</span> <span class="nx">string</span> <span class="nv">$overdraftAmount</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">private</span> <span class="nx">string</span> <span class="nv">$frozenAmount</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">availableBalance</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span> <span class="cm">/* balance - frozen (+ overdraft) */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">debit</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$amount</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* 校验 + 扣减 */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">credit</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$amount</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* 入账 */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">freeze</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$amount</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">unfreeze</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$amount</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">openOverdraft</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">closeOverdraft</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="service-为什么不会被完全替代">Service 为什么不会被完全替代</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Service 职责</th>
+          <th>例子</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>与 Repository 打交道，做 DTO ↔ 领域转换</td>
+          <td><code>VirtualWallet::fromEntity()</code> + 调 <code>walletRepo-&gt;update()</code></td>
+      </tr>
+      <tr>
+          <td>跨领域模型的聚合</td>
+          <td>转账涉及两个钱包，单个 <code>VirtualWallet</code> 不该背这个流程</td>
+      </tr>
+      <tr>
+          <td>非功能性 / 外部协作</td>
+          <td>幂等、事务、邮件、消息、RPC</td>
+      </tr>
+  </tbody>
+</table>
+<p>保持领域模型纯净（不依赖 Eloquent / Spring / 框架），让它可被复用、可被独立测试。</p>
+<h3 id="哪些层照旧贫血">哪些层照旧贫血</h3>
+<table>
+  <thead>
+      <tr>
+          <th>层</th>
+          <th>是否充血</th>
+          <th>原因</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Controller</td>
+          <td>否</td>
+          <td>VO 只是 DTO，业务逻辑薄</td>
+      </tr>
+      <tr>
+          <td>Service</td>
+          <td>轻</td>
+          <td>编排 + 跨聚合，业务下沉到 Domain</td>
+      </tr>
+      <tr>
+          <td>Domain</td>
+          <td><strong>充血核心</strong></td>
+          <td>不变量、状态机、领域规则在此</td>
+      </tr>
+      <tr>
+          <td>Repository</td>
+          <td>否</td>
+          <td>Entity 生命周期短，纯读写</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>遗留问题：Entity ↔ Domain 的转换放在哪？工厂方法 / Assembler 类 / Repository 内部三选一，没有标准答案，团队约定即可。</p>
+</blockquote>
+<h2 id="13-案例接口鉴权的-ooa-迭代">13 案例：接口鉴权的 OOA 迭代</h2>
+<p>OOA → OOD → OOP 是面向对象开发的三段：分析需求 → 设计类与协作 → 编码。本节只走 OOA，让需求从模糊到可落地。</p>
+<h3 id="需求迭代三版">需求迭代三版</h3>
+<table>
+  <thead>
+      <tr>
+          <th>版本</th>
+          <th>方案</th>
+          <th>暴露的问题</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>v1</td>
+          <td>URL + AppID + 密码 拼接后加密 → token</td>
+          <td><strong>重放攻击</strong>：token 可被原样重发</td>
+      </tr>
+      <tr>
+          <td>v2</td>
+          <td>引入时间戳作为随机变量参与 token 生成</td>
+          <td>解决重放，但需服务端校验时间戳</td>
+      </tr>
+      <tr>
+          <td>v3</td>
+          <td>服务端校验时间戳是否落在窗口（如 1 分钟）</td>
+          <td>工程上可用</td>
+      </tr>
+  </tbody>
+</table>
+<p>v2 示意：</p>
+<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107141538-3ca4a000-6964-11eb-903f-404295e31ebf.png"></p>
+<p>v3 示意：</p>
+<p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107141588-ba68ab80-6964-11eb-8cc4-c84ddf91a6d4.png"></p>
+<p>OOA 的产出不是代码，是一份&quot;哪些做、哪些不做、哪些以后再做&quot;的清单。</p>
+<h2 id="14-案例把-7-个步骤归到-3-个类">14 案例：把 7 个步骤归到 3 个类</h2>
+<p>鉴权流程共 7 步：</p>
+<ol>
+<li>拼接 URL + AppID + 密码 + 时间戳 → 字符串</li>
+<li>字符串加密生成 token</li>
+<li>把 token + AppID + 时间戳拼回 URL</li>
+<li>解析 URL，取出 token / AppID / 时间戳</li>
+<li>从存储里取出 AppID 对应的密码</li>
+<li>校验时间戳是否过期</li>
+<li>校验两个 token 是否一致</li>
+</ol>
+<p>按职责聚合到 3 个类：</p>
+<table>
+  <thead>
+      <tr>
+          <th>类</th>
+          <th>负责的步骤</th>
+          <th>关心什么</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>AuthToken</code></td>
+          <td>1, 2, 6, 7</td>
+          <td>token 的生成与验证</td>
+      </tr>
+      <tr>
+          <td><code>Url</code></td>
+          <td>3, 4</td>
+          <td>URL 的拼接与解析</td>
+      </tr>
+      <tr>
+          <td><code>CredentialStorage</code></td>
+          <td>5</td>
+          <td>AppID / 密码的存取</td>
+      </tr>
+  </tbody>
+</table>
+<p>一次&quot;以名词收敛行为&quot;的演练 —— 跟 §07 坑 2 的判据一致：能找到名词的就升级成对象。</p>
 <p>&ndash; EOF &ndash;</p>
 ]]></content:encoded>
     </item>
