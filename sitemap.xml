@@ -89,15 +89,6 @@
     <loc>https://zyf.im/2023/02/01/go-language-lesson-one/</loc>
     <lastmod>2023-02-01T11:44:27+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/categories/</loc>
-    <lastmod>2022-12-31T20:16:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/categories/review/</loc>
-    <lastmod>2022-12-31T20:16:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/12/31/review-2022/</loc>
-    <lastmod>2022-12-31T20:16:41+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2022/12/21/php-migrating-80-to-81/</loc>
     <lastmod>2022-12-21T18:25:49+00:00</lastmod>
   </url><url>
@@ -116,17 +107,11 @@
     <loc>https://zyf.im/2022/08/14/mysql-course-45/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2021/12/31/review-2021/</loc>
-    <lastmod>2021-12-31T20:16:41+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns/</loc>
     <lastmod>2021-02-05T11:00:41+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2021/01/27/php-strtotime-month/</loc>
     <lastmod>2021-01-27T18:18:24+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/12/31/review-2020/</loc>
-    <lastmod>2020-12-31T20:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/composer/</loc>
     <lastmod>2020-10-28T11:36:27+00:00</lastmod>
@@ -136,9 +121,6 @@
   </url><url>
     <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
     <lastmod>2020-05-09T17:32:34+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/12/31/review-2019/</loc>
-    <lastmod>2019-12-31T23:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2019-12-19T16:46:06+00:00</lastmod>
@@ -166,6 +148,12 @@
   </url><url>
     <loc>https://zyf.im/2019/03/01/extra-long-factorials/</loc>
     <lastmod>2019-03-01T14:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/categories/</loc>
+    <lastmod>2018-12-31T21:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/categories/review/</loc>
+    <lastmod>2018-12-31T21:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2018/12/31/review-2018/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>

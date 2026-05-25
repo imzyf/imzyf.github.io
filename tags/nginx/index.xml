@@ -811,13 +811,23 @@
 </span></span><span class="line"><span class="cl">systemctl reload nginx
 </span></span></code></pre></div><h2 id="几个常被踩到的坑">几个常被踩到的坑</h2>
 <ul>
-<li><strong>速率限制</strong>。Let&rsquo;s Encrypt 每个注册域名每周最多 50 张证书。调试或写脚本时务必先用 <code>--test-cert</code>（staging 服务器），免得被 ban 一周。staging 颁发的证书浏览器不信任，但能验通整个流程。</li>
-<li><strong>证书有效期 90 天</strong>。Certbot 在 30 天阈值内才会真正续期，所以 <code>renew</code> 跑了&quot;没动作&quot;是正常的。</li>
-<li><strong>ECDSA 默认</strong>。Let&rsquo;s Encrypt 2023 起对新证书默认签 ECDSA P-256（更小更快）；想要 RSA 反而要显式 <code>--key-type rsa</code>。</li>
-<li><strong>HSTS 不会自动配</strong>。拿到证书只完成了一半，浏览器仍会接受 http 跳转；建议在 server block 加：
+<li>
+<p><strong>速率限制</strong>。Let&rsquo;s Encrypt 每个注册域名每周最多 50 张证书。调试或写脚本时务必先用 <code>--test-cert</code>（staging 服务器），免得被 ban 一周。staging 颁发的证书浏览器不信任，但能验通整个流程。</p>
+</li>
+<li>
+<p><strong>证书有效期 90 天</strong>。Certbot 在 30 天阈值内才会真正续期，所以 <code>renew</code> 跑了&quot;没动作&quot;是正常的。</p>
+</li>
+<li>
+<p><strong>ECDSA 默认</strong>。Let&rsquo;s Encrypt 2023 起对新证书默认签 ECDSA P-256（更小更快）；想要 RSA 反而要显式 <code>--key-type rsa</code>。</p>
+</li>
+<li>
+<p><strong>HSTS 不会自动配</strong>。拿到证书只完成了一半，浏览器仍会接受 http 跳转；建议在 server block 加：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">&#34;max-age=31536000</span><span class="p">;</span> <span class="k">includeSubDomains&#34;</span> <span class="s">always</span><span class="p">;</span>
-</span></span></code></pre></div>正式开 HSTS 前先用较短 <code>max-age</code> 灰度，避免误配把整个域锁死。</li>
-<li><strong>改了证书别忘 reload</strong>。<code>--nginx</code> 插件帮你做了；<code>certonly</code> 自己做（见上面 deploy-hook）。</li>
+</span></span></code></pre></div><p>正式开 HSTS 前先用较短 <code>max-age</code> 灰度，避免误配把整个域锁死。</p>
+</li>
+<li>
+<p><strong>改了证书别忘 reload</strong>。<code>--nginx</code> 插件帮你做了；<code>certonly</code> 自己做（见上面 deploy-hook）。</p>
+</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
