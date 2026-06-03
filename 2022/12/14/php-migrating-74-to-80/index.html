@@ -290,15 +290,15 @@ New Features 8.0 // Named Parameters 命名参数 // https://www.php.net/manual/
 </span></span></span><span class=line><span class=cl><span class=c1>// https://www.php.net/manual/zh/language.attributes.php
 </span></span></span><span class=line><span class=cl><span class=c1>// 定义注解 -&gt; 使用注解 -&gt; （通过反射）提取注释
 </span></span></span><span class=line><span class=cl><span class=c1>// 注意以后用词：Attributes 注解，Properties 属性
-</span></span></span><span class=line><span class=cl><span class=c1>#[\Attribute]
-</span></span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>JsonSerialize</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=p>#[</span><span class=nd>\Attribute</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>JsonSerialize</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=k>public</span> <span class=k>function</span> <span class=fm>__construct</span><span class=p>(</span><span class=k>public</span> <span class=o>?</span><span class=nx>string</span> <span class=nv>$fieldName</span> <span class=o>=</span> <span class=k>null</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>        <span class=nx>var_dump</span><span class=p>(</span><span class=s2>&#34;JsonSerialize:</span><span class=si>$fieldName</span><span class=s2>&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>VersionedObject</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=c1>#[JsonSerialize(&#39;json-foobar&#39;)]
-</span></span></span><span class=line><span class=cl>    <span class=k>protected</span> <span class=nx>string</span> <span class=nv>$myValue</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>#[</span><span class=nd>JsonSerialize</span><span class=p>(</span><span class=s1>&#39;json-foobar&#39;</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>    <span class=k>protected</span> <span class=nx>string</span> <span class=nv>$myValue</span> <span class=o>=</span> <span class=s1>&#39;&#39;</span><span class=p>;</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=nv>$object</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>VersionedObject</span><span class=p>();</span>
 </span></span><span class=line><span class=cl><span class=nv>$reflection</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ReflectionObject</span><span class=p>(</span><span class=nv>$object</span><span class=p>);</span>
@@ -359,7 +359,7 @@ New Features 8.0 // Named Parameters 命名参数 // https://www.php.net/manual/
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-php data-lang=php><span class=line><span class=cl><span class=c1>// match 表达式
 </span></span></span><span class=line><span class=cl><span class=c1>// https://www.php.net/manual/en/control-structures.match.php
 </span></span></span><span class=line><span class=cl><span class=c1>// match 表达式必须是详尽，则会抛出 UnhandledMatchError。
-</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=nx>match</span> <span class=p>(</span><span class=mf>8.0</span><span class=p>)</span> <span class=p>{</span>
+</span></span></span><span class=line><span class=cl><span class=k>echo</span> <span class=k>match</span> <span class=p>(</span><span class=mf>8.0</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=s1>&#39;8.0&#39;</span> <span class=o>=&gt;</span> <span class=s2>&#34;Oh no!&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>    <span class=mf>8.0</span> <span class=o>=&gt;</span> <span class=s2>&#34;This matches&#34;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl><span class=p>};</span>

@@ -28,35 +28,35 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git archive HEAD --format zip -o preview.zip
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;几个反直觉默认&#34;&gt;几个反直觉默认&lt;/h2&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;Config&lt;/th&gt;
-          &lt;th&gt;默认&lt;/th&gt;
-          &lt;th&gt;坑&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;process-timeout&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;300s&lt;/td&gt;
-          &lt;td&gt;装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;platform-check&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;php-only&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;只查 PHP 版本，&lt;strong&gt;不查扩展&lt;/strong&gt;。缺扩展要等运行时 &lt;code&gt;Call to undefined function&lt;/code&gt; 才暴露&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;discard-changes&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;source 装的包本地有改动时 update 会卡 prompt；CI 设 &lt;code&gt;true&lt;/code&gt; 或 &lt;code&gt;stash&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;preferred-install&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;auto&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Config&lt;/th&gt;
+					&lt;th&gt;默认&lt;/th&gt;
+					&lt;th&gt;坑&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;process-timeout&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;300s&lt;/td&gt;
+					&lt;td&gt;装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;platform-check&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;php-only&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;只查 PHP 版本，&lt;strong&gt;不查扩展&lt;/strong&gt;。缺扩展要等运行时 &lt;code&gt;Call to undefined function&lt;/code&gt; 才暴露&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;discard-changes&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;source 装的包本地有改动时 update 会卡 prompt；CI 设 &lt;code&gt;true&lt;/code&gt; 或 &lt;code&gt;stash&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;preferred-install&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;auto&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nt&#34;&gt;&amp;#34;config&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -84,35 +84,35 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git archive HEAD --format zip -o preview.zip
 </span></span></code></pre></div><h2 id="几个反直觉默认">几个反直觉默认</h2>
 <table>
-  <thead>
-      <tr>
-          <th>Config</th>
-          <th>默认</th>
-          <th>坑</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>process-timeout</code></td>
-          <td>300s</td>
-          <td>装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout</td>
-      </tr>
-      <tr>
-          <td><code>platform-check</code></td>
-          <td><code>php-only</code></td>
-          <td>只查 PHP 版本，<strong>不查扩展</strong>。缺扩展要等运行时 <code>Call to undefined function</code> 才暴露</td>
-      </tr>
-      <tr>
-          <td><code>discard-changes</code></td>
-          <td><code>false</code></td>
-          <td>source 装的包本地有改动时 update 会卡 prompt；CI 设 <code>true</code> 或 <code>stash</code></td>
-      </tr>
-      <tr>
-          <td><code>preferred-install</code></td>
-          <td><code>auto</code></td>
-          <td>可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Config</th>
+					<th>默认</th>
+					<th>坑</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>process-timeout</code></td>
+					<td>300s</td>
+					<td>装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout</td>
+			</tr>
+			<tr>
+					<td><code>platform-check</code></td>
+					<td><code>php-only</code></td>
+					<td>只查 PHP 版本，<strong>不查扩展</strong>。缺扩展要等运行时 <code>Call to undefined function</code> 才暴露</td>
+			</tr>
+			<tr>
+					<td><code>discard-changes</code></td>
+					<td><code>false</code></td>
+					<td>source 装的包本地有改动时 update 会卡 prompt；CI 设 <code>true</code> 或 <code>stash</code></td>
+			</tr>
+			<tr>
+					<td><code>preferred-install</code></td>
+					<td><code>auto</code></td>
+					<td>可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist</td>
+			</tr>
+	</tbody>
 </table>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;config&#34;</span><span class="p">:</span> <span class="p">{</span>
@@ -253,7 +253,7 @@
 <li>谁依赖于谁？当然是应用程序依赖于 IoC 容器。</li>
 <li>为什么需要依赖？应用程序需要 IoC 容器来提供对象需要的外部资源。</li>
 <li>谁注入谁？IoC 容器注入应用程序某个对象，应用程序依赖的对象。</li>
-<li>注入了什么？注入某个对象所需要的外部资源(包括对象、资源、常量数据)。</li>
+<li>注入了什么？注入某个对象所需要的外部资源 (包括对象、资源、常量数据)。</li>
 </ul>
 <p>IoC 和 DI 是两个相辅相成的概念，IoC 的实现是使用了 DI，而 DI 的目的是为了实现 IoC。实际上，它们是同一个概念的不同角度描述。</p>
 <p>为什么要这么做，这么做有什么意义呢？依赖注入帮我们降低了创建对象的成本，使得对象之间松耦合。</p>
@@ -542,7 +542,7 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl">                                        <span class="nx">↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span>
 </span></span><span class="line"><span class="cl"><span class="nx">Parsedown</span><span class="o">/</span><span class="nx">example</span> <span class="o">=&gt;</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/..&#39;</span> <span class="o">.</span> <span class="err">&#39;</span><span class="o">/</span><span class="nx">erusev</span><span class="o">/</span><span class="nx">parsedown</span><span class="o">/</span><span class="nx">example</span><span class="o">.</span><span class="nx">php</span>
 </span></span><span class="line"><span class="cl">                                                <span class="nx">↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span>
-</span></span></code></pre></div><p>举例：假如我们找 <code>Symfony\\Polyfill\\Mbstring\\example</code> 这个类，和 <code>PSR0</code> 一样通过前缀索引和字符串匹配我们得到了:</p>
+</span></span></code></pre></div><p>举例：假如我们找 <code>Symfony\\Polyfill\\Mbstring\\example</code> 这个类，和 <code>PSR0</code> 一样通过前缀索引和字符串匹配我们得到了：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;Symfony\\Polyfill\\Mbstring\\&#39;</span> <span class="o">=&gt;</span> <span class="mi">26</span><span class="p">,</span>
 </span></span></code></pre></div><p>这条记录，键是顶级命名空间，值是命名空间的长度。拿到顶级命名空间后去 <code>$prefixDirsPsr4</code> 获取它的映射目录数组（注意映射目录可能不止一条）：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="s1">&#39;Symfony\\Polyfill\\Mbstring\\&#39;</span> <span class="o">=&gt;</span>
@@ -575,7 +575,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="cm">( 前缀 -&gt; 顶级命名空间，顶级命名空间 -&gt; 顶级命名空间长度 )
 </span></span></span><span class="line"><span class="cl"><span class="cm">( 顶级命名空间 -&gt; 目录 )
 </span></span></span><span class="line"><span class="cl"><span class="cm">
-</span></span></span><span class="line"><span class="cl"><span class="cm">这两个映射数组。具体形式可以查看上面我们讲的 autoload_static 的 prefixLengthsPsr4、$prefixDirsPsr4 。
+</span></span></span><span class="line"><span class="cl"><span class="cm">这两个映射数组。具体形式可以查看上面我们讲的 autoload_static 的 prefixLengthsPsr4、$prefixDirsPsr4。
 </span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$map</span> <span class="o">=</span> <span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/autoload_psr4.php&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="nv">$map</span> <span class="k">as</span> <span class="nv">$namespace</span> <span class="o">=&gt;</span> <span class="nv">$path</span><span class="p">)</span> <span class="p">{</span>

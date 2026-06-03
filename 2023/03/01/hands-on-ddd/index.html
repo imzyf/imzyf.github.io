@@ -2,30 +2,30 @@
 DDD（Domain-Driven Design）：Eric Evans 2003 年提出，一套用于开发复杂软件的方法论与思想，核心是领域建模。常被概括成"把面向对象做对（OO Done Right）"。
 传统 OO 在企业应用里的痛 → DDD 的回应
 
-  
-      
-          痛点
-          DDD 的回应
-      
-  
-  
-      
-          重技术轻业务
-          通用语言（业务 / 开发同一套词）
-      
-      
-          领域建模无章法
-          模型驱动设计、限界上下文
-      
-      
-          业务 / 技术协作不足
-          事件风暴、协作产出统一语言
-      
-      
-          难以适应频繁变化
-          柔性设计 + 持续重构，避免过度设计
-      
-  
+	
+			
+					痛点
+					DDD 的回应
+			
+	
+	
+			
+					重技术轻业务
+					通用语言（业务 / 开发同一套词）
+			
+			
+					领域建模无章法
+					模型驱动设计、限界上下文
+			
+			
+					业务 / 技术协作不足
+					事件风暴、协作产出统一语言
+			
+			
+					难以适应频繁变化
+					柔性设计 + 持续重构，避免过度设计
+			
+	
 
 为什么近几年才"出圈"
 
@@ -36,52 +36,52 @@ Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，D
 02 案例需求：企业工时系统
 要做的 SaaS：员工每周填报"在哪些项目上花了多少时间"。
 
-  
-      
-          需求
-          核心对象 / 范围
-          主要功能 (CRUD / 流程)
-          关键规则 / 约束
-          关键字段 / 记录
-      
-  
-  
-      
-          多租户
-          租户（企业）
-          管理多个租户
-          每个租户代表一个使用 SaaS 的企业
-          —
-      
-      
-          人员与组织管理
-          部门、员工
-          部门：增删改查；员工：增删改查；员工分配部门
-          员工只能从属于一个部门
-          部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）
-      
-      
-          项目管理
-          客户、合同、项目
-          客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束
-          客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目
-          合同 / 项目开始时间、结束时间等
-      
-      
-          人员分配
-          项目成员关系
-          为项目分配人员；人员退出项目
-          项目可多人；员工可同时参与多个项目；需记录投入比例
-          投入百分比（人 - 项目）
-      
-      
-          工时登记
-          工时（周报 / 日记录）
-          员工每周填报工时；查询；修改；填写备注
-          仅当员工已分配到项目后，才可在该项目报工时
-          日期、项目、投入时长、备注
-      
-  
+	
+			
+					需求
+					核心对象 / 范围
+					主要功能 (CRUD / 流程)
+					关键规则 / 约束
+					关键字段 / 记录
+			
+	
+	
+			
+					多租户
+					租户（企业）
+					管理多个租户
+					每个租户代表一个使用 SaaS 的企业
+					—
+			
+			
+					人员与组织管理
+					部门、员工
+					部门：增删改查；员工：增删改查；员工分配部门
+					员工只能从属于一个部门
+					部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）
+			
+			
+					项目管理
+					客户、合同、项目
+					客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束
+					客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目
+					合同 / 项目开始时间、结束时间等
+			
+			
+					人员分配
+					项目成员关系
+					为项目分配人员；人员退出项目
+					项目可多人；员工可同时参与多个项目；需记录投入比例
+					投入百分比（人 - 项目）
+			
+			
+					工时登记
+					工时（周报 / 日记录）
+					员工每周填报工时；查询；修改；填写备注
+					仅当员工已分配到项目后，才可在该项目报工时
+					日期、项目、投入时长、备注
+			
+	
 
 '><meta name=author content="Me, LLM"><link rel=canonical href=https://zyf.im/2023/03/01/hands-on-ddd/><link crossorigin=anonymous href=/assets/css/stylesheet.9aecb24df9d82d4e97d983b9a3ae6e30cb48b5ec58f646721ccc596b06647753.css integrity="sha256-muyyTfnYLU6X2YO5o65uMMtItexY9kZyHMxZawZkd1M=" rel="preload stylesheet" as=style><link rel=icon href=https://zyf.im/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://zyf.im/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://zyf.im/favicon-32x32.png><link rel=apple-touch-icon href=https://zyf.im/apple-touch-icon.png><link rel=mask-icon href=https://zyf.im/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://zyf.im/2023/03/01/hands-on-ddd/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script async src="https://www.googletagmanager.com/gtag/js?id=G-6DVZ6E58DG"></script><script>var doNotTrack=!1,dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-6DVZ6E58DG")}</script><meta property="og:url" content="https://zyf.im/2023/03/01/hands-on-ddd/"><meta property="og:site_name" content="ZYF.IM BLOG"><meta property="og:title" content="手把手教你落地 DDD"><meta property="og:description" content='01 DDD 小传 DDD（Domain-Driven Design）：Eric Evans 2003 年提出，一套用于开发复杂软件的方法论与思想，核心是领域建模。常被概括成"把面向对象做对（OO Done Right）"。
 传统 OO 在企业应用里的痛 → DDD 的回应 痛点 DDD 的回应 重技术轻业务 通用语言（业务 / 开发同一套词） 领域建模无章法 模型驱动设计、限界上下文 业务 / 技术协作不足 事件风暴、协作产出统一语言 难以适应频繁变化 柔性设计 + 持续重构，避免过度设计 为什么近几年才"出圈" 数字化推高复杂度与变化频率。 敏捷 / DevOps 把"小步演进"做成日常。 Spring Boot、微服务、整洁架构、事件驱动、CQRS 等生态成熟，DDD 不再是"屠龙术"。 02 案例需求：企业工时系统 要做的 SaaS：员工每周填报"在哪些项目上花了多少时间"。

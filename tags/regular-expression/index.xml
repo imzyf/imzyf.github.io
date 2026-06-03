@@ -52,7 +52,7 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;*&lt;/code&gt; 0&amp;lt;=&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;+&lt;/code&gt; 1&amp;lt;=&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;?&lt;/code&gt; 0或1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;?&lt;/code&gt; 0 或 1&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;{m}&lt;/code&gt; m&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;{m,}&lt;/code&gt; m&amp;lt;=&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;{m,n}&lt;/code&gt; m-n&lt;/li&gt;
@@ -60,10 +60,10 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;02-量词与贪婪&#34;&gt;02 量词与贪婪&lt;/h2&gt;
-&lt;p&gt;贪婪(Greedy) &lt;code&gt;*&lt;/code&gt;：匹配最长。在贪婪量词模式下，正则表达式会尽可能长地去匹配符合规则的字符串，且会回溯。&lt;/p&gt;
+&lt;p&gt;贪婪 (Greedy) &lt;code&gt;*&lt;/code&gt;：匹配最长。在贪婪量词模式下，正则表达式会尽可能长地去匹配符合规则的字符串，且会回溯。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;preg_match_all&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/a*/i&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;aaabb&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$matches&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$matches&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;非贪婪(Reluctant) &lt;code&gt;+?&lt;/code&gt;：匹配最短。在非贪婪量词模式下，正则表达式会匹配尽可能短的字符串。&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;非贪婪 (Reluctant) &lt;code&gt;+?&lt;/code&gt;：匹配最短。在非贪婪量词模式下，正则表达式会匹配尽可能短的字符串。&lt;/p&gt;
 &lt;p&gt;ENV：Python3&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;re&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;a*&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;aaabb&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 贪婪模式&lt;/span&gt;
@@ -75,7 +75,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;&amp;#34;the little cat&amp;#34; is a toy, it lokks &amp;#34;a little bad&amp;#34;&amp;#39;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;re&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;findall&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;.+?&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#34;the little cat&amp;#34; is a toy, it lokks &amp;#34;a little bad&amp;#34;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 非贪婪模式&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# [&amp;#39;&amp;#34;the little cat&amp;#34;&amp;#39;, &amp;#39;&amp;#34;a little bad&amp;#34;&amp;#39;]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独占模式(Possessive) &lt;code&gt;++&lt;/code&gt;：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 &lt;strong&gt;不会回溯&lt;/strong&gt;。&lt;/p&gt;</description>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;独占模式 (Possessive) &lt;code&gt;++&lt;/code&gt;：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 &lt;strong&gt;不会回溯&lt;/strong&gt;。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="00">00</h2>
 <ul>
 <li><a href="https://regex101.com/">regex101</a></li>
@@ -115,7 +115,7 @@
 <ul>
 <li><code>*</code> 0&lt;=</li>
 <li><code>+</code> 1&lt;=</li>
-<li><code>?</code> 0或1</li>
+<li><code>?</code> 0 或 1</li>
 <li><code>{m}</code> m</li>
 <li><code>{m,}</code> m&lt;=</li>
 <li><code>{m,n}</code> m-n</li>
@@ -123,10 +123,10 @@
 </li>
 </ul>
 <h2 id="02-量词与贪婪">02 量词与贪婪</h2>
-<p>贪婪(Greedy) <code>*</code>：匹配最长。在贪婪量词模式下，正则表达式会尽可能长地去匹配符合规则的字符串，且会回溯。</p>
+<p>贪婪 (Greedy) <code>*</code>：匹配最长。在贪婪量词模式下，正则表达式会尽可能长地去匹配符合规则的字符串，且会回溯。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">preg_match_all</span><span class="p">(</span><span class="s2">&#34;/a*/i&#34;</span><span class="p">,</span> <span class="s2">&#34;aaabb&#34;</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$matches</span><span class="p">);</span>
-</span></span></code></pre></div><p>非贪婪(Reluctant) <code>+?</code>：匹配最短。在非贪婪量词模式下，正则表达式会匹配尽可能短的字符串。</p>
+</span></span></code></pre></div><p>非贪婪 (Reluctant) <code>+?</code>：匹配最短。在非贪婪量词模式下，正则表达式会匹配尽可能短的字符串。</p>
 <p>ENV：Python3</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
 </span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;a*&#39;</span><span class="p">,</span> <span class="s1">&#39;aaabb&#39;</span><span class="p">)</span> <span class="c1"># 贪婪模式</span>
@@ -138,7 +138,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&#34;the little cat&#34; is a toy, it lokks &#34;a little bad&#34;&#39;]</span>
 </span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#34;.+?&#34;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#34;the little cat&#34; is a toy, it lokks &#34;a little bad&#34;&#39;</span><span class="p">)</span> <span class="c1"># 非贪婪模式</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># [&#39;&#34;the little cat&#34;&#39;, &#39;&#34;a little bad&#34;&#39;]</span>
-</span></span></code></pre></div><p>独占模式(Possessive) <code>++</code>：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 <strong>不会回溯</strong>。</p>
+</span></span></code></pre></div><p>独占模式 (Possessive) <code>++</code>：同贪婪一样匹配最长。不过在独占量词模式下，正则表达式尽可能长地去匹配字符串，一旦匹配不成功就会结束匹配而 <strong>不会回溯</strong>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 回溯示例：</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
 </span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;xy{1,3}z&#39;</span><span class="p">,</span> <span class="s1">&#39;xyyz&#39;</span><span class="p">)</span> <span class="c1"># 回溯</span>
@@ -203,10 +203,10 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># \A -&gt; ^, \z -&gt; $</span>
 </span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\Atom&#39;</span><span class="p">,</span> <span class="s1">&#39;jerry&#39;</span><span class="p">,</span> <span class="s2">&#34;tom asked me if I would go fishing with him tomorrow.&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 环视 左尖括号代表看左边，没有尖括号是看右边，感叹号是非的意思</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># (?&lt;=Y) 左边是Y</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># (?&lt;!Y) 左边不是Y</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># (?=Y) 右边是Y</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># (?!Y) 右边不是Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?&lt;=Y) 左边是 Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?&lt;!Y) 左边不是 Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?=Y) 右边是 Y</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (?!Y) 右边不是 Y</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[1-9]\d</span><span class="si">{5}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s2">&#34;138001380002&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># [&#39;138001&#39;, &#39;380002&#39;]</span>
@@ -241,7 +241,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># [&#39;()[]{}&#39;]</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 方括号和花括号的转义一般转义开括号就可以，但圆括号两个都需要转义</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
-</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;\d&#39;</span><span class="p">)</span> <span class="c1"># 反斜杠和字母d转义</span>
+</span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;\d&#39;</span><span class="p">)</span> <span class="c1"># 反斜杠和字母 d 转义</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># &#39;\\\\d&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="s1">&#39;\d&#39;</span><span class="p">),</span> <span class="s1">&#39;\d&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># [&#39;\\d&#39;]</span>
@@ -436,11 +436,11 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># date:  2020-06</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># year:  2020</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># month: 06</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用g模式，查找所有符合要求的内容
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用 g 模式，查找所有符合要求的内容
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;2020-06 2020-07&#34;</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d{4}-\d{2}/g</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [&#39;2020-06&#39;, &#39;2020-07&#39;]
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 不使用g模式，找到第一个就会停下来
+</span></span><span class="line"><span class="cl"><span class="c1">// 不使用 g 模式，找到第一个就会停下来
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;2020-06 2020-07&#34;</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\d{4}-\d{2}/</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// [&#39;2020-06&#39;, index: 0, input: &#39;2020-06 2020-07&#39;, groups: undefined]
 </span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$regex</span> <span class="o">=</span> <span class="s2">&#34;/\d{4}-\d{2}/&#34;</span><span class="p">;</span>
@@ -461,30 +461,30 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">//   }
 </span></span></span><span class="line"><span class="cl"><span class="c1">// }
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// PREG_PATTERN_ORDER: 结果排序为$matches[0]保存完整模式的所有匹配, $matches[1]保存第一个子组的所有匹配，以此类推。
-</span></span></span><span class="line"><span class="cl"><span class="c1">// PREG_SET_ORDER: 结果排序为$matches[0]包含第一次匹配得到的所有匹配(包含子组)，$matches[1]是包含第二次匹配到的所有匹配(包含子组)的数组，以此类推。
+</span></span><span class="line"><span class="cl"><span class="c1">// PREG_PATTERN_ORDER: 结果排序为$matches[0] 保存完整模式的所有匹配，$matches[1] 保存第一个子组的所有匹配，以此类推。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// PREG_SET_ORDER: 结果排序为$matches[0] 包含第一次匹配得到的所有匹配 (包含子组)，$matches[1] 是包含第二次匹配到的所有匹配 (包含子组) 的数组，以此类推。
 </span></span></span></code></pre></div><p>替换文本内容：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d</span><span class="si">{2}</span><span class="s1">)-(\d</span><span class="si">{2}</span><span class="s1">)-(\d</span><span class="si">{4}</span><span class="s1">)&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\3年\1月\2日&#39;</span><span class="p">,</span> <span class="s1">&#39;02-20-2020 05-21-2020&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># &#39;2020年02月20日 2020年05月21日&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;2020 年 02 月 20 日 2020 年 05 月 21 日&#39;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 可以在替换中使用 \g&lt;数字&gt;，如果分组多于10个时避免歧义</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以在替换中使用 \g&lt;数字&gt;，如果分组多于 10 个时避免歧义</span>
 </span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\g&lt;3&gt;年\g&lt;1&gt;月\g&lt;2&gt;日&#39;</span><span class="p">,</span> <span class="s1">&#39;02-20-2020 05-21-2020&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># &#39;2020年02月20日 2020年05月21日&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#39;2020 年 02 月 20 日 2020 年 05 月 21 日&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 返回替换次数</span>
 </span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">subn</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\3年\1月\2日&#39;</span><span class="p">,</span> <span class="s1">&#39;02-20-2020 05-21-2020&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># (&#39;2020年02月20日 2020年05月21日&#39;, 2)</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用g模式，替换所有的
+</span></span><span class="line"><span class="cl"><span class="c1"># (&#39;2020 年 02 月 20 日 2020 年 05 月 21 日&#39;, 2)</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 使用 g 模式，替换所有的
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;02-20-2020 05-21-2020&#34;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d{2})-(\d{2})-(\d{4})/g</span><span class="p">,</span> <span class="s2">&#34;$3年$1月$2日&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// &#34;2020年02月20日 2020年05月21日&#34;
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;2020 年 02 月 20 日 2020 年 05 月 21 日&#34;
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 不使用 g 模式时，只替换一次
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;02-20-2020 05-21-2020&#34;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(\d{2})-(\d{2})-(\d{4})/</span><span class="p">,</span> <span class="s2">&#34;$3年$1月$2日&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// &#34;2020年02月20日 05-21-2020&#34;
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;2020 年 02 月 20 日 05-21-2020&#34;
 </span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$ret</span> <span class="o">=</span> <span class="nx">preg_replace</span><span class="p">(</span><span class="s1">&#39;/(\d{2})-(\d{2})-(\d{4})/&#39;</span><span class="p">,</span> <span class="s1">&#39;\3年\1月\2日&#39;</span><span class="p">,</span> <span class="s2">&#34;02-20-2020 05-21-2020&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$ret</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// string(35) &#34;2020年02月20日 2020年05月21日&#34;
+</span></span><span class="line"><span class="cl"><span class="c1">// string(35) &#34;2020 年 02 月 20 日 2020 年 05 月 21 日&#34;
 </span></span></span></code></pre></div><p>切割文本内容：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">reg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\W+&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">reg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;apple, pear! orange; tea&#34;</span><span class="p">)</span>

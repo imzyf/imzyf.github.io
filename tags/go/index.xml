@@ -21,9 +21,9 @@
 &lt;ul&gt;
 &lt;li&gt;简单：Go 生产力的源泉。&lt;/li&gt;
 &lt;li&gt;显式：Go 希望开发人员 明确知道自己在做什么；显式的基于值比较的错误处理方案。&lt;/li&gt;
-&lt;li&gt;组合：类型嵌入(Type Embedding)。&lt;/li&gt;
+&lt;li&gt;组合：类型嵌入 (Type Embedding)。&lt;/li&gt;
 &lt;li&gt;并发：面向多核、原生支持并发、用户层轻量级线程 goroutine。&lt;/li&gt;
-&lt;li&gt;面向工程：将解决工程问题作为 Go 的 设计原则之一，这些问题包括:程序构建慢、依赖管理失控、代码难于理 解、跨语言构建难等。&lt;/li&gt;
+&lt;li&gt;面向工程：将解决工程问题作为 Go 的 设计原则之一，这些问题包括：程序构建慢、依赖管理失控、代码难于理 解、跨语言构建难等。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;03-配好环境&#34;&gt;03 配好环境&lt;/h2&gt;
 &lt;ul&gt;
@@ -40,7 +40,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;go &lt;span class=&#34;nb&#34;&gt;help&lt;/span&gt; environment
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;04-go-程序的结构&#34;&gt;04 Go 程序的结构&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;import &amp;quot;fmt&amp;quot;&lt;/code&gt; 一行中 &lt;code&gt;fmt&lt;/code&gt; 代表的是包的导入路径(Import)，它表示的是标准库下的 fmt 目录，整个 import 声明语句的含义是导入标准库 fmt 目录下的包&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;import &amp;quot;fmt&amp;quot;&lt;/code&gt; 一行中 &lt;code&gt;fmt&lt;/code&gt; 代表的是包的导入路径 (Import)，它表示的是标准库下的 fmt 目录，整个 import 声明语句的含义是导入标准库 fmt 目录下的包&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;fmt.Println&lt;/code&gt; 函数调用一行中的 &lt;code&gt;fmt&lt;/code&gt; 代表的则是包名。&lt;/li&gt;
 &lt;li&gt;通常导入路径的最后一个分段名与包名是相同的，这也很容易让人误解 import 声明语句中的 &lt;code&gt;fmt&lt;/code&gt; 指的是包名，其实并不是这样的。&lt;/li&gt;
 &lt;/ul&gt;
@@ -58,9 +58,9 @@
 <ul>
 <li>简单：Go 生产力的源泉。</li>
 <li>显式：Go 希望开发人员 明确知道自己在做什么；显式的基于值比较的错误处理方案。</li>
-<li>组合：类型嵌入(Type Embedding)。</li>
+<li>组合：类型嵌入 (Type Embedding)。</li>
 <li>并发：面向多核、原生支持并发、用户层轻量级线程 goroutine。</li>
-<li>面向工程：将解决工程问题作为 Go 的 设计原则之一，这些问题包括:程序构建慢、依赖管理失控、代码难于理 解、跨语言构建难等。</li>
+<li>面向工程：将解决工程问题作为 Go 的 设计原则之一，这些问题包括：程序构建慢、依赖管理失控、代码难于理 解、跨语言构建难等。</li>
 </ul>
 <h2 id="03-配好环境">03 配好环境</h2>
 <ul>
@@ -77,7 +77,7 @@
 </span></span><span class="line"><span class="cl">go <span class="nb">help</span> environment
 </span></span></code></pre></div><h2 id="04-go-程序的结构">04 Go 程序的结构</h2>
 <ul>
-<li><code>import &quot;fmt&quot;</code> 一行中 <code>fmt</code> 代表的是包的导入路径(Import)，它表示的是标准库下的 fmt 目录，整个 import 声明语句的含义是导入标准库 fmt 目录下的包</li>
+<li><code>import &quot;fmt&quot;</code> 一行中 <code>fmt</code> 代表的是包的导入路径 (Import)，它表示的是标准库下的 fmt 目录，整个 import 声明语句的含义是导入标准库 fmt 目录下的包</li>
 <li><code>fmt.Println</code> 函数调用一行中的 <code>fmt</code> 代表的则是包名。</li>
 <li>通常导入路径的最后一个分段名与包名是相同的，这也很容易让人误解 import 声明语句中的 <code>fmt</code> 指的是包名，其实并不是这样的。</li>
 </ul>
@@ -99,7 +99,7 @@
 </span></span><span class="line"><span class="cl">go get github.com/sirupsen/logrus
 </span></span></code></pre></div><h3 id="vendor">vendor</h3>
 <ul>
-<li>Go 项目必须放在 GOPATH 环境变量配置的路径下，庞大的 vendor 目录需要提交到代码仓库，不仅占用代码仓库空间，减慢仓库下载和更新的速度， 而且还会干扰代码评审，对实施代码统计等开发者效能工具也有比较大影响。</li>
+<li>Go 项目必须放在 GOPATH 环境变量配置的路径下，庞大的 vendor 目录需要提交到代码仓库，不仅占用代码仓库空间，减慢仓库下载和更新的速度，而且还会干扰代码评审，对实施代码统计等开发者效能工具也有比较大影响。</li>
 <li>你还需要手工管理 vendor 下面的 Go 依赖包，包括项目依赖包的分析、版本的记 录、依赖包获取和存放，等等，最让开发者头疼的就是这一点。</li>
 </ul>
 <h3 id="go-module-1">Go Module</h3>
@@ -258,9 +258,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;after calling foo, a =&#34;</span><span class="p">,</span><span class="w"> </span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="c1">// 11</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><ul>
-<li>宇宙代码块(Universe Block)</li>
-<li>包代码块(Package Block)</li>
-<li>文件代码块(File Block)</li>
+<li>宇宙代码块 (Universe Block)</li>
+<li>包代码块 (Package Block)</li>
+<li>文件代码块 (File Block)</li>
 <li>分支控制语句隐式代码块</li>
 <li>switch/select 的子句隐式代码块</li>
 </ul>
@@ -275,7 +275,7 @@
 </blockquote>
 <h2 id="12-数值类型">12 数值类型</h2>
 <h3 id="整型">整型</h3>
-<p>Go 采用补码(2&rsquo;s complement)作为整型的比特位编码方法。Go 的补码是通过原码逐位取反后再加 1 得到的。</p>
+<p>Go 采用补码 (2&rsquo;s complement) 作为整型的比特位编码方法。Go 的补码是通过原码逐位取反后再加 1 得到的。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">uint8  1 0 0 0 0 0 0 1 = 129     // 无符号，按二进制直读
 </span></span><span class="line"><span class="cl">int8   1 0 0 0 0 0 0 1 = -127    // 有符号，首位为符号位，按补码解释
 </span></span><span class="line"><span class="cl">
@@ -297,31 +297,31 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">符号位 Sign  阶码 Exponent  尾数 Mantissa
 </span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th>\bit 位\</th>
-          <th>符号位</th>
-          <th>阶码</th>
-          <th>阶码偏移值</th>
-          <th>尾数</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>单精度 float32</td>
-          <td>1</td>
-          <td>8</td>
-          <td>127</td>
-          <td>23</td>
-      </tr>
-      <tr>
-          <td>双精度 float64</td>
-          <td>1</td>
-          <td>11</td>
-          <td>1023</td>
-          <td>52</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>\bit 位\</th>
+					<th>符号位</th>
+					<th>阶码</th>
+					<th>阶码偏移值</th>
+					<th>尾数</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>单精度 float32</td>
+					<td>1</td>
+					<td>8</td>
+					<td>127</td>
+					<td>23</td>
+			</tr>
+			<tr>
+					<td>双精度 float64</td>
+					<td>1</td>
+					<td>11</td>
+					<td>1023</td>
+					<td>52</td>
+			</tr>
+	</tbody>
 </table>
 <p>eg: 139.8125</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">步骤一：把整数部分和小数部分分别转换为二进制（d 表示十进制，b 表示二进制）：
@@ -369,7 +369,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">MyInt</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span><span class="w"> </span><span class="c1">// ok</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">MyInt</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="w"> </span><span class="c1">// ok</span><span class="w">
 </span></span></span></code></pre></div><p>MyInt 类型的底层类型是 int32，所以它的数值性质与 int32 完全相同，但它 们仍然是完全不同的两种类型。</p>
-<h3 id="类型别名type-alias">类型别名(Type Alias)</h3>
+<h3 id="类型别名-type-alias">类型别名 (Type Alias)</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">MyInt</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kt">int32</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="kt">int32</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">6</span><span class="w">
@@ -383,7 +383,7 @@
 <li>字符串操作时要时刻考虑结尾的 <code>\0</code>，防止缓冲区溢出;</li>
 <li>以字符数组形式定义的“字符串”，它的值是可变的，在并发场景中需要考虑同步问题;</li>
 <li>获取一个字符串的长度代价较大，通常是 O(n) 时间复杂度;</li>
-<li>C 语言没有内置对非 ASCII 字符(如中文字符)的支持。</li>
+<li>C 语言没有内置对非 ASCII 字符 (如中文字符) 的支持。</li>
 </ul>
 <p>string 类型的数据是不可变的，提高了字符串的并发安全性和存储利用率（同一个字符串值分配同一块存储）。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&#34;hello&#34;</span><span class="w">
@@ -394,7 +394,7 @@
 <p>对非 ASCII 字符提供原生支持，消除了源码在不同环境下显示乱码的可能。Unicode 字符是以 UTF-8 编码格式存储在内存。</p>
 <p>通过单引号括起的字符字面值：</p>
 <p><a href="https://github.com/imzyf/go-lesson-one/blob/main/cmd/chapter13/main.go">https://github.com/imzyf/go-lesson-one/blob/main/cmd/chapter13/main.go</a></p>
-<p>UTF-8 编码解决的是 Unicode 码点值在计算机中如何存储和表示(位模式)的问题。UTF-8 方案使用变长度字节，从 1 个到 4 个不等。</p>
+<p>UTF-8 编码解决的是 Unicode 码点值在计算机中如何存储和表示 (位模式) 的问题。UTF-8 方案使用变长度字节，从 1 个到 4 个不等。</p>
 <p>一个 rune 存储一个 unicode 码点或 utf-32 的四字节编码；从字节视角，string 对应的底层存储存放的是 utf8 编码。</p>
 <p>Go 字符串类型的内部标示</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// StringHeader 是一个 string 的运行时表示</span><span class="w">
@@ -423,7 +423,7 @@
 <li>可用于实现枚举</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span><span class="w"> </span><span class="nx">myInt</span><span class="w"> </span><span class="kt">int</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 无类型常量(Untyped Constant)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 无类型常量 (Untyped Constant)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">const</span><span class="w"> </span><span class="nx">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">13</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kd">func</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -454,8 +454,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">len</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="c1">// 切片的长度，即切片中当前元素的个数</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nx">cap</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="c1">// 底层数组的长度，也是切片的最大容量，cap 值永远大于等于 len 值</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">sl1</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="w"> </span><span class="c1">// 是声明，未初始化，是nil值，底层没有分配内存空间</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">sl2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{}</span><span class="w"> </span><span class="c1">// 初始化了，不是nil值，底层分配了内存空间，有地址。</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">sl1</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="w"> </span><span class="c1">// 是声明，未初始化，是 nil 值，底层没有分配内存空间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">var</span><span class="w"> </span><span class="nx">sl2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">int</span><span class="p">{}</span><span class="w"> </span><span class="c1">// 初始化了，不是 nil 值，底层分配了内存空间，有地址。</span><span class="w">
 </span></span></span></code></pre></div><h2 id="16-map-类型">16 map 类型</h2>
 <p>一组无序的键值对。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">map</span><span class="p">[</span><span class="nx">key_type</span><span class="p">]</span><span class="nx">value_type</span><span class="w">

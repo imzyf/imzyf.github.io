@@ -17,30 +17,30 @@
 &lt;p&gt;&lt;strong&gt;DDD（Domain-Driven Design）&lt;/strong&gt;：Eric Evans 2003 年提出，一套用于开发&lt;strong&gt;复杂软件&lt;/strong&gt;的方法论与思想，核心是&lt;strong&gt;领域建模&lt;/strong&gt;。常被概括成&amp;quot;把面向对象做对（OO Done Right）&amp;quot;。&lt;/p&gt;
 &lt;h3 id=&#34;传统-oo-在企业应用里的痛--ddd-的回应&#34;&gt;传统 OO 在企业应用里的痛 → DDD 的回应&lt;/h3&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;痛点&lt;/th&gt;
-          &lt;th&gt;DDD 的回应&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;重技术轻业务&lt;/td&gt;
-          &lt;td&gt;通用语言（业务 / 开发同一套词）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;领域建模无章法&lt;/td&gt;
-          &lt;td&gt;模型驱动设计、限界上下文&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;业务 / 技术协作不足&lt;/td&gt;
-          &lt;td&gt;事件风暴、协作产出统一语言&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;难以适应频繁变化&lt;/td&gt;
-          &lt;td&gt;柔性设计 + 持续重构，避免过度设计&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;痛点&lt;/th&gt;
+					&lt;th&gt;DDD 的回应&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;重技术轻业务&lt;/td&gt;
+					&lt;td&gt;通用语言（业务 / 开发同一套词）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;领域建模无章法&lt;/td&gt;
+					&lt;td&gt;模型驱动设计、限界上下文&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;业务 / 技术协作不足&lt;/td&gt;
+					&lt;td&gt;事件风暴、协作产出统一语言&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;难以适应频繁变化&lt;/td&gt;
+					&lt;td&gt;柔性设计 + 持续重构，避免过度设计&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;为什么近几年才出圈&#34;&gt;为什么近几年才&amp;quot;出圈&amp;quot;&lt;/h3&gt;
 &lt;ul&gt;
@@ -51,82 +51,82 @@
 &lt;h2 id=&#34;02-案例需求企业工时系统&#34;&gt;02 案例需求：企业工时系统&lt;/h2&gt;
 &lt;p&gt;要做的 SaaS：员工每周填报&amp;quot;在哪些项目上花了多少时间&amp;quot;。&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;需求&lt;/th&gt;
-          &lt;th&gt;核心对象 / 范围&lt;/th&gt;
-          &lt;th&gt;主要功能 (CRUD / 流程)&lt;/th&gt;
-          &lt;th&gt;关键规则 / 约束&lt;/th&gt;
-          &lt;th&gt;关键字段 / 记录&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;多租户&lt;/td&gt;
-          &lt;td&gt;租户（企业）&lt;/td&gt;
-          &lt;td&gt;管理多个租户&lt;/td&gt;
-          &lt;td&gt;每个租户代表一个使用 SaaS 的企业&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;人员与组织管理&lt;/td&gt;
-          &lt;td&gt;部门、员工&lt;/td&gt;
-          &lt;td&gt;部门：增删改查；员工：增删改查；员工分配部门&lt;/td&gt;
-          &lt;td&gt;员工只能从属于一个部门&lt;/td&gt;
-          &lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;项目管理&lt;/td&gt;
-          &lt;td&gt;客户、合同、项目&lt;/td&gt;
-          &lt;td&gt;客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束&lt;/td&gt;
-          &lt;td&gt;客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目&lt;/td&gt;
-          &lt;td&gt;合同 / 项目开始时间、结束时间等&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;人员分配&lt;/td&gt;
-          &lt;td&gt;项目成员关系&lt;/td&gt;
-          &lt;td&gt;为项目分配人员；人员退出项目&lt;/td&gt;
-          &lt;td&gt;项目可多人；员工可同时参与多个项目；需记录投入比例&lt;/td&gt;
-          &lt;td&gt;投入百分比（人 - 项目）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;工时登记&lt;/td&gt;
-          &lt;td&gt;工时（周报 / 日记录）&lt;/td&gt;
-          &lt;td&gt;员工每周填报工时；查询；修改；填写备注&lt;/td&gt;
-          &lt;td&gt;仅当员工已分配到项目后，才可在该项目报工时&lt;/td&gt;
-          &lt;td&gt;日期、项目、投入时长、备注&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;需求&lt;/th&gt;
+					&lt;th&gt;核心对象 / 范围&lt;/th&gt;
+					&lt;th&gt;主要功能 (CRUD / 流程)&lt;/th&gt;
+					&lt;th&gt;关键规则 / 约束&lt;/th&gt;
+					&lt;th&gt;关键字段 / 记录&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;多租户&lt;/td&gt;
+					&lt;td&gt;租户（企业）&lt;/td&gt;
+					&lt;td&gt;管理多个租户&lt;/td&gt;
+					&lt;td&gt;每个租户代表一个使用 SaaS 的企业&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;人员与组织管理&lt;/td&gt;
+					&lt;td&gt;部门、员工&lt;/td&gt;
+					&lt;td&gt;部门：增删改查；员工：增删改查；员工分配部门&lt;/td&gt;
+					&lt;td&gt;员工只能从属于一个部门&lt;/td&gt;
+					&lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;项目管理&lt;/td&gt;
+					&lt;td&gt;客户、合同、项目&lt;/td&gt;
+					&lt;td&gt;客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束&lt;/td&gt;
+					&lt;td&gt;客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目&lt;/td&gt;
+					&lt;td&gt;合同 / 项目开始时间、结束时间等&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;人员分配&lt;/td&gt;
+					&lt;td&gt;项目成员关系&lt;/td&gt;
+					&lt;td&gt;为项目分配人员；人员退出项目&lt;/td&gt;
+					&lt;td&gt;项目可多人；员工可同时参与多个项目；需记录投入比例&lt;/td&gt;
+					&lt;td&gt;投入百分比（人 - 项目）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;工时登记&lt;/td&gt;
+					&lt;td&gt;工时（周报 / 日记录）&lt;/td&gt;
+					&lt;td&gt;员工每周填报工时；查询；修改；填写备注&lt;/td&gt;
+					&lt;td&gt;仅当员工已分配到项目后，才可在该项目报工时&lt;/td&gt;
+					&lt;td&gt;日期、项目、投入时长、备注&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7&#34;&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="01-ddd-小传">01 DDD 小传</h2>
 <p><strong>DDD（Domain-Driven Design）</strong>：Eric Evans 2003 年提出，一套用于开发<strong>复杂软件</strong>的方法论与思想，核心是<strong>领域建模</strong>。常被概括成&quot;把面向对象做对（OO Done Right）&quot;。</p>
 <h3 id="传统-oo-在企业应用里的痛--ddd-的回应">传统 OO 在企业应用里的痛 → DDD 的回应</h3>
 <table>
-  <thead>
-      <tr>
-          <th>痛点</th>
-          <th>DDD 的回应</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>重技术轻业务</td>
-          <td>通用语言（业务 / 开发同一套词）</td>
-      </tr>
-      <tr>
-          <td>领域建模无章法</td>
-          <td>模型驱动设计、限界上下文</td>
-      </tr>
-      <tr>
-          <td>业务 / 技术协作不足</td>
-          <td>事件风暴、协作产出统一语言</td>
-      </tr>
-      <tr>
-          <td>难以适应频繁变化</td>
-          <td>柔性设计 + 持续重构，避免过度设计</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>痛点</th>
+					<th>DDD 的回应</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>重技术轻业务</td>
+					<td>通用语言（业务 / 开发同一套词）</td>
+			</tr>
+			<tr>
+					<td>领域建模无章法</td>
+					<td>模型驱动设计、限界上下文</td>
+			</tr>
+			<tr>
+					<td>业务 / 技术协作不足</td>
+					<td>事件风暴、协作产出统一语言</td>
+			</tr>
+			<tr>
+					<td>难以适应频繁变化</td>
+					<td>柔性设计 + 持续重构，避免过度设计</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="为什么近几年才出圈">为什么近几年才&quot;出圈&quot;</h3>
 <ul>
@@ -137,52 +137,52 @@
 <h2 id="02-案例需求企业工时系统">02 案例需求：企业工时系统</h2>
 <p>要做的 SaaS：员工每周填报&quot;在哪些项目上花了多少时间&quot;。</p>
 <table>
-  <thead>
-      <tr>
-          <th>需求</th>
-          <th>核心对象 / 范围</th>
-          <th>主要功能 (CRUD / 流程)</th>
-          <th>关键规则 / 约束</th>
-          <th>关键字段 / 记录</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>多租户</td>
-          <td>租户（企业）</td>
-          <td>管理多个租户</td>
-          <td>每个租户代表一个使用 SaaS 的企业</td>
-          <td>—</td>
-      </tr>
-      <tr>
-          <td>人员与组织管理</td>
-          <td>部门、员工</td>
-          <td>部门：增删改查；员工：增删改查；员工分配部门</td>
-          <td>员工只能从属于一个部门</td>
-          <td>部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）</td>
-      </tr>
-      <tr>
-          <td>项目管理</td>
-          <td>客户、合同、项目</td>
-          <td>客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束</td>
-          <td>客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目</td>
-          <td>合同 / 项目开始时间、结束时间等</td>
-      </tr>
-      <tr>
-          <td>人员分配</td>
-          <td>项目成员关系</td>
-          <td>为项目分配人员；人员退出项目</td>
-          <td>项目可多人；员工可同时参与多个项目；需记录投入比例</td>
-          <td>投入百分比（人 - 项目）</td>
-      </tr>
-      <tr>
-          <td>工时登记</td>
-          <td>工时（周报 / 日记录）</td>
-          <td>员工每周填报工时；查询；修改；填写备注</td>
-          <td>仅当员工已分配到项目后，才可在该项目报工时</td>
-          <td>日期、项目、投入时长、备注</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>需求</th>
+					<th>核心对象 / 范围</th>
+					<th>主要功能 (CRUD / 流程)</th>
+					<th>关键规则 / 约束</th>
+					<th>关键字段 / 记录</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>多租户</td>
+					<td>租户（企业）</td>
+					<td>管理多个租户</td>
+					<td>每个租户代表一个使用 SaaS 的企业</td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>人员与组织管理</td>
+					<td>部门、员工</td>
+					<td>部门：增删改查；员工：增删改查；员工分配部门</td>
+					<td>员工只能从属于一个部门</td>
+					<td>部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）</td>
+			</tr>
+			<tr>
+					<td>项目管理</td>
+					<td>客户、合同、项目</td>
+					<td>客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束</td>
+					<td>客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目</td>
+					<td>合同 / 项目开始时间、结束时间等</td>
+			</tr>
+			<tr>
+					<td>人员分配</td>
+					<td>项目成员关系</td>
+					<td>为项目分配人员；人员退出项目</td>
+					<td>项目可多人；员工可同时参与多个项目；需记录投入比例</td>
+					<td>投入百分比（人 - 项目）</td>
+			</tr>
+			<tr>
+					<td>工时登记</td>
+					<td>工时（周报 / 日记录）</td>
+					<td>员工每周填报工时；查询；修改；填写备注</td>
+					<td>仅当员工已分配到项目后，才可在该项目报工时</td>
+					<td>日期、项目、投入时长、备注</td>
+			</tr>
+	</tbody>
 </table>
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7"></p>
 <h2 id="03-事件风暴识别领域事件">03 事件风暴：识别领域事件</h2>
@@ -193,22 +193,22 @@
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/552968ac-8fdb-4929-aa7c-deb31693f9ea"></p>
 <h3 id="两类常见误判">两类常见误判</h3>
 <table>
-  <thead>
-      <tr>
-          <th>不是领域事件</th>
-          <th>为什么</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>技术事件</td>
-          <td>强调系统内部行为（如「缓存已刷新」），不属业务</td>
-      </tr>
-      <tr>
-          <td>查询行为</td>
-          <td>不改变业务状态</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>不是领域事件</th>
+					<th>为什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>技术事件</td>
+					<td>强调系统内部行为（如「缓存已刷新」），不属业务</td>
+			</tr>
+			<tr>
+					<td>查询行为</td>
+					<td>不改变业务状态</td>
+			</tr>
+	</tbody>
 </table>
 <p>判定标准——满足任一即可：</p>
 <ul>
@@ -236,50 +236,50 @@
 <p>反推链路：先有事件 → 问&quot;是谁做了什么才让它发生&quot;。</p>
 <p>每个命令还要捎带补两类上下文：</p>
 <table>
-  <thead>
-      <tr>
-          <th>上下文</th>
-          <th>问题</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>执行者</td>
-          <td>谁发起？用户、岗位、系统对象、还是权限角色</td>
-      </tr>
-      <tr>
-          <td>前置查询</td>
-          <td>执行前需要哪些数据用于校验 / 决策 / 填表</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>上下文</th>
+					<th>问题</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>执行者</td>
+					<td>谁发起？用户、岗位、系统对象、还是权限角色</td>
+			</tr>
+			<tr>
+					<td>前置查询</td>
+					<td>执行前需要哪些数据用于校验 / 决策 / 填表</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="领域名词从贴纸里提名词">领域名词：从贴纸里提名词</h3>
 <p>从命令、事件、执行者、查询数据中抽出名词性概念：</p>
 <table>
-  <thead>
-      <tr>
-          <th>来源</th>
-          <th>例子</th>
-          <th>提取的名词</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>命令</td>
-          <td>签订合同</td>
-          <td>合同</td>
-      </tr>
-      <tr>
-          <td>领域事件</td>
-          <td>合同已签订</td>
-          <td>合同</td>
-      </tr>
-      <tr>
-          <td>查询</td>
-          <td>查询客户经理</td>
-          <td>客户经理</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>来源</th>
+					<th>例子</th>
+					<th>提取的名词</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>命令</td>
+					<td>签订合同</td>
+					<td>合同</td>
+			</tr>
+			<tr>
+					<td>领域事件</td>
+					<td>合同已签订</td>
+					<td>合同</td>
+			</tr>
+			<tr>
+					<td>查询</td>
+					<td>查询客户经理</td>
+					<td>客户经理</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="领域规则要落表不能只在便利贴上">领域规则要落表，不能只在便利贴上</h3>
 <p>领域规则是核心资产，便利贴 / 白板照片有三宗罪：</p>
@@ -307,109 +307,109 @@
 </ul>
 <p>落地 DDD 的两件关键事：</p>
 <table>
-  <thead>
-      <tr>
-          <th>实践</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>补齐业务规则</td>
-          <td>让模型可执行，规则不被遗忘</td>
-      </tr>
-      <tr>
-          <td>建立词汇表</td>
-          <td>统一语言落地，团队认知一致</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>实践</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>补齐业务规则</td>
+					<td>让模型可执行，规则不被遗忘</td>
+			</tr>
+			<tr>
+					<td>建立词汇表</td>
+					<td>统一语言落地，团队认知一致</td>
+			</tr>
+	</tbody>
 </table>
 <p><img alt="Image" loading="lazy" src="https://github.com/user-attachments/assets/8f2c8f7f-115c-48e4-965a-2bf3cb044959"></p>
 <h2 id="07-领域建模原理">07 领域建模原理</h2>
 <p>DDD 的<strong>领域模型</strong>是对领域知识的<strong>提炼抽象</strong>，同时兼顾<strong>业务表达</strong>与<strong>技术落地</strong>。</p>
 <h3 id="模型驱动设计的三层一致性">模型驱动设计的三层一致性</h3>
 <table>
-  <thead>
-      <tr>
-          <th>一致性</th>
-          <th>意味着</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域模型 ↔ 业务需求</td>
-          <td>模型反映真实业务，业务方能看懂</td>
-      </tr>
-      <tr>
-          <td>系统实现 ↔ 领域模型</td>
-          <td>代码结构与模型同形</td>
-      </tr>
-      <tr>
-          <td>实现 ↔ 需求（由前两者推出）</td>
-          <td>自然落地，不偏航</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>一致性</th>
+					<th>意味着</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域模型 ↔ 业务需求</td>
+					<td>模型反映真实业务，业务方能看懂</td>
+			</tr>
+			<tr>
+					<td>系统实现 ↔ 领域模型</td>
+					<td>代码结构与模型同形</td>
+			</tr>
+			<tr>
+					<td>实现 ↔ 需求（由前两者推出）</td>
+					<td>自然落地，不偏航</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="统一语言的维护">统一语言的维护</h3>
 <p>统一语言以<strong>领域模型 + 词汇表</strong>为基础，靠<strong>持续协作</strong>维护三者的一致性：模型、语言、实现。任何一处变了，另两处必须跟着改。</p>
 <h2 id="08-数据库设计">08 数据库设计</h2>
 <h3 id="三范式3nf速查">三范式（3NF）速查</h3>
 <table>
-  <thead>
-      <tr>
-          <th>范式</th>
-          <th>一句话规则</th>
-          <th>反例</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1NF</td>
-          <td>字段必须原子，不可再分</td>
-          <td><code>phones = &quot;138xxxx, 139xxxx&quot;</code>，应拆成多行或多列</td>
-      </tr>
-      <tr>
-          <td>2NF</td>
-          <td>非主属性必须<strong>完全</strong>依赖整个主键</td>
-          <td>主键 <code>(订单ID, 商品ID)</code>，<code>订单日期</code> 只依赖 <code>订单ID</code>，应拆出订单表</td>
-      </tr>
-      <tr>
-          <td>3NF</td>
-          <td>非主属性不能传递依赖</td>
-          <td><code>员工ID → 部门ID → 部门名称</code>，应拆出部门表</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>范式</th>
+					<th>一句话规则</th>
+					<th>反例</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1NF</td>
+					<td>字段必须原子，不可再分</td>
+					<td><code>phones = &quot;138xxxx, 139xxxx&quot;</code>，应拆成多行或多列</td>
+			</tr>
+			<tr>
+					<td>2NF</td>
+					<td>非主属性必须<strong>完全</strong>依赖整个主键</td>
+					<td>主键 <code>(订单ID, 商品ID)</code>，<code>订单日期</code> 只依赖 <code>订单ID</code>，应拆出订单表</td>
+			</tr>
+			<tr>
+					<td>3NF</td>
+					<td>非主属性不能传递依赖</td>
+					<td><code>员工ID → 部门ID → 部门名称</code>，应拆出部门表</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="ddd-怎么指导数据库设计">DDD 怎么指导数据库设计</h3>
 <table>
-  <thead>
-      <tr>
-          <th>领域模型概念</th>
-          <th>数据库映射</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>实体</td>
-          <td>表</td>
-      </tr>
-      <tr>
-          <td>属性</td>
-          <td>字段（按需补充）</td>
-      </tr>
-      <tr>
-          <td>1:N 关联</td>
-          <td>外键（云上常用「虚拟外键」）</td>
-      </tr>
-      <tr>
-          <td>M:N 关联</td>
-          <td>关联表</td>
-      </tr>
-      <tr>
-          <td>统一语言</td>
-          <td>规范命名（表名 / 字段名）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>领域模型概念</th>
+					<th>数据库映射</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>实体</td>
+					<td>表</td>
+			</tr>
+			<tr>
+					<td>属性</td>
+					<td>字段（按需补充）</td>
+			</tr>
+			<tr>
+					<td>1:N 关联</td>
+					<td>外键（云上常用「虚拟外键」）</td>
+			</tr>
+			<tr>
+					<td>M:N 关联</td>
+					<td>关联表</td>
+			</tr>
+			<tr>
+					<td>统一语言</td>
+					<td>规范命名（表名 / 字段名）</td>
+			</tr>
+	</tbody>
 </table>
 <p>相较&quot;拍脑袋&quot;建模：</p>
 <ul>
@@ -421,54 +421,54 @@
 <p><strong>核心原则：不稳定的依赖稳定的。</strong> 越靠内层越稳定，越靠外层越易变。</p>
 <h3 id="各层职责">各层职责</h3>
 <table>
-  <thead>
-      <tr>
-          <th>层</th>
-          <th>职责</th>
-          <th>稳定度</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域层</td>
-          <td>封装领域数据与规则，是系统核心</td>
-          <td>最高</td>
-      </tr>
-      <tr>
-          <td>应用层</td>
-          <td>编排领域能力为粗粒度服务，处理事务、日志等横切关注点</td>
-          <td>高</td>
-      </tr>
-      <tr>
-          <td>适配器层</td>
-          <td>隔离外部交互（主动 / 被动），让内层与技术细节解耦</td>
-          <td>低</td>
-      </tr>
-      <tr>
-          <td>common 层</td>
-          <td>工具与框架支撑</td>
-          <td>—</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层</th>
+					<th>职责</th>
+					<th>稳定度</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域层</td>
+					<td>封装领域数据与规则，是系统核心</td>
+					<td>最高</td>
+			</tr>
+			<tr>
+					<td>应用层</td>
+					<td>编排领域能力为粗粒度服务，处理事务、日志等横切关注点</td>
+					<td>高</td>
+			</tr>
+			<tr>
+					<td>适配器层</td>
+					<td>隔离外部交互（主动 / 被动），让内层与技术细节解耦</td>
+					<td>低</td>
+			</tr>
+			<tr>
+					<td>common 层</td>
+					<td>工具与框架支撑</td>
+					<td>—</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="两组易混对子">两组易混对子</h3>
 <table>
-  <thead>
-      <tr>
-          <th>A vs B</th>
-          <th>区别</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>主动 vs 被动适配器</td>
-          <td>调用方向：前者<strong>接收</strong>外部请求；后者<strong>访问</strong>外部资源</td>
-      </tr>
-      <tr>
-          <td>Repository vs DAO</td>
-          <td>Repository 以<strong>聚合</strong>为单位（入门可按&quot;一个实体一个 Repo&quot;理解）；DAO 以<strong>表</strong>为单位</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>A vs B</th>
+					<th>区别</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>主动 vs 被动适配器</td>
+					<td>调用方向：前者<strong>接收</strong>外部请求；后者<strong>访问</strong>外部资源</td>
+			</tr>
+			<tr>
+					<td>Repository vs DAO</td>
+					<td>Repository 以<strong>聚合</strong>为单位（入门可按&quot;一个实体一个 Repo&quot;理解）；DAO 以<strong>表</strong>为单位</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="10-代码实现贫血还是充血">10 代码实现：贫血还是充血</h2>
 <p>贫血 / 充血的概念与对照已在 <a href="/2021/02/05/the-beauty-of-design-patterns/">设计模式之美 §11~§12</a> 详述。一句话回顾：贫血 = 数据 / 行为分离（偏面向过程）；充血 = 数据 + 行为聚合（贴近 OO）。企业实践常混用，不必非黑即白。</p>
@@ -480,25 +480,25 @@
 </ol>
 <h3 id="别把两种模型混为一谈">别把两种&quot;模型&quot;混为一谈</h3>
 <table>
-  <thead>
-      <tr>
-          <th>模型类型</th>
-          <th>受众</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域模型</td>
-          <td>业务 + 开发</td>
-          <td>表达业务概念、规则、关系</td>
-      </tr>
-      <tr>
-          <td>设计模型（UML 类图）</td>
-          <td>仅开发</td>
-          <td>表达工程内部结构、技术细节</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>模型类型</th>
+					<th>受众</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域模型</td>
+					<td>业务 + 开发</td>
+					<td>表达业务概念、规则、关系</td>
+			</tr>
+			<tr>
+					<td>设计模型（UML 类图）</td>
+					<td>仅开发</td>
+					<td>表达工程内部结构、技术细节</td>
+			</tr>
+	</tbody>
 </table>
 <p>跟领域专家讨论时聊领域模型；内部 review 时再上设计模型。</p>
 <h2 id="11-代码实现领域对象--领域逻辑">11 代码实现：领域对象 + 领域逻辑</h2>
@@ -513,25 +513,25 @@
 <h3 id="领域逻辑-vs-应用逻辑">领域逻辑 vs 应用逻辑</h3>
 <p>判据：<strong>是否包含领域专家关心的领域知识？</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>例子</th>
-          <th>该放哪</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域逻辑</td>
-          <td>&ldquo;工时累计超过 60 小时需审批&rdquo;</td>
-          <td>领域对象优先；不合适放对象则放领域服务</td>
-      </tr>
-      <tr>
-          <td>应用逻辑</td>
-          <td>接 HTTP、组合事务、发消息、写日志</td>
-          <td>应用层</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>例子</th>
+					<th>该放哪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域逻辑</td>
+					<td>&ldquo;工时累计超过 60 小时需审批&rdquo;</td>
+					<td>领域对象优先；不合适放对象则放领域服务</td>
+			</tr>
+			<tr>
+					<td>应用逻辑</td>
+					<td>接 HTTP、组合事务、发消息、写日志</td>
+					<td>应用层</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="复杂对象的创建">复杂对象的创建</h3>
 <ul>
@@ -540,25 +540,25 @@
 </ul>
 <h3 id="模块划分横切--纵切">模块划分：横切 + 纵切</h3>
 <table>
-  <thead>
-      <tr>
-          <th>切法</th>
-          <th>依据</th>
-          <th>例子</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>横切</td>
-          <td>按性质 / 层</td>
-          <td>controller / service / repository</td>
-      </tr>
-      <tr>
-          <td>纵切</td>
-          <td>按业务 / 耦合</td>
-          <td>order / payment / inventory</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>切法</th>
+					<th>依据</th>
+					<th>例子</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>横切</td>
+					<td>按性质 / 层</td>
+					<td>controller / service / repository</td>
+			</tr>
+			<tr>
+					<td>纵切</td>
+					<td>按业务 / 耦合</td>
+					<td>order / payment / inventory</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>先横后竖</strong>：先把分层架构搭起来，再按业务垂直切，避免一上来就过度模块化。</p>
 <p>&ndash; EOF &ndash;</p>
@@ -579,30 +579,30 @@
 &lt;h2 id=&#34;02-代码质量把-30-个形容词压成-2-个问题&#34;&gt;02 代码质量：把 30 个形容词压成 2 个问题&lt;/h2&gt;
 &lt;p&gt;书里列了 30 多个评价代码的英文词。它们都可以归到三层：&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;层面&lt;/th&gt;
-          &lt;th&gt;关心的问题&lt;/th&gt;
-          &lt;th&gt;代表属性&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;编码层&lt;/td&gt;
-          &lt;td&gt;当下能不能读懂&lt;/td&gt;
-          &lt;td&gt;readability、simplicity、clean&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;模块层&lt;/td&gt;
-          &lt;td&gt;改动能不能控制住&lt;/td&gt;
-          &lt;td&gt;maintainability、testability、reusability&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;系统层&lt;/td&gt;
-          &lt;td&gt;长期能不能演进&lt;/td&gt;
-          &lt;td&gt;extensibility、flexibility、scalability&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;层面&lt;/th&gt;
+					&lt;th&gt;关心的问题&lt;/th&gt;
+					&lt;th&gt;代表属性&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;编码层&lt;/td&gt;
+					&lt;td&gt;当下能不能读懂&lt;/td&gt;
+					&lt;td&gt;readability、simplicity、clean&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;模块层&lt;/td&gt;
+					&lt;td&gt;改动能不能控制住&lt;/td&gt;
+					&lt;td&gt;maintainability、testability、reusability&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;系统层&lt;/td&gt;
+					&lt;td&gt;长期能不能演进&lt;/td&gt;
+					&lt;td&gt;extensibility、flexibility、scalability&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;剥到最里面，只剩两个问题：&lt;/p&gt;
 &lt;ol&gt;
@@ -621,46 +621,46 @@
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;03-五件套面向对象--设计原则--设计模式--编程规范--代码重构&#34;&gt;03 五件套：面向对象 / 设计原则 / 设计模式 / 编程规范 / 代码重构&lt;/h2&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;工具&lt;/th&gt;
-          &lt;th&gt;解决什么&lt;/th&gt;
-          &lt;th&gt;抽象层次&lt;/th&gt;
-          &lt;th&gt;关键内容&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;面向对象&lt;/td&gt;
-          &lt;td&gt;复杂程序的组织方式&lt;/td&gt;
-          &lt;td&gt;最高&lt;/td&gt;
-          &lt;td&gt;封装、抽象、继承、多态（§04~§10）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;设计原则&lt;/td&gt;
-          &lt;td&gt;写代码时的判断依据&lt;/td&gt;
-          &lt;td&gt;高&lt;/td&gt;
-          &lt;td&gt;SOLID、DRY、KISS、YAGNI、LOD&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;设计模式&lt;/td&gt;
-          &lt;td&gt;反复出现的设计问题&lt;/td&gt;
-          &lt;td&gt;中&lt;/td&gt;
-          &lt;td&gt;23 种，分创建型 / 结构型 / 行为型&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;编程规范&lt;/td&gt;
-          &lt;td&gt;可读性&lt;/td&gt;
-          &lt;td&gt;低&lt;/td&gt;
-          &lt;td&gt;命名、注释、函数长度、模块划分&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;代码重构&lt;/td&gt;
-          &lt;td&gt;代码质量不下降的兜底&lt;/td&gt;
-          &lt;td&gt;低&lt;/td&gt;
-          &lt;td&gt;单元测试为前提，分大重构 / 小重构两种规模&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;工具&lt;/th&gt;
+					&lt;th&gt;解决什么&lt;/th&gt;
+					&lt;th&gt;抽象层次&lt;/th&gt;
+					&lt;th&gt;关键内容&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;面向对象&lt;/td&gt;
+					&lt;td&gt;复杂程序的组织方式&lt;/td&gt;
+					&lt;td&gt;最高&lt;/td&gt;
+					&lt;td&gt;封装、抽象、继承、多态（§04~§10）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;设计原则&lt;/td&gt;
+					&lt;td&gt;写代码时的判断依据&lt;/td&gt;
+					&lt;td&gt;高&lt;/td&gt;
+					&lt;td&gt;SOLID、DRY、KISS、YAGNI、LOD&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;设计模式&lt;/td&gt;
+					&lt;td&gt;反复出现的设计问题&lt;/td&gt;
+					&lt;td&gt;中&lt;/td&gt;
+					&lt;td&gt;23 种，分创建型 / 结构型 / 行为型&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;编程规范&lt;/td&gt;
+					&lt;td&gt;可读性&lt;/td&gt;
+					&lt;td&gt;低&lt;/td&gt;
+					&lt;td&gt;命名、注释、函数长度、模块划分&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;代码重构&lt;/td&gt;
+					&lt;td&gt;代码质量不下降的兜底&lt;/td&gt;
+					&lt;td&gt;低&lt;/td&gt;
+					&lt;td&gt;单元测试为前提，分大重构 / 小重构两种规模&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;依赖关系：&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="引言">引言</h2>
@@ -673,30 +673,30 @@
 <h2 id="02-代码质量把-30-个形容词压成-2-个问题">02 代码质量：把 30 个形容词压成 2 个问题</h2>
 <p>书里列了 30 多个评价代码的英文词。它们都可以归到三层：</p>
 <table>
-  <thead>
-      <tr>
-          <th>层面</th>
-          <th>关心的问题</th>
-          <th>代表属性</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>编码层</td>
-          <td>当下能不能读懂</td>
-          <td>readability、simplicity、clean</td>
-      </tr>
-      <tr>
-          <td>模块层</td>
-          <td>改动能不能控制住</td>
-          <td>maintainability、testability、reusability</td>
-      </tr>
-      <tr>
-          <td>系统层</td>
-          <td>长期能不能演进</td>
-          <td>extensibility、flexibility、scalability</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层面</th>
+					<th>关心的问题</th>
+					<th>代表属性</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>编码层</td>
+					<td>当下能不能读懂</td>
+					<td>readability、simplicity、clean</td>
+			</tr>
+			<tr>
+					<td>模块层</td>
+					<td>改动能不能控制住</td>
+					<td>maintainability、testability、reusability</td>
+			</tr>
+			<tr>
+					<td>系统层</td>
+					<td>长期能不能演进</td>
+					<td>extensibility、flexibility、scalability</td>
+			</tr>
+	</tbody>
 </table>
 <p>剥到最里面，只剩两个问题：</p>
 <ol>
@@ -715,46 +715,46 @@
 </blockquote>
 <h2 id="03-五件套面向对象--设计原则--设计模式--编程规范--代码重构">03 五件套：面向对象 / 设计原则 / 设计模式 / 编程规范 / 代码重构</h2>
 <table>
-  <thead>
-      <tr>
-          <th>工具</th>
-          <th>解决什么</th>
-          <th>抽象层次</th>
-          <th>关键内容</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>面向对象</td>
-          <td>复杂程序的组织方式</td>
-          <td>最高</td>
-          <td>封装、抽象、继承、多态（§04~§10）</td>
-      </tr>
-      <tr>
-          <td>设计原则</td>
-          <td>写代码时的判断依据</td>
-          <td>高</td>
-          <td>SOLID、DRY、KISS、YAGNI、LOD</td>
-      </tr>
-      <tr>
-          <td>设计模式</td>
-          <td>反复出现的设计问题</td>
-          <td>中</td>
-          <td>23 种，分创建型 / 结构型 / 行为型</td>
-      </tr>
-      <tr>
-          <td>编程规范</td>
-          <td>可读性</td>
-          <td>低</td>
-          <td>命名、注释、函数长度、模块划分</td>
-      </tr>
-      <tr>
-          <td>代码重构</td>
-          <td>代码质量不下降的兜底</td>
-          <td>低</td>
-          <td>单元测试为前提，分大重构 / 小重构两种规模</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>工具</th>
+					<th>解决什么</th>
+					<th>抽象层次</th>
+					<th>关键内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>面向对象</td>
+					<td>复杂程序的组织方式</td>
+					<td>最高</td>
+					<td>封装、抽象、继承、多态（§04~§10）</td>
+			</tr>
+			<tr>
+					<td>设计原则</td>
+					<td>写代码时的判断依据</td>
+					<td>高</td>
+					<td>SOLID、DRY、KISS、YAGNI、LOD</td>
+			</tr>
+			<tr>
+					<td>设计模式</td>
+					<td>反复出现的设计问题</td>
+					<td>中</td>
+					<td>23 种，分创建型 / 结构型 / 行为型</td>
+			</tr>
+			<tr>
+					<td>编程规范</td>
+					<td>可读性</td>
+					<td>低</td>
+					<td>命名、注释、函数长度、模块划分</td>
+			</tr>
+			<tr>
+					<td>代码重构</td>
+					<td>代码质量不下降的兜底</td>
+					<td>低</td>
+					<td>单元测试为前提，分大重构 / 小重构两种规模</td>
+			</tr>
+	</tbody>
 </table>
 <p>依赖关系：</p>
 <ul>
@@ -766,30 +766,30 @@
 </ul>
 <h3 id="23-种模式速查">23 种模式速查</h3>
 <table>
-  <thead>
-      <tr>
-          <th>分组</th>
-          <th>常用</th>
-          <th>不常用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>创建型</td>
-          <td>单例、工厂（方法 / 抽象）、建造者</td>
-          <td>原型</td>
-      </tr>
-      <tr>
-          <td>结构型</td>
-          <td>代理、桥接、装饰者、适配器</td>
-          <td>门面、组合、享元</td>
-      </tr>
-      <tr>
-          <td>行为型</td>
-          <td>观察者、模板、策略、职责链、迭代器、状态</td>
-          <td>访问者、备忘录、命令、解释器、中介</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>分组</th>
+					<th>常用</th>
+					<th>不常用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>创建型</td>
+					<td>单例、工厂（方法 / 抽象）、建造者</td>
+					<td>原型</td>
+			</tr>
+			<tr>
+					<td>结构型</td>
+					<td>代理、桥接、装饰者、适配器</td>
+					<td>门面、组合、享元</td>
+			</tr>
+			<tr>
+					<td>行为型</td>
+					<td>观察者、模板、策略、职责链、迭代器、状态</td>
+					<td>访问者、备忘录、命令、解释器、中介</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="一条纪律先别过度设计">一条纪律：先别过度设计</h3>
 <p>开发初期不预先套复杂模式，等代码痛了再针对性重构 —— 这是避免过度设计最简单的纪律。</p>
@@ -798,40 +798,40 @@
 <p>以类或对象作为代码的基本组织单元，封装、抽象、继承、多态四个特性是其基石。</p>
 <h2 id="05-面向对象四大特性">05 面向对象四大特性</h2>
 <table>
-  <thead>
-      <tr>
-          <th>特性</th>
-          <th>一句话定义</th>
-          <th>解决的问题</th>
-          <th>边界 / 易混</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>封装</td>
-          <td>通过暴露有限接口，限制外部对内部数据的访问</td>
-          <td>数据被随意改、易用性差</td>
-          <td>不是&quot;加 private 就叫封装&quot;，关键是接口收敛</td>
-      </tr>
-      <tr>
-          <td>抽象</td>
-          <td>隐藏实现，只暴露&quot;做什么&quot;</td>
-          <td>实现变更冲击调用方</td>
-          <td>任何函数都是抽象，无需面向对象语法</td>
-      </tr>
-      <tr>
-          <td>继承</td>
-          <td>用 is-a 关系复用父类成员</td>
-          <td>重复代码</td>
-          <td>层次 ≤ 2 层、关系稳定才用；否则上组合</td>
-      </tr>
-      <tr>
-          <td>多态</td>
-          <td>子类替换父类，运行时分派到具体实现</td>
-          <td>调用方与实现解耦</td>
-          <td>不与继承绑定，duck-typing / 接口也是多态</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>特性</th>
+					<th>一句话定义</th>
+					<th>解决的问题</th>
+					<th>边界 / 易混</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>封装</td>
+					<td>通过暴露有限接口，限制外部对内部数据的访问</td>
+					<td>数据被随意改、易用性差</td>
+					<td>不是&quot;加 private 就叫封装&quot;，关键是接口收敛</td>
+			</tr>
+			<tr>
+					<td>抽象</td>
+					<td>隐藏实现，只暴露&quot;做什么&quot;</td>
+					<td>实现变更冲击调用方</td>
+					<td>任何函数都是抽象，无需面向对象语法</td>
+			</tr>
+			<tr>
+					<td>继承</td>
+					<td>用 is-a 关系复用父类成员</td>
+					<td>重复代码</td>
+					<td>层次 ≤ 2 层、关系稳定才用；否则上组合</td>
+			</tr>
+			<tr>
+					<td>多态</td>
+					<td>子类替换父类，运行时分派到具体实现</td>
+					<td>调用方与实现解耦</td>
+					<td>不与继承绑定，duck-typing / 接口也是多态</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="封装">封装</h3>
 <p>接口收敛比加 <code>private</code> 更重要。下面两版都有 getter，封装强度差别巨大：</p>
@@ -872,58 +872,58 @@
 </span></span></code></pre></div><h3 id="多态">多态</h3>
 <p>PHP 实现多态的三种方式，本质都是&quot;调用方只认接口，不认实现&quot;：</p>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>例子</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>继承 + 重写</td>
-          <td><code>Animal::speak()</code> 被 <code>Dog::speak()</code> 覆盖</td>
-      </tr>
-      <tr>
-          <td>接口实现</td>
-          <td><code>PaymentGateway</code> 由 <code>Alipay</code> / <code>Wechat</code> 实现</td>
-      </tr>
-      <tr>
-          <td>duck-typing</td>
-          <td>PHP 弱类型场景下方法签名一致即可调用</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>例子</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>继承 + 重写</td>
+					<td><code>Animal::speak()</code> 被 <code>Dog::speak()</code> 覆盖</td>
+			</tr>
+			<tr>
+					<td>接口实现</td>
+					<td><code>PaymentGateway</code> 由 <code>Alipay</code> / <code>Wechat</code> 实现</td>
+			</tr>
+			<tr>
+					<td>duck-typing</td>
+					<td>PHP 弱类型场景下方法签名一致即可调用</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="06-面向对象-vs-面向过程">06 面向对象 vs 面向过程</h2>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>面向过程</th>
-          <th>面向对象</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>组织单元</td>
-          <td>过程（函数）</td>
-          <td>类 / 对象</td>
-      </tr>
-      <tr>
-          <td>数据与方法</td>
-          <td>分离</td>
-          <td>绑定</td>
-      </tr>
-      <tr>
-          <td>思维方向</td>
-          <td>自顶向下，按执行流程拆任务</td>
-          <td>自底向上，先建模块再编排流程</td>
-      </tr>
-      <tr>
-          <td>适用场景</td>
-          <td>微小程序、数据处理脚本、算法题</td>
-          <td>处理流程网状的大规模复杂业务程序</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>面向过程</th>
+					<th>面向对象</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>组织单元</td>
+					<td>过程（函数）</td>
+					<td>类 / 对象</td>
+			</tr>
+			<tr>
+					<td>数据与方法</td>
+					<td>分离</td>
+					<td>绑定</td>
+			</tr>
+			<tr>
+					<td>思维方向</td>
+					<td>自顶向下，按执行流程拆任务</td>
+					<td>自底向上，先建模块再编排流程</td>
+			</tr>
+			<tr>
+					<td>适用场景</td>
+					<td>微小程序、数据处理脚本、算法题</td>
+					<td>处理流程网状的大规模复杂业务程序</td>
+			</tr>
+	</tbody>
 </table>
 <p>不是谁取代谁，是<strong>规模和复杂度</strong>在决定 —— Laravel artisan 命令、一次性数据迁移脚本，写成过程式更省事；业务核心服务越往复杂处长，越需要 OO 把复杂度装进类的边界。</p>
 <h2 id="07-容易写出面向过程代码的三种坑">07 容易写出面向过程代码的三种坑</h2>
@@ -958,45 +958,45 @@
 </blockquote>
 <h2 id="08-抽象类-vs-接口">08 抽象类 vs 接口</h2>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>抽象类</th>
-          <th>接口</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>实例化</td>
-          <td>不能</td>
-          <td>不能</td>
-      </tr>
-      <tr>
-          <td>持有属性</td>
-          <td>可以</td>
-          <td>不可以</td>
-      </tr>
-      <tr>
-          <td>方法实现</td>
-          <td>可有可无（抽象方法 + 普通方法）</td>
-          <td>只能声明（PHP 8+ 默认方法除外）</td>
-      </tr>
-      <tr>
-          <td>表达关系</td>
-          <td>is-a</td>
-          <td>has-a / behaves-as</td>
-      </tr>
-      <tr>
-          <td>解决问题</td>
-          <td>代码复用</td>
-          <td>解耦、行为抽象</td>
-      </tr>
-      <tr>
-          <td>设计方向</td>
-          <td>自下而上（从重复中提父类）</td>
-          <td>自上而下（先定契约再写实现）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>抽象类</th>
+					<th>接口</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>实例化</td>
+					<td>不能</td>
+					<td>不能</td>
+			</tr>
+			<tr>
+					<td>持有属性</td>
+					<td>可以</td>
+					<td>不可以</td>
+			</tr>
+			<tr>
+					<td>方法实现</td>
+					<td>可有可无（抽象方法 + 普通方法）</td>
+					<td>只能声明（PHP 8+ 默认方法除外）</td>
+			</tr>
+			<tr>
+					<td>表达关系</td>
+					<td>is-a</td>
+					<td>has-a / behaves-as</td>
+			</tr>
+			<tr>
+					<td>解决问题</td>
+					<td>代码复用</td>
+					<td>解耦、行为抽象</td>
+			</tr>
+			<tr>
+					<td>设计方向</td>
+					<td>自下而上（从重复中提父类）</td>
+					<td>自上而下（先定契约再写实现）</td>
+			</tr>
+	</tbody>
 </table>
 <p>PHP 实践：能用接口就别用抽象类，Laravel <code>Contracts/*</code> 走的就是这个路线。需要复用一段实现时，优先考虑 trait + 接口的组合，而非加深继承层级。</p>
 <h2 id="09-基于接口而非实现编程">09 基于接口而非实现编程</h2>
@@ -1015,45 +1015,45 @@
 <p>代价是类和接口变多，复杂度从纵向（深继承）转到横向（多组合）。</p>
 <h3 id="何时选哪个">何时选哪个</h3>
 <table>
-  <thead>
-      <tr>
-          <th>场景</th>
-          <th>用继承</th>
-          <th>用组合</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>类关系稳定、层次浅（≤ 2 层）</td>
-          <td>✓</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>is-a 关系明确（Cat is Animal）</td>
-          <td>✓</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>需要复用&quot;能力&quot;而非&quot;身份&quot;</td>
-          <td></td>
-          <td>✓</td>
-      </tr>
-      <tr>
-          <td>行为可能在运行时切换</td>
-          <td></td>
-          <td>✓</td>
-      </tr>
-      <tr>
-          <td>子类只复用父类一部分方法</td>
-          <td></td>
-          <td>✓</td>
-      </tr>
-      <tr>
-          <td>框架强制（模板方法、Laravel 基类）</td>
-          <td>✓</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>场景</th>
+					<th>用继承</th>
+					<th>用组合</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>类关系稳定、层次浅（≤ 2 层）</td>
+					<td>✓</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>is-a 关系明确（Cat is Animal）</td>
+					<td>✓</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>需要复用&quot;能力&quot;而非&quot;身份&quot;</td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>行为可能在运行时切换</td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>子类只复用父类一部分方法</td>
+					<td></td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>框架强制（模板方法、Laravel 基类）</td>
+					<td>✓</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <p>特定模式固定一种选择：</p>
 <ul>
@@ -1064,35 +1064,35 @@
 <p><strong>领域驱动设计（DDD）</strong>：用领域对象而非过程化的 Service 组织业务，把规则放回对象内部。</p>
 <h3 id="两种模式对照">两种模式对照</h3>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>贫血模型（传统 Web）</th>
-          <th>充血模型（DDD）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>数据载体</td>
-          <td>BO / Entity 只有字段</td>
-          <td>Domain 类带行为 + 不变量</td>
-      </tr>
-      <tr>
-          <td>Service</td>
-          <td>重，业务逻辑全在 Service</td>
-          <td>轻，只做编排、跨模型聚合、外部协作</td>
-      </tr>
-      <tr>
-          <td>设计时机</td>
-          <td>边写边加方法到 Service</td>
-          <td>上手前先建模，确定领域对象暴露哪些操作</td>
-      </tr>
-      <tr>
-          <td>适用场景</td>
-          <td>CRUD 主导的简单业务</td>
-          <td>业务规则复杂、长期演进的核心系统</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>贫血模型（传统 Web）</th>
+					<th>充血模型（DDD）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>数据载体</td>
+					<td>BO / Entity 只有字段</td>
+					<td>Domain 类带行为 + 不变量</td>
+			</tr>
+			<tr>
+					<td>Service</td>
+					<td>重，业务逻辑全在 Service</td>
+					<td>轻，只做编排、跨模型聚合、外部协作</td>
+			</tr>
+			<tr>
+					<td>设计时机</td>
+					<td>边写边加方法到 Service</td>
+					<td>上手前先建模，确定领域对象暴露哪些操作</td>
+			</tr>
+			<tr>
+					<td>适用场景</td>
+					<td>CRUD 主导的简单业务</td>
+					<td>业务规则复杂、长期演进的核心系统</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="贫血流行的三条原因">贫血流行的三条原因</h3>
 <ol>
@@ -1154,59 +1154,59 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="service-为什么不会被完全替代">Service 为什么不会被完全替代</h3>
 <table>
-  <thead>
-      <tr>
-          <th>Service 职责</th>
-          <th>例子</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>与 Repository 打交道，做 DTO ↔ 领域转换</td>
-          <td><code>VirtualWallet::fromEntity()</code> + 调 <code>walletRepo-&gt;update()</code></td>
-      </tr>
-      <tr>
-          <td>跨领域模型的聚合</td>
-          <td>转账涉及两个钱包，单个 <code>VirtualWallet</code> 不该背这个流程</td>
-      </tr>
-      <tr>
-          <td>非功能性 / 外部协作</td>
-          <td>幂等、事务、邮件、消息、RPC</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Service 职责</th>
+					<th>例子</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>与 Repository 打交道，做 DTO ↔ 领域转换</td>
+					<td><code>VirtualWallet::fromEntity()</code> + 调 <code>walletRepo-&gt;update()</code></td>
+			</tr>
+			<tr>
+					<td>跨领域模型的聚合</td>
+					<td>转账涉及两个钱包，单个 <code>VirtualWallet</code> 不该背这个流程</td>
+			</tr>
+			<tr>
+					<td>非功能性 / 外部协作</td>
+					<td>幂等、事务、邮件、消息、RPC</td>
+			</tr>
+	</tbody>
 </table>
 <p>保持领域模型纯净（不依赖 Eloquent / Spring / 框架），让它可被复用、可被独立测试。</p>
 <h3 id="哪些层照旧贫血">哪些层照旧贫血</h3>
 <table>
-  <thead>
-      <tr>
-          <th>层</th>
-          <th>是否充血</th>
-          <th>原因</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Controller</td>
-          <td>否</td>
-          <td>VO 只是 DTO，业务逻辑薄</td>
-      </tr>
-      <tr>
-          <td>Service</td>
-          <td>轻</td>
-          <td>编排 + 跨聚合，业务下沉到 Domain</td>
-      </tr>
-      <tr>
-          <td>Domain</td>
-          <td><strong>充血核心</strong></td>
-          <td>不变量、状态机、领域规则在此</td>
-      </tr>
-      <tr>
-          <td>Repository</td>
-          <td>否</td>
-          <td>Entity 生命周期短，纯读写</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层</th>
+					<th>是否充血</th>
+					<th>原因</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Controller</td>
+					<td>否</td>
+					<td>VO 只是 DTO，业务逻辑薄</td>
+			</tr>
+			<tr>
+					<td>Service</td>
+					<td>轻</td>
+					<td>编排 + 跨聚合，业务下沉到 Domain</td>
+			</tr>
+			<tr>
+					<td>Domain</td>
+					<td><strong>充血核心</strong></td>
+					<td>不变量、状态机、领域规则在此</td>
+			</tr>
+			<tr>
+					<td>Repository</td>
+					<td>否</td>
+					<td>Entity 生命周期短，纯读写</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p>遗留问题：Entity ↔ Domain 的转换放在哪？工厂方法 / Assembler 类 / Repository 内部三选一，没有标准答案，团队约定即可。</p>
@@ -1215,30 +1215,30 @@
 <p>OOA → OOD → OOP 是面向对象开发的三段：分析需求 → 设计类与协作 → 编码。本节只走 OOA，让需求从模糊到可落地。</p>
 <h3 id="需求迭代三版">需求迭代三版</h3>
 <table>
-  <thead>
-      <tr>
-          <th>版本</th>
-          <th>方案</th>
-          <th>暴露的问题</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>v1</td>
-          <td>URL + AppID + 密码 拼接后加密 → token</td>
-          <td><strong>重放攻击</strong>：token 可被原样重发</td>
-      </tr>
-      <tr>
-          <td>v2</td>
-          <td>引入时间戳作为随机变量参与 token 生成</td>
-          <td>解决重放，但需服务端校验时间戳</td>
-      </tr>
-      <tr>
-          <td>v3</td>
-          <td>服务端校验时间戳是否落在窗口（如 1 分钟）</td>
-          <td>工程上可用</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>版本</th>
+					<th>方案</th>
+					<th>暴露的问题</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>v1</td>
+					<td>URL + AppID + 密码 拼接后加密 → token</td>
+					<td><strong>重放攻击</strong>：token 可被原样重发</td>
+			</tr>
+			<tr>
+					<td>v2</td>
+					<td>引入时间戳作为随机变量参与 token 生成</td>
+					<td>解决重放，但需服务端校验时间戳</td>
+			</tr>
+			<tr>
+					<td>v3</td>
+					<td>服务端校验时间戳是否落在窗口（如 1 分钟）</td>
+					<td>工程上可用</td>
+			</tr>
+	</tbody>
 </table>
 <p>v2 示意：</p>
 <p><img alt="image" loading="lazy" src="https://user-images.githubusercontent.com/9289792/107141538-3ca4a000-6964-11eb-903f-404295e31ebf.png"></p>
@@ -1258,30 +1258,30 @@
 </ol>
 <p>按职责聚合到 3 个类：</p>
 <table>
-  <thead>
-      <tr>
-          <th>类</th>
-          <th>负责的步骤</th>
-          <th>关心什么</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>AuthToken</code></td>
-          <td>1, 2, 6, 7</td>
-          <td>token 的生成与验证</td>
-      </tr>
-      <tr>
-          <td><code>Url</code></td>
-          <td>3, 4</td>
-          <td>URL 的拼接与解析</td>
-      </tr>
-      <tr>
-          <td><code>CredentialStorage</code></td>
-          <td>5</td>
-          <td>AppID / 密码的存取</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类</th>
+					<th>负责的步骤</th>
+					<th>关心什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>AuthToken</code></td>
+					<td>1, 2, 6, 7</td>
+					<td>token 的生成与验证</td>
+			</tr>
+			<tr>
+					<td><code>Url</code></td>
+					<td>3, 4</td>
+					<td>URL 的拼接与解析</td>
+			</tr>
+			<tr>
+					<td><code>CredentialStorage</code></td>
+					<td>5</td>
+					<td>AppID / 密码的存取</td>
+			</tr>
+	</tbody>
 </table>
 <p>一次&quot;以名词收敛行为&quot;的演练 —— 跟 §07 坑 2 的判据一致：能找到名词的就升级成对象。</p>
 <p>&ndash; EOF &ndash;</p>

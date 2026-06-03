@@ -266,38 +266,38 @@
 </span></span><span class="line"><span class="cl">客户端 · Mihomo / Surge / sing-box
 </span></span></code></pre></div><p>只有 subconverter 必须公网（客户端要拉订阅），其余关进 SSH 隧道：</p>
 <table>
-  <thead>
-      <tr>
-          <th>层</th>
-          <th>服务</th>
-          <th>容器端口</th>
-          <th>宿主机绑定</th>
-          <th>对外</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>2</td>
-          <td>sub-store</td>
-          <td>3001</td>
-          <td><code>127.0.0.1:3001</code></td>
-          <td>仅 SSH 隧道</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>subconverter</td>
-          <td>25500</td>
-          <td><code>127.0.0.1:25500</code></td>
-          <td><strong>公网域名 + Caddy</strong></td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>sub-web</td>
-          <td>80</td>
-          <td><code>127.0.0.1:25580</code></td>
-          <td>仅 SSH 隧道</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层</th>
+					<th>服务</th>
+					<th>容器端口</th>
+					<th>宿主机绑定</th>
+					<th>对外</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>2</td>
+					<td>sub-store</td>
+					<td>3001</td>
+					<td><code>127.0.0.1:3001</code></td>
+					<td>仅 SSH 隧道</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>subconverter</td>
+					<td>25500</td>
+					<td><code>127.0.0.1:25500</code></td>
+					<td><strong>公网域名 + Caddy</strong></td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>sub-web</td>
+					<td>80</td>
+					<td><code>127.0.0.1:25580</code></td>
+					<td>仅 SSH 隧道</td>
+			</tr>
+	</tbody>
 </table>
 <p>subconverter 公网入口叠两层防御：<strong>Caddy UA 白名单</strong>（藏 banner，挡裸扫描器）+ <strong><code>api_access_token</code></strong>（每条 URL 必带 token，真访问控制）。</p>
 <h2 id="前置准备">前置准备</h2>
@@ -360,7 +360,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">sherpa-net]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">logging</span><span class="p">:</span><span class="w"> </span><span class="cp">*log</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="c"># 显式 name,Caddy 子项目 external 引用;容器之间用服务名通信,不走宿主机 loopback</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c"># 显式 name,Caddy 子项目 external 引用;容器之间用服务名通信，不走宿主机 loopback</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">networks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sherpa-net</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l">bridge</span><span class="w">
@@ -470,67 +470,67 @@
 <p>两个抽象：<strong>订阅</strong>（单源）+ <strong>组合订阅</strong>（多源合并 + 节点操作流水线）。典型用法：每家机场 / 每条自建节点建一条单订阅 → 全部加进主组合 <code>all</code> → 客户端只订阅主组合。</p>
 <p>「组合订阅 → all」加节点操作流水线，顺序重要：</p>
 <table>
-  <thead>
-      <tr>
-          <th>#</th>
-          <th>操作</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>类型过滤</td>
-          <td>砍掉客户端不支持的协议</td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>正则过滤</td>
-          <td>关键字 <code>剩余|到期|官网|订阅|流量|套餐</code>，砍伪节点</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>倍率过滤（脚本）</td>
-          <td>砍倍率 ≥ 2 的高耗节点</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>正则改名</td>
-          <td><code>🇭🇰 香港 01</code> / <code>HK-01</code> / <code>Hong Kong-01</code> 统一格式</td>
-      </tr>
-      <tr>
-          <td>5</td>
-          <td>正则排序</td>
-          <td>按国家分组</td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>去重</td>
-          <td>按 <code>server + port + uuid</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>操作</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>类型过滤</td>
+					<td>砍掉客户端不支持的协议</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>正则过滤</td>
+					<td>关键字 <code>剩余|到期|官网|订阅|流量|套餐</code>，砍伪节点</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>倍率过滤（脚本）</td>
+					<td>砍倍率 ≥ 2 的高耗节点</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>正则改名</td>
+					<td><code>🇭🇰 香港 01</code> / <code>HK-01</code> / <code>Hong Kong-01</code> 统一格式</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>正则排序</td>
+					<td>按国家分组</td>
+			</tr>
+			<tr>
+					<td>6</td>
+					<td>去重</td>
+					<td>按 <code>server + port + uuid</code></td>
+			</tr>
+	</tbody>
 </table>
 <p><code>all</code> 最终拿到一个 URL，<strong>视场景换 host</strong>：</p>
 <table>
-  <thead>
-      <tr>
-          <th>视角</th>
-          <th>URL</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>容器内</td>
-          <td><code>http://sub-store:3001/api-xxx/download/collection/all?target=ClashMeta</code></td>
-          <td>✅ 填进 sub-web</td>
-      </tr>
-      <tr>
-          <td>隧道</td>
-          <td><code>http://localhost:3001/api-xxx/download/collection/all?target=ClashMeta</code></td>
-          <td>本地调试看节点</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>视角</th>
+					<th>URL</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>容器内</td>
+					<td><code>http://sub-store:3001/api-xxx/download/collection/all?target=ClashMeta</code></td>
+					<td>✅ 填进 sub-web</td>
+			</tr>
+			<tr>
+					<td>隧道</td>
+					<td><code>http://localhost:3001/api-xxx/download/collection/all?target=ClashMeta</code></td>
+					<td>本地调试看节点</td>
+			</tr>
+	</tbody>
 </table>
 <p>容器内用服务名 <code>sub-store</code>（同 <code>sherpa-net</code>，Docker DNS 解析）。这条 URL 会出现在客户端订阅链接的 <code>url=</code> 参数里，但 hostname <code>sub-store</code> 只在 docker 网络内可解析，公网拿到也访问不了。</p>
 <h2 id="第-3-层subconverter-串接">第 3 层：subconverter 串接</h2>
@@ -543,34 +543,34 @@
 </span></span><span class="line"><span class="cl">  &amp;emoji=true&amp;list=false&amp;udp=true
 </span></span></code></pre></div><p>手拼太累，用 sub-web GUI（<code>http://localhost:25580</code>）填表：</p>
 <table>
-  <thead>
-      <tr>
-          <th>字段</th>
-          <th>填法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>后端地址</td>
-          <td><code>https://sub.example.com</code></td>
-      </tr>
-      <tr>
-          <td>订阅链接</td>
-          <td><strong>容器内视角</strong> <code>http://sub-store:3001/api-xxx/download/collection/all</code></td>
-      </tr>
-      <tr>
-          <td>客户端</td>
-          <td><code>Clash</code></td>
-      </tr>
-      <tr>
-          <td>远程配置</td>
-          <td><a href="https://github.com/ACL4SSR/ACL4SSR">ACL4SSR</a> 模板（完整 / 精简 / 含广告拦截，按需选）</td>
-      </tr>
-      <tr>
-          <td>高级 → access_token</td>
-          <td><code>pref.toml</code> 里的那个</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>字段</th>
+					<th>填法</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>后端地址</td>
+					<td><code>https://sub.example.com</code></td>
+			</tr>
+			<tr>
+					<td>订阅链接</td>
+					<td><strong>容器内视角</strong> <code>http://sub-store:3001/api-xxx/download/collection/all</code></td>
+			</tr>
+			<tr>
+					<td>客户端</td>
+					<td><code>Clash</code></td>
+			</tr>
+			<tr>
+					<td>远程配置</td>
+					<td><a href="https://github.com/ACL4SSR/ACL4SSR">ACL4SSR</a> 模板（完整 / 精简 / 含广告拦截，按需选）</td>
+			</tr>
+			<tr>
+					<td>高级 → access_token</td>
+					<td><code>pref.toml</code> 里的那个</td>
+			</tr>
+	</tbody>
 </table>
 <p>远程 config 默认走 GitHub 原始链接，怕限流就 clone 到本地：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone --depth<span class="o">=</span><span class="m">1</span> https://github.com/ACL4SSR/ACL4SSR.git ~/sherpa/subconverter/rules/ACL4SSR
@@ -578,40 +578,40 @@
 </span></span></code></pre></div><h3 id="上下游联动">上下游联动</h3>
 <p>三层架构最舒服的地方：改一处不影响其他。</p>
 <table>
-  <thead>
-      <tr>
-          <th>想做</th>
-          <th>改哪层</th>
-          <th>客户端 URL</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>机场换链接</td>
-          <td>第 2 层单订阅</td>
-          <td>❌ 不变</td>
-      </tr>
-      <tr>
-          <td>加自建节点</td>
-          <td>第 2 层加单订阅 + 进组合</td>
-          <td>❌ 不变</td>
-      </tr>
-      <tr>
-          <td>砍某地区节点</td>
-          <td>第 2 层组合过滤规则</td>
-          <td>❌ 不变</td>
-      </tr>
-      <tr>
-          <td>换分流规则</td>
-          <td>第 3 层 <code>config</code> / <code>pref.toml</code></td>
-          <td>✅ 换新 URL</td>
-      </tr>
-      <tr>
-          <td>加 sing-box 客户端</td>
-          <td>第 3 层 <code>target=singbox</code></td>
-          <td>✅ 给 sing-box 新 URL</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>想做</th>
+					<th>改哪层</th>
+					<th>客户端 URL</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>机场换链接</td>
+					<td>第 2 层单订阅</td>
+					<td>❌ 不变</td>
+			</tr>
+			<tr>
+					<td>加自建节点</td>
+					<td>第 2 层加单订阅 + 进组合</td>
+					<td>❌ 不变</td>
+			</tr>
+			<tr>
+					<td>砍某地区节点</td>
+					<td>第 2 层组合过滤规则</td>
+					<td>❌ 不变</td>
+			</tr>
+			<tr>
+					<td>换分流规则</td>
+					<td>第 3 层 <code>config</code> / <code>pref.toml</code></td>
+					<td>✅ 换新 URL</td>
+			</tr>
+			<tr>
+					<td>加 sing-box 客户端</td>
+					<td>第 3 层 <code>target=singbox</code></td>
+					<td>✅ 给 sing-box 新 URL</td>
+			</tr>
+	</tbody>
 </table>
 <p>下一节的短链方案能把所有 ✅ 都变 ❌。</p>
 <h2 id="短链固定订阅-url">短链固定订阅 URL</h2>
@@ -619,26 +619,26 @@
 <p>套一层短链：客户端订阅短链，短链指真实 URL。改后端时只改短链目标，客户端无感。推荐 <a href="https://short.io/">short.io</a> —— 免费版支持自定义域名 + API，不挂广告中转页（bit.ly / tinyurl 免费版会跳广告，部分客户端识别为非订阅响应直接报错）。</p>
 <p>注册 → 加自己的域名 <code>s.example.com</code>（按界面提示加 CNAME）→ 每种格式 / 每个家人各建一条：</p>
 <table>
-  <thead>
-      <tr>
-          <th>短链</th>
-          <th>目标</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>s.example.com/clash</code></td>
-          <td>clash 格式</td>
-      </tr>
-      <tr>
-          <td><code>s.example.com/sing</code></td>
-          <td>sing-box 格式</td>
-      </tr>
-      <tr>
-          <td><code>s.example.com/mom</code></td>
-          <td>给妈用的（可叠 token / 限节点）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>短链</th>
+					<th>目标</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>s.example.com/clash</code></td>
+					<td>clash 格式</td>
+			</tr>
+			<tr>
+					<td><code>s.example.com/sing</code></td>
+					<td>sing-box 格式</td>
+			</tr>
+			<tr>
+					<td><code>s.example.com/mom</code></td>
+					<td>给妈用的（可叠 token / 限节点）</td>
+			</tr>
+	</tbody>
 </table>
 <p>注意：</p>
 <ul>
@@ -648,62 +648,62 @@
 </ul>
 <h2 id="客户端">客户端</h2>
 <table>
-  <thead>
-      <tr>
-          <th>平台</th>
-          <th>推荐</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>macOS / Linux</td>
-          <td><a href="https://github.com/mihomo-party-org/mihomo-party">Mihomo Party</a> · <a href="https://github.com/clash-verge-rev/clash-verge-rev">Clash Verge Rev</a> · <a href="https://nssurge.com/">Surge</a></td>
-      </tr>
-      <tr>
-          <td>iOS</td>
-          <td><a href="https://apps.apple.com/app/shadowrocket/id932747118">Shadowrocket</a> · <a href="https://apps.apple.com/app/stash/id1596063349">Stash</a></td>
-      </tr>
-      <tr>
-          <td>Android</td>
-          <td><a href="https://github.com/MetaCubeX/ClashMetaForAndroid">Clash Meta for Android</a></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>平台</th>
+					<th>推荐</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>macOS / Linux</td>
+					<td><a href="https://github.com/mihomo-party-org/mihomo-party">Mihomo Party</a> · <a href="https://github.com/clash-verge-rev/clash-verge-rev">Clash Verge Rev</a> · <a href="https://nssurge.com/">Surge</a></td>
+			</tr>
+			<tr>
+					<td>iOS</td>
+					<td><a href="https://apps.apple.com/app/shadowrocket/id932747118">Shadowrocket</a> · <a href="https://apps.apple.com/app/stash/id1596063349">Stash</a></td>
+			</tr>
+			<tr>
+					<td>Android</td>
+					<td><a href="https://github.com/MetaCubeX/ClashMetaForAndroid">Clash Meta for Android</a></td>
+			</tr>
+	</tbody>
 </table>
 <p>桌面优先 <a href="https://github.com/MetaCubeX/mihomo">Mihomo</a> 内核（规则兼容性最好）。<a href="https://github.com/SagerNet/sing-box">sing-box</a> 用 <code>target=singbox</code>，配置精简但规则生态没 Mihomo 完整。</p>
 <h2 id="节点诊断">节点诊断</h2>
 <table>
-  <thead>
-      <tr>
-          <th>工具</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><a href="https://www.whatismyip.com/">https://www.whatismyip.com/</a></td>
-          <td>出口 IP + ISP 归属</td>
-      </tr>
-      <tr>
-          <td><a href="https://ping.pe/8.8.8.8">https://ping.pe/8.8.8.8</a></td>
-          <td>全球多点 ping 延迟 / 丢包</td>
-      </tr>
-      <tr>
-          <td><a href="https://lg.dmit.sh/">https://lg.dmit.sh/</a></td>
-          <td>多家机房 Looking Glass，反测 VPS 网络质量</td>
-      </tr>
-      <tr>
-          <td><a href="https://apimobile.meituan.com/locate/v2/ip/loc?rgeo=true&amp;ip=8.8.8.8">https://apimobile.meituan.com/locate/v2/ip/loc?rgeo=true&ip=8.8.8.8</a></td>
-          <td>美团 IP 库定位，判断 IP 在国内 App 眼里属哪个城市</td>
-      </tr>
-      <tr>
-          <td><a href="https://apimobile.meituan.com/group/v1/city/latlng/21.7,110.9?tag=0">https://apimobile.meituan.com/group/v1/city/latlng/21.7,110.9?tag=0</a></td>
-          <td>经纬度反查城市，配合上一条交叉验证</td>
-      </tr>
-      <tr>
-          <td><a href="https://ip.skk.moe/">https://ip.skk.moe/</a></td>
-          <td>IP 信息 + 流媒体解锁 + IP 类型（家宽 / 机房 / 移动）一站式</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>工具</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><a href="https://www.whatismyip.com/">https://www.whatismyip.com/</a></td>
+					<td>出口 IP + ISP 归属</td>
+			</tr>
+			<tr>
+					<td><a href="https://ping.pe/8.8.8.8">https://ping.pe/8.8.8.8</a></td>
+					<td>全球多点 ping 延迟 / 丢包</td>
+			</tr>
+			<tr>
+					<td><a href="https://lg.dmit.sh/">https://lg.dmit.sh/</a></td>
+					<td>多家机房 Looking Glass，反测 VPS 网络质量</td>
+			</tr>
+			<tr>
+					<td><a href="https://apimobile.meituan.com/locate/v2/ip/loc?rgeo=true&amp;ip=8.8.8.8">https://apimobile.meituan.com/locate/v2/ip/loc?rgeo=true&ip=8.8.8.8</a></td>
+					<td>美团 IP 库定位，判断 IP 在国内 App 眼里属哪个城市</td>
+			</tr>
+			<tr>
+					<td><a href="https://apimobile.meituan.com/group/v1/city/latlng/21.7,110.9?tag=0">https://apimobile.meituan.com/group/v1/city/latlng/21.7,110.9?tag=0</a></td>
+					<td>经纬度反查城市，配合上一条交叉验证</td>
+			</tr>
+			<tr>
+					<td><a href="https://ip.skk.moe/">https://ip.skk.moe/</a></td>
+					<td>IP 信息 + 流媒体解锁 + IP 类型（家宽 / 机房 / 移动）一站式</td>
+			</tr>
+	</tbody>
 </table>
 <p>挑节点优先看「IP 类型 = 家宽 (Residential)」，机房 IP 越来越多被 Netflix / ChatGPT 风控。</p>
 <h2 id="维护">维护</h2>

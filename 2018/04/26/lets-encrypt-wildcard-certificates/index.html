@@ -18,30 +18,30 @@ Certbot 也能与任何兼容 ACME 的 CA 通信，不限于 Let&rsquo;s Encrypt
 
 ACME 挑战怎么选
 
-  
-      
-          挑战
-          适用场景
-          限制
-      
-  
-  
-      
-          HTTP-01
-          80 端口可达、单域名 / 多域名（最常用）
-          不能签 wildcard
-      
-      
-          DNS-01
-          任意域名 —— wildcard 唯一选项
-          需要 DNS provider API 或手动加 TXT
-      
-      
-          TLS-ALPN-01
-          443 可达但 80 被封，常用于反代后端
-          较少用，需要 ACME-aware 反代支持
-      
-  
+	
+			
+					挑战
+					适用场景
+					限制
+			
+	
+	
+			
+					HTTP-01
+					80 端口可达、单域名 / 多域名（最常用）
+					不能签 wildcard
+			
+			
+					DNS-01
+					任意域名 —— wildcard 唯一选项
+					需要 DNS provider API 或手动加 TXT
+			
+			
+					TLS-ALPN-01
+					443 可达但 80 被封，常用于反代后端
+					较少用，需要 ACME-aware 反代支持
+			
+	
 
 典型工作流程
 

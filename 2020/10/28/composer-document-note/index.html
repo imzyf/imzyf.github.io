@@ -13,35 +13,35 @@ phpunit.xml.dist export-ignore
 git archive HEAD --format zip -o preview.zip
 几个反直觉默认
 
-  
-      
-          Config
-          默认
-          坑
-      
-  
-  
-      
-          process-timeout
-          300s
-          装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout
-      
-      
-          platform-check
-          php-only
-          只查 PHP 版本，不查扩展。缺扩展要等运行时 Call to undefined function 才暴露
-      
-      
-          discard-changes
-          false
-          source 装的包本地有改动时 update 会卡 prompt；CI 设 true 或 stash
-      
-      
-          preferred-install
-          auto
-          可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist
-      
-  
+	
+			
+					Config
+					默认
+					坑
+			
+	
+	
+			
+					process-timeout
+					300s
+					装大包（satis 全量索引、monorepo）容易 5 分钟撞 timeout
+			
+			
+					platform-check
+					php-only
+					只查 PHP 版本，不查扩展。缺扩展要等运行时 Call to undefined function 才暴露
+			
+			
+					discard-changes
+					false
+					source 装的包本地有改动时 update 会卡 prompt；CI 设 true 或 stash
+			
+			
+					preferred-install
+					auto
+					可以 per-package 配，自家 fork 走 source 方便 patch，其余走 dist
+			
+	
 
 {
     "config": {

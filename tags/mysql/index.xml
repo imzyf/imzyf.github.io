@@ -20,40 +20,40 @@
 &lt;img alt=&#34;image&#34; src=&#34;https://user-images.githubusercontent.com/9289792/184530380-826038a0-335a-45f7-a56e-cff7b336b4a4.png&#34; style=&#34;width: 480px&#34; /&gt;
 &lt;p&gt;请求自上而下经过 Server 层 → Engine 层。Server 层承担连接、解析、优化、执行，所有引擎共享；Engine 层负责数据存取，可插拔。&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;组件&lt;/th&gt;
-          &lt;th&gt;职责&lt;/th&gt;
-          &lt;th&gt;备注&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;连接器&lt;/td&gt;
-          &lt;td&gt;建立 / 鉴权 / 维持连接&lt;/td&gt;
-          &lt;td&gt;长短连接由客户端控制，服务端 &lt;code&gt;wait_timeout&lt;/code&gt; 兜底&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;查询缓存&lt;/td&gt;
-          &lt;td&gt;命中即直接返回&lt;/td&gt;
-          &lt;td&gt;&lt;strong&gt;8.0 已移除&lt;/strong&gt;；表一更新整张缓存失效，不建议用&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;分析器&lt;/td&gt;
-          &lt;td&gt;词法 + 语法 + 预处理；列 / 表名校验在此发生&lt;/td&gt;
-          &lt;td&gt;报 &lt;code&gt;Unknown column &#39;k&#39; in &#39;field list&#39;&lt;/code&gt; 就在此&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;优化器&lt;/td&gt;
-          &lt;td&gt;选索引、决定 join 顺序&lt;/td&gt;
-          &lt;td&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;执行器&lt;/td&gt;
-          &lt;td&gt;鉴权后调引擎接口；返回结果集&lt;/td&gt;
-          &lt;td&gt;引擎扫描行数 ≠ &lt;code&gt;rows_examined&lt;/code&gt;（见 §05）&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;组件&lt;/th&gt;
+					&lt;th&gt;职责&lt;/th&gt;
+					&lt;th&gt;备注&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;连接器&lt;/td&gt;
+					&lt;td&gt;建立 / 鉴权 / 维持连接&lt;/td&gt;
+					&lt;td&gt;长短连接由客户端控制，服务端 &lt;code&gt;wait_timeout&lt;/code&gt; 兜底&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;查询缓存&lt;/td&gt;
+					&lt;td&gt;命中即直接返回&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;8.0 已移除&lt;/strong&gt;；表一更新整张缓存失效，不建议用&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;分析器&lt;/td&gt;
+					&lt;td&gt;词法 + 语法 + 预处理；列 / 表名校验在此发生&lt;/td&gt;
+					&lt;td&gt;报 &lt;code&gt;Unknown column &#39;k&#39; in &#39;field list&#39;&lt;/code&gt; 就在此&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;优化器&lt;/td&gt;
+					&lt;td&gt;选索引、决定 join 顺序&lt;/td&gt;
+					&lt;td&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;执行器&lt;/td&gt;
+					&lt;td&gt;鉴权后调引擎接口；返回结果集&lt;/td&gt;
+					&lt;td&gt;引擎扫描行数 ≠ &lt;code&gt;rows_examined&lt;/code&gt;（见 §05）&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;常用查询&#34;&gt;常用查询&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;SHOW&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PROCESSLIST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                       &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;-- 当前连接
@@ -68,40 +68,40 @@
 <img alt="image" src="https://user-images.githubusercontent.com/9289792/184530380-826038a0-335a-45f7-a56e-cff7b336b4a4.png" style="width: 480px" />
 <p>请求自上而下经过 Server 层 → Engine 层。Server 层承担连接、解析、优化、执行，所有引擎共享；Engine 层负责数据存取，可插拔。</p>
 <table>
-  <thead>
-      <tr>
-          <th>组件</th>
-          <th>职责</th>
-          <th>备注</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>连接器</td>
-          <td>建立 / 鉴权 / 维持连接</td>
-          <td>长短连接由客户端控制，服务端 <code>wait_timeout</code> 兜底</td>
-      </tr>
-      <tr>
-          <td>查询缓存</td>
-          <td>命中即直接返回</td>
-          <td><strong>8.0 已移除</strong>；表一更新整张缓存失效，不建议用</td>
-      </tr>
-      <tr>
-          <td>分析器</td>
-          <td>词法 + 语法 + 预处理；列 / 表名校验在此发生</td>
-          <td>报 <code>Unknown column 'k' in 'field list'</code> 就在此</td>
-      </tr>
-      <tr>
-          <td>优化器</td>
-          <td>选索引、决定 join 顺序</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td>执行器</td>
-          <td>鉴权后调引擎接口；返回结果集</td>
-          <td>引擎扫描行数 ≠ <code>rows_examined</code>（见 §05）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>组件</th>
+					<th>职责</th>
+					<th>备注</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>连接器</td>
+					<td>建立 / 鉴权 / 维持连接</td>
+					<td>长短连接由客户端控制，服务端 <code>wait_timeout</code> 兜底</td>
+			</tr>
+			<tr>
+					<td>查询缓存</td>
+					<td>命中即直接返回</td>
+					<td><strong>8.0 已移除</strong>；表一更新整张缓存失效，不建议用</td>
+			</tr>
+			<tr>
+					<td>分析器</td>
+					<td>词法 + 语法 + 预处理；列 / 表名校验在此发生</td>
+					<td>报 <code>Unknown column 'k' in 'field list'</code> 就在此</td>
+			</tr>
+			<tr>
+					<td>优化器</td>
+					<td>选索引、决定 join 顺序</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td>执行器</td>
+					<td>鉴权后调引擎接口；返回结果集</td>
+					<td>引擎扫描行数 ≠ <code>rows_examined</code>（见 §05）</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="常用查询">常用查询</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="n">PROCESSLIST</span><span class="p">;</span><span class="w">                       </span><span class="c1">-- 当前连接
@@ -117,73 +117,73 @@
 <p><strong>WAL（Write-Ahead Logging）</strong>：先写日志，再写磁盘。日志顺序写，数据随机写。</p>
 <h3 id="redo-log-vs-binlog">redo log vs binlog</h3>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>redo log</th>
-          <th>binlog</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>归属</td>
-          <td>InnoDB 引擎专属</td>
-          <td>Server 层，所有引擎共享</td>
-      </tr>
-      <tr>
-          <td>内容</td>
-          <td><strong>物理</strong>：哪个数据页做了什么修改</td>
-          <td><strong>逻辑</strong>：行变更的语义（语句 / 行格式）</td>
-      </tr>
-      <tr>
-          <td>写入方式</td>
-          <td>循环写，固定大小</td>
-          <td>追加写，写满切下一个</td>
-      </tr>
-      <tr>
-          <td>用途</td>
-          <td>事务、crash-safe</td>
-          <td>归档、主从同步、恢复</td>
-      </tr>
-      <tr>
-          <td>共享性</td>
-          <td>只有 InnoDB 自己用（私有物理格式）</td>
-          <td>其他数据库 / 引擎可消费（语义通用）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>redo log</th>
+					<th>binlog</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>归属</td>
+					<td>InnoDB 引擎专属</td>
+					<td>Server 层，所有引擎共享</td>
+			</tr>
+			<tr>
+					<td>内容</td>
+					<td><strong>物理</strong>：哪个数据页做了什么修改</td>
+					<td><strong>逻辑</strong>：行变更的语义（语句 / 行格式）</td>
+			</tr>
+			<tr>
+					<td>写入方式</td>
+					<td>循环写，固定大小</td>
+					<td>追加写，写满切下一个</td>
+			</tr>
+			<tr>
+					<td>用途</td>
+					<td>事务、crash-safe</td>
+					<td>归档、主从同步、恢复</td>
+			</tr>
+			<tr>
+					<td>共享性</td>
+					<td>只有 InnoDB 自己用（私有物理格式）</td>
+					<td>其他数据库 / 引擎可消费（语义通用）</td>
+			</tr>
+	</tbody>
 </table>
 <img alt="image" src="https://user-images.githubusercontent.com/9289792/184621469-ce7bea97-685a-421f-a582-0d571badc226.png" style="width: 480px" />
 <h3 id="两阶段提交">两阶段提交</h3>
 <p>binlog 写入夹在 redo log 的 <code>prepare → commit</code> 之间，使两个日志的提交状态保持一致。崩溃恢复决策：</p>
 <table>
-  <thead>
-      <tr>
-          <th>崩溃时机</th>
-          <th>redo log 状态</th>
-          <th>binlog 状态</th>
-          <th>恢复决策</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>binlog 写入前崩</td>
-          <td>prepare</td>
-          <td>未写</td>
-          <td>回滚</td>
-      </tr>
-      <tr>
-          <td>binlog 已写、commit 前崩</td>
-          <td>prepare</td>
-          <td>已写</td>
-          <td>提交</td>
-      </tr>
-      <tr>
-          <td>commit 之后崩</td>
-          <td>commit</td>
-          <td>已写</td>
-          <td>直接提交</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>崩溃时机</th>
+					<th>redo log 状态</th>
+					<th>binlog 状态</th>
+					<th>恢复决策</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>binlog 写入前崩</td>
+					<td>prepare</td>
+					<td>未写</td>
+					<td>回滚</td>
+			</tr>
+			<tr>
+					<td>binlog 已写、commit 前崩</td>
+					<td>prepare</td>
+					<td>已写</td>
+					<td>提交</td>
+			</tr>
+			<tr>
+					<td>commit 之后崩</td>
+					<td>commit</td>
+					<td>已写</td>
+					<td>直接提交</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="关键参数">关键参数</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="n">innodb_flush_log_at_trx_commit</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 1 推荐：每事务持久化 redo
@@ -201,30 +201,30 @@
 <h2 id="03--事务隔离为什么你改了我还看不见">03 | 事务隔离：为什么你改了我还看不见？</h2>
 <h3 id="三种读异常">三种读异常</h3>
 <table>
-  <thead>
-      <tr>
-          <th>异常</th>
-          <th>含义</th>
-          <th>出现于隔离级别</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>脏读</td>
-          <td>读到其他事务<strong>未提交</strong>的数据</td>
-          <td>READ UNCOMMITTED</td>
-      </tr>
-      <tr>
-          <td>不可重复读</td>
-          <td>同一记录前后读取内容不一致</td>
-          <td>READ UNCOMMITTED、READ COMMITTED</td>
-      </tr>
-      <tr>
-          <td>幻读</td>
-          <td>同一范围前后读取行数不一致</td>
-          <td>READ UNCOMMITTED、READ COMMITTED；InnoDB RR 因 MVCC 已避免</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>异常</th>
+					<th>含义</th>
+					<th>出现于隔离级别</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>脏读</td>
+					<td>读到其他事务<strong>未提交</strong>的数据</td>
+					<td>READ UNCOMMITTED</td>
+			</tr>
+			<tr>
+					<td>不可重复读</td>
+					<td>同一记录前后读取内容不一致</td>
+					<td>READ UNCOMMITTED、READ COMMITTED</td>
+			</tr>
+			<tr>
+					<td>幻读</td>
+					<td>同一范围前后读取行数不一致</td>
+					<td>READ UNCOMMITTED、READ COMMITTED；InnoDB RR 因 MVCC 已避免</td>
+			</tr>
+	</tbody>
 </table>
 <p>脏读示例：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- session1
@@ -258,35 +258,35 @@
 </span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w">    </span><span class="c1">-- 2 ← 幻读
 </span></span></span></code></pre></div><h3 id="四种隔离级别">四种隔离级别</h3>
 <table>
-  <thead>
-      <tr>
-          <th>级别</th>
-          <th>视图创建时机</th>
-          <th>阻挡的异常</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>READ UNCOMMITTED</td>
-          <td>无视图，直接读最新值</td>
-          <td>—</td>
-      </tr>
-      <tr>
-          <td>READ COMMITTED</td>
-          <td>每条 SQL 开始时</td>
-          <td>脏读</td>
-      </tr>
-      <tr>
-          <td>REPEATABLE READ</td>
-          <td>事务首条语句执行时</td>
-          <td>脏读 + 不可重复读（+ 幻读，仅 InnoDB）</td>
-      </tr>
-      <tr>
-          <td>SERIALIZABLE</td>
-          <td>加读 / 写锁强制串行</td>
-          <td>脏读 + 不可重复读 + 幻读</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>级别</th>
+					<th>视图创建时机</th>
+					<th>阻挡的异常</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>READ UNCOMMITTED</td>
+					<td>无视图，直接读最新值</td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>READ COMMITTED</td>
+					<td>每条 SQL 开始时</td>
+					<td>脏读</td>
+			</tr>
+			<tr>
+					<td>REPEATABLE READ</td>
+					<td>事务首条语句执行时</td>
+					<td>脏读 + 不可重复读（+ 幻读，仅 InnoDB）</td>
+			</tr>
+			<tr>
+					<td>SERIALIZABLE</td>
+					<td>加读 / 写锁强制串行</td>
+					<td>脏读 + 不可重复读 + 幻读</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p>RR 在标准 SQL 里无法避免幻读，但 InnoDB 在 RR 下叠加 <strong>MVCC + Next-Key Lock</strong> 后能避免（仅 snapshot read；<code>FOR UPDATE</code> 等当前读另议，见 §08）。</p>
@@ -315,65 +315,65 @@
 <h2 id="04--深入浅出索引上">04 | 深入浅出索引（上）</h2>
 <h3 id="索引数据结构对比">索引数据结构对比</h3>
 <table>
-  <thead>
-      <tr>
-          <th>结构</th>
-          <th>等值</th>
-          <th>范围</th>
-          <th>适用场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>哈希表</td>
-          <td>优</td>
-          <td>不支持</td>
-          <td>等值查询为主</td>
-      </tr>
-      <tr>
-          <td>有序数组</td>
-          <td>优</td>
-          <td>优</td>
-          <td><strong>静态数据</strong></td>
-      </tr>
-      <tr>
-          <td>平衡 BST</td>
-          <td>O(log N)</td>
-          <td>O(log N)</td>
-          <td>内存索引</td>
-      </tr>
-      <tr>
-          <td><strong>N 叉树（B+）</strong></td>
-          <td>高度低</td>
-          <td>高度低</td>
-          <td>InnoDB 磁盘索引</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>结构</th>
+					<th>等值</th>
+					<th>范围</th>
+					<th>适用场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>哈希表</td>
+					<td>优</td>
+					<td>不支持</td>
+					<td>等值查询为主</td>
+			</tr>
+			<tr>
+					<td>有序数组</td>
+					<td>优</td>
+					<td>优</td>
+					<td><strong>静态数据</strong></td>
+			</tr>
+			<tr>
+					<td>平衡 BST</td>
+					<td>O(log N)</td>
+					<td>O(log N)</td>
+					<td>内存索引</td>
+			</tr>
+			<tr>
+					<td><strong>N 叉树（B+）</strong></td>
+					<td>高度低</td>
+					<td>高度低</td>
+					<td>InnoDB 磁盘索引</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p>估算：InnoDB 一个 16KB 页放约 1170 个 <code>BIGINT</code> 索引项（16K / (8B 数据 + 6B 子树指针)）。N 叉 B+ 树深度极浅，3 层即覆盖十亿行级别。</p>
 </blockquote>
 <h3 id="主键索引-vs-二级索引">主键索引 vs 二级索引</h3>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>主键索引（聚簇 / clustered）</th>
-          <th>二级索引（secondary）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>叶子节点</td>
-          <td>整行数据</td>
-          <td>主键值</td>
-      </tr>
-      <tr>
-          <td>查询路径</td>
-          <td>一次定位</td>
-          <td>命中后 <strong>回表</strong> 到主键索引</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>主键索引（聚簇 / clustered）</th>
+					<th>二级索引（secondary）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>叶子节点</td>
+					<td>整行数据</td>
+					<td>主键值</td>
+			</tr>
+			<tr>
+					<td>查询路径</td>
+					<td>一次定位</td>
+					<td>命中后 <strong>回表</strong> 到主键索引</td>
+			</tr>
+	</tbody>
 </table>
 <p>覆盖索引可避免回表，见 §05。</p>
 <h3 id="自增主键的两条好处">自增主键的两条好处</h3>
@@ -402,22 +402,22 @@
 <p>联合索引 <code>(name, age)</code>：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tuser</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;张%&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">ismale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th>版本</th>
-          <th>行为</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>&lt; 5.6</td>
-          <td>仅用 <code>name</code> 定位前缀，符合 <code>张%</code> 的全部回表后再筛 <code>age</code></td>
-      </tr>
-      <tr>
-          <td>≥ 5.6 ICP</td>
-          <td>索引内部就判 <code>age = 10</code>，不满足直接跳过，<strong>减少回表次数</strong></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>版本</th>
+					<th>行为</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>&lt; 5.6</td>
+					<td>仅用 <code>name</code> 定位前缀，符合 <code>张%</code> 的全部回表后再筛 <code>age</code></td>
+			</tr>
+			<tr>
+					<td>≥ 5.6 ICP</td>
+					<td>索引内部就判 <code>age = 10</code>，不满足直接跳过，<strong>减少回表次数</strong></td>
+			</tr>
+	</tbody>
 </table>
 <img alt="image" src="https://user-images.githubusercontent.com/9289792/185831784-b6f62f71-a0f7-49c8-afe4-dda0f2dc335a.png" style="width: 420px" />
 <p>联合索引按列顺序排序：<code>(name, age)</code> 先按 <code>name</code>，再按 <code>age</code>。</p>
@@ -435,25 +435,25 @@
 <p>更优解：<code>mysqldump --single-transaction</code> 在 RR 下开事务，靠 MVCC 拿一致性视图，过程中可正常写。仍需 FTWRL 的场景：引擎不支持 RR（如 MyISAM）。</p>
 <h3 id="ftwrl-vs-set-global-readonlytrue">FTWRL vs <code>set global readonly=true</code></h3>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>FTWRL</th>
-          <th>readonly</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>副作用</td>
-          <td>仅设全局读锁</td>
-          <td>readonly 常被业务用作主备判断，影响面大</td>
-      </tr>
-      <tr>
-          <td>异常恢复</td>
-          <td>客户端断开 → 自动释放</td>
-          <td>客户端断开 → 长期 readonly，库不可写</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>FTWRL</th>
+					<th>readonly</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>副作用</td>
+					<td>仅设全局读锁</td>
+					<td>readonly 常被业务用作主备判断，影响面大</td>
+			</tr>
+			<tr>
+					<td>异常恢复</td>
+					<td>客户端断开 → 自动释放</td>
+					<td>客户端断开 → 长期 readonly，库不可写</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="表级锁两类">表级锁两类</h3>
 <h4 id="lock-tables"><code>LOCK TABLES</code></h4>
@@ -463,25 +463,25 @@
 </span></span></span><span class="line"><span class="cl"><span class="k">SHOW</span><span class="w"> </span><span class="k">OPEN</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">In_use</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><h4 id="mdlmetadata-lock-隐式">MDL（Metadata Lock）—— 隐式</h4>
 <table>
-  <thead>
-      <tr>
-          <th>操作</th>
-          <th>加锁</th>
-          <th>互斥关系</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>增删改查</td>
-          <td>MDL 读锁</td>
-          <td>读读不互斥</td>
-      </tr>
-      <tr>
-          <td>结构变更 DDL</td>
-          <td>MDL 写锁</td>
-          <td>读写、写写互斥（排他）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>操作</th>
+					<th>加锁</th>
+					<th>互斥关系</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>增删改查</td>
+					<td>MDL 读锁</td>
+					<td>读读不互斥</td>
+			</tr>
+			<tr>
+					<td>结构变更 DDL</td>
+					<td>MDL 写锁</td>
+					<td>读写、写写互斥（排他）</td>
+			</tr>
+	</tbody>
 </table>
 <p>事务中的 MDL 锁在 <strong>语句开始时申请</strong>、<strong>事务提交时才释放</strong>。</p>
 <h3 id="典型雪崩给小表加字段卡死全库">典型雪崩：给小表加字段卡死全库</h3>
@@ -510,35 +510,35 @@
 <h3 id="online-ddl-的-lock-选项">Online DDL 的 LOCK 选项</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">LOCK</span><span class="o">=</span><span class="k">EXCLUSIVE</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th>LOCK 选项</th>
-          <th>并发查询</th>
-          <th>并发 DML</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>NONE</td>
-          <td>✓</td>
-          <td>✓</td>
-      </tr>
-      <tr>
-          <td>SHARED</td>
-          <td>✓</td>
-          <td>✗</td>
-      </tr>
-      <tr>
-          <td>DEFAULT</td>
-          <td>尽量都允许</td>
-          <td>尽量都允许</td>
-      </tr>
-      <tr>
-          <td>EXCLUSIVE</td>
-          <td>✗</td>
-          <td>✗</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>LOCK 选项</th>
+					<th>并发查询</th>
+					<th>并发 DML</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>NONE</td>
+					<td>✓</td>
+					<td>✓</td>
+			</tr>
+			<tr>
+					<td>SHARED</td>
+					<td>✓</td>
+					<td>✗</td>
+			</tr>
+			<tr>
+					<td>DEFAULT</td>
+					<td>尽量都允许</td>
+					<td>尽量都允许</td>
+			</tr>
+			<tr>
+					<td>EXCLUSIVE</td>
+					<td>✗</td>
+					<td>✗</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="07--行锁功过怎么减少行锁对性能的影响">07 | 行锁功过：怎么减少行锁对性能的影响？</h2>
 <h3 id="两阶段锁协议">两阶段锁协议</h3>
@@ -546,30 +546,30 @@
 <p>由此导出一条工程规则：<strong>把最易冲突的锁放最后</strong>。</p>
 <p>例：转账 + 记日志（按 ③①② 顺序执行）</p>
 <table>
-  <thead>
-      <tr>
-          <th>顺序</th>
-          <th>步骤</th>
-          <th>冲突度</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>③ 先</td>
-          <td>记交易日志 INSERT</td>
-          <td>低</td>
-      </tr>
-      <tr>
-          <td>① 中</td>
-          <td>扣顾客 A 余额</td>
-          <td>中</td>
-      </tr>
-      <tr>
-          <td>② 后</td>
-          <td>加影院 B 余额</td>
-          <td><strong>高</strong>（很多人同时买）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>顺序</th>
+					<th>步骤</th>
+					<th>冲突度</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>③ 先</td>
+					<td>记交易日志 INSERT</td>
+					<td>低</td>
+			</tr>
+			<tr>
+					<td>① 中</td>
+					<td>扣顾客 A 余额</td>
+					<td>中</td>
+			</tr>
+			<tr>
+					<td>② 后</td>
+					<td>加影院 B 余额</td>
+					<td><strong>高</strong>（很多人同时买）</td>
+			</tr>
+	</tbody>
 </table>
 <p>把&quot;加影院余额&quot;放最后，热点行锁持有时间从整段事务缩到末尾一小段。</p>
 <h3 id="死锁与检测">死锁与检测</h3>
@@ -585,22 +585,22 @@
 </span></span></span></code></pre></div><p><code>BEGIN</code> 之后第一条对 InnoDB 表的操作才真正开启事务。</p>
 <h3 id="两个视图别混淆">两个&quot;视图&quot;别混淆</h3>
 <table>
-  <thead>
-      <tr>
-          <th>名称</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>view</td>
-          <td><code>CREATE VIEW</code> 定义的虚拟表，调用时执行查询语句</td>
-      </tr>
-      <tr>
-          <td>consistent read view</td>
-          <td>InnoDB MVCC 用的一致性读视图，支撑 RC / RR 隔离级别</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>名称</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>view</td>
+					<td><code>CREATE VIEW</code> 定义的虚拟表，调用时执行查询语句</td>
+			</tr>
+			<tr>
+					<td>consistent read view</td>
+					<td>InnoDB MVCC 用的一致性读视图，支撑 RC / RR 隔离级别</td>
+			</tr>
+	</tbody>
 </table>
 <p>RR 隔离级别下，事务启动时拍 <strong>整库</strong> 快照。</p>
 <h3 id="transaction-id">transaction id</h3>
@@ -806,66 +806,66 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;选型对照表&#34;&gt;选型对照表&lt;/h2&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;类型&lt;/th&gt;
-          &lt;th&gt;范围&lt;/th&gt;
-          &lt;th&gt;字节&lt;/th&gt;
-          &lt;th&gt;时区行为&lt;/th&gt;
-          &lt;th&gt;小数秒&lt;/th&gt;
-          &lt;th&gt;典型场景&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1000-01-01 00:00:00&lt;/code&gt; ~ &lt;code&gt;9999-12-31 23:59:59&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;5 + fsp&lt;/td&gt;
-          &lt;td&gt;字符串原样存取，&lt;strong&gt;不转换&lt;/strong&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;DATETIME(0~6)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;合同生效时点、用户填写的本地时间、历史事件&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1970-01-01 00:00:01 UTC&lt;/code&gt; ~ &lt;code&gt;2038-01-19 03:14:07 UTC&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;4 + fsp&lt;/td&gt;
-          &lt;td&gt;写入：会话时区 → UTC；读取：UTC → 会话时区&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;TIMESTAMP(0~6)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;created_at&lt;/code&gt; / &lt;code&gt;updated_at&lt;/code&gt;、日志、跨时区事件戳&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1000-01-01&lt;/code&gt; ~ &lt;code&gt;9999-12-31&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;3&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;生日、纪念日、报表日期&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;-838:59:59&lt;/code&gt; ~ &lt;code&gt;838:59:59&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;3 + fsp&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;TIME(0~6)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;营业时长、计时器&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;YEAR&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1901&lt;/code&gt; ~ &lt;code&gt;2155&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;罕用&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;INT64&lt;/td&gt;
-          &lt;td&gt;8&lt;/td&gt;
-          &lt;td&gt;应用层控制&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;JS 毫秒戳、Unix 微秒戳、跨语言互操作&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;范围&lt;/th&gt;
+					&lt;th&gt;字节&lt;/th&gt;
+					&lt;th&gt;时区行为&lt;/th&gt;
+					&lt;th&gt;小数秒&lt;/th&gt;
+					&lt;th&gt;典型场景&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1000-01-01 00:00:00&lt;/code&gt; ~ &lt;code&gt;9999-12-31 23:59:59&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;5 + fsp&lt;/td&gt;
+					&lt;td&gt;字符串原样存取，&lt;strong&gt;不转换&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;DATETIME(0~6)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;合同生效时点、用户填写的本地时间、历史事件&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1970-01-01 00:00:01 UTC&lt;/code&gt; ~ &lt;code&gt;2038-01-19 03:14:07 UTC&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;4 + fsp&lt;/td&gt;
+					&lt;td&gt;写入：会话时区 → UTC；读取：UTC → 会话时区&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;TIMESTAMP(0~6)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;created_at&lt;/code&gt; / &lt;code&gt;updated_at&lt;/code&gt;、日志、跨时区事件戳&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1000-01-01&lt;/code&gt; ~ &lt;code&gt;9999-12-31&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;3&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;生日、纪念日、报表日期&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;-838:59:59&lt;/code&gt; ~ &lt;code&gt;838:59:59&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;3 + fsp&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;TIME(0~6)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;营业时长、计时器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;YEAR&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1901&lt;/code&gt; ~ &lt;code&gt;2155&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;罕用&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;INT64&lt;/td&gt;
+					&lt;td&gt;8&lt;/td&gt;
+					&lt;td&gt;应用层控制&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;JS 毫秒戳、Unix 微秒戳、跨语言互操作&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;小数秒（fsp，fractional seconds precision）&lt;/strong&gt; 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 &lt;code&gt;DATETIME(6)&lt;/code&gt; / &lt;code&gt;TIMESTAMP(6)&lt;/code&gt;。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
@@ -880,66 +880,66 @@
 </ul>
 <h2 id="选型对照表">选型对照表</h2>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>范围</th>
-          <th>字节</th>
-          <th>时区行为</th>
-          <th>小数秒</th>
-          <th>典型场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>DATETIME</code></td>
-          <td><code>1000-01-01 00:00:00</code> ~ <code>9999-12-31 23:59:59</code></td>
-          <td>5 + fsp</td>
-          <td>字符串原样存取，<strong>不转换</strong></td>
-          <td><code>DATETIME(0~6)</code></td>
-          <td>合同生效时点、用户填写的本地时间、历史事件</td>
-      </tr>
-      <tr>
-          <td><code>TIMESTAMP</code></td>
-          <td><code>1970-01-01 00:00:01 UTC</code> ~ <code>2038-01-19 03:14:07 UTC</code></td>
-          <td>4 + fsp</td>
-          <td>写入：会话时区 → UTC；读取：UTC → 会话时区</td>
-          <td><code>TIMESTAMP(0~6)</code></td>
-          <td><code>created_at</code> / <code>updated_at</code>、日志、跨时区事件戳</td>
-      </tr>
-      <tr>
-          <td><code>DATE</code></td>
-          <td><code>1000-01-01</code> ~ <code>9999-12-31</code></td>
-          <td>3</td>
-          <td>—</td>
-          <td>—</td>
-          <td>生日、纪念日、报表日期</td>
-      </tr>
-      <tr>
-          <td><code>TIME</code></td>
-          <td><code>-838:59:59</code> ~ <code>838:59:59</code></td>
-          <td>3 + fsp</td>
-          <td>—</td>
-          <td><code>TIME(0~6)</code></td>
-          <td>营业时长、计时器</td>
-      </tr>
-      <tr>
-          <td><code>YEAR</code></td>
-          <td><code>1901</code> ~ <code>2155</code></td>
-          <td>1</td>
-          <td>—</td>
-          <td>—</td>
-          <td>罕用</td>
-      </tr>
-      <tr>
-          <td><code>BIGINT</code></td>
-          <td>INT64</td>
-          <td>8</td>
-          <td>应用层控制</td>
-          <td>—</td>
-          <td>JS 毫秒戳、Unix 微秒戳、跨语言互操作</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>范围</th>
+					<th>字节</th>
+					<th>时区行为</th>
+					<th>小数秒</th>
+					<th>典型场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DATETIME</code></td>
+					<td><code>1000-01-01 00:00:00</code> ~ <code>9999-12-31 23:59:59</code></td>
+					<td>5 + fsp</td>
+					<td>字符串原样存取，<strong>不转换</strong></td>
+					<td><code>DATETIME(0~6)</code></td>
+					<td>合同生效时点、用户填写的本地时间、历史事件</td>
+			</tr>
+			<tr>
+					<td><code>TIMESTAMP</code></td>
+					<td><code>1970-01-01 00:00:01 UTC</code> ~ <code>2038-01-19 03:14:07 UTC</code></td>
+					<td>4 + fsp</td>
+					<td>写入：会话时区 → UTC；读取：UTC → 会话时区</td>
+					<td><code>TIMESTAMP(0~6)</code></td>
+					<td><code>created_at</code> / <code>updated_at</code>、日志、跨时区事件戳</td>
+			</tr>
+			<tr>
+					<td><code>DATE</code></td>
+					<td><code>1000-01-01</code> ~ <code>9999-12-31</code></td>
+					<td>3</td>
+					<td>—</td>
+					<td>—</td>
+					<td>生日、纪念日、报表日期</td>
+			</tr>
+			<tr>
+					<td><code>TIME</code></td>
+					<td><code>-838:59:59</code> ~ <code>838:59:59</code></td>
+					<td>3 + fsp</td>
+					<td>—</td>
+					<td><code>TIME(0~6)</code></td>
+					<td>营业时长、计时器</td>
+			</tr>
+			<tr>
+					<td><code>YEAR</code></td>
+					<td><code>1901</code> ~ <code>2155</code></td>
+					<td>1</td>
+					<td>—</td>
+					<td>—</td>
+					<td>罕用</td>
+			</tr>
+			<tr>
+					<td><code>BIGINT</code></td>
+					<td>INT64</td>
+					<td>8</td>
+					<td>应用层控制</td>
+					<td>—</td>
+					<td>JS 毫秒戳、Unix 微秒戳、跨语言互操作</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>小数秒（fsp，fractional seconds precision）</strong> 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 <code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code>。</p>
 <p><strong>2038 注意</strong>：<code>TIMESTAMP</code> 已剩 12 年寿命。新表对长期存储字段倾向 <code>DATETIME(6)</code>；<code>created_at</code> 当前用 <code>TIMESTAMP</code> 仍可（届时官方会延或可迁移），但<strong>业务时间字段直接上 <code>DATETIME</code></strong> 更稳。</p>
@@ -959,25 +959,25 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">-- 每个连接还有一份 @@session.time_zone
 </span></span></span></code></pre></div><h3 id="核心规则">核心规则</h3>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>写入</th>
-          <th>读取</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>DATETIME</code></td>
-          <td>字符串原样落盘</td>
-          <td>字符串原样返回</td>
-      </tr>
-      <tr>
-          <td><code>TIMESTAMP</code></td>
-          <td>用<strong>会话时区</strong>解释字符串 → 转 UTC 落盘</td>
-          <td>UTC → <strong>会话时区</strong>字符串</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>写入</th>
+					<th>读取</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DATETIME</code></td>
+					<td>字符串原样落盘</td>
+					<td>字符串原样返回</td>
+			</tr>
+			<tr>
+					<td><code>TIMESTAMP</code></td>
+					<td>用<strong>会话时区</strong>解释字符串 → 转 UTC 落盘</td>
+					<td>UTC → <strong>会话时区</strong>字符串</td>
+			</tr>
+	</tbody>
 </table>
 <p>推论：</p>
 <ul>
@@ -1001,45 +1001,45 @@
 <h2 id="laravel-实战">Laravel 实战</h2>
 <h3 id="默认行为速查">默认行为速查</h3>
 <table>
-  <thead>
-      <tr>
-          <th>项</th>
-          <th>默认</th>
-          <th>位置</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>App 时区</td>
-          <td><code>UTC</code></td>
-          <td><code>config/app.php</code> → <code>timezone</code></td>
-      </tr>
-      <tr>
-          <td><code>timestamps()</code> 列</td>
-          <td><code>TIMESTAMP</code></td>
-          <td><code>Schema::create</code> → <code>$table-&gt;timestamps()</code></td>
-      </tr>
-      <tr>
-          <td><code>softDeletes()</code></td>
-          <td><code>TIMESTAMP</code></td>
-          <td><code>$table-&gt;softDeletes()</code></td>
-      </tr>
-      <tr>
-          <td>Eloquent date cast</td>
-          <td><code>Carbon</code> 实例</td>
-          <td><code>created_at</code> / <code>updated_at</code> 自动；其它字段在 <code>casts()</code> 显式</td>
-      </tr>
-      <tr>
-          <td>序列化精度（Laravel 11+）</td>
-          <td>微秒</td>
-          <td><code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code></td>
-      </tr>
-      <tr>
-          <td>序列化格式</td>
-          <td>UTC ISO-8601（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）</td>
-          <td>默认</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>项</th>
+					<th>默认</th>
+					<th>位置</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>App 时区</td>
+					<td><code>UTC</code></td>
+					<td><code>config/app.php</code> → <code>timezone</code></td>
+			</tr>
+			<tr>
+					<td><code>timestamps()</code> 列</td>
+					<td><code>TIMESTAMP</code></td>
+					<td><code>Schema::create</code> → <code>$table-&gt;timestamps()</code></td>
+			</tr>
+			<tr>
+					<td><code>softDeletes()</code></td>
+					<td><code>TIMESTAMP</code></td>
+					<td><code>$table-&gt;softDeletes()</code></td>
+			</tr>
+			<tr>
+					<td>Eloquent date cast</td>
+					<td><code>Carbon</code> 实例</td>
+					<td><code>created_at</code> / <code>updated_at</code> 自动；其它字段在 <code>casts()</code> 显式</td>
+			</tr>
+			<tr>
+					<td>序列化精度（Laravel 11+）</td>
+					<td>微秒</td>
+					<td><code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code></td>
+			</tr>
+			<tr>
+					<td>序列化格式</td>
+					<td>UTC ISO-8601（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）</td>
+					<td>默认</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="推荐做法全球化项目">推荐做法（全球化项目）</h3>
 <ol>
@@ -1112,26 +1112,26 @@
 &lt;h3 id=&#34;创建&#34;&gt;创建&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sql&#34; data-lang=&#34;sql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;CREATE&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;USER&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;username&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;host&amp;#39;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;IDENTIFIED&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;BY&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;password&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;字段&lt;/th&gt;
-          &lt;th&gt;含义&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;username&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;账号名&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;host&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;允许从哪个主机登陆。&lt;code&gt;localhost&lt;/code&gt; 仅本机；&lt;code&gt;%&lt;/code&gt; 任意远端；&lt;code&gt;192.168.1.%&lt;/code&gt; 限定网段&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;password&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;登陆密码，可省略（不建议）&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;字段&lt;/th&gt;
+					&lt;th&gt;含义&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;username&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;账号名&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;host&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;允许从哪个主机登陆。&lt;code&gt;localhost&lt;/code&gt; 仅本机；&lt;code&gt;%&lt;/code&gt; 任意远端；&lt;code&gt;192.168.1.%&lt;/code&gt; 限定网段&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;password&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;登陆密码，可省略（不建议）&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;8.0 的默认认证插件是 &lt;strong&gt;&lt;code&gt;caching_sha2_password&lt;/code&gt;&lt;/strong&gt;（5.7 是 &lt;code&gt;mysql_native_password&lt;/code&gt;）。绝大多数现代客户端已支持；但 PHP &lt;code&gt;mysqlnd&lt;/code&gt; &amp;lt; 7.2.8、部分老 ORM/客户端连不上时，单独为该账号回退插件：&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
@@ -1150,26 +1150,26 @@
 <h3 id="创建">创建</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;username&#39;</span><span class="o">@</span><span class="s1">&#39;host&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></div><table>
-  <thead>
-      <tr>
-          <th>字段</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>username</code></td>
-          <td>账号名</td>
-      </tr>
-      <tr>
-          <td><code>host</code></td>
-          <td>允许从哪个主机登陆。<code>localhost</code> 仅本机；<code>%</code> 任意远端；<code>192.168.1.%</code> 限定网段</td>
-      </tr>
-      <tr>
-          <td><code>password</code></td>
-          <td>登陆密码，可省略（不建议）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>字段</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>username</code></td>
+					<td>账号名</td>
+			</tr>
+			<tr>
+					<td><code>host</code></td>
+					<td>允许从哪个主机登陆。<code>localhost</code> 仅本机；<code>%</code> 任意远端；<code>192.168.1.%</code> 限定网段</td>
+			</tr>
+			<tr>
+					<td><code>password</code></td>
+					<td>登陆密码，可省略（不建议）</td>
+			</tr>
+	</tbody>
 </table>
 <p>8.0 的默认认证插件是 <strong><code>caching_sha2_password</code></strong>（5.7 是 <code>mysql_native_password</code>）。绝大多数现代客户端已支持；但 PHP <code>mysqlnd</code> &lt; 7.2.8、部分老 ORM/客户端连不上时，单独为该账号回退插件：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">mysql_native_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;pwd&#39;</span><span class="p">;</span><span class="w">
@@ -1208,40 +1208,40 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">[</span><span class="k">WITH</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="p">];</span><span class="w">
 </span></span></span></code></pre></div><p>按层级（<code>level</code>）从大到小：</p>
 <table>
-  <thead>
-      <tr>
-          <th>层级</th>
-          <th>写法</th>
-          <th>例子</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>全局</td>
-          <td><code>*.*</code></td>
-          <td><code>GRANT ALL PRIVILEGES ON *.* TO 'pig'@'%'</code></td>
-      </tr>
-      <tr>
-          <td>库</td>
-          <td><code>db.*</code></td>
-          <td><code>GRANT ALL ON my_db.* TO 'pig'@'%'</code></td>
-      </tr>
-      <tr>
-          <td>表</td>
-          <td><code>db.tbl</code></td>
-          <td><code>GRANT SELECT, INSERT ON test.user TO 'pig'@'%'</code></td>
-      </tr>
-      <tr>
-          <td>列</td>
-          <td><code>db.tbl</code> + 列名</td>
-          <td><code>GRANT SELECT (name, email) ON test.user TO 'pig'@'%'</code></td>
-      </tr>
-      <tr>
-          <td>存储例程</td>
-          <td><code>PROCEDURE db.x</code> / <code>FUNCTION db.x</code></td>
-          <td><code>GRANT EXECUTE ON PROCEDURE app.calc TO 'pig'@'%'</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层级</th>
+					<th>写法</th>
+					<th>例子</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>全局</td>
+					<td><code>*.*</code></td>
+					<td><code>GRANT ALL PRIVILEGES ON *.* TO 'pig'@'%'</code></td>
+			</tr>
+			<tr>
+					<td>库</td>
+					<td><code>db.*</code></td>
+					<td><code>GRANT ALL ON my_db.* TO 'pig'@'%'</code></td>
+			</tr>
+			<tr>
+					<td>表</td>
+					<td><code>db.tbl</code></td>
+					<td><code>GRANT SELECT, INSERT ON test.user TO 'pig'@'%'</code></td>
+			</tr>
+			<tr>
+					<td>列</td>
+					<td><code>db.tbl</code> + 列名</td>
+					<td><code>GRANT SELECT (name, email) ON test.user TO 'pig'@'%'</code></td>
+			</tr>
+			<tr>
+					<td>存储例程</td>
+					<td><code>PROCEDURE db.x</code> / <code>FUNCTION db.x</code></td>
+					<td><code>GRANT EXECUTE ON PROCEDURE app.calc TO 'pig'@'%'</code></td>
+			</tr>
+	</tbody>
 </table>
 <p><code>WITH GRANT OPTION</code> 允许被授权者把自己的权限再传给别人。</p>
 <h3 id="查看">查看</h3>
@@ -1256,32 +1256,32 @@
 </span></span></span><span class="line"><span class="cl"><span class="k">REVOKE</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">,</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="s1">&#39;pig&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 一把全收
 </span></span></span></code></pre></div><p><strong>核心规则：REVOKE 的层级必须与 GRANT 时完全一致。</strong> 表级授权只能用表级回收，库级只能用库级回收——彼此不能跨级抵消。</p>
 <table>
-  <thead>
-      <tr>
-          <th>当初 GRANT</th>
-          <th>用这条 REVOKE</th>
-          <th>结果</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>GRANT SELECT ON test.user TO 'pig'@'%'</code></td>
-          <td><code>REVOKE SELECT ON *.* FROM 'pig'@'%'</code></td>
-          <td>❌ 不生效</td>
-      </tr>
-      <tr>
-          <td><code>GRANT SELECT ON *.* TO 'pig'@'%'</code></td>
-          <td><code>REVOKE SELECT ON test.user FROM 'pig'@'%'</code></td>
-          <td>❌ 不生效</td>
-      </tr>
-      <tr>
-          <td><code>GRANT SELECT ON test.user TO 'pig'@'%'</code></td>
-          <td><code>REVOKE SELECT ON test.user FROM 'pig'@'%'</code></td>
-          <td>✅ 生效</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>当初 GRANT</th>
+					<th>用这条 REVOKE</th>
+					<th>结果</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>GRANT SELECT ON test.user TO 'pig'@'%'</code></td>
+					<td><code>REVOKE SELECT ON *.* FROM 'pig'@'%'</code></td>
+					<td>❌ 不生效</td>
+			</tr>
+			<tr>
+					<td><code>GRANT SELECT ON *.* TO 'pig'@'%'</code></td>
+					<td><code>REVOKE SELECT ON test.user FROM 'pig'@'%'</code></td>
+					<td>❌ 不生效</td>
+			</tr>
+			<tr>
+					<td><code>GRANT SELECT ON test.user TO 'pig'@'%'</code></td>
+					<td><code>REVOKE SELECT ON test.user FROM 'pig'@'%'</code></td>
+					<td>✅ 生效</td>
+			</tr>
+	</tbody>
 </table>
-<h3 id="flush-privileges">FLUSH PRIVILEGES？</h3>
+<h3 id="flush-privileges">FLUSH PRIVILEGES?</h3>
 <p><code>CREATE USER</code> / <code>GRANT</code> / <code>REVOKE</code> / <code>ALTER USER</code> / <code>DROP USER</code> 都会自动重载授权表，<strong>不需要</strong> <code>FLUSH PRIVILEGES</code>。只有当你绕过 DCL、直接 <code>INSERT/UPDATE/DELETE</code> <code>mysql.user</code> 等系统表时（强烈不推荐）才必须手动刷新。</p>
 <h2 id="角色">角色</h2>
 <p>角色（ROLE）是命名的一组权限。给一批用户授同样权限时，比一条条 GRANT 简洁得多——一改全改。</p>
@@ -1325,55 +1325,55 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">CURRENT_USER</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></div><p><code>user</code> / <code>host</code> 字段的匹配模式：</p>
 <table>
-  <thead>
-      <tr>
-          <th>HOST</th>
-          <th>User</th>
-          <th>匹配的连接</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>'thomas.loc.gov'</code></td>
-          <td><code>'fred'</code></td>
-          <td>fred，从 thomas.loc.gov</td>
-      </tr>
-      <tr>
-          <td><code>'thomas.loc.gov'</code></td>
-          <td><code>''</code></td>
-          <td>任何用户，从 thomas.loc.gov</td>
-      </tr>
-      <tr>
-          <td><code>'%'</code></td>
-          <td><code>'fred'</code></td>
-          <td>fred，任意主机</td>
-      </tr>
-      <tr>
-          <td><code>'%'</code></td>
-          <td><code>''</code></td>
-          <td>任何用户，任意主机</td>
-      </tr>
-      <tr>
-          <td><code>'%.loc.gov'</code></td>
-          <td><code>'fred'</code></td>
-          <td>fred，loc.gov 任意子域</td>
-      </tr>
-      <tr>
-          <td><code>'x.y.%'</code></td>
-          <td><code>'fred'</code></td>
-          <td>fred，<code>x.y.*</code> 主机</td>
-      </tr>
-      <tr>
-          <td><code>'144.155.166.177'</code></td>
-          <td><code>'fred'</code></td>
-          <td>fred，指定 IP</td>
-      </tr>
-      <tr>
-          <td><code>'144.155.166.%'</code></td>
-          <td><code>'fred'</code></td>
-          <td>fred，整个 C 类子网</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>HOST</th>
+					<th>User</th>
+					<th>匹配的连接</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>'thomas.loc.gov'</code></td>
+					<td><code>'fred'</code></td>
+					<td>fred，从 thomas.loc.gov</td>
+			</tr>
+			<tr>
+					<td><code>'thomas.loc.gov'</code></td>
+					<td><code>''</code></td>
+					<td>任何用户，从 thomas.loc.gov</td>
+			</tr>
+			<tr>
+					<td><code>'%'</code></td>
+					<td><code>'fred'</code></td>
+					<td>fred，任意主机</td>
+			</tr>
+			<tr>
+					<td><code>'%'</code></td>
+					<td><code>''</code></td>
+					<td>任何用户，任意主机</td>
+			</tr>
+			<tr>
+					<td><code>'%.loc.gov'</code></td>
+					<td><code>'fred'</code></td>
+					<td>fred，loc.gov 任意子域</td>
+			</tr>
+			<tr>
+					<td><code>'x.y.%'</code></td>
+					<td><code>'fred'</code></td>
+					<td>fred，<code>x.y.*</code> 主机</td>
+			</tr>
+			<tr>
+					<td><code>'144.155.166.177'</code></td>
+					<td><code>'fred'</code></td>
+					<td>fred，指定 IP</td>
+			</tr>
+			<tr>
+					<td><code>'144.155.166.%'</code></td>
+					<td><code>'fred'</code></td>
+					<td>fred，整个 C 类子网</td>
+			</tr>
+	</tbody>
 </table>
 <p>⚠️ <strong>IP 通配符仅对纯 IP 生效</strong>。MySQL 会拒绝匹配「以数字 + 点」起始的主机名——防止有人把主机命名成 <code>144.155.166.evil.com</code> 来骗过 <code>144.155.166.%</code> 规则。<code>1.2.foo.com</code> 这种主机名永远不会命中 host 列。</p>
 <h2 id="references">References</h2>

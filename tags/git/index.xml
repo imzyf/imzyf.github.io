@@ -20,40 +20,40 @@
 &lt;h2 id=&#34;远程协议与版本库&#34;&gt;远程协议与版本库&lt;/h2&gt;
 &lt;h3 id=&#34;协议选择&#34;&gt;协议选择&lt;/h3&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;协议&lt;/th&gt;
-          &lt;th&gt;用途&lt;/th&gt;
-          &lt;th&gt;现状&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;SSH&lt;/td&gt;
-          &lt;td&gt;推 + 拉，需公钥认证&lt;/td&gt;
-          &lt;td&gt;协作首选&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;HTTPS&lt;/td&gt;
-          &lt;td&gt;推 + 拉，凭证由 helper 缓存&lt;/td&gt;
-          &lt;td&gt;网络受限环境首选；个人项目常用&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;本地&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;file://&lt;/code&gt; 或裸路径&lt;/td&gt;
-          &lt;td&gt;备份 / 镜像&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;git://&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;只读匿名协议&lt;/td&gt;
-          &lt;td&gt;&lt;strong&gt;已弃用&lt;/strong&gt;，GitHub 2022 年关停&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;FTP / RSYNC&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;&lt;strong&gt;已弃用&lt;/strong&gt;，忘了它们&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;协议&lt;/th&gt;
+					&lt;th&gt;用途&lt;/th&gt;
+					&lt;th&gt;现状&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;SSH&lt;/td&gt;
+					&lt;td&gt;推 + 拉，需公钥认证&lt;/td&gt;
+					&lt;td&gt;协作首选&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;HTTPS&lt;/td&gt;
+					&lt;td&gt;推 + 拉，凭证由 helper 缓存&lt;/td&gt;
+					&lt;td&gt;网络受限环境首选；个人项目常用&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;本地&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;file://&lt;/code&gt; 或裸路径&lt;/td&gt;
+					&lt;td&gt;备份 / 镜像&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;git://&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;只读匿名协议&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;已弃用&lt;/strong&gt;，GitHub 2022 年关停&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;FTP / RSYNC&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;&lt;strong&gt;已弃用&lt;/strong&gt;，忘了它们&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh://&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;user@&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;example.com&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;:port&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;/path/to/repo.git
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;user@&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;example.com:path/to/repo.git          &lt;span class=&#34;c1&#34;&gt;# SSH 简写&lt;/span&gt;
@@ -78,40 +78,40 @@
 <h2 id="远程协议与版本库">远程协议与版本库</h2>
 <h3 id="协议选择">协议选择</h3>
 <table>
-  <thead>
-      <tr>
-          <th>协议</th>
-          <th>用途</th>
-          <th>现状</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>SSH</td>
-          <td>推 + 拉，需公钥认证</td>
-          <td>协作首选</td>
-      </tr>
-      <tr>
-          <td>HTTPS</td>
-          <td>推 + 拉，凭证由 helper 缓存</td>
-          <td>网络受限环境首选；个人项目常用</td>
-      </tr>
-      <tr>
-          <td>本地</td>
-          <td><code>file://</code> 或裸路径</td>
-          <td>备份 / 镜像</td>
-      </tr>
-      <tr>
-          <td><code>git://</code></td>
-          <td>只读匿名协议</td>
-          <td><strong>已弃用</strong>，GitHub 2022 年关停</td>
-      </tr>
-      <tr>
-          <td>FTP / RSYNC</td>
-          <td>—</td>
-          <td><strong>已弃用</strong>，忘了它们</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>协议</th>
+					<th>用途</th>
+					<th>现状</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>SSH</td>
+					<td>推 + 拉，需公钥认证</td>
+					<td>协作首选</td>
+			</tr>
+			<tr>
+					<td>HTTPS</td>
+					<td>推 + 拉，凭证由 helper 缓存</td>
+					<td>网络受限环境首选；个人项目常用</td>
+			</tr>
+			<tr>
+					<td>本地</td>
+					<td><code>file://</code> 或裸路径</td>
+					<td>备份 / 镜像</td>
+			</tr>
+			<tr>
+					<td><code>git://</code></td>
+					<td>只读匿名协议</td>
+					<td><strong>已弃用</strong>，GitHub 2022 年关停</td>
+			</tr>
+			<tr>
+					<td>FTP / RSYNC</td>
+					<td>—</td>
+					<td><strong>已弃用</strong>，忘了它们</td>
+			</tr>
+	</tbody>
 </table>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh://<span class="o">[</span>user@<span class="o">]</span>example.com<span class="o">[</span>:port<span class="o">]</span>/path/to/repo.git
 </span></span><span class="line"><span class="cl"><span class="o">[</span>user@<span class="o">]</span>example.com:path/to/repo.git          <span class="c1"># SSH 简写</span>
@@ -171,22 +171,22 @@
 </span></span></code></pre></div><h3 id="合并策略关键陷阱-x-ours-vs--s-ours">合并策略关键陷阱：<code>-X ours</code> vs <code>-s ours</code></h3>
 <p>写法相近，<strong>效果完全不同</strong>：</p>
 <table>
-  <thead>
-      <tr>
-          <th>命令</th>
-          <th>行为</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>git merge -X ours &lt;branch&gt;</code></td>
-          <td>recursive 策略 + ours 选项。<strong>只在冲突 hunk</strong> 上偏向本方，非冲突的对方改动正常合入</td>
-      </tr>
-      <tr>
-          <td><code>git merge -s ours &lt;branch&gt;</code></td>
-          <td>ours 策略。<strong>对方分支整个内容全部丢弃</strong>，只记录一笔合并提交</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th>行为</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>git merge -X ours &lt;branch&gt;</code></td>
+					<td>recursive 策略 + ours 选项。<strong>只在冲突 hunk</strong> 上偏向本方，非冲突的对方改动正常合入</td>
+			</tr>
+			<tr>
+					<td><code>git merge -s ours &lt;branch&gt;</code></td>
+					<td>ours 策略。<strong>对方分支整个内容全部丢弃</strong>，只记录一笔合并提交</td>
+			</tr>
+	</tbody>
 </table>
 <p>后者常用于&quot;我宣告这个分支已废弃但要在历史上标一笔&rdquo;。误用会神不知鬼不觉丢光对方所有改动。</p>
 <h3 id="合并方式fast-forward-还是-no-ff">合并方式：fast-forward 还是 no-ff</h3>
@@ -253,54 +253,54 @@
 </span></span></code></pre></div><p>每个 worktree 共享同一 <code>.git/objects</code>，但有独立工作区和独立 HEAD。Code review、跑长测试、临时改 hotfix 都不打断主工作区。</p>
 <h3 id="分支安全配置">分支安全配置</h3>
 <table>
-  <thead>
-      <tr>
-          <th>配置</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>core.logallrefupdates=true</code></td>
-          <td>给每条分支记 reflog（带工作区的库默认开；裸库默认关，建议手动打开）</td>
-      </tr>
-      <tr>
-          <td><code>receive.denyNonFastForwards=true</code></td>
-          <td>服务端拒绝非快进推送</td>
-      </tr>
-      <tr>
-          <td><code>receive.denyDeletes=true</code></td>
-          <td>服务端拒绝删除分支</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>配置</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>core.logallrefupdates=true</code></td>
+					<td>给每条分支记 reflog（带工作区的库默认开；裸库默认关，建议手动打开）</td>
+			</tr>
+			<tr>
+					<td><code>receive.denyNonFastForwards=true</code></td>
+					<td>服务端拒绝非快进推送</td>
+			</tr>
+			<tr>
+					<td><code>receive.denyDeletes=true</code></td>
+					<td>服务端拒绝删除分支</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="工作流模型">工作流模型</h2>
 <p>经典三种，选用按团队规模和发布节奏：</p>
 <table>
-  <thead>
-      <tr>
-          <th>模型</th>
-          <th>适用</th>
-          <th>关键约束</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><strong>Trunk-based</strong></td>
-          <td>持续部署、CI 强的小到中团队</td>
-          <td>所有人直推 <code>main</code>（或短命 feature 分支）+ feature flag</td>
-      </tr>
-      <tr>
-          <td><strong>GitHub Flow</strong></td>
-          <td>SaaS 持续交付，最常见</td>
-          <td><code>main</code> 永远可部署，feature 分支走 PR → 合并 → 部署</td>
-      </tr>
-      <tr>
-          <td><strong>GitFlow</strong></td>
-          <td>有明确版本发布周期的产品（客户端、SDK）</td>
-          <td><code>main</code> + <code>develop</code> + <code>release/*</code> + <code>hotfix/*</code>，重</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>模型</th>
+					<th>适用</th>
+					<th>关键约束</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Trunk-based</strong></td>
+					<td>持续部署、CI 强的小到中团队</td>
+					<td>所有人直推 <code>main</code>（或短命 feature 分支）+ feature flag</td>
+			</tr>
+			<tr>
+					<td><strong>GitHub Flow</strong></td>
+					<td>SaaS 持续交付，最常见</td>
+					<td><code>main</code> 永远可部署，feature 分支走 PR → 合并 → 部署</td>
+			</tr>
+			<tr>
+					<td><strong>GitFlow</strong></td>
+					<td>有明确版本发布周期的产品（客户端、SDK）</td>
+					<td><code>main</code> + <code>develop</code> + <code>release/*</code> + <code>hotfix/*</code>，重</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p>Topgit、卖主分支 (Vendor Branch) 是 2010 年前的产物，现代项目用包管理器（npm / composer / cargo）+ submodule / subtree 覆盖了这些场景，可忽略。</p>
@@ -308,45 +308,45 @@
 <h2 id="共用代码submodule-vs-subtree">共用代码：submodule vs subtree</h2>
 <p>两者解决同一问题（在一个仓库里嵌套引用另一个仓库），但取舍完全不同：</p>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>submodule</th>
-          <th>subtree</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>子项目代码物理位置</td>
-          <td>独立 <code>.git</code>，靠 commit 指针引用</td>
-          <td><strong>直接嵌入主仓库</strong></td>
-      </tr>
-      <tr>
-          <td>克隆体验</td>
-          <td>需要 <code>--recurse-submodules</code> 或 init</td>
-          <td>克隆主仓即拿全</td>
-      </tr>
-      <tr>
-          <td>主仓体积</td>
-          <td>小（只存指针）</td>
-          <td>大（含子项目历史）</td>
-      </tr>
-      <tr>
-          <td>协作者上手成本</td>
-          <td>高（需理解 submodule + detached HEAD）</td>
-          <td>低（看起来就是普通目录）</td>
-      </tr>
-      <tr>
-          <td>双向同步（向上游回推）</td>
-          <td>直接在子仓库 push 即可</td>
-          <td>麻烦（<code>git subtree push</code> 提取相关 commit）</td>
-      </tr>
-      <tr>
-          <td>适合</td>
-          <td>真正独立的依赖，少改</td>
-          <td>共享代码模板、内嵌工具脚本</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>submodule</th>
+					<th>subtree</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>子项目代码物理位置</td>
+					<td>独立 <code>.git</code>，靠 commit 指针引用</td>
+					<td><strong>直接嵌入主仓库</strong></td>
+			</tr>
+			<tr>
+					<td>克隆体验</td>
+					<td>需要 <code>--recurse-submodules</code> 或 init</td>
+					<td>克隆主仓即拿全</td>
+			</tr>
+			<tr>
+					<td>主仓体积</td>
+					<td>小（只存指针）</td>
+					<td>大（含子项目历史）</td>
+			</tr>
+			<tr>
+					<td>协作者上手成本</td>
+					<td>高（需理解 submodule + detached HEAD）</td>
+					<td>低（看起来就是普通目录）</td>
+			</tr>
+			<tr>
+					<td>双向同步（向上游回推）</td>
+					<td>直接在子仓库 push 即可</td>
+					<td>麻烦（<code>git subtree push</code> 提取相关 commit）</td>
+			</tr>
+			<tr>
+					<td>适合</td>
+					<td>真正独立的依赖，少改</td>
+					<td>共享代码模板、内嵌工具脚本</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="submodule-标准姿势">submodule 标准姿势</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git submodule add &lt;url&gt; &lt;path&gt;          <span class="c1"># 添加；生成 .gitmodules</span>
@@ -476,34 +476,34 @@
 </span></span><span class="line"><span class="cl">git rev-parse --show-toplevel    <span class="c1"># → /path/to/demo</span>
 </span></span></code></pre></div><h3 id="三层配置文件">三层配置文件</h3>
 <table>
-  <thead>
-      <tr>
-          <th>层级</th>
-          <th>路径</th>
-          <th>命令</th>
-          <th>优先级</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>仓库</td>
-          <td><code>&lt;repo&gt;/.git/config</code></td>
-          <td><code>git config -e</code></td>
-          <td>最高</td>
-      </tr>
-      <tr>
-          <td>全局</td>
-          <td><code>~/.gitconfig</code></td>
-          <td><code>git config -e --global</code></td>
-          <td>中</td>
-      </tr>
-      <tr>
-          <td>系统</td>
-          <td><code>/etc/gitconfig</code></td>
-          <td><code>git config -e --system</code></td>
-          <td>最低</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层级</th>
+					<th>路径</th>
+					<th>命令</th>
+					<th>优先级</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>仓库</td>
+					<td><code>&lt;repo&gt;/.git/config</code></td>
+					<td><code>git config -e</code></td>
+					<td>最高</td>
+			</tr>
+			<tr>
+					<td>全局</td>
+					<td><code>~/.gitconfig</code></td>
+					<td><code>git config -e --global</code></td>
+					<td>中</td>
+			</tr>
+			<tr>
+					<td>系统</td>
+					<td><code>/etc/gitconfig</code></td>
+					<td><code>git config -e --system</code></td>
+					<td>最低</td>
+			</tr>
+	</tbody>
 </table>
 <p>配置文件是 INI 格式，可读可写：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config core.bare              <span class="c1"># 读</span>
@@ -541,35 +541,35 @@
 <p><img alt="git stage" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202431-33a64480-8658-11ea-8771-07b2bf81f657.png"></p>
 <p>关键操作的边界：</p>
 <table>
-  <thead>
-      <tr>
-          <th>命令</th>
-          <th>暂存区</th>
-          <th>工作区</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>git reset HEAD</code></td>
-          <td>重置为 HEAD</td>
-          <td>不变</td>
-      </tr>
-      <tr>
-          <td><code>git rm --cached &lt;file&gt;</code></td>
-          <td>删除</td>
-          <td>不变</td>
-      </tr>
-      <tr>
-          <td><code>git checkout -- &lt;file&gt;</code></td>
-          <td>不变</td>
-          <td>用暂存区覆盖 ⚠</td>
-      </tr>
-      <tr>
-          <td><code>git checkout HEAD -- &lt;file&gt;</code></td>
-          <td>用 HEAD 覆盖</td>
-          <td>用 HEAD 覆盖 ⚠</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th>暂存区</th>
+					<th>工作区</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>git reset HEAD</code></td>
+					<td>重置为 HEAD</td>
+					<td>不变</td>
+			</tr>
+			<tr>
+					<td><code>git rm --cached &lt;file&gt;</code></td>
+					<td>删除</td>
+					<td>不变</td>
+			</tr>
+			<tr>
+					<td><code>git checkout -- &lt;file&gt;</code></td>
+					<td>不变</td>
+					<td>用暂存区覆盖 ⚠</td>
+			</tr>
+			<tr>
+					<td><code>git checkout HEAD -- &lt;file&gt;</code></td>
+					<td>用 HEAD 覆盖</td>
+					<td>用 HEAD 覆盖 ⚠</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p>Git 2.23+ 推荐 <code>git restore</code> / <code>git restore --staged</code> 替代 <code>checkout</code>，语义更清晰：<code>restore</code> 只动文件，<code>switch</code> 只切分支。</p>
@@ -625,50 +625,50 @@
 <h3 id="提交的引用语法">提交的引用语法</h3>
 <p>集中式系统能用递增编号，是因为只有一个写入点；Git 是分布式的，必须用全球可重现的对象 ID 寻址。</p>
 <table>
-  <thead>
-      <tr>
-          <th>写法</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>master</code> / <code>refs/heads/master</code></td>
-          <td>分支最新提交</td>
-      </tr>
-      <tr>
-          <td><code>HEAD</code></td>
-          <td>当前分支最新提交</td>
-      </tr>
-      <tr>
-          <td><code>HEAD^</code> / <code>HEAD~1</code></td>
-          <td>父提交</td>
-      </tr>
-      <tr>
-          <td><code>HEAD^^</code> / <code>HEAD~2</code></td>
-          <td>祖父提交</td>
-      </tr>
-      <tr>
-          <td><code>HEAD^2</code></td>
-          <td>第二个父提交（merge 才有）</td>
-      </tr>
-      <tr>
-          <td><code>a573106^{tree}</code></td>
-          <td>该提交对应的 tree</td>
-      </tr>
-      <tr>
-          <td><code>a573106:path/to/file</code></td>
-          <td>该提交里某个文件的 blob</td>
-      </tr>
-      <tr>
-          <td><code>:path/to/file</code></td>
-          <td>暂存区里的 blob</td>
-      </tr>
-      <tr>
-          <td><code>:/Commit A</code></td>
-          <td>在提交日志中搜索字串的提交</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>写法</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>master</code> / <code>refs/heads/master</code></td>
+					<td>分支最新提交</td>
+			</tr>
+			<tr>
+					<td><code>HEAD</code></td>
+					<td>当前分支最新提交</td>
+			</tr>
+			<tr>
+					<td><code>HEAD^</code> / <code>HEAD~1</code></td>
+					<td>父提交</td>
+			</tr>
+			<tr>
+					<td><code>HEAD^^</code> / <code>HEAD~2</code></td>
+					<td>祖父提交</td>
+			</tr>
+			<tr>
+					<td><code>HEAD^2</code></td>
+					<td>第二个父提交（merge 才有）</td>
+			</tr>
+			<tr>
+					<td><code>a573106^{tree}</code></td>
+					<td>该提交对应的 tree</td>
+			</tr>
+			<tr>
+					<td><code>a573106:path/to/file</code></td>
+					<td>该提交里某个文件的 blob</td>
+			</tr>
+			<tr>
+					<td><code>:path/to/file</code></td>
+					<td>暂存区里的 blob</td>
+			</tr>
+			<tr>
+					<td><code>:/Commit A</code></td>
+					<td>在提交日志中搜索字串的提交</td>
+			</tr>
+	</tbody>
 </table>
 <p>部分 SHA-1 前缀（不冲突即可）也能寻址：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git cat-file -p e695
@@ -684,34 +684,34 @@
 <h3 id="reset-的三个动作">reset 的三个动作</h3>
 <p><code>git reset [--soft|--mixed|--hard] [&lt;commit&gt;]</code> 内部按需执行三步，参数决定走到第几步（不带参数等价 <code>--mixed</code>）：</p>
 <table>
-  <thead>
-      <tr>
-          <th>参数</th>
-          <th style="text-align: center">① 移动引用</th>
-          <th style="text-align: center">② 重置暂存区</th>
-          <th style="text-align: center">③ 重置工作区</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>--soft</code></td>
-          <td style="text-align: center">✓</td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td><code>--mixed</code></td>
-          <td style="text-align: center">✓</td>
-          <td style="text-align: center">✓</td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td><code>--hard</code></td>
-          <td style="text-align: center">✓</td>
-          <td style="text-align: center">✓</td>
-          <td style="text-align: center">✓</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>参数</th>
+					<th style="text-align: center">① 移动引用</th>
+					<th style="text-align: center">② 重置暂存区</th>
+					<th style="text-align: center">③ 重置工作区</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>--soft</code></td>
+					<td style="text-align: center">✓</td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td><code>--mixed</code></td>
+					<td style="text-align: center">✓</td>
+					<td style="text-align: center">✓</td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td><code>--hard</code></td>
+					<td style="text-align: center">✓</td>
+					<td style="text-align: center">✓</td>
+					<td style="text-align: center">✓</td>
+			</tr>
+	</tbody>
 </table>
 <p><img alt="git reset" loading="lazy" src="https://user-images.githubusercontent.com/9289792/80202770-b5966d80-8658-11ea-92e4-c348b8f12313.png"></p>
 <p>常用配方：</p>
@@ -767,34 +767,34 @@
 <h2 id="文件操作">文件操作</h2>
 <h3 id="删除rm-vs-git-rm">删除：<code>rm</code> vs <code>git rm</code></h3>
 <table>
-  <thead>
-      <tr>
-          <th>命令</th>
-          <th style="text-align: center">工作区</th>
-          <th style="text-align: center">暂存区</th>
-          <th style="text-align: center">版本库（commit 后）</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>rm &lt;file&gt;</code></td>
-          <td style="text-align: center">删</td>
-          <td style="text-align: center">─</td>
-          <td style="text-align: center">─</td>
-      </tr>
-      <tr>
-          <td><code>git rm &lt;file&gt;</code></td>
-          <td style="text-align: center">删</td>
-          <td style="text-align: center">删</td>
-          <td style="text-align: center">下次删</td>
-      </tr>
-      <tr>
-          <td><code>git rm --cached &lt;file&gt;</code></td>
-          <td style="text-align: center">─</td>
-          <td style="text-align: center">删</td>
-          <td style="text-align: center">下次删</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th style="text-align: center">工作区</th>
+					<th style="text-align: center">暂存区</th>
+					<th style="text-align: center">版本库（commit 后）</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>rm &lt;file&gt;</code></td>
+					<td style="text-align: center">删</td>
+					<td style="text-align: center">─</td>
+					<td style="text-align: center">─</td>
+			</tr>
+			<tr>
+					<td><code>git rm &lt;file&gt;</code></td>
+					<td style="text-align: center">删</td>
+					<td style="text-align: center">删</td>
+					<td style="text-align: center">下次删</td>
+			</tr>
+			<tr>
+					<td><code>git rm --cached &lt;file&gt;</code></td>
+					<td style="text-align: center">─</td>
+					<td style="text-align: center">删</td>
+					<td style="text-align: center">下次删</td>
+			</tr>
+	</tbody>
 </table>
 <p><code>git add</code> 两个聚合参数的差别：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add -u                     <span class="c1"># 已跟踪文件的所有改动（含删除），不含新文件</span>
@@ -824,30 +824,30 @@ doc/*.txt      # doc/notes.txt 命中，doc/server/arch.txt 不命中
 </blockquote>
 <p>三种作用域，从私到公：</p>
 <table>
-  <thead>
-      <tr>
-          <th>作用域</th>
-          <th>路径</th>
-          <th>共享性</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>本仓库私有</td>
-          <td><code>.git/info/exclude</code></td>
-          <td>仅本机此仓库</td>
-      </tr>
-      <tr>
-          <td>全局私有</td>
-          <td><code>core.excludesfile</code> 指向的文件</td>
-          <td>仅本机所有仓库</td>
-      </tr>
-      <tr>
-          <td>项目共享</td>
-          <td>仓库内 <code>.gitignore</code></td>
-          <td>入库后所有协作者</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>作用域</th>
+					<th>路径</th>
+					<th>共享性</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>本仓库私有</td>
+					<td><code>.git/info/exclude</code></td>
+					<td>仅本机此仓库</td>
+			</tr>
+			<tr>
+					<td>全局私有</td>
+					<td><code>core.excludesfile</code> 指向的文件</td>
+					<td>仅本机所有仓库</td>
+			</tr>
+			<tr>
+					<td>项目共享</td>
+					<td>仓库内 <code>.gitignore</code></td>
+					<td>入库后所有协作者</td>
+			</tr>
+	</tbody>
 </table>
 <p>强制把被忽略的文件加入暂存：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add -f hello.h
@@ -878,50 +878,50 @@ doc/*.txt      # doc/notes.txt 命中，doc/server/arch.txt 不命中
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.glog <span class="s2">&#34;log --graph --oneline --decorate&#34;</span>
 </span></span></code></pre></div><h3 id="差异比较-git-diff">差异比较 git diff</h3>
 <table>
-  <thead>
-      <tr>
-          <th>命令</th>
-          <th>比较</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>git diff</code></td>
-          <td>工作区 vs 暂存区</td>
-      </tr>
-      <tr>
-          <td><code>git diff --cached</code></td>
-          <td>暂存区 vs HEAD</td>
-      </tr>
-      <tr>
-          <td><code>git diff HEAD</code></td>
-          <td>工作区 vs HEAD</td>
-      </tr>
-      <tr>
-          <td><code>git diff A</code></td>
-          <td>工作区 vs 提交 A</td>
-      </tr>
-      <tr>
-          <td><code>git diff --cached A</code></td>
-          <td>暂存区 vs 提交 A</td>
-      </tr>
-      <tr>
-          <td><code>git diff A B</code></td>
-          <td>提交 A vs 提交 B</td>
-      </tr>
-      <tr>
-          <td><code>git diff A B -- &lt;paths&gt;</code></td>
-          <td>指定路径下的差异</td>
-      </tr>
-      <tr>
-          <td><code>git diff &lt;path1&gt; &lt;path2&gt;</code></td>
-          <td>仓库外的两个文件</td>
-      </tr>
-      <tr>
-          <td><code>git diff --word-diff</code></td>
-          <td>逐词比较，非逐行</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th>比较</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>git diff</code></td>
+					<td>工作区 vs 暂存区</td>
+			</tr>
+			<tr>
+					<td><code>git diff --cached</code></td>
+					<td>暂存区 vs HEAD</td>
+			</tr>
+			<tr>
+					<td><code>git diff HEAD</code></td>
+					<td>工作区 vs HEAD</td>
+			</tr>
+			<tr>
+					<td><code>git diff A</code></td>
+					<td>工作区 vs 提交 A</td>
+			</tr>
+			<tr>
+					<td><code>git diff --cached A</code></td>
+					<td>暂存区 vs 提交 A</td>
+			</tr>
+			<tr>
+					<td><code>git diff A B</code></td>
+					<td>提交 A vs 提交 B</td>
+			</tr>
+			<tr>
+					<td><code>git diff A B -- &lt;paths&gt;</code></td>
+					<td>指定路径下的差异</td>
+			</tr>
+			<tr>
+					<td><code>git diff &lt;path1&gt; &lt;path2&gt;</code></td>
+					<td>仓库外的两个文件</td>
+			</tr>
+			<tr>
+					<td><code>git diff --word-diff</code></td>
+					<td>逐词比较，非逐行</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="文件追溯-git-blame">文件追溯 git blame</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git blame README                <span class="c1"># 每行首显示引入该行的 commit + author</span>
@@ -1072,34 +1072,34 @@ doc/*.txt      # doc/notes.txt 命中，doc/server/arch.txt 不命中
 </span></span></code></pre></div><h3 id="你们项目可能本来就是-no-ff">你们项目可能本来就是 no-ff</h3>
 <p>走 PR / MR 流程的团队，服务端的 merge 策略<strong>比本地 <code>merge.ff</code> 更优先</strong>。常见平台默认值：</p>
 <table>
-  <thead>
-      <tr>
-          <th>平台 / 选项</th>
-          <th>等价行为</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>GitLab Merge method = Merge commit（默认）</td>
-          <td><code>--no-ff</code></td>
-      </tr>
-      <tr>
-          <td>GitLab Merge method = Fast-forward merge</td>
-          <td>ff（要求先 rebase）</td>
-      </tr>
-      <tr>
-          <td>GitHub PR = Create a merge commit（默认）</td>
-          <td><code>--no-ff</code></td>
-      </tr>
-      <tr>
-          <td>GitHub PR = Rebase and merge</td>
-          <td>rebase + ff</td>
-      </tr>
-      <tr>
-          <td>GitHub / GitLab Squash</td>
-          <td>整 PR 压成 1 commit + ff</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>平台 / 选项</th>
+					<th>等价行为</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>GitLab Merge method = Merge commit（默认）</td>
+					<td><code>--no-ff</code></td>
+			</tr>
+			<tr>
+					<td>GitLab Merge method = Fast-forward merge</td>
+					<td>ff（要求先 rebase）</td>
+			</tr>
+			<tr>
+					<td>GitHub PR = Create a merge commit（默认）</td>
+					<td><code>--no-ff</code></td>
+			</tr>
+			<tr>
+					<td>GitHub PR = Rebase and merge</td>
+					<td>rebase + ff</td>
+			</tr>
+			<tr>
+					<td>GitHub / GitLab Squash</td>
+					<td>整 PR 压成 1 commit + ff</td>
+			</tr>
+	</tbody>
 </table>
 <p>判断你们用哪种：<code>git log --graph --oneline main</code> 看一眼。一堆 <code>Merge branch ...</code> 鼓包 = no-ff；纯一条直线 = ff（多半还 squash 了）。</p>
 <h3 id="合并前先-rebase让线图更干净">合并前先 rebase，让线图更干净</h3>
@@ -1124,40 +1124,40 @@ doc/*.txt      # doc/notes.txt 命中，doc/server/arch.txt 不命中
 <p><strong>结论</strong>：用 PR squash merge 的团队，本地策略可以放宽到只关心 <code>pull.rebase = true</code>；自托管直接 push 到主干的团队，<code>--no-ff</code> + <code>git rebase --rebase-merges</code> 的组合仍然是首选。</p>
 <h2 id="决策表">决策表</h2>
 <table>
-  <thead>
-      <tr>
-          <th>场景</th>
-          <th>命令</th>
-          <th>目的</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>日常 pull</td>
-          <td><code>git pull --rebase</code></td>
-          <td>抹平无意义分叉</td>
-      </tr>
-      <tr>
-          <td>合入 feature 分支</td>
-          <td><code>git merge --no-ff feature</code></td>
-          <td>保留语义鼓包</td>
-      </tr>
-      <tr>
-          <td>合并前同步基</td>
-          <td><code>git rebase origin/dev</code></td>
-          <td>让鼓包紧凑</td>
-      </tr>
-      <tr>
-          <td>rebase 含 merge 的历史</td>
-          <td><code>git rebase --rebase-merges</code></td>
-          <td>保留已有鼓包</td>
-      </tr>
-      <tr>
-          <td>团队走 PR squash</td>
-          <td>只配 <code>pull.rebase=true</code></td>
-          <td>平台已处理线图</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>场景</th>
+					<th>命令</th>
+					<th>目的</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>日常 pull</td>
+					<td><code>git pull --rebase</code></td>
+					<td>抹平无意义分叉</td>
+			</tr>
+			<tr>
+					<td>合入 feature 分支</td>
+					<td><code>git merge --no-ff feature</code></td>
+					<td>保留语义鼓包</td>
+			</tr>
+			<tr>
+					<td>合并前同步基</td>
+					<td><code>git rebase origin/dev</code></td>
+					<td>让鼓包紧凑</td>
+			</tr>
+			<tr>
+					<td>rebase 含 merge 的历史</td>
+					<td><code>git rebase --rebase-merges</code></td>
+					<td>保留已有鼓包</td>
+			</tr>
+			<tr>
+					<td>团队走 PR squash</td>
+					<td>只配 <code>pull.rebase=true</code></td>
+					<td>平台已处理线图</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="references">References</h2>
 <ul>
@@ -1216,42 +1216,42 @@ doc/*.txt      # doc/notes.txt 命中，doc/server/arch.txt 不命中
 </span></span><span class="line"><span class="cl">git rebase -i --root        <span class="c1"># 改到根提交（含第一次 commit）</span>
 </span></span></code></pre></div><p>打开的 todo 列表里，<strong>最早的提交在最上面</strong>（和 <code>git log</code> 相反），改第一列动词即可：</p>
 <table>
-  <thead>
-      <tr>
-          <th>命令</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>pick</code> (<code>p</code>)</td>
-          <td>保留</td>
-      </tr>
-      <tr>
-          <td><code>reword</code> (<code>r</code>)</td>
-          <td>保留 commit，只改说明</td>
-      </tr>
-      <tr>
-          <td><code>edit</code> (<code>e</code>)</td>
-          <td>停在这里，让你 amend 或拆分</td>
-      </tr>
-      <tr>
-          <td><code>squash</code> (<code>s</code>)</td>
-          <td>并入上一行，合并 message</td>
-      </tr>
-      <tr>
-          <td><code>fixup</code> (<code>f</code>)</td>
-          <td>并入上一行，丢弃本条 message</td>
-      </tr>
-      <tr>
-          <td><code>drop</code> (<code>d</code>)</td>
-          <td>删除（直接删行也行）</td>
-      </tr>
-      <tr>
-          <td><code>exec</code> (<code>x</code>)</td>
-          <td>在该提交点执行 shell</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>命令</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>pick</code> (<code>p</code>)</td>
+					<td>保留</td>
+			</tr>
+			<tr>
+					<td><code>reword</code> (<code>r</code>)</td>
+					<td>保留 commit，只改说明</td>
+			</tr>
+			<tr>
+					<td><code>edit</code> (<code>e</code>)</td>
+					<td>停在这里，让你 amend 或拆分</td>
+			</tr>
+			<tr>
+					<td><code>squash</code> (<code>s</code>)</td>
+					<td>并入上一行，合并 message</td>
+			</tr>
+			<tr>
+					<td><code>fixup</code> (<code>f</code>)</td>
+					<td>并入上一行，丢弃本条 message</td>
+			</tr>
+			<tr>
+					<td><code>drop</code> (<code>d</code>)</td>
+					<td>删除（直接删行也行）</td>
+			</tr>
+			<tr>
+					<td><code>exec</code> (<code>x</code>)</td>
+					<td>在该提交点执行 shell</td>
+			</tr>
+	</tbody>
 </table>
 <p>调整顺序：直接挪行。</p>
 <h3 id="拆分一个提交">拆分一个提交</h3>
@@ -1300,40 +1300,40 @@ doc/*.txt      # doc/notes.txt 命中，doc/server/arch.txt 不命中
 </blockquote>
 <h4 id="两者对比">两者对比</h4>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>用法 1：mailmap</th>
-          <th>用法 2：filter-repo</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>改的是</td>
-          <td><strong>显示</strong>，原 commit 不动</td>
-          <td><strong>commit 字段本身</strong></td>
-      </tr>
-      <tr>
-          <td>commit SHA</td>
-          <td>不变</td>
-          <td>全变</td>
-      </tr>
-      <tr>
-          <td>协作者成本</td>
-          <td>零（pull 即可）</td>
-          <td>必须重 clone 或硬 reset</td>
-      </tr>
-      <tr>
-          <td>撤销</td>
-          <td>删 <code>.mailmap</code> 即可</td>
-          <td>不可逆（除非备份）</td>
-      </tr>
-      <tr>
-          <td>第三方工具识别</td>
-          <td>GitHub 认；审计工具未必</td>
-          <td>永远认</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>用法 1：mailmap</th>
+					<th>用法 2：filter-repo</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>改的是</td>
+					<td><strong>显示</strong>，原 commit 不动</td>
+					<td><strong>commit 字段本身</strong></td>
+			</tr>
+			<tr>
+					<td>commit SHA</td>
+					<td>不变</td>
+					<td>全变</td>
+			</tr>
+			<tr>
+					<td>协作者成本</td>
+					<td>零（pull 即可）</td>
+					<td>必须重 clone 或硬 reset</td>
+			</tr>
+			<tr>
+					<td>撤销</td>
+					<td>删 <code>.mailmap</code> 即可</td>
+					<td>不可逆（除非备份）</td>
+			</tr>
+			<tr>
+					<td>第三方工具识别</td>
+					<td>GitHub 认；审计工具未必</td>
+					<td>永远认</td>
+			</tr>
+	</tbody>
 </table>
 <blockquote>
 <p><code>.mailmap</code> 正好就是 <code>filter-repo --mailmap</code> 吃的输入 —— 先写 mailmap 跑用法 1，确认效果再决定要不要上用法 2。一份配置覆盖两种场景。</p>

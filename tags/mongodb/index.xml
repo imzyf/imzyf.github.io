@@ -15,30 +15,30 @@
       <guid>https://zyf.im/2023/04/19/mongodb-course/</guid>
       <description>&lt;h2 id=&#34;04-特色及优势&#34;&gt;04 特色及优势&lt;/h2&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;维度&lt;/th&gt;
-          &lt;th&gt;能力&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;数据模型&lt;/td&gt;
-          &lt;td&gt;多形性（同集合不同字段）、动态性（在线改模式）、JSONSchema 治理&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;开发体验&lt;/td&gt;
-          &lt;td&gt;单存储区读写、反范式 + 无关联优化、API 自然&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;高可用&lt;/td&gt;
-          &lt;td&gt;Replica Set（2~50 节点，建议奇数）、自恢复、多中心容灾、滚动维护&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;横向扩展&lt;/td&gt;
-          &lt;td&gt;无缝扩容、应用透明、多种数据分布策略，可达 TB-PB&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;维度&lt;/th&gt;
+					&lt;th&gt;能力&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;数据模型&lt;/td&gt;
+					&lt;td&gt;多形性（同集合不同字段）、动态性（在线改模式）、JSONSchema 治理&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;开发体验&lt;/td&gt;
+					&lt;td&gt;单存储区读写、反范式 + 无关联优化、API 自然&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;高可用&lt;/td&gt;
+					&lt;td&gt;Replica Set（2~50 节点，建议奇数）、自恢复、多中心容灾、滚动维护&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;横向扩展&lt;/td&gt;
+					&lt;td&gt;无缝扩容、应用透明、多种数据分布策略，可达 TB-PB&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;06-基本操作&#34;&gt;06 基本操作&lt;/h2&gt;
 &lt;p&gt;环境与样本数据：&lt;/p&gt;
@@ -76,98 +76,98 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dbs&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;sql--mongo-操作符对照&#34;&gt;SQL ↔ Mongo 操作符对照&lt;/h3&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;SQL&lt;/th&gt;
-          &lt;th&gt;Mongo&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;a &amp;lt;&amp;gt; 1&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{a: {$ne: 1}}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;a &amp;gt; 1&lt;/code&gt; / &lt;code&gt;&amp;gt;=&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{a: {$gt: 1}}&lt;/code&gt; / &lt;code&gt;{$gte: 1}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;a &amp;lt; 1&lt;/code&gt; / &lt;code&gt;&amp;lt;=&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{a: {$lt: 1}}&lt;/code&gt; / &lt;code&gt;{$lte: 1}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;a = 1 OR b = 1&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{$or: [{a: 1}, {b: 1}]}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;a IS NULL&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{a: {$exists: false}}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;a IN (1, 2, 3)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{a: {$in: [1, 2, 3]}}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;同时满足子文档条件&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;{$elemMatch: {city: &amp;quot;Rome&amp;quot;, country: &amp;quot;USA&amp;quot;}}&lt;/code&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;SQL&lt;/th&gt;
+					&lt;th&gt;Mongo&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;a &amp;lt;&amp;gt; 1&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{a: {$ne: 1}}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;a &amp;gt; 1&lt;/code&gt; / &lt;code&gt;&amp;gt;=&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{a: {$gt: 1}}&lt;/code&gt; / &lt;code&gt;{$gte: 1}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;a &amp;lt; 1&lt;/code&gt; / &lt;code&gt;&amp;lt;=&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{a: {$lt: 1}}&lt;/code&gt; / &lt;code&gt;{$lte: 1}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;a = 1 OR b = 1&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{$or: [{a: 1}, {b: 1}]}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;a IS NULL&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{a: {$exists: false}}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;a IN (1, 2, 3)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{a: {$in: [1, 2, 3]}}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;同时满足子文档条件&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;{$elemMatch: {city: &amp;quot;Rome&amp;quot;, country: &amp;quot;USA&amp;quot;}}&lt;/code&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;常用更新操作符&#34;&gt;常用更新操作符&lt;/h3&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;操作&lt;/th&gt;
-          &lt;th&gt;含义&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;$set&lt;/code&gt; / &lt;code&gt;$unset&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;设置 / 移除字段&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;$push&lt;/code&gt; / &lt;code&gt;$pop&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;数组追加 / 弹出&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;$pull&lt;/code&gt; / &lt;code&gt;$pullAll&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;按匹配从数组中删除&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;$addToSet&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;不存在则添加，去重&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;操作&lt;/th&gt;
+					&lt;th&gt;含义&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;$set&lt;/code&gt; / &lt;code&gt;$unset&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;设置 / 移除字段&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;$push&lt;/code&gt; / &lt;code&gt;$pop&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;数组追加 / 弹出&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;$pull&lt;/code&gt; / &lt;code&gt;$pullAll&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;按匹配从数组中删除&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;$addToSet&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;不存在则添加，去重&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;08-聚合查询&#34;&gt;08 聚合查询&lt;/h2&gt;
-&lt;p&gt;Aggregation Framework：&lt;/p&gt;</description>
+&lt;p&gt;Aggregation Framework:&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="04-特色及优势">04 特色及优势</h2>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>能力</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>数据模型</td>
-          <td>多形性（同集合不同字段）、动态性（在线改模式）、JSONSchema 治理</td>
-      </tr>
-      <tr>
-          <td>开发体验</td>
-          <td>单存储区读写、反范式 + 无关联优化、API 自然</td>
-      </tr>
-      <tr>
-          <td>高可用</td>
-          <td>Replica Set（2~50 节点，建议奇数）、自恢复、多中心容灾、滚动维护</td>
-      </tr>
-      <tr>
-          <td>横向扩展</td>
-          <td>无缝扩容、应用透明、多种数据分布策略，可达 TB-PB</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>能力</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>数据模型</td>
+					<td>多形性（同集合不同字段）、动态性（在线改模式）、JSONSchema 治理</td>
+			</tr>
+			<tr>
+					<td>开发体验</td>
+					<td>单存储区读写、反范式 + 无关联优化、API 自然</td>
+			</tr>
+			<tr>
+					<td>高可用</td>
+					<td>Replica Set（2~50 节点，建议奇数）、自恢复、多中心容灾、滚动维护</td>
+			</tr>
+			<tr>
+					<td>横向扩展</td>
+					<td>无缝扩容、应用透明、多种数据分布策略，可达 TB-PB</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="06-基本操作">06 基本操作</h2>
 <p>环境与样本数据：</p>
@@ -205,108 +205,108 @@
 </span></span><span class="line"><span class="cl"><span class="nx">show</span> <span class="nx">dbs</span>
 </span></span></code></pre></div><h3 id="sql--mongo-操作符对照">SQL ↔ Mongo 操作符对照</h3>
 <table>
-  <thead>
-      <tr>
-          <th>SQL</th>
-          <th>Mongo</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>a &lt;&gt; 1</code></td>
-          <td><code>{a: {$ne: 1}}</code></td>
-      </tr>
-      <tr>
-          <td><code>a &gt; 1</code> / <code>&gt;=</code></td>
-          <td><code>{a: {$gt: 1}}</code> / <code>{$gte: 1}</code></td>
-      </tr>
-      <tr>
-          <td><code>a &lt; 1</code> / <code>&lt;=</code></td>
-          <td><code>{a: {$lt: 1}}</code> / <code>{$lte: 1}</code></td>
-      </tr>
-      <tr>
-          <td><code>a = 1 OR b = 1</code></td>
-          <td><code>{$or: [{a: 1}, {b: 1}]}</code></td>
-      </tr>
-      <tr>
-          <td><code>a IS NULL</code></td>
-          <td><code>{a: {$exists: false}}</code></td>
-      </tr>
-      <tr>
-          <td><code>a IN (1, 2, 3)</code></td>
-          <td><code>{a: {$in: [1, 2, 3]}}</code></td>
-      </tr>
-      <tr>
-          <td>同时满足子文档条件</td>
-          <td><code>{$elemMatch: {city: &quot;Rome&quot;, country: &quot;USA&quot;}}</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>SQL</th>
+					<th>Mongo</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>a &lt;&gt; 1</code></td>
+					<td><code>{a: {$ne: 1}}</code></td>
+			</tr>
+			<tr>
+					<td><code>a &gt; 1</code> / <code>&gt;=</code></td>
+					<td><code>{a: {$gt: 1}}</code> / <code>{$gte: 1}</code></td>
+			</tr>
+			<tr>
+					<td><code>a &lt; 1</code> / <code>&lt;=</code></td>
+					<td><code>{a: {$lt: 1}}</code> / <code>{$lte: 1}</code></td>
+			</tr>
+			<tr>
+					<td><code>a = 1 OR b = 1</code></td>
+					<td><code>{$or: [{a: 1}, {b: 1}]}</code></td>
+			</tr>
+			<tr>
+					<td><code>a IS NULL</code></td>
+					<td><code>{a: {$exists: false}}</code></td>
+			</tr>
+			<tr>
+					<td><code>a IN (1, 2, 3)</code></td>
+					<td><code>{a: {$in: [1, 2, 3]}}</code></td>
+			</tr>
+			<tr>
+					<td>同时满足子文档条件</td>
+					<td><code>{$elemMatch: {city: &quot;Rome&quot;, country: &quot;USA&quot;}}</code></td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="常用更新操作符">常用更新操作符</h3>
 <table>
-  <thead>
-      <tr>
-          <th>操作</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>$set</code> / <code>$unset</code></td>
-          <td>设置 / 移除字段</td>
-      </tr>
-      <tr>
-          <td><code>$push</code> / <code>$pop</code></td>
-          <td>数组追加 / 弹出</td>
-      </tr>
-      <tr>
-          <td><code>$pull</code> / <code>$pullAll</code></td>
-          <td>按匹配从数组中删除</td>
-      </tr>
-      <tr>
-          <td><code>$addToSet</code></td>
-          <td>不存在则添加，去重</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>操作</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>$set</code> / <code>$unset</code></td>
+					<td>设置 / 移除字段</td>
+			</tr>
+			<tr>
+					<td><code>$push</code> / <code>$pop</code></td>
+					<td>数组追加 / 弹出</td>
+			</tr>
+			<tr>
+					<td><code>$pull</code> / <code>$pullAll</code></td>
+					<td>按匹配从数组中删除</td>
+			</tr>
+			<tr>
+					<td><code>$addToSet</code></td>
+					<td>不存在则添加，去重</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="08-聚合查询">08 聚合查询</h2>
-<p>Aggregation Framework：</p>
+<p>Aggregation Framework:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">pipeline</span> <span class="o">=</span> <span class="p">[</span><span class="nx">stage1</span><span class="p">,</span> <span class="nx">stage2</span><span class="p">,</span> <span class="p">...]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">db</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">collection</span><span class="o">&gt;</span><span class="p">.</span><span class="nx">aggregate</span><span class="p">(</span><span class="nx">pipeline</span><span class="p">,</span> <span class="p">{</span> <span class="nx">option</span> <span class="p">})</span>
 </span></span></code></pre></div><p>常用 stage：</p>
 <table>
-  <thead>
-      <tr>
-          <th>Stage</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>$match</code></td>
-          <td>过滤</td>
-      </tr>
-      <tr>
-          <td><code>$project</code></td>
-          <td>投影</td>
-      </tr>
-      <tr>
-          <td><code>$sort</code></td>
-          <td>排序</td>
-      </tr>
-      <tr>
-          <td><code>$group</code></td>
-          <td>分组</td>
-      </tr>
-      <tr>
-          <td><code>$skip</code> / <code>$limit</code></td>
-          <td>分页</td>
-      </tr>
-      <tr>
-          <td><code>$lookup</code></td>
-          <td>左外连接</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>Stage</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>$match</code></td>
+					<td>过滤</td>
+			</tr>
+			<tr>
+					<td><code>$project</code></td>
+					<td>投影</td>
+			</tr>
+			<tr>
+					<td><code>$sort</code></td>
+					<td>排序</td>
+			</tr>
+			<tr>
+					<td><code>$group</code></td>
+					<td>分组</td>
+			</tr>
+			<tr>
+					<td><code>$skip</code> / <code>$limit</code></td>
+					<td>分页</td>
+			</tr>
+			<tr>
+					<td><code>$lookup</code></td>
+					<td>左外连接</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="09-聚合查询实验">09 聚合查询实验</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 全集合总计
@@ -343,25 +343,25 @@
 </span></span></span></code></pre></div><h2 id="10-复制集机制及原理">10 复制集机制及原理</h2>
 <h3 id="角色">角色</h3>
 <table>
-  <thead>
-      <tr>
-          <th>节点</th>
-          <th>数量</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>PRIMARY</td>
-          <td>1</td>
-          <td>接收写入、参与选举投票</td>
-      </tr>
-      <tr>
-          <td>SECONDARY</td>
-          <td>2+（建议奇数）</td>
-          <td>复制主节点新数据、参与投票</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>节点</th>
+					<th>数量</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>PRIMARY</td>
+					<td>1</td>
+					<td>接收写入、参与选举投票</td>
+			</tr>
+			<tr>
+					<td>SECONDARY</td>
+					<td>2+（建议奇数）</td>
+					<td>复制主节点新数据、参与投票</td>
+			</tr>
+	</tbody>
 </table>
 <p>集群上限 50 节点，<strong>有投票权的节点最多 7 个</strong>。</p>
 <h3 id="数据复制">数据复制</h3>
@@ -384,35 +384,35 @@
 </ul>
 <h3 id="节点选配项">节点选配项</h3>
 <table>
-  <thead>
-      <tr>
-          <th>参数</th>
-          <th>作用</th>
-          <th>注意</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>v</code></td>
-          <td>是否具有投票权</td>
-          <td></td>
-      </tr>
-      <tr>
-          <td><code>priority</code></td>
-          <td>优先级（越高越优先成为 primary）</td>
-          <td><code>priority = 0</code> 永不成为主节点</td>
-      </tr>
-      <tr>
-          <td><code>hidden</code></td>
-          <td>复制数据但对应用不可见</td>
-          <td>可投票，但 <code>priority</code> 必须为 0</td>
-      </tr>
-      <tr>
-          <td><code>slaveDelay</code></td>
-          <td>复制 N 秒前的数据（延迟节点）</td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>参数</th>
+					<th>作用</th>
+					<th>注意</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>v</code></td>
+					<td>是否具有投票权</td>
+					<td></td>
+			</tr>
+			<tr>
+					<td><code>priority</code></td>
+					<td>优先级（越高越优先成为 primary）</td>
+					<td><code>priority = 0</code> 永不成为主节点</td>
+			</tr>
+			<tr>
+					<td><code>hidden</code></td>
+					<td>复制数据但对应用不可见</td>
+					<td>可投票，但 <code>priority</code> 必须为 0</td>
+			</tr>
+			<tr>
+					<td><code>slaveDelay</code></td>
+					<td>复制 N 秒前的数据（延迟节点）</td>
+					<td></td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="注意事项">注意事项</h3>
 <ul>
@@ -436,30 +436,30 @@
 <p>三要素：<strong>Entity（实体）/ Attribute（属性）/ Relationship（关系）</strong>。</p>
 <p>三层模型映射：</p>
 <table>
-  <thead>
-      <tr>
-          <th>层次</th>
-          <th>概念</th>
-          <th>对应内容</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>概念 CDM</td>
-          <td>业务对象</td>
-          <td>对象</td>
-      </tr>
-      <tr>
-          <td>逻辑 LDM</td>
-          <td>实体 / 属性 / 关系</td>
-          <td>实体、属性、关系</td>
-      </tr>
-      <tr>
-          <td>物理 PDM</td>
-          <td>数据库结构</td>
-          <td>表结构、字段列表、主外键</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层次</th>
+					<th>概念</th>
+					<th>对应内容</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>概念 CDM</td>
+					<td>业务对象</td>
+					<td>对象</td>
+			</tr>
+			<tr>
+					<td>逻辑 LDM</td>
+					<td>实体 / 属性 / 关系</td>
+					<td>实体、属性、关系</td>
+			</tr>
+			<tr>
+					<td>物理 PDM</td>
+					<td>数据库结构</td>
+					<td>表结构、字段列表、主外键</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="14-json-文档模型设计">14 JSON 文档模型设计</h2>
 <p>无模式：物理建模过程可省。</p>
@@ -507,35 +507,35 @@
 </ul>
 <h2 id="18-设计模式集锦">18 设计模式集锦</h2>
 <table>
-  <thead>
-      <tr>
-          <th>场景</th>
-          <th>模式</th>
-          <th>做法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>字段繁多、索引爆炸（多语言多国家属性）</td>
-          <td>列转行</td>
-          <td>把列转成数组元素，一条索引解决所有该类查询</td>
-      </tr>
-      <tr>
-          <td>模式持续演进，需管理不同版本</td>
-          <td>Schema Version</td>
-          <td>文档加 <code>schema_version</code> 字段</td>
-      </tr>
-      <tr>
-          <td>网页点击流量等粗粒度统计</td>
-          <td>近似计算</td>
-          <td><code>if random(0,9) == 0 increment by 10</code></td>
-      </tr>
-      <tr>
-          <td>业绩 / 游戏排名等精确统计</td>
-          <td>预聚合</td>
-          <td>模型中加统计字段，每次写入时同步更新</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>场景</th>
+					<th>模式</th>
+					<th>做法</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>字段繁多、索引爆炸（多语言多国家属性）</td>
+					<td>列转行</td>
+					<td>把列转成数组元素，一条索引解决所有该类查询</td>
+			</tr>
+			<tr>
+					<td>模式持续演进，需管理不同版本</td>
+					<td>Schema Version</td>
+					<td>文档加 <code>schema_version</code> 字段</td>
+			</tr>
+			<tr>
+					<td>网页点击流量等粗粒度统计</td>
+					<td>近似计算</td>
+					<td><code>if random(0,9) == 0 increment by 10</code></td>
+			</tr>
+			<tr>
+					<td>业绩 / 游戏排名等精确统计</td>
+					<td>预聚合</td>
+					<td>模型中加统计字段，每次写入时同步更新</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="19-写操作事务-writeconcern">19 写操作事务 writeConcern</h2>
 <p><a href="https://www.mongodb.com/docs/manual/reference/write-concern/">Write Concern | mongodb</a></p>
@@ -570,26 +570,26 @@
 </ul>
 <p>三种配置方式：</p>
 <table>
-  <thead>
-      <tr>
-          <th>方式</th>
-          <th>写法</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>连接串</td>
-          <td><code>mongodb://.../?replicaSet=rs&amp;readPreference=secondary</code></td>
-      </tr>
-      <tr>
-          <td>驱动 API</td>
-          <td><code>MongoCollection.withReadPreference(ReadPreference readPref)</code></td>
-      </tr>
-      <tr>
-          <td>Mongo Shell</td>
-          <td><code>db.collection.find({}).readPref(&quot;secondary&quot;)</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>方式</th>
+					<th>写法</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>连接串</td>
+					<td><code>mongodb://.../?replicaSet=rs&amp;readPreference=secondary</code></td>
+			</tr>
+			<tr>
+					<td>驱动 API</td>
+					<td><code>MongoCollection.withReadPreference(ReadPreference readPref)</code></td>
+			</tr>
+			<tr>
+					<td>Mongo Shell</td>
+					<td><code>db.collection.find({}).readPref(&quot;secondary&quot;)</code></td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="实验从节点写锁后读结果差异">实验：从节点写锁后读结果差异</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 主节点
@@ -622,30 +622,30 @@
 <h2 id="22-多文档事务">22 多文档事务</h2>
 <h3 id="acid-在-mongodb-的实现">ACID 在 MongoDB 的实现</h3>
 <table>
-  <thead>
-      <tr>
-          <th>性质</th>
-          <th>实现机制</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Atomicity</td>
-          <td>事务本身</td>
-      </tr>
-      <tr>
-          <td>Consistency</td>
-          <td><code>writeConcern</code> + <code>readConcern</code></td>
-      </tr>
-      <tr>
-          <td>Isolation</td>
-          <td><code>readConcern</code></td>
-      </tr>
-      <tr>
-          <td>Durability</td>
-          <td>Journal + Replication</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>性质</th>
+					<th>实现机制</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Atomicity</td>
+					<td>事务本身</td>
+			</tr>
+			<tr>
+					<td>Consistency</td>
+					<td><code>writeConcern</code> + <code>readConcern</code></td>
+			</tr>
+			<tr>
+					<td>Isolation</td>
+					<td><code>readConcern</code></td>
+			</tr>
+			<tr>
+					<td>Durability</td>
+					<td>Journal + Replication</td>
+			</tr>
+	</tbody>
 </table>
 <p>约束：</p>
 <ul>
@@ -700,35 +700,35 @@
 <p>类似数据库触发器，<strong>基于 oplog</strong>。</p>
 <h3 id="对比传统触发器">对比传统触发器</h3>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>触发器</th>
-          <th>Change Stream</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>触发方式</td>
-          <td>同步（事务保证）</td>
-          <td>异步</td>
-      </tr>
-      <tr>
-          <td>触发位置</td>
-          <td>数据库内</td>
-          <td>客户端回调事件</td>
-      </tr>
-      <tr>
-          <td>触发次数</td>
-          <td>一次</td>
-          <td>每个订阅事件的客户端各一次</td>
-      </tr>
-      <tr>
-          <td>故障恢复</td>
-          <td>事务回滚</td>
-          <td>从断点重新触发</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>触发器</th>
+					<th>Change Stream</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>触发方式</td>
+					<td>同步（事务保证）</td>
+					<td>异步</td>
+			</tr>
+			<tr>
+					<td>触发位置</td>
+					<td>数据库内</td>
+					<td>客户端回调事件</td>
+			</tr>
+			<tr>
+					<td>触发次数</td>
+					<td>一次</td>
+					<td>每个订阅事件的客户端各一次</td>
+			</tr>
+			<tr>
+					<td>故障恢复</td>
+					<td>事务回滚</td>
+					<td>从断点重新触发</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="可追踪事件">可追踪事件</h3>
 <ul>
@@ -746,93 +746,93 @@
 <h2 id="25-分片集群机制及原理">25 分片集群机制及原理</h2>
 <h3 id="进程角色">进程角色</h3>
 <table>
-  <thead>
-      <tr>
-          <th>角色</th>
-          <th>进程</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>路由</td>
-          <td>mongos</td>
-          <td>转发请求</td>
-      </tr>
-      <tr>
-          <td>配置</td>
-          <td>mongod</td>
-          <td>元数据 / 路由表</td>
-      </tr>
-      <tr>
-          <td>数据</td>
-          <td>mongod</td>
-          <td>实际存数据片段</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>角色</th>
+					<th>进程</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>路由</td>
+					<td>mongos</td>
+					<td>转发请求</td>
+			</tr>
+			<tr>
+					<td>配置</td>
+					<td>mongod</td>
+					<td>元数据 / 路由表</td>
+			</tr>
+			<tr>
+					<td>数据</td>
+					<td>mongod</td>
+					<td>实际存数据片段</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="数据分布策略">数据分布策略</h3>
 <table>
-  <thead>
-      <tr>
-          <th>策略</th>
-          <th>优点</th>
-          <th>缺点</th>
-          <th>典型场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>范围</td>
-          <td>范围查询快</td>
-          <td>数据可能倾斜</td>
-          <td>自然有序的数据</td>
-      </tr>
-      <tr>
-          <td>哈希</td>
-          <td>分布均匀</td>
-          <td>范围查询差</td>
-          <td>日志、物联网</td>
-      </tr>
-      <tr>
-          <td>Zone</td>
-          <td>天然分区</td>
-          <td>维护成本高</td>
-          <td>按地区 / 业务隔离</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>策略</th>
+					<th>优点</th>
+					<th>缺点</th>
+					<th>典型场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>范围</td>
+					<td>范围查询快</td>
+					<td>数据可能倾斜</td>
+					<td>自然有序的数据</td>
+			</tr>
+			<tr>
+					<td>哈希</td>
+					<td>分布均匀</td>
+					<td>范围查询差</td>
+					<td>日志、物联网</td>
+			</tr>
+			<tr>
+					<td>Zone</td>
+					<td>天然分区</td>
+					<td>维护成本高</td>
+					<td>按地区 / 业务隔离</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="26-分片集群设计">26 分片集群设计</h2>
 <p>核心术语：</p>
 <table>
-  <thead>
-      <tr>
-          <th>术语</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>shard key</td>
-          <td>文档中作为分片依据的一个字段</td>
-      </tr>
-      <tr>
-          <td>doc</td>
-          <td>文档</td>
-      </tr>
-      <tr>
-          <td>chunk</td>
-          <td>一个 shard key 范围内的文档块</td>
-      </tr>
-      <tr>
-          <td>shard</td>
-          <td>分片节点（一个 replica set）</td>
-      </tr>
-      <tr>
-          <td>cluster</td>
-          <td>整个分片集群</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>术语</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>shard key</td>
+					<td>文档中作为分片依据的一个字段</td>
+			</tr>
+			<tr>
+					<td>doc</td>
+					<td>文档</td>
+			</tr>
+			<tr>
+					<td>chunk</td>
+					<td>一个 shard key 范围内的文档块</td>
+			</tr>
+			<tr>
+					<td>shard</td>
+					<td>分片节点（一个 replica set）</td>
+			</tr>
+			<tr>
+					<td>cluster</td>
+					<td>整个分片集群</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="片键设计三条">片键设计三条</h3>
 <ol>
@@ -918,98 +918,98 @@
 </span></span></code></pre></div><h2 id="33-索引机制一">33 索引机制（一）</h2>
 <p>核心概念速查：</p>
 <table>
-  <thead>
-      <tr>
-          <th>概念</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Index / Key / DataPage</td>
-          <td>索引、键、数据页</td>
-      </tr>
-      <tr>
-          <td>Covered Query / FETCH</td>
-          <td>完全由索引返回 / 需要回表取数据</td>
-      </tr>
-      <tr>
-          <td>IXSCAN / COLLSCAN</td>
-          <td>索引扫描 / 集合扫描</td>
-      </tr>
-      <tr>
-          <td>Big O Notation</td>
-          <td>时间复杂度</td>
-      </tr>
-      <tr>
-          <td>Query Shape</td>
-          <td>查询形状（相同 shape 可复用执行计划）</td>
-      </tr>
-      <tr>
-          <td>Index Prefix</td>
-          <td>索引前缀</td>
-      </tr>
-      <tr>
-          <td>Selectivity</td>
-          <td>选择性 —— 过滤掉的比例越大越好</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>概念</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Index / Key / DataPage</td>
+					<td>索引、键、数据页</td>
+			</tr>
+			<tr>
+					<td>Covered Query / FETCH</td>
+					<td>完全由索引返回 / 需要回表取数据</td>
+			</tr>
+			<tr>
+					<td>IXSCAN / COLLSCAN</td>
+					<td>索引扫描 / 集合扫描</td>
+			</tr>
+			<tr>
+					<td>Big O Notation</td>
+					<td>时间复杂度</td>
+			</tr>
+			<tr>
+					<td>Query Shape</td>
+					<td>查询形状（相同 shape 可复用执行计划）</td>
+			</tr>
+			<tr>
+					<td>Index Prefix</td>
+					<td>索引前缀</td>
+			</tr>
+			<tr>
+					<td>Selectivity</td>
+					<td>选择性 —— 过滤掉的比例越大越好</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="b-tree-vs-btree">B-Tree vs B+Tree</h3>
 <table>
-  <thead>
-      <tr>
-          <th>维度</th>
-          <th>B-Tree</th>
-          <th>B+Tree</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>数据存放</td>
-          <td>所有节点都可存 key + value</td>
-          <td>仅叶子节点存 key + value</td>
-      </tr>
-      <tr>
-          <td>叶子链表</td>
-          <td>无</td>
-          <td>叶子用指针串成有序链表，区间查询友好</td>
-      </tr>
-      <tr>
-          <td>适用</td>
-          <td>内存索引、缓存</td>
-          <td><strong>磁盘索引</strong>（数据库、文件系统）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>维度</th>
+					<th>B-Tree</th>
+					<th>B+Tree</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>数据存放</td>
+					<td>所有节点都可存 key + value</td>
+					<td>仅叶子节点存 key + value</td>
+			</tr>
+			<tr>
+					<td>叶子链表</td>
+					<td>无</td>
+					<td>叶子用指针串成有序链表，区间查询友好</td>
+			</tr>
+			<tr>
+					<td>适用</td>
+					<td>内存索引、缓存</td>
+					<td><strong>磁盘索引</strong>（数据库、文件系统）</td>
+			</tr>
+	</tbody>
 </table>
 <p>MongoDB / MySQL InnoDB 都用 B+Tree。</p>
 <h2 id="34-索引机制二">34 索引机制（二）</h2>
 <p><code>.explain(true)</code> 关注字段：</p>
 <table>
-  <thead>
-      <tr>
-          <th>字段</th>
-          <th>含义</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>executionTimeMillis</code></td>
-          <td>执行毫秒数</td>
-      </tr>
-      <tr>
-          <td><code>totalDocsExamined</code></td>
-          <td>共扫描文档数</td>
-      </tr>
-      <tr>
-          <td><code>executionStages.docsExamined</code></td>
-          <td>当前阶段扫描文档数</td>
-      </tr>
-      <tr>
-          <td><code>executionStages.inputStage.stage</code></td>
-          <td>输入阶段类型</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>字段</th>
+					<th>含义</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>executionTimeMillis</code></td>
+					<td>执行毫秒数</td>
+			</tr>
+			<tr>
+					<td><code>totalDocsExamined</code></td>
+					<td>共扫描文档数</td>
+			</tr>
+			<tr>
+					<td><code>executionStages.docsExamined</code></td>
+					<td>当前阶段扫描文档数</td>
+			</tr>
+			<tr>
+					<td><code>executionStages.inputStage.stage</code></td>
+					<td>输入阶段类型</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>ESR 原则</strong>：组合索引顺序 = <strong>E</strong>qual（最前）→ <strong>S</strong>ort（中间）→ <strong>R</strong>ange（最后）。</p>
 <p>后台建索引：</p>
@@ -1017,30 +1017,30 @@
 </span></span></code></pre></div><h2 id="36-性能诊断工具">36 性能诊断工具</h2>
 <p><strong><code>mongostat</code></strong> —— 实时运行状态：</p>
 <table>
-  <thead>
-      <tr>
-          <th>指标</th>
-          <th>关注阈值</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>dirty</td>
-          <td>&lt; 5%（脏页比例）</td>
-      </tr>
-      <tr>
-          <td>used</td>
-          <td>缓存使用率</td>
-      </tr>
-      <tr>
-          <td>qrw</td>
-          <td>排队请求数</td>
-      </tr>
-      <tr>
-          <td>con</td>
-          <td>连接数</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>指标</th>
+					<th>关注阈值</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>dirty</td>
+					<td>&lt; 5%（脏页比例）</td>
+			</tr>
+			<tr>
+					<td>used</td>
+					<td>缓存使用率</td>
+			</tr>
+			<tr>
+					<td>qrw</td>
+					<td>排队请求数</td>
+			</tr>
+			<tr>
+					<td>con</td>
+					<td>连接数</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong><code>mongotop</code></strong> —— 集合维度压力。</p>
 <p><strong><a href="https://github.com/rueckstiess/mtools">mtools</a></strong> —— 日志分析。</p>

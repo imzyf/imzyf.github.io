@@ -25,66 +25,66 @@
 &lt;/ul&gt;
 &lt;h2 id=&#34;选型对照表&#34;&gt;选型对照表&lt;/h2&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;类型&lt;/th&gt;
-          &lt;th&gt;范围&lt;/th&gt;
-          &lt;th&gt;字节&lt;/th&gt;
-          &lt;th&gt;时区行为&lt;/th&gt;
-          &lt;th&gt;小数秒&lt;/th&gt;
-          &lt;th&gt;典型场景&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1000-01-01 00:00:00&lt;/code&gt; ~ &lt;code&gt;9999-12-31 23:59:59&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;5 + fsp&lt;/td&gt;
-          &lt;td&gt;字符串原样存取，&lt;strong&gt;不转换&lt;/strong&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;DATETIME(0~6)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;合同生效时点、用户填写的本地时间、历史事件&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1970-01-01 00:00:01 UTC&lt;/code&gt; ~ &lt;code&gt;2038-01-19 03:14:07 UTC&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;4 + fsp&lt;/td&gt;
-          &lt;td&gt;写入：会话时区 → UTC；读取：UTC → 会话时区&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;TIMESTAMP(0~6)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;created_at&lt;/code&gt; / &lt;code&gt;updated_at&lt;/code&gt;、日志、跨时区事件戳&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1000-01-01&lt;/code&gt; ~ &lt;code&gt;9999-12-31&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;3&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;生日、纪念日、报表日期&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;-838:59:59&lt;/code&gt; ~ &lt;code&gt;838:59:59&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;3 + fsp&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;TIME(0~6)&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;营业时长、计时器&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;YEAR&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;&lt;code&gt;1901&lt;/code&gt; ~ &lt;code&gt;2155&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;1&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;罕用&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/td&gt;
-          &lt;td&gt;INT64&lt;/td&gt;
-          &lt;td&gt;8&lt;/td&gt;
-          &lt;td&gt;应用层控制&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-          &lt;td&gt;JS 毫秒戳、Unix 微秒戳、跨语言互操作&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;类型&lt;/th&gt;
+					&lt;th&gt;范围&lt;/th&gt;
+					&lt;th&gt;字节&lt;/th&gt;
+					&lt;th&gt;时区行为&lt;/th&gt;
+					&lt;th&gt;小数秒&lt;/th&gt;
+					&lt;th&gt;典型场景&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;DATETIME&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1000-01-01 00:00:00&lt;/code&gt; ~ &lt;code&gt;9999-12-31 23:59:59&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;5 + fsp&lt;/td&gt;
+					&lt;td&gt;字符串原样存取，&lt;strong&gt;不转换&lt;/strong&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;DATETIME(0~6)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;合同生效时点、用户填写的本地时间、历史事件&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;TIMESTAMP&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1970-01-01 00:00:01 UTC&lt;/code&gt; ~ &lt;code&gt;2038-01-19 03:14:07 UTC&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;4 + fsp&lt;/td&gt;
+					&lt;td&gt;写入：会话时区 → UTC；读取：UTC → 会话时区&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;TIMESTAMP(0~6)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;created_at&lt;/code&gt; / &lt;code&gt;updated_at&lt;/code&gt;、日志、跨时区事件戳&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;DATE&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1000-01-01&lt;/code&gt; ~ &lt;code&gt;9999-12-31&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;3&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;生日、纪念日、报表日期&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;TIME&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;-838:59:59&lt;/code&gt; ~ &lt;code&gt;838:59:59&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;3 + fsp&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;TIME(0~6)&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;营业时长、计时器&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;YEAR&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;1901&lt;/code&gt; ~ &lt;code&gt;2155&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;1&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;罕用&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;BIGINT&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;INT64&lt;/td&gt;
+					&lt;td&gt;8&lt;/td&gt;
+					&lt;td&gt;应用层控制&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+					&lt;td&gt;JS 毫秒戳、Unix 微秒戳、跨语言互操作&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;小数秒（fsp，fractional seconds precision）&lt;/strong&gt; 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 &lt;code&gt;DATETIME(6)&lt;/code&gt; / &lt;code&gt;TIMESTAMP(6)&lt;/code&gt;。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<blockquote>
@@ -99,66 +99,66 @@
 </ul>
 <h2 id="选型对照表">选型对照表</h2>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>范围</th>
-          <th>字节</th>
-          <th>时区行为</th>
-          <th>小数秒</th>
-          <th>典型场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>DATETIME</code></td>
-          <td><code>1000-01-01 00:00:00</code> ~ <code>9999-12-31 23:59:59</code></td>
-          <td>5 + fsp</td>
-          <td>字符串原样存取，<strong>不转换</strong></td>
-          <td><code>DATETIME(0~6)</code></td>
-          <td>合同生效时点、用户填写的本地时间、历史事件</td>
-      </tr>
-      <tr>
-          <td><code>TIMESTAMP</code></td>
-          <td><code>1970-01-01 00:00:01 UTC</code> ~ <code>2038-01-19 03:14:07 UTC</code></td>
-          <td>4 + fsp</td>
-          <td>写入：会话时区 → UTC；读取：UTC → 会话时区</td>
-          <td><code>TIMESTAMP(0~6)</code></td>
-          <td><code>created_at</code> / <code>updated_at</code>、日志、跨时区事件戳</td>
-      </tr>
-      <tr>
-          <td><code>DATE</code></td>
-          <td><code>1000-01-01</code> ~ <code>9999-12-31</code></td>
-          <td>3</td>
-          <td>—</td>
-          <td>—</td>
-          <td>生日、纪念日、报表日期</td>
-      </tr>
-      <tr>
-          <td><code>TIME</code></td>
-          <td><code>-838:59:59</code> ~ <code>838:59:59</code></td>
-          <td>3 + fsp</td>
-          <td>—</td>
-          <td><code>TIME(0~6)</code></td>
-          <td>营业时长、计时器</td>
-      </tr>
-      <tr>
-          <td><code>YEAR</code></td>
-          <td><code>1901</code> ~ <code>2155</code></td>
-          <td>1</td>
-          <td>—</td>
-          <td>—</td>
-          <td>罕用</td>
-      </tr>
-      <tr>
-          <td><code>BIGINT</code></td>
-          <td>INT64</td>
-          <td>8</td>
-          <td>应用层控制</td>
-          <td>—</td>
-          <td>JS 毫秒戳、Unix 微秒戳、跨语言互操作</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>范围</th>
+					<th>字节</th>
+					<th>时区行为</th>
+					<th>小数秒</th>
+					<th>典型场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DATETIME</code></td>
+					<td><code>1000-01-01 00:00:00</code> ~ <code>9999-12-31 23:59:59</code></td>
+					<td>5 + fsp</td>
+					<td>字符串原样存取，<strong>不转换</strong></td>
+					<td><code>DATETIME(0~6)</code></td>
+					<td>合同生效时点、用户填写的本地时间、历史事件</td>
+			</tr>
+			<tr>
+					<td><code>TIMESTAMP</code></td>
+					<td><code>1970-01-01 00:00:01 UTC</code> ~ <code>2038-01-19 03:14:07 UTC</code></td>
+					<td>4 + fsp</td>
+					<td>写入：会话时区 → UTC；读取：UTC → 会话时区</td>
+					<td><code>TIMESTAMP(0~6)</code></td>
+					<td><code>created_at</code> / <code>updated_at</code>、日志、跨时区事件戳</td>
+			</tr>
+			<tr>
+					<td><code>DATE</code></td>
+					<td><code>1000-01-01</code> ~ <code>9999-12-31</code></td>
+					<td>3</td>
+					<td>—</td>
+					<td>—</td>
+					<td>生日、纪念日、报表日期</td>
+			</tr>
+			<tr>
+					<td><code>TIME</code></td>
+					<td><code>-838:59:59</code> ~ <code>838:59:59</code></td>
+					<td>3 + fsp</td>
+					<td>—</td>
+					<td><code>TIME(0~6)</code></td>
+					<td>营业时长、计时器</td>
+			</tr>
+			<tr>
+					<td><code>YEAR</code></td>
+					<td><code>1901</code> ~ <code>2155</code></td>
+					<td>1</td>
+					<td>—</td>
+					<td>—</td>
+					<td>罕用</td>
+			</tr>
+			<tr>
+					<td><code>BIGINT</code></td>
+					<td>INT64</td>
+					<td>8</td>
+					<td>应用层控制</td>
+					<td>—</td>
+					<td>JS 毫秒戳、Unix 微秒戳、跨语言互操作</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>小数秒（fsp，fractional seconds precision）</strong> 0~6 位，每 2 位多占 1 字节。Laravel 11+ 默认就用 <code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code>。</p>
 <p><strong>2038 注意</strong>：<code>TIMESTAMP</code> 已剩 12 年寿命。新表对长期存储字段倾向 <code>DATETIME(6)</code>；<code>created_at</code> 当前用 <code>TIMESTAMP</code> 仍可（届时官方会延或可迁移），但<strong>业务时间字段直接上 <code>DATETIME</code></strong> 更稳。</p>
@@ -178,25 +178,25 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">-- 每个连接还有一份 @@session.time_zone
 </span></span></span></code></pre></div><h3 id="核心规则">核心规则</h3>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>写入</th>
-          <th>读取</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>DATETIME</code></td>
-          <td>字符串原样落盘</td>
-          <td>字符串原样返回</td>
-      </tr>
-      <tr>
-          <td><code>TIMESTAMP</code></td>
-          <td>用<strong>会话时区</strong>解释字符串 → 转 UTC 落盘</td>
-          <td>UTC → <strong>会话时区</strong>字符串</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>写入</th>
+					<th>读取</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>DATETIME</code></td>
+					<td>字符串原样落盘</td>
+					<td>字符串原样返回</td>
+			</tr>
+			<tr>
+					<td><code>TIMESTAMP</code></td>
+					<td>用<strong>会话时区</strong>解释字符串 → 转 UTC 落盘</td>
+					<td>UTC → <strong>会话时区</strong>字符串</td>
+			</tr>
+	</tbody>
 </table>
 <p>推论：</p>
 <ul>
@@ -220,45 +220,45 @@
 <h2 id="laravel-实战">Laravel 实战</h2>
 <h3 id="默认行为速查">默认行为速查</h3>
 <table>
-  <thead>
-      <tr>
-          <th>项</th>
-          <th>默认</th>
-          <th>位置</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>App 时区</td>
-          <td><code>UTC</code></td>
-          <td><code>config/app.php</code> → <code>timezone</code></td>
-      </tr>
-      <tr>
-          <td><code>timestamps()</code> 列</td>
-          <td><code>TIMESTAMP</code></td>
-          <td><code>Schema::create</code> → <code>$table-&gt;timestamps()</code></td>
-      </tr>
-      <tr>
-          <td><code>softDeletes()</code></td>
-          <td><code>TIMESTAMP</code></td>
-          <td><code>$table-&gt;softDeletes()</code></td>
-      </tr>
-      <tr>
-          <td>Eloquent date cast</td>
-          <td><code>Carbon</code> 实例</td>
-          <td><code>created_at</code> / <code>updated_at</code> 自动；其它字段在 <code>casts()</code> 显式</td>
-      </tr>
-      <tr>
-          <td>序列化精度（Laravel 11+）</td>
-          <td>微秒</td>
-          <td><code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code></td>
-      </tr>
-      <tr>
-          <td>序列化格式</td>
-          <td>UTC ISO-8601（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）</td>
-          <td>默认</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>项</th>
+					<th>默认</th>
+					<th>位置</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>App 时区</td>
+					<td><code>UTC</code></td>
+					<td><code>config/app.php</code> → <code>timezone</code></td>
+			</tr>
+			<tr>
+					<td><code>timestamps()</code> 列</td>
+					<td><code>TIMESTAMP</code></td>
+					<td><code>Schema::create</code> → <code>$table-&gt;timestamps()</code></td>
+			</tr>
+			<tr>
+					<td><code>softDeletes()</code></td>
+					<td><code>TIMESTAMP</code></td>
+					<td><code>$table-&gt;softDeletes()</code></td>
+			</tr>
+			<tr>
+					<td>Eloquent date cast</td>
+					<td><code>Carbon</code> 实例</td>
+					<td><code>created_at</code> / <code>updated_at</code> 自动；其它字段在 <code>casts()</code> 显式</td>
+			</tr>
+			<tr>
+					<td>序列化精度（Laravel 11+）</td>
+					<td>微秒</td>
+					<td><code>DATETIME(6)</code> / <code>TIMESTAMP(6)</code></td>
+			</tr>
+			<tr>
+					<td>序列化格式</td>
+					<td>UTC ISO-8601（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）</td>
+					<td>默认</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="推荐做法全球化项目">推荐做法（全球化项目）</h3>
 <ol>

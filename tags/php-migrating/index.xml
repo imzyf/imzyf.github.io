@@ -116,8 +116,8 @@
 </span></span><span class="line"><span class="cl"><span class="nv">$transparent</span> <span class="o">=</span> <span class="nv">$color</span><span class="o">-&gt;</span><span class="na">withAlpha</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
 </span></span></code></pre></div><h3 id="nodiscard-属性"><code>#[\NoDiscard]</code> 属性</h3>
 <p>新的 <code>#[\NoDiscard]</code> 属性用于标记函数返回值不应被忽略：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#[\NoDiscard(&#34;检查操作是否成功&#34;)]
-</span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">saveData</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="p">#[</span><span class="nd">\NoDiscard</span><span class="p">(</span><span class="s2">&#34;检查操作是否成功&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">saveData</span><span class="p">(</span><span class="k">array</span> <span class="nv">$data</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 保存数据...
 </span></span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -188,11 +188,11 @@
 <p>新的国际化列表格式化类：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntlListFormatter</span><span class="p">(</span><span class="s1">&#39;zh-CN&#39;</span><span class="p">,</span> <span class="nx">IntlListFormatter</span><span class="o">::</span><span class="na">TYPE_AND</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$formatter</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">([</span><span class="s1">&#39;苹果&#39;</span><span class="p">,</span> <span class="s1">&#39;香蕉&#39;</span><span class="p">,</span> <span class="s1">&#39;橙子&#39;</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 输出: 苹果、香蕉和橙子
+</span></span><span class="line"><span class="cl"><span class="c1">// 输出：苹果、香蕉和橙子
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">IntlListFormatter</span><span class="p">(</span><span class="s1">&#39;en-US&#39;</span><span class="p">,</span> <span class="nx">IntlListFormatter</span><span class="o">::</span><span class="na">TYPE_OR</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$formatter</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">([</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 输出: apple, banana, or orange
+</span></span><span class="line"><span class="cl"><span class="c1">// 输出：apple, banana, or orange
 </span></span></span></code></pre></div><h3 id="curl_multi_get_handles">curl_multi_get_handles()</h3>
 <p>从 multi-cURL 会话中获取所有句柄：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$mh</span> <span class="o">=</span> <span class="nx">curl_multi_init</span><span class="p">();</span>
@@ -246,8 +246,8 @@
 </span></span></code></pre></div><h3 id="属性可以应用于常量">属性可以应用于常量</h3>
 <p>PHP 8.4 引入了 <code>#[Deprecated]</code> 属性，PHP 8.5 把可被 attribute 标记的目标扩展到了类常量：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#[Deprecated(&#34;Use NEW_CONST instead&#34;)]
-</span></span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">OLD_CONST</span> <span class="o">=</span> <span class="s1">&#39;old&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">#[</span><span class="nd">Deprecated</span><span class="p">(</span><span class="s2">&#34;Use NEW_CONST instead&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">OLD_CONST</span> <span class="o">=</span> <span class="s1">&#39;old&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">const</span> <span class="no">NEW_CONST</span> <span class="o">=</span> <span class="s1">&#39;new&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -279,10 +279,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span></code></pre></div><h3 id="新的全局常量">新的全局常量</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 构建提供者标识
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">PHP_BUILD_PROVIDER</span><span class="p">;</span> <span class="c1">// 例如: &#34;debian&#34; 或 &#34;remi&#34;
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">PHP_BUILD_PROVIDER</span><span class="p">;</span> <span class="c1">// 例如：&#34;debian&#34; 或 &#34;remi&#34;
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 构建日期
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">PHP_BUILD_DATE</span><span class="p">;</span> <span class="c1">// 例如: &#34;Jan 1 2026&#34;
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">PHP_BUILD_DATE</span><span class="p">;</span> <span class="c1">// 例如：&#34;Jan 1 2026&#34;
 </span></span></span></code></pre></div><h3 id="cli-新选项">CLI 新选项</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 显示与默认值不同的 INI 配置</span>
 </span></span><span class="line"><span class="cl">php --ini<span class="o">=</span>diff
@@ -444,14 +444,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Ming&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Li&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;fullName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 输出: Ming Li
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;fullName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 输出：Ming Li
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;fullName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hong Xiao&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;fullName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 输出: Hong Xiao
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;fullName&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 输出：Hong Xiao
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 非对称可见性示例
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;first&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 输出: Hong
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;first&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 输出：Hong
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$user&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;first&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Hua&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 错误: Fatal error: Uncaught Error: Cannot modify private(set) property User::$first
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 错误：Fatal error: Uncaught Error: Cannot modify private(set) property User::$first
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;属性钩子允许我们定义属性的获取和设置行为，而非对称可见性允许我们为属性设置不同的读写权限。在上例中，&lt;code&gt;$first&lt;/code&gt; 属性可以公开读取但只能私有写入。&lt;/p&gt;
 &lt;h3 id=&#34;deprecated-属性&#34;&gt;#[Deprecated] 属性&lt;/h3&gt;
 &lt;p&gt;PHP 8.4 引入了 &lt;code&gt;#[Deprecated]&lt;/code&gt; 属性，可以用来标记已弃用的代码：&lt;/p&gt;</description>
@@ -481,19 +481,19 @@
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$user</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">(</span><span class="s2">&#34;Ming&#34;</span><span class="p">,</span> <span class="s2">&#34;Li&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">fullName</span><span class="p">;</span> <span class="c1">// 输出: Ming Li
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">fullName</span><span class="p">;</span> <span class="c1">// 输出：Ming Li
 </span></span></span><span class="line"><span class="cl"><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">fullName</span> <span class="o">=</span> <span class="s2">&#34;Hong Xiao&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">fullName</span><span class="p">;</span> <span class="c1">// 输出: Hong Xiao
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">fullName</span><span class="p">;</span> <span class="c1">// 输出：Hong Xiao
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 非对称可见性示例
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">;</span> <span class="c1">// 输出: Hong
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">;</span> <span class="c1">// 输出：Hong
 </span></span></span><span class="line"><span class="cl"><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">first</span> <span class="o">=</span> <span class="s2">&#34;Hua&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 错误: Fatal error: Uncaught Error: Cannot modify private(set) property User::$first
+</span></span><span class="line"><span class="cl"><span class="c1">// 错误：Fatal error: Uncaught Error: Cannot modify private(set) property User::$first
 </span></span></span></code></pre></div><p>属性钩子允许我们定义属性的获取和设置行为，而非对称可见性允许我们为属性设置不同的读写权限。在上例中，<code>$first</code> 属性可以公开读取但只能私有写入。</p>
 <h3 id="deprecated-属性">#[Deprecated] 属性</h3>
 <p>PHP 8.4 引入了 <code>#[Deprecated]</code> 属性，可以用来标记已弃用的代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#[Deprecated(&#34;Use newFunction() instead&#34;, since: &#34;2.0&#34;)]
-</span></span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">oldFunction</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="p">#[</span><span class="nd">Deprecated</span><span class="p">(</span><span class="s2">&#34;Use newFunction() instead&#34;</span><span class="p">,</span> <span class="nx">since</span><span class="o">:</span> <span class="s2">&#34;2.0&#34;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">oldFunction</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// ...
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -507,33 +507,33 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用 querySelector 和 querySelectorAll
 </span></span></span><span class="line"><span class="cl"><span class="nv">$span</span> <span class="o">=</span> <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">querySelector</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$span</span><span class="o">-&gt;</span><span class="na">textContent</span><span class="p">;</span> <span class="c1">// 输出: Hello
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$span</span><span class="o">-&gt;</span><span class="na">textContent</span><span class="p">;</span> <span class="c1">// 输出：Hello
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用 innerHTML/outerHTML
 </span></span></span><span class="line"><span class="cl"><span class="nv">$div</span> <span class="o">=</span> <span class="nv">$doc</span><span class="o">-&gt;</span><span class="na">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$div</span><span class="o">-&gt;</span><span class="na">innerHTML</span><span class="p">;</span> <span class="c1">// 输出: &lt;span&gt;Hello&lt;/span&gt;
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$div</span><span class="o">-&gt;</span><span class="na">innerHTML</span><span class="p">;</span> <span class="c1">// 输出：&lt;span&gt;Hello&lt;/span&gt;
 </span></span></span><span class="line"><span class="cl"><span class="nv">$div</span><span class="o">-&gt;</span><span class="na">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&lt;p&gt;World&lt;/p&gt;&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$div</span><span class="o">-&gt;</span><span class="na">outerHTML</span><span class="p">;</span> <span class="c1">// 输出: &lt;div&gt;&lt;p&gt;World&lt;/p&gt;&lt;/div&gt;
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$div</span><span class="o">-&gt;</span><span class="na">outerHTML</span><span class="p">;</span> <span class="c1">// 输出：&lt;div&gt;&lt;p&gt;World&lt;/p&gt;&lt;/div&gt;
 </span></span></span></code></pre></div><h3 id="bcmath-的对象-api">BCMath 的对象 API</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// BCMath 的对象 API
 </span></span></span><span class="line"><span class="cl"><span class="k">use</span> <span class="nx">BcMath\Number</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$num1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Number</span><span class="p">(</span><span class="s1">&#39;0.12345&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$num2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Number</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$result</span> <span class="o">=</span> <span class="nv">$num1</span> <span class="o">+</span> <span class="nv">$num2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$result</span><span class="p">;</span> <span class="c1">// 输出: &#39;2.12345&#39;
-</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$num1</span> <span class="o">&gt;</span> <span class="nv">$num2</span><span class="p">);</span> <span class="c1">// 输出: false
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$result</span><span class="p">;</span> <span class="c1">// 输出：&#39;2.12345&#39;
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$num1</span> <span class="o">&gt;</span> <span class="nv">$num2</span><span class="p">);</span> <span class="c1">// 输出：false
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// PHP 8.4 之前的写法
 </span></span></span><span class="line"><span class="cl"><span class="nv">$num1</span> <span class="o">=</span> <span class="s1">&#39;0.12345&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$num2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$result</span> <span class="o">=</span> <span class="nx">bcadd</span><span class="p">(</span><span class="nv">$num1</span><span class="p">,</span> <span class="nv">$num2</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$result</span><span class="p">;</span> <span class="c1">// 输出: &#39;2.12345&#39;
-</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">bccomp</span><span class="p">(</span><span class="nv">$num1</span><span class="p">,</span> <span class="nv">$num2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// 输出: false
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$result</span><span class="p">;</span> <span class="c1">// 输出：&#39;2.12345&#39;
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nx">bccomp</span><span class="p">(</span><span class="nv">$num1</span><span class="p">,</span> <span class="nv">$num2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// 输出：false
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 新增 bcdivmod() 函数 - 同时返回商和余数
 </span></span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nv">$quotient</span><span class="p">,</span> <span class="nv">$remainder</span><span class="p">]</span> <span class="o">=</span> <span class="nx">bcdivmod</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$quotient</span><span class="p">;</span>  <span class="c1">// 输出: 3
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$remainder</span><span class="p">;</span> <span class="c1">// 输出: 1.00
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$quotient</span><span class="p">;</span>  <span class="c1">// 输出：3
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$remainder</span><span class="p">;</span> <span class="c1">// 输出：1.00
 </span></span></span></code></pre></div><p>PHP 8.4 为 BCMath 引入了对象 API，使用起来更加直观和面向对象。</p>
 <h3 id="http3-支持">HTTP/3 支持</h3>
 <p>PHP 8.4 的 cURL 扩展新增了 HTTP/3 支持：</p>
@@ -550,14 +550,14 @@
 </span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;cow&#39;</span><span class="p">,</span> <span class="s1">&#39;duck&#39;</span><span class="p">,</span> <span class="s1">&#39;goose&#39;</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$value</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="o">=&gt;</span> <span class="nx">str_starts_with</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$animal</span><span class="p">);</span> <span class="c1">// 输出: string(3) &#34;cat&#34;
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$animal</span><span class="p">);</span> <span class="c1">// 输出：string(3) &#34;cat&#34;
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// array_find_key() - 查找第一个满足条件的元素的键
 </span></span></span><span class="line"><span class="cl"><span class="nv">$key</span> <span class="o">=</span> <span class="nx">array_find_key</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s1">&#39;a&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">],</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">fn</span><span class="p">(</span><span class="nv">$v</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$v</span> <span class="o">&gt;</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl"><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span> <span class="c1">// 输出: string(1) &#34;b&#34;
+</span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span> <span class="c1">// 输出：string(1) &#34;b&#34;
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// array_any() - 检查是否至少有一个元素满足条件
 </span></span></span><span class="line"><span class="cl"><span class="nv">$result</span> <span class="o">=</span> <span class="nx">array_any</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="nx">fn</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// true
@@ -568,8 +568,8 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 多字节字符串修剪函数
 </span></span></span><span class="line"><span class="cl"><span class="nv">$str</span> <span class="o">=</span> <span class="s2">&#34;　こんにちは　&#34;</span><span class="p">;</span> <span class="c1">// 包含全角空格
 </span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">mb_trim</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>   <span class="c1">// &#34;こんにちは&#34;
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">mb_ltrim</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>  <span class="c1">// &#34;こんにちは　&#34;
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">mb_rtrim</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>  <span class="c1">// &#34;　こんにちは&#34;
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">mb_ltrim</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>  <span class="c1">// &#34;こんにちは &#34;
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">mb_rtrim</span><span class="p">(</span><span class="nv">$str</span><span class="p">);</span>  <span class="c1">// &#34; こんにちは&#34;
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 多字节首字母大小写转换
 </span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">mb_ucfirst</span><span class="p">(</span><span class="s1">&#39;ñoño&#39;</span><span class="p">);</span> <span class="c1">// &#34;Ñoño&#34;
@@ -733,11 +733,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;ChildClass&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;extends&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParentClass&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;#[\Override]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setUp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// ✅ 正确覆盖
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;#[&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;\Override&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setUp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// ✅ 正确覆盖
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;#[\Override]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setUpP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// ❌ Fatal error: 父类没有该方法
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;#[&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;\Override&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setUpP&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// ❌ Fatal error: 父类没有该方法
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这在重构时特别有用 - 如果父类方法被重命名或删除，PHP 会立即报错而不是静默失败。&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="简介">简介</h2>
@@ -788,11 +788,11 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ChildClass</span> <span class="k">extends</span> <span class="nx">ParentClass</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#[\Override]
-</span></span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span> <span class="c1">// ✅ 正确覆盖
+</span></span><span class="line"><span class="cl">    <span class="p">#[</span><span class="nd">\Override</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">setUp</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span> <span class="c1">// ✅ 正确覆盖
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">#[\Override]
-</span></span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">setUpP</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span> <span class="c1">// ❌ Fatal error: 父类没有该方法
+</span></span><span class="line"><span class="cl">    <span class="p">#[</span><span class="nd">\Override</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="k">function</span> <span class="nf">setUpP</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{}</span> <span class="c1">// ❌ Fatal error: 父类没有该方法
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这在重构时特别有用 - 如果父类方法被重命名或删除，PHP 会立即报错而不是静默失败。</p>
 <h3 id="动态类常量和枚举成员访问">动态类常量和枚举成员访问</h3>
@@ -808,7 +808,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">constant</span><span class="p">(</span><span class="nx">Config</span><span class="o">::</span><span class="na">class</span> <span class="o">.</span> <span class="s2">&#34;::</span><span class="si">{</span><span class="nv">$key</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// PHP 8.3 - 新语法
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">Config</span><span class="o">::</span><span class="p">{</span><span class="nv">$key</span><span class="p">};</span> <span class="c1">// 输出: mysql
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">Config</span><span class="o">::</span><span class="p">{</span><span class="nv">$key</span><span class="p">};</span> <span class="c1">// 输出：mysql
 </span></span></span></code></pre></div><p>同样适用于枚举：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">enum</span> <span class="nx">Color</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nx">Red</span> <span class="o">=</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">;</span>
@@ -816,7 +816,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nv">$color</span> <span class="o">=</span> <span class="s1">&#39;Red&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">Color</span><span class="o">::</span><span class="p">{</span><span class="nv">$color</span><span class="p">}</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span> <span class="c1">// 输出: #FF0000
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">Color</span><span class="o">::</span><span class="p">{</span><span class="nv">$color</span><span class="p">}</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">;</span> <span class="c1">// 输出：#FF0000
 </span></span></span></code></pre></div><h3 id="只读属性的深度克隆">只读属性的深度克隆</h3>
 <p>PHP 8.3 允许在 <code>__clone()</code> 方法中重新初始化只读属性，解决了深度克隆的问题：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nx">readonly</span> <span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
@@ -850,7 +850,7 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$randomizer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Random\Randomizer</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// getFloat() - 生成指定范围的随机浮点数
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">getFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// 例如: 6.7810757668383
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">getFloat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span> <span class="c1">// 例如：6.7810757668383
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 使用边界类型
 </span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">getFloat</span><span class="p">(</span>
@@ -860,11 +860,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// nextFloat() - 生成 [0, 1) 范围的随机浮点数
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">nextFloat</span><span class="p">();</span> <span class="c1">// 例如: 0.21185336351144
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">nextFloat</span><span class="p">();</span> <span class="c1">// 例如：0.21185336351144
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// getBytesFromString() - 从指定字符集生成随机字符串
 </span></span></span><span class="line"><span class="cl"><span class="nv">$chars</span> <span class="o">=</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz0123456789&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">getBytesFromString</span><span class="p">(</span><span class="nv">$chars</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// 例如: a7b3x9k2m5n8p1q4
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">$randomizer</span><span class="o">-&gt;</span><span class="na">getBytesFromString</span><span class="p">(</span><span class="nv">$chars</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// 例如：a7b3x9k2m5n8p1q4
 </span></span></span></code></pre></div><h3 id="匿名类可以是只读的">匿名类可以是只读的</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">readonly</span> <span class="k">class</span> <span class="err">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
@@ -1196,8 +1196,8 @@
 </span></span></span></code></pre></div><h3 id="敏感参数隐藏sensitiveparameter">敏感参数隐藏（#[\SensitiveParameter]）</h3>
 <p>新的 <code>#[\SensitiveParameter]</code> 属性可以在堆栈跟踪中隐藏敏感数据：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">function</span> <span class="nf">hashPassword</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#[\SensitiveParameter] string $password
-</span></span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">#[</span><span class="nd">\SensitiveParameter</span><span class="p">]</span> <span class="nx">string</span> <span class="nv">$password</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">debug_print_backtrace</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">password_hash</span><span class="p">(</span><span class="nv">$password</span><span class="p">,</span> <span class="nx">PASSWORD_DEFAULT</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -1237,8 +1237,8 @@
 </ul>
 <h3 id="allowdynamicproperties-属性">#[\AllowDynamicProperties] 属性</h3>
 <p>由于动态属性已被弃用，如果仍需使用，可以用此属性标记类：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">#[\AllowDynamicProperties]
-</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LegacyClass</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="p">#[</span><span class="nd">\AllowDynamicProperties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">LegacyClass</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$declared</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1264,11 +1264,11 @@
 </span></span></span></code></pre></div><h3 id="memory_reset_peak_usage">memory_reset_peak_usage()</h3>
 <p>重置峰值内存使用量跟踪：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 初始峰值
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">memory_get_peak_usage</span><span class="p">();</span> <span class="c1">// 例如: 2097152
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">memory_get_peak_usage</span><span class="p">();</span> <span class="c1">// 例如：2097152
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 进行一些内存密集操作
 </span></span></span><span class="line"><span class="cl"><span class="nv">$data</span> <span class="o">=</span> <span class="nx">str_repeat</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">memory_get_peak_usage</span><span class="p">();</span> <span class="c1">// 例如: 3145728
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">memory_get_peak_usage</span><span class="p">();</span> <span class="c1">// 例如：3145728
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 重置峰值
 </span></span></span><span class="line"><span class="cl"><span class="nx">memory_reset_peak_usage</span><span class="p">();</span>
@@ -1339,8 +1339,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 解决方案 2：使用 #[AllowDynamicProperties]
-</span></span></span><span class="line"><span class="cl"><span class="c1">#[\AllowDynamicProperties]
-</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">#[</span><span class="nd">\AllowDynamicProperties</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">User</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -1547,7 +1547,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Blue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;#0000FF&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;label&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Red&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;红色&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Green&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;绿色&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;Blue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;蓝色&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
@@ -1604,7 +1604,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nx">Blue</span> <span class="o">=</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">label</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">match</span><span class="p">(</span><span class="nv">$this</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">match</span><span class="p">(</span><span class="nv">$this</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="nx">self</span><span class="o">::</span><span class="na">Red</span> <span class="o">=&gt;</span> <span class="s1">&#39;红色&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nx">self</span><span class="o">::</span><span class="na">Green</span> <span class="o">=&gt;</span> <span class="s1">&#39;绿色&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="nx">self</span><span class="o">::</span><span class="na">Blue</span> <span class="o">=&gt;</span> <span class="s1">&#39;蓝色&#39;</span><span class="p">,</span>
@@ -1702,20 +1702,20 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="nv">$fiber</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Fiber</span><span class="p">(</span><span class="k">function</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;1. Fiber 开始</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$value</span> <span class="o">=</span> <span class="nx">Fiber</span><span class="o">::</span><span class="na">suspend</span><span class="p">(</span><span class="s1">&#39;暂停值&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;3. Fiber 恢复，收到: </span><span class="si">$value\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;3. Fiber 恢复，收到: </span><span class="si">$value</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">});</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;0. 主程序开始</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$suspended</span> <span class="o">=</span> <span class="nv">$fiber</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">();</span>  <span class="c1">// 启动 Fiber
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;2. 主程序收到: </span><span class="si">$suspended\n</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;2. 主程序收到: </span><span class="si">$suspended</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$fiber</span><span class="o">-&gt;</span><span class="na">resume</span><span class="p">(</span><span class="s1">&#39;恢复值&#39;</span><span class="p">);</span>      <span class="c1">// 恢复 Fiber
 </span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="s2">&#34;4. 主程序结束</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 输出:
+</span></span><span class="line"><span class="cl"><span class="c1">// 输出：
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 0. 主程序开始
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 1. Fiber 开始
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 2. 主程序收到: 暂停值
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 3. Fiber 恢复，收到: 恢复值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2. 主程序收到：暂停值
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3. Fiber 恢复，收到：恢复值
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 4. 主程序结束
 </span></span></span></code></pre></div><p>Fibers 主要用于异步框架（如 ReactPHP、Amp），普通应用开发较少直接使用。</p>
 <h3 id="交叉类型intersection-types">交叉类型（Intersection Types）</h3>
@@ -1789,8 +1789,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 属性（PHP 8.0 的属性也支持）
-</span></span></span><span class="line"><span class="cl"><span class="c1">#[Attribute]
-</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Route</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">#[</span><span class="nd">Attribute</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Route</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
 </span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="nx">string</span> <span class="nv">$path</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">array</span> <span class="nv">$methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">],</span>
@@ -1798,8 +1798,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Controller</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#[Route(&#39;/users&#39;, methods: [&#39;GET&#39;, &#39;POST&#39;])]
-</span></span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">users</span><span class="p">()</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">#[</span><span class="nd">Route</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">,</span> <span class="nx">methods</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;POST&#39;</span><span class="p">])]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">users</span><span class="p">()</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="字符串键数组解包">字符串键数组解包</h3>
 <p>现在可以对字符串键数组使用扩展运算符：</p>
@@ -1821,10 +1821,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="nv">$permissions</span> <span class="o">=</span> <span class="mo">0755</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// PHP 8.1 新的显式表示法
-</span></span></span><span class="line"><span class="cl"><span class="nv">$permissions</span> <span class="o">=</span> <span class="mi">0</span><span class="nx">o755</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="nv">$permissions</span> <span class="o">=</span> <span class="mo">0o755</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 两者等价
-</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="mi">0</span><span class="nx">o16</span><span class="p">);</span>  <span class="c1">// int(14)
+</span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="mo">0o16</span><span class="p">);</span>  <span class="c1">// int(14)
 </span></span></span><span class="line"><span class="cl"><span class="nx">var_dump</span><span class="p">(</span><span class="mo">016</span><span class="p">);</span>   <span class="c1">// int(14)
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 0o 更清晰，避免与数字 0 开头的误解
@@ -2070,15 +2070,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// https://www.php.net/manual/zh/language.attributes.php
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 定义注解 -&amp;gt; 使用注解 -&amp;gt; （通过反射）提取注释
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 注意以后用词：Attributes 注解，Properties 属性
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#[\Attribute]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;JsonSerialize&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;#[&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;\Attribute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;JsonSerialize&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$fieldName&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;JsonSerialize:&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;$fieldName&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;VersionedObject&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;#[JsonSerialize(&amp;#39;json-foobar&amp;#39;)]
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$myValue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;#[&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;JsonSerialize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;json-foobar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;protected&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$myValue&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$object&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;VersionedObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$reflection&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ReflectionObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -2139,7 +2139,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// match 表达式
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// https://www.php.net/manual/en/control-structures.match.php
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// match 表达式必须是详尽，则会抛出 UnhandledMatchError。
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;match&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;8.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;match&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mf&#34;&gt;8.0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s1&#34;&gt;&amp;#39;8.0&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;Oh no!&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;mf&#34;&gt;8.0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;This matches&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
@@ -2348,15 +2348,15 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">// https://www.php.net/manual/zh/language.attributes.php
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 定义注解 -&gt; 使用注解 -&gt; （通过反射）提取注释
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 注意以后用词：Attributes 注解，Properties 属性
-</span></span></span><span class="line"><span class="cl"><span class="c1">#[\Attribute]
-</span></span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">JsonSerialize</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="p">#[</span><span class="nd">\Attribute</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">JsonSerialize</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="k">public</span> <span class="o">?</span><span class="nx">string</span> <span class="nv">$fieldName</span> <span class="o">=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nx">var_dump</span><span class="p">(</span><span class="s2">&#34;JsonSerialize:</span><span class="si">$fieldName</span><span class="s2">&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">VersionedObject</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#[JsonSerialize(&#39;json-foobar&#39;)]
-</span></span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="nx">string</span> <span class="nv">$myValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">#[</span><span class="nd">JsonSerialize</span><span class="p">(</span><span class="s1">&#39;json-foobar&#39;</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">protected</span> <span class="nx">string</span> <span class="nv">$myValue</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$object</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VersionedObject</span><span class="p">();</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$reflection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ReflectionObject</span><span class="p">(</span><span class="nv">$object</span><span class="p">);</span>
@@ -2417,7 +2417,7 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// match 表达式
 </span></span></span><span class="line"><span class="cl"><span class="c1">// https://www.php.net/manual/en/control-structures.match.php
 </span></span></span><span class="line"><span class="cl"><span class="c1">// match 表达式必须是详尽，则会抛出 UnhandledMatchError。
-</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nx">match</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">)</span> <span class="p">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="k">match</span> <span class="p">(</span><span class="mf">8.0</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;8.0&#39;</span> <span class="o">=&gt;</span> <span class="s2">&#34;Oh no!&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="mf">8.0</span> <span class="o">=&gt;</span> <span class="s2">&#34;This matches&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
@@ -2645,7 +2645,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;abstract&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 重写方法和接口实现的参数类型可以省略
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 仍然是符合LSP，这种参数类型是逆变
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 仍然是符合 LSP，这种参数类型是逆变
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;interface&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;A&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;array&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -2688,7 +2688,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Notice: Undefined property: stdClass::$0
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$obj&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$obj&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nv&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;value&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -2833,7 +2833,7 @@
 </span></span></span><span class="line"><span class="cl">    <span class="k">abstract</span> <span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="nv">$s</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 重写方法和接口实现的参数类型可以省略
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 仍然是符合LSP，这种参数类型是逆变
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 仍然是符合 LSP，这种参数类型是逆变
 </span></span></span><span class="line"><span class="cl"><span class="k">interface</span> <span class="nx">A</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="k">array</span> <span class="nv">$input</span><span class="p">);</span>
@@ -2876,7 +2876,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1">// Notice: Undefined property: stdClass::$0
 </span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="k">class</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$obj</span> <span class="o">=</span> <span class="k">new</span> <span class="k">class</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="nv">$this</span><span class="o">-&gt;</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="o">=</span> <span class="s2">&#34;value&#34;</span><span class="p">;</span>
@@ -3258,7 +3258,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;// ...
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 多异常捕获处理，可以通过管道字符(|)来实现多个异常的捕获
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 多异常捕获处理，可以通过管道字符 (|) 来实现多个异常的捕获
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;try&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// some code
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;catch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FirstException&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;SecondException&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -3416,7 +3416,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 间接调用的表达式的新旧解析顺序
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 现在严格遵循从左到右的顺序来解析
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 表达式               PHP 5 的解析方式           PHP 7 的解析方式
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$$foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;err&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]}&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$$foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$$foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;    &lt;span class=&#34;nv&#34;&gt;${$foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]}&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$$foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$bar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;      &lt;span class=&#34;nv&#34;&gt;$foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$bar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]}&lt;/span&gt;      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$bar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;baz&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// foreach 通过值遍历时，操作的值为数组的副本
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$array&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
@@ -3426,7 +3426,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// int(0)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// foreach通过引用遍历时，有更好的迭代特性
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// foreach 通过引用遍历时，有更好的迭代特性
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$array&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;foreach&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$array&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;var_dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -3472,7 +3472,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-php&#34; data-lang=&#34;php&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 匿名类 用来替代一些“用后即焚”的完整类定义
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Application&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setLogger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;implements&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Logger&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;setLogger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;implements&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Logger&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$msg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$msg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -3592,7 +3592,7 @@
 </span></span><span class="line"><span class="cl">        <span class="c1">// ...
 </span></span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 多异常捕获处理，可以通过管道字符(|)来实现多个异常的捕获
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 多异常捕获处理，可以通过管道字符 (|) 来实现多个异常的捕获
 </span></span></span><span class="line"><span class="cl"><span class="k">try</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// some code
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">FirstException</span> <span class="o">|</span> <span class="nx">SecondException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
@@ -3750,7 +3750,7 @@
 </span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 间接调用的表达式的新旧解析顺序
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 现在严格遵循从左到右的顺序来解析
 </span></span></span><span class="line"><span class="cl"><span class="c1">// 表达式               PHP 5 的解析方式           PHP 7 的解析方式
-</span></span></span><span class="line"><span class="cl"><span class="nv">$$foo</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>    <span class="err">$</span><span class="p">{</span><span class="nv">$foo</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;baz&#39;</span><span class="p">]}</span>    <span class="p">(</span><span class="nv">$$foo</span><span class="p">)[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>
+</span></span></span><span class="line"><span class="cl"><span class="nv">$$foo</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>    <span class="nv">${$foo</span><span class="p">[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;baz&#39;</span><span class="p">]}</span>    <span class="p">(</span><span class="nv">$$foo</span><span class="p">)[</span><span class="s1">&#39;bar&#39;</span><span class="p">][</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">$foo</span><span class="o">-&gt;</span><span class="nv">$bar</span><span class="p">[</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>      <span class="nv">$foo</span><span class="o">-&gt;</span><span class="p">{</span><span class="nv">$bar</span><span class="p">[</span><span class="s1">&#39;baz&#39;</span><span class="p">]}</span>      <span class="p">(</span><span class="nv">$foo</span><span class="o">-&gt;</span><span class="nv">$bar</span><span class="p">)[</span><span class="s1">&#39;baz&#39;</span><span class="p">]</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// foreach 通过值遍历时，操作的值为数组的副本
 </span></span></span><span class="line"><span class="cl"><span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -3760,7 +3760,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// int(0)
 </span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// foreach通过引用遍历时，有更好的迭代特性
+</span></span><span class="line"><span class="cl"><span class="c1">// foreach 通过引用遍历时，有更好的迭代特性
 </span></span></span><span class="line"><span class="cl"><span class="nv">$array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="k">foreach</span> <span class="p">(</span><span class="nv">$array</span> <span class="k">as</span> <span class="o">&amp;</span><span class="nv">$val</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">var_dump</span><span class="p">(</span><span class="nv">$val</span><span class="p">);</span>
@@ -3806,7 +3806,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">]);</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1">// 匿名类 用来替代一些“用后即焚”的完整类定义
 </span></span></span><span class="line"><span class="cl"><span class="nv">$app</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Application</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$app</span><span class="o">-&gt;</span><span class="na">setLogger</span><span class="p">(</span><span class="k">new</span> <span class="k">class</span> <span class="nc">implements</span> <span class="nx">Logger</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nv">$app</span><span class="o">-&gt;</span><span class="na">setLogger</span><span class="p">(</span><span class="k">new</span> <span class="k">class</span> <span class="k">implements</span> <span class="nx">Logger</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">function</span> <span class="nf">log</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$msg</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">echo</span> <span class="nv">$msg</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>

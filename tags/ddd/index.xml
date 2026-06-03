@@ -17,30 +17,30 @@
 &lt;p&gt;&lt;strong&gt;DDD（Domain-Driven Design）&lt;/strong&gt;：Eric Evans 2003 年提出，一套用于开发&lt;strong&gt;复杂软件&lt;/strong&gt;的方法论与思想，核心是&lt;strong&gt;领域建模&lt;/strong&gt;。常被概括成&amp;quot;把面向对象做对（OO Done Right）&amp;quot;。&lt;/p&gt;
 &lt;h3 id=&#34;传统-oo-在企业应用里的痛--ddd-的回应&#34;&gt;传统 OO 在企业应用里的痛 → DDD 的回应&lt;/h3&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;痛点&lt;/th&gt;
-          &lt;th&gt;DDD 的回应&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;重技术轻业务&lt;/td&gt;
-          &lt;td&gt;通用语言（业务 / 开发同一套词）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;领域建模无章法&lt;/td&gt;
-          &lt;td&gt;模型驱动设计、限界上下文&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;业务 / 技术协作不足&lt;/td&gt;
-          &lt;td&gt;事件风暴、协作产出统一语言&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;难以适应频繁变化&lt;/td&gt;
-          &lt;td&gt;柔性设计 + 持续重构，避免过度设计&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;痛点&lt;/th&gt;
+					&lt;th&gt;DDD 的回应&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;重技术轻业务&lt;/td&gt;
+					&lt;td&gt;通用语言（业务 / 开发同一套词）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;领域建模无章法&lt;/td&gt;
+					&lt;td&gt;模型驱动设计、限界上下文&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;业务 / 技术协作不足&lt;/td&gt;
+					&lt;td&gt;事件风暴、协作产出统一语言&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;难以适应频繁变化&lt;/td&gt;
+					&lt;td&gt;柔性设计 + 持续重构，避免过度设计&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;为什么近几年才出圈&#34;&gt;为什么近几年才&amp;quot;出圈&amp;quot;&lt;/h3&gt;
 &lt;ul&gt;
@@ -51,82 +51,82 @@
 &lt;h2 id=&#34;02-案例需求企业工时系统&#34;&gt;02 案例需求：企业工时系统&lt;/h2&gt;
 &lt;p&gt;要做的 SaaS：员工每周填报&amp;quot;在哪些项目上花了多少时间&amp;quot;。&lt;/p&gt;
 &lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th&gt;需求&lt;/th&gt;
-          &lt;th&gt;核心对象 / 范围&lt;/th&gt;
-          &lt;th&gt;主要功能 (CRUD / 流程)&lt;/th&gt;
-          &lt;th&gt;关键规则 / 约束&lt;/th&gt;
-          &lt;th&gt;关键字段 / 记录&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td&gt;多租户&lt;/td&gt;
-          &lt;td&gt;租户（企业）&lt;/td&gt;
-          &lt;td&gt;管理多个租户&lt;/td&gt;
-          &lt;td&gt;每个租户代表一个使用 SaaS 的企业&lt;/td&gt;
-          &lt;td&gt;—&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;人员与组织管理&lt;/td&gt;
-          &lt;td&gt;部门、员工&lt;/td&gt;
-          &lt;td&gt;部门：增删改查；员工：增删改查；员工分配部门&lt;/td&gt;
-          &lt;td&gt;员工只能从属于一个部门&lt;/td&gt;
-          &lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;项目管理&lt;/td&gt;
-          &lt;td&gt;客户、合同、项目&lt;/td&gt;
-          &lt;td&gt;客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束&lt;/td&gt;
-          &lt;td&gt;客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目&lt;/td&gt;
-          &lt;td&gt;合同 / 项目开始时间、结束时间等&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;人员分配&lt;/td&gt;
-          &lt;td&gt;项目成员关系&lt;/td&gt;
-          &lt;td&gt;为项目分配人员；人员退出项目&lt;/td&gt;
-          &lt;td&gt;项目可多人；员工可同时参与多个项目；需记录投入比例&lt;/td&gt;
-          &lt;td&gt;投入百分比（人 - 项目）&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td&gt;工时登记&lt;/td&gt;
-          &lt;td&gt;工时（周报 / 日记录）&lt;/td&gt;
-          &lt;td&gt;员工每周填报工时；查询；修改；填写备注&lt;/td&gt;
-          &lt;td&gt;仅当员工已分配到项目后，才可在该项目报工时&lt;/td&gt;
-          &lt;td&gt;日期、项目、投入时长、备注&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;需求&lt;/th&gt;
+					&lt;th&gt;核心对象 / 范围&lt;/th&gt;
+					&lt;th&gt;主要功能 (CRUD / 流程)&lt;/th&gt;
+					&lt;th&gt;关键规则 / 约束&lt;/th&gt;
+					&lt;th&gt;关键字段 / 记录&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;多租户&lt;/td&gt;
+					&lt;td&gt;租户（企业）&lt;/td&gt;
+					&lt;td&gt;管理多个租户&lt;/td&gt;
+					&lt;td&gt;每个租户代表一个使用 SaaS 的企业&lt;/td&gt;
+					&lt;td&gt;—&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;人员与组织管理&lt;/td&gt;
+					&lt;td&gt;部门、员工&lt;/td&gt;
+					&lt;td&gt;部门：增删改查；员工：增删改查；员工分配部门&lt;/td&gt;
+					&lt;td&gt;员工只能从属于一个部门&lt;/td&gt;
+					&lt;td&gt;部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;项目管理&lt;/td&gt;
+					&lt;td&gt;客户、合同、项目&lt;/td&gt;
+					&lt;td&gt;客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束&lt;/td&gt;
+					&lt;td&gt;客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目&lt;/td&gt;
+					&lt;td&gt;合同 / 项目开始时间、结束时间等&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;人员分配&lt;/td&gt;
+					&lt;td&gt;项目成员关系&lt;/td&gt;
+					&lt;td&gt;为项目分配人员；人员退出项目&lt;/td&gt;
+					&lt;td&gt;项目可多人；员工可同时参与多个项目；需记录投入比例&lt;/td&gt;
+					&lt;td&gt;投入百分比（人 - 项目）&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;工时登记&lt;/td&gt;
+					&lt;td&gt;工时（周报 / 日记录）&lt;/td&gt;
+					&lt;td&gt;员工每周填报工时；查询；修改；填写备注&lt;/td&gt;
+					&lt;td&gt;仅当员工已分配到项目后，才可在该项目报工时&lt;/td&gt;
+					&lt;td&gt;日期、项目、投入时长、备注&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7&#34;&gt;&lt;/p&gt;</description>
       <content:encoded><![CDATA[<h2 id="01-ddd-小传">01 DDD 小传</h2>
 <p><strong>DDD（Domain-Driven Design）</strong>：Eric Evans 2003 年提出，一套用于开发<strong>复杂软件</strong>的方法论与思想，核心是<strong>领域建模</strong>。常被概括成&quot;把面向对象做对（OO Done Right）&quot;。</p>
 <h3 id="传统-oo-在企业应用里的痛--ddd-的回应">传统 OO 在企业应用里的痛 → DDD 的回应</h3>
 <table>
-  <thead>
-      <tr>
-          <th>痛点</th>
-          <th>DDD 的回应</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>重技术轻业务</td>
-          <td>通用语言（业务 / 开发同一套词）</td>
-      </tr>
-      <tr>
-          <td>领域建模无章法</td>
-          <td>模型驱动设计、限界上下文</td>
-      </tr>
-      <tr>
-          <td>业务 / 技术协作不足</td>
-          <td>事件风暴、协作产出统一语言</td>
-      </tr>
-      <tr>
-          <td>难以适应频繁变化</td>
-          <td>柔性设计 + 持续重构，避免过度设计</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>痛点</th>
+					<th>DDD 的回应</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>重技术轻业务</td>
+					<td>通用语言（业务 / 开发同一套词）</td>
+			</tr>
+			<tr>
+					<td>领域建模无章法</td>
+					<td>模型驱动设计、限界上下文</td>
+			</tr>
+			<tr>
+					<td>业务 / 技术协作不足</td>
+					<td>事件风暴、协作产出统一语言</td>
+			</tr>
+			<tr>
+					<td>难以适应频繁变化</td>
+					<td>柔性设计 + 持续重构，避免过度设计</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="为什么近几年才出圈">为什么近几年才&quot;出圈&quot;</h3>
 <ul>
@@ -137,52 +137,52 @@
 <h2 id="02-案例需求企业工时系统">02 案例需求：企业工时系统</h2>
 <p>要做的 SaaS：员工每周填报&quot;在哪些项目上花了多少时间&quot;。</p>
 <table>
-  <thead>
-      <tr>
-          <th>需求</th>
-          <th>核心对象 / 范围</th>
-          <th>主要功能 (CRUD / 流程)</th>
-          <th>关键规则 / 约束</th>
-          <th>关键字段 / 记录</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>多租户</td>
-          <td>租户（企业）</td>
-          <td>管理多个租户</td>
-          <td>每个租户代表一个使用 SaaS 的企业</td>
-          <td>—</td>
-      </tr>
-      <tr>
-          <td>人员与组织管理</td>
-          <td>部门、员工</td>
-          <td>部门：增删改查；员工：增删改查；员工分配部门</td>
-          <td>员工只能从属于一个部门</td>
-          <td>部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）</td>
-      </tr>
-      <tr>
-          <td>项目管理</td>
-          <td>客户、合同、项目</td>
-          <td>客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束</td>
-          <td>客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目</td>
-          <td>合同 / 项目开始时间、结束时间等</td>
-      </tr>
-      <tr>
-          <td>人员分配</td>
-          <td>项目成员关系</td>
-          <td>为项目分配人员；人员退出项目</td>
-          <td>项目可多人；员工可同时参与多个项目；需记录投入比例</td>
-          <td>投入百分比（人 - 项目）</td>
-      </tr>
-      <tr>
-          <td>工时登记</td>
-          <td>工时（周报 / 日记录）</td>
-          <td>员工每周填报工时；查询；修改；填写备注</td>
-          <td>仅当员工已分配到项目后，才可在该项目报工时</td>
-          <td>日期、项目、投入时长、备注</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>需求</th>
+					<th>核心对象 / 范围</th>
+					<th>主要功能 (CRUD / 流程)</th>
+					<th>关键规则 / 约束</th>
+					<th>关键字段 / 记录</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>多租户</td>
+					<td>租户（企业）</td>
+					<td>管理多个租户</td>
+					<td>每个租户代表一个使用 SaaS 的企业</td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>人员与组织管理</td>
+					<td>部门、员工</td>
+					<td>部门：增删改查；员工：增删改查；员工分配部门</td>
+					<td>员工只能从属于一个部门</td>
+					<td>部门层级示例：开发中心 → 开发组；职能部门（人事 / 财务等）</td>
+			</tr>
+			<tr>
+					<td>项目管理</td>
+					<td>客户、合同、项目</td>
+					<td>客户：增删改查；合同：增删改查 + 开始 / 结束；项目：增删改查 + 开始 / 结束</td>
+					<td>客户对应客户经理；合同对应销售；项目对应项目经理；合同下可有多个项目</td>
+					<td>合同 / 项目开始时间、结束时间等</td>
+			</tr>
+			<tr>
+					<td>人员分配</td>
+					<td>项目成员关系</td>
+					<td>为项目分配人员；人员退出项目</td>
+					<td>项目可多人；员工可同时参与多个项目；需记录投入比例</td>
+					<td>投入百分比（人 - 项目）</td>
+			</tr>
+			<tr>
+					<td>工时登记</td>
+					<td>工时（周报 / 日记录）</td>
+					<td>员工每周填报工时；查询；修改；填写备注</td>
+					<td>仅当员工已分配到项目后，才可在该项目报工时</td>
+					<td>日期、项目、投入时长、备注</td>
+			</tr>
+	</tbody>
 </table>
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/24f28aeb-1862-4289-ad76-3d7c0ba502e7"></p>
 <h2 id="03-事件风暴识别领域事件">03 事件风暴：识别领域事件</h2>
@@ -193,22 +193,22 @@
 <p><img alt="image" loading="lazy" src="https://github.com/user-attachments/assets/552968ac-8fdb-4929-aa7c-deb31693f9ea"></p>
 <h3 id="两类常见误判">两类常见误判</h3>
 <table>
-  <thead>
-      <tr>
-          <th>不是领域事件</th>
-          <th>为什么</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>技术事件</td>
-          <td>强调系统内部行为（如「缓存已刷新」），不属业务</td>
-      </tr>
-      <tr>
-          <td>查询行为</td>
-          <td>不改变业务状态</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>不是领域事件</th>
+					<th>为什么</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>技术事件</td>
+					<td>强调系统内部行为（如「缓存已刷新」），不属业务</td>
+			</tr>
+			<tr>
+					<td>查询行为</td>
+					<td>不改变业务状态</td>
+			</tr>
+	</tbody>
 </table>
 <p>判定标准——满足任一即可：</p>
 <ul>
@@ -236,50 +236,50 @@
 <p>反推链路：先有事件 → 问&quot;是谁做了什么才让它发生&quot;。</p>
 <p>每个命令还要捎带补两类上下文：</p>
 <table>
-  <thead>
-      <tr>
-          <th>上下文</th>
-          <th>问题</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>执行者</td>
-          <td>谁发起？用户、岗位、系统对象、还是权限角色</td>
-      </tr>
-      <tr>
-          <td>前置查询</td>
-          <td>执行前需要哪些数据用于校验 / 决策 / 填表</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>上下文</th>
+					<th>问题</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>执行者</td>
+					<td>谁发起？用户、岗位、系统对象、还是权限角色</td>
+			</tr>
+			<tr>
+					<td>前置查询</td>
+					<td>执行前需要哪些数据用于校验 / 决策 / 填表</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="领域名词从贴纸里提名词">领域名词：从贴纸里提名词</h3>
 <p>从命令、事件、执行者、查询数据中抽出名词性概念：</p>
 <table>
-  <thead>
-      <tr>
-          <th>来源</th>
-          <th>例子</th>
-          <th>提取的名词</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>命令</td>
-          <td>签订合同</td>
-          <td>合同</td>
-      </tr>
-      <tr>
-          <td>领域事件</td>
-          <td>合同已签订</td>
-          <td>合同</td>
-      </tr>
-      <tr>
-          <td>查询</td>
-          <td>查询客户经理</td>
-          <td>客户经理</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>来源</th>
+					<th>例子</th>
+					<th>提取的名词</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>命令</td>
+					<td>签订合同</td>
+					<td>合同</td>
+			</tr>
+			<tr>
+					<td>领域事件</td>
+					<td>合同已签订</td>
+					<td>合同</td>
+			</tr>
+			<tr>
+					<td>查询</td>
+					<td>查询客户经理</td>
+					<td>客户经理</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="领域规则要落表不能只在便利贴上">领域规则要落表，不能只在便利贴上</h3>
 <p>领域规则是核心资产，便利贴 / 白板照片有三宗罪：</p>
@@ -307,109 +307,109 @@
 </ul>
 <p>落地 DDD 的两件关键事：</p>
 <table>
-  <thead>
-      <tr>
-          <th>实践</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>补齐业务规则</td>
-          <td>让模型可执行，规则不被遗忘</td>
-      </tr>
-      <tr>
-          <td>建立词汇表</td>
-          <td>统一语言落地，团队认知一致</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>实践</th>
+					<th>作用</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>补齐业务规则</td>
+					<td>让模型可执行，规则不被遗忘</td>
+			</tr>
+			<tr>
+					<td>建立词汇表</td>
+					<td>统一语言落地，团队认知一致</td>
+			</tr>
+	</tbody>
 </table>
 <p><img alt="Image" loading="lazy" src="https://github.com/user-attachments/assets/8f2c8f7f-115c-48e4-965a-2bf3cb044959"></p>
 <h2 id="07-领域建模原理">07 领域建模原理</h2>
 <p>DDD 的<strong>领域模型</strong>是对领域知识的<strong>提炼抽象</strong>，同时兼顾<strong>业务表达</strong>与<strong>技术落地</strong>。</p>
 <h3 id="模型驱动设计的三层一致性">模型驱动设计的三层一致性</h3>
 <table>
-  <thead>
-      <tr>
-          <th>一致性</th>
-          <th>意味着</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域模型 ↔ 业务需求</td>
-          <td>模型反映真实业务，业务方能看懂</td>
-      </tr>
-      <tr>
-          <td>系统实现 ↔ 领域模型</td>
-          <td>代码结构与模型同形</td>
-      </tr>
-      <tr>
-          <td>实现 ↔ 需求（由前两者推出）</td>
-          <td>自然落地，不偏航</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>一致性</th>
+					<th>意味着</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域模型 ↔ 业务需求</td>
+					<td>模型反映真实业务，业务方能看懂</td>
+			</tr>
+			<tr>
+					<td>系统实现 ↔ 领域模型</td>
+					<td>代码结构与模型同形</td>
+			</tr>
+			<tr>
+					<td>实现 ↔ 需求（由前两者推出）</td>
+					<td>自然落地，不偏航</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="统一语言的维护">统一语言的维护</h3>
 <p>统一语言以<strong>领域模型 + 词汇表</strong>为基础，靠<strong>持续协作</strong>维护三者的一致性：模型、语言、实现。任何一处变了，另两处必须跟着改。</p>
 <h2 id="08-数据库设计">08 数据库设计</h2>
 <h3 id="三范式3nf速查">三范式（3NF）速查</h3>
 <table>
-  <thead>
-      <tr>
-          <th>范式</th>
-          <th>一句话规则</th>
-          <th>反例</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1NF</td>
-          <td>字段必须原子，不可再分</td>
-          <td><code>phones = &quot;138xxxx, 139xxxx&quot;</code>，应拆成多行或多列</td>
-      </tr>
-      <tr>
-          <td>2NF</td>
-          <td>非主属性必须<strong>完全</strong>依赖整个主键</td>
-          <td>主键 <code>(订单ID, 商品ID)</code>，<code>订单日期</code> 只依赖 <code>订单ID</code>，应拆出订单表</td>
-      </tr>
-      <tr>
-          <td>3NF</td>
-          <td>非主属性不能传递依赖</td>
-          <td><code>员工ID → 部门ID → 部门名称</code>，应拆出部门表</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>范式</th>
+					<th>一句话规则</th>
+					<th>反例</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1NF</td>
+					<td>字段必须原子，不可再分</td>
+					<td><code>phones = &quot;138xxxx, 139xxxx&quot;</code>，应拆成多行或多列</td>
+			</tr>
+			<tr>
+					<td>2NF</td>
+					<td>非主属性必须<strong>完全</strong>依赖整个主键</td>
+					<td>主键 <code>(订单ID, 商品ID)</code>，<code>订单日期</code> 只依赖 <code>订单ID</code>，应拆出订单表</td>
+			</tr>
+			<tr>
+					<td>3NF</td>
+					<td>非主属性不能传递依赖</td>
+					<td><code>员工ID → 部门ID → 部门名称</code>，应拆出部门表</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="ddd-怎么指导数据库设计">DDD 怎么指导数据库设计</h3>
 <table>
-  <thead>
-      <tr>
-          <th>领域模型概念</th>
-          <th>数据库映射</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>实体</td>
-          <td>表</td>
-      </tr>
-      <tr>
-          <td>属性</td>
-          <td>字段（按需补充）</td>
-      </tr>
-      <tr>
-          <td>1:N 关联</td>
-          <td>外键（云上常用「虚拟外键」）</td>
-      </tr>
-      <tr>
-          <td>M:N 关联</td>
-          <td>关联表</td>
-      </tr>
-      <tr>
-          <td>统一语言</td>
-          <td>规范命名（表名 / 字段名）</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>领域模型概念</th>
+					<th>数据库映射</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>实体</td>
+					<td>表</td>
+			</tr>
+			<tr>
+					<td>属性</td>
+					<td>字段（按需补充）</td>
+			</tr>
+			<tr>
+					<td>1:N 关联</td>
+					<td>外键（云上常用「虚拟外键」）</td>
+			</tr>
+			<tr>
+					<td>M:N 关联</td>
+					<td>关联表</td>
+			</tr>
+			<tr>
+					<td>统一语言</td>
+					<td>规范命名（表名 / 字段名）</td>
+			</tr>
+	</tbody>
 </table>
 <p>相较&quot;拍脑袋&quot;建模：</p>
 <ul>
@@ -421,54 +421,54 @@
 <p><strong>核心原则：不稳定的依赖稳定的。</strong> 越靠内层越稳定，越靠外层越易变。</p>
 <h3 id="各层职责">各层职责</h3>
 <table>
-  <thead>
-      <tr>
-          <th>层</th>
-          <th>职责</th>
-          <th>稳定度</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域层</td>
-          <td>封装领域数据与规则，是系统核心</td>
-          <td>最高</td>
-      </tr>
-      <tr>
-          <td>应用层</td>
-          <td>编排领域能力为粗粒度服务，处理事务、日志等横切关注点</td>
-          <td>高</td>
-      </tr>
-      <tr>
-          <td>适配器层</td>
-          <td>隔离外部交互（主动 / 被动），让内层与技术细节解耦</td>
-          <td>低</td>
-      </tr>
-      <tr>
-          <td>common 层</td>
-          <td>工具与框架支撑</td>
-          <td>—</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>层</th>
+					<th>职责</th>
+					<th>稳定度</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域层</td>
+					<td>封装领域数据与规则，是系统核心</td>
+					<td>最高</td>
+			</tr>
+			<tr>
+					<td>应用层</td>
+					<td>编排领域能力为粗粒度服务，处理事务、日志等横切关注点</td>
+					<td>高</td>
+			</tr>
+			<tr>
+					<td>适配器层</td>
+					<td>隔离外部交互（主动 / 被动），让内层与技术细节解耦</td>
+					<td>低</td>
+			</tr>
+			<tr>
+					<td>common 层</td>
+					<td>工具与框架支撑</td>
+					<td>—</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="两组易混对子">两组易混对子</h3>
 <table>
-  <thead>
-      <tr>
-          <th>A vs B</th>
-          <th>区别</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>主动 vs 被动适配器</td>
-          <td>调用方向：前者<strong>接收</strong>外部请求；后者<strong>访问</strong>外部资源</td>
-      </tr>
-      <tr>
-          <td>Repository vs DAO</td>
-          <td>Repository 以<strong>聚合</strong>为单位（入门可按&quot;一个实体一个 Repo&quot;理解）；DAO 以<strong>表</strong>为单位</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>A vs B</th>
+					<th>区别</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>主动 vs 被动适配器</td>
+					<td>调用方向：前者<strong>接收</strong>外部请求；后者<strong>访问</strong>外部资源</td>
+			</tr>
+			<tr>
+					<td>Repository vs DAO</td>
+					<td>Repository 以<strong>聚合</strong>为单位（入门可按&quot;一个实体一个 Repo&quot;理解）；DAO 以<strong>表</strong>为单位</td>
+			</tr>
+	</tbody>
 </table>
 <h2 id="10-代码实现贫血还是充血">10 代码实现：贫血还是充血</h2>
 <p>贫血 / 充血的概念与对照已在 <a href="/2021/02/05/the-beauty-of-design-patterns/">设计模式之美 §11~§12</a> 详述。一句话回顾：贫血 = 数据 / 行为分离（偏面向过程）；充血 = 数据 + 行为聚合（贴近 OO）。企业实践常混用，不必非黑即白。</p>
@@ -480,25 +480,25 @@
 </ol>
 <h3 id="别把两种模型混为一谈">别把两种&quot;模型&quot;混为一谈</h3>
 <table>
-  <thead>
-      <tr>
-          <th>模型类型</th>
-          <th>受众</th>
-          <th>用途</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域模型</td>
-          <td>业务 + 开发</td>
-          <td>表达业务概念、规则、关系</td>
-      </tr>
-      <tr>
-          <td>设计模型（UML 类图）</td>
-          <td>仅开发</td>
-          <td>表达工程内部结构、技术细节</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>模型类型</th>
+					<th>受众</th>
+					<th>用途</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域模型</td>
+					<td>业务 + 开发</td>
+					<td>表达业务概念、规则、关系</td>
+			</tr>
+			<tr>
+					<td>设计模型（UML 类图）</td>
+					<td>仅开发</td>
+					<td>表达工程内部结构、技术细节</td>
+			</tr>
+	</tbody>
 </table>
 <p>跟领域专家讨论时聊领域模型；内部 review 时再上设计模型。</p>
 <h2 id="11-代码实现领域对象--领域逻辑">11 代码实现：领域对象 + 领域逻辑</h2>
@@ -513,25 +513,25 @@
 <h3 id="领域逻辑-vs-应用逻辑">领域逻辑 vs 应用逻辑</h3>
 <p>判据：<strong>是否包含领域专家关心的领域知识？</strong></p>
 <table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>例子</th>
-          <th>该放哪</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>领域逻辑</td>
-          <td>&ldquo;工时累计超过 60 小时需审批&rdquo;</td>
-          <td>领域对象优先；不合适放对象则放领域服务</td>
-      </tr>
-      <tr>
-          <td>应用逻辑</td>
-          <td>接 HTTP、组合事务、发消息、写日志</td>
-          <td>应用层</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>例子</th>
+					<th>该放哪</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>领域逻辑</td>
+					<td>&ldquo;工时累计超过 60 小时需审批&rdquo;</td>
+					<td>领域对象优先；不合适放对象则放领域服务</td>
+			</tr>
+			<tr>
+					<td>应用逻辑</td>
+					<td>接 HTTP、组合事务、发消息、写日志</td>
+					<td>应用层</td>
+			</tr>
+	</tbody>
 </table>
 <h3 id="复杂对象的创建">复杂对象的创建</h3>
 <ul>
@@ -540,25 +540,25 @@
 </ul>
 <h3 id="模块划分横切--纵切">模块划分：横切 + 纵切</h3>
 <table>
-  <thead>
-      <tr>
-          <th>切法</th>
-          <th>依据</th>
-          <th>例子</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>横切</td>
-          <td>按性质 / 层</td>
-          <td>controller / service / repository</td>
-      </tr>
-      <tr>
-          <td>纵切</td>
-          <td>按业务 / 耦合</td>
-          <td>order / payment / inventory</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>切法</th>
+					<th>依据</th>
+					<th>例子</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>横切</td>
+					<td>按性质 / 层</td>
+					<td>controller / service / repository</td>
+			</tr>
+			<tr>
+					<td>纵切</td>
+					<td>按业务 / 耦合</td>
+					<td>order / payment / inventory</td>
+			</tr>
+	</tbody>
 </table>
 <p><strong>先横后竖</strong>：先把分层架构搭起来，再按业务垂直切，避免一上来就过度模块化。</p>
 <p>&ndash; EOF &ndash;</p>
