@@ -20,15 +20,6 @@
     <loc>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</loc>
     <lastmod>2026-04-23T15:06:07+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/php/</loc>
-    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2026/01/05/php-migrating-84-to-85/</loc>
-    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/php-migrating/</loc>
-    <lastmod>2026-01-05T21:33:57+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2025/12/23/self-hosted-proxy-subscription-management/</loc>
     <lastmod>2025-12-23T10:12:12+00:00</lastmod>
   </url><url>
@@ -41,35 +32,11 @@
     <loc>https://zyf.im/2025/06/26/use-https-in-local-environment/</loc>
     <lastmod>2025-06-26T12:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2025/02/01/php-migrating-83-to-84/</loc>
-    <lastmod>2025-02-01T17:42:42+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2024/08/01/php-migrating-82-to-83/</loc>
-    <lastmod>2024-08-01T17:37:13+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2024/07/01/php-migrating-81-to-82/</loc>
-    <lastmod>2024-07-01T09:24:50+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/mongodb/</loc>
     <lastmod>2023-04-19T10:47:10+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2023/04/19/mongodb-course/</loc>
     <lastmod>2023-04-19T10:47:10+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/ddd/</loc>
-    <lastmod>2023-03-01T17:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/design-pattern/</loc>
-    <lastmod>2023-03-01T17:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/03/01/hands-on-ddd/</loc>
-    <lastmod>2023-03-01T17:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/regular-expression/</loc>
-    <lastmod>2023-03-01T15:31:15+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/03/01/regular-expression-getting-started/</loc>
-    <lastmod>2023-03-01T15:31:15+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/kubernetes/</loc>
     <lastmod>2023-02-24T17:24:14+00:00</lastmod>
@@ -89,65 +56,26 @@
     <loc>https://zyf.im/2023/02/01/go-language-lesson-one/</loc>
     <lastmod>2023-02-01T11:44:27+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2022/12/21/php-migrating-80-to-81/</loc>
-    <lastmod>2022-12-21T18:25:49+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/12/14/php-migrating-74-to-80/</loc>
-    <lastmod>2022-12-14T16:40:03+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/12/12/php-migrating-to-72-73-74/</loc>
-    <lastmod>2022-12-12T20:51:51+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/11/28/php-migrating-to-70-71/</loc>
-    <lastmod>2022-11-28T10:36:34+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/mysql/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2022/08/14/mysql-course-45/</loc>
     <lastmod>2022-08-14T15:53:16+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2021/02/05/the-beauty-of-design-patterns/</loc>
-    <lastmod>2021-02-05T11:00:41+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2021/01/27/php-strtotime-month/</loc>
-    <lastmod>2021-01-27T18:18:24+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/composer/</loc>
-    <lastmod>2020-10-28T11:36:27+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/10/28/composer-document-note/</loc>
-    <lastmod>2020-10-28T11:36:27+00:00</lastmod>
+    <loc>https://zyf.im/tags/php/</loc>
+    <lastmod>2020-05-09T17:32:34+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
     <lastmod>2020-05-09T17:32:34+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/tags/composer/</loc>
+    <lastmod>2019-12-19T16:46:06+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
     <lastmod>2019-12-19T16:46:06+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</loc>
     <lastmod>2019-05-25T11:05:46+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/algorithm/</loc>
-    <lastmod>2019-05-23T14:44:40+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/05/23/merge-sort/</loc>
-    <lastmod>2019-05-23T14:44:40+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/04/28/composer-autoload-in-laravel/</loc>
-    <lastmod>2019-04-28T19:21:12+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/swift/</loc>
-    <lastmod>2019-03-06T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/03/06/find-pivot-index/</loc>
-    <lastmod>2019-03-06T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/03/02/convert-m-number-to-n-number/</loc>
-    <lastmod>2019-03-02T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/03/01/extra-long-factorials/</loc>
-    <lastmod>2019-03-01T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/categories/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>
@@ -157,18 +85,6 @@
   </url><url>
     <loc>https://zyf.im/2018/12/31/review-2018/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/12/10/binary-search/</loc>
-    <lastmod>2018-12-10T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/11/24/insertion-sort/</loc>
-    <lastmod>2018-11-24T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/11/22/queue-data-structure/</loc>
-    <lastmod>2018-11-22T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/11/22/stack-data-structure/</loc>
-    <lastmod>2018-11-22T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/tags/laravel/</loc>
     <lastmod>2018-05-25T16:00:00+00:00</lastmod>
@@ -215,74 +131,17 @@
     <loc>https://zyf.im/2016/12/31/review-2016/</loc>
     <lastmod>2016-12-31T22:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/leetcode/</loc>
-    <lastmod>2016-09-19T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/19/leetcode-shell-solutions/</loc>
-    <lastmod>2016-09-19T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/14/leetcode-database-trips-and-users-262/</loc>
-    <lastmod>2016-09-14T13:45:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/12/leetcode-database-department-highest-salary-184/</loc>
-    <lastmod>2016-09-12T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/11/leetcode-database-consecutive-numbers-180/</loc>
-    <lastmod>2016-09-11T20:45:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/11/leetcode-database-second-highest-salary-176/</loc>
-    <lastmod>2016-09-11T19:45:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/09/11/leetcode-database-rising-temperature-197/</loc>
-    <lastmod>2016-09-11T19:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/tags/thinking/</loc>
     <lastmod>2016-08-31T23:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/08/31/2016-08-report/</loc>
     <lastmod>2016-08-31T23:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/08/31/leetcode-number-of-1-bits-191/</loc>
-    <lastmod>2016-08-31T13:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/29/leetcode-happy-number-202/</loc>
-    <lastmod>2016-08-29T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/25/leetcode-roman-to-integer-13/</loc>
-    <lastmod>2016-08-25T10:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/24/leetcode-majority-element-169/</loc>
-    <lastmod>2016-08-24T09:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/23/leetcode-first-unique-character-in-a-string-387/</loc>
-    <lastmod>2016-08-23T14:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/23/leetcode-maximum-depth-of-binary-tree-104/</loc>
-    <lastmod>2016-08-23T11:30:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/08/22/being-alive-is-a-gift-reading-notes/</loc>
     <lastmod>2016-08-22T23:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2016/08/22/leetcode-intersection-of-two-arrays-349/</loc>
-    <lastmod>2016-08-22T18:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/22/leetcode-same-tree-100/</loc>
-    <lastmod>2016-08-22T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-title-168/</loc>
-    <lastmod>2016-08-22T13:40:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/22/leetcode-excel-sheet-column-number-171/</loc>
-    <lastmod>2016-08-22T13:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2016/08/17/something-like-an-autobiography-reading-notes/</loc>
     <lastmod>2016-08-17T23:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/16/leetcode-move-zeroes-283/</loc>
-    <lastmod>2016-08-16T19:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/08/11/leetcode-ransom-note-383/</loc>
-    <lastmod>2016-08-11T13:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
     <lastmod>2016-07-11T09:00:00+00:00</lastmod>
