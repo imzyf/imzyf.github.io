@@ -2,116 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://zyf.im/posts/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/self-hosted/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/vaultwarden/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2026/04/23/migrate-from-1password-to-vaultwarden/</loc>
-    <lastmod>2026-04-23T15:06:07+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2025/12/23/self-hosted-proxy-subscription-management/</loc>
-    <lastmod>2025-12-23T10:12:12+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/nginx/</loc>
-    <lastmod>2025-06-27T10:12:12+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2025/06/27/nginx-enable-http3/</loc>
-    <lastmod>2025-06-27T10:12:12+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2025/06/26/use-https-in-local-environment/</loc>
-    <lastmod>2025-06-26T12:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/mongodb/</loc>
-    <lastmod>2023-04-19T10:47:10+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/04/19/mongodb-course/</loc>
-    <lastmod>2023-04-19T10:47:10+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/kubernetes/</loc>
-    <lastmod>2023-02-24T17:24:14+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/02/24/kubernetes-getting-started-part3/</loc>
-    <lastmod>2023-02-24T17:24:14+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/02/22/kubernetes-getting-started-part2/</loc>
-    <lastmod>2023-02-22T17:11:27+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/02/15/kubernetes-getting-started-part1/</loc>
-    <lastmod>2023-02-15T14:46:38+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/go/</loc>
-    <lastmod>2023-02-01T11:44:27+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2023/02/01/go-language-lesson-one/</loc>
-    <lastmod>2023-02-01T11:44:27+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/mysql/</loc>
-    <lastmod>2022-08-14T15:53:16+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2022/08/14/mysql-course-45/</loc>
-    <lastmod>2022-08-14T15:53:16+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/php/</loc>
-    <lastmod>2020-05-09T17:32:34+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2020/05/09/php-float-precision/</loc>
-    <lastmod>2020-05-09T17:32:34+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/composer/</loc>
-    <lastmod>2019-12-19T16:46:06+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/12/19/lonicera-framework/</loc>
-    <lastmod>2019-12-19T16:46:06+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2019/05/25/the-left-prefix-index-rule/</loc>
-    <lastmod>2019-05-25T11:05:46+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/categories/</loc>
+    <lastmod>2018-12-31T21:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zyf.im/posts/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/categories/review/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://zyf.im/</loc>
+    <lastmod>2018-12-31T21:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://zyf.im/2018/12/31/review-2018/</loc>
     <lastmod>2018-12-31T21:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/tags/laravel/</loc>
-    <lastmod>2018-05-25T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/05/25/select-the-appropriate-date-type-in-mysql/</loc>
-    <lastmod>2018-05-25T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/05/08/modern-php-reading-notes/</loc>
-    <lastmod>2018-05-08T17:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/04/26/lets-encrypt-wildcard-certificates/</loc>
-    <lastmod>2018-04-26T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2018/01/17/got-git-reading-notes-harmony/</loc>
-    <lastmod>2018-01-17T19:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/git/</loc>
-    <lastmod>2018-01-17T19:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://zyf.im/2017/12/31/review-2017/</loc>
     <lastmod>2017-12-31T22:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/07/19/got-git-reading-notes-solo/</loc>
-    <lastmod>2017-07-19T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/06/06/nginx-enable-http2/</loc>
-    <lastmod>2017-06-06T21:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2017/05/14/i-am-proud-of-you/</loc>
     <lastmod>2017-05-14T13:00:00+00:00</lastmod>
@@ -119,14 +26,8 @@
     <loc>https://zyf.im/tags/reading-notes/</loc>
     <lastmod>2017-05-14T13:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zyf.im/2017/04/11/mysql-manage-user-and-grant/</loc>
-    <lastmod>2017-04-11T11:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/17/git-clean-commit-graph/</loc>
-    <lastmod>2017-03-17T16:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2017/03/13/git-rewrite-history/</loc>
-    <lastmod>2017-03-13T17:00:00+00:00</lastmod>
+    <loc>https://zyf.im/tags/</loc>
+    <lastmod>2017-05-14T13:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/12/31/review-2016/</loc>
     <lastmod>2016-12-31T22:00:00+00:00</lastmod>
@@ -145,12 +46,6 @@
   </url><url>
     <loc>https://zyf.im/2016/07/11/write-some-humanities-diary/</loc>
     <lastmod>2016-07-11T09:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/tags/github/</loc>
-    <lastmod>2016-06-24T18:30:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zyf.im/2016/06/24/hexo-github-blog/</loc>
-    <lastmod>2016-06-24T18:30:00+00:00</lastmod>
   </url><url>
     <loc>https://zyf.im/2016/03/18/try-to-write-something/</loc>
     <lastmod>2016-03-18T17:41:00+00:00</lastmod>
