@@ -1,0 +1,67 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="480"
+  height="280"
+  viewBox="0 0 480 280"
+  role="img"
+  aria-labelledby="title"
+>
+  <title id="title">Send an email to zhaoyifans@gmail.com</title>
+  <defs>
+    <pattern
+      id="airmail"
+      width="72"
+      height="72"
+      patternUnits="userSpaceOnUse"
+      patternTransform="rotate(-45)"
+    >
+      <rect width="72" height="72" fill="#faf9f5" />
+      <rect width="18" height="72" fill="#b76c68" />
+      <rect x="36" width="18" height="72" fill="#7598aa" />
+    </pattern>
+    <pattern id="paper" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="7" r=".65" fill="#aaa28e" opacity=".13" />
+      <circle cx="12" cy="14" r=".45" fill="#aaa28e" opacity=".12" />
+    </pattern>
+    <clipPath id="edge"><rect width="480" height="280" rx="8" /></clipPath>
+  </defs>
+  <g clip-path="url(#edge)">
+    <rect width="480" height="280" fill="url(#airmail)" />
+    <rect x="6" y="6" width="468" height="268" rx="3" fill="#faf9f5" />
+    <path d="m6 274 234-133 234 133" fill="#efede6" opacity=".45" />
+    <rect x="6" y="6" width="468" height="268" fill="url(#paper)" />
+    <g
+      font-family="monospace"
+      font-size="11"
+      letter-spacing="1.6"
+      fill="#86877f"
+    >
+      <text x="30" y="36" fill="#aaa99f">TO / EMAIL</text>
+    </g>
+    <g transform="translate(426 45)" fill="none" stroke="#979b91" opacity=".65">
+      <circle r="20" />
+      <circle r="16" stroke-width=".6" />
+      <path
+        d="M-52-8c12-6 20 4 32-2m-32 10c12-6 20 4 32-2m-32 10c12-6 20 4 32-2"
+      />
+    </g>
+    <text
+      x="240"
+      y="157"
+      text-anchor="middle"
+      font-family="monospace"
+      font-size="30"
+      fill="#354338"
+    >zhaoyifans@gmail.com</text>
+    <path d="M30 214h420" stroke="#d9dbd1" />
+    <text
+      x="240"
+      y="250"
+      text-anchor="middle"
+      font-family="monospace"
+      font-size="11"
+      letter-spacing="1.6"
+      fill="#86877f"
+    >SEND AN EMAIL</text>
+  </g>
+</svg>
