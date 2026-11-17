@@ -12,6 +12,7 @@
 - [关于](https://zyf.im/about/): 作者的关于页面。
 - [时间线](https://zyf.im/timeline/): 生活与工作中的重要节点。
 - [片段](https://zyf.im/quotes/): 摘录与生活片段。
+- [Homelab](https://zyf.im/homelab/): 家里网络与设备的当前配置。
 - [友链](https://zyf.im/friends/): 作者收藏的朋友网站。
 
 ## 已发表文章
